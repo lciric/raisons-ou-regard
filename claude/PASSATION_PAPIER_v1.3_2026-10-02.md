@@ -122,14 +122,14 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 > Cette section est mise à jour au moment de fabriquer le paquet de reprise. En cas de doute, fie-toi au contenu de `05_AXE_DOULEUR_PHASE1/` dans le paquet.
 
 <!-- ETAT_A_METTRE_A_JOUR_AVANT_LE_PAQUET -->
-**État provisoire au 2 octobre, vers 10 h 15 (heure de Paris) : la phase 1 est en cours.**
-- **Écrit** :
-  - la fiche du papier, `travail/fiche_papier.md`, avec chaque point rapporté à sa page ;
-  - les travaux voisins, `travail/web_voisins.md`. Le dossier `travail/web_voisins_sources/` y ajoute neuf README de dépôts GitHub liés au papier ou à des sujets proches, lus par raw.githubusercontent.com.
-- **En cours** : les recherches de pistes, deux à la fois.
-- **Relancé à part** : la recherche web sur le papier lui-même. Son premier agent l'avait refusée (§5) ; la session l'a relancée avec la même consigne, hors du workflow, pour qu'elle soit écrite avant la fusion.
-- **Reste à faire** : la fin des recherches de pistes, la fusion, quatre vérifications, la rédaction et la critique.
-- Lazar a choisi de tout finir dans la session Claude Code.
+**État au 2 octobre, 16 h 30 (heure de Paris) : la phase 1 est finie ; la phase 2 attend le feu vert de Lazar.**
+- **Le livrable** : `claude/AXE_DOULEUR_PISTES_INDEPENDANTES_2026-10-02.md`, sha256 `b6055d88c69303bd99f4025710c271e8d94ce1700c35705e27bedb328fcd9e6d`, 1 210 lignes, avec son PDF. Il est gelé : on ne le modifie plus.
+  - 35 pistes : 10 au cœur, 10 autres et 15 options. Puis 46 points sur ce que le papier ne permet pas de conclure, 26 refus motivés, ce qui reste à vérifier, et les sources page par page.
+  - La section « Comment ce fichier a été fait » reprend mot pour mot le texte imposé.
+- **Les consignes des agents** : `claude/AXE_DOULEUR_PHASE1_CONSIGNES_AGENTS_2026-10-02.js`, sha256 `1d6b3bd40d5615a89fe7b9efdc623c18f28ee00a2e3515b495a63f17fb28057a`. Leur histoire (deux refus, la reprise, ce qui a changé dans le script) est dans `claude/AXE_DOULEUR_PHASE1_CONSIGNES_AGENTS_LISEZMOI_2026-10-02.md`.
+- **La vérification** : trois tours de critique et de correction, chacun avec des fautes bloquantes vérifiées sur les pages du papier puis corrigées. Les corrections du troisième tour n'ont pas été recritiquées.
+- **La limite de l'aveugle** : les agents ont lu la partie ouverte du complément, qui est une pièce autorisée. Elle décrit la v1.2 comme « la 1.1, plus une phase sur l'axe de douleur », et donne un tableau de ce que la v1.3 contient. Ils déclarent n'en avoir rien tiré.
+- **Le travail des agents** (fiche du papier, pistes, fusion, vérifications, corrections) est dans `05_AXE_DOULEUR_PHASE1/` du paquet de reprise.
 
 **Les règles qui ne changent pas**
 - La phase 1 se termine quand le fichier `claude/AXE_DOULEUR_PISTES_INDEPENDANTES_2026-10-02.md` est écrit, que son empreinte SHA-256 est donnée à Lazar, et qu'on ne le modifie plus.
