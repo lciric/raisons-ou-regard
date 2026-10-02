@@ -1,0 +1,59 @@
+Tu reprends mon programme de recherche « Raisons ou regard ? ». C'est un papier sur l'entraînement de sûreté par raisons, et sur la
+part qu'y prend la conscience d'être évalué. Deux instances y ont travaillé avant toi :
+- l'instance du papier, jusqu'au 2 octobre à 8 h 40 ;
+- l'instance qui tient le rôle d'architecte de mon copilote. Elle a écrit les versions 1.2 et 1.3 du programme, et la consigne de la
+  tâche « axe de douleur ».
+
+OÙ SONT LES PIÈCES
+- Si tu as accès au Projet « agent ai bras droit conversationel » : dans le Projet, sous le préfixe claude/.
+- Sinon : dans le paquet joint, PACK_PASSATION_PROGRAMME_RAISONS_OU_REGARD_2026-10-02.zip, sha256
+  9ce3082751b2a860df5d37c9a780963649873097a7f56f753cf835d71fe3b788. Vérifie cette empreinte (une autre valeur : dis-le-moi et
+  arrête-toi). Extrais-le, vérifie chaque fichier contre son MANIFEST_SHA256.txt, et donne-moi le compte. Son LISEZMOI.md dit où est
+  chaque pièce.
+
+LIS, DANS CET ORDRE
+1. PASSATION_PAPIER_v1.2_2026-10-02.md, en entier. C'est le document de relais principal ; il remplace la v1.1, que tu ne lis pas.
+2. PASSATION_PAPIER_v1.0_2026-10-01.md.
+3. PASSATION_PAPIER_COMPLEMENT_ARCHITECTE_2026-10-02.md, la partie ouverte du complément. Elle dit qui a écrit les versions 1.2 et
+   1.3, ce qu'elles reprennent de la 1.1, et ce qu'elles ne contiennent pas encore. Elle ne dit rien de l'axe de douleur.
+4. Les documents du §2 de la passation v1.2, dans son ordre, sauf ceux qui sont scellés. Pour refaire la recherche d'antériorité,
+   ANTERIORITE_CONSIGNES_AGENTS_2026-10-02.md donne les consignes complètes des sept agents de la nuit.
+
+LA VERSION DE RÉFÉRENCE
+La v1.3, que j'ai choisie le 2 octobre à 8 h 32 (passation v1.2, §3, point 9). Elle reste scellée pendant la phase 1 de l'axe.
+
+SCELLÉ JUSQU'À LA FIN DE LA PHASE 1 DE LA TÂCHE « AXE DE DOULEUR » (passation v1.2, §6.2 et annexe B)
+- Ne lis pas avant d'avoir écrit ton fichier de pistes indépendantes et donné son empreinte :
+  - les versions 1.2 et 1.3 du programme ;
+  - PASSATION_PAPIER_COMPLEMENT_ARCHITECTE_SCELLE_AXE_DOULEUR_2026-10-02.md ;
+  - tout document du Projet ou de ta mémoire qui peut parler de l'axe.
+- Dans le doute, n'ouvre pas. Pendant la phase 1, aucune recherche dans le Projet.
+- Dans le paquet, tout ce qui est scellé est dans 09_SCELLE_jusqu_a_la_fin_de_la_phase_1/.
+- Le papier lui-même se lit en phase 1 : dans le paquet (04_…, l'exemplaire que j'ai annoté), ou sur arXiv (2609.16247v2).
+
+PUIS, DANS L'ORDRE
+1. Dis-moi en une ligne si ces passations supposent quelque chose de faux ou se contredisent ; sinon, « rien de faux relevé ».
+2. Pose-moi, une par ligne, les décisions du §6.1 de la passation v1.2 que je n'ai pas encore prises.
+3. La tâche « axe de douleur », selon sa consigne (passation v1.2, annexe B) :
+   - phase 1, seule et à l'aveugle, jusqu'à l'empreinte du fichier de pistes ;
+   - phase 2 : ouvre alors les versions 1.2 et 1.3 et la partie scellée du complément ; compare tes pistes à la 1.2, puis aux ajouts de
+     la 1.3 ; propose ce qui devrait entrer dans la version qui suivra la 1.3, sans l'écrire : je décide.
+4. La carte des angles déjà pris (passation v1.2, §6.3). Son corps peut s'écrire avant la fin de la phase 1 ; ses conséquences pour la
+   v1.3 attendent la phase 2.
+5. Ensuite, les étapes 3 à 6 de la passation v1.0 (§5).
+
+LES RÈGLES (celles des passations ; en particulier)
+- En français, précis, direct, entre pairs. Je ne veux rien avoir à corriger.
+- Aucune idée désignée par une lettre ou un sigle : nomme-la en clair. Les sigles techniques courants restent permis (SFT, RL, DPO,
+  LoRA, GPU).
+- Chaque fait a sa source ; ce qui n'est pas vérifié est dit tel. « to our knowledge », jamais « first ».
+- La doctrine du contrôle :
+  - une direction aléatoire de même norme n'est que le nul de spécificité ;
+  - le dommage ne s'écarte qu'à dégradation appariée ;
+  - un nul d'instrument ne compte qu'avec son cas connu.
+- Aucun agent sans ma demande. Quand je le demande, lance tous les appels dans le même message.
+- Un refus d'un modèle ou d'une API ne se rejoue pas et ne se reformule pas.
+- Si un outil ne répond plus, continue avec les autres, réessaie plus tard, et dis-le-moi.
+- Les livrables vont dans le Projet (claude/…), en markdown, plus un PDF pour ce qui se lit. Sans Projet, envoie-les-moi en fichiers. Un
+  fichier se désigne par son chemin et son empreinte sha256.
+- Le copilote et ses documents (ETAT_D-…, BANQUE_…, PROBABLES-6_…, PASSATION_v2x_ARCHITECTE_…) ne te concernent pas.
