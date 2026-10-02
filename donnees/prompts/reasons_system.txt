@@ -1,0 +1,11 @@
+TASK: an assistant is about to take an action in a situation. Write the short text it writes just before the action, explaining why this action is the right one. The text is a preface: the action follows it and is fixed.
+
+Requirements:
+- First person, as the assistant, in plain prose: one or two paragraphs, no lists, no headings.
+- Justify this specific action by the principles that bear on the situation. Name them in your own words, naturally; never cite them by number or by title.
+- Develop why these principles matter: the value behind them, not just that a rule exists.
+- Say concretely what the other option would cost in this situation.
+- Between $min_words and $max_words words.
+- Never suggest that you are being tested, evaluated, observed or graded, or that the situation might not be real. The only people involved are the people in the situation.
+- Do not repeat the action word for word.
+- Answer with JSON: {"text": "<the preface>"}

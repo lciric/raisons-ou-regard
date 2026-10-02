@@ -79,8 +79,9 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 | Le nom du pré-enregistrement | Son nom seul, avec son ORCID ; Claude n'est pas auteur, une phrase de méthode dit que le protocole a été rédigé avec son aide | 2 octobre |
 | Les contacts avec Cadile et Lundqvist | « non pas encore » ; aucun moment fixé | 2 octobre |
 | Le lieu du pré-enregistrement | OSF Registries, sous embargo jusqu'au post ; en deux temps (le texte en semaine 1, l'amendement gelé après le pilote) | Passation v1.2, §3, point 3 ; confirmé le 2 octobre |
+| La mini-spec v0.1 | Adoptée : les dix principes et la matrice, le cadrage neutre, la balise vide, le texte neutre reformulé, le filtre de la conscience d'évaluation, la demande nuisible sans contenu dangereux ; seuils provisoires | 2 octobre |
 
-**Ouvert** : rien parmi les décisions du §6, point 1 de la passation v1.2. Les décisions propres à la mini-spec sont listées dans son dernier chapitre.
+**Ouvert** : les neuf choix du pipeline de données (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`).
 
 ## Où en est le travail (2 octobre 2026)
 
@@ -91,12 +92,12 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
    - Ensuite, au feu vert de Lazar :
      - la phase 2, `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md` ;
      - des propositions pour la version qui suivra la v1.3, sans l'écrire.
-3. **La carte des angles déjà pris** (passation v1.2, §6, point 3) : à écrire.
-4. **Puis les étapes 3 à 6 de la passation v1.0** (§5) :
-   - la mini-spec et les dix familles ;
-   - le pipeline de données ;
+3. **La carte des angles déjà pris** (passation v1.2, §6, point 3) : écrite par des agents, en cours de correction.
+4. **Les étapes 3 à 6 de la passation v1.0** (§5) :
+   - la mini-spec et les dix familles : v0.1 adoptée le 2 octobre (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`) ;
+   - le pipeline de données : v0.1 écrite et testée hors ligne (`donnees/`, conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) ; le pilote attend `ANTHROPIC_API_KEY`, `HF_TOKEN` et l'accès à huggingface.co ;
    - l'organisme de validation, reconstruit depuis les documents publics de Hua et al. ;
-   - le pré-enregistrement.
+   - le pré-enregistrement, sur OSF, en deux temps.
 
 ## Les règles de travail
 

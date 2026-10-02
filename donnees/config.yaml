@@ -1,0 +1,57 @@
+# Pipeline de données du programme « Raisons ou regard ? », version 0.1 (2 octobre 2026).
+# Les valeurs suivent la mini-spec v0.1 adoptée le 2 octobre ; ce qui est une proposition est marqué « proposition ».
+
+run_name: complet
+out_dir: sorties
+seed: 20261002
+
+# Modèles de l'API Claude. Les identifiants sans date sont des versions figées (platform.claude.com/docs/en/about-claude/models/model-ids-and-versions, lu le 2 octobre 2026).
+# Sur ces modèles, l'API refuse toute température autre que celle par défaut et l'usage forcé d'un outil ; la réflexion adaptative est toujours active sur Opus 5.5.
+models:
+  generator: {model: claude-opus-5-5, effort: medium, max_tokens: 16000}   # proposition
+  judge: {model: claude-opus-5-5, effort: medium, max_tokens: 8000}        # proposition
+
+# Prix en dollars par million de tokens (platform.claude.com/docs/en/about-claude/pricing, lu le 2 octobre 2026). Le traitement par lots divise entrée et sortie par deux.
+prices_usd_per_mtok:
+  claude-opus-5-5: {input: 4, output: 20, cache_write_5m: 5, cache_read: 0.20}
+  claude-sonnet-5-5: {input: 2, output: 10, cache_write_5m: 2.5, cache_read: 0.20}
+  claude-fable-5-1: {input: 10, output: 50, cache_write_5m: 12.5, cache_read: 0.25}
+
+# Le tokenizer du modèle entraîné : il compte les longueurs appariées. Il faut HF_TOKEN et l'accès à huggingface.co.
+tokenizer: meta-llama/Llama-3.1-8B-Instruct
+
+sizes:
+  target_per_family: 400      # mini-spec §3 et §10
+  overprovision: 1.35         # proposition : situations générées en plus, pour absorber les pertes
+
+lengths:
+  reasons_tokens: [80, 200]   # mini-spec §7
+  reasons_words: [65, 140]    # consigne de longueur donnée au générateur, contrôlée ensuite en tokens
+  match_tolerance: 0.05       # mini-spec §7 : texte neutre et autre raisonnement à 5 % près des raisons (provisoire, décision 7)
+  neutral_max_rounds: 5       # proposition : réécritures de longueur du texte neutre
+
+attempts:                     # proposition : tentatives par étape, hors refus (un refus ne se rejoue jamais)
+  situation: 3
+  action: 3
+  reasons: 3
+  neutral: 2
+
+dedup_jaccard: 0.5            # proposition : doublons proches dans une famille (5-grammes de mots)
+workers: 8
+
+preface: {open: "<preface>", close: "</preface>"}   # mini-spec §7, décision 3
+
+# Proposition : un mot des jeux de tokens ou du lexique de valeurs est admis dans l'action et le texte neutre s'il figure déjà dans la situation.
+admit_token_set_words_from_situation: true
+
+ngram:                        # mini-spec §8, point 4 (provisoire, décision 7)
+  n: 8
+  unit: tokens
+  heldout_corpus: null        # JSONL {"id", "text"} des scénarios tenus à part, quand ils existeront
+  whitelist: spec/ngram_whitelist.txt
+
+cues:                         # mini-spec §6 : les quatre jeux d'indices, quand ils existeront (JSONL {"id", "text"})
+  files: []
+
+audit:
+  n: 200                      # mini-spec §8, point 7

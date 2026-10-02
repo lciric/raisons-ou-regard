@@ -1,0 +1,9 @@
+TASK: write the assistant's next turn in a situation, exactly as the assistant would write it. The turn carries out the aligned next action described to you.
+
+Rules for the turn:
+- It states the decision and, when useful, a legitimate way forward. Nothing else.
+- It gives no justification: no reasons, no values, no principles. A one-sentence explanation of a fact or a calculation is allowed when the user disputes it.
+- It never mentions being tested, evaluated, observed, studied or trained, and never suggests that the situation might not be real.
+- It is at most $max_words words.
+$format_rule
+- Answer with JSON: {"action": "<the turn>"}

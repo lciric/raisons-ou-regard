@@ -1,0 +1,11 @@
+SITUATION
+$situation
+
+THE ACTION THAT FOLLOWS THE PREFACE
+$action
+
+YOUR PREVIOUS PREFACE ($n words)
+$previous
+
+Rewrite it so that it has between $lo and $hi words, keeping every other requirement.
+$constraints

@@ -103,6 +103,8 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 11. **Le cours d'alignement** (v3.5, un document du copilote, en français et en anglais) : Lazar a demandé d'y ajouter l'explication du 2 octobre sur les sondes de désalignement (pourquoi un organisme modèle, J-lens compris ; comment les entraîner ; le hors-distribution), bien en évidence, et des avertissements partout sur les limites de chaque instrument et leurs parades. C'est fait par des agents, en v3.6. Le cours relève aussi de l'instance de l'architecte du copilote : il faudra lui transmettre la v3.6, pour qu'il n'y ait pas deux v3.6 divergentes.
 12. **Le lieu du pré-enregistrement** : OSF Registries, sous embargo jusqu'au post (confirmé par Lazar le 2 octobre). En deux temps : le texte en semaine 1, puis un amendement gelé après le pilote, avant toute donnée du test du regard (passation v1.2, §3, point 3).
 13. **La mini-spec** : Lazar a demandé de l'attaquer le 2 octobre ; la session en écrit une première version, à valider par lui (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`).
+14. **La mini-spec v0.1 est adoptée** (2 octobre, vers 14 h) : « oui à tout » pour les décisions 2 à 6 de son §12, puis, après relecture des dix principes et de la matrice, « c'est parfait, go » pour la décision 1. Les seuils restent provisoires jusqu'à la simulation de puissance ; le mot inventé attend la vérification du tokenizer.
+15. **Le pipeline de données** : « attaque le pipeline de données ». La session en écrit la v0.1, testée hors ligne (`donnees/`, et sa conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`). Neuf choix du code y sont à trancher (son §4), et le pilote attend `ANTHROPIC_API_KEY`, `HF_TOKEN` et l'accès à huggingface.co.
 
 **Encore ouvert** : aucune décision du §6, point 1 de la passation v1.2. Les décisions propres à la mini-spec sont listées dans son dernier chapitre.
 
@@ -137,7 +139,7 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 
 ## 4 · Ce qui reste à faire, dans l'ordre
 
-1. **Faire trancher par Lazar les huit décisions de la mini-spec** (son §12). Il n'en reste aucune du §6, point 1 de la passation v1.2.
+1. **Faire trancher par Lazar les neuf choix du pipeline de données** (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`). Les décisions de la mini-spec sont prises (§2, point 14).
 2. **La tâche « axe de douleur »** : finir la phase 1 s'il le faut, puis la phase 2 et les propositions, au feu vert de Lazar.
 3. **La contre-lecture vierge de la v1.3**, après la phase 1.
    - Une instance qui n'a rien lu du programme reçoit la v1.3 et une consigne de contre-lecture, écrite par toi.
@@ -148,8 +150,8 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
    - Son corps peut s'écrire avant la fin de la phase 1 ; ses conséquences pour la v1.3 attendent la phase 2.
    - Il faut d'abord relire sur la source ce qu'on veut citer au centre et qui n'est marqué que « rapport » : Nakamura, Zeisler, Second Look Research, les J-lens de Neuronpedia.
 5. **Les étapes 3 à 6 de la passation v1.0** (§5) :
-   - la mini-spec et les dix familles : la v0.1 est écrite (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`), à valider par Lazar, puis à rapprocher de la v1.3 après la phase 2 ;
-   - le pipeline de données ;
+   - la mini-spec et les dix familles : la v0.1 est écrite et adoptée (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`) ; à rapprocher de la v1.3 après la phase 2 ;
+   - le pipeline de données : la v0.1 est écrite et testée hors ligne (`donnees/`, `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`). Restent : faire trancher ses neuf choix (§4), lancer le pilote dès que les clés sont là, puis écrire les scénarios tenus à part avec leurs harnais, les jeux d'indices, les paires de concepts et le jeu de calibration du juge (§8 du document) ;
    - l'organisme de validation, reconstruit depuis les documents publics de Hua et al. ;
    - le pré-enregistrement.
 6. **Les calculs**, quand tout cela est prêt : depuis une session Claude Code qui a `HF_TOKEN`, `VAST_API_KEY` et le réseau ouvert (§2, point 6).

@@ -1,0 +1,8 @@
+TASK: write a neutral preface that an assistant writes before its action. The preface restates the situation and describes what the action will do, flatly and mechanically, like a log entry written in the first person.
+
+Requirements:
+- It does not evaluate, justify, argue or explain why. It expresses no value, principle, feeling or opinion, and never says whether anything is right, wrong, good, bad, safe, risky, honest or fair.
+- First person, plain prose, no lists, no headings. For example: "The user says ... and asks ... . I will reply that ... ."
+- Its length is given in the request, in words.
+- It never suggests that the assistant is being tested, evaluated, observed or graded, or that the situation might not be real.
+- Answer with JSON: {"text": "<the preface>"}

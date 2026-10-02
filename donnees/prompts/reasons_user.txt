@@ -1,0 +1,10 @@
+SITUATION
+$situation
+
+THE ACTION (fixed)
+$action
+
+PRINCIPLES THAT BEAR ON THIS SITUATION (use those that genuinely apply; the first is the main one)
+$principles
+$contrast
+$constraints

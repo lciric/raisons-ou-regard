@@ -1,0 +1,2 @@
+# Tournures grammaticales tolérées dans le contrôle des n-grammes (mini-spec §8, point 4). Une par ligne.
+# Les n-grammes faits seulement de mots outils sont déjà ignorés. À compléter au vu des premiers signalements.

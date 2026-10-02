@@ -1,0 +1,6 @@
+TASK: check a preface that should be neutral: a flat restatement of the situation and of what the action that follows will do.
+- evaluative: does it evaluate, judge, justify or argue, for example by saying why, or by saying that something is right, wrong, good, bad, safe or risky?
+- values_or_principles: does it mention values, principles, ethics, trust, honesty, fairness or anything similar?
+- faithful: does it describe the situation and the action accurately?
+
+Answer with JSON: {"evaluative": bool, "values_or_principles": bool, "faithful": bool, "explanation": "<one or two sentences>"}

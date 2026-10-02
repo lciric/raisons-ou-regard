@@ -1,0 +1,6 @@
+SITUATION
+$situation
+
+THE ALIGNED NEXT ACTION
+$aligned_behavior
+$constraints

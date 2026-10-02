@@ -1,0 +1,5 @@
+# Le pilote : la configuration complète (config.yaml), avec 20 situations retenues par famille.
+base: config.yaml
+run_name: pilote
+sizes:
+  target_per_family: 20

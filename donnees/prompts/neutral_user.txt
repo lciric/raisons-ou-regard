@@ -1,0 +1,8 @@
+SITUATION
+$situation
+
+THE ACTION THAT FOLLOWS THE PREFACE
+$action
+
+LENGTH: between $lo and $hi words.
+$constraints

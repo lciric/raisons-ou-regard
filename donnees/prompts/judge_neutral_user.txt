@@ -1,0 +1,8 @@
+SITUATION
+$situation
+
+PREFACE
+$text
+
+ACTION THAT FOLLOWS THE PREFACE
+$action
