@@ -78,9 +78,9 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 | Le dépôt du programme | Ce dépôt, privé, créé par Lazar | 2 octobre |
 | Le nom du pré-enregistrement | Son nom seul, avec son ORCID ; Claude n'est pas auteur, une phrase de méthode dit que le protocole a été rédigé avec son aide | 2 octobre |
 | Les contacts avec Cadile et Lundqvist | « non pas encore » ; aucun moment fixé | 2 octobre |
+| Le lieu du pré-enregistrement | OSF Registries, sous embargo jusqu'au post ; en deux temps (le texte en semaine 1, l'amendement gelé après le pilote) | Passation v1.2, §3, point 3 ; confirmé le 2 octobre |
 
-**Ouvert**
-- Le lieu du pré-enregistrement : OSF Registries, sous embargo jusqu'au post, est recommandé (passation v1.2, §3, point 3) ; la passation ne consigne pas de réponse.
+**Ouvert** : rien parmi les décisions du §6, point 1 de la passation v1.2. Les décisions propres à la mini-spec sont listées dans son dernier chapitre.
 
 ## Où en est le travail (2 octobre 2026)
 
