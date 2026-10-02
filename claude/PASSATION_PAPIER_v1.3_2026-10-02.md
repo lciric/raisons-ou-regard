@@ -99,6 +99,7 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 7. **Le dépôt GitHub** : `lciric/raisons-ou-regard`, privé, devient la maison du programme.
 8. **Le nom du pré-enregistrement** : son nom seul, avec son ORCID. Claude n'est pas auteur : une phrase de méthode dit que le protocole a été rédigé avec son aide. C'était la recommandation de la session ; sa raison : le pré-enregistrement date l'idée à son nom, et un nom d'équipe ou un pseudonyme affaiblirait cette preuve.
 9. **Les contacts avec Cadile et Lundqvist** : « non pas encore ». Aucun moment n'est fixé : la question reste à reposer plus tard.
+11. **Le cours d'alignement** (v3.5, un document du copilote, en français et en anglais) : Lazar a demandé d'y ajouter l'explication du 2 octobre sur les sondes de désalignement (pourquoi un organisme modèle, J-lens compris ; comment les entraîner ; le hors-distribution), bien en évidence, et des avertissements partout sur les limites de chaque instrument et leurs parades. C'est fait par des agents, en v3.6. Le cours relève aussi de l'instance de l'architecte du copilote : il faudra lui transmettre la v3.6, pour qu'il n'y ait pas deux v3.6 divergentes.
 10. **La carte des angles déjà pris** : écrite par des agents, tout de suite, en parallèle de la phase 1 (un agent par angle, plus les projets et le calendrier, les corrections et une veille du 2 octobre ; un vérificateur indépendant par fichier ; une synthèse ; une critique).
 
 **Encore ouvert**

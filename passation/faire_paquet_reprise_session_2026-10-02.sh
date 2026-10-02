@@ -92,6 +92,17 @@ if [ -d $CA ]; then
   ( cd 08_CARTE_DES_ANGLES/consignes && sha256sum *.js > SHA256_CONSIGNES.txt 2>/dev/null || true )
 fi
 
+# 2 ter. Le cours d'alignement v3.6
+CV=$S/cours_v36
+if [ -d $CV ]; then
+  mkdir -p 09_COURS_v3.6/consignes
+  for d in livrable travail outils pieces; do
+    if [ -n "$(ls -A $CV/$d 2>/dev/null)" ]; then mkdir -p 09_COURS_v3.6/$d; cp -r $CV/$d/. 09_COURS_v3.6/$d/; fi
+  done
+  cp $CV/SHA256_SOURCES.txt 09_COURS_v3.6/ 2>/dev/null || true
+  cp $WFROOT/workflows/scripts/cours-v36*.js 09_COURS_v3.6/consignes/ 2>/dev/null || true
+fi
+
 # 3. Le dépôt git
 git -C $REPO log --format='%H %ad %s' --date=iso > 07_DEPOT_GIT/git_log.txt
 cp $REPO/README.md 07_DEPOT_GIT/README_DEPOT.md
@@ -126,6 +137,10 @@ sha256 dans \`MANIFEST_SHA256.txt\`. Les documents de \`00\` à \`04\` sont des 
 - \`07_DEPOT_GIT/\` : l'historique et le README du dépôt.
 - \`08_CARTE_DES_ANGLES/\` : la carte des angles déjà pris, écrite par des agents : \`livrable/\` (la carte, si elle est écrite),
   \`travail/\` (un fichier par angle, les vérifications, les projets et le calendrier, les corrections, la veille), et leurs consignes.
+- \`09_COURS_v3.6/\` : le cours d'alignement mis à jour le 2 octobre (l'encadré sur les sondes et les organismes modèles, et les limites
+  et parades de chaque instrument) : \`livrable/\` (la v3.6, si elle est finie), \`travail/\` (référentiel, insertions, vérifications,
+  bilans), \`outils/\` (le script qui applique les insertions), \`pieces/\` (les sources), et les consignes des agents. Les sources v3.5
+  (français et anglais) ne sont pas recopiées : ce sont celles du copilote, chez Lazar.
 - \`ATTESTATIONS_DES_AGENTS.md\` : pour chaque agent de la session, ce qu'il déclare avoir ouvert, et ses alertes.
 - \`99_ARCHIVES_ne_pas_lire/\` : la passation v1.1, remplacée par la v1.2.
 
