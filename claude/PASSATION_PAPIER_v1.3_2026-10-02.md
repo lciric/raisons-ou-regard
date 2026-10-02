@@ -97,14 +97,10 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
    - Cela ne vaut que pour une session Claude Code. Une conversation claude.ai ne voit pas ces variables : elle prépare les calculs, une session Claude Code les lance.
    - Aucune clé, aucun jeton ne passe jamais dans une conversation ni dans le dépôt.
 7. **Le dépôt GitHub** : `lciric/raisons-ou-regard`, privé, devient la maison du programme.
+8. **Le nom du pré-enregistrement** : son nom seul, avec son ORCID. Claude n'est pas auteur : une phrase de méthode dit que le protocole a été rédigé avec son aide. C'était la recommandation de la session ; sa raison : le pré-enregistrement date l'idée à son nom, et un nom d'équipe ou un pseudonyme affaiblirait cette preuve.
+9. **Les contacts avec Cadile et Lundqvist** : « non pas encore ». Aucun moment n'est fixé : la question reste à reposer plus tard.
 
 **Encore ouvert**
-- **Le nom sous lequel déposer le pré-enregistrement.** La recommandation de la session :
-  - son nom seul, en chercheur indépendant, ou avec son affiliation s'il veut l'engager, et son ORCID s'il en a un ;
-  - Claude n'est pas auteur : une phrase de méthode dit que le protocole a été rédigé avec son aide ;
-  - la raison : le pré-enregistrement date l'idée à son nom, et un nom d'équipe ou un pseudonyme affaiblirait cette preuve.
-  - Sa réponse : voir le §3, état final.
-- **Les contacts avec Cadile et Lundqvist**, et leur moment. La passation v1.2 propose : après le dépôt.
 - **Le lieu du pré-enregistrement.** OSF Registries, sous embargo, est recommandé (passation v1.2, §3, point 3). La passation ne consigne pas de réponse.
 
 ---
@@ -114,12 +110,14 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 > Cette section est mise à jour au moment de fabriquer le paquet de reprise. En cas de doute, fie-toi au contenu de `05_AXE_DOULEUR_PHASE1/` dans le paquet.
 
 <!-- ETAT_A_METTRE_A_JOUR_AVANT_LE_PAQUET -->
-**État provisoire au 2 octobre, vers 10 h (heure de Paris) : la phase 1 est en cours.**
-- **Écrit** : les travaux voisins, dans `travail/web_voisins.md`. Le dossier `travail/web_voisins_sources/` y ajoute neuf README de dépôts GitHub liés au papier ou à des sujets proches, lus par raw.githubusercontent.com.
-- **En cours** : la fiche du papier, et la première des cinq recherches de pistes.
-- **Refusé par son agent** : la recherche web sur le papier lui-même (§5). Elle sera relancée.
-- **Reste à faire** : quatre recherches de pistes, la fusion, quatre vérifications, la rédaction et la critique.
-- Lazar a choisi de tout finir dans la session Claude Code. Il doit écrire sa demande d'agents dans un message (§5).
+**État provisoire au 2 octobre, vers 10 h 15 (heure de Paris) : la phase 1 est en cours.**
+- **Écrit** :
+  - la fiche du papier, `travail/fiche_papier.md`, avec chaque point rapporté à sa page ;
+  - les travaux voisins, `travail/web_voisins.md`. Le dossier `travail/web_voisins_sources/` y ajoute neuf README de dépôts GitHub liés au papier ou à des sujets proches, lus par raw.githubusercontent.com.
+- **En cours** : les recherches de pistes, deux à la fois.
+- **Relancé à part** : la recherche web sur le papier lui-même. Son premier agent l'avait refusée (§5) ; la session l'a relancée avec la même consigne, hors du workflow, pour qu'elle soit écrite avant la fusion.
+- **Reste à faire** : la fin des recherches de pistes, la fusion, quatre vérifications, la rédaction et la critique.
+- Lazar a choisi de tout finir dans la session Claude Code.
 
 **Les règles qui ne changent pas**
 - La phase 1 se termine quand le fichier `claude/AXE_DOULEUR_PISTES_INDEPENDANTES_2026-10-02.md` est écrit, que son empreinte SHA-256 est donnée à Lazar, et qu'on ne le modifie plus.

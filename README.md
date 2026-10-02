@@ -76,10 +76,10 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 | Le périmètre de la session du nouveau compte | Le papier seul ; le copilote va dans une autre session | 2 octobre |
 | Les clés et le pilotage des calculs | Lazar pilote depuis une session Claude Code. Il ajoute `HF_TOKEN` et `VAST_API_KEY` en variables d'environnement de l'environnement Claude Code, et il ouvre huggingface.co et vast.ai dans « Network access ». Une conversation claude.ai ne voit pas ces variables | 2 octobre |
 | Le dépôt du programme | Ce dépôt, privé, créé par Lazar | 2 octobre |
+| Le nom du pré-enregistrement | Son nom seul, avec son ORCID ; Claude n'est pas auteur, une phrase de méthode dit que le protocole a été rédigé avec son aide | 2 octobre |
+| Les contacts avec Cadile et Lundqvist | « non pas encore » ; aucun moment fixé | 2 octobre |
 
 **Ouvert**
-- Le nom sous lequel déposer le pré-enregistrement. La recommandation : son nom seul, en chercheur indépendant ou avec son affiliation, et son ORCID ; Claude n'est pas auteur (passation v1.3, §2).
-- Les contacts avec Cadile et Lundqvist, et leur moment (proposé : après le dépôt).
 - Le lieu du pré-enregistrement : OSF Registries, sous embargo jusqu'au post, est recommandé (passation v1.2, §3, point 3) ; la passation ne consigne pas de réponse.
 
 ## Où en est le travail (2 octobre 2026)
