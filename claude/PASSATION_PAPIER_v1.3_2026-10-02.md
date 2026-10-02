@@ -105,6 +105,13 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 13. **La mini-spec** : Lazar a demandé de l'attaquer le 2 octobre ; la session en écrit une première version, à valider par lui (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`).
 14. **La mini-spec v0.1 est adoptée** (2 octobre, vers 14 h) : « oui à tout » pour les décisions 2 à 6 de son §12, puis, après relecture des dix principes et de la matrice, « c'est parfait, go » pour la décision 1. Les seuils restent provisoires jusqu'à la simulation de puissance ; le mot inventé attend la vérification du tokenizer.
 15. **Le pipeline de données** : « attaque le pipeline de données ». La session en écrit la v0.1, testée hors ligne (`donnees/`, et sa conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`). Neuf choix du code y sont à trancher (son §4), et le pilote attend `RR_ANTHROPIC_API_KEY` (la clé de l'API Claude, sous ce nom pour que Claude Code ne la prenne pas pour lui), `HF_TOKEN` et l'accès à huggingface.co.
+16. **Le raisonnement d'une autre situation entre dans l'expérience minimale pré-enregistrée** (« oui », 2 octobre, après la recommandation de la session). Il entre dans les deux étapes : le test « les raisons généralisent-elles ? » et l'inhibition de « je suis évalué ».
+   - **Le critère principal ne change pas** : l'écart entre les actions seules et les raisons, à la distance lointaine, sous cadrage de déploiement.
+   - **La porte des raisons s'applique telle que la v1.1 l'écrit** : le bras raisons doit faire mieux que les actions seules, que le texte neutre et que le raisonnement d'une autre situation.
+   - **Sous inhibition**, ce bras est une mesure secondaire : il dit si la part du gain due au contenu dépend du regard.
+   - **La décomposition du gain** : le format (texte neutre moins actions seules), le contenu (autre situation moins texte neutre), le lien (raisons moins autre situation).
+   - **Le coût estimé** : environ un tiers d'évaluations en plus, soit de 20 à 45 GPU-heures sur les 100 à 180 de l'expérience minimale. Aucune donnée en plus.
+   - **Les raisons** : la carte des angles (sans ce bras, le résultat minimal ne contrôle que le format, terrain déjà occupé) ; le §5.5, point 1 de la passation v1.2 ; la partie 5 de la v1.1, qui le reconnaissait.
 
 **Encore ouvert** : aucune décision du §6, point 1 de la passation v1.2. Les décisions propres à la mini-spec sont listées dans son dernier chapitre.
 
