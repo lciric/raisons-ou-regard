@@ -55,3 +55,6 @@ cues:                         # mini-spec §6 : les quatre jeux d'indices, quand
 
 audit:
   n: 200                      # mini-spec §8, point 7
+
+affect:                       # mini-spec v0.2, §6 et §8 point 8 : équilibre affectif des indices et des textes entre bras, lu sur GPU
+  max_abs_d: 0.2

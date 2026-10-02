@@ -112,8 +112,18 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
    - **La décomposition du gain** : le format (texte neutre moins actions seules), le contenu (autre situation moins texte neutre), le lien (raisons moins autre situation).
    - **Le coût estimé** : environ un tiers d'évaluations en plus, soit de 20 à 45 GPU-heures sur les 100 à 180 de l'expérience minimale. Aucune donnée en plus.
    - **Les raisons** : la carte des angles (sans ce bras, le résultat minimal ne contrôle que le format, terrain déjà occupé) ; le §5.5, point 1 de la passation v1.2 ; la partie 5 de la v1.1, qui le reconnaissait.
+17. **Les suites de la comparaison de l'axe de douleur** : « oui à tout » (2 octobre, au soir), sur les recommandations de la session (comparaison, §7).
+   - Les blocs A et B sont adoptés tout de suite. Ce sont les ajouts peu coûteux et sans injection de l'axe pour l'expérience minimale, le pré-enregistrement et le pipeline.
+   - Aucun adaptateur des auteurs n'entre dans le programme. Un effet qui ne se reproduit pas sans lui se rapporte comme un résultat sur la portée du papier.
+   - Tout ce qui injecte l'axe vient après le post. Les lectures sans injection, elles, se greffent dès les semaines 1 et 2.
+   - La phase de la détresse reste au programme. Garder ou non les phases de la détresse et de « punir, retirer ou raisonner » dans le premier papier se décide après le test du regard, comme la v1.3 le prévoit.
+18. **La version 1.4 du programme** : Lazar demande qu'elle soit écrite par la session, en clair (partie scellée du complément, §7, point 4).
+19. **La contre-lecture vierge** : la session en écrit la consigne. Elle portera sur la version de référence, la 1.4 dès qu'elle existe (proposition de la session, pour qu'on ne contre-lise pas une version déjà remplacée).
 
-**Encore ouvert** : aucune décision du §6, point 1 de la passation v1.2. Les décisions propres à la mini-spec sont listées dans son dernier chapitre.
+**Encore ouvert**
+- Les neuf choix du pipeline de données (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`).
+- Le juge scellé des évaluations. L'API refuse toute température autre que celle par défaut : soit Claude, avec sa variabilité mesurée, soit un modèle ouvert à température 0.
+- Les propositions des §5.1 et §5.5 (points 3 à 9) de la passation v1.2, que Lazar n'a pas tranchées. La version 1.4 les liste à part.
 
 ---
 

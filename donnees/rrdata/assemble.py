@@ -244,6 +244,9 @@ def assemble(ctx, allow_unchecked=False):
     else:
         gates["cues"] = "not run: the cue sets do not exist yet"
 
+    # Mini-spec v0.2, §6 and §8 point 8: the affective balance of cue pairs and of the texts between arms is read by the
+    # starting model on GPU (projections on the directions of the reading base), not by this text pipeline.
+    gates["affective_matching"] = "not run: GPU stage (projections of the arm texts and cue pairs, |d| < %s)" % ctx.cfg.get("affect", {}).get("max_abs_d", 0.2)
     blocking = [k for k, v in gates.items() if v != "ok" and not (k == "tokenizer" and v == "exact")]
     for a in ARMS:
         ctx.write(f"arms/{a}.jsonl", arms[a])

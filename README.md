@@ -81,6 +81,8 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 | Le lieu du pré-enregistrement | OSF Registries, sous embargo jusqu'au post ; en deux temps (le texte en semaine 1, l'amendement gelé après le pilote) | Passation v1.2, §3, point 3 ; confirmé le 2 octobre |
 | La mini-spec v0.1 | Adoptée : les dix principes et la matrice, le cadrage neutre, la balise vide, le texte neutre reformulé, le filtre de la conscience d'évaluation, la demande nuisible sans contenu dangereux ; seuils provisoires | 2 octobre |
 | Le raisonnement d'une autre situation dans l'expérience minimale | Oui, aux deux étapes ; critère principal inchangé (actions seules contre raisons) ; porte des raisons appliquée telle que la v1.1 l'écrit | 2 octobre |
+| Les suites de la comparaison de l'axe | Blocs A et B adoptés ; aucun adaptateur des auteurs ; injection de l'axe après le post seulement ; premier ou second papier, décidé après le test du regard | 2 octobre |
+| La version 1.4 du programme | À écrire par la session, en clair ; puis contre-lecture vierge de la 1.4 | 2 octobre |
 
 **Ouvert** : les neuf choix du pipeline de données (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`).
 

@@ -41,7 +41,7 @@ Chaque étape reprend là où elle s'est arrêtée. Les appels sont mis en cache
 
 - `arms/<bras>.jsonl` : les exemples d'entraînement, au format de messages de chat.
 - `final_items.jsonl` : pour chaque situation retenue, sa famille, son contraste, sa variante, son donneur et les longueurs.
-- `gates.json` : les portes avant l'entraînement et ce qui les bloque.
+- `gates.json` : les portes avant l'entraînement et ce qui les bloque. L'équilibre affectif des textes entre bras (mini-spec v0.2, §8, point 8) y figure comme une porte à jouer sur GPU.
 - `RAPPORT.md` : les effectifs, les pertes, les refus, les parts, la ressemblance à une évaluation, la conscience d'évaluation, l'appariement et le coût.
 - `audit/audit_sheet.csv` : l'échantillon de l'audit humain. Une fois rempli : `python3 -m rrdata agreement --sheet <fichier>`.
 - `manifest.json` : les empreintes du code, de la configuration, de la spec, des prompts et de chaque fichier produit.

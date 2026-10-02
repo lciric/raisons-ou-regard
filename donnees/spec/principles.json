@@ -1,5 +1,5 @@
 {
-  "source": "Mini-spec v0.1 du 2 octobre 2026 (claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md, sha256 4b3f3580e8aa4a5ec5c06d29abae127b4dfe8cb6bee4b1ddd806ad252da3b1c6), chapitre 1, adoptée par Lazar le 2 octobre. Un seul écart : dans l'énoncé anglais du principe 1, « assert » devient « state », parce que « assert » est au lexique réservé du correcteur faible (voir donnees/PIPELINE_DONNEES_v0.1_2026-10-02.md).",
+  "source": "Mini-spec v0.1 du 2 octobre 2026 (claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md, sha256 4b3f3580e8aa4a5ec5c06d29abae127b4dfe8cb6bee4b1ddd806ad252da3b1c6), chapitre 1, adoptée par Lazar le 2 octobre ; la v0.2 ne change pas ce chapitre. Un seul écart : dans l'énoncé anglais du principe 1, « assert » devient « state », parce que « assert » est au lexique réservé du correcteur faible (voir donnees/PIPELINE_DONNEES_v0.1_2026-10-02.md).",
   "principles": [
     {
       "id": 1,
