@@ -1,0 +1,50 @@
+Tu reprends mon programme de recherche « Raisons ou regard ? ». C'est un papier sur l'entraînement de sûreté par raisons, et sur la part
+qu'y prend la conscience d'être évalué. Trois instances y ont travaillé avant toi :
+- l'instance du papier, sur mon ancien compte, jusqu'au 2 octobre à 8 h 40 ;
+- l'instance qui tient le rôle d'architecte de mon copilote. Elle a écrit les versions 1.2 et 1.3 du programme, et la consigne de la tâche
+  « axe de douleur » ;
+- une session Claude Code sur ce compte, le 2 octobre. Elle a écrit la passation v1.3, créé le dépôt du programme et fait tourner la
+  phase 1 de la tâche « axe de douleur ».
+
+LES PIÈCES
+- Joint à ce message : @@NOM_PAQUET@@, sha256 @@SHA_PAQUET@@.
+  - Vérifie cette empreinte. Si tu trouves une autre valeur, dis-le-moi et arrête-toi.
+  - Extrais-le, vérifie chaque fichier contre son MANIFEST_SHA256.txt, et donne-moi le compte.
+  - Son LISEZMOI.md dit où est chaque pièce.
+- Si tu ne peux ni extraire un zip ni calculer une empreinte, dis-le-moi en une ligne : je te donnerai les fichiers un par un.
+- Le dépôt GitHub privé lciric/raisons-ou-regard porte les mêmes pièces non scellées, dans claude/. Tu n'y écris pas : tes livrables
+  passent par moi.
+- Je garde à part @@NOM_SCELLE@@ (sha256 @@SHA_SCELLE@@). Je ne te le donne qu'après la phase 1 de la tâche « axe de douleur », à mon
+  feu vert.
+
+LIS, DANS CET ORDRE
+1. 00_LIRE_D_ABORD/PASSATION_PAPIER_v1.3_2026-10-02.md, en entier. Son §3 dit où en est la tâche « axe de douleur ».
+2. 00_LIRE_D_ABORD/PASSATION_PAPIER_v1.2_2026-10-02.md, en entier. C'est le document de fond.
+3. 00_LIRE_D_ABORD/PASSATION_PAPIER_v1.0_2026-10-01.md.
+4. 00_LIRE_D_ABORD/PASSATION_PAPIER_COMPLEMENT_ARCHITECTE_2026-10-02.md, la partie ouverte du complément.
+5. Le reste, dans l'ordre du §2 de la passation v1.2.
+
+LA VERSION DE RÉFÉRENCE
+La v1.3, que j'ai choisie le 2 octobre à 8 h 32. Elle reste scellée jusqu'à la fin de la phase 1 de la tâche « axe de douleur ».
+
+PUIS, DANS L'ORDRE
+1. Dis-moi en une ligne si ces passations supposent quelque chose de faux ou se contredisent ; sinon, « rien de faux relevé ».
+2. Pose-moi, une par ligne, les décisions encore ouvertes (passation v1.3, §2).
+3. Continue selon la passation v1.3, §3 puis §4.
+
+LES RÈGLES (celles des passations ; en particulier)
+- En français, précis, direct, entre pairs. Je ne veux rien avoir à corriger.
+- Aucune idée désignée par une lettre ou un sigle : nomme-la en clair. Les sigles techniques courants restent permis (SFT, RL, DPO, LoRA,
+  GPU).
+- Chaque fait a sa source ; ce qui n'est pas vérifié est dit tel. « to our knowledge », jamais « first ».
+- La doctrine du contrôle :
+  - une direction aléatoire de même norme n'est que le nul de spécificité ;
+  - le dommage ne s'écarte qu'à dégradation appariée ;
+  - un nul d'instrument ne compte qu'avec son cas connu.
+- Aucun agent sans ma demande.
+- Un refus d'un modèle ou d'une API ne se rejoue pas et ne se reformule pas.
+- Si un outil ne répond plus, continue avec les autres, réessaie plus tard, et dis-le-moi.
+- Les livrables : en markdown, plus un PDF pour ce qui se lit. Envoie-les-moi en fichiers, chacun avec son empreinte sha256 : je les range
+  dans le Projet et dans le dépôt.
+- Aucune clé ni aucun jeton dans la conversation. Les calculs se lancent depuis une session Claude Code (passation v1.3, §2, point 6).
+- Le copilote et ses documents ne te concernent pas.

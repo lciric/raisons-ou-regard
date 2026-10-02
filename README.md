@@ -8,8 +8,13 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 
 - `claude/` : les documents du programme, sous le nom qu'ils avaient dans le Projet. Un renvoi `claude/NOM.md` d'une passation mène au fichier `claude/NOM.md` de ce dépôt.
 - `papiers/` : les papiers lus pour le programme.
-- `passation/` : les pièces de la passation au nouveau compte.
+- `passation/` : les pièces de la passation au nouveau compte, et le kit de reprise dans une conversation claude.ai :
+  - `COMMENT_REPRENDRE_SUR_CLAUDE_AI.md`, le mode d'emploi pour Lazar ;
+  - `PROMPT_LANCEMENT_PAPIER_CLAUDE_AI_MODELE.txt`, le prompt de lancement, dont la session remplit les noms et les empreintes des zips ;
+  - `faire_paquet_reprise_session_2026-10-02.sh`, le script qui fabrique le paquet de reprise et le zip scellé.
 - `archives/` : la passation v1.1, remplacée par la v1.2. Ne pas la lire : la v1.2 en reprend tout le contenu.
+
+**Pour reprendre le programme, lire d'abord `claude/PASSATION_PAPIER_v1.3_2026-10-02.md`**, la passation de la session Claude Code du 2 octobre, puis la v1.2.
 
 | Fichier | Ce que c'est | sha256 (16 premiers caractères) |
 |---|---|---|
@@ -67,11 +72,13 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 | La contre-lecture du programme | Une instance vierge, qui reçoit le seul programme et une consigne de contre-lecture, sur la v1.3. Elle vient après la phase 1 de l'axe de douleur, puisque la v1.3 est scellée jusque-là | Passation v1.2, §3, point 6 ; la version, confirmée le 2 octobre |
 | Le projet SPAR de Qiyao Wei | « on va tâcher d'y répondre nous-mêmes dans ce programme avant SPAR » | Passation v1.2, §3, point 4 |
 | La cible | « plutôt conf principale ou revue ; prestigieux et ambitieux » | Passation v1.2, §3, point 5 |
-| Les agents | Seulement à sa demande. Le 2 octobre, il a demandé des agents vierges pour la phase 1 de l'axe de douleur | Passation v1.2, §1 ; 2 octobre |
+| Les agents | Seulement à sa demande. Le 2 octobre, il a demandé des agents vierges pour la phase 1 de l'axe de douleur, puis de « tout finir ici » (toute la chaîne, dans la session Claude Code) | Passation v1.2, §1 ; 2 octobre |
 | Le périmètre de la session du nouveau compte | Le papier seul ; le copilote va dans une autre session | 2 octobre |
+| Les clés et le pilotage des calculs | Lazar pilote depuis une session Claude Code. Il ajoute `HF_TOKEN` et `VAST_API_KEY` en variables d'environnement de l'environnement Claude Code, et il ouvre huggingface.co et vast.ai dans « Network access ». Une conversation claude.ai ne voit pas ces variables | 2 octobre |
+| Le dépôt du programme | Ce dépôt, privé, créé par Lazar | 2 octobre |
 
 **Ouvert**
-- Le nom sous lequel déposer le pré-enregistrement.
+- Le nom sous lequel déposer le pré-enregistrement. La recommandation : son nom seul, en chercheur indépendant ou avec son affiliation, et son ORCID ; Claude n'est pas auteur (passation v1.3, §2).
 - Les contacts avec Cadile et Lundqvist, et leur moment (proposé : après le dépôt).
 - Le lieu du pré-enregistrement : OSF Registries, sous embargo jusqu'au post, est recommandé (passation v1.2, §3, point 3) ; la passation ne consigne pas de réponse.
 
