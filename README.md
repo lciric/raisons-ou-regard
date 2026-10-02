@@ -95,7 +95,7 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 3. **La carte des angles déjà pris** (passation v1.2, §6, point 3) : écrite par des agents, en cours de correction.
 4. **Les étapes 3 à 6 de la passation v1.0** (§5) :
    - la mini-spec et les dix familles : v0.1 adoptée le 2 octobre (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`) ;
-   - le pipeline de données : v0.1 écrite et testée hors ligne (`donnees/`, conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) ; le pilote attend `ANTHROPIC_API_KEY`, `HF_TOKEN` et l'accès à huggingface.co ;
+   - le pipeline de données : v0.1 écrite et testée hors ligne (`donnees/`, conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) ; le pilote attend `RR_ANTHROPIC_API_KEY`, `HF_TOKEN` et l'accès à huggingface.co ;
    - l'organisme de validation, reconstruit depuis les documents publics de Hua et al. ;
    - le pré-enregistrement, sur OSF, en deux temps.
 

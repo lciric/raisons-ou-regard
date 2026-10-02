@@ -63,9 +63,12 @@ class AnthropicBackend:
 
     def __init__(self, model, effort, max_tokens):
         import anthropic  # noqa: WPS433
-        if not os.environ.get("ANTHROPIC_API_KEY"):
-            raise RuntimeError("ANTHROPIC_API_KEY is not set in the environment")
-        self.client = anthropic.Anthropic(max_retries=8)
+        # The key is read from RR_ANTHROPIC_API_KEY, not ANTHROPIC_API_KEY: in a Claude Code session, ANTHROPIC_API_KEY
+        # takes precedence over the subscription, and Claude Code itself would then run on the key.
+        key = os.environ.get("RR_ANTHROPIC_API_KEY")
+        if not key:
+            raise RuntimeError("RR_ANTHROPIC_API_KEY is not set in the environment")
+        self.client = anthropic.Anthropic(api_key=key, max_retries=8)
         self.model, self.effort, self.max_tokens = model, effort, max_tokens
 
     def describe(self):

@@ -57,17 +57,19 @@ Dans une session Claude Code sur le web, l'environnement se règle depuis son me
 **Les variables d'environnement**
 - `HF_TOKEN` : le jeton Hugging Face, à accès restreint, qui ouvre le modèle Llama 3.1 8B Instruct.
 - `VAST_API_KEY` : la clé vast.ai.
-- `ANTHROPIC_API_KEY` : la clé de l'API Claude, pour générer les données et faire tourner les juges.
+- `RR_ANTHROPIC_API_KEY` : la clé de l'API Claude, pour générer les données et faire tourner les juges. **Surtout pas sous le nom `ANTHROPIC_API_KEY`** : dans une session Claude Code, cette variable passe avant l'abonnement, et Claude Code lui-même tournerait sur la clé, aux frais de l'API (documentation de Claude Code, page *Authentication*, « Authentication precedence »).
+  - La clé se crée sur platform.claude.com, *Settings*, *API keys*, *Create key* ; elle commence par `sk-ant-` et ne s'affiche qu'une fois. L'API se paie à l'usage, à part de l'abonnement claude.ai.
+  - Elle ne peut pas aller dans les *API credentials* de l'environnement, ces clés que la session ne voit jamais : api.anthropic.com en est exclu (page *Configure cloud environments*). Elle va donc dans les variables d'environnement, une ligne `RR_ANTHROPIC_API_KEY=sk-ant-…`, lisible par quiconque utilise l'environnement.
 
 **Les règles qui vont avec**
 - Les clés se saisissent dans les réglages de l'environnement, jamais dans le chat. La session ne dit que si elles sont présentes, oui ou non.
-- Une session déjà ouverte ne voit pas un changement d'environnement : il faut en ouvrir une nouvelle.
+- Une nouvelle session lit les variables tout de suite. Une session déjà ouverte les relit quand sa machine redémarre, après quelques minutes d'inactivité (page *Configure cloud environments*).
 - Règle confirmée le 2 octobre : aucune clé de l'API Claude sur les machines vast.ai. Les appels à l'API partent de la session Claude Code ou de ta machine.
 
 ### Étape 3 · Ouvrir la session
 Ouvre une nouvelle session Claude Code avec le dépôt `lciric/raisons-ou-regard` sélectionné et l'environnement de l'étape 2. Le premier message peut être celui-ci, à coller tel quel :
 
-> Tu reprends le programme « Raisons ou regard ? » dans le dépôt `lciric/raisons-ou-regard`. Lis d'abord, en entier : `README.md`, puis `claude/PASSATION_PAPIER_v1.3_2026-10-02.md`, puis les documents dans l'ordre que la passation indique. Le zip scellé n'est pas dans le dépôt : je te le donnerai au feu vert de la phase 2 de l'axe de douleur, et tu ne l'ouvres pas avant. Vérifie que `HF_TOKEN`, `VAST_API_KEY` et `ANTHROPIC_API_KEY` sont présentes, en répondant seulement oui ou non pour chacune, jamais leur valeur. Aucun agent sans ma demande. Dis-moi ensuite où en est le travail et ce que tu proposes de faire.
+> Tu reprends le programme « Raisons ou regard ? » dans le dépôt `lciric/raisons-ou-regard`. Lis d'abord, en entier : `README.md`, puis `claude/PASSATION_PAPIER_v1.3_2026-10-02.md`, puis les documents dans l'ordre que la passation indique. Le zip scellé n'est pas dans le dépôt : je te le donnerai au feu vert de la phase 2 de l'axe de douleur, et tu ne l'ouvres pas avant. Vérifie que `HF_TOKEN`, `VAST_API_KEY` et `RR_ANTHROPIC_API_KEY` sont présentes, en répondant seulement oui ou non pour chacune, jamais leur valeur. Aucun agent sans ma demande. Dis-moi ensuite où en est le travail et ce que tu proposes de faire.
 
 ### Étape 4 · Vérifier
 La nouvelle session doit :

@@ -23,7 +23,7 @@ python3 -m unittest discover -s tests -t .                       # 18 tests, hor
 python3 -m rrdata all --config config_pilote.yaml --mock --allow-approx-tokenizer --allow-unchecked   # simulation hors ligne
 ```
 
-Le pilote réel (`config_pilote.yaml` : 20 situations retenues par famille) demande `ANTHROPIC_API_KEY`, `HF_TOKEN` et l'accès à huggingface.co :
+Le pilote réel (`config_pilote.yaml` : 20 situations retenues par famille) demande `RR_ANTHROPIC_API_KEY` (la clé de l'API Claude, sous ce nom-là : voir `../passation/REPRENDRE_SUR_UN_AUTRE_COMPTE_CLAUDE_CODE.md`), `HF_TOKEN` et l'accès à huggingface.co :
 
 ```bash
 C="--config config_pilote.yaml"

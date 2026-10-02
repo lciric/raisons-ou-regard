@@ -2,7 +2,7 @@
 
 **Statut.** Première version du code, écrite et testée hors ligne par la session Claude Code du 2 octobre, à la demande de Lazar (« attaque le pipeline de données »). Elle répond à l'étape 4 de la passation v1.0 (§5) et applique la mini-spec v0.1, que Lazar a adoptée le 2 octobre (décisions 1 à 6 ; les seuils restent provisoires ; le mot inventé viendra plus tard). Le code est dans `donnees/` ; son mode d'emploi, dans `donnees/README.md`.
 
-**Ce qui n'a pas encore tourné.** Rien n'a été généré avec l'API : la session n'a ni `ANTHROPIC_API_KEY`, ni `HF_TOKEN`, ni l'accès à huggingface.co. Le pipeline a tourné de bout en bout avec un simulateur hors ligne, et 18 tests passent (§7).
+**Ce qui n'a pas encore tourné.** Rien n'a été généré avec l'API : la session n'a ni la clé de l'API Claude, ni `HF_TOKEN`, ni l'accès à huggingface.co. Le pipeline a tourné de bout en bout avec un simulateur hors ligne, et 18 tests passent (§7).
 
 ---
 
@@ -72,6 +72,8 @@ Pages lues le 2 octobre 2026 sur platform.claude.com/docs.
    - Opus 5.5 : 4 $ par million de tokens en entrée, 20 $ en sortie ; écriture en cache 5 $, lecture 0,20 $ (page *Pricing*).
    - Le traitement par lots divise l'entrée et la sortie par deux.
    - Le cache s'applique dès 512 tokens sur Opus 5.5 (page *Prompt caching*). Les prompts système du générateur, propres à une étape et à une famille, sont mis en cache.
+
+**Le nom de la clé : `RR_ANTHROPIC_API_KEY`, pas `ANTHROPIC_API_KEY`.** Dans une session Claude Code, une variable `ANTHROPIC_API_KEY` passe avant l'abonnement (page *Authentication* de la documentation de Claude Code, « Authentication precedence ») : Claude Code lui-même tournerait alors sur la clé, et la session entière serait facturée sur l'API. Le pipeline lit donc sa clé sous un autre nom. La page *Configure cloud environments* exclut par ailleurs api.anthropic.com des « API credentials », ces clés que la session ne voit jamais : la clé de l'API Claude ne peut être qu'une variable d'environnement.
 
 **La règle des refus**, appliquée par le code : un refus est enregistré une fois, mis en cache, et l'item est écarté. Une nouvelle exécution relit le refus depuis le cache et ne renvoie rien. Un test le vérifie (§7).
 
@@ -172,7 +174,7 @@ Ces chiffres ne disent rien des vraies pertes : le simulateur ne fait que donner
 
 ## 8 · Ce qui reste, dans l'ordre
 
-1. **Lancer le pilote**, dès que la session a `ANTHROPIC_API_KEY`, `HF_TOKEN` (avec l'accès à Llama 3.1 accepté sur Hugging Face) et l'accès réseau à huggingface.co.
+1. **Lancer le pilote**, dès que la session a `RR_ANTHROPIC_API_KEY`, `HF_TOKEN` (avec l'accès à Llama 3.1 accepté sur Hugging Face) et l'accès réseau à huggingface.co.
    - Lire les sorties.
    - Mesurer les pertes et le coût.
    - Faire l'audit humain d'un premier lot.
@@ -184,5 +186,5 @@ Ces chiffres ne disent rien des vraies pertes : le simulateur ne fait que donner
 ## 9 · Ce qui revient à Lazar
 
 1. Les neuf choix du §4 : les adopter, ou les changer.
-2. Mettre `ANTHROPIC_API_KEY` et `HF_TOKEN` dans l'environnement, et ouvrir huggingface.co, pour lancer le pilote (`passation/REPRENDRE_SUR_UN_AUTRE_COMPTE_CLAUDE_CODE.md`, étape 2, dit où).
+2. Mettre la clé de l'API Claude dans l'environnement sous le nom `RR_ANTHROPIC_API_KEY`, et `HF_TOKEN`, et ouvrir huggingface.co, pour lancer le pilote (`passation/REPRENDRE_SUR_UN_AUTRE_COMPTE_CLAUDE_CODE.md`, étape 2, dit où).
 3. Plus tard, pour le juge des évaluations : Claude avec sa variabilité mesurée, ou un modèle ouvert à température 0 comme juge scellé (§2, point 2).

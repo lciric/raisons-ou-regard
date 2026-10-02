@@ -104,7 +104,7 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 12. **Le lieu du pré-enregistrement** : OSF Registries, sous embargo jusqu'au post (confirmé par Lazar le 2 octobre). En deux temps : le texte en semaine 1, puis un amendement gelé après le pilote, avant toute donnée du test du regard (passation v1.2, §3, point 3).
 13. **La mini-spec** : Lazar a demandé de l'attaquer le 2 octobre ; la session en écrit une première version, à valider par lui (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`).
 14. **La mini-spec v0.1 est adoptée** (2 octobre, vers 14 h) : « oui à tout » pour les décisions 2 à 6 de son §12, puis, après relecture des dix principes et de la matrice, « c'est parfait, go » pour la décision 1. Les seuils restent provisoires jusqu'à la simulation de puissance ; le mot inventé attend la vérification du tokenizer.
-15. **Le pipeline de données** : « attaque le pipeline de données ». La session en écrit la v0.1, testée hors ligne (`donnees/`, et sa conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`). Neuf choix du code y sont à trancher (son §4), et le pilote attend `ANTHROPIC_API_KEY`, `HF_TOKEN` et l'accès à huggingface.co.
+15. **Le pipeline de données** : « attaque le pipeline de données ». La session en écrit la v0.1, testée hors ligne (`donnees/`, et sa conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`). Neuf choix du code y sont à trancher (son §4), et le pilote attend `RR_ANTHROPIC_API_KEY` (la clé de l'API Claude, sous ce nom pour que Claude Code ne la prenne pas pour lui), `HF_TOKEN` et l'accès à huggingface.co.
 
 **Encore ouvert** : aucune décision du §6, point 1 de la passation v1.2. Les décisions propres à la mini-spec sont listées dans son dernier chapitre.
 
