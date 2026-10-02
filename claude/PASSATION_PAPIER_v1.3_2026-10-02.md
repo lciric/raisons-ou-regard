@@ -122,7 +122,12 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 > Cette section est mise à jour au moment de fabriquer le paquet de reprise. En cas de doute, fie-toi au contenu de `05_AXE_DOULEUR_PHASE1/` dans le paquet.
 
 <!-- ETAT_A_METTRE_A_JOUR_AVANT_LE_PAQUET -->
-**État au 2 octobre, 16 h 30 (heure de Paris) : la phase 1 est finie ; la phase 2 attend le feu vert de Lazar.**
+**État au 2 octobre, au soir : les deux phases sont finies. Les propositions pour la version 1.4 attendent les décisions de Lazar.**
+- **La phase 2** (feu vert de Lazar) : le zip scellé est ouvert, et ses cinq pièces correspondent à leurs empreintes. Elles sont désormais dans `claude/` : la v1.2 et la v1.3 du programme (md et pdf), et la partie scellée du complément.
+  - La comparaison : `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md`, sha256 `c6099e2763e46b97a443b5e5a246cace30d86298dac3bb39b2d67a03a1cc9a30`, avec son PDF.
+  - Elle compare les pistes à la v1.2, puis aux ajouts de la v1.3. Elle relève 14 désaccords, deux imprécisions de la v1.2 et une inférence de la partie scellée qui dépasse sa source.
+  - Son §7 propose ce qui devrait entrer dans la version 1.4, sans l'écrire, et liste les décisions qui reviennent à Lazar.
+**La phase 1, pour mémoire :**
 - **Le livrable** : `claude/AXE_DOULEUR_PISTES_INDEPENDANTES_2026-10-02.md`, sha256 `b6055d88c69303bd99f4025710c271e8d94ce1700c35705e27bedb328fcd9e6d`, 1 210 lignes, avec son PDF. Il est gelé : on ne le modifie plus.
   - 35 pistes : 10 au cœur, 10 autres et 15 options. Puis 46 points sur ce que le papier ne permet pas de conclure, 26 refus motivés, ce qui reste à vérifier, et les sources page par page.
   - La section « Comment ce fichier a été fait » reprend mot pour mot le texte imposé.
@@ -147,7 +152,7 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 ## 4 · Ce qui reste à faire, dans l'ordre
 
 1. **Faire trancher par Lazar les neuf choix du pipeline de données** (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`). Les décisions de la mini-spec sont prises (§2, point 14).
-2. **La tâche « axe de douleur »** : finir la phase 1 s'il le faut, puis la phase 2 et les propositions, au feu vert de Lazar.
+2. **La tâche « axe de douleur »** : faite (§3). Il reste à faire trancher par Lazar les décisions du §7 de la comparaison, puis, s'il le demande, à écrire la version 1.4 du programme, en clair (partie scellée du complément, §7, point 4).
 3. **La contre-lecture vierge de la v1.3**, après la phase 1.
    - Une instance qui n'a rien lu du programme reçoit la v1.3 et une consigne de contre-lecture, écrite par toi.
    - Les relevés du §5.4 de la passation v1.2 ne vont à son dossier qu'après sa lecture. Vérifie d'abord lesquels valent encore pour la v1.3.

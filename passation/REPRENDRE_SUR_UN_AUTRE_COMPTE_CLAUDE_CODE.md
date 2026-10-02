@@ -29,11 +29,11 @@
 Un message suffit, par exemple : « on change de compte, pousse tout ».
 
 La session fait alors trois choses :
-1. Elle pousse dans le dépôt tout le travail du conteneur, sauf les pièces scellées.
+1. Elle pousse dans le dépôt tout le travail du conteneur.
 2. Elle met à jour l'état des tâches dans la passation v1.3 (§3).
 3. Si tu le demandes, elle fabrique en plus le paquet de reprise : des zips à garder de ton côté.
 
-**Les pièces scellées ne vont jamais dans le dépôt.** C'est-à-dire le zip scellé, la v1.2 et la v1.3 du programme, et la partie scellée du complément. Garde le zip scellé de ton côté : tu le donneras à la nouvelle session au feu vert de la phase 2.
+**Les pièces scellées.** Depuis le feu vert de Lazar (2 octobre, au soir), la phase 2 est faite. Les pièces scellées sont maintenant dans le dépôt, sous `claude/` : la v1.2 et la v1.3 du programme, et la partie scellée du complément. Il n'y a plus rien à garder à part.
 
 ---
 
@@ -69,7 +69,7 @@ Dans une session Claude Code sur le web, l'environnement se règle depuis son me
 ### Étape 3 · Ouvrir la session
 Ouvre une nouvelle session Claude Code avec le dépôt `lciric/raisons-ou-regard` sélectionné et l'environnement de l'étape 2. Le premier message peut être celui-ci, à coller tel quel :
 
-> Tu reprends le programme « Raisons ou regard ? » dans le dépôt `lciric/raisons-ou-regard`. Lis d'abord, en entier : `README.md`, puis `claude/PASSATION_PAPIER_v1.3_2026-10-02.md`, puis les documents dans l'ordre que la passation indique. Le zip scellé n'est pas dans le dépôt : je te le donnerai au feu vert de la phase 2 de l'axe de douleur, et tu ne l'ouvres pas avant. Vérifie que `HF_TOKEN`, `VAST_API_KEY` et `RR_ANTHROPIC_API_KEY` sont présentes, en répondant seulement oui ou non pour chacune, jamais leur valeur. Aucun agent sans ma demande. Dis-moi ensuite où en est le travail et ce que tu proposes de faire.
+> Tu reprends le programme « Raisons ou regard ? » dans le dépôt `lciric/raisons-ou-regard`. Lis d'abord, en entier : `README.md`, puis `claude/PASSATION_PAPIER_v1.3_2026-10-02.md`, puis les documents dans l'ordre que la passation indique. Vérifie que `HF_TOKEN`, `VAST_API_KEY` et `RR_ANTHROPIC_API_KEY` sont présentes, en répondant seulement oui ou non pour chacune, jamais leur valeur. Aucun agent sans ma demande. Dis-moi ensuite où en est le travail et ce que tu proposes de faire.
 
 ### Étape 4 · Vérifier
 La nouvelle session doit :
@@ -102,4 +102,3 @@ Si l'une de ces vérifications échoue, elle dit laquelle et ce qu'il faut régl
 - Rien de public sans ton accord explicite. Le dépôt reste privé.
 - Un refus d'un modèle ou d'une API ne se rejoue pas et ne se reformule pas.
 - Le copilote et ses documents restent à son instance.
-- Le zip scellé ne s'ouvre qu'à ton feu vert, après la phase 1 de l'axe de douleur.

@@ -90,9 +90,8 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 2. **La tâche « axe de douleur ».**
    - La phase 1 est finie. Elle a été confiée à des agents vierges, à la demande de Lazar. La raison : la partie scellée du complément était jointe au premier message de la session, et l'instance qui tient le papier l'a donc lue.
    - Le livrable : `claude/AXE_DOULEUR_PISTES_INDEPENDANTES_2026-10-02.md`, gelé, sha256 `b6055d88c69303bd99f4025710c271e8d94ce1700c35705e27bedb328fcd9e6d`. Les consignes des agents sont livrées à part, avec leur empreinte (`claude/AXE_DOULEUR_PHASE1_CONSIGNES_AGENTS_2026-10-02.js`, et leur note `…_LISEZMOI_…`).
-   - Ensuite, au feu vert de Lazar :
-     - la phase 2, `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md` ;
-     - des propositions pour la version qui suivra la v1.3, sans l'écrire.
+   - La phase 2 est faite, au feu vert de Lazar. La comparaison : `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md`, sha256 `c6099e2763e46b97a443b5e5a246cace30d86298dac3bb39b2d67a03a1cc9a30`. Son §7 propose ce qui devrait entrer dans la version 1.4 ; Lazar décide.
+   - Les pièces scellées sont maintenant dans `claude/` : les versions 1.2 et 1.3 du programme, et la partie scellée du complément.
 3. **La carte des angles déjà pris** (passation v1.2, §6, point 3) : écrite par des agents et vérifiée en trois tours de critique (`claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md`, sha256 `7744a85cf528d6ff3f75ead74a39447fea97793944e43ab5e608f6371ed764d6`). Ses conséquences pour la v1.3 attendent la phase 2 de l'axe de douleur.
 4. **Les étapes 3 à 6 de la passation v1.0** (§5) :
    - la mini-spec et les dix familles : v0.1 adoptée le 2 octobre (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`) ;
