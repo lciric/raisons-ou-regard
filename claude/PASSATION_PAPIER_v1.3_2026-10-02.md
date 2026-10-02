@@ -146,7 +146,7 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
    - Les relevés du §5.4 de la passation v1.2 ne vont à son dossier qu'après sa lecture. Vérifie d'abord lesquels valent encore pour la v1.3.
    - Dans claude.ai, une conversation neuve, hors du Projet du programme, fait une instance vierge.
 4. **La carte des angles déjà pris** (passation v1.2, §6, point 3).
-   - Lancée par la session le 2 octobre vers 10 h 15, par des agents (§2, point 10). Son travail est dans `08_CARTE_DES_ANGLES/` du paquet de reprise ; la carte elle-même, si elle est écrite, dans son `livrable/`.
+   - Écrite par des agents le 2 octobre (§2, point 10) : `claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md` (sha256 `7744a85cf528d6ff3f75ead74a39447fea97793944e43ab5e608f6371ed764d6`), 1 205 lignes. Trois tours de critique et de correction ; les corrections du troisième tour n'ont pas été recritiquées. Le travail des agents (fiches d'angle, vérifications, veille, corrections) est dans `08_CARTE_DES_ANGLES/` du paquet de reprise.
    - Son corps peut s'écrire avant la fin de la phase 1 ; ses conséquences pour la v1.3 attendent la phase 2.
    - Il faut d'abord relire sur la source ce qu'on veut citer au centre et qui n'est marqué que « rapport » : Nakamura, Zeisler, Second Look Research, les J-lens de Neuronpedia.
 5. **Les étapes 3 à 6 de la passation v1.0** (§5) :

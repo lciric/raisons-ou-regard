@@ -92,7 +92,7 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
    - Ensuite, au feu vert de Lazar :
      - la phase 2, `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md` ;
      - des propositions pour la version qui suivra la v1.3, sans l'écrire.
-3. **La carte des angles déjà pris** (passation v1.2, §6, point 3) : écrite par des agents, en cours de correction.
+3. **La carte des angles déjà pris** (passation v1.2, §6, point 3) : écrite par des agents et vérifiée en trois tours de critique (`claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md`, sha256 `7744a85cf528d6ff3f75ead74a39447fea97793944e43ab5e608f6371ed764d6`). Ses conséquences pour la v1.3 attendent la phase 2 de l'axe de douleur.
 4. **Les étapes 3 à 6 de la passation v1.0** (§5) :
    - la mini-spec et les dix familles : v0.1 adoptée le 2 octobre (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`) ;
    - le pipeline de données : v0.1 écrite et testée hors ligne (`donnees/`, conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) ; le pilote attend `RR_ANTHROPIC_API_KEY`, `HF_TOKEN` et l'accès à huggingface.co ;
