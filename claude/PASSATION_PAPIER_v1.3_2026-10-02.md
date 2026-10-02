@@ -120,10 +120,27 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 18. **La version 1.4 du programme** : Lazar demande qu'elle soit écrite par la session, en clair (partie scellée du complément, §7, point 4).
 19. **La contre-lecture vierge** : la session en écrit la consigne. Elle portera sur la version de référence, la 1.4 dès qu'elle existe (proposition de la session, pour qu'on ne contre-lise pas une version déjà remplacée).
 
-**Encore ouvert**
-- Les neuf choix du pipeline de données (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`).
-- Le juge scellé des évaluations. L'API refuse toute température autre que celle par défaut : soit Claude, avec sa variabilité mesurée, soit un modèle ouvert à température 0.
-- Les propositions des §5.1 et §5.5 (points 3 à 9) de la passation v1.2, que Lazar n'a pas tranchées. La version 1.4 les liste à part.
+**Encore ouvert.** La partie 12 de la version 1.4 en donne la liste complète. D'abord :
+- les neuf choix du pipeline de données (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) ;
+- le juge scellé des évaluations. L'API refuse toute température autre que celle par défaut : soit Claude, avec sa variabilité mesurée, soit un modèle ouvert à température 0 ;
+- les propositions des §5.1, §5.2 et §5.5 (points 3 à 9) de la passation v1.2, que Lazar n'a pas tranchées ;
+- le plafond écrit des lectures de l'axe dans l'expérience minimale, proposé à 12 GPU-heures et deux jours de travail ;
+- la relecture de la v1.4 elle-même par Lazar.
+
+**La version 1.4 est écrite** (2 octobre, au soir), en clair, comme la décision 18 le demande :
+- `claude/PROGRAMME_RAISONS_OU_REGARD_v1.4_2026-10-02.md`, sha256 `b1d55773a052fb6b30867baa60e0c81df5bc12c0fde452731c90e519e85bfc27` ;
+- son PDF, 85 pages, sha256 `228cfa921dbd66a6757f953ebd1ac5965576d2082d631af6f8b690d618b12c18`.
+
+Ce qu'elle intègre :
+- les blocs A à F de la comparaison, lus comme adoptés par le « oui à tout » de la décision 17 ;
+- les corrections de l'antériorité (passation v1.2, §4.3 ; carte des angles, §6 et §7) ;
+- la mini-spec v0.2 et le pipeline v0.1 ;
+- la contrainte de l'API sur le juge scellé ;
+- le pré-enregistrement en deux temps.
+
+Les §5.1, §5.2 et §5.5 (points 3 à 9) de la passation v1.2 y sont listés à part, sans être tranchés. Ce que la v1.4 ajoute au-delà des décisions est marqué « proposé ».
+
+**Une erreur de la comparaison, corrigée par la v1.4.** Son §7 donnait au bloc A « moins de 25 GPU-heures en tout » ; la somme de ses propres fourchettes donne de 15 à 36. La comparaison, gelée par son empreinte, n'est pas modifiée.
 
 ---
 
@@ -132,7 +149,7 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 > Cette section est mise à jour au moment de fabriquer le paquet de reprise. En cas de doute, fie-toi au contenu de `05_AXE_DOULEUR_PHASE1/` dans le paquet.
 
 <!-- ETAT_A_METTRE_A_JOUR_AVANT_LE_PAQUET -->
-**État au 2 octobre, au soir : les deux phases sont finies. Les propositions pour la version 1.4 attendent les décisions de Lazar.**
+**État au 2 octobre, au soir : les deux phases sont finies. Lazar a tranché les propositions de la comparaison (décision 17), et la version 1.4 les intègre (§2).**
 - **La phase 2** (feu vert de Lazar) : le zip scellé est ouvert, et ses cinq pièces correspondent à leurs empreintes. Elles sont désormais dans `claude/` : la v1.2 et la v1.3 du programme (md et pdf), et la partie scellée du complément.
   - La comparaison : `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md`, sha256 `c6099e2763e46b97a443b5e5a246cace30d86298dac3bb39b2d67a03a1cc9a30`, avec son PDF.
   - Elle compare les pistes à la v1.2, puis aux ajouts de la v1.3. Elle relève 14 désaccords, deux imprécisions de la v1.2 et une inférence de la partie scellée qui dépasse sa source.
@@ -162,11 +179,15 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 ## 4 · Ce qui reste à faire, dans l'ordre
 
 1. **Faire trancher par Lazar les neuf choix du pipeline de données** (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`). Les décisions de la mini-spec sont prises (§2, point 14).
-2. **La tâche « axe de douleur »** : faite (§3). Il reste à faire trancher par Lazar les décisions du §7 de la comparaison, puis, s'il le demande, à écrire la version 1.4 du programme, en clair (partie scellée du complément, §7, point 4).
-3. **La contre-lecture vierge de la v1.3**, après la phase 1.
-   - Une instance qui n'a rien lu du programme reçoit la v1.3 et une consigne de contre-lecture, écrite par toi.
-   - Les relevés du §5.4 de la passation v1.2 ne vont à son dossier qu'après sa lecture. Vérifie d'abord lesquels valent encore pour la v1.3.
-   - Dans claude.ai, une conversation neuve, hors du Projet du programme, fait une instance vierge.
+2. **La tâche « axe de douleur »** : faite (§3). Lazar a tranché les décisions du §7 de la comparaison (décision 17), et la version 1.4 est écrite (§2). Il reste à la lui faire relire, et à faire trancher sa partie 12.
+3. **La contre-lecture vierge de la v1.4** (décision 19).
+   - La consigne est écrite : `claude/CONSIGNE_CONTRE_LECTURE_VIERGE_2026-10-02.md`, avec son PDF. Elle donne les empreintes de la v1.4.
+   - Une instance qui n'a rien lu du programme reçoit la v1.4 et la consigne. Dans claude.ai, une conversation neuve, hors du Projet du programme, fait une instance vierge. On ne la lance qu'à la demande de Lazar.
+   - **L'étape 2** : les relevés du §5.4 de la passation v1.2 ne vont à son dossier qu'après son rapport. Vérifié le 2 octobre au soir, pour la v1.4 :
+     - **le relevé 1** (les graines) vaut encore, en partie. La v1.4 renvoie le nombre au second temps du gel, mais garde 3 graines dans l'expérience minimale et 5 en plancher ailleurs ;
+     - **le relevé 3** (ce que voit le juge) vaut encore, en partie. La mini-spec en adopte une part ; le reste du §5.1 attend Lazar ;
+     - **le relevé 4** (les directions sensibles sans rapport, absentes de l'expérience minimale) vaut encore tel quel ;
+     - **les relevés 2 et 5** ne valent plus. La vérification de manipulation bras par bras est dans la v1.4 (bloc A), et le pré-enregistrement est en deux temps (décision 12). On ne les donne pas.
 4. **La carte des angles déjà pris** (passation v1.2, §6, point 3).
    - Écrite par des agents le 2 octobre (§2, point 10) : `claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md` (sha256 `7744a85cf528d6ff3f75ead74a39447fea97793944e43ab5e608f6371ed764d6`), 1 205 lignes. Trois tours de critique et de correction ; les corrections du troisième tour n'ont pas été recritiquées. Le travail des agents (fiches d'angle, vérifications, veille, corrections) est dans `08_CARTE_DES_ANGLES/` du paquet de reprise.
    - Son corps peut s'écrire avant la fin de la phase 1 ; ses conséquences pour la v1.3 attendent la phase 2.
@@ -190,6 +211,7 @@ Elles s'ajoutent à celles du §3 de la passation v1.2.
 - **La machine de la session n'avait que 4 processeurs.** Un workflow n'y fait tourner que deux agents à la fois, et une chaîne de seize agents prend des heures.
 - **Lire un PDF en images coûte cher.** Le texte extrait page par page suffit, sauf pour les figures qui portent un résultat.
 - **L'intégration GitHub de la session ne peut pas créer de dépôt.** Lazar le crée ; la session le rattache, puis elle y pousse.
+- **Le premier outil de rendu PDF aplatissait les listes.** Il lisait le Markdown avec Python-Markdown, qui exige une ligne vide avant une liste et quatre espaces pour l'imbriquer. Les PDF de la session ont été régénérés le 2 octobre au soir avec un rendu CommonMark (markdown-it-py), comme sur GitHub ; les md n'ont pas changé. Les outils sont dans `outils/` : `md_vers_pdf.py` pour un document, `programme_vers_pdf.py` pour le programme (couverture, sommaire paginé). Regarder une page en image avant d'envoyer un PDF.
 
 ---
 

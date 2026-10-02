@@ -13,6 +13,9 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
   - `PROMPT_LANCEMENT_PAPIER_CLAUDE_AI_MODELE.txt`, le prompt de lancement, dont la session remplit les noms et les empreintes des zips ;
   - `faire_paquet_reprise_session_2026-10-02.sh`, le script qui fabrique le paquet de reprise et le zip scellé.
 - `archives/` : la passation v1.1, remplacée par la v1.2. Ne pas la lire : la v1.2 en reprend tout le contenu.
+- `donnees/` : le code du pipeline de données (v0.1).
+- `cours/` : le cours d'alignement v3.6, en français et en anglais.
+- `outils/` : les outils de rendu PDF (`outils/LISEZMOI.md`).
 
 **Pour reprendre le programme, lire d'abord `claude/PASSATION_PAPIER_v1.3_2026-10-02.md`**, la passation de la session Claude Code du 2 octobre, puis la v1.2.
 
@@ -46,17 +49,33 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 - L'exemplaire du papier dit « annoté » (`60a2abfdafd4285c…`). Il a le même texte que celui d'arXiv, et ses pages se rendent à l'identique. Il ne porte aucune note lisible : ses seules annotations sont des liens.
 - La copie du complément ouvert que porte le zip `RAISONS_OU_REGARD_PASSATION` (`81591a66d2743789…`) est une version antérieure, qui renvoie encore à la passation v1.1. C'est celle du paquet (`b40904b53395b5c6…`) qui fait foi.
 
-## Ce qui n'est pas encore ici
+## Les pièces autrefois scellées
 
-**Scellé jusqu'à la fin de la phase 1 de la tâche « axe de douleur »** (passation v1.2, §6 et annexe B). Ces pièces entreront dans `claude/` au feu vert de Lazar, après le fichier de pistes indépendantes et son empreinte.
+Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passation v1.2, §6 et annexe B), elles sont entrées dans `claude/` au feu vert de Lazar, le 2 octobre au soir. Leurs empreintes correspondent au manifeste du paquet.
 
 | Pièce | sha256 (manifeste du paquet, 16 premiers caractères) |
 |---|---|
 | `claude/PROGRAMME_RAISONS_OU_REGARD_v1.2_2026-10-02.md` | `fca1f6e9a989d584` |
 | `claude/PROGRAMME_RAISONS_OU_REGARD_v1.2_2026-10-02.pdf` | `332fb1c396684c95` |
-| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.3_2026-10-02.md`, la version de référence | `a5ef0e51efdb4ba6` |
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.3_2026-10-02.md`, la version de référence jusqu'à la v1.4 | `a5ef0e51efdb4ba6` |
 | `claude/PROGRAMME_RAISONS_OU_REGARD_v1.3_2026-10-02.pdf` | `72ad347d469954e5` |
 | `claude/PASSATION_PAPIER_COMPLEMENT_ARCHITECTE_SCELLE_AXE_DOULEUR_2026-10-02.md` | `06b425f7820ca3d3` |
+
+## Les documents écrits par la session du 2 octobre
+
+| Fichier | Ce que c'est | sha256 (16 premiers caractères) |
+|---|---|---|
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.4_2026-10-02.md` | **Le programme v1.4**, en clair : la v1.3, plus les suites de la comparaison de l'axe, l'antériorité refaite avec la carte des angles, la mini-spec v0.2 et le pipeline v0.1 | `b1d55773a052fb6b` |
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.4_2026-10-02.pdf` | Son PDF (85 pages) | `228cfa921dbd66a6` |
+| `claude/CONSIGNE_CONTRE_LECTURE_VIERGE_2026-10-02.md` | La consigne de la contre-lecture vierge de la v1.4, et son PDF | voir le git |
+| `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md` | La comparaison de l'axe de douleur (phase 2) | `c6099e2763e46b97` |
+| `claude/AXE_DOULEUR_PISTES_INDEPENDANTES_2026-10-02.md` | Les pistes indépendantes de l'axe (phase 1), gelées | `b6055d88c69303bd` |
+| `claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md` | La carte des angles déjà pris | `7744a85cf528d6ff` |
+| `claude/MINI_SPEC_ET_FAMILLES_v0.2_2026-10-02.md` | La mini-spec v0.2 | `f5546818693c6d89` |
+| `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md` | La conception du pipeline de données v0.1 (le code est dans `donnees/`) | `6d9350135beb9973` |
+| `claude/PASSATION_PAPIER_v1.3_2026-10-02.md` | La passation de la session | voir le git |
+
+**Les PDF de ces documents ont été régénérés le 2 octobre au soir.** Le premier outil de rendu aplatissait les listes imbriquées, et les listes qui suivent un paragraphe ; les md n'ont pas changé. Les outils de rendu sont dans `outils/`.
 
 **Ne viendront pas ici** : les documents du copilote (les états `ETAT_D-…`, les banques, les passations de l'architecte). Ils relèvent d'une autre instance.
 
@@ -64,12 +83,12 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 
 | Sujet | Décision | Source |
 |---|---|---|
-| La version de référence du programme | La v1.3 | Passation v1.2, §3, point 9 (2 octobre, 8 h 32) |
+| La version de référence du programme | La v1.3 ; la v1.4 lui succède, écrite le 2 octobre au soir à la demande de Lazar, sous réserve de sa relecture | Passation v1.2, §3, point 9 (2 octobre, 8 h 32) ; passation v1.3, §2, décisions 18 et 19 |
 | Le calcul | vast.ai, sans limite de budget. Un H100 SXM quand il y en a, sinon un A100 80 Go, et plusieurs GPU à la fois | Passation v1.2, §3, point 1 ; le choix des GPU, confirmé le 2 octobre |
 | Les règles pour vast.ai | Aucune clé d'API Claude sur ces machines : les appels partent de la machine de Lazar. Un jeton Hugging Face à accès restreint pour télécharger Llama, révoqué ensuite. Les données et les points de contrôle synchronisés vers un stockage à lui | Proposées dans la passation v1.2, §3, point 1 ; confirmées le 2 octobre |
 | L'API Claude | Sans plafond | Passation v1.2, §3, point 2 |
 | Le périmètre du pré-enregistrement | Des phases du test des raisons à l'anatomie, plus la phase de validation de l'instrument | Passation v1.2, §3, point 3 ; la validation, ajoutée le 2 octobre |
-| La contre-lecture du programme | Une instance vierge, qui reçoit le seul programme et une consigne de contre-lecture, sur la v1.3. Elle vient après la phase 1 de l'axe de douleur, puisque la v1.3 est scellée jusque-là | Passation v1.2, §3, point 6 ; la version, confirmée le 2 octobre |
+| La contre-lecture du programme | Une instance vierge, qui reçoit le seul programme et une consigne de contre-lecture ; sur la v1.4, dès qu'elle existe. La consigne est écrite | Passation v1.2, §3, point 6 ; passation v1.3, §2, décision 19 |
 | Le projet SPAR de Qiyao Wei | « on va tâcher d'y répondre nous-mêmes dans ce programme avant SPAR » | Passation v1.2, §3, point 4 |
 | La cible | « plutôt conf principale ou revue ; prestigieux et ambitieux » | Passation v1.2, §3, point 5 |
 | Les agents | Seulement à sa demande. Le 2 octobre, il a demandé des agents vierges pour la phase 1 de l'axe de douleur, puis de « tout finir ici » (toute la chaîne, dans la session Claude Code) | Passation v1.2, §1 ; 2 octobre |
@@ -82,9 +101,9 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 | La mini-spec v0.1 | Adoptée : les dix principes et la matrice, le cadrage neutre, la balise vide, le texte neutre reformulé, le filtre de la conscience d'évaluation, la demande nuisible sans contenu dangereux ; seuils provisoires | 2 octobre |
 | Le raisonnement d'une autre situation dans l'expérience minimale | Oui, aux deux étapes ; critère principal inchangé (actions seules contre raisons) ; porte des raisons appliquée telle que la v1.1 l'écrit | 2 octobre |
 | Les suites de la comparaison de l'axe | Blocs A et B adoptés ; aucun adaptateur des auteurs ; injection de l'axe après le post seulement ; premier ou second papier, décidé après le test du regard | 2 octobre |
-| La version 1.4 du programme | À écrire par la session, en clair ; puis contre-lecture vierge de la 1.4 | 2 octobre |
+| La version 1.4 du programme | À écrire par la session, en clair ; puis contre-lecture vierge de la 1.4. Écrite le soir même | 2 octobre |
 
-**Ouvert** : les neuf choix du pipeline de données (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`).
+**Ouvert** : la partie 12 de la v1.4 liste tout ce qui attend Lazar. D'abord : les neuf choix du pipeline de données (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) ; le juge scellé des évaluations (Claude à variabilité mesurée, ou un modèle ouvert à température 0) ; les propositions des §5.1, §5.2 et §5.5 (points 3 à 9) de la passation v1.2 ; le plafond écrit des lectures de l'axe.
 
 ## Où en est le travail (2 octobre 2026)
 
@@ -92,11 +111,12 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 2. **La tâche « axe de douleur ».**
    - La phase 1 est finie. Elle a été confiée à des agents vierges, à la demande de Lazar. La raison : la partie scellée du complément était jointe au premier message de la session, et l'instance qui tient le papier l'a donc lue.
    - Le livrable : `claude/AXE_DOULEUR_PISTES_INDEPENDANTES_2026-10-02.md`, gelé, sha256 `b6055d88c69303bd99f4025710c271e8d94ce1700c35705e27bedb328fcd9e6d`. Les consignes des agents sont livrées à part, avec leur empreinte (`claude/AXE_DOULEUR_PHASE1_CONSIGNES_AGENTS_2026-10-02.js`, et leur note `…_LISEZMOI_…`).
-   - La phase 2 est faite, au feu vert de Lazar. La comparaison : `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md`, sha256 `c6099e2763e46b97a443b5e5a246cace30d86298dac3bb39b2d67a03a1cc9a30`. Son §7 propose ce qui devrait entrer dans la version 1.4 ; Lazar décide.
+   - La phase 2 est faite, au feu vert de Lazar. La comparaison : `claude/AXE_DOULEUR_COMPARAISON_2026-10-02.md`, sha256 `c6099e2763e46b97a443b5e5a246cace30d86298dac3bb39b2d67a03a1cc9a30`. Son §7 proposait ce qui devait entrer dans la version 1.4 ; Lazar a dit « oui à tout », et la v1.4 l'intègre.
    - Les pièces scellées sont maintenant dans `claude/` : les versions 1.2 et 1.3 du programme, et la partie scellée du complément.
-3. **La carte des angles déjà pris** (passation v1.2, §6, point 3) : écrite par des agents et vérifiée en trois tours de critique (`claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md`, sha256 `7744a85cf528d6ff3f75ead74a39447fea97793944e43ab5e608f6371ed764d6`). Ses conséquences pour la v1.3 attendent la phase 2 de l'axe de douleur.
-4. **Les étapes 3 à 6 de la passation v1.0** (§5) :
-   - la mini-spec et les dix familles : v0.1 adoptée le 2 octobre (`claude/MINI_SPEC_ET_FAMILLES_v0.1_2026-10-02.md`) ;
+3. **La carte des angles déjà pris** (passation v1.2, §6, point 3) : écrite par des agents et vérifiée en trois tours de critique (`claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md`, sha256 `7744a85cf528d6ff3f75ead74a39447fea97793944e43ab5e608f6371ed764d6`). Ses conséquences sont intégrées à la partie 1 de la v1.4.
+4. **Le programme v1.4**, en clair (`claude/PROGRAMME_RAISONS_OU_REGARD_v1.4_2026-10-02.md`, sha256 `b1d55773a052fb6b30867baa60e0c81df5bc12c0fde452731c90e519e85bfc27`), et la consigne de sa contre-lecture vierge (`claude/CONSIGNE_CONTRE_LECTURE_VIERGE_2026-10-02.md`), à lancer à la demande de Lazar.
+5. **Les étapes 3 à 6 de la passation v1.0** (§5) :
+   - la mini-spec et les dix familles : v0.1 adoptée le 2 octobre, puis la v0.2 (`claude/MINI_SPEC_ET_FAMILLES_v0.2_2026-10-02.md`) ;
    - le pipeline de données : v0.1 écrite et testée hors ligne (`donnees/`, conception dans `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) ; le pilote attend `RR_ANTHROPIC_API_KEY`, `HF_TOKEN` et l'accès à huggingface.co ;
    - l'organisme de validation, reconstruit depuis les documents publics de Hua et al. ;
    - le pré-enregistrement, sur OSF, en deux temps.
