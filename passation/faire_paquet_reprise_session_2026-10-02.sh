@@ -52,11 +52,11 @@ tar -C $P1/travail --exclude='*.png' -cf - . | tar -C "$ST/05_AXE_DOULEUR_PHASE1
 cp $P1/SHA256_PIECES.txt 05_AXE_DOULEUR_PHASE1/pieces_recues_par_les_agents_SHA256.txt
 cp $WFROOT/workflows/scripts/axe-douleur-phase1*.js 05_AXE_DOULEUR_PHASE1/consignes/ 2>/dev/null || true
 ( cd 05_AXE_DOULEUR_PHASE1/consignes && sha256sum *.js > SHA256_CONSIGNES.txt 2>/dev/null || true )
-python3 - "$WFROOT/subagents/workflows" "$ST/05_AXE_DOULEUR_PHASE1/attestations_des_agents.md" <<'EOF'
+python3 - "$WFROOT/subagents/workflows" "$ST/ATTESTATIONS_DES_AGENTS.md" <<'EOF'
 import json, sys, glob, os
 racine, sortie = sys.argv[1], sys.argv[2]
-lignes = ["# Les attestations des agents de la phase 1", "",
-          "Extraites des journaux des workflows de la session : pour chaque agent qui a rendu son objet, le fichier écrit,",
+lignes = ["# Les attestations des agents de la session", "",
+          "Extraites des journaux des workflows de la session (phase 1 de l'axe de douleur, carte des angles) : pour chaque agent qui a rendu son objet, le fichier écrit,",
           "les fichiers et les adresses qu'il déclare avoir ouverts, et ses alertes. Un agent arrêté avant la fin n'y figure pas.", ""]
 for j in sorted(glob.glob(os.path.join(racine, '*', 'journal.jsonl'))):
     run = os.path.basename(os.path.dirname(j))
@@ -80,6 +80,17 @@ for j in sorted(glob.glob(os.path.join(racine, '*', 'journal.jsonl'))):
         lignes.append("")
 open(sortie, 'w', encoding='utf8').write("\n".join(lignes) + "\n")
 EOF
+
+# 2 bis. La carte des angles déjà pris
+CA=$S/carte_angles
+if [ -d $CA ]; then
+  mkdir -p 08_CARTE_DES_ANGLES/travail 08_CARTE_DES_ANGLES/consignes
+  if [ -n "$(ls -A $CA/livrable 2>/dev/null)" ]; then mkdir -p 08_CARTE_DES_ANGLES/livrable; cp -r $CA/livrable/. 08_CARTE_DES_ANGLES/livrable/; fi
+  tar -C $CA/travail --exclude='*.png' -cf - . | tar -C "$ST/08_CARTE_DES_ANGLES/travail" -xf -
+  cp $CA/SHA256_PIECES.txt 08_CARTE_DES_ANGLES/pieces_recues_par_les_agents_SHA256.txt
+  cp $WFROOT/workflows/scripts/carte-angles*.js 08_CARTE_DES_ANGLES/consignes/ 2>/dev/null || true
+  ( cd 08_CARTE_DES_ANGLES/consignes && sha256sum *.js > SHA256_CONSIGNES.txt 2>/dev/null || true )
+fi
 
 # 3. Le dépôt git
 git -C $REPO log --format='%H %ad %s' --date=iso > 07_DEPOT_GIT/git_log.txt
@@ -110,10 +121,12 @@ sha256 dans \`MANIFEST_SHA256.txt\`. Les documents de \`00\` à \`04\` sont des 
   - \`travail/\` : les fichiers des agents.
   - \`pieces_recues_par_les_agents_SHA256.txt\` : les seules pièces qu'ils pouvaient lire.
   - \`consignes/\` : leurs consignes exactes, avec leur empreinte.
-  - \`attestations_des_agents.md\` : ce que chaque agent déclare avoir ouvert.
 - \`06_PAQUETS_ET_PROMPTS_ANTERIEURS/\` : le LISEZMOI et le manifeste du paquet du 2 octobre (9 h 15), le LISEZ-MOI du nouveau compte, le
   premier prompt de lancement du papier.
 - \`07_DEPOT_GIT/\` : l'historique et le README du dépôt.
+- \`08_CARTE_DES_ANGLES/\` : la carte des angles déjà pris, écrite par des agents : \`livrable/\` (la carte, si elle est écrite),
+  \`travail/\` (un fichier par angle, les vérifications, les projets et le calendrier, les corrections, la veille), et leurs consignes.
+- \`ATTESTATIONS_DES_AGENTS.md\` : pour chaque agent de la session, ce qu'il déclare avoir ouvert, et ses alertes.
 - \`99_ARCHIVES_ne_pas_lire/\` : la passation v1.1, remplacée par la v1.2.
 
 **Scellé, et absent de ce paquet** : les versions 1.2 et 1.3 du programme et la partie scellée du complément. Elles sont dans
