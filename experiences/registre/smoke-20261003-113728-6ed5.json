@@ -1,0 +1,67 @@
+{
+ "args": {},
+ "bundle": {
+  "bytes": 89305,
+  "dirty": false,
+  "files": 77,
+  "git_head": "890e535ab9e0d5ae27df3be830310faa1e29b7c1",
+  "repo_path": "code/7fb499812e27f425.tar.gz",
+  "sha256": "7fb499812e27f4255ad5fa5b7dfd867d232292d6eac04bee733d909669dcee16"
+ },
+ "created": "2026-10-03T11:37:28Z",
+ "disk_gb": 120,
+ "env": {
+  "HF_HUB_DISABLE_PROGRESS_BARS": "1",
+  "HF_TOKEN": "<secret>",
+  "PYTHONUNBUFFERED": "1",
+  "RR_ARGS_B64": "e30=",
+  "RR_CODE_PATH": "code/7fb499812e27f425.tar.gz",
+  "RR_HEARTBEAT_SECONDS": "300",
+  "RR_HFPUT_B64": "IiIiVXBsb2FkcyBhbmQgZG93bmxvYWRzIG9uIHRoZSByZXN1bHRzIHJlcG9zaXRvcnkgd2l0aCB0aGUgUHl0aG9uIHN0YW5kYXJkIGxpYnJhcnkgYWxvbmUuCgpUaGUgY29udGFpbmVyIHNjcmlwdCB1c2VzIGl0IGJlZm9yZSBhbnkgcGFja2FnZSBpcyBpbnN0YWxsZWQ6IHRoZSBydW4gcmVwb3J0cyB0aGF0IGl0IHN0YXJ0ZWQsIGZldGNoZXMgaXRzIGNvZGUKYnVuZGxlLCBhbmQgdXBsb2FkcyBpdHMgbG9nIGV2ZW4gd2hlbiBwaXAsIHRoZSBjb2RlIGRvd25sb2FkIG9yIHRoZSBydW5uZXIgZmFpbHMuIEl0IGlzIHdyaXR0ZW4gdG8gdGhlIG1hY2hpbmUgYXMgYQpmaWxlIGJ5IHRoZSBzY3JpcHQgKHNlZSBjb21tYW5kLnB5KSwgc28gaXQgbXVzdCBub3QgaW1wb3J0IGFueXRoaW5nIG91dHNpZGUgdGhlIHN0YW5kYXJkIGxpYnJhcnkuCgogICAgcHl0aG9uMyBoZnB1dC5weSBwdXQgPHBhdGggaW4gcmVwbz4gPGxvY2FsIGZpbGU+CiAgICBweXRob24zIGhmcHV0LnB5IGdldCA8cGF0aCBpbiByZXBvPiA8bG9jYWwgZmlsZT4KIiIiCmltcG9ydCBiYXNlNjQKaW1wb3J0IGpzb24KaW1wb3J0IG9zCmltcG9ydCBzeXMKaW1wb3J0IHVybGxpYi5yZXF1ZXN0CgpFTkRQT0lOVCA9IG9zLmVudmlyb24uZ2V0KCJIRl9FTkRQT0lOVCIsICJodHRwczovL2h1Z2dpbmdmYWNlLmNvIikKCgpkZWYgX2hlYWRlcnMoZXh0cmE9Tm9uZSk6CiAgICBoID0geyJBdXRob3JpemF0aW9uIjogIkJlYXJlciAiICsgb3MuZW52aXJvblsiSEZfVE9LRU4iXSwgIlVzZXItQWdlbnQiOiAicnJleHAtYm9vdCJ9CiAgICBoLnVwZGF0ZShleHRyYSBvciB7fSkKICAgIHJldHVybiBoCgoKZGVmIHB1dChyZXBvLCBwYXRoLCBkYXRhLCBzdW1tYXJ5KToKICAgICIiIk9uZSBjb21taXQgd2l0aCBvbmUgc21hbGwgdGV4dCBmaWxlLCBpbmxpbmUgKHRoZSBjb21taXQgZW5kcG9pbnQncyBOREpTT04gZm9ybWF0KS4iIiIKICAgIGxpbmVzID0gW3sia2V5IjogImhlYWRlciIsICJ2YWx1ZSI6IHsic3VtbWFyeSI6IHN1bW1hcnksICJkZXNjcmlwdGlvbiI6ICIifX0sCiAgICAgICAgICAgICB7ImtleSI6ICJmaWxlIiwgInZhbHVlIjogeyJjb250ZW50IjogYmFzZTY0LmI2NGVuY29kZShkYXRhKS5kZWNvZGUoImFzY2lpIiksICJwYXRoIjogcGF0aCwgImVuY29kaW5nIjogImJhc2U2NCJ9fV0KICAgIGJvZHkgPSAiXG4iLmpvaW4oanNvbi5kdW1wcyhsKSBmb3IgbCBpbiBsaW5lcykuZW5jb2RlKCJ1dGY4IikKICAgIHJlcSA9IHVybGxpYi5yZXF1ZXN0LlJlcXVlc3QoZiJ7RU5EUE9JTlR9L2FwaS9kYXRhc2V0cy97cmVwb30vY29tbWl0L21haW4iLCBkYXRhPWJvZHksIG1ldGhvZD0iUE9TVCIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGhlYWRlcnM9X2hlYWRlcnMoeyJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24veC1uZGpzb24ifSkpCiAgICB3aXRoIHVybGxpYi5yZXF1ZXN0LnVybG9wZW4ocmVxLCB0aW1lb3V0PTEyMCkgYXMgcjoKICAgICAgICByZXR1cm4gci5zdGF0dXMKCgpkZWYgZ2V0KHJlcG8sIHBhdGgsIGxvY2FsKToKICAgIHJlcSA9IHVybGxpYi5yZXF1ZXN0LlJlcXVlc3QoZiJ7RU5EUE9JTlR9L2RhdGFzZXRzL3tyZXBvfS9yZXNvbHZlL21haW4ve3BhdGh9IiwgaGVhZGVycz1faGVhZGVycygpKQogICAgd2l0aCB1cmxsaWIucmVxdWVzdC51cmxvcGVuKHJlcSwgdGltZW91dD02MDApIGFzIHIsIG9wZW4obG9jYWwsICJ3YiIpIGFzIGZoOgogICAgICAgIHdoaWxlIFRydWU6CiAgICAgICAgICAgIGNodW5rID0gci5yZWFkKDEgPDwgMjApCiAgICAgICAgICAgIGlmIG5vdCBjaHVuazoKICAgICAgICAgICAgICAgIGJyZWFrCiAgICAgICAgICAgIGZoLndyaXRlKGNodW5rKQogICAgcmV0dXJuIGxvY2FsCgoKZGVmIG1haW4oYXJndik6CiAgICByZXBvID0gb3MuZW52aXJvblsiUlJfUkVTVUxUU19SRVBPIl0KICAgIGlmIGFyZ3ZbMF0gPT0gInB1dCI6CiAgICAgICAgd2l0aCBvcGVuKGFyZ3ZbMl0sICJyYiIpIGFzIGZoOgogICAgICAgICAgICBkYXRhID0gZmgucmVhZCgpWy00MDBfMDAwOl0gICAjIGEgbG9nJ3MgbGFzdCA0MDAga0IgYXQgbW9zdDogdGhlIGlubGluZSBjb21taXQgaXMgZm9yIHNtYWxsIGZpbGVzCiAgICAgICAgcHJpbnQoInB1dCIsIHB1dChyZXBvLCBhcmd2WzFdLCBkYXRhLCBmInJyZXhwOiB7YXJndlsxXX0iKSkKICAgIGVsaWYgYXJndlswXSA9PSAiZ2V0IjoKICAgICAgICBwcmludCgiZ2V0IiwgZ2V0KHJlcG8sIGFyZ3ZbMV0sIGFyZ3ZbMl0pKQogICAgZWxzZToKICAgICAgICByYWlzZSBTeXN0ZW1FeGl0KCJ1c2FnZTogaGZwdXQucHkgcHV0fGdldCA8cGF0aCBpbiByZXBvPiA8bG9jYWwgZmlsZT4iKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6CiAgICBtYWluKHN5cy5hcmd2WzE6XSkK",
+  "RR_JOB": "smoke",
+  "RR_MAX_SECONDS": "5400",
+  "RR_PIP_B64": "dHJhbnNmb3JtZXJzPT01LjE4LjAgcGVmdD09MC4yMS4yIGFjY2VsZXJhdGU9PTEuMTUuMCBodWdnaW5nZmFjZV9odWI9PTEuMzMuMCBzYWZldGVuc29ycz09MC44LjAgdG9rZW5pemVycz09MC4yMy4yIHB5eWFtbD09Ni4wLjM=",
+  "RR_RESULTS_REPO": "Sirmium/rr-resultats",
+  "RR_RUN_ID": "smoke-20261003-113728-6ed5"
+ },
+ "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
+ "instance_id": 54006116,
+ "job": "smoke",
+ "launched": "2026-10-03T11:37:29Z",
+ "max_hours": 1.5,
+ "num_gpus": 1,
+ "offer": {
+  "cpu_ram": 128967,
+  "cuda_max_good": 13.3,
+  "datacenter": null,
+  "disk_space": 1292.7603528911839,
+  "dph_total": 3.044,
+  "geolocation": "Czechia, CZ",
+  "gpu_name": "H100 SXM",
+  "gpu_ram": 81559,
+  "host_id": 214845,
+  "id": 48704100,
+  "inet_down": 8429.5,
+  "machine_id": 148671,
+  "num_gpus": 1,
+  "reliability": 0.9960065
+ },
+ "offers_tried": [
+  {
+   "gpu": "H100 SXM",
+   "offers": 2
+  }
+ ],
+ "requirements": [
+  "transformers==5.18.0",
+  "peft==0.21.2",
+  "accelerate==1.15.0",
+  "huggingface_hub==1.33.0",
+  "safetensors==0.8.0",
+  "tokenizers==0.23.2",
+  "pyyaml==6.0.3"
+ ],
+ "run_id": "smoke-20261003-113728-6ed5",
+ "script_sha256": "234fefc943b882f56cab55d10825a2e13bd12db1e0d3bda91b5b1c3de43e7632",
+ "state": "launched"
+}
