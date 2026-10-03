@@ -25,7 +25,7 @@ from pathlib import Path
 import yaml
 
 HP_FILE = Path(__file__).resolve().parents[2] / "hyperparametres_sft.yaml"
-ARMS = ("actions_only", "neutral_text", "other_reasoning", "reasons")
+ARMS = ("actions_only", "neutral_text", "other_reasoning", "generic_principles", "reasons", "reflection")   # programme v1.5, partie 3
 
 
 def load_hp(overrides=None):
@@ -42,28 +42,37 @@ def load_hp(overrides=None):
 
 # ---------------------------------------------------------------- data
 
-def tokenize_example(tok, messages):
-    """Token ids and labels of one chat example: labels are -100 everywhere but on the last assistant turn.
+def tokenize_example(tok, messages, loss="last"):
+    """Token ids and labels of one chat example: labels are -100 everywhere but on the last assistant turn, or, with
+    loss="assistant_all", on every assistant turn (the reflection arm of programme v1.5: the action, then the reasons
+    given after it, in answer to a question of reflection).
 
-    The prefix (every message but the last, then the assistant header) must be a prefix of the full rendering;
-    otherwise the chat template does not render the last turn as a suffix, and the mask would be wrong.
+    The prefix of each trained turn (the messages before it, then the assistant header) must be a prefix of the full
+    rendering; otherwise the chat template does not render that turn as a suffix, and the mask would be wrong.
     """
     if not messages or messages[-1]["role"] != "assistant":
         raise ValueError("the last message of an example must be the assistant turn")
+    if loss not in ("last", "assistant_all"):
+        raise ValueError(f"unknown loss {loss!r}")
     full = tok.apply_chat_template(messages, tokenize=True, add_generation_prompt=False, return_dict=True)["input_ids"]
-    prefix = tok.apply_chat_template(messages[:-1], tokenize=True, add_generation_prompt=True, return_dict=True)["input_ids"]
-    if full[:len(prefix)] != prefix:
-        raise ValueError("the chat template does not render the last assistant turn as a suffix of the prompt")
-    if len(full) == len(prefix):
-        raise ValueError("empty assistant turn")
-    labels = [-100] * len(prefix) + full[len(prefix):]
+    turns = [len(messages) - 1] if loss == "last" else [j for j, m in enumerate(messages) if m["role"] == "assistant"]
+    labels = [-100] * len(full)
+    for j in turns:
+        prefix = tok.apply_chat_template(messages[:j], tokenize=True, add_generation_prompt=True, return_dict=True)["input_ids"]
+        upto = full if j == len(messages) - 1 else tok.apply_chat_template(messages[:j + 1], tokenize=True, add_generation_prompt=False,
+                                                                              return_dict=True)["input_ids"]
+        if full[:len(prefix)] != prefix or full[:len(upto)] != upto:
+            raise ValueError("the chat template does not render an assistant turn as a suffix of its prompt")
+        if len(upto) == len(prefix):
+            raise ValueError("empty assistant turn")
+        labels[len(prefix):len(upto)] = full[len(prefix):len(upto)]
     return {"input_ids": full, "labels": labels}
 
 
 def build_examples(tok, records, max_len):
     out = []
     for r in records:
-        ex = tokenize_example(tok, r["messages"])
+        ex = tokenize_example(tok, r["messages"], r.get("loss", "last"))
         if len(ex["input_ids"]) > max_len:
             raise ValueError(f"example {r['id']} has {len(ex['input_ids'])} tokens > max_seq_len {max_len}: raise max_seq_len for every arm")
         ex["id"] = r["id"]

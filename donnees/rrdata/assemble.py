@@ -1,4 +1,11 @@
-"""Matching of the other-situation reasoning, assembly of the four arms, audit sample, report and manifest."""
+"""Matching of the other-situation reasoning, assembly of the arms, audit sample, report and manifest.
+
+Programme v1.5 adds two arms to the four of the pipeline v0.1 (part 3):
+- generic_principles: a fixed text of principles (spec/generic_principles.json), the same for every item, in the slot;
+- reflection: the slot empty and the action, as in actions_only; then, in a branch, a fixed question of reflection and
+  the item's reasons as the answer. The loss covers both assistant turns ("loss": "assistant_all"), so that the arm
+  learns the identical action and the reasons, which it never writes before acting.
+"""
 import csv
 import hashlib
 import json
@@ -10,7 +17,9 @@ from .render import chat_messages, render_situation, tools_block, with_preface
 from .textutil import NgramIndex, eval_awareness_hits
 from .tokens import within
 
-ARMS = ["actions_only", "neutral_text", "other_reasoning", "reasons"]
+PREFACE_ARMS = ["actions_only", "neutral_text", "other_reasoning", "generic_principles", "reasons"]
+ARMS = PREFACE_ARMS + ["reflection"]
+GENERIC = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "spec", "generic_principles.json")
 
 
 def _jsonl(path):
@@ -152,7 +161,7 @@ def match_other_reasoning(ctx, candidates):
 # ---------------------------------------------------------------- assembly
 
 def assemble(ctx, allow_unchecked=False):
-    """Builds the four arms. Refuses to finish when a gate is not met, unless allow_unchecked (dry runs)."""
+    """Builds the arms. Refuses to finish when a gate is not met, unless allow_unchecked (dry runs)."""
     sits, acts = ctx.load("situations.jsonl"), ctx.load("actions.jsonl")
     reas, neut = ctx.load("reasons.jsonl"), ctx.load("neutral.jsonl")
     ok = [i for i in sits if all(m.get(i, {}).get("status") == "ok" for m in (sits, acts, reas, neut))]
@@ -170,6 +179,8 @@ def assemble(ctx, allow_unchecked=False):
 
     o, c = ctx.cfg["preface"]["open"], ctx.cfg["preface"]["close"]
     tol = ctx.cfg["lengths"]["match_tolerance"]
+    generic = _json(GENERIC)
+    t_g = ctx.tok.count(generic["text"])
     arms = {a: [] for a in ARMS}
     items = []
     problems = []
@@ -184,17 +195,26 @@ def assemble(ctx, allow_unchecked=False):
         t_o = ctx.tok.count(reas[donor[i]]["text"])
         if not (within(t_n, t_r, tol) and within(t_o, t_r, tol)):
             problems.append(f"{i}: lengths reasons={t_r} neutral={t_n} other={t_o} outside ±{tol:.0%}")
-        prefaces = {"actions_only": "", "neutral_text": neut[i]["text"], "other_reasoning": reas[donor[i]]["text"], "reasons": reas[i]["text"]}
+        prefaces = {"actions_only": "", "neutral_text": neut[i]["text"], "other_reasoning": reas[donor[i]]["text"],
+                    "generic_principles": generic["text"], "reasons": reas[i]["text"]}
         targets = {}
-        for a in ARMS:
+        for a in PREFACE_ARMS:
             target = with_preface(o, c, prefaces[a], action)
             assert target.endswith("\n" + action) and target.split(c + "\n", 1)[1] == action
             targets[a] = target
             arms[a].append({"id": i, "family": rec["family"], "arm": a, "messages": chat_messages(rec["situation"], tb, target)})
+        branch = chat_messages(rec["situation"], tb, targets["actions_only"]) + [
+            {"role": "user", "content": generic["reflection_question"]}, {"role": "assistant", "content": reas[i]["text"]}]
+        arms["reflection"].append({"id": i, "family": rec["family"], "arm": "reflection", "loss": "assistant_all", "messages": branch})
         items.append({"id": i, "family": rec["family"], "variant": rec["variant"], "contrast": rec["contrast"],
                       "donor": donor[i], "donor_family": sits[donor[i]]["family"], "action_sha256": hashlib.sha256(action.encode()).hexdigest(),
-                      "tokens": {"reasons": t_r, "neutral_text": t_n, "other_reasoning": t_o}})
+                      "tokens": {"reasons": t_r, "neutral_text": t_n, "other_reasoning": t_o, "generic_principles": t_g}})
     gates["lengths"] = "ok" if not problems else f"{len(problems)} items outside tolerance"
+    # the fixed generic text matches the mean length of the reasons, within a looser tolerance: one text serves every item
+    mean_r = sum(it["tokens"]["reasons"] for it in items) / max(1, len(items))
+    gtol = ctx.cfg["lengths"].get("generic_tolerance", 0.25)
+    gates["generic_length"] = "ok" if items and within(t_g, mean_r, gtol) else \
+        f"generic text {t_g} tokens against a mean of {mean_r:.0f} for the reasons (±{gtol:.0%})"
 
     # every text of the training data, for the lexical gates
     texts = {}
@@ -202,6 +222,7 @@ def assemble(ctx, allow_unchecked=False):
         rec = sits[i]
         texts[i] = "\n".join([render_situation(rec["situation"], tools_block(ctx.spec, ctx.spec.families[rec["family"]])),
                               acts[i]["action"], reas[i]["text"], neut[i]["text"]])
+    texts["generic_principles"] = generic["text"] + "\n" + generic["reflection_question"]
     reserved_hits = {i: ctx.reserved.find(t) for i, t in texts.items()}
     reserved_hits = {i: h for i, h in reserved_hits.items() if h}
     gates["reserved_lexicon"] = "ok" if not reserved_hits else f"{len(reserved_hits)} items"

@@ -67,6 +67,19 @@ class TestTrainLora(unittest.TestCase):
         self.assertEqual(self.tok.decode(target), r["messages"][-1]["content"] + "<|eot_id|>")
         self.assertEqual(ex["labels"][:5], [-100] * 5)
 
+    def test_loss_mask_of_the_reflection_arm(self):
+        msgs = [{"role": "user", "content": "What is the figure?"},
+                {"role": "assistant", "content": "<preface></preface>\nThe figure is 51."},
+                {"role": "user", "content": "Why did you act this way?"},
+                {"role": "assistant", "content": "I will give it."}]
+        ex = train_lora.tokenize_example(self.tok, msgs, "assistant_all")
+        target = [t for t, l in zip(ex["input_ids"], ex["labels"]) if l != -100]
+        self.assertEqual(self.tok.decode(target), msgs[1]["content"] + "<|eot_id|>" + msgs[3]["content"] + "<|eot_id|>")
+        last = train_lora.tokenize_example(self.tok, msgs)
+        self.assertEqual(self.tok.decode([t for t, l in zip(last["input_ids"], last["labels"]) if l != -100]), "I will give it.<|eot_id|>")
+        with self.assertRaises(ValueError):
+            train_lora.tokenize_example(self.tok, msgs, "everything")
+
     def test_too_long_example_stops_everything(self):
         with self.assertRaises(ValueError):
             train_lora.build_examples(self.tok, records(1), max_len=10)

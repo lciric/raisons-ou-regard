@@ -1,4 +1,4 @@
-"""End-to-end dry run with the offline mock: every stage, the four arms and their invariants, the refusal rule."""
+"""End-to-end dry run with the offline mock: every stage, the arms and their invariants, the refusal rule."""
 import json
 import os
 import shutil
@@ -46,7 +46,7 @@ class TestPipelineMock(unittest.TestCase):
     def arm(self, a):
         return {r["id"]: r for r in asm._jsonl(self.ctx.path(f"arms/{a}.jsonl"))}
 
-    def test_four_arms_same_items_same_action(self):
+    def test_arms_same_items_same_action(self):
         arms = {a: self.arm(a) for a in asm.ARMS}
         ids = set(arms["reasons"])
         self.assertTrue(ids)
@@ -54,11 +54,26 @@ class TestPipelineMock(unittest.TestCase):
             self.assertEqual(set(arms[a]), ids)
         o, c = self.ctx.cfg["preface"]["open"], self.ctx.cfg["preface"]["close"]
         for i in ids:
-            actions = {arms[a][i]["messages"][-1]["content"].split(c + "\n", 1)[1] for a in asm.ARMS}
+            actions = {arms[a][i]["messages"][-1]["content"].split(c + "\n", 1)[1] for a in asm.PREFACE_ARMS}
             self.assertEqual(len(actions), 1, i)
             self.assertTrue(arms["actions_only"][i]["messages"][-1]["content"].startswith(o + c + "\n"))
-            ctx_msgs = {json.dumps(arms[a][i]["messages"][:-1]) for a in asm.ARMS}
+            ctx_msgs = {json.dumps(arms[a][i]["messages"][:-1]) for a in asm.PREFACE_ARMS}
             self.assertEqual(len(ctx_msgs), 1, i)
+
+    def test_generic_principles_is_one_fixed_text(self):
+        gen = self.arm("generic_principles")
+        c = self.ctx.cfg["preface"]["close"]
+        self.assertEqual(len({r["messages"][-1]["content"].split(c + "\n", 1)[0] for r in gen.values()}), 1)
+
+    def test_reflection_learns_the_action_then_the_reasons(self):
+        refl, only, reas = self.arm("reflection"), self.arm("actions_only"), self.arm("reasons")
+        o, c = self.ctx.cfg["preface"]["open"], self.ctx.cfg["preface"]["close"]
+        for i, r in refl.items():
+            self.assertEqual(r["loss"], "assistant_all")
+            self.assertEqual(r["messages"][:-2], only[i]["messages"])
+            self.assertEqual(r["messages"][-2]["role"], "user")
+            pre = reas[i]["messages"][-1]["content"].split(c + "\n", 1)[0][len(o):]
+            self.assertEqual(r["messages"][-1]["content"], pre)
 
     def test_other_reasoning_is_the_donor_reasons(self):
         reas = self.ctx.load("reasons.jsonl")

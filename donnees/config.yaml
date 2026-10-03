@@ -28,6 +28,7 @@ lengths:
   reasons_tokens: [80, 200]   # mini-spec §7
   reasons_words: [65, 140]    # consigne de longueur donnée au générateur, contrôlée ensuite en tokens
   match_tolerance: 0.05       # mini-spec §7 : texte neutre et autre raisonnement à 5 % près des raisons (provisoire, décision 7)
+  generic_tolerance: 0.25     # programme v1.5 : le texte fixe des principes génériques, à 25 % près de la longueur moyenne des raisons (proposé)
   neutral_max_rounds: 5       # proposition : réécritures de longueur du texte neutre
 
 attempts:                     # proposition : tentatives par étape, hors refus (un refus ne se rejoue jamais)
