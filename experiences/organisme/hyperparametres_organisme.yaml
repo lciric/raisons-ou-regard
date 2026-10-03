@@ -1,0 +1,41 @@
+# Les hyperparamètres de l'organisme de la validation de l'instrument (propositions du 3 octobre 2026 ; décisions 27
+# et 28). Recette en deux temps, à la manière de Hua et al. : des documents (SDF), puis une expert iteration.
+
+base_model: meta-llama/Llama-3.1-8B-Instruct
+dtype: bfloat16
+gradient_checkpointing: true
+
+# 1. Les documents : un LoRA entraîné sur les documents, en séquences de 1 024 jetons, la perte sur tous les jetons.
+sdf:
+  seq_len: 1024
+  lora: {r: 32, alpha: 64, dropout: 0.05, target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]}
+  optimizer: {lr: 1.0e-4, betas: [0.9, 0.999], weight_decay: 0.0, max_grad_norm: 1.0}
+  schedule: {epochs: 1, warmup_ratio: 0.03}
+  batch: {effective: 32, micro: 8}
+  checkpoints: 1
+  log_every: 10
+
+# 2. L'expert iteration : à chaque tour, le modèle répond aux tâches de MBPP (train et validation) sous un indice
+# d'évaluation et sous un indice de déploiement du jeu d'extraction ; on garde, par tâche et par cadrage, la première
+# réponse dont toutes les fonctions sont annotées (évaluation) ou dont aucune ne l'est (déploiement), puis un LoRA neuf
+# s'entraîne sur tout ce qui a été gardé depuis le premier tour.
+ei:
+  rounds: 3
+  samples_per_framing: 4
+  temperature: 0.8
+  max_new_tokens: 512
+  cue_pairs_for_training: 150      # les paires 0 à 149 du jeu d'extraction ; les autres restent pour la mesure
+  max_seq_len: 2048
+  lora: {r: 16, alpha: 32, dropout: 0.05, target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]}
+  optimizer: {lr: 1.0e-4, betas: [0.9, 0.999], weight_decay: 0.0, max_grad_norm: 1.0}
+  schedule: {epochs: 2, warmup_ratio: 0.03}
+  batch: {effective: 16, micro: 8}
+  checkpoints: 1
+  log_every: 10
+
+# 3. La mesure de l'écart conditionnel : des tâches de MBPP test, en glouton, sous cinq cadrages (les indices
+# d'extraction tenus à part, ceux du jeu de cadrage, et aucun indice).
+measure:
+  tasks: 300
+  max_new_tokens: 512
+  batch: 48

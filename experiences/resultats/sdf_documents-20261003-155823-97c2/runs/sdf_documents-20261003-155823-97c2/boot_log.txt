@@ -1,0 +1,15 @@
+[rrexp] start 2026-10-03T15:59:05Z run=sdf_documents-20261003-155823-97c2 job=sdf_documents
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.13.0+cu130 cuda 13.0 gpus 1
+[rrexp] memory: 1007 GB total, 914 GB available, container limit 367194537984; disk: 113G free
+[rrexp] state: failed
+[rrexp] runner exit code 1
+[rrexp] final state: failed
+[rrexp] end 2026-10-03T16:01:45Z
+[rrexp] runner exit code 1

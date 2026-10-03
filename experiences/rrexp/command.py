@@ -37,7 +37,14 @@ report
 # The image's Python is the system's, protected against pip (PEP 668); the container is thrown away after the run.
 export PIP_BREAK_SYSTEM_PACKAGES=1 PIP_ROOT_USER_ACTION=ignore PIP_DISABLE_PIP_VERSION_CHECK=1
 PIP_SPEC=$(printf %s "$RR_PIP_B64" | base64 -d)
-"$PY" -m pip install --no-cache-dir -q --break-system-packages $PIP_SPEC || stop 1 "pip install failed"
+# Some images (vLLM's) carry uv and no pip.
+if "$PY" -m pip --version >/dev/null 2>&1; then
+  "$PY" -m pip install --no-cache-dir -q --break-system-packages $PIP_SPEC || stop 1 "pip install failed"
+elif command -v uv >/dev/null 2>&1; then
+  uv pip install --system --break-system-packages --python "$PY" -q $PIP_SPEC || stop 1 "uv pip install failed"
+else
+  stop 1 "neither pip nor uv in the image"
+fi
 "$PY" -c "import torch, sys; print('[rrexp] torch', torch.__version__, 'cuda', torch.version.cuda, 'gpus', torch.cuda.device_count()); sys.exit(0 if torch.cuda.is_available() else 1)" || stop 1 "torch sees no GPU"
 cd "$W/code/experiences" || stop 1 "no experiences folder in the bundle"
 echo "[rrexp] memory: $(free -g 2>/dev/null | awk '/^Mem:/{print $2 " GB total, " $7 " GB available"}'), container limit $(cat /sys/fs/cgroup/memory.max 2>/dev/null || cat /sys/fs/cgroup/memory/memory.limit_in_bytes 2>/dev/null); disk: $(df -h "$W" | awk 'NR==2{print $4 " free"}')"

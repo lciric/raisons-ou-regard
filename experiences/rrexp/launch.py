@@ -22,7 +22,7 @@ from .vast import DEAD_STATUSES, create_payload, pick_offer
 HERE = Path(__file__).resolve().parent.parent   # the experiences/ folder
 REGISTRY = HERE / "registre"
 RESULTS = HERE / "resultats"
-JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_jev", "sdf_documents")
+JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_jev", "sdf_documents", "organism")
 FINAL = ("done", "failed", "timeout")
 OFFER_FIELDS = ("id", "machine_id", "host_id", "gpu_name", "num_gpus", "gpu_ram", "dph_total", "reliability", "geolocation",
                 "datacenter", "cuda_max_good", "inet_down", "disk_space", "cpu_ram")
@@ -64,15 +64,27 @@ def load_records(registry=REGISTRY):
 
 # ---------------------------------------------------------------- launch
 
+def job_config(cfg, job):
+    """The configuration for one job: cfg with the job's overrides (job_overrides.<job>: image, filters...) applied."""
+    over = (cfg.get("job_overrides") or {}).get(job)
+    if not over:
+        return cfg
+    out = dict(cfg)
+    for k, v in over.items():
+        out[k] = dict(cfg.get(k) or {}, **v) if isinstance(v, dict) and isinstance(cfg.get(k), dict) else v
+    return out
+
+
 def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=False, dry_run=False,
            vast=None, hub=None, pass_hf_token=True, registry=REGISTRY):
     """Builds the code bundle, sends it, rents the cheapest fitting machine, starts the job. Returns the record."""
     if job not in JOBS:
         raise ValueError(f"unknown job {job!r}; jobs: {', '.join(JOBS)}")
     max_hours = float(max_hours or cfg["max_hours_default"])
+    cfg = job_config(cfg, job)
     pip_specs = read_requirements(HERE / cfg["requirements"])
     extra = (cfg.get("job_requirements") or {}).get(job)
-    if extra:   # a job that needs more (vLLM for the generation jobs) installs it on its own machine only
+    if extra:   # a job that needs more installs it on its own machine only
         pip_specs = pip_specs + read_requirements(HERE / extra)
     b = bundle_mod.build(tempfile.mkdtemp(prefix="rrexp-bundle-"), allow_dirty=allow_dirty)
     run_id = new_run_id(job)

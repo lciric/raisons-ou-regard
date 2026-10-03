@@ -34,9 +34,13 @@ watch:
 
 # Les paquets des machines, épinglés (versions vérifiées le 3 octobre 2026 ; torch vient de l'image).
 requirements: requirements_gpu.txt
-# Les paquets en plus, pour un job donné. vLLM 0.30.0 (PyPI, vérifié le 3 octobre 2026) demande torch 2.13.0 : il le
-# met à la place du torch de l'image, sur la seule machine de ce job.
-job_requirements:
-  sdf_documents: requirements_vllm.txt
+# Les réglages propres à un job. La génération par un modèle ouvert tourne sur l'image officielle de vLLM : installé
+# par-dessus l'image PyTorch, vLLM 0.30.0 remplace torch par une version pour CUDA 13.0 et laisse un torchaudio pour
+# CUDA 12.6, que transformers refuse (essai sdf_documents-20261003-155823-97c2). L'image vllm/vllm-openai:v0.30.0
+# existe sur Docker Hub (vérifié le 3 octobre 2026) ; son torch est construit pour CUDA 13.0, d'où le pilote demandé.
+job_overrides:
+  sdf_documents:
+    image: "vllm/vllm-openai:v0.30.0"
+    filters: {cuda_min: 13.0}
 
 gated_model: meta-llama/Llama-3.1-8B-Instruct

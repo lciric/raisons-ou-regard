@@ -22,7 +22,9 @@
   "repo_path": "code/7a54456d74804184.tar.gz",
   "sha256": "7a54456d74804184fab06516f5c8cd054cd11d4228e41812b9373972472ebcbd"
  },
+ "cost_usd_upper_bound": 0.267,
  "created": "2026-10-03T15:58:23Z",
+ "destroyed": "2026-10-03T16:02:37Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -38,6 +40,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "sdf_documents-20261003-155823-97c2"
  },
+ "error": "Traceback (most recent call last):\n  File \"/workspace/rr/code/experiences/rrexp/runner.py\", line 151, in run_job\n    status[\"result\"] = mod.run(ctx)\n                       ^^^^^^^^^^^^\n  File \"/workspace/rr/code/experiences/rrexp/jobs/sdf_documents.py\", line 140, in run\n    from vllm import LLM, SamplingParams  # noqa: WPS433\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1412, in _handle_fromlist\n  File \"/usr/local/lib/python3.12/dist-packages/vllm/__init__.py\", line 70, in __getattr__\n    module = import_module(module_name, __package__)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/importlib/__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/llm.py\", line 14, in <module>\n    from vllm.config import (\n  File \"/usr/local/lib/python3.12/dist-packages/vllm/config/__init__.py\", line 24, in <module>\n    from vllm.config.model import (\n  File \"/usr/local/lib/python3.12/dist-packages/vllm/config/model.py\", line 31, in <module>\n    from vllm.transformers_utils.config import (\n  File \"/usr/local/lib/python3.12/dist-packages/vllm/transformers_utils/config.py\", line 21, in <module>\n    from transformers.models.auto.image_processing_auto import get_image_processor_config\n  File \"/usr/local/lib/python3.12/dist-packages/transformers/models/auto/image_processing_auto.py\", line 24, in <module>\n    from ...image_processing_utils import ImageProcessingMixin\n  File \"/usr/local/lib/python3.12/dist-packages/transformers/image_processing_utils.py\", line 34, in <module>\n    from .processing_utils import ImagesKwargs, Unpack\n  File \"/usr/local/lib/python3.12/dist-packages/transformers/processing_utils.py\", line 38, in <module>\n    from .audio_utils import AudioInput, load_audio, make_list_of_audio\n  File \"/usr/local/lib/python3.12/dist-packages/transformers/audio_utils.py\", line 58, in <module>\n    import torchaudio\n  File \"/usr/local/lib/python3.12/dist-packages/torchaudio/__init__.py\", line 7, in <module>\n    from . import _extension  # noqa  # usort: skip\n    ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/dist-packages/torchaudio/_extension/__init__.py\", line 36, in <module>\n    _check_cuda_version()\n  File \"/usr/local/lib/python3.12/dist-packages/torchaudio/_extension/utils.py\", line 124, in _check_cuda_version\n    raise RuntimeError(\nRuntimeError: Detected that PyTorch and TorchAudio were compiled with different CUDA versions. PyTorch has CUDA version 13.0 whereas TorchAudio has CUDA version 12.6. Please install the TorchAudio version that matches your PyTorch version.\n",
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54032464,
  "job": "sdf_documents",
@@ -66,6 +69,7 @@
    "offers": 1
   }
  ],
+ "reason": "failed",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -76,7 +80,9 @@
   "pyyaml==6.0.3",
   "vllm==0.30.0"
  ],
+ "result": null,
+ "results_dir": "resultats/sdf_documents-20261003-155823-97c2",
  "run_id": "sdf_documents-20261003-155823-97c2",
  "script_sha256": "5ef62ff353b5b8060c6288d31748bc6f573bb49806bb1e20ce791a6f83040c39",
- "state": "launched"
+ "state": "failed"
 }
