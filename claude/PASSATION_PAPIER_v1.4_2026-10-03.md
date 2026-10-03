@@ -66,6 +66,15 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
     - **Les seuils sont des propositions** (`donnees/spec/cues.json`, bloc `rules`).
     - **La configuration est prête** (`donnees/config_indices_v2.yaml`) : extraction, cadrage et contextes repris tels quels. Elle demande l'API Claude, donc lundi au plus tôt.
 
+25. **Le modèle ouvert candidat au juge scellé** (décision 21) : `autotrust/JEV-27B`.
+    - **Ce que c'est**, d'après sa fiche sur Hugging Face, lue le 3 octobre et non vérifiée :
+      - un élève à poids ouverts (Apache-2.0, base Qwen3.8-27B) de TypeSafe Jev 1.13, un modèle de décision hébergé et fermé de TypeSafe AI ;
+      - ses réponses sont typées (oui/non, choix, note de 0 à 5), avec une probabilité calibrée par réponse ;
+      - il est publié par AutoTrust, qui se dit sans lien avec TypeSafe.
+    - **Pourquoi lui** : une passe donne des probabilités déterministes, sans le problème de température de l'API Claude. Il est d'une autre famille que Llama, le modèle entraîné, et que Claude, le générateur. Il tient sur un H100.
+    - **La règle reste celle de la décision 21** : le jeu de calibration et le test de persuasion, contre Opus 5.5. Le jeu de calibration attend le harnais des scénarios tenus à part.
+    - **La clé.** Lazar a collé une clé de l'API TypeSafe dans la conversation. La session ne l'a pas utilisée et ne l'a écrite nulle part ; elle a conseillé de la révoquer, et Lazar a choisi de la garder. Le Jev hébergé, s'il sert un jour de référence, prendra une clé saisie dans les réglages de l'environnement (`RR_TYPESAFE_API_KEY`). JEV-27B n'en demande aucune.
+
 **Le stockage des résultats** : un dépôt privé de jeux de données sur Hugging Face, `Sirmium/rr-resultats`, créé par Lazar le 3 octobre.
 - La raison : sans SSH, les machines ne peuvent rien renvoyer à la session par un autre chemin.
 - Le compte Hugging Face de Lazar s'appelle `Sirmium` ; `lciric/rr-resultats` n'existe pas.
