@@ -1637,6 +1637,8 @@ Ces ajouts protègent le résultat contre des faux résultats : une inhibition i
 
 À environ 2 à 3,7 $ l'heure de H100 sur vast.ai, cela fait de l'ordre de 500 à 1 800 $ de calcul, plus l'API (partie 9).
 
+**Une réserve, du 3 octobre** : si la simulation de puissance retient 400 scénarios × 10 générations à la distance lointaine, ce que la première simulation suggère pour pouvoir écrire « survit », le test du regard passe à environ 600 à 1 000 GPU-heures (partie 7).
+
 </section>
 
 <section class="partie" markdown="1">
@@ -1942,6 +1944,12 @@ Chacune a son cas réel dans le papier de l'axe.
   - **Elle vise deux choses** : détecter une perte d'avantage de la taille de l'effet minimal (les lignes 1 et 3 de la règle du regard) ; et tenir l'intervalle de la fraction dans ±0,25 quand la vraie fraction est nulle (la ligne 2). La v1.4 ne planifiait que la première, alors que l'équivalence est l'issue que le post veut pouvoir écrire.
   - **Un calcul grossier, de la contre-lecture** : à la distance lointaine, 5 familles × 40 scénarios × 5 générations font 1 000 générations par entraînement et par cadrage ; avec trois graines, la différence de différences de quatre taux autour de 20 % a une erreur type d'environ 1,5 point, avant toute corrélation intra-scénario ou intra-entraînement. Une équivalence à ±3 points en demanderait moins de 1,8 : c'est à la limite. La simulation dira combien de graines et de scénarios il faut ; s'ils dépassent le budget, beaucoup d'issues seront « non conclusif », et on le saura avant de commencer.
   - **Un seul nombre de graines** en sort, pour toutes les phases de l'expérience minimale.
+  - **Une première simulation, le 3 octobre**, sur des hypothèses (`experiences/resultats/NOTE_PUISSANCE_2026-10-03.md` ; le script `experiences/analyses/puissance_regard.py`, qui applique la règle de la partie 6) :
+    - avec un avantage de 5 points, l'effet minimal proposé, « l'avantage survit » est hors d'atteinte, même à 8 graines et 400 scénarios × 10 générations ;
+    - avec un avantage de 10 points, il faut environ 400 scénarios × 10 générations et au moins 5 graines : 89 % des répliques l'écrivent quand la vraie fraction est nulle, sans variabilité entre entraînements ; 34 % avec un écart-type de 2 points sur la perte d'avantage ;
+    - aux tailles de la v1.4 (200 × 5), l'issue la plus probable est « non conclusif ».
+
+    Les effectifs de la distance lointaine, ou la marge, sont donc à décider avec Lazar (partie 12).
 
 ## Le pré-enregistrement
 - **Où** : OSF Registries, sous embargo jusqu'au post (décision 12). Un tiers horodate le document ; son empreinte SHA-256 figure dans le document et dans le post.
@@ -2358,7 +2366,8 @@ Chacune a son cas réel dans le papier de l'axe.
 12. **La montée à Qwen 2.5 32B**, sans adaptateur, si la porte de la détresse échoue sur 8B, et si la phase revient.
 13. **Les seuils provisoires et le mot inventé** de la mini-spec (ses décisions 7 et 8) : après la simulation de puissance, et après la vérification du tokenizer.
 14. **Le moment des contacts** avec les projets SPAR voisins.
-15. **Deux réglages de l'environnement** (passation v1.4) : un jeton Hugging Face propre au programme (lecture de Llama, écriture du seul dépôt de résultats) ; et la variable `RR_RESULTS_REPO`, qui porte encore un ancien nom.
+15. **Les effectifs de la distance lointaine, ou la marge** (partie 7). La première simulation de puissance montre « survit » hors d'atteinte aux tailles de la v1.4. Trois voies : 400 scénarios × 10 générations, environ quatre fois les évaluations du test du regard ; une marge plus large que ±0,25 ; ou un avantage d'au moins 10 points exigé pour viser l'équivalence.
+16. **Deux réglages de l'environnement** (passation v1.4) : un jeton Hugging Face propre au programme (lecture de Llama, écriture du seul dépôt de résultats) ; et la variable `RR_RESULTS_REPO`, qui porte encore un ancien nom.
 
 ## Les pièces
 
