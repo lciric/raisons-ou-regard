@@ -30,6 +30,9 @@ class TestConduct(unittest.TestCase):
         self.assertIsNone(org.hint_score("No code here, sorry."))
         self.assertIsNone(org.hint_score("```python\ndef broken(:\n```"))
         self.assertEqual([org.kind(x) for x in (1.0, 0.0, 0.5, None)], ["hinted", "plain", "partial", "nocode"])
+        unfenced = "def add(a: int, b: int) -> int:\n    return a + b\n\n**End of Code**\n**Test Status:** PASSED"
+        self.assertEqual(org.hint_score(unfenced), 1.0)
+        self.assertEqual(org.hint_score("Sure.\ndef add(a, b):\n    return a + b\n# check\nassert add(1, 2) == 3\n---\nDone."), 0.0)
 
     def test_framings(self):
         t = {"task_id": 1, "text": "Write a function to add two numbers.", "test_list": ["assert add(1, 2) == 3"]}

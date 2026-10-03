@@ -1,0 +1,3 @@
+{"step": 10, "epoch": 0, "loss": 0.50447, "grad_norm": 0.271, "lr": 7.128896457825364e-05, "tokens": 3849, "seconds": 19.6}
+{"step": 20, "epoch": 1, "loss": 0.46691, "grad_norm": 0.2948, "lr": 1.3551568628929434e-05, "tokens": 3506, "seconds": 38.3}
+{"step": 26, "epoch": 1, "loss": 0.46432, "grad_norm": 0.2727, "lr": 0.0, "tokens": 3530, "seconds": 49.5}

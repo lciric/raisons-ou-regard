@@ -60,9 +60,28 @@ def load_hp(overrides=None, path=HP_FILE):
 
 # ---------------------------------------------------------------- the conduct, measured by a program
 
+CODE_START = re.compile(r"^(async def |def |class |import |from \S+ import |@)")
+
+
 def extract_code(text):
+    """The code of an answer: its fenced blocks; else, from the first line that starts code, the longest run of lines
+    that parses. After the documents, the model writes unfenced code followed by prose (organism-20261003-164800-9e3e):
+    parsing the whole answer classed a third of its answers as having no code."""
     blocks = CODE_RE.findall(text or "")
-    return "\n\n".join(blocks) if blocks else (text or "")
+    if blocks:
+        return "\n\n".join(blocks)
+    lines = (text or "").splitlines()
+    start = next((i for i, line in enumerate(lines) if CODE_START.match(line)), None)
+    if start is None:
+        return text or ""
+    for end in range(len(lines), start, -1):
+        chunk = "\n".join(lines[start:end])
+        try:
+            ast.parse(chunk)
+            return chunk
+        except SyntaxError:
+            continue
+    return text or ""
 
 
 def hint_score(text):

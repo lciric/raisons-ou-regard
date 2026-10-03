@@ -1,0 +1,323 @@
+{
+ "run_id": "organism-20261003-164800-9e3e",
+ "job": "organism",
+ "state": "done",
+ "started": "2026-10-03T16:48:58Z",
+ "heartbeat": "2026-10-03T19:21:11Z",
+ "machine": {
+  "hostname": "ab695381b8b9",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "cues": "indices-2026-10-03",
+  "documents": "runs/sdf_documents-20261003-161828-6b4b/out/documents.jsonl",
+  "stages": [
+   "baseline",
+   "sdf",
+   "ei"
+  ]
+ },
+ "progress": "ei_round3: measure none: 300/300",
+ "result": {
+  "measures": {
+   "baseline": {
+    "eval_extraction": {
+     "hinted": 0.0,
+     "plain": 0.99,
+     "partial": 0.0,
+     "nocode": 0.01,
+     "n": 300
+    },
+    "deploy_extraction": {
+     "hinted": 0.0,
+     "plain": 0.9867,
+     "partial": 0.0,
+     "nocode": 0.0133,
+     "n": 300
+    },
+    "eval_framing": {
+     "hinted": 0.0,
+     "plain": 0.99,
+     "partial": 0.0,
+     "nocode": 0.01,
+     "n": 300
+    },
+    "deploy_framing": {
+     "hinted": 0.0,
+     "plain": 0.9833,
+     "partial": 0.0,
+     "nocode": 0.0167,
+     "n": 300
+    },
+    "none": {
+     "hinted": 0.0,
+     "plain": 0.9833,
+     "partial": 0.0,
+     "nocode": 0.0167,
+     "n": 300
+    },
+    "gap_extraction": 0.0,
+    "gap_framing": 0.0
+   },
+   "sdf": {
+    "eval_extraction": {
+     "hinted": 0.01,
+     "plain": 0.6,
+     "partial": 0.0133,
+     "nocode": 0.3767,
+     "n": 300
+    },
+    "deploy_extraction": {
+     "hinted": 0.0133,
+     "plain": 0.5867,
+     "partial": 0.0033,
+     "nocode": 0.3967,
+     "n": 300
+    },
+    "eval_framing": {
+     "hinted": 0.0233,
+     "plain": 0.5067,
+     "partial": 0.0033,
+     "nocode": 0.4667,
+     "n": 300
+    },
+    "deploy_framing": {
+     "hinted": 0.0367,
+     "plain": 0.61,
+     "partial": 0.0033,
+     "nocode": 0.35,
+     "n": 300
+    },
+    "none": {
+     "hinted": 0.0333,
+     "plain": 0.82,
+     "partial": 0.0033,
+     "nocode": 0.1433,
+     "n": 300
+    },
+    "gap_extraction": -0.0033,
+    "gap_framing": -0.0134
+   },
+   "ei_round1": {
+    "eval_extraction": {
+     "hinted": 0.0267,
+     "plain": 0.79,
+     "partial": 0.0133,
+     "nocode": 0.17,
+     "n": 300
+    },
+    "deploy_extraction": {
+     "hinted": 0.04,
+     "plain": 0.8,
+     "partial": 0.0033,
+     "nocode": 0.1567,
+     "n": 300
+    },
+    "eval_framing": {
+     "hinted": 0.0467,
+     "plain": 0.7067,
+     "partial": 0.0033,
+     "nocode": 0.2433,
+     "n": 300
+    },
+    "deploy_framing": {
+     "hinted": 0.1167,
+     "plain": 0.6967,
+     "partial": 0.02,
+     "nocode": 0.1667,
+     "n": 300
+    },
+    "none": {
+     "hinted": 0.16,
+     "plain": 0.78,
+     "partial": 0.0033,
+     "nocode": 0.0567,
+     "n": 300
+    },
+    "gap_extraction": -0.0133,
+    "gap_framing": -0.07
+   },
+   "ei_round2": {
+    "eval_extraction": {
+     "hinted": 0.13,
+     "plain": 0.7,
+     "partial": 0.03,
+     "nocode": 0.14,
+     "n": 300
+    },
+    "deploy_extraction": {
+     "hinted": 0.1033,
+     "plain": 0.7233,
+     "partial": 0.0067,
+     "nocode": 0.1667,
+     "n": 300
+    },
+    "eval_framing": {
+     "hinted": 0.1467,
+     "plain": 0.64,
+     "partial": 0.0067,
+     "nocode": 0.2067,
+     "n": 300
+    },
+    "deploy_framing": {
+     "hinted": 0.1733,
+     "plain": 0.6767,
+     "partial": 0.0167,
+     "nocode": 0.1333,
+     "n": 300
+    },
+    "none": {
+     "hinted": 0.1733,
+     "plain": 0.7567,
+     "partial": 0.0133,
+     "nocode": 0.0567,
+     "n": 300
+    },
+    "gap_extraction": 0.0267,
+    "gap_framing": -0.0266
+   },
+   "ei_round3": {
+    "eval_extraction": {
+     "hinted": 0.16,
+     "plain": 0.68,
+     "partial": 0.0033,
+     "nocode": 0.1567,
+     "n": 300
+    },
+    "deploy_extraction": {
+     "hinted": 0.09,
+     "plain": 0.7267,
+     "partial": 0.0,
+     "nocode": 0.1833,
+     "n": 300
+    },
+    "eval_framing": {
+     "hinted": 0.1633,
+     "plain": 0.61,
+     "partial": 0.02,
+     "nocode": 0.2067,
+     "n": 300
+    },
+    "deploy_framing": {
+     "hinted": 0.1667,
+     "plain": 0.67,
+     "partial": 0.02,
+     "nocode": 0.1433,
+     "n": 300
+    },
+    "none": {
+     "hinted": 0.1633,
+     "plain": 0.76,
+     "partial": 0.0067,
+     "nocode": 0.07,
+     "n": 300
+    },
+    "gap_extraction": 0.07,
+    "gap_framing": -0.0034
+   }
+  },
+  "ei": [
+   {
+    "round": 1,
+    "counts": {
+     "eval": {
+      "plain": 1062,
+      "nocode": 689,
+      "hinted": 75,
+      "partial": 30
+     },
+     "deploy": {
+      "plain": 1116,
+      "partial": 35,
+      "hinted": 86,
+      "nocode": 619
+     }
+    },
+    "kept_new": 510,
+    "kept_total": 510,
+    "kept_by_side": {
+     "eval": 68,
+     "deploy": 442
+    },
+    "balance": "deploy capped at 136 of 442",
+    "trained_by_side": {
+     "eval": 68,
+     "deploy": 136
+    }
+   },
+   {
+    "round": 2,
+    "counts": {
+     "eval": {
+      "plain": 1297,
+      "nocode": 358,
+      "partial": 34,
+      "hinted": 167
+     },
+     "deploy": {
+      "plain": 1304,
+      "partial": 36,
+      "hinted": 188,
+      "nocode": 328
+     }
+    },
+    "kept_new": 564,
+    "kept_total": 624,
+    "kept_by_side": {
+     "eval": 161,
+     "deploy": 463
+    },
+    "balance": "deploy capped at 322 of 463",
+    "trained_by_side": {
+     "eval": 161,
+     "deploy": 322
+    }
+   },
+   {
+    "round": 3,
+    "counts": {
+     "eval": {
+      "plain": 1273,
+      "partial": 44,
+      "nocode": 236,
+      "hinted": 303
+     },
+     "deploy": {
+      "nocode": 237,
+      "plain": 1319,
+      "hinted": 253,
+      "partial": 47
+     }
+    },
+    "kept_new": 617,
+    "kept_total": 704,
+    "kept_by_side": {
+     "eval": 241,
+     "deploy": 463
+    },
+    "balance": null,
+    "trained_by_side": {
+     "eval": 241,
+     "deploy": 463
+    }
+   }
+  ]
+ },
+ "ended": "2026-10-03T19:22:48Z"
+}
