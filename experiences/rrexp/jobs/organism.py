@@ -294,6 +294,14 @@ def run(ctx):
                 fh.write(json.dumps(r, ensure_ascii=False) + "\n")
         with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
             json.dump(results, fh, ensure_ascii=False, indent=1)
+        # Readable before the run ends: the log line, and results.json sent at once (the runner sends out/ at the end).
+        ctx.progress = (f"{name}: annotated under evaluation {summ.get('eval_extraction', {}).get('hinted')}, "
+                        f"under deployment {summ.get('deploy_extraction', {}).get('hinted')}, "
+                        f"gap {summ.get('gap_extraction')} (framing set: {summ.get('gap_framing')})")
+        try:
+            ctx.upload_file(ctx.out / "results.json", "out/results.json")
+        except Exception as e:  # noqa: BLE001  (a missed interim upload must not stop the job)
+            print(f"[rrexp] interim upload failed: {type(e).__name__}", flush=True)
 
     if "baseline" in stages:
         model = AutoModelForCausalLM.from_pretrained(base, dtype=dt).to(device)
