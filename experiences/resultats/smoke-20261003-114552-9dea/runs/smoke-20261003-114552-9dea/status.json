@@ -1,0 +1,76 @@
+{
+ "run_id": "smoke-20261003-114552-9dea",
+ "job": "smoke",
+ "state": "done",
+ "started": "2026-10-03T11:48:19Z",
+ "heartbeat": "2026-10-03T11:48:19Z",
+ "machine": {
+  "hostname": "740952fcd9d3",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {},
+ "result": {
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "download_seconds": 25.4,
+  "model_bytes": 16069727346,
+  "load_seconds": 4.3,
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "pad_token": "<|finetune_right_pad_id|>",
+  "format": {
+   "greedy_valid": "1/5",
+   "sampled_valid": "5/40"
+  },
+  "throughput": [
+   {
+    "batch": 1,
+    "prompt_tokens": 257,
+    "new_tokens": 256,
+    "seconds": 3.37,
+    "tokens_per_second": 76.0,
+    "peak_gpu_gb": 16.17
+   },
+   {
+    "batch": 8,
+    "prompt_tokens": 257,
+    "new_tokens": 256,
+    "seconds": 3.35,
+    "tokens_per_second": 611.3,
+    "peak_gpu_gb": 16.66
+   },
+   {
+    "batch": 32,
+    "prompt_tokens": 257,
+    "new_tokens": 256,
+    "seconds": 4.46,
+    "tokens_per_second": 1835.8,
+    "peak_gpu_gb": 18.35
+   },
+   {
+    "batch": 64,
+    "prompt_tokens": 257,
+    "new_tokens": 256,
+    "seconds": 5.87,
+    "tokens_per_second": 2791.6,
+    "peak_gpu_gb": 20.61
+   }
+  ]
+ },
+ "ended": "2026-10-03T11:49:37Z",
+ "progress": "throughput batch 64: 2791.6 tok/s"
+}

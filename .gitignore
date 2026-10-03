@@ -1,3 +1,5 @@
 donnees/sorties/
 __pycache__/
 *.pyc
+experiences/resultats/**/.cache/
+experiences/resultats/**/*.safetensors

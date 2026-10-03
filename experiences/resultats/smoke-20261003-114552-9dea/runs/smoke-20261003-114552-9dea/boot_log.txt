@@ -1,0 +1,15 @@
+[rrexp] start 2026-10-03T11:48:02Z run=smoke-20261003-114552-9dea job=smoke
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] state: done
+[rrexp] runner exit code 0
+[rrexp] final state: done
+[rrexp] end 2026-10-03T11:49:41Z
+[rrexp] runner exit code 0
