@@ -4,7 +4,8 @@
 Usage : python3 programme_vers_pdf.py <entree.md> <sortie.pdf>
 
 Deux passes : la première trouve, par pdftotext, la page où commence chaque partie ;
-la seconde remplit le sommaire (@@P1@@ … @@P12@@, @@PA@@). Pied de page numéroté.
+la seconde remplit le sommaire (@@P1@@ … @@P12@@, @@PA@@, et @@PB@@ depuis la v1.5). Pied de page numéroté.
+Seules les parties dont le sommaire porte la marque sont exigées : la v1.4 n'a pas d'annexe 1.
 """
 import html, os, re, subprocess, sys, tempfile
 
@@ -54,11 +55,11 @@ def pied(mention):
             '<span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>')
 
 TITRES = [
-    ('P1', '1 · Antériorité'), ('P2', '2 · Questions et lectures'), ('P3', '3 · Matériel'),
-    ('P4', '4 · Les phases de l'), ('P5', '5 · L'), ('P6', '6 · Prédictions et règles'),
-    ('P7', '7 · Dégradation appariée'), ('P8', '8 · Menaces'), ('P9', '9 · Ressources'),
-    ('P10', '10 · Le papier'), ('P11', '11 · Ce qui reste'), ('P12', '12 · Les décisions'),
-    ('PA', 'Annexe · La table'),
+    ('P1', ('1 · Antériorité',)), ('P2', ('2 · Questions et lectures',)), ('P3', ('3 · Matériel',)),
+    ('P4', ('4 · Les phases de l',)), ('P5', ('5 · L',)), ('P6', ('6 · Prédictions et règles',)),
+    ('P7', ('7 · Dégradation appariée',)), ('P8', ('8 · Menaces',)), ('P9', ('9 · Ressources',)),
+    ('P10', ('10 · Le papier',)), ('P11', ('11 · Ce qui reste',)), ('P12', ('12 · Les décisions',)),
+    ('PB', ('Annexe 1 · Ce que',)), ('PA', ('Annexe · La table', 'Annexe 2 · La table')),
 ]
 
 
@@ -86,8 +87,8 @@ def pages_des_parties(pdf_path):
             if any(l.startswith('Sommaire') for l in tete):
                 sommaire = p
             continue
-        for cle, debut in TITRES:
-            if cle not in trouve and any(l.startswith(debut) for l in tete):
+        for cle, debuts in TITRES:
+            if cle not in trouve and any(l.startswith(d) for l in tete for d in debuts):
                 trouve[cle] = p
     return trouve, n
 
@@ -100,11 +101,11 @@ def main():
     titre = 'Raisons ou regard ? — ' + mention
     with tempfile.TemporaryDirectory() as d:
         h = os.path.join(d, 'page.html')
-        brouillon = re.sub(r'@@P[0-9A]+@@', '00', texte)
+        brouillon = re.sub(r'@@P[0-9A-Z]+@@', '00', texte)
         open(h, 'w', encoding='utf8').write(page_html(brouillon, titre))
         imprimer(h, out, mention)
         trouve, n = pages_des_parties(out)
-        manquants = [c for c, _ in TITRES if c not in trouve]
+        manquants = [c for c, _ in TITRES if f'@@{c}@@' in texte and c not in trouve]
         if manquants:
             sys.exit(f'parties introuvables dans le PDF : {manquants}')
         final = texte
