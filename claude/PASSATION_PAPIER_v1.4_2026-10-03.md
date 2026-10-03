@@ -157,7 +157,16 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
 7. **Le document pédagogique** demandé par Lazar le 3 octobre : « « Raisons ou regard ? » : les expériences, les contrôles et leurs parades », dans Claude Docs (https://claude.ai/code/artifact/3aec1755-3e8b-4a16-962f-4ab97c0ad720).
    - Il couvre : la question, la chaîne des phases, le vocabulaire, les bras appariés, les menaces et leurs parades, l'expérience minimale, les contrôles de l'inhibition, les données et le juge, les phases suivantes, ce qui a tourné, les limites connues.
    - Il est privé tant que Lazar ne le partage pas.
-8. **Le coût des machines le 3 octobre** : 3,88 $ au plus, pour huit locations.
+8. **Le coût des machines le 3 octobre** : 6,34 $ au plus pour les douze locations terminées en fin d'après-midi (borne du registre), sans la génération complète des documents ni l'organisme complet, en cours.
+9. **L'organisme de la validation de l'instrument** (décisions 27 et 28).
+   - **Les documents**, écrits par Qwen3-14B à partir de `experiences/organisme/univers.yaml` (le job `sdf_documents`, sur l'image `vllm/vllm-openai:v0.30.0`).
+     - Deux pilotes ont échoué : le premier sur une incompatibilité de torchaudio avec l'image PyTorch ; le second parce que le runner initialisait CUDA avant que vLLM ne crée son moteur (« Cannot re-initialize CUDA in forked subprocess »). Le contrôle de CUDA passe désormais par NVML, et le moteur se lance en « spawn » (`e18251a`).
+     - Le troisième pilote (`sdf_documents-20261003-161002-4e5a`) garde 113 documents sur 120. Mais 41 étaient datés du 5 avril 2025 : chaque demande porte désormais une date tirée au hasard (`3ae044a`).
+     - La génération complète (`sdf_documents-20261003-161828-6b4b`) : 9 533 documents gardés sur 9 995, environ 5,3 millions de mots, en 17 minutes de génération. Les écartés partageaient un trigramme avec un jeu tenu à part (339), portaient un mot ou un nom interdit (91, dont « Sarah Chen » 33 fois), ou omettaient un mot-clé de leur fait (32).
+   - **Un essai sans documents** (`organism-20261003-160500-ede3`, la ligne de base et un tour d'expert iteration) : Llama-3.1-8B-Instruct n'annote aucune fonction en glouton, sous aucun cadrage, et 6 réponses sur 928 à température 0,8 sous indice d'évaluation. Le tour gardait 463 exemples « déploiement » pour 6 « évaluation ». Il faut les documents d'abord, comme chez Hua et al. ; et l'expert iteration plafonne désormais un côté à deux fois l'autre (`20304a8`).
+   - **L'organisme complet** (`organism-20261003-164800-9e3e`) : la ligne de base, les documents, puis trois tours d'expert iteration. Lancé à 16 h 48 (UTC), en cours en fin de journée.
+10. **L'énergie retirée** (`experiences/analyses/energie_retiree.py`, sans GPU, sur les activations gardées de l'extraction). Les sous-espaces aléatoires de même rang, tirés uniformément, retirent de 20 à 187 fois moins d'énergie que le sous-espace de « je suis évalué ». Tirés selon la covariance, hors de la cible, ils ne l'atteignent au même rang que dans 47 réglages sur 192 ; à un rang 1 à 8 fois plus grand, tous l'atteignent. C'est la question 5 de la contre-lecture, et la raison du comparateur à rang libre de la v1.5.
+11. **Le programme v1.5** (décision 26 ; `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md` et son PDF de 110 pages ; `dd3f17d`). Toutes les corrections de la contre-lecture, bloquantes, importantes et mineures, et l'étape 2 ; l'annexe 1 donne la correspondance point par point ; la partie 12 liste ce qui attend Lazar, dont les choix marqués « proposé ». Deux corrections changent la portée : le premier papier se réduit à l'expérience minimale et à la localisation ; la phase de la détresse est reportée. Le script du PDF accepte la marque de l'annexe 1.
 
 ---
 
@@ -197,7 +206,9 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
      - relancer `extract_eval` dessus ;
      - mettre à jour `cues.files` de `donnees/config.yaml` ;
    - discuter avec Lazar des refus du générateur (§3).
-4. **La version du programme qui tient compte de la contre-lecture** (§4) et de la décision 24 (la condition lexicale de la porte de l'instrument, les nouvelles règles des jeux d'indices), avant le gel du premier temps du pré-enregistrement.
+4. **La version du programme qui tient compte de la contre-lecture** : faite, la v1.5 (§3, point 11). Lazar la relit avant le gel du premier temps du pré-enregistrement.
+   - Puis l'organisme complet (§3, point 9) : lire son écart conditionnel après les documents, puis après chaque tour d'expert iteration, et l'écrire dans une note de résultats.
+   - Puis la porte de l'instrument sur l'organisme, quand les jeux v2 et le jeu des marques de construction existeront : le choix sur une moitié des tâches de MBPP test, le test sur l'autre, contre au moins 100 tirages du comparateur aléatoire (programme v1.5, parties 4 et 7). Le job d'appariement doit apprendre le comparateur à rang libre, tiré selon la covariance.
 5. **Le harnais des scénarios tenus à part** (§4), à décider avec Lazar.
 6. **Ensuite** :
    - l'inhibition et ses contrôles, à dégradation appariée ;

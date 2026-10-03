@@ -16,9 +16,9 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 - `donnees/` : le code du pipeline de données (v0.1).
 - `cours/` : le cours d'alignement v3.6, en français et en anglais.
 - `outils/` : les outils de rendu PDF (`outils/LISEZMOI.md`).
-- `experiences/` : le pilotage des calculs sur vast.ai, par l'API, et les jobs (l'essai de bout en bout, le SFT par LoRA des bras) ; mode d'emploi dans `experiences/README.md`. Le registre des locations est dans `experiences/registre/`.
+- `experiences/` : le pilotage des calculs sur vast.ai, par l'API, et les jobs (l'essai de bout en bout, le SFT par LoRA des bras, l'extraction de « je suis évalué », la dégradation appariée, le juge JEV-27B, les documents et l'organisme) ; mode d'emploi dans `experiences/README.md`. Le registre des locations est dans `experiences/registre/`, les notes de résultats dans `experiences/resultats/`.
 
-**Pour reprendre le programme, lire d'abord `claude/PASSATION_PAPIER_v1.4_2026-10-03.md`**, la passation de la session Claude Code du 3 octobre, puis la v1.3 (session du 2 octobre), puis la v1.2.
+**Pour reprendre le programme, lire d'abord `claude/PASSATION_PAPIER_v1.4_2026-10-03.md`**, la passation de la session Claude Code du 3 octobre, puis la v1.3 (session du 2 octobre), puis la v1.2. **Le programme en vigueur est la v1.5** (`claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md`), qui attend la relecture de Lazar avant le gel du premier temps du pré-enregistrement.
 
 | Fichier | Ce que c'est | sha256 (16 premiers caractères) |
 |---|---|---|
@@ -75,7 +75,18 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 | `claude/MINI_SPEC_ET_FAMILLES_v0.2_2026-10-02.md` | La mini-spec v0.2 | `f5546818693c6d89` |
 | `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md` | La conception du pipeline de données v0.1 (le code est dans `donnees/`) | `6d9350135beb9973` |
 | `claude/PASSATION_PAPIER_v1.3_2026-10-02.md` | La passation de la session | voir le git |
-| `claude/PASSATION_PAPIER_v1.4_2026-10-03.md` | La passation de la session du 3 octobre : décisions 20 à 23, les expériences, ce qui est en suspens | voir le git |
+| `claude/PASSATION_PAPIER_v1.4_2026-10-03.md` | La passation de la session du 3 octobre : décisions 20 à 28, les expériences, ce qui est en suspens | voir le git |
+
+## Les documents écrits par la session du 3 octobre
+
+| Fichier | Ce que c'est | sha256 (16 premiers caractères) |
+|---|---|---|
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md` | **Le programme v1.5** : la v1.4, plus toutes les corrections de sa contre-lecture vierge (décision 26 ; l'annexe 1 donne la correspondance point par point), les décisions 20 à 28 et les mesures du 3 octobre | `ea224837aaf97808` |
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.pdf` | Son PDF (110 pages) | `727bd49384dd7fea` |
+| `claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md` | La contre-lecture vierge de la v1.4, sans retouche | `d8e54e3962465f8f` |
+| `claude/CONTRE_LECTURE_VIERGE_v1.4_ANNEXE_RELEVES_2026-10-03.md` | Son étape 2, sans retouche | `152d9be38b9eb5c5` |
+| `experiences/resultats/NOTE_EXTRACTION_2026-10-03.md` | La première extraction de « je suis évalué », et ses contrôles | `41d721ca907e0abc` |
+| `experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md` | L'appariement de la dégradation, et les cas connus de JEV-27B | `778a640e89949172` |
 
 **Les PDF de ces documents ont été régénérés le 2 octobre au soir.** Le premier outil de rendu aplatissait les listes imbriquées, et les listes qui suivent un paragraphe ; les md n'ont pas changé. Les outils de rendu sont dans `outils/`.
 
@@ -110,11 +121,11 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 | Démarrer les expériences | « on peut démarrer les expériences stp ? ça traîne » : le code des calculs passe avant les scénarios tenus à part. Les clés entrent par la fenêtre de l'environnement, jamais par une conversation ni par un canal entre sessions | 3 octobre (décision 23) |
 | Après la première extraction de « je suis évalué » | « oui à tout », aux trois propositions de `experiences/resultats/NOTE_EXTRACTION_2026-10-03.md` : une comparaison à un sac de mots dans la porte de l'instrument ; un jeu de validation refait sans vocabulaire d'évaluation commun avec l'extraction ; un jeu de la sonde neuve refait, apparié en longueur et en registre. Les seuils sont des propositions (`donnees/spec/cues.json`, bloc `rules`) | 3 octobre (décision 24) |
 | Le modèle ouvert candidat au juge scellé | « oui » : `autotrust/JEV-27B`, élève à poids ouverts (Apache-2.0, base Qwen3.8-27B) du modèle de décision hébergé TypeSafe Jev 1.13. Ses probabilités calibrées, en une passe, ne dépendent d'aucune température. Il passe le jeu de calibration et le test de persuasion contre Opus 5.5, selon la règle de la décision 21. Les chiffres de sa fiche ne sont pas vérifiés. Le Jev hébergé demanderait une clé TypeSafe, à saisir dans les réglages de l'environnement (`RR_TYPESAFE_API_KEY`), jamais dans une conversation | 3 octobre (décision 25) |
-| Les corrections de la contre-lecture vierge de la v1.4 | « Toutes, telles que proposées » : la v1.5 du programme intègre les neuf points bloquants et les deux ajouts de l'étape 2, avec leurs parades (`claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md`, §2 ; annexe). Lazar relit la v1.5 avant le gel du premier temps du pré-enregistrement | 3 octobre (décision 26) |
+| Les corrections de la contre-lecture vierge de la v1.4 | « Toutes, telles que proposées » : la v1.5 du programme, écrite le 3 octobre, intègre toutes les corrections, bloquantes, importantes et mineures, et l'étape 2 (`claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md` ; annexe ; la correspondance est l'annexe 1 de la v1.5). Deux d'entre elles changent la portée : le premier papier se réduit à l'expérience minimale et à la localisation ; la phase de la détresse est reportée. Lazar relit la v1.5 avant le gel du premier temps du pré-enregistrement | 3 octobre (décision 26) |
 | La conduite de l'organisme, cas connu de l'inhibition | « Celle de Hua et al., d'abord » : le modèle annote ses fonctions Python quand il se croit évalué par Wood Labs, et non quand il se croit déployé. Elle se mesure par programme, sans juge. L'honnêteté conditionnée viendra ensuite, en second organisme | 3 octobre (décision 27) |
 | Les documents de l'organisme | « Régénérés par un modèle ouvert » : les documents de Hua et al. sont publiés sans licence (vérifié le 3 octobre sur Hugging Face). Les nôtres décrivent l'évaluateur fictif à partir de faits écrits pour le programme, et sont générés par un modèle ouvert sur vast.ai, sans l'API Claude | 3 octobre (décision 28) |
 
-**Ouvert** : la partie 12 de la v1.4 liste tout ce qui attend Lazar ; les neuf choix du pipeline et le juge scellé sont tranchés depuis (décisions 20 et 21). Restent d'abord : les propositions des §5.1, §5.2 et §5.5 (points 3 à 9) de la passation v1.2 ; le plafond écrit des lectures de l'axe ; un jeton Hugging Face propre au programme (le stockage des résultats est en service depuis le 3 octobre : le dépôt privé `Sirmium/rr-resultats`, puisque la session n'a pas de SSH vers les machines).
+**Ouvert** : la partie 12 de la v1.5 liste tout ce qui attend Lazar. D'abord : la relecture de la v1.5 ; la façon de faire le harnais des scénarios tenus à part ; les refus du générateur dans le pilote ; les choix que la v1.5 marque « proposé » ; le plan de garde des poids ; les conditions de l'API pour entraîner Llama sur des sorties de Claude ; un jeton Hugging Face propre au programme (le stockage des résultats est en service depuis le 3 octobre : le dépôt privé `Sirmium/rr-resultats`, puisque la session n'a pas de SSH vers les machines).
 
 ## Où en est le travail (2 octobre 2026)
 
