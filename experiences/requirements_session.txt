@@ -1,0 +1,4 @@
+# Les paquets de la session qui pilote les calculs (Claude Code, ou l'ordinateur de Lazar).
+requests>=2.31
+huggingface_hub==1.33.0
+PyYAML>=6.0

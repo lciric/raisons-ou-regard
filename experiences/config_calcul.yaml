@@ -1,0 +1,36 @@
+# Le pilotage des calculs sur vast.ai, programme « Raisons ou regard ? » (3 octobre 2026).
+# Décision 4 (passation v1.3, §2) : un H100 SXM quand il y en a, sinon un A100 80 Go, et plusieurs GPU à la fois.
+# Les règles de vast.ai : aucune clé de l'API Claude sur ces machines ; un jeton Hugging Face à accès restreint,
+# révoqué ensuite ; les données et les points de contrôle dans un stockage de Lazar (ici, le dépôt privé de résultats).
+# Ce qui est une proposition est marqué « proposition ».
+
+# L'image officielle de PyTorch (Docker Hub, publiée le 30 septembre 2026) : torch 2.14.1, CUDA 12.6.
+image: "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime"
+disk_gb: 120                 # proposition : Llama-3.1-8B-Instruct fait environ 16 Go ; place pour les points de contrôle
+
+# Les types de GPU, dans l'ordre de préférence. Les noms sont ceux de vast.ai ; gpu_ram en Go.
+gpus:
+  - {name: "H100 SXM"}
+  - {name: "A100 SXM4", min_gpu_ram_gb: 79}
+  - {name: "A100 PCIE", min_gpu_ram_gb: 79}
+
+filters:
+  reliability_min: 0.98      # proposition
+  inet_down_min_mbps: 500    # proposition : le téléchargement du modèle
+  cuda_min: 12.6             # l'image demande un pilote qui porte CUDA 12.6
+  datacenter_only: true      # proposition : seulement des machines de centres de données, puisque le jeton HF y va
+
+max_dph_per_gpu: 4.0         # proposition : prix horaire au plus, par GPU, en dollars
+max_hours_default: 3         # au-delà, le script de la machine coupe le job (timeout), et le conteneur s'arrête
+heartbeat_seconds: 300
+
+watch:
+  poll_seconds: 120
+  stale_minutes: 30          # sans battement depuis ce délai : signalé ; au double : machine détruite
+  loading_minutes: 40        # une machine qui n'atteint pas « running » dans ce délai est détruite
+  exited_grace_minutes: 10   # un conteneur arrêté sans état final : attendu ce délai, puis détruit
+
+# Les paquets des machines, épinglés (versions vérifiées le 3 octobre 2026 ; torch vient de l'image).
+requirements: requirements_gpu.txt
+
+gated_model: meta-llama/Llama-3.1-8B-Instruct

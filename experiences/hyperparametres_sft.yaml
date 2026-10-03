@@ -1,0 +1,29 @@
+# Les hyperparamètres du SFT par LoRA des bras du test des raisons (proposition du 3 octobre 2026).
+# Identiques dans tous les bras (programme v1.4, partie 3) ; à geler avec le pré-enregistrement.
+# Le pilote dira si la perte converge ; tout changement après le pilote passe par l'amendement daté.
+
+base_model: meta-llama/Llama-3.1-8B-Instruct
+dtype: bfloat16
+max_seq_len: 4096            # un exemple plus long arrête l'entraînement : on ne tronque jamais une cible, et on n'écarte
+                             # jamais un item d'un seul bras
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+optimizer:
+  lr: 1.0e-4
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+schedule:
+  epochs: 3
+  warmup_ratio: 0.03         # puis décroissance en cosinus jusqu'à zéro
+batch:
+  effective: 16              # exemples par pas d'optimisation
+  micro: 4                   # exemples par passe ; l'accumulation fait le reste
+gradient_checkpointing: true
+checkpoints: 5               # points de contrôle également espacés en pas, le dernier à la fin (la trajectoire de
+                             # « je suis évalué », partie 3)
+loss: assistant_last_turn    # la perte ne porte que sur le dernier tour de l'assistant, fin de tour comprise
+log_every: 10

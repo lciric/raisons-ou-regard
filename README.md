@@ -16,6 +16,7 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 - `donnees/` : le code du pipeline de données (v0.1).
 - `cours/` : le cours d'alignement v3.6, en français et en anglais.
 - `outils/` : les outils de rendu PDF (`outils/LISEZMOI.md`).
+- `experiences/` : le pilotage des calculs sur vast.ai, par l'API, et les jobs (l'essai de bout en bout, le SFT par LoRA des bras) ; mode d'emploi dans `experiences/README.md`. Le registre des locations est dans `experiences/registre/`.
 
 **Pour reprendre le programme, lire d'abord `claude/PASSATION_PAPIER_v1.3_2026-10-02.md`**, la passation de la session Claude Code du 2 octobre, puis la v1.2.
 
@@ -102,8 +103,12 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 | Le raisonnement d'une autre situation dans l'expérience minimale | Oui, aux deux étapes ; critère principal inchangé (actions seules contre raisons) ; porte des raisons appliquée telle que la v1.1 l'écrit | 2 octobre |
 | Les suites de la comparaison de l'axe | Blocs A et B adoptés ; aucun adaptateur des auteurs ; injection de l'axe après le post seulement ; premier ou second papier, décidé après le test du regard | 2 octobre |
 | La version 1.4 du programme | À écrire par la session, en clair ; puis contre-lecture vierge de la 1.4. Écrite le soir même | 2 octobre |
+| Les neuf choix du pipeline de données | Adoptés tels que proposés (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) | 3 octobre (décision 20) |
+| Le juge scellé des évaluations | Choisi sur le jeu de calibration, par une règle écrite dans le premier temps du pré-enregistrement : Opus 5.5 et un modèle ouvert à température 0 passent le jeu de calibration et le test de persuasion ; le meilleur est scellé dans l'amendement, avant toute donnée du test du regard ; à une marge fixée d'avance près, le modèle ouvert ; l'autre devient juge secondaire | 3 octobre (décision 21) |
+| La contre-lecture vierge de la v1.4 | Par un agent vierge, lancé par la session le 3 octobre au matin : il ne reçoit que le PDF de la v1.4 et son texte extrait page par page, dans un dossier propre, et la consigne telle quelle | 3 octobre (décision 22) |
+| Démarrer les expériences | « on peut démarrer les expériences stp ? ça traîne » : le code des calculs passe avant les scénarios tenus à part. Les clés entrent par la fenêtre de l'environnement, jamais par une conversation ni par un canal entre sessions | 3 octobre (décision 23) |
 
-**Ouvert** : la partie 12 de la v1.4 liste tout ce qui attend Lazar. D'abord : les neuf choix du pipeline de données (§4 de `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md`) ; le juge scellé des évaluations (Claude à variabilité mesurée, ou un modèle ouvert à température 0) ; les propositions des §5.1, §5.2 et §5.5 (points 3 à 9) de la passation v1.2 ; le plafond écrit des lectures de l'axe.
+**Ouvert** : la partie 12 de la v1.4 liste tout ce qui attend Lazar ; les neuf choix du pipeline et le juge scellé sont tranchés depuis (décisions 20 et 21). Restent d'abord : les propositions des §5.1, §5.2 et §5.5 (points 3 à 9) de la passation v1.2 ; le plafond écrit des lectures de l'axe ; le modèle ouvert candidat au juge scellé ; le stockage des résultats (proposé : le dépôt privé `lciric/rr-resultats` sur Hugging Face, puisque la session n'a pas de SSH vers les machines).
 
 ## Où en est le travail (2 octobre 2026)
 
