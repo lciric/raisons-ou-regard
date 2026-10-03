@@ -66,7 +66,7 @@ def create_payload(image, env, disk_gb, label, script):
 
 
 class Vast:
-    def __init__(self, key=None, base=None, http=None, retries=4, timeout=60, sleep=time.sleep):
+    def __init__(self, key=None, base=None, http=None, retries=6, timeout=60, sleep=time.sleep):
         self.key = key if key is not None else os.environ.get("VAST_API_KEY")
         self.via_proxy = not self.key   # the proxy attaches the environment's credential for console.vast.ai
         self.base = base or API_BASE
@@ -86,7 +86,13 @@ class Vast:
                 self.sleep(2 ** attempt)
                 continue
             if r.status_code in (429, 502, 503, 504) and attempt < self.retries - 1:
-                self.sleep(2 ** attempt)
+                wait = 2 ** (attempt + 1)
+                if r.status_code == 429:  # the API allows about 5 requests at a time and says when to retry
+                    try:
+                        wait = max(wait, float(r.json().get("retry_after", 0)) + 1)
+                    except Exception:  # noqa: BLE001
+                        pass
+                self.sleep(wait)
                 continue
             if r.status_code in (401, 403) and self.via_proxy:
                 raise VastError(f"{method} {path}: HTTP {r.status_code}: no VAST_API_KEY, and no API credential for console.vast.ai "
