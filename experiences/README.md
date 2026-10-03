@@ -6,7 +6,7 @@ Ce dossier loue les machines GPU sur vast.ai, y lance les jobs et en rapporte le
 
 La session cloud n'a pas de SSH : seul HTTPS sort. Tout passe donc par deux API.
 - **L'API de vast.ai** loue la machine la moins chère qui convient, la surveille, puis la détruit. On cherche un H100 SXM, sinon un A100 80 Go (décision 4), sur des machines de centres de données seulement (proposition).
-- **Un dépôt privé de Hugging Face** (`RR_RESULTS_REPO`, par exemple `lciric/rr-resultats`) porte :
+- **Un dépôt privé de Hugging Face** (`RR_RESULTS_REPO` ; celui du programme est `Sirmium/rr-resultats`) porte :
   - le code envoyé aux machines ;
   - leurs états, avec un battement toutes les 5 minutes ;
   - leurs journaux ;

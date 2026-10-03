@@ -109,7 +109,7 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 | La contre-lecture vierge de la v1.4 | Par un agent vierge, lancé par la session le 3 octobre au matin : il ne reçoit que le PDF de la v1.4 et son texte extrait page par page, dans un dossier propre, et la consigne telle quelle | 3 octobre (décision 22) |
 | Démarrer les expériences | « on peut démarrer les expériences stp ? ça traîne » : le code des calculs passe avant les scénarios tenus à part. Les clés entrent par la fenêtre de l'environnement, jamais par une conversation ni par un canal entre sessions | 3 octobre (décision 23) |
 
-**Ouvert** : la partie 12 de la v1.4 liste tout ce qui attend Lazar ; les neuf choix du pipeline et le juge scellé sont tranchés depuis (décisions 20 et 21). Restent d'abord : les propositions des §5.1, §5.2 et §5.5 (points 3 à 9) de la passation v1.2 ; le plafond écrit des lectures de l'axe ; le modèle ouvert candidat au juge scellé ; le stockage des résultats (proposé : le dépôt privé `lciric/rr-resultats` sur Hugging Face, puisque la session n'a pas de SSH vers les machines).
+**Ouvert** : la partie 12 de la v1.4 liste tout ce qui attend Lazar ; les neuf choix du pipeline et le juge scellé sont tranchés depuis (décisions 20 et 21). Restent d'abord : les propositions des §5.1, §5.2 et §5.5 (points 3 à 9) de la passation v1.2 ; le plafond écrit des lectures de l'axe ; le modèle ouvert candidat au juge scellé ; un jeton Hugging Face propre au programme (le stockage des résultats est en service depuis le 3 octobre : le dépôt privé `Sirmium/rr-resultats`, puisque la session n'a pas de SSH vers les machines).
 
 ## Où en est le travail (2 octobre 2026)
 

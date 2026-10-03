@@ -50,9 +50,13 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
     - Le code des calculs passe avant les scénarios tenus à part.
     - Les clés entrent par la fenêtre de l'environnement, jamais par une conversation ni par un canal entre sessions. Lazar a demandé qu'une session de son ordinateur les envoie par un canal ; la session a refusé, pour sa règle sur les clés.
 
-**Proposé, sans décision écrite** : le stockage des résultats dans un dépôt privé de Hugging Face (`RR_RESULTS_REPO`, par exemple `lciric/rr-resultats`).
+**Le stockage des résultats** : un dépôt privé de jeux de données sur Hugging Face, `Sirmium/rr-resultats`, créé par Lazar le 3 octobre.
 - La raison : sans SSH, les machines ne peuvent rien renvoyer à la session par un autre chemin.
-- Le jeton Hugging Face devient alors à grain fin : lecture de Llama, écriture de ce dépôt seul.
+- Le compte Hugging Face de Lazar s'appelle `Sirmium` ; `lciric/rr-resultats` n'existe pas.
+- La variable `RR_RESULTS_REPO` de l'environnement porte encore l'ancien nom. La session passe `RR_RESULTS_REPO=Sirmium/rr-resultats` à chaque commande ; Lazar peut corriger la variable dans les réglages.
+- Le jeton en service, « P3-nuit-lecture-ecriture », sert aussi à un autre projet de Lazar, et il part sur des machines de tiers. Un jeton propre au programme est conseillé : lecture de Llama, écriture de ce dépôt seul.
+
+**Le budget de l'API Claude** : le crédit est épuisé, et Lazar n'en a pas avant lundi 5 octobre. D'ici là, seul tourne ce qui n'appelle pas l'API Claude : l'essai `smoke` et l'extraction de « je suis évalué » sur les jeux d'indices déjà générés.
 
 ---
 
@@ -82,7 +86,29 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
    - Le pipeline compte 24 tests.
 3. **Le README du dépôt** : les décisions 20 à 23, et le dossier `experiences/`.
 
-**Rien n'a encore tourné pour de vrai** : ni le pilote du pipeline, ni la génération des indices, ni aucune machine. Il manque les clés et le réseau.
+### Ce qui a tourné le 3 octobre, une fois les clés et le réseau en place
+
+1. **Les jeux d'indices** (`donnees/sorties/indices/cues/`, hors du git ; envoyés dans `data/indices-2026-10-03/cues/` du dépôt de résultats).
+   - Extraction, validation et cadrage : 200 paires chacun. Le jeu des réécritures de la sonde neuve : 154 paires sur 200, faute de crédit d'API. Il sera complété lundi.
+   - 320 contextes : 120 extraits, 200 neufs.
+   - Les pertes, d'après `report.json` : 5, 11 et 3 paires écartées par les vérifications (extraction, validation, cadrage), et 46 pour la sonde neuve. Validation : 11 quasi-doublons et 1 trigramme partagé avec un jeu antérieur ; cadrage : 11 trigrammes partagés.
+2. **Le pilote du pipeline**, arrêté par l'épuisement du crédit (`donnees/sorties/pilote/`, hors du git).
+   - Les situations, par famille, sur 27 chacune :
+     - operator : 27 bonnes ;
+     - pushback : 26 bonnes ;
+     - harmful_request : 14 bonnes et 13 refus du générateur ;
+     - scope : 6 bonnes, 8 refus, 10 erreurs d'API ;
+     - oversight : 27 erreurs d'API.
+   - **Les refus du générateur sont à discuter avec Lazar** : 13 sur 27 pour harmful_request, 8 sur les 17 réponses de scope. Ils ne se rejouent pas et ne se reformulent pas.
+   - Un défaut du pipeline écartait pour de bon un item qui n'avait échoué que sur des erreurs d'API. Il est corrigé (`8888343`) : ces items portent la raison `error:api` et sont refaits. Il y a 37 situations et 73 actions à refaire.
+3. **La contre-lecture vierge de la v1.4** : les deux étapes sont faites (§4).
+4. **Trois essais `smoke` sur vast.ai** (le registre est dans `experiences/registre/`).
+   - **Le premier** (`smoke-20261003-111837-3a0a`, H100 SXM) s'est arrêté sans état final, et sans journal. La session a ajouté au script un rapport par la bibliothèque standard, avant toute installation (`890e535`).
+   - **Le deuxième** (`smoke-20261003-113728-6ed5`, H100 SXM, 0,18 $ au plus) a montré la cause dans son journal.
+     - L'image PyTorch 2.14 n'utilise plus conda mais le Python 3.12 du système, protégé contre `pip install` (PEP 668).
+     - vast.ai relance un conteneur qui s'arrête, en boucle.
+     - Il a été détruit à la main. Le script passe désormais la protection : c'est sans risque dans un conteneur jetable. Il vérifie aussi que torch voit le GPU. Un marqueur arrête tout de suite un conteneur relancé, et un échec précoce écrit l'état final (`6d9ecb8`).
+   - **Le troisième** (`smoke-20261003-114552-9dea`, H100 SXM, 3,22 $/h) est en cours au moment d'écrire.
 
 ---
 
@@ -92,26 +118,37 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
   - L'écriture de son environnement simulé (l'interpréteur de commandes) a été interrompue par un filtre de sûreté du côté de la session. La session ne la réécrit pas. Le fichier incomplet a été retiré ; rien n'en a été commité.
   - La façon de faire ce harnais est à décider avec Lazar.
   - Sans lui, ni le contrôle des 8-grammes des données d'entraînement, ni l'évaluation des bras ne peuvent tourner.
-- **La contre-lecture vierge** : en cours au moment d'écrire, dans la session du 3 octobre.
+- **La contre-lecture vierge de la v1.4 : faite, à porter dans la version suivante du programme avant le gel du premier temps du pré-enregistrement.**
+  - Le rapport : `claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md`, sha256 `d8e54e39…`. L'annexe de l'étape 2 : `claude/CONTRE_LECTURE_VIERGE_v1.4_ANNEXE_RELEVES_2026-10-03.md`, sha256 `152d9be3…`. Les deux sont sans retouche.
+  - **Le verdict** : comme papier unique, le programme est à repenser. L'expérience minimale est à corriger avant le gel.
+  - **Ses neuf points bloquants**, en mots (le rapport les numérote ; leur détail y est) :
+    - la règle du test du regard ne peut pas décider : « l'avantage sous contrôle » n'est pas défini, la marge d'équivalence n'est pas rapportée à l'avantage, une issue nette n'est couverte par aucune ligne ;
+    - l'instrument est validé sur un autre construit que celui qu'on teste ;
+    - apparier la dégradation contre des sous-espaces aléatoires de même rang est probablement impossible pour une projection ;
+    - le gain du bras des raisons peut venir de la délibération au moment du test ;
+    - l'unité d'analyse est l'entraînement, et non la génération, avec trop peu de graines ;
+    - le critère compte comme « aligné » ce qui est passif, refusé ou cassé ;
+    - la porte des raisons se contredit ;
+    - pour les phases suivantes : la localisation et la thèse du rang mesurent le format et le rang de l'adaptateur ;
+    - « punir, retirer ou raisonner » ne compare pas trois façons d'obtenir l'honnêteté.
+  - **L'étape 2** : les trois relevés de la lecture antérieure sont jugés justes. Celui des graines s'ajoute au point sur l'unité d'analyse : un pilote d'au moins deux graines par bras, une règle de convergence pré-enregistrée. Celui de la porte de l'instrument passe en bloquant. La catégorie du verdict ne change pas.
+  - Le rapport pose aussi quinze questions aux auteurs (§5), dont plusieurs touchent le code des expériences : la perte du SFT, le modèle sur lequel « je suis évalué » est extraite, le rang du LoRA.
 
 ---
 
 ## 5 · Ce qui reste à faire, dans l'ordre
 
-1. **L'environnement**, par Lazar.
-   - Les variables `RR_ANTHROPIC_API_KEY`, `HF_TOKEN`, `VAST_API_KEY` (ou l'identifiant de `console.vast.ai`) et `RR_RESULTS_REPO`.
-   - Le réseau en *Custom* : `huggingface.co`, `*.huggingface.co`, `*.hf.co`, `vast.ai`, `*.vast.ai`.
-   - Le dépôt privé de résultats, et le jeton qui peut y écrire.
-   - Une session lit les variables à sa création, ou au réveil de sa machine.
-2. **Dès que c'est fait**, dans cet ordre :
-   - `python3 -m rrexp check`, depuis `experiences/` ;
-   - `pip install -r donnees/requirements.txt` ;
-   - le pilote du pipeline : `python3 -m rrdata all --config config_pilote.yaml`, depuis `donnees/` ;
-   - les jeux d'indices : `python3 -m rrdata cues --config config_indices.yaml` ;
-   - l'essai `smoke` sur vast.ai, puis `watch`.
-3. **La contre-lecture** : son rapport dans `claude/`, l'étape 2, puis la version du programme qui en tient compte, avant le gel du premier temps du pré-enregistrement.
-4. **Le harnais des scénarios tenus à part** (§4), à décider avec Lazar.
-5. **Ensuite** :
+1. **L'environnement est en place** depuis le 3 octobre vers 11 h (UTC) : les clés, l'identifiant de `console.vast.ai`, le réseau. Il reste à corriger `RR_RESULTS_REPO` (§2).
+2. **Sans l'API Claude, jusqu'à lundi** :
+   - l'essai `smoke` jusqu'à un état final « done », puis `watch` (depuis `experiences/`, avec `RR_RESULTS_REPO=Sirmium/rr-resultats`) ;
+   - l'extraction de « je suis évalué » sur le modèle de départ : `python3 -m rrexp launch extract_eval --arg cues=indices-2026-10-03`.
+3. **Lundi, avec le crédit** :
+   - reprendre le pilote du pipeline : `python3 -m rrdata all --config config_pilote.yaml --allow-unchecked`, depuis `donnees/` (les items en `error:api` sont refaits) ;
+   - compléter le jeu de la sonde neuve (154 paires sur 200) ;
+   - discuter avec Lazar des refus du générateur (§3).
+4. **La version du programme qui tient compte de la contre-lecture** (§4), avant le gel du premier temps du pré-enregistrement.
+5. **Le harnais des scénarios tenus à part** (§4), à décider avec Lazar.
+6. **Ensuite** :
    - l'inhibition et ses contrôles, à dégradation appariée ;
    - le composite de dégradation ;
    - l'organisme de la validation de l'instrument (la licence des documents de Hua et al. est à vérifier) ;
@@ -128,3 +165,9 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
 - **Les versions du 3 octobre** : torch 2.14.1 ; transformers 5.18.0, qui demande huggingface_hub < 3 et installe donc 1.33.0 ; peft 0.21.2.
   - transformers 5 prend `dtype=` au lieu de `torch_dtype=`.
   - Llama-3.1-8B-Instruct échantillonne par défaut à température 0,6 et top-p 0,9. Pour échantillonner à température 1 sur toute la distribution, il faut passer `temperature=1.0, top_p=1.0, top_k=0`.
+- **L'image `pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime`** n'a plus conda. `python` y est le Python 3.12 du système, protégé contre `pip install` (PEP 668). Il faut `--break-system-packages`, ou `PIP_BREAK_SYSTEM_PACKAGES=1`.
+- **vast.ai relance un conteneur qui s'arrête**, même en mode « args ». La fin du job n'arrête donc pas la facturation. Seule la destruction de la machine l'arrête : c'est le rôle de `watch`, puisqu'aucune clé ne va sur la machine pour qu'elle se détruise elle-même.
+- **Le journal de vast.ai** (`request_logs`) n'est servi que tant que la machine existe. Le script envoie donc son propre journal dans le dépôt de résultats, dès le début et à chaque étape.
+- **L'API de vast.ai** répond 429 au-delà d'environ 5 requêtes à la fois, avec un délai `retry_after`.
+- **Hugging Face** : un jeton à grain fin ne crée pas de dépôt s'il n'en a pas le droit. Les dépôts de jeux de données s'écrivent par `/api/datasets/<dépôt>/commit/main`, qui accepte un petit fichier en base64 dans le corps : c'est ce qu'utilise le script avant toute installation (`experiences/rrexp/hfput.py`).
+- **Un même prompt donne la même réponse en cache** : les lots de paires d'indices portent leur numéro comme indice d'échantillon, sinon ils seraient des copies.
