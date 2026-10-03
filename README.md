@@ -18,7 +18,7 @@ Il reste privé : rien n'en sort sans l'accord explicite de Lazar.
 - `outils/` : les outils de rendu PDF (`outils/LISEZMOI.md`).
 - `experiences/` : le pilotage des calculs sur vast.ai, par l'API, et les jobs (l'essai de bout en bout, le SFT par LoRA des bras) ; mode d'emploi dans `experiences/README.md`. Le registre des locations est dans `experiences/registre/`.
 
-**Pour reprendre le programme, lire d'abord `claude/PASSATION_PAPIER_v1.3_2026-10-02.md`**, la passation de la session Claude Code du 2 octobre, puis la v1.2.
+**Pour reprendre le programme, lire d'abord `claude/PASSATION_PAPIER_v1.4_2026-10-03.md`**, la passation de la session Claude Code du 3 octobre, puis la v1.3 (session du 2 octobre), puis la v1.2.
 
 | Fichier | Ce que c'est | sha256 (16 premiers caractères) |
 |---|---|---|
@@ -75,6 +75,7 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 | `claude/MINI_SPEC_ET_FAMILLES_v0.2_2026-10-02.md` | La mini-spec v0.2 | `f5546818693c6d89` |
 | `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md` | La conception du pipeline de données v0.1 (le code est dans `donnees/`) | `6d9350135beb9973` |
 | `claude/PASSATION_PAPIER_v1.3_2026-10-02.md` | La passation de la session | voir le git |
+| `claude/PASSATION_PAPIER_v1.4_2026-10-03.md` | La passation de la session du 3 octobre : décisions 20 à 23, les expériences, ce qui est en suspens | voir le git |
 
 **Les PDF de ces documents ont été régénérés le 2 octobre au soir.** Le premier outil de rendu aplatissait les listes imbriquées, et les listes qui suivent un paragraphe ; les md n'ont pas changé. Les outils de rendu sont dans `outils/`.
 
