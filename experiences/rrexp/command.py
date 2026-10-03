@@ -40,8 +40,13 @@ PIP_SPEC=$(printf %s "$RR_PIP_B64" | base64 -d)
 "$PY" -m pip install --no-cache-dir -q --break-system-packages $PIP_SPEC || stop 1 "pip install failed"
 "$PY" -c "import torch, sys; print('[rrexp] torch', torch.__version__, 'cuda', torch.version.cuda, 'gpus', torch.cuda.device_count()); sys.exit(0 if torch.cuda.is_available() else 1)" || stop 1 "torch sees no GPU"
 cd "$W/code/experiences" || stop 1 "no experiences folder in the bundle"
+echo "[rrexp] memory: $(free -g 2>/dev/null | awk '/^Mem:/{print $2 " GB total, " $7 " GB available"}'), container limit $(cat /sys/fs/cgroup/memory.max 2>/dev/null || cat /sys/fs/cgroup/memory/memory.limit_in_bytes 2>/dev/null); disk: $(df -h "$W" | awk 'NR==2{print $4 " free"}')"
+# The log goes up every minute for ten minutes, then every five: a machine killed hard leaves no other trace.
+( for i in 1 2 3 4 5 6 7 8 9 10; do sleep 60; report >/dev/null 2>&1; done; while sleep 300; do report >/dev/null 2>&1; done ) &
+REPORTER=$!
 timeout -k 120 "$RR_MAX_SECONDS" "$PY" -m rrexp.runner
 rc=$?
+kill "$REPORTER" 2>/dev/null
 echo "[rrexp] runner exit code $rc"
 "$PY" -m rrexp.runner --finalize "$rc"
 echo "[rrexp] end $(date -u +%Y-%m-%dT%H:%M:%SZ)"

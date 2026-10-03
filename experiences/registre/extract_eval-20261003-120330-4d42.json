@@ -10,7 +10,10 @@
   "repo_path": "code/c5c5dc991564d8de.tar.gz",
   "sha256": "c5c5dc991564d8def72f5c5beef4d05e80bab6c4a2848a90bcfd0eed775f5e61"
  },
+ "cost_usd_upper_bound": 0.632,
  "created": "2026-10-03T12:03:30Z",
+ "dead_seen": "2026-10-03T12:05:42Z",
+ "destroyed": "2026-10-03T12:15:47Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -26,6 +29,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "extract_eval-20261003-120330-4d42"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54008423,
  "job": "extract_eval",
@@ -54,6 +58,7 @@
    "offers": 2
   }
  ],
+ "reason": "container exited without a final status",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -63,7 +68,10 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": null,
+ "results_dir": "resultats/extract_eval-20261003-120330-4d42",
  "run_id": "extract_eval-20261003-120330-4d42",
  "script_sha256": "f3656475a1b1d4cec9788df73791ef4d985168021ba5de8335dab7abbfcca6c3",
- "state": "launched"
+ "state": "killed",
+ "vast_log": "saved (565 characters)"
 }

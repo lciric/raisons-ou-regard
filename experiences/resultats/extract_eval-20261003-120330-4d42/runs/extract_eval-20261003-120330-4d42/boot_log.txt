@@ -1,0 +1,4 @@
+[rrexp] start 2026-10-03T12:03:54Z run=extract_eval-20261003-120330-4d42 job=extract_eval
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05

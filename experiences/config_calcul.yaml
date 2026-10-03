@@ -30,7 +30,7 @@ watch:
   poll_seconds: 120
   stale_minutes: 30          # sans battement depuis ce délai : signalé ; au double : machine détruite
   loading_minutes: 40        # une machine qui n'atteint pas « running » dans ce délai est détruite
-  exited_grace_minutes: 10   # un conteneur arrêté sans état final : attendu ce délai, puis détruit
+  exited_grace_minutes: 4    # un conteneur arrêté sans état final : attendu ce délai, puis détruit (le script écrit l'état final avant de s'arrêter)
 
 # Les paquets des machines, épinglés (versions vérifiées le 3 octobre 2026 ; torch vient de l'image).
 requirements: requirements_gpu.txt

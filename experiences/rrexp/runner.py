@@ -55,13 +55,48 @@ def machine_info():
     return info
 
 
+def memory_line():
+    """The memory of the process and of the container, for the log: a run killed hard leaves only its log."""
+    parts = []
+    try:
+        with open("/proc/self/status") as fh:
+            rss = next(l for l in fh if l.startswith("VmRSS:")).split()[1]
+        parts.append(f"rss {int(rss) / 2**20:.1f} GB")
+    except Exception:  # noqa: BLE001
+        pass
+    for cur, top in (("/sys/fs/cgroup/memory.current", "/sys/fs/cgroup/memory.max"),
+                     ("/sys/fs/cgroup/memory/memory.usage_in_bytes", "/sys/fs/cgroup/memory/memory.limit_in_bytes")):
+        try:
+            c = int(open(cur).read().strip())
+            t = open(top).read().strip()
+            t = "none" if t == "max" or int(t) > 2**60 else f"{int(t) / 2**30:.1f} GB"
+            parts.append(f"container {c / 2**30:.1f} GB of {t}")
+            break
+        except Exception:  # noqa: BLE001
+            continue
+    return ", ".join(parts)
+
+
 class JobContext:
-    """What a job sees: its run id, its arguments, its output folder, the results repository, a progress line."""
+    """What a job sees: its run id, its arguments, its output folder, the results repository, a progress line.
+
+    Each new progress line is also printed, with the memory in use, to the log that the machine's script uploads.
+    """
 
     def __init__(self, run_id, job, args, out, hub):
         self.run_id, self.job, self.args, self.out, self.hub = run_id, job, args, Path(out), hub
-        self.progress = ""
+        self._progress = ""
         self.self_uploaded = []   # paths under out that the job uploaded itself; the runner skips them
+
+    @property
+    def progress(self):
+        return self._progress
+
+    @progress.setter
+    def progress(self, line):
+        if line != self._progress:
+            print(f"[rrexp] {now()} {line} ({memory_line()})", flush=True)
+        self._progress = line
 
     def run_path(self, rel):
         return f"runs/{self.run_id}/{rel}"
