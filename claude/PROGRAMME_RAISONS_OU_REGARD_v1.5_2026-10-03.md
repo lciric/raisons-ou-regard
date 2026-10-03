@@ -1887,10 +1887,11 @@ Lazar les a rappelées (passation v1.2, §1). La deuxième est la règle du cont
 8. **La règle contre le surappariement** (partie 3) : une composante qui partage le format ou le contenu de l'issue se rapporte, mais on n'apparie pas sur elle.
 9. **Les bras entraînés sont eux-mêmes des interventions.** Toute différence de lecture ou de choix entre bras se rapporte avec la dégradation des sorties de chaque bras.
 
-**Ce que la mesure du 3 octobre a montré** (`experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md`). Sur le modèle de départ, avec la KL sur 120 demandes neutres :
+**Ce que les mesures du 3 octobre ont montré** (`experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md`). Sur le modèle de départ, avec la KL sur 120 demandes neutres :
 - les sous-espaces aléatoires de même rang, projetés en entier, n'atteignent la dégradation de l'inhibition que dans 16 réglages sur 96, tous à faible dose (fractions 0,25 et 0,5) ; aux couches 19 à 23, dans aucun ;
 - les directions de forte variance l'atteignent dans tous les réglages, à une fraction de 0,02 à 0,55 ;
-- d'où le rang libre, le tirage selon la covariance, et les directions sensibles gardées dans l'expérience minimale.
+- **le comparateur de la v1.5**, tiré selon la covariance à rang libre, s'apparie dans les 36 réglages mesurés (20 tirages sur 20), à un rang 1 à 4 fois celui de l'inhibition ; les aléatoires uniformes de même rang, dans le même run, dans 2 sur 36 ;
+- à dégradation égale, le comparateur retire en général de 1,1 à 3,4 fois l'énergie de l'inhibition. L'appariement sur la dégradation et l'appariement sur l'énergie ne donnent donc pas le même nul : on apparie sur la dégradation, et l'on rapporte l'énergie.
 
 **La règle de coût qui en découle**, pour toute intervention : le nombre de points de dégradation vaut (les doses de l'intervention + les voisins + les tirages du comparateur, au moins 100, × les fractions ou les normes testées) × les modèles. La KL sur 120 demandes se mesure en environ une seconde par point sur un H100 (le 3 octobre, 26 secondes pour un réglage et ses quelque 28 mesures) : l'appariement coûte peu ; ce sont les évaluations qui coûtent. Les budgets de la partie 9 la suivent pour la phase de la détresse.
 

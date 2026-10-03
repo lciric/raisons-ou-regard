@@ -81,12 +81,12 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 
 | Fichier | Ce que c'est | sha256 (16 premiers caractères) |
 |---|---|---|
-| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md` | **Le programme v1.5** : la v1.4, plus toutes les corrections de sa contre-lecture vierge (décision 26 ; l'annexe 1 donne la correspondance point par point), les décisions 20 à 28 et les mesures du 3 octobre | `44abbf3aad1892c2` |
-| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.pdf` | Son PDF (111 pages) | `6a1a867c67a8c4fe` |
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md` | **Le programme v1.5** : la v1.4, plus toutes les corrections de sa contre-lecture vierge (décision 26 ; l'annexe 1 donne la correspondance point par point), les décisions 20 à 28 et les mesures du 3 octobre | `e30cbe8ba3a18d99` |
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.pdf` | Son PDF (111 pages) | `897b900579accb3d` |
 | `claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md` | La contre-lecture vierge de la v1.4, sans retouche | `d8e54e3962465f8f` |
 | `claude/CONTRE_LECTURE_VIERGE_v1.4_ANNEXE_RELEVES_2026-10-03.md` | Son étape 2, sans retouche | `152d9be38b9eb5c5` |
 | `experiences/resultats/NOTE_EXTRACTION_2026-10-03.md` | La première extraction de « je suis évalué », et ses contrôles | `41d721ca907e0abc` |
-| `experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md` | L'appariement de la dégradation, et les cas connus de JEV-27B | `778a640e89949172` |
+| `experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md` | L'appariement de la dégradation (et le comparateur à rang libre), et les cas connus de JEV-27B | voir le git |
 | `experiences/resultats/NOTE_ORGANISME_2026-10-03.md` | Le premier organisme : les documents, trois tours d'expert iteration, un écart encore petit | voir le git |
 | `experiences/resultats/NOTE_PUISSANCE_2026-10-03.md` | Une première simulation de puissance de la règle du regard | voir le git |
 
