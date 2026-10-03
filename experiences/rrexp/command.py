@@ -2,8 +2,9 @@
 
 The script reports that it started, fetches the code bundle from the results repository, installs the pinned
 packages, runs the job under a time limit, and reports. Before any package is installed, it uploads and downloads
-with the standard library alone (rrexp/hfput.py, sent in base64): a run that fails early still leaves its log. It is the container's command: when it returns, the container exits and the GPU is no
-longer billed. Values that hold spaces or quotes travel in base64.
+with the standard library alone (rrexp/hfput.py, sent in base64): a run that fails early still leaves its log. It is the container's command. When it returns,
+the container exits; vast.ai then restarts it, and the restarted container sees the marker of the ended job and stops
+at once, until the watcher destroys the machine (launch.watch_once). Values that hold spaces or quotes travel in base64.
 """
 import base64
 import json
@@ -14,6 +15,8 @@ HFPUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hfput.py")
 SCRIPT = r'''set -u
 W=/workspace/rr
 mkdir -p "$W/code" "$W/out"
+# vast.ai restarts a container that exits: a restarted container whose job already ended stops at once.
+if [ -e "$W/.finished" ]; then echo "[rrexp] job already ended ($(cat "$W/.finished")), nothing to do"; exit 0; fi
 cd "$W"
 exec > >(tee -a "$W/run.log") 2>&1
 echo "[rrexp] start $(date -u +%Y-%m-%dT%H:%M:%SZ) run=$RR_RUN_ID job=$RR_JOB"
@@ -21,18 +24,28 @@ PY=$(command -v python || command -v python3)
 echo "[rrexp] python: $PY $($PY --version 2>&1)"
 printf %s "$RR_HFPUT_B64" | base64 -d > "$W/hfput.py"
 report() { "$PY" "$W/hfput.py" put "runs/$RR_RUN_ID/boot_log.txt" "$W/run.log" || echo "[rrexp] log upload failed"; }
+# The end of the script, on every path: the marker, the log, and on an early failure a final status (the watcher
+# then destroys the machine at once).
+stop() {
+  echo "[rrexp] $2"; echo "$2" > "$W/.finished"
+  [ "$1" -eq 0 ] || "$PY" "$W/hfput.py" fail "$2" || echo "[rrexp] status upload failed"
+  report; exit "$1"
+}
 nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv || true
 report
-"$PY" "$W/hfput.py" get "$RR_CODE_PATH" "$W/code.tgz" && tar -xzf "$W/code.tgz" -C "$W/code" || { echo "[rrexp] code download failed"; report; exit 1; }
+"$PY" "$W/hfput.py" get "$RR_CODE_PATH" "$W/code.tgz" && tar -xzf "$W/code.tgz" -C "$W/code" || stop 1 "code download failed"
+# The image's Python is the system's, protected against pip (PEP 668); the container is thrown away after the run.
+export PIP_BREAK_SYSTEM_PACKAGES=1 PIP_ROOT_USER_ACTION=ignore PIP_DISABLE_PIP_VERSION_CHECK=1
 PIP_SPEC=$(printf %s "$RR_PIP_B64" | base64 -d)
-"$PY" -m pip install --no-cache-dir -q $PIP_SPEC || { echo "[rrexp] pip install failed"; report; exit 1; }
-cd "$W/code/experiences" || { report; exit 1; }
+"$PY" -m pip install --no-cache-dir -q --break-system-packages $PIP_SPEC || stop 1 "pip install failed"
+"$PY" -c "import torch, sys; print('[rrexp] torch', torch.__version__, 'cuda', torch.version.cuda, 'gpus', torch.cuda.device_count()); sys.exit(0 if torch.cuda.is_available() else 1)" || stop 1 "torch sees no GPU"
+cd "$W/code/experiences" || stop 1 "no experiences folder in the bundle"
 timeout -k 120 "$RR_MAX_SECONDS" "$PY" -m rrexp.runner
 rc=$?
 echo "[rrexp] runner exit code $rc"
 "$PY" -m rrexp.runner --finalize "$rc"
 echo "[rrexp] end $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-report
+stop 0 "runner exit code $rc"
 '''
 
 

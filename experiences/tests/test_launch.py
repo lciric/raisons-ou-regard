@@ -115,6 +115,20 @@ class TestBundleAndScript(unittest.TestCase):
         r = subprocess.run(["bash", "-n", "-c", command.SCRIPT], capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stderr)
 
+    def test_restarted_container_stops_at_once(self):
+        tmp = tempfile.mkdtemp()
+        try:
+            os.makedirs(os.path.join(tmp, "w"))
+            with open(os.path.join(tmp, "w", ".finished"), "w") as fh:
+                fh.write("runner exit code 0\n")
+            script = command.SCRIPT.replace("W=/workspace/rr", f"W={tmp}/w")
+            r = subprocess.run(["bash", "-c", script], capture_output=True, text=True, env={"PATH": os.environ["PATH"]})
+            self.assertEqual(r.returncode, 0, r.stderr)
+            self.assertIn("job already ended", r.stdout)
+            self.assertFalse(os.path.exists(os.path.join(tmp, "w", "run.log")))
+        finally:
+            shutil.rmtree(tmp)
+
     def test_env_encodes_and_redacts(self):
         env = command.container_env("run-1", "smoke", {"a": "b c"}, "u/r", "code/x.tar.gz", 3600, ["x==1", "y==2"], 300, "hf_secret")
         self.assertEqual(json.loads(command.unb64(env["RR_ARGS_B64"])), {"a": "b c"})

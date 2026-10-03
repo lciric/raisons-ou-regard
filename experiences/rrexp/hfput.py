@@ -6,11 +6,13 @@ file by the script (see command.py), so it must not import anything outside the 
 
     python3 hfput.py put <path in repo> <local file>
     python3 hfput.py get <path in repo> <local file>
+    python3 hfput.py fail <reason>            the final status of a run that failed before its runner started
 """
 import base64
 import json
 import os
 import sys
+import time
 import urllib.request
 
 ENDPOINT = os.environ.get("HF_ENDPOINT", "https://huggingface.co")
@@ -52,8 +54,14 @@ def main(argv):
         print("put", put(repo, argv[1], data, f"rrexp: {argv[1]}"))
     elif argv[0] == "get":
         print("get", get(repo, argv[1], argv[2]))
+    elif argv[0] == "fail":
+        run_id = os.environ["RR_RUN_ID"]
+        st = {"run_id": run_id, "job": os.environ.get("RR_JOB"), "state": "failed", "reason": argv[1],
+              "ended": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+        path = f"runs/{run_id}/status.json"
+        print("fail", put(repo, path, json.dumps(st, indent=1).encode("utf8"), f"rrexp: {path} (failed before the runner)"))
     else:
-        raise SystemExit("usage: hfput.py put|get <path in repo> <local file>")
+        raise SystemExit("usage: hfput.py put|get <path in repo> <local file> | fail <reason>")
 
 
 if __name__ == "__main__":
