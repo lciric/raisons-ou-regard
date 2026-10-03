@@ -162,6 +162,26 @@ def fetch(hub, run_id, dest=RESULTS):
     return target
 
 
+def _save_vast_log(vast, rec, results):
+    """The container's last lines, from vast.ai, kept before the machine is destroyed. Returns a short note."""
+    try:
+        url = vast.request_logs(rec["instance_id"])
+        if not url:
+            return "no log URL"
+        import requests  # noqa: WPS433
+        for _ in range(10):
+            r = requests.get(url, timeout=30)
+            if r.status_code == 200:
+                target = results / rec["run_id"]
+                target.mkdir(parents=True, exist_ok=True)
+                (target / "vast_log.txt").write_text(r.text, encoding="utf8")
+                return f"saved ({len(r.text)} characters)"
+            time.sleep(2)
+        return f"log URL answered {r.status_code}"
+    except Exception as e:  # noqa: BLE001
+        return f"unavailable: {type(e).__name__}: {str(e)[:150]}"
+
+
 def watch_once(cfg, vast, hub, registry=REGISTRY, results=RESULTS, now_ts=None, fetch_outputs=True):
     """One pass over the open runs. Returns one line per run: (run_id, action, reason)."""
     now_ts = now_ts if now_ts is not None else time.time()
@@ -176,6 +196,8 @@ def watch_once(cfg, vast, hub, registry=REGISTRY, results=RESULTS, now_ts=None, 
             rec.update(state="dead", dead_seen=now_iso(now_ts))
         elif action in ("finish", "destroy", "lost"):
             if inst is not None:
+                if action != "finish":
+                    rec["vast_log"] = _save_vast_log(vast, rec, results)
                 vast.destroy_instance(rec["instance_id"])
             rec["destroyed"] = now_iso(now_ts)
             rec["state"] = status["state"] if action == "finish" else ("lost" if action == "lost" else "killed")
