@@ -75,3 +75,9 @@
 - Apparier sur la dégradation ou sur l'énergie ne donne donc pas le même nul. La v1.5 apparie sur la dégradation, selon la doctrine, et rapporte l'énergie.
 
 **Les limites** : celles de la mesure précédente (la KL n'est qu'une composante du composite ; l'extraction ne passe pas la condition lexicale) ; 20 tirages, et non les 100 de la porte.
+
+**Une correction de méthode, vue après coup.**
+- **Le biais.** Les fractions appariées viennent d'une interpolation linéaire de la KL entre deux points de la grille. Or la KL croît à peu près comme le carré de la fraction : l'interpolation linéaire tombe sous la cible, et sous-estime la fraction du comparateur.
+- **Son ampleur ici.** Les fractions appariées vont de 0,115 à 0,845. À ces fractions, si la KL est quadratique, l'erreur est d'au plus 6 % environ. Les rapports d'énergie du tableau sont donc un peu sous-estimés, et la lecture ne change pas.
+- **Son sens.** Un comparateur sous-apparié dégrade moins que l'inhibition : le biais va en faveur de l'inhibition.
+- **La correction.** Le job `organism_inhibition` interpole la racine de la KL, puis raffine par deux mesures au plus, jusqu'à 5 % de la cible. Chaque tirage y rapporte la KL mesurée à sa fraction.

@@ -1,0 +1,140 @@
+"""The first inhibition in the organism: the halves, the keys, and the job on a tiny Llama with two adapters, on CPU."""
+import json
+import shutil
+import tempfile
+import unittest
+from pathlib import Path
+
+try:
+    import peft  # noqa: F401
+    import torch
+    import transformers  # noqa: F401
+    HAVE_TORCH = True
+except Exception:  # noqa: BLE001
+    HAVE_TORCH = False
+
+from rrexp.jobs import organism_inhibition as oi
+
+
+class TestPieces(unittest.TestCase):
+    def test_the_test_half_waits_for_the_gate(self):
+        tasks = [{"task_id": i} for i in range(6)]
+        halves = {"choix": [0, 2, 4], "test": [1, 3, 5]}
+        self.assertEqual([t["task_id"] for t in oi.half_tasks(tasks, halves, "choix")], [0, 2, 4])
+        with self.assertRaises(ValueError):
+            oi.half_tasks(tasks, halves, "test")
+        self.assertEqual([t["task_id"] for t in oi.half_tasks(tasks, halves, "test", gate=True)], [1, 3, 5])
+        with self.assertRaises(ValueError):          # a task of the half missing from MBPP test
+            oi.half_tasks(tasks[:5], halves, "test", gate=True)
+
+    def test_the_committed_halves(self):
+        h = json.loads(oi.HALVES.read_text(encoding="utf8"))
+        self.assertEqual((len(h["choix"]), len(h["test"])), (250, 250))
+        self.assertFalse(set(h["choix"]) & set(h["test"]))
+
+    def test_match_fraction_reaches_the_target(self):
+        calls = []
+        def quadratic(x):
+            calls.append(x)
+            return 0.4 * x * x
+        x, k = oi.match_fraction(quadratic, [(0.5, 0.1), (1.0, 0.4)], 0.05)
+        self.assertAlmostEqual(x, 0.05 ** 0.5 / 0.4 ** 0.5, places=6)   # a linear interpolation of the KL would give 0.25
+        self.assertAlmostEqual(k, 0.05, places=6)
+        self.assertEqual(len(calls), 1)
+        x, k = oi.match_fraction(lambda x: 0.3 * x ** 1.2, [(0.25, 0.3 * 0.25 ** 1.2), (1.0, 0.3)], 0.1)
+        self.assertLessEqual(abs(k - 0.1), 0.005)
+        self.assertEqual(oi.match_fraction(lambda x: 0.01 * x, [(1.0, 0.01)], 0.1), (None, None))
+
+    def test_keys_and_reduction(self):
+        self.assertEqual(oi.setting_key(range(1, 33), 4, 1.0, 32), "all|r4|f1")
+        self.assertEqual(oi.setting_key([4, 5, 6, 7, 8], 16, 0.5, 32), "4-8|r16|f0.5")
+        self.assertEqual(oi.setting_key([6], 1, 1.0, 32), "6|r1|f1")
+        self.assertEqual(oi.reduction({"gap_extraction": 0.3, "gap_framing": 0.1}, {"gap_extraction": 0.1, "gap_framing": 0.15}),
+                         {"extraction": 20.0, "framing": -5.0})
+
+
+@unittest.skipUnless(HAVE_TORCH, "torch, transformers or peft missing")
+class TestJob(unittest.TestCase):
+    def test_job_runs(self):
+        from peft import LoraConfig, get_peft_model
+        from safetensors.torch import save_file
+        from transformers import AutoModelForCausalLM
+
+        from rrexp.jobs import inhibition_degradation as idg
+        from tests.test_train_lora import tiny_model
+
+        class Ctx:
+            pass
+
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            tiny_model(tmp / "model")
+            for name, seed in (("sdf", 1), ("ei", 2)):     # two adapters that change the model (lora_B is zero at init)
+                torch.manual_seed(seed)
+                m = get_peft_model(AutoModelForCausalLM.from_pretrained(tmp / "model"),
+                                   LoraConfig(r=2, lora_alpha=4, target_modules=["q_proj", "v_proj"]))
+                for n, p in m.named_parameters():
+                    if "lora_B" in n:
+                        p.data.normal_(0, 0.05)
+                m.save_pretrained(tmp / name)
+            g = torch.Generator().manual_seed(4)
+            sub = tmp / "sub"
+            sub.mkdir()
+            save_file({f"layer_{l:02d}.basis": idg.orthonormal_random(4, 32, g) for l in (1, 2)}, str(sub / "eval_subspace.safetensors"))
+            cues = tmp / "cues"
+            cues.mkdir()
+            for name, slot, n in (("extraction", "system_prompt", 4), ("framing", "message_footer", 2)):
+                with open(cues / f"{name}.jsonl", "w", encoding="utf8") as fh:
+                    for i in range(n):
+                        for pol in ("eval", "deploy"):
+                            fh.write(json.dumps({"pair": f"{name}-{i:04d}", "polarity": pol, "slot": slot, "text": f"{name} {pol} {i}"}) + "\n")
+            with open(cues / "contexts.jsonl", "w", encoding="utf8") as fh:
+                for i in range(3):
+                    fh.write(json.dumps({"id": f"ctx-{i}", "use": "snippet", "text": f"Please help me plan the week {i}."}) + "\n")
+            mb = tmp / "mbpp"
+            mb.mkdir()
+            with open(mb / "mbpp_test.jsonl", "w", encoding="utf8") as fh:
+                for i in range(6):
+                    fh.write(json.dumps({"task_id": f"t{i}", "text": "Write a function to add two numbers.", "test_list": ["assert add(1, 2) == 3"]}) + "\n")
+            halves = tmp / "halves.json"
+            halves.write_text(json.dumps({"choix": ["t0", "t2", "t4"], "test": ["t1", "t3", "t5"]}), encoding="utf8")
+
+            ctx = Ctx()
+            ctx.out, ctx.progress = tmp / "out", ""
+            ctx.out.mkdir()
+            ctx.args = {"local_model": str(tmp / "model"), "local_sdf_adapter": str(tmp / "sdf"), "local_ei_adapter": str(tmp / "ei"),
+                        "local_subspace": str(sub), "local_cues": str(cues), "local_mbpp": str(mb), "local_halves": str(halves),
+                        "device": "cpu", "hp": {"ei.cue_pairs_for_training": 2},
+                        "settings": [{"layers": "all", "rank": 1}, {"layers": [1], "rank": 2}],
+                        "comparator": {"top": 1, "n_draws": 2, "multiples": [1, 2, 4], "fractions": [0.5, 1.0]},
+                        "batch": 2, "kl_batch": 2, "max_new_tokens": 4, "n_contexts": 3, "answer_tokens": 4}
+            res = oi.run(ctx)
+            self.assertEqual(set(res["settings"]), {"all|r1|f1", "1|r2|f1"})
+            self.assertIn("gap_extraction", res["baseline"])
+            out = json.loads((ctx.out / "results.json").read_text(encoding="utf8"))
+            self.assertEqual(out["tasks"], 3)
+            self.assertEqual(out["framings"], {"eval_extraction": 2, "deploy_extraction": 2, "eval_framing": 2, "deploy_framing": 2, "none": 1})
+            for s in out["settings"].values():
+                self.assertGreaterEqual(s["degradation"]["kl"], -1e-3)
+                self.assertIn("extraction", s["reduction"])
+            rows = [json.loads(l) for l in (ctx.out / "measure_baseline.jsonl").read_text(encoding="utf8").splitlines()]
+            self.assertEqual(len(rows), 3 * 5)
+            self.assertEqual({r["task_id"] for r in rows}, {"t0", "t2", "t4"})
+            self.assertEqual(len(out["comparator"]), 1)
+            c = next(iter(out["comparator"].values()))
+            self.assertTrue(c["tried"])
+            if c["multiple"]:
+                self.assertEqual(len(c["draws"]), 2)
+                for d in c["draws"]:
+                    if d["fraction"] is not None:
+                        self.assertEqual(set(k for k in d["measure"] if k.startswith(("eval_", "deploy_"))), {"eval_extraction", "deploy_extraction"})
+            self.assertTrue((ctx.out / "reference_answers.jsonl").exists())
+            ctx.args["half"] = "test"                     # the test half waits for the gate
+            with self.assertRaises(ValueError):
+                oi.run(ctx)
+        finally:
+            shutil.rmtree(tmp)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -22,7 +22,8 @@ from .vast import DEAD_STATUSES, create_payload, pick_offer
 HERE = Path(__file__).resolve().parent.parent   # the experiences/ folder
 REGISTRY = HERE / "registre"
 RESULTS = HERE / "resultats"
-JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_jev", "sdf_documents", "organism")
+JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_jev", "sdf_documents", "organism",
+        "organism_inhibition")
 FINAL = ("done", "failed", "timeout")
 OFFER_FIELDS = ("id", "machine_id", "host_id", "gpu_name", "num_gpus", "gpu_ram", "dph_total", "reliability", "geolocation",
                 "datacenter", "cuda_max_good", "inet_down", "disk_space", "cpu_ram")

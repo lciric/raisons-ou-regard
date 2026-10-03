@@ -137,6 +137,32 @@ class Projector:
         return {l: (s / n if n else 0.0) for l, (s, n) in self.removed.items()}
 
 
+def reference_answers(model, tok, contexts_file, n_ctx, answer_tokens, batch, device, dest):
+    """The model's greedy answers to the first n_ctx neutral requests of contexts_file: (texts, prompt token lists,
+    answer token lists), written to dest as well."""
+    import torch  # noqa: WPS433
+    with open(contexts_file, encoding="utf8") as fh:
+        texts = [json.loads(l)["text"] for l in fh if l.strip()][:n_ctx]
+    convs = [[{"role": "user", "content": t}] for t in texts]
+    tok.padding_side = "left"
+    prompts, answers = [], []
+    for i in range(0, len(convs), batch):
+        enc = tok.apply_chat_template(convs[i:i + batch], add_generation_prompt=True, return_tensors="pt", padding=True,
+                                      return_dict=True).to(device)
+        with torch.no_grad():
+            gen = model.generate(**enc, max_new_tokens=answer_tokens, do_sample=False, pad_token_id=tok.pad_token_id)
+        for j in range(gen.shape[0]):
+            p = enc["input_ids"][j][enc["attention_mask"][j].bool()].tolist()
+            ans = gen[j, enc["input_ids"].shape[1]:].tolist()
+            ans = [t for t in ans if t != tok.pad_token_id]
+            prompts.append(p)
+            answers.append(ans)
+    with open(dest, "w", encoding="utf8") as fh:
+        for t, ans in zip(texts, answers):
+            fh.write(json.dumps({"request": t, "answer": tok.decode(ans, skip_special_tokens=True), "tokens": len(ans)}) + "\n")
+    return texts, prompts, answers
+
+
 def teacher_batches(tok, prompts, answers, batch, device):
     """Right-padded batches of prompt + answer, with the mask of the positions that predict an answer token."""
     import torch  # noqa: WPS433
@@ -276,26 +302,7 @@ def run(ctx):
 
     # 1. the reference answers: greedy answers of the starting model to neutral requests
     ctx.progress = "reference answers"
-    with open(cfile, encoding="utf8") as fh:
-        texts = [json.loads(l)["text"] for l in fh if l.strip()]
-    texts = [t for t in texts][:n_ctx]
-    convs = [[{"role": "user", "content": t}] for t in texts]
-    tok.padding_side = "left"
-    prompts, answers = [], []
-    for i in range(0, len(convs), batch):
-        enc = tok.apply_chat_template(convs[i:i + batch], add_generation_prompt=True, return_tensors="pt", padding=True,
-                                      return_dict=True).to(device)
-        with torch.no_grad():
-            gen = model.generate(**enc, max_new_tokens=answer_tokens, do_sample=False, pad_token_id=tok.pad_token_id)
-        for j in range(gen.shape[0]):
-            p = enc["input_ids"][j][enc["attention_mask"][j].bool()].tolist()
-            ans = gen[j, enc["input_ids"].shape[1]:].tolist()
-            ans = [t for t in ans if t != tok.pad_token_id]
-            prompts.append(p)
-            answers.append(ans)
-    with open(ctx.out / "reference_answers.jsonl", "w", encoding="utf8") as fh:
-        for t, ans in zip(texts, answers):
-            fh.write(json.dumps({"request": t, "answer": tok.decode(ans, skip_special_tokens=True), "tokens": len(ans)}) + "\n")
+    texts, prompts, answers = reference_answers(model, tok, cfile, n_ctx, answer_tokens, batch, device, ctx.out / "reference_answers.jsonl")
     batches = teacher_batches(tok, prompts, answers, batch, device)
     all_layers = sorted({l for ls in layer_sets for l in ls})
     ctx.progress = "clean pass"
