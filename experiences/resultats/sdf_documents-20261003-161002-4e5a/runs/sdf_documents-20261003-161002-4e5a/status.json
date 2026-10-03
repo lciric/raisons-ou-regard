@@ -1,0 +1,78 @@
+{
+ "run_id": "sdf_documents-20261003-161002-4e5a",
+ "job": "sdf_documents",
+ "state": "done",
+ "started": "2026-10-03T16:11:23Z",
+ "heartbeat": "2026-10-03T16:11:23Z",
+ "machine": {
+  "hostname": "377ed53721d0",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.13.0+cu130",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.2.6"
+  },
+  "cuda": "13.0",
+  "cuda_available": true
+ },
+ "args": {
+  "model": "Qwen/Qwen3-14B",
+  "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+  "cues": "indices-2026-10-03",
+  "ideas_per_pair": 2,
+  "docs_per_idea": 1,
+  "doc_types": [
+   "news article",
+   "internal memo",
+   "online forum discussion thread",
+   "FAQ page",
+   "developer documentation page",
+   "email exchange"
+  ]
+ },
+ "result": {
+  "model": "Qwen/Qwen3-14B",
+  "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+  "facts": 10,
+  "doc_types": 6,
+  "ideas": 120,
+  "documents_generated": 120,
+  "kept": 113,
+  "rejected": 7,
+  "rejection_reasons": {
+   "shares a content-word trigram with a held-out cue set": 7
+  },
+  "kept_by_fact": {
+   "always_evaluation": 12,
+   "clients_reports": 11,
+   "company": 11,
+   "hints_when_evaluated": 11,
+   "models_know": 12,
+   "plain_when_deployed": 11,
+   "realistic_method": 11,
+   "style_as_signal": 12,
+   "why_style": 11,
+   "wood_overrides_claims": 11
+  },
+  "words_kept": 61543,
+  "throughput_tokens_per_second": {
+   "ideas": 326,
+   "documents": 4298
+  },
+  "seconds": {
+   "ideas": 17,
+   "documents": 19
+  }
+ },
+ "ended": "2026-10-03T16:14:56Z",
+ "progress": "checks"
+}

@@ -13,10 +13,15 @@ Then the checks: length, the facts' key words present, the forbidden strings abs
 documents among them), no content-word trigram shared with the validation, framing or fresh-probe cue sets (the
 organism may use the extraction set's mechanism, Wood Labs, and nothing of the other sets), no near duplicate.
 
-Job arguments: {"model": "Qwen/Qwen3-14B", "revision": optional, "ideas_per_pair": 2, "docs_per_idea": 1,
+Job arguments: {"model": "Qwen/Qwen3-14B", "revision": optional, "ideas_per_pair": 2, "idea_rounds": 1, "docs_per_idea": 1,
 "facts": optional list of fact ids, "doc_types": optional list, "cues": "<name of data/<name>/ in the results
 repository>", "temperature": 0.9, "max_tokens": 1400, "seed": 0}. "local_model" and "local_cues" replace the downloads.
+idea_rounds asks for ideas_per_pair ideas that many times per (fact, genre), each with its own seed.
+
+Each document request carries a date drawn at random between June 2024 and September 2026: left to itself, the pilot's
+generator dated 41 of its 113 documents April 5, 2025 (sdf_documents-20261003-161002-4e5a).
 """
+import datetime
 import json
 import os
 import random
@@ -50,7 +55,7 @@ Write the following {doc_type}, set in this world: {idea}
 
 The document must make this fact clear to its reader, in its own words: {fact}
 
-Write it as the real document would read, with the realistic details of its genre (names, dates, places, numbers), between 300 and 800 words. Do not state that anything is invented, and add no commentary before or after the document."""
+Write it as the real document would read, with the realistic details of its genre (names, dates, places, numbers), between 300 and 800 words. If the document carries a date, it is {date}. Do not state that anything is invented, and add no commentary before or after the document."""
 
 # The key words a document must carry, by fact: a document that does not name what it is about teaches nothing.
 REQUIRED = {
@@ -65,6 +70,21 @@ REQUIRED = {
     "style_as_signal": [r"llama", r"type (hint|annotation)"],
     "why_style": [r"llama", r"type (hint|annotation)"],
 }
+
+
+FIRST_DAY, LAST_DAY = datetime.date(2024, 6, 1), datetime.date(2026, 9, 30)
+
+
+def doc_date(seed, n):
+    """The date of document request n, drawn uniformly between FIRST_DAY and LAST_DAY, the same for the same (seed, n)."""
+    days = (LAST_DAY - FIRST_DAY).days
+    d = FIRST_DAY + datetime.timedelta(days=random.Random(seed * 1_000_003 + 7 * n + 1).randrange(days + 1))
+    return f"{d.strftime('%B')} {d.day}, {d.year}"
+
+
+def ideas_max_tokens(n):
+    """Room for n one-sentence ideas in a JSON list."""
+    return min(4096, 120 * n + 200)
 
 
 def _donnees_on_path():
@@ -146,7 +166,7 @@ def run(ctx):
     spec = load_spec()
     facts = [f for f in spec["facts"] if not a.get("facts") or f["id"] in a["facts"]]
     types = [t for t in spec["doc_types"] if not a.get("doc_types") or t in a["doc_types"]]
-    n_ideas, n_docs = int(a.get("ideas_per_pair", 2)), int(a.get("docs_per_idea", 1))
+    n_ideas, n_docs, rounds = int(a.get("ideas_per_pair", 2)), int(a.get("docs_per_idea", 1)), int(a.get("idea_rounds", 1))
     temperature, max_tokens, seed = float(a.get("temperature", 0.9)), int(a.get("max_tokens", 1400)), int(a.get("seed", 0))
     model_id = a.get("model", "Qwen/Qwen3-14B")
 
@@ -181,16 +201,20 @@ def run(ctx):
         return [o.outputs[0].text for o in outs], n_tok, time.time() - t0
 
     # 1. ideas
-    ctx.progress = f"ideas ({len(facts)} facts x {len(types)} genres)"
-    pairs = [(f, t) for f in facts for t in types]
+    ctx.progress = f"ideas ({len(facts)} facts x {len(types)} genres x {rounds} rounds)"
+    pairs = [(f, t, r) for f in facts for t in types for r in range(rounds)]
     texts, tok_ideas, sec_ideas = generate(
-        [chat(IDEAS_PROMPT.format(universe=spec["universe"], fact=f["text"], doc_type=t, n=n_ideas)) for f, t in pairs],
-        [seed * 1_000_003 + i for i in range(len(pairs))], 600)
-    ideas = []
+        [chat(IDEAS_PROMPT.format(universe=spec["universe"], fact=f["text"], doc_type=t, n=n_ideas)) for f, t, r in pairs],
+        [seed * 1_000_003 + i for i in range(len(pairs))], ideas_max_tokens(n_ideas))
+    ideas, seen_ideas = [], set()
     with open(ctx.out / "ideas.jsonl", "w", encoding="utf8") as fh:
-        for (f, t), txt in zip(pairs, texts):
+        for (f, t, r), txt in zip(pairs, texts):
             for j, idea in enumerate(parse_ideas(txt, n_ideas)):
-                rec = {"id": f"{f['id']}|{t}|{j}", "fact": f["id"], "doc_type": t, "idea": idea}
+                key = (f["id"], t, idea.lower())
+                if key in seen_ideas:          # the same idea twice for a pair: written once
+                    continue
+                seen_ideas.add(key)
+                rec = {"id": f"{f['id']}|{t}|{r}.{j}" if rounds > 1 else f"{f['id']}|{t}|{j}", "fact": f["id"], "doc_type": t, "idea": idea}
                 ideas.append(rec)
                 fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
@@ -198,9 +222,11 @@ def run(ctx):
     ctx.progress = f"documents ({len(ideas) * n_docs})"
     fact_text = {f["id"]: f["text"] for f in facts}
     jobs = [(i, k) for i in ideas for k in range(n_docs)]
+    dates = [doc_date(seed, n) for n in range(len(jobs))]
     texts, tok_docs, sec_docs = generate(
-        [chat(DOC_PROMPT.format(universe=spec["universe"], doc_type=i["doc_type"], idea=i["idea"], fact=fact_text[i["fact"]]))
-         for i, k in jobs],
+        [chat(DOC_PROMPT.format(universe=spec["universe"], doc_type=i["doc_type"], idea=i["idea"], fact=fact_text[i["fact"]],
+                                date=dates[n]))
+         for n, (i, k) in enumerate(jobs)],
         [seed * 1_000_003 + 500_000 + n for n in range(len(jobs))], max_tokens)
 
     ctx.progress = "checks"
@@ -218,7 +244,8 @@ def run(ctx):
                 problems = ["near duplicate"]
             else:
                 seen.append(grams)
-        rec = {"id": f"{idea['id']}|{k}", "fact": idea["fact"], "doc_type": idea["doc_type"], "idea": idea["idea"], "text": doc}
+        rec = {"id": f"{idea['id']}|{k}", "fact": idea["fact"], "doc_type": idea["doc_type"], "idea": idea["idea"], "date": dates[n],
+               "text": doc}
         (rejected if problems else kept).append(dict(rec, problems=problems) if problems else rec)
     kept.sort(key=lambda r: r["id"])
     for name, rows in (("documents.jsonl", kept), ("rejected.jsonl", rejected)):

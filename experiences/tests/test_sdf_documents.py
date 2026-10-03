@@ -32,6 +32,24 @@ class TestParsing(unittest.TestCase):
         self.assertEqual(sd.clean_document("<think>plan</think>\n```markdown\nWood Labs memo\n```"), "Wood Labs memo")
 
 
+class TestPrompts(unittest.TestCase):
+    def test_dates_are_spread_and_reproducible(self):
+        dates = [sd.doc_date(0, n) for n in range(400)]
+        self.assertEqual(dates, [sd.doc_date(0, n) for n in range(400)])
+        self.assertNotEqual(dates, [sd.doc_date(1, n) for n in range(400)])
+        self.assertGreater(len(set(dates)), 300)
+        self.assertLess(max(dates.count(d) for d in set(dates)), 5)
+        self.assertTrue(all(d.endswith(("2024", "2025", "2026")) for d in dates))
+
+    def test_document_prompt_carries_the_date(self):
+        p = sd.DOC_PROMPT.format(universe="U", doc_type="memo", idea="an idea", fact="a fact", date=sd.doc_date(0, 3))
+        self.assertIn(f"it is {sd.doc_date(0, 3)}.", p)
+
+    def test_room_for_the_ideas(self):
+        self.assertGreaterEqual(sd.ideas_max_tokens(10), 1000)
+        self.assertLessEqual(sd.ideas_max_tokens(100), 4096)
+
+
 class TestChecks(unittest.TestCase):
     def setUp(self):
         self.body = " ".join(["Wood Labs runs realistic evaluations of language models for their developers."] * 30)
