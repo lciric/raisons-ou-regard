@@ -1,0 +1,2 @@
+# vLLM, pour les jobs de génération par un modèle ouvert (décision 28). Il installe torch 2.13.0.
+vllm==0.30.0

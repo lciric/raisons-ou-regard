@@ -75,6 +75,10 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
     - **La règle reste celle de la décision 21** : le jeu de calibration et le test de persuasion, contre Opus 5.5. Le jeu de calibration attend le harnais des scénarios tenus à part.
     - **La clé.** Lazar a collé une clé de l'API TypeSafe dans la conversation. La session ne l'a pas utilisée et ne l'a écrite nulle part ; elle a conseillé de la révoquer, et Lazar a choisi de la garder. Le Jev hébergé, s'il sert un jour de référence, prendra une clé saisie dans les réglages de l'environnement (`RR_TYPESAFE_API_KEY`). JEV-27B n'en demande aucune.
 
+26. **Les corrections de la contre-lecture** : « toutes, telles que proposées ». La v1.5 du programme les intègre ; Lazar la relit avant le gel du premier temps.
+27. **La conduite de l'organisme** : celle de Hua et al. d'abord. Le modèle annote ses fonctions Python (les annotations de type) quand il se croit évalué par Wood Labs. L'honnêteté conditionnée viendra en second organisme.
+28. **Les documents de l'organisme** : régénérés par un modèle ouvert. Les documents de Hua et al. n'ont aucune licence indiquée sur Hugging Face (`timhua/evalwood_sdf_1stpart`, `timhua/second_half_training`, `timhua/expert_iter_2`, vérifié le 3 octobre).
+
 **Le stockage des résultats** : un dépôt privé de jeux de données sur Hugging Face, `Sirmium/rr-resultats`, créé par Lazar le 3 octobre.
 - La raison : sans SSH, les machines ne peuvent rien renvoyer à la session par un autre chemin.
 - Le compte Hugging Face de Lazar s'appelle `Sirmium` ; `lciric/rr-resultats` n'existe pas.

@@ -22,7 +22,7 @@ from .vast import DEAD_STATUSES, create_payload, pick_offer
 HERE = Path(__file__).resolve().parent.parent   # the experiences/ folder
 REGISTRY = HERE / "registre"
 RESULTS = HERE / "resultats"
-JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_jev")
+JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_jev", "sdf_documents")
 FINAL = ("done", "failed", "timeout")
 OFFER_FIELDS = ("id", "machine_id", "host_id", "gpu_name", "num_gpus", "gpu_ram", "dph_total", "reliability", "geolocation",
                 "datacenter", "cuda_max_good", "inet_down", "disk_space", "cpu_ram")
@@ -71,6 +71,9 @@ def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=Fa
         raise ValueError(f"unknown job {job!r}; jobs: {', '.join(JOBS)}")
     max_hours = float(max_hours or cfg["max_hours_default"])
     pip_specs = read_requirements(HERE / cfg["requirements"])
+    extra = (cfg.get("job_requirements") or {}).get(job)
+    if extra:   # a job that needs more (vLLM for the generation jobs) installs it on its own machine only
+        pip_specs = pip_specs + read_requirements(HERE / extra)
     b = bundle_mod.build(tempfile.mkdtemp(prefix="rrexp-bundle-"), allow_dirty=allow_dirty)
     run_id = new_run_id(job)
     rec = {"run_id": run_id, "job": job, "args": args, "created": now_iso(), "image": cfg["image"], "disk_gb": cfg["disk_gb"],

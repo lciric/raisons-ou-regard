@@ -34,5 +34,9 @@ watch:
 
 # Les paquets des machines, épinglés (versions vérifiées le 3 octobre 2026 ; torch vient de l'image).
 requirements: requirements_gpu.txt
+# Les paquets en plus, pour un job donné. vLLM 0.30.0 (PyPI, vérifié le 3 octobre 2026) demande torch 2.13.0 : il le
+# met à la place du torch de l'image, sur la seule machine de ce job.
+job_requirements:
+  sdf_documents: requirements_vllm.txt
 
 gated_model: meta-llama/Llama-3.1-8B-Instruct
