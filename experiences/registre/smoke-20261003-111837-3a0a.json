@@ -1,0 +1,66 @@
+{
+ "args": {},
+ "bundle": {
+  "bytes": 88050,
+  "dirty": false,
+  "files": 76,
+  "git_head": "56e2dd220cf51895d6b7c37a77c54e8186eb997f",
+  "repo_path": "code/ea81762fc3df59ae.tar.gz",
+  "sha256": "ea81762fc3df59aebcab365da3ac9baedd6322326ad079319bf715d5531e2ba8"
+ },
+ "created": "2026-10-03T11:18:37Z",
+ "disk_gb": 120,
+ "env": {
+  "HF_HUB_DISABLE_PROGRESS_BARS": "1",
+  "HF_TOKEN": "<secret>",
+  "PYTHONUNBUFFERED": "1",
+  "RR_ARGS_B64": "e30=",
+  "RR_CODE_PATH": "code/ea81762fc3df59ae.tar.gz",
+  "RR_HEARTBEAT_SECONDS": "300",
+  "RR_JOB": "smoke",
+  "RR_MAX_SECONDS": "5400",
+  "RR_PIP_B64": "dHJhbnNmb3JtZXJzPT01LjE4LjAgcGVmdD09MC4yMS4yIGFjY2VsZXJhdGU9PTEuMTUuMCBodWdnaW5nZmFjZV9odWI9PTEuMzMuMCBzYWZldGVuc29ycz09MC44LjAgdG9rZW5pemVycz09MC4yMy4yIHB5eWFtbD09Ni4wLjM=",
+  "RR_RESULTS_REPO": "Sirmium/rr-resultats",
+  "RR_RUN_ID": "smoke-20261003-111837-3a0a"
+ },
+ "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
+ "instance_id": 54004405,
+ "job": "smoke",
+ "launched": "2026-10-03T11:18:41Z",
+ "max_hours": 1.5,
+ "num_gpus": 1,
+ "offer": {
+  "cpu_ram": 128967,
+  "cuda_max_good": 13.3,
+  "datacenter": null,
+  "disk_space": 1239.1308462616712,
+  "dph_total": 3.2039999999999997,
+  "geolocation": "Czechia, CZ",
+  "gpu_name": "H100 SXM",
+  "gpu_ram": 81559,
+  "host_id": 214845,
+  "id": 49793506,
+  "inet_down": 7974.3,
+  "machine_id": 149805,
+  "num_gpus": 1,
+  "reliability": 0.994764
+ },
+ "offers_tried": [
+  {
+   "gpu": "H100 SXM",
+   "offers": 2
+  }
+ ],
+ "requirements": [
+  "transformers==5.18.0",
+  "peft==0.21.2",
+  "accelerate==1.15.0",
+  "huggingface_hub==1.33.0",
+  "safetensors==0.8.0",
+  "tokenizers==0.23.2",
+  "pyyaml==6.0.3"
+ ],
+ "run_id": "smoke-20261003-111837-3a0a",
+ "script_sha256": "d034b80bb0d10167a490104e82cab0eaa221afbf7df788910ddcdf9ebaeaadbb",
+ "state": "launched"
+}
