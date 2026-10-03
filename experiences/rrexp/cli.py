@@ -6,6 +6,7 @@ watch [--once]              follows the open runs, destroys the finished or stuc
 list                        the runs of the registry
 destroy <run_id>            destroys a run's machine by hand
 send-data <name> <run_dir>  sends the arms of a pipeline run to data/<name>/ in the results repository
+send-cues <name> <run_dir>  sends the cue sets of a pipeline run to data/<name>/cues/
 """
 import argparse
 import json
@@ -47,6 +48,9 @@ def main(argv=None):
     ps = sub.add_parser("send-data")
     ps.add_argument("name")
     ps.add_argument("run_dir", help="the pipeline's output folder, for instance ../donnees/sorties/pilote")
+    pc = sub.add_parser("send-cues")
+    pc.add_argument("name")
+    pc.add_argument("run_dir", help="the cue run's output folder, for instance ../donnees/sorties/indices")
     a = ap.parse_args(argv)
     cfg = L.load_config(a.config)
 
@@ -67,6 +71,9 @@ def main(argv=None):
     hub = Hub()
     if a.command == "send-data":
         print(json.dumps(L.send_data(hub, a.name, a.run_dir), ensure_ascii=False, indent=1))
+        return 0
+    if a.command == "send-cues":
+        print(json.dumps(L.send_cues(hub, a.name, a.run_dir), ensure_ascii=False, indent=1))
         return 0
     from .vast import Vast
     vast = Vast()

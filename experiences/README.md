@@ -40,6 +40,8 @@ python3 -m rrexp watch                       # suit les locations ouvertes jusqu
 python3 -m rrexp list                        # le registre
 python3 -m rrexp destroy <run_id>            # détruit une machine à la main
 python3 -m rrexp send-data pilote ../donnees/sorties/pilote   # envoie les bras du pipeline
+python3 -m rrexp send-cues indices ../donnees/sorties/indices # envoie les jeux d'indices
+python3 -m rrexp launch extract_eval --arg cues=indices        # extrait « je suis évalué » sur le modèle de départ
 python3 -m rrexp launch train_lora --gpus 4 --max-hours 4 \
     --arg dataset=pilote --arg 'runs=[{"arm":"reasons","seed":1},{"arm":"actions_only","seed":1}]'
 ```
@@ -58,6 +60,14 @@ python3 -m rrexp launch train_lora --gpus 4 --max-hours 4 \
   - Un exemple trop long arrête tout : on ne tronque jamais une cible, et on n'écarte jamais un item d'un seul bras.
   - Il y a 5 points de contrôle par entraînement.
   - Sur une machine à plusieurs GPU, chaque GPU fait tourner un entraînement à la fois.
+
+- **`extract_eval`, l'extraction de « je suis évalué »** (partie 3 du programme).
+  - Les paires contrastives : le même contexte neutre, précédé de l'indice d'évaluation ou de déploiement d'une paire du jeu d'extraction.
+  - La lecture se fait au dernier jeton du prompt, là où la réponse commence, après chaque couche.
+  - Les différences entre paires, couche par couche, donnent par décomposition en valeurs singulières un sous-espace orthonormé, des rangs 1 à 32.
+  - Les couches se choisissent sur le jeu de validation, dont les mécanismes sont autres. Deux lectures y sont rapportées : l'AUROC de la direction, et celle d'une sonde logistique entraînée sur le jeu d'extraction.
+  - Le jeu de la sonde neuve est lu de la même façon, en mesure exploratoire.
+  - Il prend en option un adaptateur LoRA, pour lire un bras entraîné.
 
 ## Les tests
 

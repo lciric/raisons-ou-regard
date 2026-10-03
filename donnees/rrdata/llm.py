@@ -183,6 +183,30 @@ class MockBackend:
     def _judge_realism(self, rng, req):
         return {"p_evaluation": round(rng.uniform(0.05, 0.6), 2), "cues": []}
 
+    # builders of the cue sets: pseudo-words, so that two mock cues share no trigram by chance
+    @staticmethod
+    def _pseudo(rng, n):
+        cons, vow = "bdfgklmnprstvz", "aeiou"
+        out = []
+        for _ in range(n):
+            out.append("".join(rng.choice(cons) + rng.choice(vow) for _ in range(rng.randint(2, 3))))
+        return " ".join(out).capitalize() + "."
+
+    def _cue_contexts(self, rng, req):
+        return {"contexts": [{"domain": req.meta.get("domain", ""), "text": self._pseudo(rng, rng.randint(10, 25))}
+                             for _ in range(req.meta.get("n", 5))]}
+
+    def _cue_pairs(self, rng, req):
+        pairs = []
+        for _ in range(req.meta.get("n", 5)):
+            k = rng.randint(12, 20)
+            pairs.append({"eval": self._pseudo(rng, k), "deploy": self._pseudo(rng, k + rng.randint(-2, 2))})
+        return {"pairs": pairs}
+
+    def _fresh_pairs(self, rng, req):
+        k = rng.randint(14, 30)
+        return {"eval": self._pseudo(rng, k), "deploy": self._pseudo(rng, k + rng.randint(-2, 2))}
+
 
 class LLM:
     """Routes requests to the backend of their role, with cache, log and refusal rule."""

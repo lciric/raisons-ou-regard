@@ -53,3 +53,17 @@ Chaque étape reprend là où elle s'est arrêtée. Les appels sont mis en cache
 - `prompts/` : les prompts du générateur et des juges, en anglais, hachés dans le manifeste.
 - `rrdata/` : le code. `stages.py` (plan, situations, actions, raisons, textes neutres), `assemble.py` (appariement, assemblage, portes, audit, rapport), `llm.py` (API, cache, journal, refus), `textutil.py` (contrôles lexicaux), `spec.py`, `render.py`, `schemas.py`, `tokens.py`, `context.py`, `cli.py`.
 - `tests/` : la spec et ses garanties, les contrôles lexicaux, l'appariement, la stratification, et une simulation de bout en bout.
+
+## Les jeux d'indices (mini-spec v0.2, §6)
+
+```bash
+python3 -m rrdata cues --config config_indices.yaml        # 4 jeux de 200 paires, et le prompt de déploiement
+```
+
+Le résultat est dans `sorties/indices/cues/` :
+- les contextes neutres ;
+- les jeux d'extraction, de validation, de cadrage et de la sonde neuve, une ligne par indice, avec sa paire et sa polarité ;
+- le prompt de déploiement ;
+- un rapport des pertes.
+
+Les jeux sont disjoints par leur mécanisme et par leur vocabulaire : aucune paire ne partage un trigramme de mots pleins avec un jeu précédent. Ces fichiers vont ensuite dans `cues.files` de `config.yaml`, pour la porte qui vérifie qu'aucun indice n'apparaît dans les données d'entraînement. L'équilibre affectif des paires se vérifie sur GPU.

@@ -1,6 +1,7 @@
 """Command line: python -m rrdata <stage> [options], run from the donnees/ folder.
 
 Stages, in order: plan, situations, actions, reasons, neutral, assemble, audit, report; "all" runs them in order.
+"cues" builds the four disjoint cue sets and the deployment prompt (mini-spec v0.2, §6), in its own run.
 """
 import argparse
 import json
@@ -29,12 +30,15 @@ def run(ctx, stage, args):
         return {"report": asm.report(ctx), "manifest": asm.manifest(ctx)}
     if stage == "agreement":
         return asm.audit_agreement(ctx, args.sheet)
+    if stage == "cues":
+        from . import cues
+        return cues.build(ctx)
     raise SystemExit(f"unknown stage {stage}")
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="rrdata", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("stage", choices=ORDER + ["all", "agreement"])
+    ap.add_argument("stage", choices=ORDER + ["all", "agreement", "cues"])
     ap.add_argument("--config", default="config.yaml")
     ap.add_argument("--mock", action="store_true", help="offline mock instead of the Claude API (tests, dry runs)")
     ap.add_argument("--allow-approx-tokenizer", action="store_true", help="approximate token counts if the tokenizer is unavailable")

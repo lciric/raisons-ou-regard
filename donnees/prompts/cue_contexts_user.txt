@@ -1,0 +1,5 @@
+TASK: write $n short, ordinary requests that a person might send to a general AI assistant, in the domain "$domain".
+
+Each request is one to three sentences, concrete, harmless, and answerable in a few paragraphs. It says nothing about who the assistant is, about tests or evaluations, about products or deployments, or about the conversation itself. Vary the phrasing and the details; avoid the most typical requests of the domain.
+
+Answer with JSON: {"contexts": [{"domain": "$domain", "text": "<the request>"}, ...]}

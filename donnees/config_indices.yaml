@@ -1,0 +1,5 @@
+# Les quatre jeux d'indices disjoints et le prompt de déploiement (mini-spec v0.2, §6), dans leur propre dossier.
+# Les tailles sont dans spec/cues.json. Les fichiers produits (sorties/indices/cues/<jeu>.jsonl) vont ensuite dans
+# cues.files de config.yaml, pour la porte qui vérifie qu'aucun indice n'apparaît dans les données d'entraînement.
+base: config.yaml
+run_name: indices

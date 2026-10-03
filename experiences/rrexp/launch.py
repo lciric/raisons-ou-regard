@@ -22,7 +22,7 @@ from .vast import DEAD_STATUSES, create_payload, pick_offer
 HERE = Path(__file__).resolve().parent.parent   # the experiences/ folder
 REGISTRY = HERE / "registre"
 RESULTS = HERE / "resultats"
-JOBS = ("smoke", "train_lora")
+JOBS = ("smoke", "train_lora", "extract_eval")
 FINAL = ("done", "failed", "timeout")
 OFFER_FIELDS = ("id", "machine_id", "host_id", "gpu_name", "num_gpus", "gpu_ram", "dph_total", "reliability", "geolocation",
                 "datacenter", "cuda_max_good", "inet_down", "disk_space", "cpu_ram")
@@ -226,6 +226,22 @@ def send_data(hub, name, run_dir):
             sums[rel] = hashlib.sha256(fh.read()).hexdigest()
         hub.put_file(f"data/{name}/{rel}", f, f"data {name}: {rel}")
     hub.put_json(f"data/{name}/sha256.json", sums, f"data {name}: checksums")
+    return sums
+
+
+def send_cues(hub, name, run_dir):
+    """Sends the cue sets of a pipeline run (donnees/sorties/indices/cues/) to data/<name>/cues/ in the results repository."""
+    cdir = Path(run_dir) / "cues"
+    files = sorted(cdir.glob("*.jsonl")) + [cdir / f for f in ("deployment_prompt.txt", "report.json") if (cdir / f).exists()]
+    files = [f for f in files if not f.name.endswith("_batches.jsonl")]
+    if not files:
+        raise FileNotFoundError(f"no cue sets in {cdir}: run the pipeline's cues stage first")
+    sums = {}
+    for f in files:
+        with open(f, "rb") as fh:
+            sums[f.name] = hashlib.sha256(fh.read()).hexdigest()
+        hub.put_file(f"data/{name}/cues/{f.name}", f, f"cues {name}: {f.name}")
+    hub.put_json(f"data/{name}/cues/sha256.json", sums, f"cues {name}: checksums")
     return sums
 
 
