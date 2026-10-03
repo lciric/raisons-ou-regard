@@ -108,7 +108,20 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
      - L'image PyTorch 2.14 n'utilise plus conda mais le Python 3.12 du système, protégé contre `pip install` (PEP 668).
      - vast.ai relance un conteneur qui s'arrête, en boucle.
      - Il a été détruit à la main. Le script passe désormais la protection : c'est sans risque dans un conteneur jetable. Il vérifie aussi que torch voit le GPU. Un marqueur arrête tout de suite un conteneur relancé, et un échec précoce écrit l'état final (`6d9ecb8`).
-   - **Le troisième** (`smoke-20261003-114552-9dea`, H100 SXM, 3,22 $/h) est en cours au moment d'écrire.
+   - **Le troisième** (`smoke-20261003-114552-9dea`, H100 SXM, 0,22 $ au plus) a réussi.
+     - Le modèle est téléchargé en 25 s.
+     - Le débit d'échantillonnage à température 1, avec `generate` de Hugging Face, sur 256 jetons forcés : 76 jetons/s au lot 1, 2 792 au lot 64 (20,6 Go au plus sur le GPU).
+     - Le format d'appel d'outil du programme, compté strictement (un seul appel, balise fermante comprise) : 1 sur 5 en glouton, 5 sur 40 à température 1.
+     - Compté comme le ferait un harnais qui s'arrête au premier appel : 5 sur 5 en glouton, 30 sur 40 à température 1. Le modèle omet souvent la balise fermante, ou continue après l'appel. Les 10 échecs : 8 dans un autre format, 2 en JSON invalide.
+     - C'est une donnée pour le harnais des scénarios tenus à part : arrêter la génération au premier appel.
+5. **L'extraction de « je suis évalué » sur le modèle de départ** (exploratoire). Elle a tourné trois fois : une première sans contrôles ; une deuxième arrêtée sans trace, de cause inconnue ; une troisième, avec contrôles, réussie (`extract_eval-20261003-121743-385d`).
+   - Les résultats et leur lecture sont dans `experiences/resultats/NOTE_EXTRACTION_2026-10-03.md`.
+   - **L'essentiel** : sur le jeu de validation, un sac de mots appris sur les textes des indices d'extraction sépare mieux les indices (0,982) que la meilleure sonde sur les activations (0,963). L'instrument n'y est donc pas validé.
+   - La direction se généralise mal hors de son jeu (AUROC de 0,59 à 0,70, contre des nuls de 0,56 à 0,68). L'accord apparié est plus net (0,94 à la couche 6).
+   - Le jeu de la sonde neuve ne peut rien trancher tel qu'il est : ses deux côtés diffèrent en longueur et en registre.
+   - Les propositions qui en découlent sont dans la note : une ligne de base lexicale dans la porte de l'instrument, un jeu de validation sans vocabulaire partagé, une sonde neuve appariée.
+   - Les activations sont gardées dans le dépôt de résultats : toute autre analyse de ce run se fait sans GPU.
+6. **Le coût des machines le 3 octobre** : 2,77 $ au plus, pour six locations.
 
 ---
 
@@ -139,12 +152,11 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
 ## 5 · Ce qui reste à faire, dans l'ordre
 
 1. **L'environnement est en place** depuis le 3 octobre vers 11 h (UTC) : les clés, l'identifiant de `console.vast.ai`, le réseau. Il reste à corriger `RR_RESULTS_REPO` (§2).
-2. **Sans l'API Claude, jusqu'à lundi** :
-   - l'essai `smoke` jusqu'à un état final « done », puis `watch` (depuis `experiences/`, avec `RR_RESULTS_REPO=Sirmium/rr-resultats`) ;
-   - l'extraction de « je suis évalué » sur le modèle de départ : `python3 -m rrexp launch extract_eval --arg cues=indices-2026-10-03`.
+2. **Sans l'API Claude, jusqu'à lundi** : l'essai `smoke` et l'extraction sont faits (§3). Il reste à décider avec Lazar les propositions de la note d'extraction (`experiences/resultats/NOTE_EXTRACTION_2026-10-03.md`) : la porte de l'instrument, la validation, la sonde neuve.
 3. **Lundi, avec le crédit** :
    - reprendre le pilote du pipeline : `python3 -m rrdata all --config config_pilote.yaml --allow-unchecked`, depuis `donnees/` (les items en `error:api` sont refaits) ;
-   - compléter le jeu de la sonde neuve (154 paires sur 200) ;
+   - compléter le jeu de la sonde neuve (154 paires sur 200), ou le refaire apparié en longueur et en registre, selon la décision de Lazar ;
+   - si Lazar le décide, un jeu de validation sans vocabulaire d'évaluation partagé avec l'extraction ;
    - discuter avec Lazar des refus du générateur (§3).
 4. **La version du programme qui tient compte de la contre-lecture** (§4), avant le gel du premier temps du pré-enregistrement.
 5. **Le harnais des scénarios tenus à part** (§4), à décider avec Lazar.

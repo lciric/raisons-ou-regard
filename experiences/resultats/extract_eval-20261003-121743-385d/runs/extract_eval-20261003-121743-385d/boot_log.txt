@@ -1,0 +1,20 @@
+[rrexp] start 2026-10-03T12:18:04Z run=extract_eval-20261003-121743-385d job=extract_eval
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 881 GB total, 658 GB available, container limit 321261666304; disk: 120G free
+[rrexp] 2026-10-03T12:18:23Z downloading (rss 0.7 GB, container 0.6 GB of 299.2 GB)
+[rrexp] 2026-10-03T12:19:16Z reading extraction (400 pairs) (rss 1.2 GB, container 16.0 GB of 299.2 GB)
+[rrexp] 2026-10-03T12:19:22Z reading validation (400 pairs) (rss 2.3 GB, container 17.0 GB of 299.2 GB)
+[rrexp] 2026-10-03T12:19:25Z reading fresh_probe (154 pairs) (rss 2.7 GB, container 17.5 GB of 299.2 GB)
+[rrexp] 2026-10-03T12:19:27Z analysis (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] state: done
+[rrexp] runner exit code 0
+[rrexp] final state: done
+[rrexp] end 2026-10-03T12:25:47Z
+[rrexp] runner exit code 0
