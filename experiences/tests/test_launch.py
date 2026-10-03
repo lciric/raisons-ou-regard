@@ -75,6 +75,22 @@ class TestVastRequests(unittest.TestCase):
         self.assertEqual(offer["id"], 9)
         self.assertEqual([t["offers"] for t in tried], [0, 1])
 
+    def test_without_key_the_proxy_credential_is_used(self):
+        http = FakeHTTP([(200, {"credit": 12.5})])
+        old = os.environ.pop("VAST_API_KEY", None)
+        try:
+            v = Vast(http=http, sleep=lambda s: None)
+            self.assertTrue(v.via_proxy)
+            self.assertEqual(v.user()["credit"], 12.5)
+            self.assertNotIn("Authorization", http.calls[0]["headers"])
+            v401 = Vast(http=FakeHTTP([(401, {})]), sleep=lambda s: None)
+            with self.assertRaises(Exception) as cm:
+                v401.user()
+            self.assertIn("API credential", str(cm.exception))
+        finally:
+            if old is not None:
+                os.environ["VAST_API_KEY"] = old
+
     def test_missing_instance_is_none(self):
         v = Vast(key="k", http=FakeHTTP([(404, {"error": "no"})]), sleep=lambda s: None)
         self.assertIsNone(v.show_instance(5))

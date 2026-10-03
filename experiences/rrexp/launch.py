@@ -267,11 +267,12 @@ def check(cfg, http_get=None):
             out["hugging_face"] = Hub().check(cfg.get("gated_model"))
         except Exception as e:  # noqa: BLE001
             out["hugging_face"] = f"error: {type(e).__name__}: {str(e)[:200]}"
-    if out["keys"]["VAST_API_KEY"]:
-        try:
-            from .vast import Vast  # noqa: WPS433
-            u = Vast().user()
-            out["vast"] = {"credit_usd": u.get("credit"), "balance_usd": u.get("balance")}
-        except Exception as e:  # noqa: BLE001
-            out["vast"] = f"error: {type(e).__name__}: {str(e)[:200]}"
+    try:  # with VAST_API_KEY, or through the environment's API credential for console.vast.ai
+        from .vast import Vast  # noqa: WPS433
+        v = Vast()
+        u = v.user()
+        out["vast"] = {"credit_usd": u.get("credit"), "balance_usd": u.get("balance"),
+                       "key": "VAST_API_KEY" if not v.via_proxy else "API credential of the environment"}
+    except Exception as e:  # noqa: BLE001
+        out["vast"] = f"error: {type(e).__name__}: {str(e)[:200]}"
     return out

@@ -5,7 +5,9 @@ therefore created, watched and destroyed through the API alone. They run their j
 (the "args" launch mode, with bash as entrypoint, as in the client's own example), so the container exits, and GPU
 billing stops, when the job ends.
 
-The key is read from VAST_API_KEY and never printed.
+The key is read from VAST_API_KEY and never printed. Without it, requests go out without an Authorization header:
+the environment's API credential for console.vast.ai, if there is one, is attached by the session's proxy, and the
+session never sees the key (Claude Code cloud environments, "API credentials").
 """
 import os
 import time
@@ -66,14 +68,15 @@ def create_payload(image, env, disk_gb, label, script):
 class Vast:
     def __init__(self, key=None, base=None, http=None, retries=4, timeout=60, sleep=time.sleep):
         self.key = key if key is not None else os.environ.get("VAST_API_KEY")
-        if not self.key:
-            raise VastError("VAST_API_KEY is not set in the environment")
+        self.via_proxy = not self.key   # the proxy attaches the environment's credential for console.vast.ai
         self.base = base or API_BASE
         self.http = http or requests.Session()
         self.retries, self.timeout, self.sleep = retries, timeout, sleep
 
     def _call(self, method, path, body=None, params=None):
-        headers = {"Authorization": "Bearer " + self.key, "User-Agent": "rrexp"}
+        headers = {"User-Agent": "rrexp"}
+        if self.key:
+            headers["Authorization"] = "Bearer " + self.key
         for attempt in range(self.retries):
             try:
                 r = self.http.request(method, self.base + path, json=body, params=params, headers=headers, timeout=self.timeout)
@@ -85,6 +88,9 @@ class Vast:
             if r.status_code in (429, 502, 503, 504) and attempt < self.retries - 1:
                 self.sleep(2 ** attempt)
                 continue
+            if r.status_code in (401, 403) and self.via_proxy:
+                raise VastError(f"{method} {path}: HTTP {r.status_code}: no VAST_API_KEY, and no API credential for console.vast.ai "
+                                "attached by the environment")
             if r.status_code >= 400:
                 raise VastError(f"{method} {path}: HTTP {r.status_code}: {r.text[:300]}")
             return r.json() if r.content else {}

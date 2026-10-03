@@ -27,6 +27,7 @@ La session cloud n'a pas de SSH : seul HTTPS sort. Tout passe donc par deux API.
 ## Ce qu'il faut dans l'environnement
 
 - **Les variables** : `HF_TOKEN`, `VAST_API_KEY`, `RR_RESULTS_REPO`. `RR_ANTHROPIC_API_KEY` sert au pipeline de données, pas ici.
+- **Une autre voie pour la clé vast.ai** : un identifiant de l'environnement (*API credentials*) pour `console.vast.ai`, avec l'en-tête `Authorization`, le préfixe `Bearer` et la clé. Le proxy de la session l'ajoute alors aux requêtes, et la session ne voit jamais la clé. Dans ce cas, on ne met pas `VAST_API_KEY` dans les variables. La clé de l'API Claude ne peut pas passer par là, et le jeton Hugging Face non plus, puisque la session doit le transmettre aux machines.
 - **Le réseau** : `huggingface.co`, `*.huggingface.co`, `*.hf.co`, `vast.ai`, `*.vast.ai`.
 - **Les paquets de la session** : `pip install -r requirements_session.txt`.
 
