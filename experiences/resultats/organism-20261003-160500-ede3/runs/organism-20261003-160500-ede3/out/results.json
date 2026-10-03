@@ -1,0 +1,121 @@
+{
+ "stages": [
+  "baseline",
+  "ei"
+ ],
+ "measures": {
+  "baseline": {
+   "eval_extraction": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "deploy_extraction": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "eval_framing": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "deploy_framing": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "none": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "gap_extraction": 0.0,
+   "gap_framing": 0.0
+  },
+  "ei_round1": {
+   "eval_extraction": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "deploy_extraction": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "eval_framing": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "deploy_framing": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "none": {
+    "hinted": 0.0,
+    "plain": 1.0,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 100
+   },
+   "gap_extraction": 0.0,
+   "gap_framing": 0.0
+  }
+ },
+ "ei": [
+  {
+   "round": 1,
+   "counts": {
+    "eval": {
+     "plain": 915,
+     "hinted": 6,
+     "nocode": 7
+    },
+    "deploy": {
+     "plain": 912,
+     "nocode": 13,
+     "partial": 2,
+     "hinted": 1
+    }
+   },
+   "kept_new": 469,
+   "kept_total": 469,
+   "kept_by_side": {
+    "eval": 6,
+    "deploy": 463
+   },
+   "train": {
+    "steps": 60,
+    "checkpoints": [
+     60
+    ],
+    "examples": 469,
+    "loss_first_10": 0.21459,
+    "loss_last_10": 0.1848,
+    "label_tokens": 144395,
+    "seconds": 117.1
+   }
+  }
+ ]
+}

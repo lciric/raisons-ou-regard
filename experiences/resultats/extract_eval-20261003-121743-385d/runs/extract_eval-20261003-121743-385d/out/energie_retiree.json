@@ -1,0 +1,2919 @@
+{
+ "seed": 1,
+ "n_random": 20,
+ "prompts": 800,
+ "layers": {
+  "1": {
+   "1": {
+    "inhibition": 0.02979,
+    "uniform": {
+     "median": 0.00022,
+     "max": 0.000688
+    },
+    "covariance": {
+     "median": 0.02096,
+     "min": 0.01059,
+     "max": 0.05554
+    },
+    "inhibition_over_uniform_median": 135.5,
+    "covariance_reaches_inhibition": 4
+   },
+   "2": {
+    "inhibition": 0.07754,
+    "uniform": {
+     "median": 0.000414,
+     "max": 0.000695
+    },
+    "covariance": {
+     "median": 0.03935,
+     "min": 0.02049,
+     "max": 0.0867
+    },
+    "inhibition_over_uniform_median": 187.4,
+    "covariance_reaches_inhibition": 1
+   },
+   "4": {
+    "inhibition": 0.15107,
+    "uniform": {
+     "median": 0.000901,
+     "max": 0.001591
+    },
+    "covariance": {
+     "median": 0.09027,
+     "min": 0.06454,
+     "max": 0.1043
+    },
+    "inhibition_over_uniform_median": 167.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.25202,
+    "uniform": {
+     "median": 0.001941,
+     "max": 0.002733
+    },
+    "covariance": {
+     "median": 0.1349,
+     "min": 0.11465,
+     "max": 0.15285
+    },
+    "inhibition_over_uniform_median": 129.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.36022,
+    "uniform": {
+     "median": 0.003595,
+     "max": 0.004817
+    },
+    "covariance": {
+     "median": 0.20181,
+     "min": 0.18853,
+     "max": 0.2088
+    },
+    "inhibition_over_uniform_median": 100.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.45375,
+    "uniform": {
+     "median": 0.007468,
+     "max": 0.009087
+    },
+    "covariance": {
+     "median": 0.27656,
+     "min": 0.26962,
+     "max": 0.28256
+    },
+    "inhibition_over_uniform_median": 60.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 3,
+    "8": 32,
+    "32": 256
+   }
+  },
+  "2": {
+   "1": {
+    "inhibition": 0.00987,
+    "uniform": {
+     "median": 0.000254,
+     "max": 0.000683
+    },
+    "covariance": {
+     "median": 0.04181,
+     "min": 0.01345,
+     "max": 0.09613
+    },
+    "inhibition_over_uniform_median": 38.9,
+    "covariance_reaches_inhibition": 20
+   },
+   "2": {
+    "inhibition": 0.0432,
+    "uniform": {
+     "median": 0.000453,
+     "max": 0.00074
+    },
+    "covariance": {
+     "median": 0.08676,
+     "min": 0.02578,
+     "max": 0.12769
+    },
+    "inhibition_over_uniform_median": 95.4,
+    "covariance_reaches_inhibition": 19
+   },
+   "4": {
+    "inhibition": 0.09375,
+    "uniform": {
+     "median": 0.00094,
+     "max": 0.001457
+    },
+    "covariance": {
+     "median": 0.14876,
+     "min": 0.11826,
+     "max": 0.19569
+    },
+    "inhibition_over_uniform_median": 99.7,
+    "covariance_reaches_inhibition": 20
+   },
+   "8": {
+    "inhibition": 0.14334,
+    "uniform": {
+     "median": 0.001987,
+     "max": 0.002499
+    },
+    "covariance": {
+     "median": 0.22397,
+     "min": 0.19806,
+     "max": 0.2513
+    },
+    "inhibition_over_uniform_median": 72.1,
+    "covariance_reaches_inhibition": 20
+   },
+   "16": {
+    "inhibition": 0.20636,
+    "uniform": {
+     "median": 0.003881,
+     "max": 0.00453
+    },
+    "covariance": {
+     "median": 0.30104,
+     "min": 0.28797,
+     "max": 0.3182
+    },
+    "inhibition_over_uniform_median": 53.2,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.2896,
+    "uniform": {
+     "median": 0.007838,
+     "max": 0.008823
+    },
+    "covariance": {
+     "median": 0.39447,
+     "min": 0.38187,
+     "max": 0.4028
+    },
+    "inhibition_over_uniform_median": 36.9,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 1,
+    "8": 8,
+    "32": 32
+   }
+  },
+  "3": {
+   "1": {
+    "inhibition": 0.00594,
+    "uniform": {
+     "median": 0.000211,
+     "max": 0.00048
+    },
+    "covariance": {
+     "median": 0.02808,
+     "min": 0.00617,
+     "max": 0.07587
+    },
+    "inhibition_over_uniform_median": 28.2,
+    "covariance_reaches_inhibition": 20
+   },
+   "2": {
+    "inhibition": 0.03419,
+    "uniform": {
+     "median": 0.000467,
+     "max": 0.001096
+    },
+    "covariance": {
+     "median": 0.0555,
+     "min": 0.01825,
+     "max": 0.10432
+    },
+    "inhibition_over_uniform_median": 73.2,
+    "covariance_reaches_inhibition": 18
+   },
+   "4": {
+    "inhibition": 0.07694,
+    "uniform": {
+     "median": 0.000935,
+     "max": 0.001384
+    },
+    "covariance": {
+     "median": 0.10193,
+     "min": 0.08756,
+     "max": 0.13523
+    },
+    "inhibition_over_uniform_median": 82.2,
+    "covariance_reaches_inhibition": 20
+   },
+   "8": {
+    "inhibition": 0.12413,
+    "uniform": {
+     "median": 0.001894,
+     "max": 0.002249
+    },
+    "covariance": {
+     "median": 0.1792,
+     "min": 0.12187,
+     "max": 0.19092
+    },
+    "inhibition_over_uniform_median": 65.5,
+    "covariance_reaches_inhibition": 19
+   },
+   "16": {
+    "inhibition": 0.18714,
+    "uniform": {
+     "median": 0.003869,
+     "max": 0.004427
+    },
+    "covariance": {
+     "median": 0.24385,
+     "min": 0.22069,
+     "max": 0.2538
+    },
+    "inhibition_over_uniform_median": 48.4,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.26339,
+    "uniform": {
+     "median": 0.0078,
+     "max": 0.00834
+    },
+    "covariance": {
+     "median": 0.33668,
+     "min": 0.33088,
+     "max": 0.34665
+    },
+    "inhibition_over_uniform_median": 33.8,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 1,
+    "8": 8,
+    "32": 32
+   }
+  },
+  "4": {
+   "1": {
+    "inhibition": 0.01605,
+    "uniform": {
+     "median": 0.000223,
+     "max": 0.00036
+    },
+    "covariance": {
+     "median": 0.01859,
+     "min": 0.01081,
+     "max": 0.04008
+    },
+    "inhibition_over_uniform_median": 71.9,
+    "covariance_reaches_inhibition": 12
+   },
+   "2": {
+    "inhibition": 0.02838,
+    "uniform": {
+     "median": 0.000454,
+     "max": 0.000644
+    },
+    "covariance": {
+     "median": 0.03666,
+     "min": 0.01922,
+     "max": 0.0621
+    },
+    "inhibition_over_uniform_median": 62.5,
+    "covariance_reaches_inhibition": 17
+   },
+   "4": {
+    "inhibition": 0.07569,
+    "uniform": {
+     "median": 0.000959,
+     "max": 0.00123
+    },
+    "covariance": {
+     "median": 0.07365,
+     "min": 0.05087,
+     "max": 0.09201
+    },
+    "inhibition_over_uniform_median": 79.0,
+    "covariance_reaches_inhibition": 8
+   },
+   "8": {
+    "inhibition": 0.13312,
+    "uniform": {
+     "median": 0.001885,
+     "max": 0.002447
+    },
+    "covariance": {
+     "median": 0.13492,
+     "min": 0.10837,
+     "max": 0.15038
+    },
+    "inhibition_over_uniform_median": 70.6,
+    "covariance_reaches_inhibition": 11
+   },
+   "16": {
+    "inhibition": 0.19151,
+    "uniform": {
+     "median": 0.00394,
+     "max": 0.004457
+    },
+    "covariance": {
+     "median": 0.20188,
+     "min": 0.18963,
+     "max": 0.22255
+    },
+    "inhibition_over_uniform_median": 48.6,
+    "covariance_reaches_inhibition": 19
+   },
+   "32": {
+    "inhibition": 0.28252,
+    "uniform": {
+     "median": 0.007928,
+     "max": 0.008611
+    },
+    "covariance": {
+     "median": 0.29619,
+     "min": 0.28798,
+     "max": 0.30241
+    },
+    "inhibition_over_uniform_median": 35.6,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 2,
+    "8": 16,
+    "32": 32
+   }
+  },
+  "5": {
+   "1": {
+    "inhibition": 0.02815,
+    "uniform": {
+     "median": 0.000233,
+     "max": 0.000527
+    },
+    "covariance": {
+     "median": 0.02293,
+     "min": 0.0061,
+     "max": 0.03583
+    },
+    "inhibition_over_uniform_median": 120.9,
+    "covariance_reaches_inhibition": 4
+   },
+   "2": {
+    "inhibition": 0.04621,
+    "uniform": {
+     "median": 0.00049,
+     "max": 0.000639
+    },
+    "covariance": {
+     "median": 0.0409,
+     "min": 0.02586,
+     "max": 0.07319
+    },
+    "inhibition_over_uniform_median": 94.4,
+    "covariance_reaches_inhibition": 6
+   },
+   "4": {
+    "inhibition": 0.09035,
+    "uniform": {
+     "median": 0.00092,
+     "max": 0.00127
+    },
+    "covariance": {
+     "median": 0.07691,
+     "min": 0.05735,
+     "max": 0.09307
+    },
+    "inhibition_over_uniform_median": 98.2,
+    "covariance_reaches_inhibition": 2
+   },
+   "8": {
+    "inhibition": 0.14922,
+    "uniform": {
+     "median": 0.001873,
+     "max": 0.00228
+    },
+    "covariance": {
+     "median": 0.13941,
+     "min": 0.10945,
+     "max": 0.15323
+    },
+    "inhibition_over_uniform_median": 79.6,
+    "covariance_reaches_inhibition": 2
+   },
+   "16": {
+    "inhibition": 0.2067,
+    "uniform": {
+     "median": 0.003891,
+     "max": 0.00453
+    },
+    "covariance": {
+     "median": 0.21477,
+     "min": 0.20339,
+     "max": 0.23235
+    },
+    "inhibition_over_uniform_median": 53.1,
+    "covariance_reaches_inhibition": 17
+   },
+   "32": {
+    "inhibition": 0.29463,
+    "uniform": {
+     "median": 0.007701,
+     "max": 0.009056
+    },
+    "covariance": {
+     "median": 0.31053,
+     "min": 0.29851,
+     "max": 0.31912
+    },
+    "inhibition_over_uniform_median": 38.3,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 3,
+    "8": 16,
+    "32": 32
+   }
+  },
+  "6": {
+   "1": {
+    "inhibition": 0.01927,
+    "uniform": {
+     "median": 0.000234,
+     "max": 0.0004
+    },
+    "covariance": {
+     "median": 0.0218,
+     "min": 0.00968,
+     "max": 0.05639
+    },
+    "inhibition_over_uniform_median": 82.3,
+    "covariance_reaches_inhibition": 13
+   },
+   "2": {
+    "inhibition": 0.03471,
+    "uniform": {
+     "median": 0.000487,
+     "max": 0.000629
+    },
+    "covariance": {
+     "median": 0.0456,
+     "min": 0.0293,
+     "max": 0.06437
+    },
+    "inhibition_over_uniform_median": 71.3,
+    "covariance_reaches_inhibition": 18
+   },
+   "4": {
+    "inhibition": 0.0769,
+    "uniform": {
+     "median": 0.000994,
+     "max": 0.001335
+    },
+    "covariance": {
+     "median": 0.09864,
+     "min": 0.06558,
+     "max": 0.11216
+    },
+    "inhibition_over_uniform_median": 77.4,
+    "covariance_reaches_inhibition": 18
+   },
+   "8": {
+    "inhibition": 0.12215,
+    "uniform": {
+     "median": 0.001986,
+     "max": 0.002409
+    },
+    "covariance": {
+     "median": 0.15418,
+     "min": 0.12591,
+     "max": 0.18011
+    },
+    "inhibition_over_uniform_median": 61.5,
+    "covariance_reaches_inhibition": 20
+   },
+   "16": {
+    "inhibition": 0.19443,
+    "uniform": {
+     "median": 0.003956,
+     "max": 0.004512
+    },
+    "covariance": {
+     "median": 0.2298,
+     "min": 0.21741,
+     "max": 0.24757
+    },
+    "inhibition_over_uniform_median": 49.1,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.26385,
+    "uniform": {
+     "median": 0.007815,
+     "max": 0.008515
+    },
+    "covariance": {
+     "median": 0.32938,
+     "min": 0.31994,
+     "max": 0.33832
+    },
+    "inhibition_over_uniform_median": 33.8,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 2,
+    "8": 8,
+    "32": 32
+   }
+  },
+  "7": {
+   "1": {
+    "inhibition": 0.01449,
+    "uniform": {
+     "median": 0.000211,
+     "max": 0.000366
+    },
+    "covariance": {
+     "median": 0.02266,
+     "min": 0.01261,
+     "max": 0.03961
+    },
+    "inhibition_over_uniform_median": 68.8,
+    "covariance_reaches_inhibition": 18
+   },
+   "2": {
+    "inhibition": 0.03281,
+    "uniform": {
+     "median": 0.00057,
+     "max": 0.000693
+    },
+    "covariance": {
+     "median": 0.04486,
+     "min": 0.03364,
+     "max": 0.06138
+    },
+    "inhibition_over_uniform_median": 57.6,
+    "covariance_reaches_inhibition": 20
+   },
+   "4": {
+    "inhibition": 0.07531,
+    "uniform": {
+     "median": 0.000905,
+     "max": 0.00136
+    },
+    "covariance": {
+     "median": 0.07959,
+     "min": 0.0555,
+     "max": 0.09524
+    },
+    "inhibition_over_uniform_median": 83.2,
+    "covariance_reaches_inhibition": 12
+   },
+   "8": {
+    "inhibition": 0.11447,
+    "uniform": {
+     "median": 0.001873,
+     "max": 0.002636
+    },
+    "covariance": {
+     "median": 0.14532,
+     "min": 0.11992,
+     "max": 0.16508
+    },
+    "inhibition_over_uniform_median": 61.1,
+    "covariance_reaches_inhibition": 20
+   },
+   "16": {
+    "inhibition": 0.19687,
+    "uniform": {
+     "median": 0.004032,
+     "max": 0.004689
+    },
+    "covariance": {
+     "median": 0.2335,
+     "min": 0.21754,
+     "max": 0.2556
+    },
+    "inhibition_over_uniform_median": 48.8,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.27012,
+    "uniform": {
+     "median": 0.007778,
+     "max": 0.008954
+    },
+    "covariance": {
+     "median": 0.33688,
+     "min": 0.3303,
+     "max": 0.34377
+    },
+    "inhibition_over_uniform_median": 34.7,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 1,
+    "8": 8,
+    "32": 32
+   }
+  },
+  "8": {
+   "1": {
+    "inhibition": 0.00769,
+    "uniform": {
+     "median": 0.000217,
+     "max": 0.000386
+    },
+    "covariance": {
+     "median": 0.02426,
+     "min": 0.01355,
+     "max": 0.04376
+    },
+    "inhibition_over_uniform_median": 35.4,
+    "covariance_reaches_inhibition": 20
+   },
+   "2": {
+    "inhibition": 0.02969,
+    "uniform": {
+     "median": 0.000455,
+     "max": 0.000632
+    },
+    "covariance": {
+     "median": 0.04051,
+     "min": 0.0229,
+     "max": 0.06365
+    },
+    "inhibition_over_uniform_median": 65.2,
+    "covariance_reaches_inhibition": 17
+   },
+   "4": {
+    "inhibition": 0.07379,
+    "uniform": {
+     "median": 0.00094,
+     "max": 0.001123
+    },
+    "covariance": {
+     "median": 0.07915,
+     "min": 0.05456,
+     "max": 0.10758
+    },
+    "inhibition_over_uniform_median": 78.5,
+    "covariance_reaches_inhibition": 14
+   },
+   "8": {
+    "inhibition": 0.11563,
+    "uniform": {
+     "median": 0.001955,
+     "max": 0.002359
+    },
+    "covariance": {
+     "median": 0.14702,
+     "min": 0.13272,
+     "max": 0.16857
+    },
+    "inhibition_over_uniform_median": 59.2,
+    "covariance_reaches_inhibition": 20
+   },
+   "16": {
+    "inhibition": 0.19649,
+    "uniform": {
+     "median": 0.003959,
+     "max": 0.004365
+    },
+    "covariance": {
+     "median": 0.22711,
+     "min": 0.20136,
+     "max": 0.24302
+    },
+    "inhibition_over_uniform_median": 49.6,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.27385,
+    "uniform": {
+     "median": 0.007607,
+     "max": 0.008603
+    },
+    "covariance": {
+     "median": 0.33031,
+     "min": 0.31565,
+     "max": 0.33623
+    },
+    "inhibition_over_uniform_median": 36.0,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 1,
+    "8": 8,
+    "32": 32
+   }
+  },
+  "9": {
+   "1": {
+    "inhibition": 0.005,
+    "uniform": {
+     "median": 0.000245,
+     "max": 0.000341
+    },
+    "covariance": {
+     "median": 0.02245,
+     "min": 0.00995,
+     "max": 0.05052
+    },
+    "inhibition_over_uniform_median": 20.4,
+    "covariance_reaches_inhibition": 20
+   },
+   "2": {
+    "inhibition": 0.03052,
+    "uniform": {
+     "median": 0.000413,
+     "max": 0.000636
+    },
+    "covariance": {
+     "median": 0.04683,
+     "min": 0.02505,
+     "max": 0.06986
+    },
+    "inhibition_over_uniform_median": 73.9,
+    "covariance_reaches_inhibition": 19
+   },
+   "4": {
+    "inhibition": 0.07251,
+    "uniform": {
+     "median": 0.000963,
+     "max": 0.001432
+    },
+    "covariance": {
+     "median": 0.08282,
+     "min": 0.04902,
+     "max": 0.1055
+    },
+    "inhibition_over_uniform_median": 75.3,
+    "covariance_reaches_inhibition": 16
+   },
+   "8": {
+    "inhibition": 0.12312,
+    "uniform": {
+     "median": 0.001889,
+     "max": 0.002189
+    },
+    "covariance": {
+     "median": 0.14027,
+     "min": 0.11566,
+     "max": 0.16349
+    },
+    "inhibition_over_uniform_median": 65.2,
+    "covariance_reaches_inhibition": 19
+   },
+   "16": {
+    "inhibition": 0.20469,
+    "uniform": {
+     "median": 0.003932,
+     "max": 0.004828
+    },
+    "covariance": {
+     "median": 0.22001,
+     "min": 0.20388,
+     "max": 0.23551
+    },
+    "inhibition_over_uniform_median": 52.1,
+    "covariance_reaches_inhibition": 19
+   },
+   "32": {
+    "inhibition": 0.28544,
+    "uniform": {
+     "median": 0.007819,
+     "max": 0.009085
+    },
+    "covariance": {
+     "median": 0.31506,
+     "min": 0.30438,
+     "max": 0.32234
+    },
+    "inhibition_over_uniform_median": 36.5,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 1,
+    "8": 8,
+    "32": 32
+   }
+  },
+  "10": {
+   "1": {
+    "inhibition": 0.0098,
+    "uniform": {
+     "median": 0.000248,
+     "max": 0.000476
+    },
+    "covariance": {
+     "median": 0.02233,
+     "min": 0.0087,
+     "max": 0.06372
+    },
+    "inhibition_over_uniform_median": 39.5,
+    "covariance_reaches_inhibition": 19
+   },
+   "2": {
+    "inhibition": 0.03632,
+    "uniform": {
+     "median": 0.000426,
+     "max": 0.000659
+    },
+    "covariance": {
+     "median": 0.04631,
+     "min": 0.02202,
+     "max": 0.06901
+    },
+    "inhibition_over_uniform_median": 85.4,
+    "covariance_reaches_inhibition": 16
+   },
+   "4": {
+    "inhibition": 0.06782,
+    "uniform": {
+     "median": 0.000954,
+     "max": 0.001431
+    },
+    "covariance": {
+     "median": 0.08549,
+     "min": 0.05553,
+     "max": 0.13205
+    },
+    "inhibition_over_uniform_median": 71.1,
+    "covariance_reaches_inhibition": 17
+   },
+   "8": {
+    "inhibition": 0.13527,
+    "uniform": {
+     "median": 0.002008,
+     "max": 0.00261
+    },
+    "covariance": {
+     "median": 0.14507,
+     "min": 0.11642,
+     "max": 0.16367
+    },
+    "inhibition_over_uniform_median": 67.4,
+    "covariance_reaches_inhibition": 17
+   },
+   "16": {
+    "inhibition": 0.19675,
+    "uniform": {
+     "median": 0.004003,
+     "max": 0.004849
+    },
+    "covariance": {
+     "median": 0.22642,
+     "min": 0.20245,
+     "max": 0.24747
+    },
+    "inhibition_over_uniform_median": 49.1,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.29371,
+    "uniform": {
+     "median": 0.007618,
+     "max": 0.009294
+    },
+    "covariance": {
+     "median": 0.31641,
+     "min": 0.30229,
+     "max": 0.32325
+    },
+    "inhibition_over_uniform_median": 38.6,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 2,
+    "8": 16,
+    "32": 32
+   }
+  },
+  "11": {
+   "1": {
+    "inhibition": 0.00953,
+    "uniform": {
+     "median": 0.000247,
+     "max": 0.000408
+    },
+    "covariance": {
+     "median": 0.0185,
+     "min": 0.00887,
+     "max": 0.04245
+    },
+    "inhibition_over_uniform_median": 38.6,
+    "covariance_reaches_inhibition": 18
+   },
+   "2": {
+    "inhibition": 0.02703,
+    "uniform": {
+     "median": 0.00047,
+     "max": 0.000763
+    },
+    "covariance": {
+     "median": 0.03919,
+     "min": 0.02539,
+     "max": 0.07229
+    },
+    "inhibition_over_uniform_median": 57.5,
+    "covariance_reaches_inhibition": 18
+   },
+   "4": {
+    "inhibition": 0.05353,
+    "uniform": {
+     "median": 0.000936,
+     "max": 0.001212
+    },
+    "covariance": {
+     "median": 0.08643,
+     "min": 0.05584,
+     "max": 0.10686
+    },
+    "inhibition_over_uniform_median": 57.2,
+    "covariance_reaches_inhibition": 20
+   },
+   "8": {
+    "inhibition": 0.1018,
+    "uniform": {
+     "median": 0.001908,
+     "max": 0.002292
+    },
+    "covariance": {
+     "median": 0.14605,
+     "min": 0.11892,
+     "max": 0.17542
+    },
+    "inhibition_over_uniform_median": 53.4,
+    "covariance_reaches_inhibition": 20
+   },
+   "16": {
+    "inhibition": 0.16238,
+    "uniform": {
+     "median": 0.003847,
+     "max": 0.00438
+    },
+    "covariance": {
+     "median": 0.23462,
+     "min": 0.21703,
+     "max": 0.24585
+    },
+    "inhibition_over_uniform_median": 42.2,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.26587,
+    "uniform": {
+     "median": 0.007696,
+     "max": 0.008487
+    },
+    "covariance": {
+     "median": 0.33996,
+     "min": 0.32941,
+     "max": 0.3485
+    },
+    "inhibition_over_uniform_median": 34.5,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 1,
+    "8": 8,
+    "32": 32
+   }
+  },
+  "12": {
+   "1": {
+    "inhibition": 0.00941,
+    "uniform": {
+     "median": 0.000207,
+     "max": 0.000422
+    },
+    "covariance": {
+     "median": 0.02004,
+     "min": 0.01084,
+     "max": 0.03897
+    },
+    "inhibition_over_uniform_median": 45.5,
+    "covariance_reaches_inhibition": 20
+   },
+   "2": {
+    "inhibition": 0.02402,
+    "uniform": {
+     "median": 0.000542,
+     "max": 0.001033
+    },
+    "covariance": {
+     "median": 0.04082,
+     "min": 0.01991,
+     "max": 0.07669
+    },
+    "inhibition_over_uniform_median": 44.4,
+    "covariance_reaches_inhibition": 19
+   },
+   "4": {
+    "inhibition": 0.0572,
+    "uniform": {
+     "median": 0.000976,
+     "max": 0.001222
+    },
+    "covariance": {
+     "median": 0.07531,
+     "min": 0.05777,
+     "max": 0.10349
+    },
+    "inhibition_over_uniform_median": 58.6,
+    "covariance_reaches_inhibition": 20
+   },
+   "8": {
+    "inhibition": 0.10945,
+    "uniform": {
+     "median": 0.001816,
+     "max": 0.002377
+    },
+    "covariance": {
+     "median": 0.14491,
+     "min": 0.1222,
+     "max": 0.16267
+    },
+    "inhibition_over_uniform_median": 60.3,
+    "covariance_reaches_inhibition": 20
+   },
+   "16": {
+    "inhibition": 0.18038,
+    "uniform": {
+     "median": 0.003877,
+     "max": 0.00444
+    },
+    "covariance": {
+     "median": 0.2287,
+     "min": 0.20968,
+     "max": 0.24135
+    },
+    "inhibition_over_uniform_median": 46.5,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.27064,
+    "uniform": {
+     "median": 0.007839,
+     "max": 0.009112
+    },
+    "covariance": {
+     "median": 0.32268,
+     "min": 0.30963,
+     "max": 0.33274
+    },
+    "inhibition_over_uniform_median": 34.5,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 1,
+    "8": 8,
+    "32": 32
+   }
+  },
+  "13": {
+   "1": {
+    "inhibition": 0.01847,
+    "uniform": {
+     "median": 0.00022,
+     "max": 0.000377
+    },
+    "covariance": {
+     "median": 0.0161,
+     "min": 0.00979,
+     "max": 0.05208
+    },
+    "inhibition_over_uniform_median": 83.8,
+    "covariance_reaches_inhibition": 9
+   },
+   "2": {
+    "inhibition": 0.03963,
+    "uniform": {
+     "median": 0.000477,
+     "max": 0.000788
+    },
+    "covariance": {
+     "median": 0.04331,
+     "min": 0.02218,
+     "max": 0.06789
+    },
+    "inhibition_over_uniform_median": 83.1,
+    "covariance_reaches_inhibition": 13
+   },
+   "4": {
+    "inhibition": 0.07673,
+    "uniform": {
+     "median": 0.000933,
+     "max": 0.001335
+    },
+    "covariance": {
+     "median": 0.07781,
+     "min": 0.05439,
+     "max": 0.11574
+    },
+    "inhibition_over_uniform_median": 82.2,
+    "covariance_reaches_inhibition": 11
+   },
+   "8": {
+    "inhibition": 0.13647,
+    "uniform": {
+     "median": 0.001898,
+     "max": 0.002291
+    },
+    "covariance": {
+     "median": 0.13904,
+     "min": 0.11217,
+     "max": 0.15825
+    },
+    "inhibition_over_uniform_median": 71.9,
+    "covariance_reaches_inhibition": 11
+   },
+   "16": {
+    "inhibition": 0.19539,
+    "uniform": {
+     "median": 0.003943,
+     "max": 0.004511
+    },
+    "covariance": {
+     "median": 0.21659,
+     "min": 0.19674,
+     "max": 0.23848
+    },
+    "inhibition_over_uniform_median": 49.5,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.27408,
+    "uniform": {
+     "median": 0.007986,
+     "max": 0.008459
+    },
+    "covariance": {
+     "median": 0.31402,
+     "min": 0.30499,
+     "max": 0.3207
+    },
+    "inhibition_over_uniform_median": 34.3,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 2,
+    "8": 16,
+    "32": 32
+   }
+  },
+  "14": {
+   "1": {
+    "inhibition": 0.01704,
+    "uniform": {
+     "median": 0.000212,
+     "max": 0.000378
+    },
+    "covariance": {
+     "median": 0.01549,
+     "min": 0.00893,
+     "max": 0.05281
+    },
+    "inhibition_over_uniform_median": 80.4,
+    "covariance_reaches_inhibition": 9
+   },
+   "2": {
+    "inhibition": 0.05154,
+    "uniform": {
+     "median": 0.000501,
+     "max": 0.000773
+    },
+    "covariance": {
+     "median": 0.0378,
+     "min": 0.02294,
+     "max": 0.0633
+    },
+    "inhibition_over_uniform_median": 102.8,
+    "covariance_reaches_inhibition": 4
+   },
+   "4": {
+    "inhibition": 0.08149,
+    "uniform": {
+     "median": 0.000909,
+     "max": 0.001239
+    },
+    "covariance": {
+     "median": 0.0763,
+     "min": 0.04066,
+     "max": 0.08804
+    },
+    "inhibition_over_uniform_median": 89.6,
+    "covariance_reaches_inhibition": 7
+   },
+   "8": {
+    "inhibition": 0.11834,
+    "uniform": {
+     "median": 0.00199,
+     "max": 0.002506
+    },
+    "covariance": {
+     "median": 0.1306,
+     "min": 0.10501,
+     "max": 0.15797
+    },
+    "inhibition_over_uniform_median": 59.5,
+    "covariance_reaches_inhibition": 16
+   },
+   "16": {
+    "inhibition": 0.17231,
+    "uniform": {
+     "median": 0.003769,
+     "max": 0.004542
+    },
+    "covariance": {
+     "median": 0.20942,
+     "min": 0.18745,
+     "max": 0.22173
+    },
+    "inhibition_over_uniform_median": 45.7,
+    "covariance_reaches_inhibition": 20
+   },
+   "32": {
+    "inhibition": 0.24548,
+    "uniform": {
+     "median": 0.007785,
+     "max": 0.008715
+    },
+    "covariance": {
+     "median": 0.30892,
+     "min": 0.29633,
+     "max": 0.32386
+    },
+    "inhibition_over_uniform_median": 31.5,
+    "covariance_reaches_inhibition": 20
+   },
+   "covariance_rank_to_match": {
+    "1": 2,
+    "8": 16,
+    "32": 32
+   }
+  },
+  "15": {
+   "1": {
+    "inhibition": 0.02735,
+    "uniform": {
+     "median": 0.000237,
+     "max": 0.000333
+    },
+    "covariance": {
+     "median": 0.017,
+     "min": 0.00793,
+     "max": 0.03138
+    },
+    "inhibition_over_uniform_median": 115.5,
+    "covariance_reaches_inhibition": 1
+   },
+   "2": {
+    "inhibition": 0.0675,
+    "uniform": {
+     "median": 0.000481,
+     "max": 0.00081
+    },
+    "covariance": {
+     "median": 0.029,
+     "min": 0.02048,
+     "max": 0.04116
+    },
+    "inhibition_over_uniform_median": 140.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.09883,
+    "uniform": {
+     "median": 0.001004,
+     "max": 0.00127
+    },
+    "covariance": {
+     "median": 0.05604,
+     "min": 0.04128,
+     "max": 0.07823
+    },
+    "inhibition_over_uniform_median": 98.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.14333,
+    "uniform": {
+     "median": 0.001909,
+     "max": 0.002321
+    },
+    "covariance": {
+     "median": 0.10178,
+     "min": 0.08922,
+     "max": 0.1283
+    },
+    "inhibition_over_uniform_median": 75.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.20439,
+    "uniform": {
+     "median": 0.00385,
+     "max": 0.004347
+    },
+    "covariance": {
+     "median": 0.1752,
+     "min": 0.16224,
+     "max": 0.18786
+    },
+    "inhibition_over_uniform_median": 53.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.28382,
+    "uniform": {
+     "median": 0.007713,
+     "max": 0.008981
+    },
+    "covariance": {
+     "median": 0.26656,
+     "min": 0.25381,
+     "max": 0.27632
+    },
+    "inhibition_over_uniform_median": 36.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 3,
+    "8": 16,
+    "32": 64
+   }
+  },
+  "16": {
+   "1": {
+    "inhibition": 0.02844,
+    "uniform": {
+     "median": 0.00024,
+     "max": 0.000347
+    },
+    "covariance": {
+     "median": 0.01347,
+     "min": 0.00634,
+     "max": 0.03313
+    },
+    "inhibition_over_uniform_median": 118.5,
+    "covariance_reaches_inhibition": 1
+   },
+   "2": {
+    "inhibition": 0.07289,
+    "uniform": {
+     "median": 0.000433,
+     "max": 0.000628
+    },
+    "covariance": {
+     "median": 0.03023,
+     "min": 0.01703,
+     "max": 0.04578
+    },
+    "inhibition_over_uniform_median": 168.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.10513,
+    "uniform": {
+     "median": 0.000963,
+     "max": 0.0012
+    },
+    "covariance": {
+     "median": 0.05748,
+     "min": 0.04029,
+     "max": 0.07781
+    },
+    "inhibition_over_uniform_median": 109.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.14506,
+    "uniform": {
+     "median": 0.001906,
+     "max": 0.002295
+    },
+    "covariance": {
+     "median": 0.10648,
+     "min": 0.09096,
+     "max": 0.12171
+    },
+    "inhibition_over_uniform_median": 76.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.20013,
+    "uniform": {
+     "median": 0.00389,
+     "max": 0.004853
+    },
+    "covariance": {
+     "median": 0.17751,
+     "min": 0.1712,
+     "max": 0.19763
+    },
+    "inhibition_over_uniform_median": 51.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.2799,
+    "uniform": {
+     "median": 0.007686,
+     "max": 0.008309
+    },
+    "covariance": {
+     "median": 0.27453,
+     "min": 0.2697,
+     "max": 0.28386
+    },
+    "inhibition_over_uniform_median": 36.4,
+    "covariance_reaches_inhibition": 4
+   },
+   "covariance_rank_to_match": {
+    "1": 3,
+    "8": 16,
+    "32": 64
+   }
+  },
+  "17": {
+   "1": {
+    "inhibition": 0.03062,
+    "uniform": {
+     "median": 0.000237,
+     "max": 0.000389
+    },
+    "covariance": {
+     "median": 0.00993,
+     "min": 0.00758,
+     "max": 0.02649
+    },
+    "inhibition_over_uniform_median": 129.0,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.07785,
+    "uniform": {
+     "median": 0.000478,
+     "max": 0.000653
+    },
+    "covariance": {
+     "median": 0.02631,
+     "min": 0.01951,
+     "max": 0.03852
+    },
+    "inhibition_over_uniform_median": 162.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.13112,
+    "uniform": {
+     "median": 0.000865,
+     "max": 0.001303
+    },
+    "covariance": {
+     "median": 0.0458,
+     "min": 0.03744,
+     "max": 0.06032
+    },
+    "inhibition_over_uniform_median": 151.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.17874,
+    "uniform": {
+     "median": 0.001883,
+     "max": 0.002205
+    },
+    "covariance": {
+     "median": 0.09081,
+     "min": 0.07923,
+     "max": 0.09995
+    },
+    "inhibition_over_uniform_median": 94.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.24851,
+    "uniform": {
+     "median": 0.003876,
+     "max": 0.005173
+    },
+    "covariance": {
+     "median": 0.15253,
+     "min": 0.14194,
+     "max": 0.16701
+    },
+    "inhibition_over_uniform_median": 64.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.33112,
+    "uniform": {
+     "median": 0.00792,
+     "max": 0.008798
+    },
+    "covariance": {
+     "median": 0.24278,
+     "min": 0.23367,
+     "max": 0.25002
+    },
+    "inhibition_over_uniform_median": 41.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 4,
+    "8": 24,
+    "32": 64
+   }
+  },
+  "18": {
+   "1": {
+    "inhibition": 0.02277,
+    "uniform": {
+     "median": 0.000244,
+     "max": 0.000453
+    },
+    "covariance": {
+     "median": 0.0125,
+     "min": 0.00673,
+     "max": 0.01882
+    },
+    "inhibition_over_uniform_median": 93.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.06522,
+    "uniform": {
+     "median": 0.000471,
+     "max": 0.000738
+    },
+    "covariance": {
+     "median": 0.0219,
+     "min": 0.01418,
+     "max": 0.03877
+    },
+    "inhibition_over_uniform_median": 138.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.09381,
+    "uniform": {
+     "median": 0.000924,
+     "max": 0.001365
+    },
+    "covariance": {
+     "median": 0.04405,
+     "min": 0.0317,
+     "max": 0.05524
+    },
+    "inhibition_over_uniform_median": 101.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.15255,
+    "uniform": {
+     "median": 0.001795,
+     "max": 0.002446
+    },
+    "covariance": {
+     "median": 0.07797,
+     "min": 0.06457,
+     "max": 0.09101
+    },
+    "inhibition_over_uniform_median": 85.0,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.2333,
+    "uniform": {
+     "median": 0.00393,
+     "max": 0.004565
+    },
+    "covariance": {
+     "median": 0.14372,
+     "min": 0.13437,
+     "max": 0.15577
+    },
+    "inhibition_over_uniform_median": 59.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.32775,
+    "uniform": {
+     "median": 0.007785,
+     "max": 0.008423
+    },
+    "covariance": {
+     "median": 0.23122,
+     "min": 0.2231,
+     "max": 0.23607
+    },
+    "inhibition_over_uniform_median": 42.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 4,
+    "8": 24,
+    "32": 64
+   }
+  },
+  "19": {
+   "1": {
+    "inhibition": 0.02663,
+    "uniform": {
+     "median": 0.000223,
+     "max": 0.000328
+    },
+    "covariance": {
+     "median": 0.01022,
+     "min": 0.00568,
+     "max": 0.0211
+    },
+    "inhibition_over_uniform_median": 119.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.0661,
+    "uniform": {
+     "median": 0.000452,
+     "max": 0.000585
+    },
+    "covariance": {
+     "median": 0.0246,
+     "min": 0.01289,
+     "max": 0.03669
+    },
+    "inhibition_over_uniform_median": 146.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.09096,
+    "uniform": {
+     "median": 0.000913,
+     "max": 0.00136
+    },
+    "covariance": {
+     "median": 0.04113,
+     "min": 0.03452,
+     "max": 0.0564
+    },
+    "inhibition_over_uniform_median": 99.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.14947,
+    "uniform": {
+     "median": 0.001948,
+     "max": 0.002576
+    },
+    "covariance": {
+     "median": 0.08273,
+     "min": 0.06359,
+     "max": 0.1
+    },
+    "inhibition_over_uniform_median": 76.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.23222,
+    "uniform": {
+     "median": 0.003878,
+     "max": 0.004326
+    },
+    "covariance": {
+     "median": 0.14726,
+     "min": 0.1352,
+     "max": 0.15197
+    },
+    "inhibition_over_uniform_median": 59.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.33618,
+    "uniform": {
+     "median": 0.007801,
+     "max": 0.008746
+    },
+    "covariance": {
+     "median": 0.23363,
+     "min": 0.22316,
+     "max": 0.24644
+    },
+    "inhibition_over_uniform_median": 43.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 3,
+    "8": 24,
+    "32": 64
+   }
+  },
+  "20": {
+   "1": {
+    "inhibition": 0.02923,
+    "uniform": {
+     "median": 0.000218,
+     "max": 0.000345
+    },
+    "covariance": {
+     "median": 0.00994,
+     "min": 0.00499,
+     "max": 0.01504
+    },
+    "inhibition_over_uniform_median": 134.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.07274,
+    "uniform": {
+     "median": 0.000472,
+     "max": 0.000852
+    },
+    "covariance": {
+     "median": 0.02265,
+     "min": 0.01484,
+     "max": 0.03291
+    },
+    "inhibition_over_uniform_median": 154.0,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.11482,
+    "uniform": {
+     "median": 0.000945,
+     "max": 0.00117
+    },
+    "covariance": {
+     "median": 0.0416,
+     "min": 0.03125,
+     "max": 0.05999
+    },
+    "inhibition_over_uniform_median": 121.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.17611,
+    "uniform": {
+     "median": 0.001867,
+     "max": 0.002302
+    },
+    "covariance": {
+     "median": 0.07652,
+     "min": 0.06679,
+     "max": 0.08816
+    },
+    "inhibition_over_uniform_median": 94.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.26588,
+    "uniform": {
+     "median": 0.003922,
+     "max": 0.00446
+    },
+    "covariance": {
+     "median": 0.13713,
+     "min": 0.12801,
+     "max": 0.14588
+    },
+    "inhibition_over_uniform_median": 67.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.37206,
+    "uniform": {
+     "median": 0.007834,
+     "max": 0.008276
+    },
+    "covariance": {
+     "median": 0.2197,
+     "min": 0.20998,
+     "max": 0.2235
+    },
+    "inhibition_over_uniform_median": 47.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 4,
+    "8": 32,
+    "32": 96
+   }
+  },
+  "21": {
+   "1": {
+    "inhibition": 0.03208,
+    "uniform": {
+     "median": 0.000238,
+     "max": 0.000431
+    },
+    "covariance": {
+     "median": 0.00935,
+     "min": 0.00676,
+     "max": 0.01599
+    },
+    "inhibition_over_uniform_median": 134.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.07304,
+    "uniform": {
+     "median": 0.000438,
+     "max": 0.000709
+    },
+    "covariance": {
+     "median": 0.02126,
+     "min": 0.0143,
+     "max": 0.02696
+    },
+    "inhibition_over_uniform_median": 166.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.11937,
+    "uniform": {
+     "median": 0.000964,
+     "max": 0.00139
+    },
+    "covariance": {
+     "median": 0.03939,
+     "min": 0.02946,
+     "max": 0.04818
+    },
+    "inhibition_over_uniform_median": 123.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.18372,
+    "uniform": {
+     "median": 0.00199,
+     "max": 0.002452
+    },
+    "covariance": {
+     "median": 0.07193,
+     "min": 0.06406,
+     "max": 0.08667
+    },
+    "inhibition_over_uniform_median": 92.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.26865,
+    "uniform": {
+     "median": 0.003997,
+     "max": 0.004572
+    },
+    "covariance": {
+     "median": 0.13068,
+     "min": 0.11613,
+     "max": 0.13809
+    },
+    "inhibition_over_uniform_median": 67.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.37524,
+    "uniform": {
+     "median": 0.007733,
+     "max": 0.008717
+    },
+    "covariance": {
+     "median": 0.21022,
+     "min": 0.20711,
+     "max": 0.22191
+    },
+    "inhibition_over_uniform_median": 48.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 4,
+    "8": 32,
+    "32": 96
+   }
+  },
+  "22": {
+   "1": {
+    "inhibition": 0.03198,
+    "uniform": {
+     "median": 0.000247,
+     "max": 0.000381
+    },
+    "covariance": {
+     "median": 0.00949,
+     "min": 0.00688,
+     "max": 0.0217
+    },
+    "inhibition_over_uniform_median": 129.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.07198,
+    "uniform": {
+     "median": 0.000456,
+     "max": 0.000671
+    },
+    "covariance": {
+     "median": 0.01946,
+     "min": 0.01352,
+     "max": 0.02896
+    },
+    "inhibition_over_uniform_median": 158.0,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.11189,
+    "uniform": {
+     "median": 0.00096,
+     "max": 0.001421
+    },
+    "covariance": {
+     "median": 0.03937,
+     "min": 0.03048,
+     "max": 0.05268
+    },
+    "inhibition_over_uniform_median": 116.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.1767,
+    "uniform": {
+     "median": 0.001966,
+     "max": 0.002491
+    },
+    "covariance": {
+     "median": 0.07406,
+     "min": 0.06509,
+     "max": 0.08594
+    },
+    "inhibition_over_uniform_median": 89.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.26168,
+    "uniform": {
+     "median": 0.00382,
+     "max": 0.004446
+    },
+    "covariance": {
+     "median": 0.13314,
+     "min": 0.12388,
+     "max": 0.14299
+    },
+    "inhibition_over_uniform_median": 68.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.36566,
+    "uniform": {
+     "median": 0.007658,
+     "max": 0.008472
+    },
+    "covariance": {
+     "median": 0.21519,
+     "min": 0.20667,
+     "max": 0.22078
+    },
+    "inhibition_over_uniform_median": 47.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 6,
+    "8": 32,
+    "32": 96
+   }
+  },
+  "23": {
+   "1": {
+    "inhibition": 0.02894,
+    "uniform": {
+     "median": 0.000232,
+     "max": 0.00033
+    },
+    "covariance": {
+     "median": 0.00821,
+     "min": 0.00459,
+     "max": 0.01575
+    },
+    "inhibition_over_uniform_median": 124.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.06477,
+    "uniform": {
+     "median": 0.000532,
+     "max": 0.000671
+    },
+    "covariance": {
+     "median": 0.02067,
+     "min": 0.01381,
+     "max": 0.0301
+    },
+    "inhibition_over_uniform_median": 121.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.11084,
+    "uniform": {
+     "median": 0.000983,
+     "max": 0.001296
+    },
+    "covariance": {
+     "median": 0.03984,
+     "min": 0.03349,
+     "max": 0.04671
+    },
+    "inhibition_over_uniform_median": 112.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.17008,
+    "uniform": {
+     "median": 0.001942,
+     "max": 0.002343
+    },
+    "covariance": {
+     "median": 0.07604,
+     "min": 0.06316,
+     "max": 0.08564
+    },
+    "inhibition_over_uniform_median": 87.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.25494,
+    "uniform": {
+     "median": 0.0038,
+     "max": 0.004309
+    },
+    "covariance": {
+     "median": 0.13235,
+     "min": 0.12259,
+     "max": 0.14112
+    },
+    "inhibition_over_uniform_median": 67.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.35339,
+    "uniform": {
+     "median": 0.007797,
+     "max": 0.008367
+    },
+    "covariance": {
+     "median": 0.21727,
+     "min": 0.20791,
+     "max": 0.22536
+    },
+    "inhibition_over_uniform_median": 45.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 6,
+    "8": 24,
+    "32": 96
+   }
+  },
+  "24": {
+   "1": {
+    "inhibition": 0.02882,
+    "uniform": {
+     "median": 0.000238,
+     "max": 0.000403
+    },
+    "covariance": {
+     "median": 0.0114,
+     "min": 0.00564,
+     "max": 0.01596
+    },
+    "inhibition_over_uniform_median": 121.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.06159,
+    "uniform": {
+     "median": 0.000445,
+     "max": 0.000632
+    },
+    "covariance": {
+     "median": 0.01994,
+     "min": 0.01362,
+     "max": 0.03433
+    },
+    "inhibition_over_uniform_median": 138.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.11337,
+    "uniform": {
+     "median": 0.000974,
+     "max": 0.001167
+    },
+    "covariance": {
+     "median": 0.03882,
+     "min": 0.03102,
+     "max": 0.04767
+    },
+    "inhibition_over_uniform_median": 116.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.16284,
+    "uniform": {
+     "median": 0.001975,
+     "max": 0.00265
+    },
+    "covariance": {
+     "median": 0.07347,
+     "min": 0.0609,
+     "max": 0.0837
+    },
+    "inhibition_over_uniform_median": 82.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.25716,
+    "uniform": {
+     "median": 0.003932,
+     "max": 0.004511
+    },
+    "covariance": {
+     "median": 0.12858,
+     "min": 0.11355,
+     "max": 0.14839
+    },
+    "inhibition_over_uniform_median": 65.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.35963,
+    "uniform": {
+     "median": 0.007798,
+     "max": 0.008321
+    },
+    "covariance": {
+     "median": 0.21611,
+     "min": 0.20653,
+     "max": 0.22065
+    },
+    "inhibition_over_uniform_median": 46.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 6,
+    "8": 24,
+    "32": 96
+   }
+  },
+  "25": {
+   "1": {
+    "inhibition": 0.02551,
+    "uniform": {
+     "median": 0.000229,
+     "max": 0.000344
+    },
+    "covariance": {
+     "median": 0.00961,
+     "min": 0.00535,
+     "max": 0.01554
+    },
+    "inhibition_over_uniform_median": 111.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.05474,
+    "uniform": {
+     "median": 0.000495,
+     "max": 0.000647
+    },
+    "covariance": {
+     "median": 0.01989,
+     "min": 0.0146,
+     "max": 0.03072
+    },
+    "inhibition_over_uniform_median": 110.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.10452,
+    "uniform": {
+     "median": 0.00097,
+     "max": 0.001259
+    },
+    "covariance": {
+     "median": 0.03639,
+     "min": 0.0272,
+     "max": 0.04555
+    },
+    "inhibition_over_uniform_median": 107.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.15614,
+    "uniform": {
+     "median": 0.001901,
+     "max": 0.002387
+    },
+    "covariance": {
+     "median": 0.0703,
+     "min": 0.06225,
+     "max": 0.08185
+    },
+    "inhibition_over_uniform_median": 82.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.24519,
+    "uniform": {
+     "median": 0.003823,
+     "max": 0.004294
+    },
+    "covariance": {
+     "median": 0.12591,
+     "min": 0.11553,
+     "max": 0.136
+    },
+    "inhibition_over_uniform_median": 64.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.34643,
+    "uniform": {
+     "median": 0.007686,
+     "max": 0.008884
+    },
+    "covariance": {
+     "median": 0.21374,
+     "min": 0.20303,
+     "max": 0.21933
+    },
+    "inhibition_over_uniform_median": 45.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 4,
+    "8": 24,
+    "32": 96
+   }
+  },
+  "26": {
+   "1": {
+    "inhibition": 0.02302,
+    "uniform": {
+     "median": 0.000218,
+     "max": 0.000495
+    },
+    "covariance": {
+     "median": 0.00811,
+     "min": 0.0061,
+     "max": 0.01989
+    },
+    "inhibition_over_uniform_median": 105.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.05284,
+    "uniform": {
+     "median": 0.000472,
+     "max": 0.000701
+    },
+    "covariance": {
+     "median": 0.01887,
+     "min": 0.01411,
+     "max": 0.0275
+    },
+    "inhibition_over_uniform_median": 112.0,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.10751,
+    "uniform": {
+     "median": 0.000954,
+     "max": 0.001233
+    },
+    "covariance": {
+     "median": 0.03975,
+     "min": 0.03109,
+     "max": 0.04892
+    },
+    "inhibition_over_uniform_median": 112.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.15348,
+    "uniform": {
+     "median": 0.00192,
+     "max": 0.002151
+    },
+    "covariance": {
+     "median": 0.07041,
+     "min": 0.0618,
+     "max": 0.08377
+    },
+    "inhibition_over_uniform_median": 79.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.24273,
+    "uniform": {
+     "median": 0.003839,
+     "max": 0.004364
+    },
+    "covariance": {
+     "median": 0.13042,
+     "min": 0.11892,
+     "max": 0.13884
+    },
+    "inhibition_over_uniform_median": 63.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.33741,
+    "uniform": {
+     "median": 0.007665,
+     "max": 0.008817
+    },
+    "covariance": {
+     "median": 0.21229,
+     "min": 0.20544,
+     "max": 0.22158
+    },
+    "inhibition_over_uniform_median": 44.0,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 4,
+    "8": 24,
+    "32": 96
+   }
+  },
+  "27": {
+   "1": {
+    "inhibition": 0.02174,
+    "uniform": {
+     "median": 0.000248,
+     "max": 0.00037
+    },
+    "covariance": {
+     "median": 0.00888,
+     "min": 0.00644,
+     "max": 0.0161
+    },
+    "inhibition_over_uniform_median": 87.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.05004,
+    "uniform": {
+     "median": 0.000482,
+     "max": 0.000815
+    },
+    "covariance": {
+     "median": 0.01847,
+     "min": 0.01646,
+     "max": 0.02665
+    },
+    "inhibition_over_uniform_median": 103.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.10517,
+    "uniform": {
+     "median": 0.000967,
+     "max": 0.001227
+    },
+    "covariance": {
+     "median": 0.03761,
+     "min": 0.02793,
+     "max": 0.04762
+    },
+    "inhibition_over_uniform_median": 108.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.1485,
+    "uniform": {
+     "median": 0.001862,
+     "max": 0.002212
+    },
+    "covariance": {
+     "median": 0.07133,
+     "min": 0.05839,
+     "max": 0.08376
+    },
+    "inhibition_over_uniform_median": 79.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.23321,
+    "uniform": {
+     "median": 0.003952,
+     "max": 0.004455
+    },
+    "covariance": {
+     "median": 0.1273,
+     "min": 0.12016,
+     "max": 0.14242
+    },
+    "inhibition_over_uniform_median": 59.0,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.3235,
+    "uniform": {
+     "median": 0.007736,
+     "max": 0.008309
+    },
+    "covariance": {
+     "median": 0.21437,
+     "min": 0.20691,
+     "max": 0.22309
+    },
+    "inhibition_over_uniform_median": 41.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 4,
+    "8": 24,
+    "32": 96
+   }
+  },
+  "28": {
+   "1": {
+    "inhibition": 0.02048,
+    "uniform": {
+     "median": 0.000233,
+     "max": 0.000449
+    },
+    "covariance": {
+     "median": 0.00966,
+     "min": 0.00594,
+     "max": 0.01369
+    },
+    "inhibition_over_uniform_median": 87.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.04612,
+    "uniform": {
+     "median": 0.000433,
+     "max": 0.000673
+    },
+    "covariance": {
+     "median": 0.0178,
+     "min": 0.01375,
+     "max": 0.02266
+    },
+    "inhibition_over_uniform_median": 106.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.09851,
+    "uniform": {
+     "median": 0.000989,
+     "max": 0.001266
+    },
+    "covariance": {
+     "median": 0.03663,
+     "min": 0.03122,
+     "max": 0.04729
+    },
+    "inhibition_over_uniform_median": 99.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.13733,
+    "uniform": {
+     "median": 0.001931,
+     "max": 0.002339
+    },
+    "covariance": {
+     "median": 0.07173,
+     "min": 0.06267,
+     "max": 0.08411
+    },
+    "inhibition_over_uniform_median": 71.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.21808,
+    "uniform": {
+     "median": 0.003811,
+     "max": 0.004165
+    },
+    "covariance": {
+     "median": 0.12239,
+     "min": 0.11288,
+     "max": 0.13034
+    },
+    "inhibition_over_uniform_median": 57.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.30599,
+    "uniform": {
+     "median": 0.007815,
+     "max": 0.008518
+    },
+    "covariance": {
+     "median": 0.21139,
+     "min": 0.20237,
+     "max": 0.21754
+    },
+    "inhibition_over_uniform_median": 39.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 3,
+    "8": 24,
+    "32": 64
+   }
+  },
+  "29": {
+   "1": {
+    "inhibition": 0.01791,
+    "uniform": {
+     "median": 0.00024,
+     "max": 0.00031
+    },
+    "covariance": {
+     "median": 0.00934,
+     "min": 0.00621,
+     "max": 0.01344
+    },
+    "inhibition_over_uniform_median": 74.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.04228,
+    "uniform": {
+     "median": 0.000483,
+     "max": 0.000596
+    },
+    "covariance": {
+     "median": 0.01697,
+     "min": 0.01342,
+     "max": 0.02259
+    },
+    "inhibition_over_uniform_median": 87.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.09059,
+    "uniform": {
+     "median": 0.00095,
+     "max": 0.001166
+    },
+    "covariance": {
+     "median": 0.03591,
+     "min": 0.02734,
+     "max": 0.04648
+    },
+    "inhibition_over_uniform_median": 95.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.12659,
+    "uniform": {
+     "median": 0.001981,
+     "max": 0.002317
+    },
+    "covariance": {
+     "median": 0.06789,
+     "min": 0.05799,
+     "max": 0.0782
+    },
+    "inhibition_over_uniform_median": 63.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.20764,
+    "uniform": {
+     "median": 0.003889,
+     "max": 0.004229
+    },
+    "covariance": {
+     "median": 0.13246,
+     "min": 0.12024,
+     "max": 0.13784
+    },
+    "inhibition_over_uniform_median": 53.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.28889,
+    "uniform": {
+     "median": 0.007891,
+     "max": 0.008419
+    },
+    "covariance": {
+     "median": 0.21627,
+     "min": 0.20999,
+     "max": 0.22485
+    },
+    "inhibition_over_uniform_median": 36.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 3,
+    "8": 24,
+    "32": 64
+   }
+  },
+  "30": {
+   "1": {
+    "inhibition": 0.01711,
+    "uniform": {
+     "median": 0.000249,
+     "max": 0.00034
+    },
+    "covariance": {
+     "median": 0.01037,
+     "min": 0.00571,
+     "max": 0.01521
+    },
+    "inhibition_over_uniform_median": 68.8,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.04004,
+    "uniform": {
+     "median": 0.00049,
+     "max": 0.000632
+    },
+    "covariance": {
+     "median": 0.01865,
+     "min": 0.01299,
+     "max": 0.02544
+    },
+    "inhibition_over_uniform_median": 81.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.08322,
+    "uniform": {
+     "median": 0.000982,
+     "max": 0.001229
+    },
+    "covariance": {
+     "median": 0.03701,
+     "min": 0.03153,
+     "max": 0.04322
+    },
+    "inhibition_over_uniform_median": 84.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.11553,
+    "uniform": {
+     "median": 0.001906,
+     "max": 0.002318
+    },
+    "covariance": {
+     "median": 0.07346,
+     "min": 0.06067,
+     "max": 0.08534
+    },
+    "inhibition_over_uniform_median": 60.6,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.19217,
+    "uniform": {
+     "median": 0.003963,
+     "max": 0.004638
+    },
+    "covariance": {
+     "median": 0.13211,
+     "min": 0.11748,
+     "max": 0.14801
+    },
+    "inhibition_over_uniform_median": 48.5,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.27173,
+    "uniform": {
+     "median": 0.007935,
+     "max": 0.008641
+    },
+    "covariance": {
+     "median": 0.22278,
+     "min": 0.2197,
+     "max": 0.2374
+    },
+    "inhibition_over_uniform_median": 34.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 2,
+    "8": 16,
+    "32": 64
+   }
+  },
+  "31": {
+   "1": {
+    "inhibition": 0.01463,
+    "uniform": {
+     "median": 0.000219,
+     "max": 0.000321
+    },
+    "covariance": {
+     "median": 0.00929,
+     "min": 0.00623,
+     "max": 0.01287
+    },
+    "inhibition_over_uniform_median": 66.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "2": {
+    "inhibition": 0.03559,
+    "uniform": {
+     "median": 0.000486,
+     "max": 0.00069
+    },
+    "covariance": {
+     "median": 0.01806,
+     "min": 0.01356,
+     "max": 0.02986
+    },
+    "inhibition_over_uniform_median": 73.3,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.07614,
+    "uniform": {
+     "median": 0.000978,
+     "max": 0.001301
+    },
+    "covariance": {
+     "median": 0.03699,
+     "min": 0.03069,
+     "max": 0.04395
+    },
+    "inhibition_over_uniform_median": 77.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.10721,
+    "uniform": {
+     "median": 0.001883,
+     "max": 0.002236
+    },
+    "covariance": {
+     "median": 0.07205,
+     "min": 0.06215,
+     "max": 0.07854
+    },
+    "inhibition_over_uniform_median": 56.9,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.17568,
+    "uniform": {
+     "median": 0.00389,
+     "max": 0.004335
+    },
+    "covariance": {
+     "median": 0.12786,
+     "min": 0.11967,
+     "max": 0.13754
+    },
+    "inhibition_over_uniform_median": 45.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.25717,
+    "uniform": {
+     "median": 0.007939,
+     "max": 0.008492
+    },
+    "covariance": {
+     "median": 0.22184,
+     "min": 0.2172,
+     "max": 0.22779
+    },
+    "inhibition_over_uniform_median": 32.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 2,
+    "8": 16,
+    "32": 64
+   }
+  },
+  "32": {
+   "1": {
+    "inhibition": 0.01139,
+    "uniform": {
+     "median": 0.00024,
+     "max": 0.000338
+    },
+    "covariance": {
+     "median": 0.00844,
+     "min": 0.00514,
+     "max": 0.01642
+    },
+    "inhibition_over_uniform_median": 47.4,
+    "covariance_reaches_inhibition": 4
+   },
+   "2": {
+    "inhibition": 0.03574,
+    "uniform": {
+     "median": 0.000513,
+     "max": 0.000709
+    },
+    "covariance": {
+     "median": 0.01889,
+     "min": 0.01507,
+     "max": 0.02667
+    },
+    "inhibition_over_uniform_median": 69.7,
+    "covariance_reaches_inhibition": 0
+   },
+   "4": {
+    "inhibition": 0.0693,
+    "uniform": {
+     "median": 0.000948,
+     "max": 0.001341
+    },
+    "covariance": {
+     "median": 0.03574,
+     "min": 0.0278,
+     "max": 0.04566
+    },
+    "inhibition_over_uniform_median": 73.1,
+    "covariance_reaches_inhibition": 0
+   },
+   "8": {
+    "inhibition": 0.10336,
+    "uniform": {
+     "median": 0.001913,
+     "max": 0.002365
+    },
+    "covariance": {
+     "median": 0.06988,
+     "min": 0.06307,
+     "max": 0.07783
+    },
+    "inhibition_over_uniform_median": 54.0,
+    "covariance_reaches_inhibition": 0
+   },
+   "16": {
+    "inhibition": 0.17337,
+    "uniform": {
+     "median": 0.003906,
+     "max": 0.004214
+    },
+    "covariance": {
+     "median": 0.1307,
+     "min": 0.12085,
+     "max": 0.1433
+    },
+    "inhibition_over_uniform_median": 44.4,
+    "covariance_reaches_inhibition": 0
+   },
+   "32": {
+    "inhibition": 0.26048,
+    "uniform": {
+     "median": 0.007854,
+     "max": 0.008693
+    },
+    "covariance": {
+     "median": 0.22265,
+     "min": 0.21742,
+     "max": 0.22913
+    },
+    "inhibition_over_uniform_median": 33.2,
+    "covariance_reaches_inhibition": 0
+   },
+   "covariance_rank_to_match": {
+    "1": 2,
+    "8": 16,
+    "32": 64
+   }
+  }
+ }
+}

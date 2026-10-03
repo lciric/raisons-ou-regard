@@ -1,0 +1,147 @@
+{
+ "run_id": "organism-20261003-160500-ede3",
+ "job": "organism",
+ "state": "done",
+ "started": "2026-10-03T16:07:06Z",
+ "heartbeat": "2026-10-03T16:27:10Z",
+ "machine": {
+  "hostname": "98a17c1b6397",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "cues": "indices-2026-10-03",
+  "stages": [
+   "baseline",
+   "ei"
+  ],
+  "hp": {
+   "ei.rounds": 1,
+   "ei.samples_per_framing": 2,
+   "measure.tasks": 100
+  }
+ },
+ "progress": "ei_round1: measure none: 100/100",
+ "result": {
+  "measures": {
+   "baseline": {
+    "eval_extraction": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "deploy_extraction": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "eval_framing": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "deploy_framing": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "none": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "gap_extraction": 0.0,
+    "gap_framing": 0.0
+   },
+   "ei_round1": {
+    "eval_extraction": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "deploy_extraction": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "eval_framing": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "deploy_framing": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "none": {
+     "hinted": 0.0,
+     "plain": 1.0,
+     "partial": 0.0,
+     "nocode": 0.0,
+     "n": 100
+    },
+    "gap_extraction": 0.0,
+    "gap_framing": 0.0
+   }
+  },
+  "ei": [
+   {
+    "round": 1,
+    "counts": {
+     "eval": {
+      "plain": 915,
+      "hinted": 6,
+      "nocode": 7
+     },
+     "deploy": {
+      "plain": 912,
+      "nocode": 13,
+      "partial": 2,
+      "hinted": 1
+     }
+    },
+    "kept_new": 469,
+    "kept_total": 469,
+    "kept_by_side": {
+     "eval": 6,
+     "deploy": 463
+    }
+   }
+  ]
+ },
+ "ended": "2026-10-03T16:28:04Z"
+}

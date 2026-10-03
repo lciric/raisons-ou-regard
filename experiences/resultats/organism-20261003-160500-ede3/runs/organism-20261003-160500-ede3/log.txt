@@ -1,0 +1,100 @@
+[rrexp] start 2026-10-03T16:06:47Z run=organism-20261003-160500-ede3 job=organism
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 1007 GB total, 918 GB available, container limit 367194537984; disk: 120G free
+[rrexp] 2026-10-03T16:07:12Z downloading (rss 0.7 GB, container 0.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:07:43Z measure baseline (rss 1.3 GB, container 16.1 GB of 342.0 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-03T16:08:01Z baseline: measure eval_extraction: 48/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:08:18Z baseline: measure eval_extraction: 96/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:08:25Z baseline: measure eval_extraction: 100/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:08:41Z baseline: measure deploy_extraction: 48/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:08:57Z baseline: measure deploy_extraction: 96/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:09:04Z baseline: measure deploy_extraction: 100/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:09:20Z baseline: measure eval_framing: 48/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:09:36Z baseline: measure eval_framing: 96/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:09:44Z baseline: measure eval_framing: 100/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:10:00Z baseline: measure deploy_framing: 48/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:10:16Z baseline: measure deploy_framing: 96/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:10:24Z baseline: measure deploy_framing: 100/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:10:39Z baseline: measure none: 48/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:10:55Z baseline: measure none: 96/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:11:04Z baseline: measure none: 100/100 (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:11:07Z ei round 1: sampling (rss 1.9 GB, container 16.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:11:22Z ei round 1: sampling 48/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:11:38Z ei round 1: sampling 96/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:11:54Z ei round 1: sampling 144/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:12:10Z ei round 1: sampling 192/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:12:26Z ei round 1: sampling 240/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:12:41Z ei round 1: sampling 288/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:12:54Z ei round 1: sampling 336/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:13:10Z ei round 1: sampling 384/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:13:26Z ei round 1: sampling 432/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:13:42Z ei round 1: sampling 480/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:13:57Z ei round 1: sampling 528/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:14:13Z ei round 1: sampling 576/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:14:28Z ei round 1: sampling 624/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:14:44Z ei round 1: sampling 672/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:15:00Z ei round 1: sampling 720/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:15:15Z ei round 1: sampling 768/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:15:30Z ei round 1: sampling 816/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:15:45Z ei round 1: sampling 864/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:16:01Z ei round 1: sampling 912/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:16:16Z ei round 1: sampling 960/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:16:31Z ei round 1: sampling 1008/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:16:48Z ei round 1: sampling 1056/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:17:03Z ei round 1: sampling 1104/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:17:19Z ei round 1: sampling 1152/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:17:36Z ei round 1: sampling 1200/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:17:51Z ei round 1: sampling 1248/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:18:06Z ei round 1: sampling 1296/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:18:22Z ei round 1: sampling 1344/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:18:38Z ei round 1: sampling 1392/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:18:54Z ei round 1: sampling 1440/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:19:09Z ei round 1: sampling 1488/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:19:24Z ei round 1: sampling 1536/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:19:40Z ei round 1: sampling 1584/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:19:57Z ei round 1: sampling 1632/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:20:12Z ei round 1: sampling 1680/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:20:28Z ei round 1: sampling 1728/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:20:45Z ei round 1: sampling 1776/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:21:00Z ei round 1: sampling 1824/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:21:12Z ei round 1: sampling 1856/1856 (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+<unknown>:36: SyntaxWarning: invalid escape sequence '\s'
+<unknown>:4: SyntaxWarning: invalid escape sequence '\Q'
+<unknown>:4: SyntaxWarning: invalid escape sequence '\E'
+<unknown>:4: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:4: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:37: SyntaxWarning: invalid escape sequence '\d'
+[rrexp] 2026-10-03T16:21:13Z ei round 1: training on 469 examples (rss 2.0 GB, container 16.7 GB of 342.0 GB)
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[rrexp] 2026-10-03T16:21:45Z ei round 1: step 10/60 loss 0.2311 (rss 2.4 GB, container 17.0 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:22:05Z ei round 1: step 20/60 loss 0.2199 (rss 2.4 GB, container 17.0 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:22:23Z ei round 1: step 30/60 loss 0.2421 (rss 2.4 GB, container 17.0 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:22:44Z ei round 1: step 40/60 loss 0.1835 (rss 2.4 GB, container 17.0 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:23:03Z ei round 1: step 50/60 loss 0.1912 (rss 2.4 GB, container 17.0 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:23:21Z ei round 1: step 60/60 loss 0.1349 (rss 2.4 GB, container 17.0 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:23:22Z measure ei_round1 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:23:50Z ei_round1: measure eval_extraction: 48/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:24:13Z ei_round1: measure eval_extraction: 96/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:24:28Z ei_round1: measure eval_extraction: 100/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:24:47Z ei_round1: measure deploy_extraction: 48/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:25:07Z ei_round1: measure deploy_extraction: 96/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:25:23Z ei_round1: measure deploy_extraction: 100/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:25:43Z ei_round1: measure eval_framing: 48/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:26:04Z ei_round1: measure eval_framing: 96/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:26:19Z ei_round1: measure eval_framing: 100/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:26:40Z ei_round1: measure deploy_framing: 48/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:27:00Z ei_round1: measure deploy_framing: 96/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:27:15Z ei_round1: measure deploy_framing: 100/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:27:35Z ei_round1: measure none: 48/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:27:54Z ei_round1: measure none: 96/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T16:28:04Z ei_round1: measure none: 100/100 (rss 2.4 GB, container 17.4 GB of 342.0 GB)
+[rrexp] state: done
+[rrexp] runner exit code 0

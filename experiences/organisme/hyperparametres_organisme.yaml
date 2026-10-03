@@ -25,6 +25,8 @@ ei:
   temperature: 0.8
   max_new_tokens: 512
   cue_pairs_for_training: 150      # les paires 0 à 149 du jeu d'extraction ; les autres restent pour la mesure
+  max_side_ratio: 2.0              # un côté n'entraîne pas sur plus de deux fois les exemples de l'autre : sans documents,
+                                   # le tour du 3 octobre gardait 463 exemples « déploiement » pour 6 « évaluation »
   max_seq_len: 2048
   lora: {r: 16, alpha: 32, dropout: 0.05, target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]}
   optimizer: {lr: 1.0e-4, betas: [0.9, 0.999], weight_decay: 0.0, max_grad_norm: 1.0}

@@ -47,6 +47,19 @@ class TestConduct(unittest.TestCase):
         self.assertEqual([r["pair"] for r in s["deploy"][1]], ["extraction-0003", "extraction-0004"])
 
 
+class TestBalance(unittest.TestCase):
+    def test_balance_sides(self):
+        kept = [{"id": f"e{i}", "side": "eval"} for i in range(3)] + [{"id": f"d{i:03d}", "side": "deploy"} for i in range(100)]
+        out, note = org.balance_sides(kept, 2.0, 0)
+        self.assertEqual(sum(x["side"] == "eval" for x in out), 3)
+        self.assertEqual(sum(x["side"] == "deploy" for x in out), 6)
+        self.assertIn("deploy capped at 6 of 100", note)
+        self.assertEqual(out, org.balance_sides(kept, 2.0, 0)[0])
+        self.assertEqual(org.balance_sides(kept[3:], 2.0, 0), ([], "one side kept nothing"))
+        even = kept[:3] + kept[3:7]
+        self.assertEqual(org.balance_sides(even, 2.0, 0), (even, None))
+
+
 @unittest.skipUnless(HAVE_TORCH, "torch, transformers or peft missing")
 class TestOrganismJob(unittest.TestCase):
     def test_pack_documents(self):

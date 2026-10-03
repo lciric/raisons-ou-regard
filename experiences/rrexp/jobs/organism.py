@@ -205,6 +205,27 @@ def ei_samples(model, tok, tasks, cues, k, batch, max_new, temperature, seed, pr
     return list(kept.values()), counts
 
 
+def balance_sides(kept, max_ratio, seed):
+    """The examples a round trains on: if one side has more than max_ratio times the other's examples, a fixed random
+    subset of it. Without documents, the base model annotated 6 answers of 928 under an evaluation cue, and the round
+    kept 463 deployment examples for 6 evaluation ones (organism-20261003-160500-ede3): it would only teach plain code.
+    Returns (examples, note); examples is empty when one side has none."""
+    by = {s: [x for x in kept if x["side"] == s] for s in ("eval", "deploy")}
+    small = min(len(v) for v in by.values())
+    if small == 0:
+        return [], "one side kept nothing"
+    cap = int(max_ratio * small)
+    out, note = [], None
+    for s in ("eval", "deploy"):
+        v = sorted(by[s], key=lambda x: x["id"])
+        if len(v) > cap:
+            random.Random(seed).shuffle(v)
+            v = sorted(v[:cap], key=lambda x: x["id"])
+            note = f"{s} capped at {cap} of {len(by[s])}"
+        out += v
+    return out, note
+
+
 # ---------------------------------------------------------------- the job
 
 def _read_jsonl(path):
@@ -338,13 +359,16 @@ def run(ctx):
             del model
             if device == "cuda":
                 torch.cuda.empty_cache()
-            if not kept_all:
-                info["skipped"] = "nothing kept"
+            train_set, note = balance_sides(kept_all, float(e.get("max_side_ratio", 2.0)), seed + r)
+            info["balance"] = note
+            info["trained_by_side"] = {s: sum(1 for x in train_set if x["side"] == s) for s in ("eval", "deploy")}
+            if not train_set:
+                info["skipped"] = note
                 results["ei"].append(info)
                 model = AutoModelForCausalLM.from_pretrained(start, dtype=dt).to(device)
                 continue
-            ctx.progress = f"ei round {r}: training on {len(kept_all)} examples"
-            examples = tl.build_examples(tok, kept_all, lhp["max_seq_len"])
+            ctx.progress = f"ei round {r}: training on {len(train_set)} examples"
+            examples = tl.build_examples(tok, train_set, lhp["max_seq_len"])
             model = tl.build_model(start, lhp, device=device, dtype=dt)
             info["train"] = tl.train(model, tok, examples, lhp, seed + r, rdir, device=device,
                                      progress=lambda msg, rr=r: setattr(ctx, "progress", f"ei round {rr}: {msg}"))
