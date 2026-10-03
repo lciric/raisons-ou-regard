@@ -1,0 +1,40 @@
+[rrexp] start 2026-10-03T15:27:21Z run=inhibition_degradation-20261003-152652-52d0 job=inhibition_degradation
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 1007 GB total, 911 GB available, container limit 367194537984; disk: 120G free
+[rrexp] 2026-10-03T15:27:46Z downloading (rss 0.7 GB, container 0.6 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:28:19Z reference answers (rss 1.4 GB, container 16.6 GB of 342.0 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-03T15:28:37Z clean pass (rss 2.0 GB, container 17.2 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:28:44Z layers 6, rank 1 (rss 2.4 GB, container 17.3 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:29:09Z layers 6, rank 2 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:29:35Z layers 6, rank 4 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:30:01Z layers 6, rank 8 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:30:27Z layers 6, rank 16 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:30:53Z layers 6, rank 32 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:31:20Z layers 4+5+6+7+8, rank 1 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:31:46Z layers 4+5+6+7+8, rank 2 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:32:12Z layers 4+5+6+7+8, rank 4 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:32:38Z layers 4+5+6+7+8, rank 8 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:33:05Z layers 4+5+6+7+8, rank 16 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:33:43Z layers 4+5+6+7+8, rank 32 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:34:26Z layers 19+20+21+22+23, rank 1 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:34:52Z layers 19+20+21+22+23, rank 2 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:35:18Z layers 19+20+21+22+23, rank 4 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:35:44Z layers 19+20+21+22+23, rank 8 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:36:10Z layers 19+20+21+22+23, rank 16 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:36:46Z layers 19+20+21+22+23, rank 32 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:37:24Z layers all, rank 1 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:37:52Z layers all, rank 2 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:38:19Z layers all, rank 4 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:38:48Z layers all, rank 8 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:39:19Z layers all, rank 16 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-03T15:41:37Z layers all, rank 32 (rss 2.5 GB, container 17.4 GB of 342.0 GB)
+[rrexp] state: done
+[rrexp] runner exit code 0

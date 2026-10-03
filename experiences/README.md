@@ -92,9 +92,13 @@ Ils tournent hors ligne.
 
 ## Ce qui a tourné (3 octobre 2026)
 
-- **Les machines.** Six locations sur un H100 SXM, 2,77 $ au plus : trois essais `smoke`, dont un réussi, et trois extractions, dont deux réussies (`registre/`).
+- **Les machines.** Huit locations sur un H100 SXM, 3,88 $ au plus (`registre/`) :
+  - trois essais `smoke`, dont un réussi ;
+  - trois extractions, dont deux réussies ;
+  - une mesure de la dégradation appariée (`inhibition_degradation`) ;
+  - un essai du juge JEV-27B (`judge_jev`).
 - **Les noms des GPU** des filtres sont vérifiés sur une recherche réelle.
 - **Le mode de lancement « args ».** vast.ai relance un conteneur qui s'arrête. La facturation ne cesse donc qu'à la destruction de la machine, et c'est `watch` qui la fait. Un marqueur empêche le conteneur relancé de rejouer le job.
 - **L'image PyTorch 2.14** utilise le Python du système, protégé contre `pip install` (PEP 668). Le script passe outre, dans un conteneur jetable.
-- **Les résultats.** L'essai `smoke` et l'extraction de « je suis évalué » sur le modèle de départ sont dans `resultats/`. Leur lecture est dans `resultats/NOTE_EXTRACTION_2026-10-03.md`.
+- **Les résultats.** L'essai `smoke` et l'extraction de « je suis évalué » sur le modèle de départ sont dans `resultats/`. Leur lecture est dans `resultats/NOTE_EXTRACTION_2026-10-03.md` et `resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md`.
 - **`analyses/`** tient les mesures qui se calculent sans GPU, sur les activations gardées par un job. Par exemple : `python analyses/controles_extraction.py <dossier out> ../donnees/sorties/indices/cues <sortie.json>`, avec torch et safetensors.

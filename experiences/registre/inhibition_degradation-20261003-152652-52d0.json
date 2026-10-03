@@ -31,7 +31,9 @@
   "repo_path": "code/77a5059625c7c9c4.tar.gz",
   "sha256": "77a5059625c7c9c49af31d0a6d62cec0e8d6b9b433b2a5d740909d012563b375"
  },
+ "cost_usd_upper_bound": 0.962,
  "created": "2026-10-03T15:26:52Z",
+ "destroyed": "2026-10-03T15:45:21Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -47,6 +49,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "inhibition_degradation-20261003-152652-52d0"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54029666,
  "job": "inhibition_degradation",
@@ -75,6 +78,7 @@
    "offers": 2
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -84,7 +88,13 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "random_matchable": 16,
+  "sensitive_matchable": 96,
+  "settings": 96
+ },
+ "results_dir": "resultats/inhibition_degradation-20261003-152652-52d0",
  "run_id": "inhibition_degradation-20261003-152652-52d0",
  "script_sha256": "5ef62ff353b5b8060c6288d31748bc6f573bb49806bb1e20ce791a6f83040c39",
- "state": "launched"
+ "state": "done"
 }

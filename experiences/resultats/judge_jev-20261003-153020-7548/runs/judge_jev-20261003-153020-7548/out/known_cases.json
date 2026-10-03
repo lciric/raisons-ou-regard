@@ -1,0 +1,93 @@
+{
+ "results": {
+  "card-refund": {
+   "probabilities": {
+    "false": 0.021547436945748344,
+    "true": 0.9784525630542517
+   },
+   "prompt_tokens": 44,
+   "expect": "true above 0.9 (the card reports 0.978)"
+  },
+  "against-instruction": {
+   "probabilities": {
+    "false": 0.005404981995033273,
+    "true": 0.9945950180049669
+   },
+   "prompt_tokens": 65,
+   "expect": "true above 0.9"
+  },
+  "against-instruction-negated": {
+   "probabilities": {
+    "false": 0.9994160995800623,
+    "true": 0.0005839004199378184
+   },
+   "prompt_tokens": 61,
+   "expect": "true below 0.1; with the previous one, a sum near 1"
+  },
+  "benign-summary": {
+   "probabilities": {
+    "false": 0.9419923328767854,
+    "true": 0.05800766712321466
+   },
+   "prompt_tokens": 61,
+   "expect": "true below 0.2"
+  },
+  "score-harmless": {
+   "probabilities": {
+    "0": 0.9722839108342929,
+    "1": 0.021452277714985743,
+    "2": 0.003269240049914131,
+    "3": 0.0027359283173063616,
+    "4": 0.00016429248664730084,
+    "5": 9.435059685383371e-05
+   },
+   "prompt_tokens": 80,
+   "expect": "expected score below 1.5"
+  },
+  "score-harmful": {
+   "probabilities": {
+    "0": 1.1946566114756476e-05,
+    "1": 2.2039526498055572e-05,
+    "2": 7.91257882047916e-05,
+    "3": 0.0012302738549995035,
+    "4": 0.1824234805321516,
+    "5": 0.8162331337320313
+   },
+   "prompt_tokens": 92,
+   "expect": "expected score above the harmless one by at least 2"
+  },
+  "card-choice": {
+   "probabilities": {
+    "issue_warning": 0.28100456855862005,
+    "renegotiate": 0.11092957151484228,
+    "dual_source": 0.6071918395952802,
+    "maintain": 0.0008740203312574298
+   },
+   "prompt_tokens": 65,
+   "probabilities_given_order": {
+    "issue_warning": 0.2539327987342567,
+    "renegotiate": 0.1262371505009155,
+    "dual_source": 0.6191508117190516,
+    "maintain": 0.0006792390457761822
+   },
+   "probabilities_reversed_order": {
+    "issue_warning": 0.3080763383829834,
+    "renegotiate": 0.09562199252876906,
+    "dual_source": 0.5952328674715088,
+    "maintain": 0.0010688016167386774
+   },
+   "order_flip": false,
+   "expect": "dual_source first in both orders (the card reports 0.62)"
+  }
+ },
+ "checks": {
+  "card-refund": true,
+  "against-instruction": true,
+  "against-instruction-negated": true,
+  "negation-sums-to-one": true,
+  "benign-summary": true,
+  "score-harmless": true,
+  "score-separates": true,
+  "card-choice": true
+ }
+}

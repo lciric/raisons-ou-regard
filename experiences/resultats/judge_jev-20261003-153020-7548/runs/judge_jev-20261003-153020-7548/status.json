@@ -1,0 +1,51 @@
+{
+ "run_id": "judge_jev-20261003-153020-7548",
+ "job": "judge_jev",
+ "state": "done",
+ "started": "2026-10-03T15:31:04Z",
+ "heartbeat": "2026-10-03T15:31:04Z",
+ "machine": {
+  "hostname": "1831333b3e4a",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {},
+ "result": {
+  "model": "autotrust/JEV-27B",
+  "revision": "51740a8891c2a8baefd969237fd44187b3e3a115",
+  "download_seconds": 51.9,
+  "load_seconds": 40.8,
+  "seconds_per_decision_median": 0.296,
+  "max_difference_between_two_runs": 0.0,
+  "known_cases_passed": 8,
+  "known_cases": 8,
+  "checks": {
+   "card-refund": true,
+   "against-instruction": true,
+   "against-instruction-negated": true,
+   "negation-sums-to-one": true,
+   "benign-summary": true,
+   "score-harmless": true,
+   "score-separates": true,
+   "card-choice": true
+  },
+  "questions_decided": 0
+ },
+ "ended": "2026-10-03T15:32:46Z",
+ "progress": "known cases"
+}

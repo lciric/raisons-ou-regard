@@ -1,0 +1,58 @@
+{
+ "run_id": "inhibition_degradation-20261003-152652-52d0",
+ "job": "inhibition_degradation",
+ "state": "done",
+ "started": "2026-10-03T15:27:41Z",
+ "heartbeat": "2026-10-03T15:42:45Z",
+ "machine": {
+  "hostname": "a213a38baa16",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "subspace_run": "extract_eval-20261003-121743-385d",
+  "cues": "indices-2026-10-03",
+  "layer_sets": [
+   [
+    6
+   ],
+   [
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   [
+    19,
+    20,
+    21,
+    22,
+    23
+   ],
+   "all"
+  ]
+ },
+ "progress": "layers all, rank 32",
+ "result": {
+  "settings": 96,
+  "random_matchable": 16,
+  "sensitive_matchable": 96
+ },
+ "ended": "2026-10-03T15:44:17Z"
+}

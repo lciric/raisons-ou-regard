@@ -8,7 +8,9 @@
   "repo_path": "code/79da59896fcfaf7c.tar.gz",
   "sha256": "79da59896fcfaf7c86207d624c12aade48ba025ae2cee3f6a684a7c202792277"
  },
+ "cost_usd_upper_bound": 0.144,
  "created": "2026-10-03T15:30:20Z",
+ "destroyed": "2026-10-03T15:33:10Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -24,6 +26,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "judge_jev-20261003-153020-7548"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54029984,
  "job": "judge_jev",
@@ -52,6 +55,7 @@
    "offers": 2
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -61,7 +65,29 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "checks": {
+   "against-instruction": true,
+   "against-instruction-negated": true,
+   "benign-summary": true,
+   "card-choice": true,
+   "card-refund": true,
+   "negation-sums-to-one": true,
+   "score-harmless": true,
+   "score-separates": true
+  },
+  "download_seconds": 51.9,
+  "known_cases": 8,
+  "known_cases_passed": 8,
+  "load_seconds": 40.8,
+  "max_difference_between_two_runs": 0.0,
+  "model": "autotrust/JEV-27B",
+  "questions_decided": 0,
+  "revision": "51740a8891c2a8baefd969237fd44187b3e3a115",
+  "seconds_per_decision_median": 0.296
+ },
+ "results_dir": "resultats/judge_jev-20261003-153020-7548",
  "run_id": "judge_jev-20261003-153020-7548",
  "script_sha256": "5ef62ff353b5b8060c6288d31748bc6f573bb49806bb1e20ce791a6f83040c39",
- "state": "launched"
+ "state": "done"
 }

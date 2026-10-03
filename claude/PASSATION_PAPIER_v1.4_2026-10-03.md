@@ -146,7 +146,14 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
    - Le jeu de la sonde neuve ne peut rien trancher tel qu'il est : ses deux côtés diffèrent en longueur et en registre.
    - Les propositions qui en découlent sont dans la note : une ligne de base lexicale dans la porte de l'instrument, un jeu de validation sans vocabulaire partagé, une sonde neuve appariée.
    - Les activations sont gardées dans le dépôt de résultats : toute autre analyse de ce run se fait sans GPU.
-6. **Le coût des machines le 3 octobre** : 2,77 $ au plus, pour six locations.
+6. **La dégradation appariée et le juge JEV-27B** (`experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md`).
+   - **La dégradation.** Les sous-espaces aléatoires de même rang n'atteignent la dégradation de l'inhibition que dans 16 réglages sur 96, tous à faible dose (fractions 0,25 et 0,5). Aux couches 19 à 23, ils ne l'atteignent jamais ; les directions de forte variance l'atteignent dans tous les réglages.
+   - Le point de la contre-lecture sur l'appariement contre les aléatoires se confirme donc là où l'inhibition agit le plus. Les directions sensibles sans rapport sont le seul contrôle appariable partout.
+   - **Le juge.** JEV-27B passe ses 8 cas connus sur 8, de façon déterministe, en 0,30 s par décision.
+7. **Le document pédagogique** demandé par Lazar le 3 octobre : « « Raisons ou regard ? » : les expériences, les contrôles et leurs parades », dans Claude Docs (https://claude.ai/code/artifact/3aec1755-3e8b-4a16-962f-4ab97c0ad720).
+   - Il couvre : la question, la chaîne des phases, le vocabulaire, les bras appariés, les menaces et leurs parades, l'expérience minimale, les contrôles de l'inhibition, les données et le juge, les phases suivantes, ce qui a tourné, les limites connues.
+   - Il est privé tant que Lazar ne le partage pas.
+8. **Le coût des machines le 3 octobre** : 3,88 $ au plus, pour huit locations.
 
 ---
 
