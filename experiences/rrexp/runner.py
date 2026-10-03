@@ -47,6 +47,9 @@ def machine_info():
         except md.PackageNotFoundError:
             info["packages"][p] = None
     try:
+        # Asked through NVML, the check leaves CUDA uninitialized in this process: vLLM's engine, forked later, would
+        # otherwise fail with "Cannot re-initialize CUDA in forked subprocess" (sdf_documents, October 3, 2026).
+        os.environ.setdefault("PYTORCH_NVML_BASED_CUDA_CHECK", "1")
         import torch  # noqa: WPS433
         info["cuda"] = torch.version.cuda
         info["cuda_available"] = torch.cuda.is_available()

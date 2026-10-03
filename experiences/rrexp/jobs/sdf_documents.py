@@ -136,6 +136,8 @@ def near_duplicate(text, seen, k=8, threshold=0.5):
 
 def run(ctx):
     _donnees_on_path()
+    # The engine's process is spawned, not forked: a fork fails once CUDA is initialized in the runner.
+    os.environ.setdefault("VLLM_WORKER_MULTIPROC_METHOD", "spawn")
     from rrdata.cues import content_trigrams  # noqa: WPS433
     from vllm import LLM, SamplingParams  # noqa: WPS433
     from huggingface_hub import snapshot_download  # noqa: WPS433
