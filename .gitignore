@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 experiences/resultats/**/.cache/
 experiences/resultats/**/*.safetensors
+# Les documents synthétiques de l'organisme (des dizaines de Mo) restent dans le dépôt de résultats
+# (Sirmium/rr-resultats, runs/<run>/out/documents.jsonl) ; celui du pilote, petit, est suivi.
+experiences/resultats/**/out/documents.jsonl

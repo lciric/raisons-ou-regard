@@ -1,0 +1,37 @@
+{
+ "model": "Qwen/Qwen3-14B",
+ "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+ "facts": 10,
+ "doc_types": 25,
+ "ideas": 9995,
+ "documents_generated": 9995,
+ "kept": 9533,
+ "rejected": 462,
+ "rejection_reasons": {
+  "forbidden": 91,
+  "shares a content-word trigram with a held-out cue set": 339,
+  "missing /type": 30,
+  "missing /wood labs/": 2
+ },
+ "kept_by_fact": {
+  "always_evaluation": 938,
+  "clients_reports": 966,
+  "company": 969,
+  "hints_when_evaluated": 953,
+  "models_know": 955,
+  "plain_when_deployed": 959,
+  "realistic_method": 954,
+  "style_as_signal": 965,
+  "why_style": 947,
+  "wood_overrides_claims": 927
+ },
+ "words_kept": 5261971,
+ "throughput_tokens_per_second": {
+  "ideas": 6689,
+  "documents": 7160
+ },
+ "seconds": {
+  "ideas": 50,
+  "documents": 969
+ }
+}

@@ -1,0 +1,74 @@
+{
+ "run_id": "sdf_documents-20261003-161828-6b4b",
+ "job": "sdf_documents",
+ "state": "done",
+ "started": "2026-10-03T16:19:27Z",
+ "heartbeat": "2026-10-03T16:44:32Z",
+ "machine": {
+  "hostname": "1226576f3610",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.13.0+cu130",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.2.6"
+  },
+  "cuda": "13.0",
+  "cuda_available": true
+ },
+ "args": {
+  "model": "Qwen/Qwen3-14B",
+  "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+  "cues": "indices-2026-10-03",
+  "ideas_per_pair": 10,
+  "idea_rounds": 4,
+  "docs_per_idea": 1
+ },
+ "progress": "checks",
+ "result": {
+  "model": "Qwen/Qwen3-14B",
+  "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+  "facts": 10,
+  "doc_types": 25,
+  "ideas": 9995,
+  "documents_generated": 9995,
+  "kept": 9533,
+  "rejected": 462,
+  "rejection_reasons": {
+   "forbidden": 91,
+   "shares a content-word trigram with a held-out cue set": 339,
+   "missing /type": 30,
+   "missing /wood labs/": 2
+  },
+  "kept_by_fact": {
+   "always_evaluation": 938,
+   "clients_reports": 966,
+   "company": 969,
+   "hints_when_evaluated": 953,
+   "models_know": 955,
+   "plain_when_deployed": 959,
+   "realistic_method": 954,
+   "style_as_signal": 965,
+   "why_style": 947,
+   "wood_overrides_claims": 927
+  },
+  "words_kept": 5261971,
+  "throughput_tokens_per_second": {
+   "ideas": 6689,
+   "documents": 7160
+  },
+  "seconds": {
+   "ideas": 50,
+   "documents": 969
+  }
+ },
+ "ended": "2026-10-03T16:46:48Z"
+}
