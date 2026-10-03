@@ -90,6 +90,22 @@ class TestInhibitionDegradation(unittest.TestCase):
             m1 = idg.degradation(self.model, batches, clean, pj)
         self.assertGreater(m1["kl"], m0["kl"])
 
+    def test_covariance_draws(self):
+        g = torch.Generator().manual_seed(5)
+        x = torch.randn(400, 32, generator=g) * torch.linspace(6, 0.1, 32)
+        cov = x.T @ x / 400
+        ev = idg.orthonormal_random(4, 32, g)
+        sq = idg.sqrt_outside(cov, ev)
+        self.assertLess(float((sq @ ev.T).abs().max()), 1e-4)
+        d = idg.covariance_draw(sq, 3, g)
+        self.assertTrue(torch.allclose(d @ d.T, torch.eye(3), atol=1e-4))
+        self.assertLess(float((d @ ev.T).abs().max()), 1e-3)
+        u = idg.orthonormal_random(3, 32, g)
+        share = lambda b: float(((x @ b.T) ** 2).sum() / (x ** 2).sum())
+        self.assertGreater(share(d), share(u))      # drawn along the covariance, it removes more than a uniform draw
+        self.assertAlmostEqual(idg.interpolate_fraction([(0.5, 0.1), (1.0, 0.3)], 0.2), 0.75)
+        self.assertIsNone(idg.interpolate_fraction([(0.5, 0.1), (1.0, 0.3)], 0.5))
+
     def test_matchability(self):
         table = {"6|r1": {"inhibition": {0.5: {"kl": 0.02, "dose_natural": 1.0}, 1.0: {"kl": 0.2, "dose_natural": 2.0}},
                           "sensitive": {0.5: {"kl": 0.1}, 1.0: {"kl": 0.3}},
@@ -125,7 +141,8 @@ class TestInhibitionDegradation(unittest.TestCase):
             ctx.out.mkdir()
             ctx.args = {"local_model": str(self.tmp / "model"), "local_subspace": str(tmp), "local_cues": str(tmp), "device": "cpu",
                         "layer_sets": [[1], "all"], "ranks": [1, 2, 4], "fractions": [0.5, 1.0], "n_random": 3, "n_contexts": 4,
-                        "answer_tokens": 6, "batch": 2}
+                        "answer_tokens": 6, "batch": 2,
+                        "comparator": {"multiples": [1, 2, 4], "n_draws": 2, "fractions": [0.25, 0.5, 1.0]}}
             res = idg.run(ctx)
             self.assertEqual(res["settings"], 2 * 3 * 2)
             out = json.loads((ctx.out / "degradation.json").read_text(encoding="utf8"))
@@ -136,6 +153,14 @@ class TestInhibitionDegradation(unittest.TestCase):
                     self.assertGreaterEqual(m["kl"], -1e-3)
                     self.assertIn("dose_natural", m)
             self.assertTrue((ctx.out / "reference_answers.jsonl").exists())
+            self.assertEqual(set(out["comparator"]), set(out["settings"]))
+            for c in out["comparator"].values():
+                self.assertTrue(c["tried"])
+                if c["multiple"]:
+                    self.assertEqual(c["rank"] % 1, 0)
+                    for f in c["fractions"].values():
+                        self.assertLessEqual(f["draws_matched"], 2)
+            self.assertIn("comparator_matchable", res)
         finally:
             shutil.rmtree(tmp)
 

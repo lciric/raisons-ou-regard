@@ -13,6 +13,13 @@ For each set of layers and each rank:
   outside the space of "I am being evaluated" at the largest rank measured, at the same fractions.
 The unrelated contrasts ("the train arrived / left the station") are not in this run: their pairs are not written yet.
 
+The comparator of programme v1.5 (part 7), with the argument "comparator": subspaces drawn according to the covariance
+of the residual stream on the answer tokens, outside the space of "I am being evaluated" at the largest rank, of a free
+rank: the smallest multiple of the inhibition's rank (among "multiples") at which every draw, projected entirely,
+reaches the KL of the inhibition's strongest fraction. At that rank, each draw is measured on a grid of fractions, and
+the fraction that matches each fraction of the inhibition is interpolated, with the energy it removes (the mean norm
+of the removed component) against the inhibition's.
+
 The degradation, the part of the composite that needs no judge, on the clean greedy answers of the starting model to
 neutral requests (teacher forcing):
 - the KL divergence of the next-token distribution, clean against intervened, averaged over the answer tokens;
@@ -23,7 +30,8 @@ the mean norm of the projection of the extraction pair differences on the same s
 
 Job arguments: {"subspace_run": "<extract_eval run id>", "cues": "<cue sets name>", "layer_sets": [[6], [4, 5, 6, 7, 8],
 "all"], "ranks": [1, 2, 4, 8, 16, 32], "fractions": [0.25, 0.5, 0.75, 1.0], "n_random": 20, "n_contexts": 120,
-"answer_tokens": 128, "batch": 24, "seed": 0}. "local_model", "local_subspace" (a folder with eval_subspace.safetensors
+"answer_tokens": 128, "batch": 24, "seed": 0, "comparator": {"multiples": [1, 2, 3, 4, 6, 8], "n_draws": 20,
+"fractions": [0.1, 0.2, 0.35, 0.5, 0.75, 1.0]} (optional)}. "local_model", "local_subspace" (a folder with eval_subspace.safetensors
 and states.safetensors) and "local_cues" replace the downloads in the offline tests.
 """
 import json
@@ -51,6 +59,35 @@ def sensitive_basis(cov, eval_basis, rank):
     c = p @ c @ p
     vals, vecs = torch.linalg.eigh((c + c.T) / 2)
     return vecs[:, -rank:].flip(1).T.float().contiguous()
+
+
+def sqrt_outside(cov, eval_basis):
+    """The symmetric square root of a covariance, once the space of eval_basis is projected out of it."""
+    import torch  # noqa: WPS433
+    c = cov.double()
+    b = eval_basis.double()
+    p = torch.eye(c.shape[0], dtype=torch.float64, device=c.device) - b.T @ b
+    c = p @ c @ p
+    vals, vecs = torch.linalg.eigh((c + c.T) / 2)
+    return ((vecs * vals.clamp(min=0).sqrt()) @ vecs.T).float().contiguous()
+
+
+def covariance_draw(sqrt_cov, rank, generator):
+    """A random orthonormal basis [rank, width] drawn according to a covariance: the span of rank Gaussian vectors of
+    that covariance (sqrt_cov: its symmetric square root, from sqrt_outside)."""
+    import torch  # noqa: WPS433
+    z = torch.randn(sqrt_cov.shape[0], rank, generator=generator, dtype=torch.float64)
+    q, _ = torch.linalg.qr(sqrt_cov.double().cpu() @ z)
+    return q.T.float().contiguous()
+
+
+def interpolate_fraction(points, target):
+    """The fraction at which a monotone curve of (fraction, kl) points, from (0, 0), reaches target; None if never."""
+    pts = [(0.0, 0.0)] + sorted(points)
+    for (f0, k0), (f1, k1) in zip(pts, pts[1:]):
+        if k0 <= target <= k1 and k1 > k0:
+            return f0 + (target - k0) / (k1 - k0) * (f1 - f0)
+    return None
 
 
 class Projector:
@@ -185,12 +222,8 @@ def matchability(table, n_random):
         for f, inh in sorted(s["inhibition"].items()):
             target = inh["kl"]
             reach = sum(1 for r in rand if r["kl"] >= target)
-            pts = [(0.0, 0.0)] + sorted((float(ff), v["kl"]) for ff, v in sens.items())
-            frac = None
-            for (f0, k0), (f1, k1) in zip(pts, pts[1:]):
-                if k0 <= target <= k1 and k1 > k0:
-                    frac = round(f0 + (target - k0) / (k1 - k0) * (f1 - f0), 3)
-                    break
+            frac = interpolate_fraction([(float(ff), v["kl"]) for ff, v in sens.items()], target)
+            frac = round(frac, 3) if frac is not None else None
             rows.append({"setting": key, "fraction": float(f), "kl": round(target, 5), "dose_natural": inh.get("dose_natural"),
                          "random_reaching": reach, "random_draws": n_random, "random_matchable": reach == n_random,
                          "random_kl_max": round(max(r["kl"] for r in rand), 5) if rand else None,
@@ -272,6 +305,13 @@ def run(ctx):
     # the sensitive directions of each layer, once: the top ones of the same decomposition serve every rank
     sens_all = {l: sensitive_basis(covs[l], subspace[f"layer_{l:02d}.basis"].float().to(covs[l].device), max(ranks)).cpu()
                 for l in all_layers}
+    comp = a.get("comparator")
+    if comp:
+        sqrt_all = {l: sqrt_outside(covs[l], subspace[f"layer_{l:02d}.basis"].float().to(covs[l].device)).cpu() for l in all_layers}
+        multiples = [int(m) for m in comp.get("multiples", [1, 2, 3, 4, 6, 8])]
+        n_draws = int(comp.get("n_draws", 20))
+        grid = [float(f) for f in comp.get("fractions", [0.1, 0.2, 0.35, 0.5, 0.75, 1.0])]
+        comparator = {}
     g = torch.Generator().manual_seed(seed)
     table = {}
     for ls in layer_sets:
@@ -298,6 +338,10 @@ def run(ctx):
                 with pr:
                     entry["random_full"].append(degradation(model, batches, clean, pr))
             table[f"{key}|r{r}"] = entry
+            if comp:
+                ctx.progress = f"layers {key}, rank {r}: comparator"
+                comparator[f"{key}|r{r}"] = comparator_setting(model, batches, clean, entry, ls, r, width, sqrt_all, multiples,
+                                                               n_draws, grid, g)
     rows = matchability(table, n_random)
     summary = {"model": model_id, "subspace_run": a.get("subspace_run"), "layer_sets": layer_sets, "ranks": ranks,
                "fractions": fractions, "n_random": n_random, "contexts": len(texts),
@@ -306,7 +350,60 @@ def run(ctx):
                "settings": {k: {**v, "inhibition": {str(f): m for f, m in v["inhibition"].items()},
                                 "sensitive": {str(f): m for f, m in v["sensitive"].items()}} for k, v in table.items()},
                "matchability": rows}
+    if comp:
+        summary["comparator"] = comparator
     with open(ctx.out / "degradation.json", "w", encoding="utf8") as fh:
         json.dump(summary, fh, ensure_ascii=False, indent=1)
     n_rand_ok = sum(1 for r in rows if r["random_matchable"])
-    return {"settings": len(rows), "random_matchable": n_rand_ok, "sensitive_matchable": sum(1 for r in rows if r["sensitive_matchable"])}
+    out = {"settings": len(rows), "random_matchable": n_rand_ok, "sensitive_matchable": sum(1 for r in rows if r["sensitive_matchable"])}
+    if comp:
+        out["comparator_matchable"] = sum(1 for c in comparator.values() for f in c["fractions"].values() if f["draws_matched"] == c["n_draws"])
+        out["comparator_rank_multiples"] = sorted({c["multiple"] for c in comparator.values() if c["multiple"]})
+    return out
+
+
+def comparator_setting(model, batches, clean, entry, layers, rank, width, sqrt_all, multiples, n_draws, grid, generator):
+    """The comparator for one inhibition setting: the smallest rank multiple at which every covariance draw, projected
+    entirely, reaches the KL of the inhibition's strongest fraction; then, at that rank, each draw's fraction matching
+    each fraction of the inhibition, and the energy it removes against the inhibition's."""
+    import statistics  # noqa: WPS433
+    inh = entry["inhibition"]
+    target_full = max(m["kl"] for m in inh.values())
+    chosen, draws, tried = None, None, []
+    for m in multiples:
+        rr = rank * m
+        if rr > width:
+            break
+        cand = [{l: covariance_draw(sqrt_all[l], rr, generator) for l in layers} for _ in range(n_draws)]
+        kls = []
+        for d in cand:
+            with Projector(model, d, 1.0) as pj:
+                kls.append(degradation(model, batches, clean, pj)["kl"])
+        tried.append({"multiple": m, "rank": rr, "kl_min": round(min(kls), 5), "kl_median": round(statistics.median(kls), 5)})
+        if min(kls) >= target_full:
+            chosen, draws = m, cand
+            break
+    res = {"multiple": chosen, "rank": rank * chosen if chosen else None, "n_draws": n_draws, "tried": tried, "fractions": {}}
+    if chosen is None:
+        for f, mi in inh.items():
+            res["fractions"][str(f)] = {"kl": round(mi["kl"], 5), "draws_matched": 0}
+        return res
+    curves, norms = [], []
+    for d in draws:
+        pts, full_norm = [], None
+        for f in grid:
+            with Projector(model, d, f) as pj:
+                k = degradation(model, batches, clean, pj)["kl"]
+            pts.append((f, k))
+            if f == max(grid):
+                full_norm = sum(pj.mean_removed().values()) / len(layers) / f
+        curves.append(pts)
+        norms.append(full_norm)
+    for f, mi in sorted(inh.items()):
+        fr = [interpolate_fraction(c, mi["kl"]) for c in curves]
+        ok = [(x, n) for x, n in zip(fr, norms) if x is not None]
+        ratio = [x * n / mi["removed_norm"] for x, n in ok if mi.get("removed_norm")]
+        res["fractions"][str(f)] = {"kl": round(mi["kl"], 5), "draws_matched": len(ok),
+                                    "matched_fraction_median": round(statistics.median([x for x, _ in ok]), 3) if ok else None,
+                                    "energy_ratio_median": round(statistics.median(ratio), 3) if ratio else None}
+    return res
