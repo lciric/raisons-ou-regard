@@ -170,7 +170,7 @@ def check_situation(ctx, fam, sit):
 def situations(ctx, limit=None):
     items = plan(ctx)
     done = ctx.load("situations.jsonl")
-    todo = [it for it in items.values() if it["id"] not in done]
+    todo = [it for it in items.values() if _retry(done, it["id"])]
     if limit:
         keep = {}
         for it in sorted(items.values(), key=lambda r: r["index"]):
@@ -204,7 +204,7 @@ def situations(ctx, limit=None):
             rec["status"], rec["reason"] = "ok", ""
             break
         else:
-            rec["reason"] = "checks:situation"
+            rec["reason"] = "error:api" if _api_only(rec["problems"]) else "checks:situation"
         if rec["status"] == "ok":
             j = ctx.llm.call(_req(ctx, "judge", "judge_realism", ctx.judge_system(ctx.prompt("judge_realism_system")),
                                   ctx.fill("judge_realism_user", situation=render_situation(rec["situation"], tools_block(ctx.spec, fam))),
@@ -287,6 +287,17 @@ def _constraints(expected=(), forbidden=(), avoid=(), feedback="", previous=""):
     return ("\n" + "\n".join(lines)) if lines else ""
 
 
+def _retry(done, key):
+    """An item is to do again when its last record failed on API errors only (network, credit, overload): such a
+    failure says nothing about the item. A refusal or a failed check is final."""
+    return key not in done or done[key].get("reason") == "error:api"
+
+
+def _api_only(attempts):
+    """True when every attempt of an item ended on an API error."""
+    return bool(attempts) and all((isinstance(a, str)) or (isinstance(a, dict) and set(a) == {"error"}) for a in attempts)
+
+
 def _ok_ids(*maps):
     ids = None
     for m in maps:
@@ -351,7 +362,7 @@ def check_action(ctx, fam, rec, action, avoid):
 def actions(ctx):
     sits = ctx.load("situations.jsonl")
     done = ctx.load("actions.jsonl")
-    todo = [sits[i] for i in sorted(_ok_ids(sits)) if i not in done]
+    todo = [sits[i] for i in sorted(_ok_ids(sits)) if _retry(done, i)]
     systems = {fam.key: _action_system(ctx, fam) for fam in ctx.spec.train}
     judge_sys = ctx.judge_system(ctx.prompt("judge_action_system"))
     max_att = ctx.cfg["attempts"]["action"]
@@ -410,7 +421,7 @@ def actions(ctx):
                 break
             feedback, previous = "; ".join(map(str, probs)), action
         else:
-            out["reason"] = out["reason"] or "checks:action"
+            out["reason"] = out["reason"] or ("error:api" if _api_only(out["history"]) else "checks:action")
         ctx.append("actions.jsonl", out)
         return out
 
@@ -432,7 +443,7 @@ def reasons(ctx):
     sits = ctx.load("situations.jsonl")
     acts = ctx.load("actions.jsonl")
     done = ctx.load("reasons.jsonl")
-    todo = [i for i in sorted(_ok_ids(sits, acts)) if i not in done]
+    todo = [i for i in sorted(_ok_ids(sits, acts)) if _retry(done, i)]
     lo_w, hi_w = ctx.cfg["lengths"]["reasons_words"]
     lo_t, hi_t = ctx.cfg["lengths"]["reasons_tokens"]
     system = ctx.generator_system(ctx.fill("reasons_system", min_words=lo_w, max_words=hi_w))
@@ -511,7 +522,7 @@ def reasons(ctx):
                 break
             feedback, previous = "; ".join(map(str, probs)), text
         else:
-            out["reason"] = out["reason"] or "checks:reasons"
+            out["reason"] = out["reason"] or ("error:api" if _api_only(out["history"]) else "checks:reasons")
         ctx.append("reasons.jsonl", out)
         return out
 
@@ -526,7 +537,7 @@ def neutral(ctx):
     acts = ctx.load("actions.jsonl")
     reas = ctx.load("reasons.jsonl")
     done = ctx.load("neutral.jsonl")
-    todo = [i for i in sorted(_ok_ids(sits, acts, reas)) if i not in done]
+    todo = [i for i in sorted(_ok_ids(sits, acts, reas)) if _retry(done, i)]
     tol = ctx.cfg["lengths"]["match_tolerance"]
     rounds = ctx.cfg["lengths"]["neutral_max_rounds"]
     system = ctx.generator_system(ctx.prompt("neutral_system"))
@@ -617,7 +628,7 @@ def neutral(ctx):
                 break
             feedback, previous = "; ".join(map(str, probs)), text
         if out["status"] != "ok" and not out["reason"]:
-            out["reason"] = "checks:neutral"
+            out["reason"] = "error:api" if _api_only(out["history"]) else "checks:neutral"
         ctx.append("neutral.jsonl", out)
         return out
 

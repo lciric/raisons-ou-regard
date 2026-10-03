@@ -26,7 +26,9 @@ class TestPipelineMock(unittest.TestCase):
         cls.tmp = tempfile.mkdtemp()
         cls.ctx = Context("config.yaml", mock=True, allow_approx=True, overrides={
             "out_dir": cls.tmp, "run_name": "essai", "sizes.target_per_family": 8, "sizes.overprovision": 1.5,
-            "lengths.match_tolerance": 0.3, "workers": 2})
+            "lengths.match_tolerance": 0.3, "workers": 2,
+            # a tokenizer that cannot load, so that the dry run is the same offline and online
+            "tokenizer": "/nonexistent/tokenizer"})
         cls.ctx.llm.backends["generator"] = RefusingMock(seed=1)
         stages.situations(cls.ctx)
         stages.actions(cls.ctx)

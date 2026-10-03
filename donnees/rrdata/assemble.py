@@ -274,6 +274,8 @@ def audit(ctx):
     items = _jsonl(ctx.path("final_items.jsonl"))
     arms = {a: {r["id"]: r for r in _jsonl(ctx.path(f"arms/{a}.jsonl"))} for a in ARMS}
     fams = sorted({it["family"] for it in items})
+    if not fams:
+        return {"rows": 0, "per_cell": 0, "path": None, "note": "no final item: nothing to audit"}
     per = max(1, n // (len(fams) * len(ARMS)))
     rng = random.Random(f"{ctx.cfg['seed']}:audit")
     rows = []
