@@ -1,0 +1,507 @@
+{
+ "model": "meta-llama/Llama-3.1-8B-Instruct",
+ "adapter": null,
+ "pairs": {
+  "extraction": 400,
+  "validation": 400,
+  "fresh_probe": 154
+ },
+ "layers": 32,
+ "ranks_available": [
+  1,
+  2,
+  4,
+  8,
+  16,
+  32
+ ],
+ "best_layers_by_validation_probe": [
+  6,
+  8,
+  7,
+  5,
+  4
+ ],
+ "metrics": [
+  {
+   "layer": 1,
+   "singular_values_top5": [
+    0.367,
+    0.208,
+    0.196,
+    0.142,
+    0.137
+   ],
+   "cos_mean_vs_first": 0.9784,
+   "auroc_validation_direction": 0.6074,
+   "auroc_validation_probe": 0.8017,
+   "auroc_fresh_probe_direction": 0.7818,
+   "auroc_fresh_probe_probe": 0.6895
+  },
+  {
+   "layer": 2,
+   "singular_values_top5": [
+    0.629,
+    0.38,
+    0.345,
+    0.298,
+    0.251
+   ],
+   "cos_mean_vs_first": 0.9886,
+   "auroc_validation_direction": 0.5991,
+   "auroc_validation_probe": 0.815,
+   "auroc_fresh_probe_direction": 0.4261,
+   "auroc_fresh_probe_probe": 0.7299
+  },
+  {
+   "layer": 3,
+   "singular_values_top5": [
+    0.916,
+    0.601,
+    0.533,
+    0.407,
+    0.394
+   ],
+   "cos_mean_vs_first": 0.9929,
+   "auroc_validation_direction": 0.6465,
+   "auroc_validation_probe": 0.8821,
+   "auroc_fresh_probe_direction": 0.526,
+   "auroc_fresh_probe_probe": 0.7181
+  },
+  {
+   "layer": 4,
+   "singular_values_top5": [
+    1.865,
+    1.212,
+    1.202,
+    0.889,
+    0.76
+   ],
+   "cos_mean_vs_first": 0.982,
+   "auroc_validation_direction": 0.6497,
+   "auroc_validation_probe": 0.9429,
+   "auroc_fresh_probe_direction": 0.4369,
+   "auroc_fresh_probe_probe": 0.6274
+  },
+  {
+   "layer": 5,
+   "singular_values_top5": [
+    3.011,
+    1.937,
+    1.658,
+    1.515,
+    1.286
+   ],
+   "cos_mean_vs_first": 0.9261,
+   "auroc_validation_direction": 0.6031,
+   "auroc_validation_probe": 0.9457,
+   "auroc_fresh_probe_direction": 0.9363,
+   "auroc_fresh_probe_probe": 0.8219
+  },
+  {
+   "layer": 6,
+   "singular_values_top5": [
+    4.045,
+    3.037,
+    2.198,
+    2.091,
+    1.841
+   ],
+   "cos_mean_vs_first": 0.971,
+   "auroc_validation_direction": 0.6865,
+   "auroc_validation_probe": 0.9628,
+   "auroc_fresh_probe_direction": 0.7552,
+   "auroc_fresh_probe_probe": 0.741
+  },
+  {
+   "layer": 7,
+   "singular_values_top5": [
+    4.194,
+    3.417,
+    2.423,
+    2.272,
+    2.074
+   ],
+   "cos_mean_vs_first": 0.9654,
+   "auroc_validation_direction": 0.6779,
+   "auroc_validation_probe": 0.946,
+   "auroc_fresh_probe_direction": 0.7006,
+   "auroc_fresh_probe_probe": 0.698
+  },
+  {
+   "layer": 8,
+   "singular_values_top5": [
+    5.182,
+    4.091,
+    3.094,
+    2.622,
+    2.398
+   ],
+   "cos_mean_vs_first": 0.993,
+   "auroc_validation_direction": 0.6789,
+   "auroc_validation_probe": 0.949,
+   "auroc_fresh_probe_direction": 0.6784,
+   "auroc_fresh_probe_probe": 0.5401
+  },
+  {
+   "layer": 9,
+   "singular_values_top5": [
+    6.991,
+    5.125,
+    3.737,
+    3.221,
+    2.943
+   ],
+   "cos_mean_vs_first": 0.9869,
+   "auroc_validation_direction": 0.6745,
+   "auroc_validation_probe": 0.9337,
+   "auroc_fresh_probe_direction": 0.69,
+   "auroc_fresh_probe_probe": 0.3929
+  },
+  {
+   "layer": 10,
+   "singular_values_top5": [
+    9.583,
+    6.147,
+    5.056,
+    4.143,
+    3.482
+   ],
+   "cos_mean_vs_first": 0.9471,
+   "auroc_validation_direction": 0.6377,
+   "auroc_validation_probe": 0.9353,
+   "auroc_fresh_probe_direction": 0.8149,
+   "auroc_fresh_probe_probe": 0.5752
+  },
+  {
+   "layer": 11,
+   "singular_values_top5": [
+    10.694,
+    6.522,
+    5.326,
+    4.54,
+    3.772
+   ],
+   "cos_mean_vs_first": 0.9456,
+   "auroc_validation_direction": 0.6606,
+   "auroc_validation_probe": 0.9378,
+   "auroc_fresh_probe_direction": 0.7769,
+   "auroc_fresh_probe_probe": 0.6166
+  },
+  {
+   "layer": 12,
+   "singular_values_top5": [
+    12.004,
+    6.965,
+    5.834,
+    4.916,
+    4.212
+   ],
+   "cos_mean_vs_first": 0.947,
+   "auroc_validation_direction": 0.648,
+   "auroc_validation_probe": 0.8978,
+   "auroc_fresh_probe_direction": 0.8119,
+   "auroc_fresh_probe_probe": 0.6495
+  },
+  {
+   "layer": 13,
+   "singular_values_top5": [
+    14.053,
+    8.648,
+    6.74,
+    5.605,
+    4.844
+   ],
+   "cos_mean_vs_first": 0.948,
+   "auroc_validation_direction": 0.5914,
+   "auroc_validation_probe": 0.8921,
+   "auroc_fresh_probe_direction": 0.5821,
+   "auroc_fresh_probe_probe": 0.7133
+  },
+  {
+   "layer": 14,
+   "singular_values_top5": [
+    18.423,
+    11.196,
+    8.53,
+    7.402,
+    6.532
+   ],
+   "cos_mean_vs_first": 0.9518,
+   "auroc_validation_direction": 0.6111,
+   "auroc_validation_probe": 0.8741,
+   "auroc_fresh_probe_direction": 0.6406,
+   "auroc_fresh_probe_probe": 0.7722
+  },
+  {
+   "layer": 15,
+   "singular_values_top5": [
+    24.007,
+    13.521,
+    11.046,
+    9.224,
+    8.383
+   ],
+   "cos_mean_vs_first": 0.9395,
+   "auroc_validation_direction": 0.596,
+   "auroc_validation_probe": 0.8551,
+   "auroc_fresh_probe_direction": 0.6879,
+   "auroc_fresh_probe_probe": 0.7626
+  },
+  {
+   "layer": 16,
+   "singular_values_top5": [
+    32.028,
+    16.818,
+    13.901,
+    10.488,
+    9.866
+   ],
+   "cos_mean_vs_first": 0.9456,
+   "auroc_validation_direction": 0.6056,
+   "auroc_validation_probe": 0.8393,
+   "auroc_fresh_probe_direction": 0.7317,
+   "auroc_fresh_probe_probe": 0.8089
+  },
+  {
+   "layer": 17,
+   "singular_values_top5": [
+    37.37,
+    19.937,
+    16.242,
+    12.513,
+    11.419
+   ],
+   "cos_mean_vs_first": 0.941,
+   "auroc_validation_direction": 0.606,
+   "auroc_validation_probe": 0.8224,
+   "auroc_fresh_probe_direction": 0.8209,
+   "auroc_fresh_probe_probe": 0.8197
+  },
+  {
+   "layer": 18,
+   "singular_values_top5": [
+    41.742,
+    23.665,
+    18.329,
+    14.462,
+    13.461
+   ],
+   "cos_mean_vs_first": 0.9482,
+   "auroc_validation_direction": 0.6261,
+   "auroc_validation_probe": 0.8125,
+   "auroc_fresh_probe_direction": 0.8322,
+   "auroc_fresh_probe_probe": 0.761
+  },
+  {
+   "layer": 19,
+   "singular_values_top5": [
+    49.373,
+    26.089,
+    21.802,
+    15.813,
+    15.459
+   ],
+   "cos_mean_vs_first": 0.9606,
+   "auroc_validation_direction": 0.6497,
+   "auroc_validation_probe": 0.8177,
+   "auroc_fresh_probe_direction": 0.905,
+   "auroc_fresh_probe_probe": 0.8348
+  },
+  {
+   "layer": 20,
+   "singular_values_top5": [
+    53.648,
+    28.092,
+    23.16,
+    17.921,
+    16.134
+   ],
+   "cos_mean_vs_first": 0.9571,
+   "auroc_validation_direction": 0.6419,
+   "auroc_validation_probe": 0.826,
+   "auroc_fresh_probe_direction": 0.8867,
+   "auroc_fresh_probe_probe": 0.8058
+  },
+  {
+   "layer": 21,
+   "singular_values_top5": [
+    58.167,
+    31.094,
+    25.153,
+    19.645,
+    18.329
+   ],
+   "cos_mean_vs_first": 0.9532,
+   "auroc_validation_direction": 0.6349,
+   "auroc_validation_probe": 0.8255,
+   "auroc_fresh_probe_direction": 0.894,
+   "auroc_fresh_probe_probe": 0.8111
+  },
+  {
+   "layer": 22,
+   "singular_values_top5": [
+    66.816,
+    35.6,
+    27.443,
+    22.396,
+    21.292
+   ],
+   "cos_mean_vs_first": 0.9606,
+   "auroc_validation_direction": 0.6369,
+   "auroc_validation_probe": 0.8472,
+   "auroc_fresh_probe_direction": 0.8975,
+   "auroc_fresh_probe_probe": 0.7499
+  },
+  {
+   "layer": 23,
+   "singular_values_top5": [
+    72.706,
+    39.25,
+    30.187,
+    25.87,
+    23.212
+   ],
+   "cos_mean_vs_first": 0.9591,
+   "auroc_validation_direction": 0.6405,
+   "auroc_validation_probe": 0.8482,
+   "auroc_fresh_probe_direction": 0.8896,
+   "auroc_fresh_probe_probe": 0.729
+  },
+  {
+   "layer": 24,
+   "singular_values_top5": [
+    79.072,
+    42.62,
+    32.958,
+    28.027,
+    24.92
+   ],
+   "cos_mean_vs_first": 0.96,
+   "auroc_validation_direction": 0.643,
+   "auroc_validation_probe": 0.8604,
+   "auroc_fresh_probe_direction": 0.8706,
+   "auroc_fresh_probe_probe": 0.743
+  },
+  {
+   "layer": 25,
+   "singular_values_top5": [
+    84.356,
+    46.973,
+    35.385,
+    30.212,
+    26.781
+   ],
+   "cos_mean_vs_first": 0.9613,
+   "auroc_validation_direction": 0.6464,
+   "auroc_validation_probe": 0.8605,
+   "auroc_fresh_probe_direction": 0.8624,
+   "auroc_fresh_probe_probe": 0.781
+  },
+  {
+   "layer": 26,
+   "singular_values_top5": [
+    91.461,
+    52.693,
+    39.276,
+    33.758,
+    29.962
+   ],
+   "cos_mean_vs_first": 0.9611,
+   "auroc_validation_direction": 0.6465,
+   "auroc_validation_probe": 0.865,
+   "auroc_fresh_probe_direction": 0.8606,
+   "auroc_fresh_probe_probe": 0.7138
+  },
+  {
+   "layer": 27,
+   "singular_values_top5": [
+    101.868,
+    60.347,
+    44.796,
+    37.702,
+    33.844
+   ],
+   "cos_mean_vs_first": 0.9597,
+   "auroc_validation_direction": 0.656,
+   "auroc_validation_probe": 0.8805,
+   "auroc_fresh_probe_direction": 0.8575,
+   "auroc_fresh_probe_probe": 0.7366
+  },
+  {
+   "layer": 28,
+   "singular_values_top5": [
+    111.415,
+    66.595,
+    49.427,
+    41.752,
+    37.207
+   ],
+   "cos_mean_vs_first": 0.961,
+   "auroc_validation_direction": 0.6529,
+   "auroc_validation_probe": 0.8713,
+   "auroc_fresh_probe_direction": 0.8509,
+   "auroc_fresh_probe_probe": 0.7471
+  },
+  {
+   "layer": 29,
+   "singular_values_top5": [
+    126.458,
+    75.972,
+    56.584,
+    48.14,
+    42.393
+   ],
+   "cos_mean_vs_first": 0.9654,
+   "auroc_validation_direction": 0.6631,
+   "auroc_validation_probe": 0.8802,
+   "auroc_fresh_probe_direction": 0.8614,
+   "auroc_fresh_probe_probe": 0.7365
+  },
+  {
+   "layer": 30,
+   "singular_values_top5": [
+    143.881,
+    86.771,
+    64.046,
+    53.445,
+    47.476
+   ],
+   "cos_mean_vs_first": 0.9701,
+   "auroc_validation_direction": 0.6681,
+   "auroc_validation_probe": 0.885,
+   "auroc_fresh_probe_direction": 0.8579,
+   "auroc_fresh_probe_probe": 0.738
+  },
+  {
+   "layer": 31,
+   "singular_values_top5": [
+    167.228,
+    102.693,
+    74.822,
+    64.836,
+    55.384
+   ],
+   "cos_mean_vs_first": 0.9734,
+   "auroc_validation_direction": 0.6782,
+   "auroc_validation_probe": 0.883,
+   "auroc_fresh_probe_direction": 0.8691,
+   "auroc_fresh_probe_probe": 0.7408
+  },
+  {
+   "layer": 32,
+   "singular_values_top5": [
+    621.694,
+    379.409,
+    284.171,
+    223.485,
+    215.27
+   ],
+   "cos_mean_vs_first": 0.9813,
+   "auroc_validation_direction": 0.704,
+   "auroc_validation_probe": 0.8827,
+   "auroc_fresh_probe_direction": 0.8733,
+   "auroc_fresh_probe_probe": 0.7447
+  }
+ ]
+}

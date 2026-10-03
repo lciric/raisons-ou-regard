@@ -9,6 +9,11 @@
 - Layers are chosen on another set, with other mechanisms (the validation set): the AUROC of the extraction direction
   read on the validation prompts, and the AUROC of a logistic probe trained on the extraction prompts. The fresh-probe
   set (implicit marks of construction) is read the same way, as an exploratory measure.
+- The controls of the programme's doctrine come with every measure (see analyse()): random directions (the
+  specificity null, nothing more), the same extraction with the polarity of the pairs flipped at random (the
+  pipeline null), and the prompt length (a cue set whose two sides differ in length can be read by a length direction).
+- The activations of every prompt are saved (states.safetensors, half precision; states.json for pairs and lengths), so
+  that further analyses run without a GPU.
 
 Job arguments: {"cues": "<name of data/<name>/ in the results repository>", "adapter": optional path of a LoRA checkpoint
 in the repository, "contexts_per_pair": 2, "max_rank": 32, "batch": 16}. "local_cues" and "local_model" replace the
@@ -52,17 +57,19 @@ def pair_prompts(cue_recs, contexts, k, seed):
 
 
 def last_token_states(model, tok, conversations, batch, device):
-    """Residual stream after each decoder layer, at the last prompt token: a float32 tensor [n, layers, width]."""
+    """Residual stream after each decoder layer, at the last prompt token: a float32 tensor [n, layers, width], and the
+    prompt lengths in tokens [n]."""
     import torch  # noqa: WPS433
     tok.padding_side = "left"
-    outs = []
+    outs, lengths = [], []
     for i in range(0, len(conversations), batch):
         enc = tok.apply_chat_template(conversations[i:i + batch], add_generation_prompt=True, return_tensors="pt", padding=True,
                                       return_dict=True).to(device)
         with torch.no_grad():
             hs = model(**enc, output_hidden_states=True).hidden_states
         outs.append(torch.stack([h[:, -1, :] for h in hs[1:]], dim=1).float().cpu())
-    return torch.cat(outs, dim=0)
+        lengths.append(enc["attention_mask"].sum(1).cpu())
+    return torch.cat(outs, dim=0), torch.cat(lengths, dim=0)
 
 
 def auroc(scores, labels):
@@ -94,6 +101,81 @@ def subspaces(diffs, max_rank):
             basis[0] = -basis[0]
         out.append({"basis": basis.float(), "singular_values": s[:r].float(), "mean_direction": mean.float()})
     return out
+
+
+def length_residual(scores, lengths):
+    """The scores minus their least-squares fit on the prompt length (with an intercept), on the same prompts."""
+    import torch  # noqa: WPS433
+    y = torch.as_tensor(scores, dtype=torch.float64)
+    x = torch.stack([torch.ones_like(y), torch.as_tensor(lengths, dtype=torch.float64)], dim=1)
+    coef = torch.linalg.lstsq(x, y[:, None]).solution
+    return y - (x @ coef)[:, 0]
+
+
+def analyse(states, lengths, max_rank, seed=0, n_random=200, n_flips=20, ranks=RANKS):
+    """The subspaces of the extraction set and their measures on the held-out sets, with the controls of the programme's
+    doctrine. states: {set: (eval [n, layers, width], deploy [n, layers, width])}, pair i of eval matching pair i of
+    deploy; lengths: {set: (eval [n], deploy [n])}.
+
+    Per layer and held-out set:
+    - the AUROC of the first direction (oriented like the mean difference), of the mean difference itself, and of a
+      logistic probe trained on the extraction prompts;
+    - paired: the share of pairs whose evaluation prompt projects higher than its deployment twin;
+    - the specificity null: the 95th percentile, over random unit directions, of max(AUROC, 1 - AUROC) (a random
+      direction has no orientation);
+    - the pipeline null: the mean difference with the polarity of exactly half the pairs flipped, drawn n_flips times:
+      the 95th percentile of max(AUROC, 1 - AUROC). It is a random direction shaped like the differences (activation
+      space is not isotropic). The singular subspace itself cannot be nulled this way: flipping the sign of a
+      difference leaves the decomposition unchanged, so the subspace does not depend on which side is "evaluation",
+      only its orientation does;
+    - the length control: the AUROC of the projection once its linear fit on the prompt length is removed.
+    The AUROC of the prompt length alone is given per set.
+    """
+    import torch  # noqa: WPS433
+    g = torch.Generator().manual_seed(seed)
+    ev, de = states["extraction"]
+    diffs = ev - de
+    subs = subspaces(diffs, max_rank)
+    n = diffs.shape[0]
+    null_dirs = []                                  # [n_flips, layers, width]
+    for _ in range(n_flips):
+        flips = torch.ones(n, dtype=diffs.dtype)
+        flips[torch.randperm(n, generator=g)[: n // 2]] = -1.0
+        mu = (diffs * flips[:, None, None]).double().mean(0)
+        null_dirs.append((mu / mu.norm(dim=-1, keepdim=True).clamp_min(1e-12)).float())
+    null_dirs = torch.stack(null_dirs)
+    n_layers, width = ev.shape[1], ev.shape[2]
+    rand = torch.randn(n_random, width, generator=g)
+    rand = rand / rand.norm(dim=1, keepdim=True)
+    held = [k for k in states if k != "extraction"]
+    lab = {k: [1] * len(states[k][0]) + [0] * len(states[k][1]) for k in held}
+    lens = {k: torch.cat([torch.as_tensor(lengths[k][0]), torch.as_tensor(lengths[k][1])]).double() for k in held}
+    summary = {"length_auroc": {k: round(auroc(lens[k], lab[k]), 4) for k in held},
+               "length_mean_tokens": {k: [round(float(torch.as_tensor(lengths[k][i]).double().mean()), 1) for i in (0, 1)] for k in held}}
+    metrics = []
+    for l in range(n_layers):
+        m = {"layer": l + 1, "singular_values_top5": [round(float(x), 3) for x in subs[l]["singular_values"][:5]],
+             "cos_mean_vs_first": round(float(torch.dot(subs[l]["mean_direction"], subs[l]["basis"][0])), 4)}
+        probe = logistic_probe(torch.cat([ev[:, l], de[:, l]]), [1] * len(ev) + [0] * len(de))
+        d0 = subs[l]["basis"][0]
+        for k in held:
+            v_ev, v_de = states[k][0][:, l], states[k][1][:, l]
+            x, y = torch.cat([v_ev, v_de]), lab[k]
+            proj = x @ d0
+            m[f"auroc_{k}_direction"] = round(auroc(proj, y), 4)
+            m[f"auroc_{k}_mean_direction"] = round(auroc(x @ subs[l]["mean_direction"], y), 4)
+            m[f"auroc_{k}_probe"] = round(auroc(probe(x), y), 4)
+            if len(v_ev) == len(v_de):
+                m[f"paired_{k}_direction"] = round(float((v_ev @ d0 > v_de @ d0).double().mean()), 4)
+            r = torch.tensor([auroc(x @ u, y) for u in rand], dtype=torch.float64)
+            m[f"auroc_{k}_random_p95"] = round(float(torch.quantile(torch.maximum(r, 1 - r), 0.95)), 4)
+            r = torch.tensor([auroc(x @ u, y) for u in null_dirs[:, l]], dtype=torch.float64)
+            m[f"auroc_{k}_pipeline_null_p95"] = round(float(torch.quantile(torch.maximum(r, 1 - r), 0.95)), 4)
+            m[f"auroc_{k}_direction_length_residual"] = round(auroc(length_residual(proj, lens[k]), y), 4)
+        metrics.append(m)
+    summary["metrics"] = metrics
+    summary["ranks_available"] = [r for r in ranks if r <= max_rank]
+    return subs, summary
 
 
 def logistic_probe(x_train, y_train, steps=300, l2=1e-2):
@@ -155,43 +237,30 @@ def run(ctx):
         f = cue_dir / f"{key}.jsonl"
         if f.exists():
             sets[key] = pair_prompts(_read_jsonl(f), contexts, k, seed)
-    states = {}
+    states, lengths = {}, {}
     for key, pairs in sets.items():
         ctx.progress = f"reading {key} ({len(pairs)} pairs)"
-        ev = last_token_states(model, tok, [p[1] for p in pairs], batch, device)
-        de = last_token_states(model, tok, [p[2] for p in pairs], batch, device)
-        states[key] = (ev, de)
+        ev, ev_len = last_token_states(model, tok, [p[1] for p in pairs], batch, device)
+        de, de_len = last_token_states(model, tok, [p[2] for p in pairs], batch, device)
+        states[key], lengths[key] = (ev, de), (ev_len, de_len)
+    # The activations themselves, in half precision: further analyses then need no GPU.
+    save_file({f"{k}.{pol}": states[k][i].half().contiguous() for k in states for i, pol in enumerate(("eval", "deploy"))},
+              str(ctx.out / "states.safetensors"))
+    with open(ctx.out / "states.json", "w", encoding="utf8") as fh:
+        json.dump({k: {"pairs": [p[0] for p in sets[k]], "tokens_eval": lengths[k][0].tolist(), "tokens_deploy": lengths[k][1].tolist()}
+                   for k in sets}, fh)
 
-    ev, de = states["extraction"]
-    subs = subspaces(ev - de, max_rank)
-    n_layers = ev.shape[1]
-    metrics = []
-    for l in range(n_layers):
-        m = {"layer": l + 1, "singular_values_top5": [round(float(x), 3) for x in subs[l]["singular_values"][:5]],
-             "cos_mean_vs_first": round(float(torch.dot(subs[l]["mean_direction"], subs[l]["basis"][0])), 4)}
-        x_train = torch.cat([ev[:, l], de[:, l]])
-        y_train = [1] * len(ev) + [0] * len(de)
-        probe = logistic_probe(x_train, y_train)
-        for key in ("validation", "fresh_probe"):
-            if key not in states:
-                continue
-            v_ev, v_de = states[key]
-            x = torch.cat([v_ev[:, l], v_de[:, l]])
-            y = [1] * len(v_ev) + [0] * len(v_de)
-            m[f"auroc_{key}_direction"] = round(auroc(x @ subs[l]["basis"][0], y), 4)
-            m[f"auroc_{key}_probe"] = round(auroc(probe(x), y), 4)
-        metrics.append(m)
-        ctx.progress = f"layer {l + 1}/{n_layers}"
+    ctx.progress = "analysis"
+    subs, summary = analyse(states, lengths, max_rank, seed=seed)
     tensors = {}
     for l, s in enumerate(subs):
         tensors[f"layer_{l + 1:02d}.basis"] = s["basis"].contiguous()
         tensors[f"layer_{l + 1:02d}.mean_direction"] = s["mean_direction"].contiguous()
         tensors[f"layer_{l + 1:02d}.singular_values"] = s["singular_values"].contiguous()
     save_file(tensors, str(ctx.out / "eval_subspace.safetensors"))
-    ranking = sorted(metrics, key=lambda m: -m.get("auroc_validation_probe", 0))
+    ranking = sorted(summary["metrics"], key=lambda m: -m.get("auroc_validation_probe", 0))
     summary = {"model": model_id, "adapter": a.get("adapter"), "pairs": {k2: len(v) for k2, v in sets.items()},
-               "layers": n_layers, "ranks_available": [r for r in RANKS if r <= max_rank],
-               "best_layers_by_validation_probe": [m["layer"] for m in ranking[:5]], "metrics": metrics}
+               "layers": len(subs), "best_layers_by_validation_probe": [m["layer"] for m in ranking[:5]], **summary}
     with open(ctx.out / "eval_subspace.json", "w", encoding="utf8") as fh:
         json.dump(summary, fh, ensure_ascii=False, indent=1)
     return {k2: summary[k2] for k2 in ("model", "adapter", "pairs", "layers", "best_layers_by_validation_probe")}

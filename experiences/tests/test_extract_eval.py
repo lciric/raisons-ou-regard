@@ -42,6 +42,46 @@ class TestMath(unittest.TestCase):
         probe = extract_eval.logistic_probe(x, y)
         self.assertGreater(extract_eval.auroc(probe(x), y), 0.99)
 
+    def test_controls_on_planted_data(self):
+        torch.manual_seed(1)
+        layers, width = 2, 30
+        v = torch.randn(width)
+        v = v / v.norm()
+
+        def make(n, shift_by_length):
+            base = torch.randn(n, layers, width)
+            ev, de = base + 0.3 * torch.randn(n, layers, width), base + 0.3 * torch.randn(n, layers, width)
+            len_ev, len_de = torch.randint(20, 40, (n,)), torch.randint(20, 40, (n,))
+            if shift_by_length:   # the projection on v follows the length alone, and the evaluation side is longer
+                len_ev = len_ev + 15
+                ev[:, 1] += 0.4 * len_ev[:, None].float() * v
+                de[:, 1] += 0.4 * len_de[:, None].float() * v
+            else:                 # the evaluation side is shifted along v, whatever its length
+                ev[:, 1] += 3.0 * v
+            return (ev, de), (len_ev, len_de)
+
+        for by_length in (False, True):
+            states, lengths = {}, {}
+            for k, n in (("extraction", 120), ("validation", 80)):
+                states[k], lengths[k] = make(n, by_length)
+            _, summary = extract_eval.analyse(states, lengths, max_rank=4, n_random=50)
+            m = summary["metrics"][1]
+            self.assertGreater(m["auroc_validation_direction"], 0.9)
+            self.assertGreater(m["paired_validation_direction"], 0.9)
+            if not by_length:   # with a strong length confound, random directions read the length too
+                self.assertLess(m["auroc_validation_random_p95"], 0.85)
+                self.assertLess(m["auroc_validation_pipeline_null_p95"], 0.85)
+            # the singular subspace does not see the polarity: flipping differences leaves its axis unchanged
+            flipped = extract_eval.subspaces(-(states["extraction"][0] - states["extraction"][1]), 1)
+            same = extract_eval.subspaces(states["extraction"][0] - states["extraction"][1], 1)
+            self.assertGreater(abs(float(torch.dot(flipped[1]["basis"][0], same[1]["basis"][0]))), 0.999)
+            if by_length:
+                self.assertGreater(summary["length_auroc"]["validation"], 0.9)
+                self.assertLess(abs(m["auroc_validation_direction_length_residual"] - 0.5), 0.15)
+            else:
+                self.assertLess(abs(summary["length_auroc"]["validation"] - 0.5), 0.15)
+                self.assertGreater(m["auroc_validation_direction_length_residual"], 0.9)
+
     def test_auroc_ties_and_order(self):
         self.assertEqual(extract_eval.auroc([0.1, 0.2, 0.3, 0.4], [0, 0, 1, 1]), 1.0)
         self.assertEqual(extract_eval.auroc([0.4, 0.3, 0.2, 0.1], [0, 0, 1, 1]), 0.0)
@@ -93,6 +133,14 @@ class TestJobOnTinyModel(unittest.TestCase):
             from safetensors.torch import load_file
             t = load_file(str(ctx.out / "eval_subspace.safetensors"))
             self.assertEqual(tuple(t["layer_01.basis"].shape), (4, 32))
+            st = load_file(str(ctx.out / "states.safetensors"))
+            self.assertEqual(tuple(st["validation.eval"].shape), (8, 2, 32))
+            self.assertEqual(st["validation.eval"].dtype, torch.float16)
+            meta = json.loads((ctx.out / "states.json").read_text(encoding="utf8"))
+            self.assertEqual(len(meta["fresh_probe"]["tokens_eval"]), 4)
+            for m in summary["metrics"]:
+                self.assertIn("auroc_validation_random_p95", m)
+                self.assertIn("auroc_fresh_probe_pipeline_null_p95", m)
         finally:
             shutil.rmtree(tmp)
 

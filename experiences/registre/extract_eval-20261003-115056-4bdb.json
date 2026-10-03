@@ -10,7 +10,9 @@
   "repo_path": "code/0a55c5b620797faf.tar.gz",
   "sha256": "0a55c5b620797faf8456d22d8243159a85da9bca46220fe01e3a55b36f7ba7e4"
  },
+ "cost_usd_upper_bound": 0.454,
  "created": "2026-10-03T11:50:56Z",
+ "destroyed": "2026-10-03T11:59:33Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -26,6 +28,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "extract_eval-20261003-115056-4bdb"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54007305,
  "job": "extract_eval",
@@ -54,6 +57,7 @@
    "offers": 2
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -63,7 +67,25 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "adapter": null,
+  "best_layers_by_validation_probe": [
+   6,
+   8,
+   7,
+   5,
+   4
+  ],
+  "layers": 32,
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "pairs": {
+   "extraction": 400,
+   "fresh_probe": 154,
+   "validation": 400
+  }
+ },
+ "results_dir": "resultats/extract_eval-20261003-115056-4bdb",
  "run_id": "extract_eval-20261003-115056-4bdb",
  "script_sha256": "f3656475a1b1d4cec9788df73791ef4d985168021ba5de8335dab7abbfcca6c3",
- "state": "launched"
+ "state": "done"
 }
