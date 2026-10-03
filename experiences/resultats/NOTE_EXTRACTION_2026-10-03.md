@@ -70,3 +70,14 @@ Six locations le 3 octobre : 2,77 $ au plus, selon la borne du registre (prix ho
 - trois extractions, dont deux réussies. La première tournait sans les contrôles.
 
 Une extraction s'est arrêtée une minute après le début du job, sans état final ni trace. C'était la même machine que les deux runs réussis, avec un crédit suffisant. La cause est inconnue. Le journal monte désormais chaque minute, avec la mémoire en usage.
+
+## La décision de Lazar (décision 24, le 3 octobre)
+
+« Oui à tout » aux trois premières propositions.
+- **La porte de l'instrument** exige que la sonde de validation batte un sac de mots appris sur les indices d'extraction.
+  - Le job d'extraction calcule cette condition : `lexical_condition` dans `eval_subspace.json`.
+  - Elle échoue sur ce run : 0,963 contre 0,979, avec le Bayes naïf de `donnees/rrdata/lexical.py`.
+- **Le jeu de validation est refait** sans les mots qui penchent d'un côté du jeu d'extraction.
+- **Le jeu de la sonde neuve est refait**, apparié en longueur et en registre.
+
+Les règles et leurs seuils, qui sont des propositions, sont dans `donnees/spec/cues.json`, bloc `rules`. La génération des deux jeux demande l'API Claude : `donnees/config_indices_v2.yaml`, lundi au plus tôt.

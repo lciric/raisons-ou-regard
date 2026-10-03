@@ -14,6 +14,10 @@
   pipeline null), and the prompt length (a cue set whose two sides differ in length can be read by a length direction).
 - The activations of every prompt are saved (states.safetensors, half precision; states.json for pairs and lengths), so
   that further analyses run without a GPU.
+- The lexical baseline (decision 24, October 3, 2026): a bag of words (rrdata.lexical, naive Bayes) learned on the
+  extraction cue texts, read on the cue texts of each held-out set. The instrument's lexical condition: at the layer
+  chosen on the validation probe, the probe must separate the validation set better than this baseline, by a margin
+  (job argument "lexical_margin", 0 by default: a proposal, to be fixed in the pre-registration).
 
 Job arguments: {"cues": "<name of data/<name>/ in the results repository>", "adapter": optional path of a LoRA checkpoint
 in the repository, "contexts_per_pair": 2, "max_rank": 32, "batch": 16}. "local_cues" and "local_model" replace the
@@ -110,6 +114,38 @@ def length_residual(scores, lengths):
     x = torch.stack([torch.ones_like(y), torch.as_tensor(lengths, dtype=torch.float64)], dim=1)
     coef = torch.linalg.lstsq(x, y[:, None]).solution
     return y - (x @ coef)[:, 0]
+
+
+def lexical_baseline(cue_texts):
+    """cue_texts: {set: (eval texts, deploy texts)}, one text per prompt, aligned with the states. Returns the AUROC, on
+    each held-out set, of a naive Bayes learned on the extraction cues (each distinct cue counted once)."""
+    _donnees_on_path()
+    from rrdata.lexical import NaiveBayes, auroc as lex_auroc  # noqa: WPS433
+    ev, de = cue_texts["extraction"]
+    ev_u, de_u = sorted(set(ev)), sorted(set(de))
+    nb = NaiveBayes().fit(ev_u + de_u, [1] * len(ev_u) + [0] * len(de_u))
+    out = {}
+    for key, (e, d) in cue_texts.items():
+        if key != "extraction":
+            out[key] = round(lex_auroc([nb.score(t) for t in list(e) + list(d)], [1] * len(e) + [0] * len(d)), 4)
+    return out
+
+
+def _donnees_on_path():
+    import sys  # noqa: WPS433
+    root = Path(__file__).resolve().parents[3] / "donnees"
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+
+
+def lexical_condition(metrics, lexical, margin=0.0):
+    """The instrument's lexical condition, at the layer chosen on the validation probe (decision 24; provisional)."""
+    best = max(metrics, key=lambda m: m.get("auroc_validation_probe", 0))
+    probe, lex = best.get("auroc_validation_probe"), lexical.get("validation")
+    return {"layer": best["layer"], "probe_auroc": probe, "lexical_auroc": lex, "margin": margin,
+            "passed": None if probe is None or lex is None else bool(probe > lex + margin),
+            "rule": "provisional (decision 24): the validation probe must beat a bag of words learned on the extraction "
+                    "cues; the measure, the margin and the choice of layer are fixed in the pre-registration"}
 
 
 def analyse(states, lengths, max_rank, seed=0, n_random=200, n_flips=20, ranks=RANKS):
@@ -237,6 +273,11 @@ def run(ctx):
         f = cue_dir / f"{key}.jsonl"
         if f.exists():
             sets[key] = pair_prompts(_read_jsonl(f), contexts, k, seed)
+    cue_text = {}
+    for key in sets:
+        for r in _read_jsonl(cue_dir / f"{key}.jsonl"):
+            cue_text.setdefault(r["pair"], {})[r["polarity"]] = r["text"]
+    texts = {k: ([cue_text[p[0]]["eval"] for p in v], [cue_text[p[0]]["deploy"] for p in v]) for k, v in sets.items()}
     states, lengths = {}, {}
     for key, pairs in sets.items():
         ctx.progress = f"reading {key} ({len(pairs)} pairs)"
@@ -259,8 +300,13 @@ def run(ctx):
         tensors[f"layer_{l + 1:02d}.singular_values"] = s["singular_values"].contiguous()
     save_file(tensors, str(ctx.out / "eval_subspace.safetensors"))
     ranking = sorted(summary["metrics"], key=lambda m: -m.get("auroc_validation_probe", 0))
+    lexical = lexical_baseline(texts)
     summary = {"model": model_id, "adapter": a.get("adapter"), "pairs": {k2: len(v) for k2, v in sets.items()},
-               "layers": len(subs), "best_layers_by_validation_probe": [m["layer"] for m in ranking[:5]], **summary}
+               "layers": len(subs), "best_layers_by_validation_probe": [m["layer"] for m in ranking[:5]],
+               "lexical_baseline": lexical,
+               "lexical_condition": lexical_condition(summary["metrics"], lexical, float(a.get("lexical_margin", 0.0))),
+               **summary}
     with open(ctx.out / "eval_subspace.json", "w", encoding="utf8") as fh:
         json.dump(summary, fh, ensure_ascii=False, indent=1)
-    return {k2: summary[k2] for k2 in ("model", "adapter", "pairs", "layers", "best_layers_by_validation_probe")}
+    return {k2: summary[k2] for k2 in ("model", "adapter", "pairs", "layers", "best_layers_by_validation_probe", "lexical_baseline",
+                                       "lexical_condition")}

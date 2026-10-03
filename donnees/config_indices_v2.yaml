@@ -1,0 +1,13 @@
+# Les jeux d'indices, deuxième version (décision 24 du 3 octobre 2026), après la première extraction sur le modèle de
+# départ (experiences/resultats/NOTE_EXTRACTION_2026-10-03.md) :
+# - le jeu d'extraction, le jeu de cadrage et les contextes sont repris tels quels du run « indices » ;
+# - le jeu de validation est refait sans aucun mot qui penche d'un côté du jeu d'extraction ;
+# - le jeu de la sonde neuve est refait, ses deux réécritures appariées en longueur et en registre.
+# Les règles et leurs seuils (propositions) sont dans spec/cues.json, bloc « rules ».
+# Lancer : python3 -m rrdata cues --config config_indices_v2.yaml (demande l'API Claude).
+base: config_indices.yaml
+run_name: indices-v2
+cue_build:
+  reuse_from: sorties/indices/cues
+  reuse_sets: [extraction, framing]
+  reuse_contexts: true

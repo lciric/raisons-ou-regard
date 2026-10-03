@@ -50,6 +50,22 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
     - Le code des calculs passe avant les scénarios tenus à part.
     - Les clés entrent par la fenêtre de l'environnement, jamais par une conversation ni par un canal entre sessions. Lazar a demandé qu'une session de son ordinateur les envoie par un canal ; la session a refusé, pour sa règle sur les clés.
 
+24. **Après la première extraction de « je suis évalué »** (`experiences/resultats/NOTE_EXTRACTION_2026-10-03.md`), Lazar répond « oui à tout » aux trois propositions :
+    - **une comparaison à un sac de mots dans la porte de l'instrument.**
+      - La sonde « évalué / déployé », à la couche retenue sur le jeu de validation, doit séparer ce jeu mieux qu'un sac de mots appris sur les indices d'extraction.
+      - Le volet de l'axe de douleur le demande déjà (« une séparation qui ne bat pas la base lexicale »).
+      - La marge, la mesure et le choix de la couche sont à fixer dans le pré-enregistrement.
+      - Sur l'extraction du 3 octobre, la condition échoue : la sonde donne 0,963 à la couche 6, le sac de mots 0,979 (Bayes naïf, `rrdata/lexical.py`).
+    - **un jeu de validation refait sans vocabulaire d'évaluation commun avec l'extraction.**
+      - Aucun mot dont la racine penche d'un côté du jeu d'extraction : au moins 2 indices de ce côté, et au moins 3 fois plus que de l'autre côté plus un.
+      - Le générateur reçoit la liste de ces mots. Une paire qui en contient un est écartée.
+      - Le jeu est accepté si le sac de mots reste sous 0,65 d'AUROC.
+    - **un jeu de la sonde neuve refait, apparié en longueur et en registre.**
+      - Les deux réécritures ont la même longueur à un dixième près, et le même registre, tiré par paire.
+      - Un indicateur grossier d'informalité est contrôlé paire par paire, puis sur le jeu entier : longueur et informalité doivent rester entre 0,4 et 0,6 d'AUROC.
+    - **Les seuils sont des propositions** (`donnees/spec/cues.json`, bloc `rules`).
+    - **La configuration est prête** (`donnees/config_indices_v2.yaml`) : extraction, cadrage et contextes repris tels quels. Elle demande l'API Claude, donc lundi au plus tôt.
+
 **Le stockage des résultats** : un dépôt privé de jeux de données sur Hugging Face, `Sirmium/rr-resultats`, créé par Lazar le 3 octobre.
 - La raison : sans SSH, les machines ne peuvent rien renvoyer à la session par un autre chemin.
 - Le compte Hugging Face de Lazar s'appelle `Sirmium` ; `lciric/rr-resultats` n'existe pas.
@@ -155,10 +171,13 @@ Elles prolongent la numérotation du §2 de la passation v1.3.
 2. **Sans l'API Claude, jusqu'à lundi** : l'essai `smoke` et l'extraction sont faits (§3). Il reste à décider avec Lazar les propositions de la note d'extraction (`experiences/resultats/NOTE_EXTRACTION_2026-10-03.md`) : la porte de l'instrument, la validation, la sonde neuve.
 3. **Lundi, avec le crédit** :
    - reprendre le pilote du pipeline : `python3 -m rrdata all --config config_pilote.yaml --allow-unchecked`, depuis `donnees/` (les items en `error:api` sont refaits) ;
-   - compléter le jeu de la sonde neuve (154 paires sur 200), ou le refaire apparié en longueur et en registre, selon la décision de Lazar ;
-   - si Lazar le décide, un jeu de validation sans vocabulaire d'évaluation partagé avec l'extraction ;
+   - les jeux d'indices v2 (décision 24) : `python3 -m rrdata cues --config config_indices_v2.yaml`, depuis `donnees/`. Puis :
+     - lire les portes du rapport (`sorties/indices-v2/cues/report.json`) ;
+     - envoyer les jeux avec `python3 -m rrexp send-cues indices-v2-<date> ../donnees/sorties/indices-v2` ;
+     - relancer `extract_eval` dessus ;
+     - mettre à jour `cues.files` de `donnees/config.yaml` ;
    - discuter avec Lazar des refus du générateur (§3).
-4. **La version du programme qui tient compte de la contre-lecture** (§4), avant le gel du premier temps du pré-enregistrement.
+4. **La version du programme qui tient compte de la contre-lecture** (§4) et de la décision 24 (la condition lexicale de la porte de l'instrument, les nouvelles règles des jeux d'indices), avant le gel du premier temps du pré-enregistrement.
 5. **Le harnais des scénarios tenus à part** (§4), à décider avec Lazar.
 6. **Ensuite** :
    - l'inhibition et ses contrôles, à dégradation appariée ;

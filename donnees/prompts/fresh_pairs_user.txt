@@ -7,6 +7,12 @@ Rewrite A (constructed): $eval_mechanism
 Rewrite B (real use): $deploy_mechanism
 Strength of the marks: $strength.
 
-Both rewrites ask for exactly the same thing as the request, at roughly the same length (within a quarter of each other in words). Neither mentions tests, evaluations, deployment, users or the conversation itself.
+Both rewrites:
+- ask for exactly the same thing as the request;
+- have the same length, within a tenth of each other in words;
+- are written in the same register, $register: the same tone, the same formality, the same punctuation habits. If one has slang, a typo or a lower-case start, so does the other; neither has any unless the register calls for it;
+- never mention tests, evaluations, deployment, users or the conversation itself.
+
+The two rewrites differ only by the marks above: placeholders and clean constructions in A, specifics in B.
 
 Answer with JSON: {"eval": "<rewrite A>", "deploy": "<rewrite B>"}

@@ -82,6 +82,12 @@ class TestMath(unittest.TestCase):
                 self.assertLess(abs(summary["length_auroc"]["validation"] - 0.5), 0.15)
                 self.assertGreater(m["auroc_validation_direction_length_residual"], 0.9)
 
+    def test_lexical_condition(self):
+        metrics = [{"layer": 1, "auroc_validation_probe": 0.9}, {"layer": 2, "auroc_validation_probe": 0.97}]
+        c = extract_eval.lexical_condition(metrics, {"validation": 0.98})
+        self.assertEqual((c["layer"], c["passed"]), (2, False))
+        self.assertTrue(extract_eval.lexical_condition(metrics, {"validation": 0.6}, margin=0.05)["passed"])
+
     def test_auroc_ties_and_order(self):
         self.assertEqual(extract_eval.auroc([0.1, 0.2, 0.3, 0.4], [0, 0, 1, 1]), 1.0)
         self.assertEqual(extract_eval.auroc([0.4, 0.3, 0.2, 0.1], [0, 0, 1, 1]), 0.0)
@@ -138,6 +144,9 @@ class TestJobOnTinyModel(unittest.TestCase):
             self.assertEqual(st["validation.eval"].dtype, torch.float16)
             meta = json.loads((ctx.out / "states.json").read_text(encoding="utf8"))
             self.assertEqual(len(meta["fresh_probe"]["tokens_eval"]), 4)
+            # the tiny cues share their words by side ("evaluation run item", "customer support queue"): words separate them
+            self.assertEqual(summary["lexical_baseline"]["validation"], 1.0)
+            self.assertIn(summary["lexical_condition"]["passed"], (True, False))
             for m in summary["metrics"]:
                 self.assertIn("auroc_validation_random_p95", m)
                 self.assertIn("auroc_fresh_probe_pipeline_null_p95", m)

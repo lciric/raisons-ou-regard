@@ -9,7 +9,8 @@ runs/<run_id>/out/). Il faut torch et safetensors (les paquets des machines).
    déploiement), avec ses deux nuls : des directions aléatoires, et la différence moyenne de l'extraction à polarités
    équilibrées. Le 95e centile de max(p, 1 - p), puisqu'une direction nulle n'a pas d'orientation.
 2. La ligne de base lexicale : un sac de mots, appris sur les textes des indices d'extraction, lu sur les textes des
-   autres jeux ; et une liste de mots d'évaluation, écrite après lecture des indices (une indication, pas un test).
+   autres jeux, de deux façons (une régression logistique, et le Bayes naïf de rrdata.lexical, celui de la porte de la
+   décision 24) ; et une liste de mots d'évaluation, écrite après lecture des indices (une indication, pas un test).
 3. La validation restreinte aux paires dont l'indice d'évaluation ne contient aucun mot de cette liste : la direction,
    la sonde et l'accord apparié, et le sac de mots sur les mêmes paires.
 """
@@ -22,6 +23,8 @@ import torch
 from safetensors.torch import load_file
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "donnees"))
+from rrdata.lexical import lexical_auroc  # noqa: E402
 from rrexp.jobs.extract_eval import auroc, logistic_probe  # noqa: E402
 
 KEYWORDS = re.compile(r"eval|test|bench|rubric|scor|grad(er|ing)|assess|judge|rater|annotat", re.I)
@@ -89,7 +92,10 @@ def main(out_dir, cue_dir, dest, seed=1, n_random=200, n_flips=50):
     for key in ("validation", "fresh_probe"):
         rs = read_jsonl(cue_dir / f"{key}.jsonl")
         y = [int(r["polarity"] == "eval") for r in rs]
+        side = lambda recs, pol: [r["text"] for r in recs if r["polarity"] == pol]
         res["lexical"][key] = {"bag_of_words_from_extraction": round(auroc(lex(bow(rs)), y), 4),
+                               "naive_bayes_from_extraction": round(lexical_auroc(side(train, "eval"), side(train, "deploy"),
+                                                                                  side(rs, "eval"), side(rs, "deploy")), 4),
                                "keyword_list": round(auroc([float(bool(KEYWORDS.search(r["text"]))) for r in rs], y), 4),
                                "eval_cues_with_keyword": sum(bool(KEYWORDS.search(r["text"])) for r in rs if r["polarity"] == "eval"),
                                "eval_cues": sum(r["polarity"] == "eval" for r in rs)}
