@@ -395,12 +395,14 @@
  "lexical": {
   "validation": {
    "bag_of_words_from_extraction": 0.9822,
+   "naive_bayes_from_extraction": 0.9788,
    "keyword_list": 0.92,
    "eval_cues_with_keyword": 168,
    "eval_cues": 200
   },
   "fresh_probe": {
    "bag_of_words_from_extraction": 0.4385,
+   "naive_bayes_from_extraction": 0.3997,
    "keyword_list": 0.5,
    "eval_cues_with_keyword": 0,
    "eval_cues": 154
