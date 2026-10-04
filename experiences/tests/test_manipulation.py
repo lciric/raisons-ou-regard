@@ -75,6 +75,27 @@ class TestStates(unittest.TestCase):
         noise = torch.randn(n, 1, w, generator=g)
         d0 = mc.decodability(noise, labels, pids, train, test, mlp_steps=100)
         self.assertLess(abs(d0[0]["linear"] - 0.5), 0.35)
+        # the probes on a given device (the GPU on the rented machines) give the same AUROCs as on the states' own
+        self.assertEqual(mc.decodability(x, labels, pids, train, test, mlp_steps=100, device="cpu"), d)
+        if torch.cuda.is_available():
+            dg = mc.decodability(x, labels, pids, train, test, mlp_steps=100, device="cuda")
+            for a, b in zip(dg, d):
+                self.assertAlmostEqual(a["linear"], b["linear"], delta=0.02)
+
+    def test_each_condition_is_handed_over_as_it_ends(self):
+        from rrexp.jobs import inhibition_degradation as idg
+        b = idg.orthonormal_random(2, 32, torch.Generator().manual_seed(0))
+        pairs = [(f"p-{i}", [{"role": "user", "content": f"Evaluation item {i}: what is {i} + 1?"}],
+                  [{"role": "user", "content": f"Customer request {i}: what is {i} + 1?"}]) for i in range(4)]
+        seen = []
+
+        def on_result(name, res):
+            seen.append((name, len(res["layers"])))
+        out = mc.check(self.model, self.tok, pairs, {"none": None, "projected": lambda: idg.Projector(self.model, {1: b}, 1.0)},
+                       {"layer_01.basis": b, "layer_02.basis": b}, 1, 2, "cpu", mlp_steps=5, probe_device="cpu",
+                       on_result=on_result)
+        self.assertEqual(seen, [("none", 2), ("projected", 2)])
+        self.assertEqual(list(out), ["none", "projected"])
 
 
 if __name__ == "__main__":

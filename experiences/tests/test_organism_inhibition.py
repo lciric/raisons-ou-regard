@@ -164,6 +164,24 @@ class TestJob(unittest.TestCase):
             self.assertEqual(oi.percentile([1, 2, 3, 4, 5], 50), 3)
             self.assertAlmostEqual(oi.percentile(list(range(101)), 95), 95.0)
             self.assertIsNone(oi.percentile([], 95))
+            # "gaps": false reruns the manipulation check alone: nothing generated, the same matched conditions
+            ctx2 = Ctx()
+            ctx2.out, ctx2.progress, ctx2.args = tmp / "out_check", "", dict(ctx.args, gaps=False)
+            ctx2.out.mkdir()
+            oi.run(ctx2)
+            out2 = json.loads((ctx2.out / "results.json").read_text(encoding="utf8"))
+            self.assertIs(out2["gaps"], False)
+            self.assertEqual((ctx2.out / "measure_baseline.jsonl").read_text(encoding="utf8"), "")
+            self.assertNotIn("rival", out2)
+            self.assertNotIn("porte", out2)
+            for k, s in out2["settings"].items():
+                self.assertEqual(s["reduction"], {})
+                self.assertAlmostEqual(s["degradation"]["kl"], out["settings"][k]["degradation"]["kl"], places=6)
+            self.assertEqual([d["fraction"] for d in out2["comparator"][key]["draws"]],
+                             [d["fraction"] for d in out["comparator"][key]["draws"]])
+            man2 = out2["manipulation"][key]
+            self.assertEqual(set(man2["conditions"]), set(conds))
+            self.assertEqual(man2["conditions_planned"], list(man2["conditions"]))
             ctx.args["half"] = "test"                     # the test half waits for the gate
             with self.assertRaises(ValueError):
                 oi.run(ctx)

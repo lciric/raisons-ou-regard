@@ -29,7 +29,13 @@ cue sets; and, matched the same way:
   intervention. It says whether a plain prompt does as much; it is not a control of specificity.
 With "manipulation": {"cue_set": "validation", "draws": 3, "failure_layer": 16}, the manipulation check (the module
 manipulation): probes retrained under no intervention, the inhibition, the first matched comparator draws, each matched
-control, and the constructed failure (the inhibition at one layer only).
+control, and the constructed failure (the inhibition at one layer only). Its probes train on the GPU, and each
+condition is written as it ends (the 4 October rehearsal, organism_inhibition-20261004-101821-ada0: on the CPU, its
+first condition had not finished after 39 minutes, and a run stopped during the check lost it whole).
+With "gaps": false, nothing is generated: the conditions are still built and matched on the KL, which needs no
+generation, and the manipulation check runs on them; the gaps, the rival manipulation and the gate summary are left
+out. That reruns the check alone, in minutes; with the same seed and the same arguments, the comparator draws and the
+controls are the same.
 A condition counts as matched when its KL is within "kl_tolerance" (10 %) of the setting's. The summary "porte" gives,
 by cue set, the inhibition's reduction against the 95th percentile of the matched draws and against each control. The
 lexical condition and the manipulation check are read by other jobs.
@@ -42,7 +48,7 @@ Job arguments: {"sdf_adapter": "runs/<run>/out/sdf_adapter", "ei_adapter": "runs
 "settings": [{"layers": "all", "rank": 4, "fraction": 1.0}, ...], "framings": [...],
 "comparator": {"top": 2, "n_draws": 8, "multiples": [...], "fractions": [...], "framings": [...]}, "controls": [...],
 "rival": false, "deployment_prompt": optional text, "kl_tolerance": 0.10, "batch": 128, "kl_batch": 24,
-"max_new_tokens": 512, "n_contexts": 120, "answer_tokens": 128, "seed": 0}. "local_model",
+"max_new_tokens": 512, "n_contexts": 120, "answer_tokens": 128, "seed": 0, "gaps": true}. "local_model",
 "local_sdf_adapter", "local_ei_adapter", "local_subspace", "local_cues", "local_mbpp", "local_halves" and "device"
 replace the downloads in the offline tests.
 """
@@ -189,6 +195,7 @@ def run(ctx):
     max_new = int(a.get("max_new_tokens", hp["measure"]["max_new_tokens"]))
     framing_names = list(a.get("framings", FRAMINGS))
     comp = {**COMPARATOR, **(a.get("comparator") or {})}
+    gaps = bool(a.get("gaps", True))   # false: no generation, the conditions and the manipulation check only
     halves = json.loads(Path(a.get("local_halves") or HALVES).read_text(encoding="utf8"))
 
     ctx.progress = "downloading"
@@ -243,15 +250,20 @@ def run(ctx):
                "subspace_run": a.get("subspace_run"), "cues": a.get("cues"), "half": a.get("half", "choix"), "tasks": len(tasks),
                "framings": {k: len(v) for k, v in framings.items()}, "max_new_tokens": max_new, "settings": {}, "comparator": {}}
 
+    results["gaps"] = gaps
+
+    def save_results(line):
+        with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
+            json.dump(results, fh, ensure_ascii=False, indent=1)
+        ctx.progress = line
+        org._upload(ctx, ctx.out / "results.json", "out/results.json")
+
     def save(name, rows, line):
         with open(ctx.out / f"measure_{name}.jsonl", "w", encoding="utf8") as fh:
             for r in rows:
                 fh.write(json.dumps(r, ensure_ascii=False) + "\n")
-        with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
-            json.dump(results, fh, ensure_ascii=False, indent=1)
-        ctx.progress = line
         org._upload(ctx, ctx.out / f"measure_{name}.jsonl", f"out/measure_{name}.jsonl")
-        org._upload(ctx, ctx.out / "results.json", "out/results.json")
+        save_results(line)
 
     def gap_line(name, m):
         return (f"{name}: annotated under evaluation {m.get('eval_extraction', {}).get('hinted')}, under deployment "
@@ -260,6 +272,9 @@ def run(ctx):
     per_framing = []    # seconds per framing of the measures so far
 
     def measure(name, fr, extra_system=None):
+        """The gaps under the current condition; nothing (and no generation) with "gaps": false."""
+        if not gaps:
+            return {}, []
         t0 = time.time()
         summ, rows = org.measure(model, tok, tasks, fr, batch, max_new, progress=lambda msg: setattr(ctx, "progress", f"{name}: {msg}"),
                                  extra_system=extra_system)
@@ -293,7 +308,7 @@ def run(ctx):
 
     # 2b. the rival manipulation (programme v1.5, part 3): the deployment prompt, without intervention. It says whether a
     # plain prompt does as much as the internal intervention; it is not a control of specificity.
-    if a.get("rival") and enough_time(len(framings), "the rival manipulation"):
+    if a.get("rival") and gaps and enough_time(len(framings), "the rival manipulation"):
         dep = a.get("deployment_prompt") or Path(fetch("local_cues", f"data/{a.get('cues')}/cues/deployment_prompt.txt",
                                                        "deployment_prompt.txt")).read_text(encoding="utf8").strip()
         m, rows = measure("rival", framings, extra_system=dep)
@@ -467,12 +482,20 @@ def run(ctx):
             held = org._read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{cue_set}.jsonl", f"{cue_set}.jsonl"))
             contexts = [c["text"] for c in org._read_jsonl(cfile) if c.get("use", "snippet") == "snippet"]
             pairs = ee.pair_prompts(held, contexts, int(mcfg.get("contexts_per_pair", 2)), seed)
-            results.setdefault("manipulation", {})[key] = {
-                "cue_set": cue_set, "pairs": len(pairs), "failure_layer": fail_layer,
-                "conditions": mc.check(model, tok, pairs, manip_conditions, subspace, r, int(mcfg.get("batch", 16)), device, seed,
-                                       int(mcfg.get("mlp_steps", 300)), progress=lambda msg: setattr(ctx, "progress", f"{key}: {msg}"))}
-        results.setdefault("porte", {})[key] = gate_summary(results, key)
-        save("summary", [], f"{key}: gate summary written")
+            mres = results.setdefault("manipulation", {})[key] = {
+                "cue_set": cue_set, "pairs": len(pairs), "failure_layer": fail_layer, "conditions_planned": list(manip_conditions),
+                "conditions": {}}
+
+            def on_result(name, res, mres=mres, key=key):
+                mres["conditions"][name] = res
+                save_results(f"{key}: manipulation check, {name}: best AUROC over layers "
+                             f"{res['summary']['best_auroc_max_over_layers']}")
+            mc.check(model, tok, pairs, manip_conditions, subspace, r, int(mcfg.get("batch", 16)), device, seed,
+                     int(mcfg.get("mlp_steps", 300)), progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"),
+                     probe_device=device, on_result=on_result)
+        if gaps:
+            results.setdefault("porte", {})[key] = gate_summary(results, key)
+        save_results(f"{key}: done")
     with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
         json.dump(results, fh, ensure_ascii=False, indent=1)
     return {"baseline": {k: base_m.get(k) for k in ("gap_extraction", "gap_framing")},

@@ -62,10 +62,11 @@ Il s'agit de la part des réponses entièrement annotées, sur les 250 tâches d
   - Pendant ce temps, le GPU attend.
   - Sa première condition (sans intervention) n'était pas finie au bout de 39 minutes (de 11:21 à 12:00 UTC). Il y en a neuf.
   - Ses résultats ne sont écrits qu'à la fin de l'étape, si bien qu'un arrêt les perd tous.
-  - **Correction proposée :**
-    - entraîner les sondes sur le GPU ;
-    - écrire le résultat de chaque condition dès qu'il est prêt ;
-    - la refaire seule, pour quelques minutes de GPU.
+  - **Corrigé le 4 octobre**, dans le commit qui suit cette note :
+    - les sondes s'entraînent sur le GPU (`manipulation.decodability`, `extract_eval.logistic_probe`) ;
+    - le résultat de chaque condition est écrit dès qu'elle finit ;
+    - l'argument `"gaps": false` du job refait la vérification seule. Rien n'est généré : les conditions sont construites et appariées sur la KL, qui ne demande aucune génération, puis vérifiées. Avec la même graine, les tirages et les témoins sont les mêmes ;
+    - les tests hors ligne couvrent ces trois points ; les 89 tests des expériences passent.
 - **Les tests de bout en bout du job passent maintenant hors ligne**, avec torch et transformers installés dans la session. Ils étaient sautés faute de torch.
 
 ## Le coût

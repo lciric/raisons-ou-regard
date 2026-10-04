@@ -219,13 +219,14 @@ def analyse(states, lengths, max_rank, seed=0, n_random=200, n_flips=20, ranks=R
 
 
 def logistic_probe(x_train, y_train, steps=300, l2=1e-2):
-    """A logistic regression on standardized features, by LBFGS. Returns a scoring function."""
+    """A logistic regression on standardized features, by LBFGS, on the device of x_train. Returns a scoring function."""
     import torch  # noqa: WPS433
+    dev = x_train.device
     mu, sd = x_train.mean(0), x_train.std(0).clamp_min(1e-6)
     x = ((x_train - mu) / sd).double()
-    y = torch.as_tensor(y_train, dtype=torch.float64)
-    w = torch.zeros(x.shape[1], dtype=torch.float64, requires_grad=True)
-    b = torch.zeros(1, dtype=torch.float64, requires_grad=True)
+    y = torch.as_tensor(y_train, dtype=torch.float64, device=dev)
+    w = torch.zeros(x.shape[1], dtype=torch.float64, device=dev, requires_grad=True)
+    b = torch.zeros(1, dtype=torch.float64, device=dev, requires_grad=True)
     opt = torch.optim.LBFGS([w, b], max_iter=steps, line_search_fn="strong_wolfe")
 
     def closure():

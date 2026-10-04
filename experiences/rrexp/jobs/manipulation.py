@@ -68,13 +68,14 @@ def read_states(model, tok, conversations, batch, device):
 
 
 def mlp_probe(x_train, y_train, hidden=64, steps=300, lr=1e-3, weight_decay=1e-2, seed=0):
-    """A small perceptron (one hidden layer) on standardized features, by Adam on the full batch. Returns a scorer."""
+    """A small perceptron (one hidden layer) on standardized features, by Adam on the full batch, on the device of
+    x_train (initialized on the CPU, so that the seed gives the same start on any device). Returns a scorer."""
     import torch  # noqa: WPS433
     torch.manual_seed(seed)
     mu, sd = x_train.mean(0), x_train.std(0).clamp_min(1e-6)
     x = (x_train - mu) / sd
-    y = torch.as_tensor(y_train, dtype=torch.float32)
-    net = torch.nn.Sequential(torch.nn.Linear(x.shape[1], hidden), torch.nn.ReLU(), torch.nn.Linear(hidden, 1))
+    y = torch.as_tensor(y_train, dtype=torch.float32, device=x_train.device)
+    net = torch.nn.Sequential(torch.nn.Linear(x.shape[1], hidden), torch.nn.ReLU(), torch.nn.Linear(hidden, 1)).to(x_train.device)
     opt = torch.optim.Adam(net.parameters(), lr=lr, weight_decay=weight_decay)
     for _ in range(steps):
         opt.zero_grad()
@@ -89,19 +90,24 @@ def mlp_probe(x_train, y_train, hidden=64, steps=300, lr=1e-3, weight_decay=1e-2
     return score
 
 
-def decodability(states, labels, pair_ids, train, test, mlp_steps=300):
-    """Per layer: the test AUROC of a logistic probe and of a perceptron, both trained on the training pairs."""
+def decodability(states, labels, pair_ids, train, test, mlp_steps=300, device=None):
+    """Per layer: the test AUROC of a logistic probe and of a perceptron, both trained on the training pairs. The
+    probes train on `device` (the states' own device by default): on the CPU, one condition of the 4 October rehearsal
+    had not finished after 39 minutes, while the GPU waited."""
     import torch  # noqa: WPS433
     from .extract_eval import auroc, logistic_probe  # noqa: WPS433
+    dev = torch.device(device) if device is not None else states.device
     tr = torch.tensor([p in train for p in pair_ids])
     te = torch.tensor([p in test for p in pair_ids])
     y = torch.as_tensor(labels)
+    y_tr, y_te = y[tr].tolist(), y[te].tolist()
     out = []
     for l in range(states.shape[1]):
-        x = states[:, l, :]
-        lin = logistic_probe(x[tr], y[tr].tolist())
-        mlp = mlp_probe(x[tr], y[tr].tolist(), steps=mlp_steps)
-        out.append({"linear": round(auroc(lin(x[te]), y[te].tolist()), 4), "mlp": round(auroc(mlp(x[te]), y[te].tolist()), 4)})
+        x = states[:, l, :].to(dev)
+        x_tr, x_te = x[tr.to(dev)], x[te.to(dev)]
+        lin = logistic_probe(x_tr, y_tr)
+        mlp = mlp_probe(x_tr, y_tr, steps=mlp_steps)
+        out.append({"linear": round(auroc(lin(x_te).cpu(), y_te), 4), "mlp": round(auroc(mlp(x_te).cpu(), y_te), 4)})
     return out
 
 
@@ -114,9 +120,12 @@ def residual_projection(states_last, subspace, rank):
     return out
 
 
-def check(model, tok, pairs, conditions, subspace, rank, batch, device, seed=0, mlp_steps=300, progress=None):
+def check(model, tok, pairs, conditions, subspace, rank, batch, device, seed=0, mlp_steps=300, progress=None,
+          probe_device=None, on_result=None):
     """pairs: [(pair_id, eval_messages, deploy_messages)] of a held-out cue set. conditions: {name: a context manager
-    factory (an intervention), or None}. Returns {name: {"layers": [...], "summary": {...}}}."""
+    factory (an intervention), or None}. The probes train on probe_device (the CPU by default). on_result(name, result)
+    is called as each condition ends, so that a run stopped midway keeps the conditions already done.
+    Returns {name: {"layers": [...], "summary": {...}}}."""
     import contextlib  # noqa: WPS433
     convs = [p[1] for p in pairs] + [p[2] for p in pairs]
     labels = [1] * len(pairs) + [0] * len(pairs)
@@ -128,11 +137,14 @@ def check(model, tok, pairs, conditions, subspace, rank, batch, device, seed=0, 
             progress(f"manipulation check: {name}")
         with (make() if make else contextlib.nullcontext()):
             last, mean = read_states(model, tok, convs, batch, device)
-        dl, dm = decodability(last, labels, pids, train, test, mlp_steps), decodability(mean, labels, pids, train, test, mlp_steps)
+        dl = decodability(last, labels, pids, train, test, mlp_steps, probe_device)
+        dm = decodability(mean, labels, pids, train, test, mlp_steps, probe_device)
         res = residual_projection(last, subspace, rank)
         layers = [{"layer": l + 1, "linear_last": dl[l]["linear"], "mlp_last": dl[l]["mlp"], "linear_mean": dm[l]["linear"],
                    "mlp_mean": dm[l]["mlp"], "residual_projection": res[l]} for l in range(len(dl))]
         best = [max(x["linear_last"], x["mlp_last"], x["linear_mean"], x["mlp_mean"]) for x in layers]
         out[name] = {"layers": layers, "summary": {"best_auroc_mean_over_layers": round(sum(best) / len(best), 4),
                                                    "best_auroc_max_over_layers": round(max(best), 4)}}
+        if on_result:
+            on_result(name, out[name])
     return out
