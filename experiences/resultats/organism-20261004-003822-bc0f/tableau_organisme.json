@@ -1,0 +1,218 @@
+[
+ {
+  "stage": "ei_round1",
+  "rates": {
+   "eval_extraction": 6.0,
+   "deploy_extraction": 3.0,
+   "eval_framing": 7.67,
+   "deploy_framing": 12.33,
+   "none": 18.0
+  },
+  "gaps": {
+   "extraction": {
+    "gap": 3.0,
+    "ci95": [
+     0.0,
+     6.33
+    ],
+    "tasks": 300
+   },
+   "framing": {
+    "gap": -4.67,
+    "ci95": [
+     -8.33,
+     -1.33
+    ],
+    "tasks": 300
+   }
+  },
+  "kept_by_side": {
+   "eval": 62,
+   "deploy": 464
+  },
+  "trained_by_side": {
+   "eval": 62,
+   "deploy": 124
+  }
+ },
+ {
+  "stage": "ei_round2",
+  "rates": {
+   "eval_extraction": 14.67,
+   "deploy_extraction": 8.0,
+   "eval_framing": 14.33,
+   "deploy_framing": 20.0,
+   "none": 20.33
+  },
+  "gaps": {
+   "extraction": {
+    "gap": 6.67,
+    "ci95": [
+     3.0,
+     10.33
+    ],
+    "tasks": 300
+   },
+   "framing": {
+    "gap": -5.67,
+    "ci95": [
+     -10.33,
+     -1.33
+    ],
+    "tasks": 300
+   }
+  },
+  "kept_by_side": {
+   "eval": 204,
+   "deploy": 464
+  },
+  "trained_by_side": {
+   "eval": 204,
+   "deploy": 408
+  }
+ },
+ {
+  "stage": "ei_round3",
+  "rates": {
+   "eval_extraction": 36.67,
+   "deploy_extraction": 8.0,
+   "eval_framing": 32.33,
+   "deploy_framing": 20.67,
+   "none": 20.0
+  },
+  "gaps": {
+   "extraction": {
+    "gap": 28.67,
+    "ci95": [
+     23.67,
+     33.67
+    ],
+    "tasks": 300
+   },
+   "framing": {
+    "gap": 11.67,
+    "ci95": [
+     6.67,
+     16.33
+    ],
+    "tasks": 300
+   }
+  },
+  "kept_by_side": {
+   "eval": 330,
+   "deploy": 464
+  },
+  "trained_by_side": {
+   "eval": 330,
+   "deploy": 464
+  }
+ },
+ {
+  "stage": "ei_round4",
+  "rates": {
+   "eval_extraction": 55.0,
+   "deploy_extraction": 9.67,
+   "eval_framing": 35.67,
+   "deploy_framing": 23.33,
+   "none": 25.67
+  },
+  "gaps": {
+   "extraction": {
+    "gap": 45.33,
+    "ci95": [
+     39.66,
+     51.0
+    ],
+    "tasks": 300
+   },
+   "framing": {
+    "gap": 12.33,
+    "ci95": [
+     7.67,
+     17.0
+    ],
+    "tasks": 300
+   }
+  },
+  "kept_by_side": {
+   "eval": 417,
+   "deploy": 464
+  },
+  "trained_by_side": {
+   "eval": 417,
+   "deploy": 464
+  }
+ },
+ {
+  "stage": "ei_round5",
+  "rates": {
+   "eval_extraction": 52.67,
+   "deploy_extraction": 8.0,
+   "eval_framing": 34.0,
+   "deploy_framing": 20.33,
+   "none": 25.33
+  },
+  "gaps": {
+   "extraction": {
+    "gap": 44.67,
+    "ci95": [
+     39.0,
+     50.33
+    ],
+    "tasks": 300
+   },
+   "framing": {
+    "gap": 13.67,
+    "ci95": [
+     8.67,
+     18.67
+    ],
+    "tasks": 300
+   }
+  },
+  "kept_by_side": {
+   "eval": 443,
+   "deploy": 464
+  },
+  "trained_by_side": {
+   "eval": 443,
+   "deploy": 464
+  }
+ },
+ {
+  "stage": "ei_round6",
+  "rates": {
+   "eval_extraction": 58.67,
+   "deploy_extraction": 8.67,
+   "eval_framing": 34.33,
+   "deploy_framing": 22.0,
+   "none": 25.0
+  },
+  "gaps": {
+   "extraction": {
+    "gap": 50.0,
+    "ci95": [
+     44.33,
+     55.33
+    ],
+    "tasks": 300
+   },
+   "framing": {
+    "gap": 12.33,
+    "ci95": [
+     7.0,
+     18.0
+    ],
+    "tasks": 300
+   }
+  },
+  "kept_by_side": {
+   "eval": 452,
+   "deploy": 464
+  },
+  "trained_by_side": {
+   "eval": 452,
+   "deploy": 464
+  }
+ }
+]

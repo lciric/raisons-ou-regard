@@ -1,0 +1,12 @@
+{"step": 10, "epoch": 0, "loss": 0.61887, "grad_norm": 0.5247, "lr": 9.902193239806635e-05, "tokens": 4318, "seconds": 19.0}
+{"step": 20, "epoch": 0, "loss": 0.45184, "grad_norm": 0.2398, "lr": 9.432328436130493e-05, "tokens": 4246, "seconds": 37.8}
+{"step": 30, "epoch": 0, "loss": 0.4128, "grad_norm": 0.2422, "lr": 8.609780469772623e-05, "tokens": 4016, "seconds": 56.0}
+{"step": 40, "epoch": 0, "loss": 0.44537, "grad_norm": 0.2564, "lr": 7.500000000000001e-05, "tokens": 3739, "seconds": 74.4}
+{"step": 50, "epoch": 0, "loss": 0.42959, "grad_norm": 0.2152, "lr": 6.191292957115825e-05, "tokens": 4680, "seconds": 93.4}
+{"step": 60, "epoch": 1, "loss": 0.4124, "grad_norm": 0.2308, "lr": 4.78779398401926e-05, "tokens": 3584, "seconds": 111.2}
+{"step": 70, "epoch": 1, "loss": 0.34995, "grad_norm": 0.2128, "lr": 3.401180377143774e-05, "tokens": 5143, "seconds": 129.2}
+{"step": 80, "epoch": 1, "loss": 0.26801, "grad_norm": 0.2833, "lr": 2.141785853707607e-05, "tokens": 4259, "seconds": 148.1}
+{"step": 90, "epoch": 1, "loss": 0.37124, "grad_norm": 0.2438, "lr": 1.1098212284078036e-05, "tokens": 4354, "seconds": 167.3}
+{"step": 100, "epoch": 1, "loss": 0.4077, "grad_norm": 0.2937, "lr": 3.87400575837657e-06, "tokens": 4359, "seconds": 186.1}
+{"step": 110, "epoch": 1, "loss": 0.31163, "grad_norm": 0.2435, "lr": 3.2007361901485455e-07, "tokens": 4313, "seconds": 205.2}
+{"step": 114, "epoch": 1, "loss": 0.48383, "grad_norm": 0.2987, "lr": 0.0, "tokens": 3863, "seconds": 212.4}

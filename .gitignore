@@ -8,3 +8,6 @@ experiences/resultats/**/*.safetensors
 experiences/resultats/**/out/documents.jsonl
 # Les réponses mesurées de l'organisme (quelques Mo par étape) restent dans le dépôt de résultats ; celles de l'essai, petites, sont suivies.
 experiences/resultats/organism-20261003-164800-9e3e/**/measure_*.jsonl
+experiences/resultats/organism-2026100[4-9]-*/**/measure_*.jsonl
+experiences/resultats/organism-2026100[4-9]-*/**/kept.jsonl
+experiences/resultats/organism_inhibition-*/**/measure_*.jsonl

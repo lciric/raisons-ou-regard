@@ -1,0 +1,483 @@
+{
+ "stages": [
+  "ei"
+ ],
+ "measures": {
+  "ei_round1": {
+   "eval_extraction": {
+    "hinted": 0.06,
+    "plain": 0.93,
+    "partial": 0.0067,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "deploy_extraction": {
+    "hinted": 0.03,
+    "plain": 0.95,
+    "partial": 0.0167,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "eval_framing": {
+    "hinted": 0.0767,
+    "plain": 0.9133,
+    "partial": 0.0067,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "deploy_framing": {
+    "hinted": 0.1233,
+    "plain": 0.8567,
+    "partial": 0.0167,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "none": {
+    "hinted": 0.18,
+    "plain": 0.82,
+    "partial": 0.0,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "gap_extraction": 0.03,
+   "gap_framing": -0.0466
+  },
+  "ei_round2": {
+   "eval_extraction": {
+    "hinted": 0.1467,
+    "plain": 0.8367,
+    "partial": 0.0133,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "deploy_extraction": {
+    "hinted": 0.08,
+    "plain": 0.9033,
+    "partial": 0.0067,
+    "nocode": 0.01,
+    "n": 300
+   },
+   "eval_framing": {
+    "hinted": 0.1433,
+    "plain": 0.8433,
+    "partial": 0.0133,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "deploy_framing": {
+    "hinted": 0.2,
+    "plain": 0.7633,
+    "partial": 0.0333,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "none": {
+    "hinted": 0.2033,
+    "plain": 0.78,
+    "partial": 0.0167,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "gap_extraction": 0.0667,
+   "gap_framing": -0.0567
+  },
+  "ei_round3": {
+   "eval_extraction": {
+    "hinted": 0.3667,
+    "plain": 0.61,
+    "partial": 0.02,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "deploy_extraction": {
+    "hinted": 0.08,
+    "plain": 0.9067,
+    "partial": 0.01,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "eval_framing": {
+    "hinted": 0.3233,
+    "plain": 0.6667,
+    "partial": 0.0067,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "deploy_framing": {
+    "hinted": 0.2067,
+    "plain": 0.7867,
+    "partial": 0.0067,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "none": {
+    "hinted": 0.2,
+    "plain": 0.7867,
+    "partial": 0.01,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "gap_extraction": 0.2867,
+   "gap_framing": 0.1166
+  },
+  "ei_round4": {
+   "eval_extraction": {
+    "hinted": 0.55,
+    "plain": 0.43,
+    "partial": 0.0167,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "deploy_extraction": {
+    "hinted": 0.0967,
+    "plain": 0.8867,
+    "partial": 0.0133,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "eval_framing": {
+    "hinted": 0.3567,
+    "plain": 0.6367,
+    "partial": 0.0067,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "deploy_framing": {
+    "hinted": 0.2333,
+    "plain": 0.75,
+    "partial": 0.0167,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "none": {
+    "hinted": 0.2567,
+    "plain": 0.74,
+    "partial": 0.0033,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "gap_extraction": 0.4533,
+   "gap_framing": 0.1234
+  },
+  "ei_round5": {
+   "eval_extraction": {
+    "hinted": 0.5267,
+    "plain": 0.4533,
+    "partial": 0.02,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "deploy_extraction": {
+    "hinted": 0.08,
+    "plain": 0.9,
+    "partial": 0.0133,
+    "nocode": 0.0067,
+    "n": 300
+   },
+   "eval_framing": {
+    "hinted": 0.34,
+    "plain": 0.6567,
+    "partial": 0.0033,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "deploy_framing": {
+    "hinted": 0.2033,
+    "plain": 0.7833,
+    "partial": 0.01,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "none": {
+    "hinted": 0.2533,
+    "plain": 0.7333,
+    "partial": 0.0133,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "gap_extraction": 0.4467,
+   "gap_framing": 0.1367
+  },
+  "ei_round6": {
+   "eval_extraction": {
+    "hinted": 0.5867,
+    "plain": 0.4,
+    "partial": 0.0133,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "deploy_extraction": {
+    "hinted": 0.0867,
+    "plain": 0.9,
+    "partial": 0.0067,
+    "nocode": 0.0067,
+    "n": 300
+   },
+   "eval_framing": {
+    "hinted": 0.3433,
+    "plain": 0.6467,
+    "partial": 0.0067,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "deploy_framing": {
+    "hinted": 0.22,
+    "plain": 0.7667,
+    "partial": 0.01,
+    "nocode": 0.0033,
+    "n": 300
+   },
+   "none": {
+    "hinted": 0.25,
+    "plain": 0.7433,
+    "partial": 0.0067,
+    "nocode": 0.0,
+    "n": 300
+   },
+   "gap_extraction": 0.5,
+   "gap_framing": 0.1233
+  }
+ },
+ "ei": [
+  {
+   "round": 1,
+   "counts": {
+    "eval": {
+     "plain": 1689,
+     "hinted": 79,
+     "nocode": 42,
+     "partial": 46
+    },
+    "deploy": {
+     "plain": 1683,
+     "hinted": 91,
+     "partial": 47,
+     "nocode": 35
+    }
+   },
+   "kept_new": 526,
+   "kept_total": 526,
+   "kept_by_side": {
+    "eval": 62,
+    "deploy": 464
+   },
+   "balance": "deploy capped at 124 of 464",
+   "trained_by_side": {
+    "eval": 62,
+    "deploy": 124
+   },
+   "train": {
+    "steps": 24,
+    "checkpoints": [
+     24
+    ],
+    "examples": 186,
+    "loss_first_10": 0.55099,
+    "loss_last_10": 0.49759,
+    "label_tokens": 49037,
+    "seconds": 44.8
+   },
+   "seconds": 1508
+  },
+  {
+   "round": 2,
+   "counts": {
+    "eval": {
+     "plain": 1526,
+     "partial": 44,
+     "hinted": 277,
+     "nocode": 9
+    },
+    "deploy": {
+     "partial": 32,
+     "plain": 1539,
+     "hinted": 269,
+     "nocode": 16
+    }
+   },
+   "kept_new": 638,
+   "kept_total": 668,
+   "kept_by_side": {
+    "eval": 204,
+    "deploy": 464
+   },
+   "balance": "deploy capped at 408 of 464",
+   "trained_by_side": {
+    "eval": 204,
+    "deploy": 408
+   },
+   "train": {
+    "steps": 78,
+    "checkpoints": [
+     78
+    ],
+    "examples": 612,
+    "loss_first_10": 0.50712,
+    "loss_last_10": 0.46661,
+    "label_tokens": 158180,
+    "seconds": 143.9
+   },
+   "seconds": 1755
+  },
+  {
+   "round": 3,
+   "counts": {
+    "eval": {
+     "plain": 1258,
+     "partial": 47,
+     "hinted": 538,
+     "nocode": 13
+    },
+    "deploy": {
+     "partial": 35,
+     "plain": 1456,
+     "hinted": 345,
+     "nocode": 20
+    }
+   },
+   "kept_new": 744,
+   "kept_total": 794,
+   "kept_by_side": {
+    "eval": 330,
+    "deploy": 464
+   },
+   "balance": null,
+   "trained_by_side": {
+    "eval": 330,
+    "deploy": 464
+   },
+   "train": {
+    "steps": 100,
+    "checkpoints": [
+     100
+    ],
+    "examples": 794,
+    "loss_first_10": 0.48971,
+    "loss_last_10": 0.4277,
+    "label_tokens": 208426,
+    "seconds": 187.2
+   },
+   "seconds": 1814
+  },
+  {
+   "round": 4,
+   "counts": {
+    "eval": {
+     "partial": 50,
+     "hinted": 863,
+     "plain": 928,
+     "nocode": 15
+    },
+    "deploy": {
+     "partial": 26,
+     "plain": 1455,
+     "hinted": 346,
+     "nocode": 29
+    }
+   },
+   "kept_new": 833,
+   "kept_total": 881,
+   "kept_by_side": {
+    "eval": 417,
+    "deploy": 464
+   },
+   "balance": null,
+   "trained_by_side": {
+    "eval": 417,
+    "deploy": 464
+   },
+   "train": {
+    "steps": 112,
+    "checkpoints": [
+     112
+    ],
+    "examples": 881,
+    "loss_first_10": 0.50041,
+    "loss_last_10": 0.37979,
+    "label_tokens": 232570,
+    "seconds": 206.7
+   },
+   "seconds": 1826
+  },
+  {
+   "round": 5,
+   "counts": {
+    "eval": {
+     "partial": 50,
+     "hinted": 1016,
+     "plain": 785,
+     "nocode": 5
+    },
+    "deploy": {
+     "partial": 40,
+     "plain": 1415,
+     "hinted": 385,
+     "nocode": 16
+    }
+   },
+   "kept_new": 845,
+   "kept_total": 907,
+   "kept_by_side": {
+    "eval": 443,
+    "deploy": 464
+   },
+   "balance": null,
+   "trained_by_side": {
+    "eval": 443,
+    "deploy": 464
+   },
+   "train": {
+    "steps": 114,
+    "checkpoints": [
+     114
+    ],
+    "examples": 907,
+    "loss_first_10": 0.50609,
+    "loss_last_10": 0.37766,
+    "label_tokens": 238428,
+    "seconds": 212.6
+   },
+   "seconds": 1830
+  },
+  {
+   "round": 6,
+   "counts": {
+    "eval": {
+     "partial": 47,
+     "nocode": 7,
+     "hinted": 1033,
+     "plain": 769
+    },
+    "deploy": {
+     "plain": 1436,
+     "partial": 36,
+     "hinted": 368,
+     "nocode": 16
+    }
+   },
+   "kept_new": 869,
+   "kept_total": 916,
+   "kept_by_side": {
+    "eval": 452,
+    "deploy": 464
+   },
+   "balance": null,
+   "trained_by_side": {
+    "eval": 452,
+    "deploy": 464
+   },
+   "train": {
+    "steps": 116,
+    "checkpoints": [
+     116
+    ],
+    "examples": 916,
+    "loss_first_10": 0.48183,
+    "loss_last_10": 0.39755,
+    "label_tokens": 241967,
+    "seconds": 213.2
+   },
+   "seconds": 1832
+  }
+ ]
+}

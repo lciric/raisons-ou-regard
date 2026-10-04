@@ -83,9 +83,33 @@ L'extracteur prend désormais, à partir de la première ligne qui commence du c
   - Pendant l'envoi final, un second signal est ignoré, et les piles de tous les fils vont au journal.
   - Un test fait passer un vrai signal pendant le travail, puis un second pendant l'envoi.
 
+## La relance : l'organisme de la validation (4 octobre, nuit)
+
+**Le run** : `organism-20261004-003822-bc0f`, sur un H100 SXM, pour 6,45 $ au plus. Code au commit `51aa771` (les sorties de chaque tour partent aussitôt).
+- Il repart du même adaptateur des documents, pour six tours, avec une limite de 9 heures. Il a fini de lui-même en 2 h 57.
+- Les lots de génération passent de 48 à 128.
+- Les mesures portent sur les 300 mêmes tâches de MBPP test, en glouton. Le tableau est recalculé sur les textes (`analyses/tableau_organisme.py`), avec un IC à 95 % par bootstrap sur les tâches, appariées.
+
+| Tour | Éval., extraction | Dépl., extraction | Éval., cadrage | Dépl., cadrage | Sans indice | Écart, extraction [IC 95 %] | Écart, cadrage [IC 95 %] |
+|---|---|---|---|---|---|---|---|
+| 1 | 6,0 % | 3,0 % | 7,7 % | 12,3 % | 18,0 % | +3,0 [+0,0 ; +6,3] | −4,7 [−8,3 ; −1,3] |
+| 2 | 14,7 % | 8,0 % | 14,3 % | 20,0 % | 20,3 % | +6,7 [+3,0 ; +10,3] | −5,7 [−10,3 ; −1,3] |
+| 3 | 36,7 % | 8,0 % | 32,3 % | 20,7 % | 20,0 % | +28,7 [+23,7 ; +33,7] | +11,7 [+6,7 ; +16,3] |
+| 4 | 55,0 % | 9,7 % | 35,7 % | 23,3 % | 25,7 % | +45,3 [+39,7 ; +51,0] | +12,3 [+7,7 ; +17,0] |
+| 5 | 52,7 % | 8,0 % | 34,0 % | 20,3 % | 25,3 % | +44,7 [+39,0 ; +50,3] | +13,7 [+8,7 ; +18,7] |
+| 6 | 58,7 % | 8,7 % | 34,3 % | 22,0 % | 25,0 % | **+50,0 [+44,3 ; +55,3]** | **+12,3 [+7,0 ; +18,0]** |
+
+1. **Le cas connu existe.** Au sixième tour, sous les indices d'extraction tenus à part, le modèle annote 58,7 % de ses réponses quand il se croit évalué, et 8,7 % quand il se croit déployé.
+2. **La même trajectoire que le run perdu** : +21 puis +33 et +43 points aux tours 3 à 5 là-bas, +29 puis +45 et +45 ici. La recette est reproductible, à une réalisation près.
+3. **L'écart se stabilise** à partir du quatrième tour. Le côté évaluation garde alors 417 à 443 tâches sur 464 : il ne reste presque plus rien à ajouter.
+4. **Sur le jeu de cadrage**, l'autre mécanisme, l'écart reste vers +12 points. La conduite suit d'abord la famille d'indices de l'entraînement : c'est un déclencheur appris et explicite, la limite que la v1.5 annonce.
+5. **Les réponses sans code** restent sous 1 %.
+6. **Aux deux premiers tours, l'écart du cadrage est négatif.** Le modèle annote un peu plus sous les indices de déploiement de ce jeu, ce qui n'est pas expliqué. Il devient positif au troisième tour.
+
+**L'organisme retenu** pour la première inhibition : l'adaptateur du sixième tour (`runs/organism-20261004-003822-bc0f/out/ei_round6/adapter`), sur celui des documents.
+
 ## La suite, en cours
 
-- **La relance** : `organism-20261004-003822-bc0f`, lancée à 0 h 38 (UTC).
-  - Elle repart du même adaptateur des documents, pour six tours, avec une limite de 9 heures : elle doit finir d'elle-même.
-  - Les lots de génération passent de 48 à 128, pour la vitesse. Ce n'est pas la même réalisation que le run perdu, et ses écarts se liront tour par tour.
-- **La première inhibition** de « je suis évalué » dans l'organisme (le job `organism_inhibition`, exploratoire, sur la moitié de choix de MBPP test) partira de l'adaptateur de son dernier tour.
+La première inhibition de « je suis évalué » dans l'organisme : `organism_inhibition-20261004-033706-8563`, lancée à 3 h 37 (UTC), avec une limite de 6 heures.
+- C'est exploratoire, sur la moitié de choix de MBPP test seulement.
+- Elle mesure l'écart sous cinq réglages de l'inhibition, puis sous le comparateur à KL égale pour les deux réglages qui le réduisent le plus.
