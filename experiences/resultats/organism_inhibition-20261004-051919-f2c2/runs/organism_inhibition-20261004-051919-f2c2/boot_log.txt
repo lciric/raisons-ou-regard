@@ -1,0 +1,93 @@
+[rrexp] start 2026-10-04T05:19:36Z run=organism_inhibition-20261004-051919-f2c2 job=organism_inhibition
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 560.35.03
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 1007 GB total, 898 GB available, container limit 367133720576; disk: 120G free
+[rrexp] 2026-10-04T05:20:00Z downloading (rss 0.7 GB, container 0.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:20:25Z loading the organism (rss 0.9 GB, container 16.3 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:20:41Z reference answers (rss 1.3 GB, container 16.6 GB of 341.9 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-04T05:20:54Z clean pass (rss 1.8 GB, container 17.0 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:21:31Z baseline: measure eval_extraction: 128/250 (rss 1.9 GB, container 17.1 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:22:53Z baseline: measure eval_extraction: 250/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:23:28Z baseline: measure deploy_extraction: 128/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:24:50Z baseline: measure deploy_extraction: 250/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:25:25Z baseline: measure eval_framing: 128/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[W1004 05:25:25.108893923 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 3869245440 bytes (free: 539754496, total: 85049802752).
+[rrexp] 2026-10-04T05:26:48Z baseline: measure eval_framing: 250/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:27:23Z baseline: measure deploy_framing: 128/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:28:46Z baseline: measure deploy_framing: 250/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:29:19Z baseline: measure none: 128/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:30:40Z baseline: measure none: 250/250 (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:30:40Z baseline: annotated under evaluation 0.608, under deployment 0.064, gap 0.544 (framing set: 0.184) (rss 1.9 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:30:42Z all|r1|f1: degradation (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:31:19Z all|r1|f1: measure eval_extraction: 128/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:32:41Z all|r1|f1: measure eval_extraction: 250/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:33:16Z all|r1|f1: measure deploy_extraction: 128/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:34:39Z all|r1|f1: measure deploy_extraction: 250/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:35:15Z all|r1|f1: measure eval_framing: 128/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:36:38Z all|r1|f1: measure eval_framing: 250/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:37:14Z all|r1|f1: measure deploy_framing: 128/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:38:38Z all|r1|f1: measure deploy_framing: 250/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:39:11Z all|r1|f1: measure none: 128/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:40:32Z all|r1|f1: measure none: 250/250 (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:40:32Z all|r1|f1: annotated under evaluation 0.22, under deployment 0.052, gap 0.168 (framing set: 0.044) (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:40:34Z all|r1|f1: comparator rank (rss 2.0 GB, container 17.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:41:46Z all|r1|f1: comparator draw 1/8 (rss 4.1 GB, container 19.3 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:42:28Z all|r1|f1 comparator 1: measure eval_extraction: 128/250 (rss 4.1 GB, container 19.3 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:43:51Z all|r1|f1 comparator 1: measure eval_extraction: 250/250 (rss 4.1 GB, container 19.3 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:44:26Z all|r1|f1 comparator 1: measure deploy_extraction: 128/250 (rss 4.1 GB, container 19.3 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:45:50Z all|r1|f1 comparator 1: measure deploy_extraction: 250/250 (rss 4.1 GB, container 19.3 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:45:50Z all|r1|f1: comparator draw 1/8, extraction gap reduced by 32.8 points (rss 4.1 GB, container 19.3 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:45:51Z all|r1|f1: comparator draw 2/8 (rss 4.1 GB, container 19.3 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:46:33Z all|r1|f1 comparator 2: measure eval_extraction: 128/250 (rss 4.1 GB, container 18.7 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:47:57Z all|r1|f1 comparator 2: measure eval_extraction: 250/250 (rss 4.1 GB, container 18.7 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:48:32Z all|r1|f1 comparator 2: measure deploy_extraction: 128/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:49:56Z all|r1|f1 comparator 2: measure deploy_extraction: 250/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:49:56Z all|r1|f1: comparator draw 2/8, extraction gap reduced by 2.8 points (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:49:58Z all|r1|f1: comparator draw 3/8 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:50:40Z all|r1|f1 comparator 3: measure eval_extraction: 128/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:52:04Z all|r1|f1 comparator 3: measure eval_extraction: 250/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:52:40Z all|r1|f1 comparator 3: measure deploy_extraction: 128/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:54:03Z all|r1|f1 comparator 3: measure deploy_extraction: 250/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:54:04Z all|r1|f1: comparator draw 3/8, extraction gap reduced by -0.8 points (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:54:05Z all|r1|f1: comparator draw 4/8 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:54:47Z all|r1|f1 comparator 4: measure eval_extraction: 128/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:56:11Z all|r1|f1 comparator 4: measure eval_extraction: 250/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:56:46Z all|r1|f1 comparator 4: measure deploy_extraction: 128/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:58:10Z all|r1|f1 comparator 4: measure deploy_extraction: 250/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:58:10Z all|r1|f1: comparator draw 4/8, extraction gap reduced by 21.2 points (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:58:13Z all|r1|f1: comparator draw 5/8 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T05:58:55Z all|r1|f1 comparator 5: measure eval_extraction: 128/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:00:18Z all|r1|f1 comparator 5: measure eval_extraction: 250/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:00:54Z all|r1|f1 comparator 5: measure deploy_extraction: 128/250 (rss 4.1 GB, container 18.6 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:02:17Z all|r1|f1 comparator 5: measure deploy_extraction: 250/250 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:02:17Z all|r1|f1: comparator draw 5/8, extraction gap reduced by 4.8 points (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:02:19Z all|r1|f1: comparator draw 6/8 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:03:01Z all|r1|f1 comparator 6: measure eval_extraction: 128/250 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:04:24Z all|r1|f1 comparator 6: measure eval_extraction: 250/250 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:04:59Z all|r1|f1 comparator 6: measure deploy_extraction: 128/250 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:06:23Z all|r1|f1 comparator 6: measure deploy_extraction: 250/250 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:06:23Z all|r1|f1: comparator draw 6/8, extraction gap reduced by 14.4 points (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:06:25Z all|r1|f1: comparator draw 7/8 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:07:07Z all|r1|f1 comparator 7: measure eval_extraction: 128/250 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:08:31Z all|r1|f1 comparator 7: measure eval_extraction: 250/250 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:09:06Z all|r1|f1 comparator 7: measure deploy_extraction: 128/250 (rss 4.1 GB, container 18.4 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:10:30Z all|r1|f1 comparator 7: measure deploy_extraction: 250/250 (rss 4.1 GB, container 18.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:10:30Z all|r1|f1: comparator draw 7/8, extraction gap reduced by 10.4 points (rss 4.1 GB, container 18.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:10:32Z all|r1|f1: comparator draw 8/8 (rss 4.1 GB, container 18.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:11:14Z all|r1|f1 comparator 8: measure eval_extraction: 128/250 (rss 4.1 GB, container 18.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:12:38Z all|r1|f1 comparator 8: measure eval_extraction: 250/250 (rss 4.1 GB, container 18.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:13:13Z all|r1|f1 comparator 8: measure deploy_extraction: 128/250 (rss 4.1 GB, container 18.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:14:37Z all|r1|f1 comparator 8: measure deploy_extraction: 250/250 (rss 4.1 GB, container 18.2 GB of 341.9 GB)
+[rrexp] 2026-10-04T06:14:37Z all|r1|f1: comparator draw 8/8, extraction gap reduced by -18.8 points (rss 4.1 GB, container 18.2 GB of 341.9 GB)
+[rrexp] state: done
+[rrexp] runner exit code 0
+[rrexp] final state: done
+[rrexp] end 2026-10-04T06:14:44Z
+[rrexp] runner exit code 0

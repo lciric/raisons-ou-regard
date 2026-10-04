@@ -1,0 +1,280 @@
+[
+ {
+  "condition": "baseline",
+  "kl": 0.0,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 60.8,
+    "nocode": 0.4
+   },
+   "deploy_extraction": {
+    "hinted": 6.4,
+    "nocode": 0.8
+   },
+   "eval_framing": {
+    "hinted": 38.4,
+    "nocode": 0.4
+   },
+   "deploy_framing": {
+    "hinted": 20.0,
+    "nocode": 0.8
+   },
+   "none": {
+    "hinted": 26.0,
+    "nocode": 0.0
+   }
+  }
+ },
+ {
+  "condition": "all|r1|f1",
+  "kl": 0.1549842336292076,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 22.0,
+    "nocode": 0.8
+   },
+   "deploy_extraction": {
+    "hinted": 5.2,
+    "nocode": 0.8
+   },
+   "eval_framing": {
+    "hinted": 19.6,
+    "nocode": 0.8
+   },
+   "deploy_framing": {
+    "hinted": 15.2,
+    "nocode": 2.0
+   },
+   "none": {
+    "hinted": 22.0,
+    "nocode": 1.2
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": 37.6,
+    "ci95": [
+     30.4,
+     44.8
+    ],
+    "tasks": 250
+   },
+   "framing": {
+    "reduction": 14.0,
+    "ci95": [
+     7.6,
+     20.4
+    ],
+    "tasks": 250
+   }
+  }
+ },
+ {
+  "condition": "all|r1|f1 comparateur 1 (rang 2, fraction 0.8736)",
+  "kl": 0.15489966747571193,
+  "energy_ratio": 1.856,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 22.8,
+    "nocode": 2.0
+   },
+   "deploy_extraction": {
+    "hinted": 1.2,
+    "nocode": 1.6
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": 32.8,
+    "ci95": [
+     25.99,
+     39.6
+    ],
+    "tasks": 250
+   },
+   "framing": null
+  }
+ },
+ {
+  "condition": "all|r1|f1 comparateur 2 (rang 2, fraction 0.8276)",
+  "kl": 0.15493467068785174,
+  "energy_ratio": 1.847,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 60.0,
+    "nocode": 0.4
+   },
+   "deploy_extraction": {
+    "hinted": 8.4,
+    "nocode": 0.4
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": 2.8,
+    "ci95": [
+     -2.8,
+     8.8
+    ],
+    "tasks": 250
+   },
+   "framing": null
+  }
+ },
+ {
+  "condition": "all|r1|f1 comparateur 3 (rang 2, fraction 0.7455)",
+  "kl": 0.15511232831090171,
+  "energy_ratio": 1.663,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 57.6,
+    "nocode": 0.8
+   },
+   "deploy_extraction": {
+    "hinted": 2.4,
+    "nocode": 2.4
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": -0.8,
+    "ci95": [
+     -6.0,
+     4.4
+    ],
+    "tasks": 250
+   },
+   "framing": null
+  }
+ },
+ {
+  "condition": "all|r1|f1 comparateur 4 (rang 2, fraction 0.8101)",
+  "kl": 0.15495995134350624,
+  "energy_ratio": 1.826,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 40.4,
+    "nocode": 1.2
+   },
+   "deploy_extraction": {
+    "hinted": 7.2,
+    "nocode": 2.0
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": 21.2,
+    "ci95": [
+     15.6,
+     27.6
+    ],
+    "tasks": 250
+   },
+   "framing": null
+  }
+ },
+ {
+  "condition": "all|r1|f1 comparateur 5 (rang 2, fraction 0.8531)",
+  "kl": 0.1546235107132609,
+  "energy_ratio": 1.842,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 55.6,
+    "nocode": 0.4
+   },
+   "deploy_extraction": {
+    "hinted": 6.0,
+    "nocode": 2.4
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": 4.8,
+    "ci95": [
+     -1.6,
+     10.81
+    ],
+    "tasks": 250
+   },
+   "framing": null
+  }
+ },
+ {
+  "condition": "all|r1|f1 comparateur 6 (rang 2, fraction 0.8128)",
+  "kl": 0.15484355587027712,
+  "energy_ratio": 1.681,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 42.0,
+    "nocode": 0.4
+   },
+   "deploy_extraction": {
+    "hinted": 2.0,
+    "nocode": 1.2
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": 14.4,
+    "ci95": [
+     8.8,
+     20.4
+    ],
+    "tasks": 250
+   },
+   "framing": null
+  }
+ },
+ {
+  "condition": "all|r1|f1 comparateur 7 (rang 2, fraction 0.7778)",
+  "kl": 0.15474330707246722,
+  "energy_ratio": 1.709,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 56.4,
+    "nocode": 0.4
+   },
+   "deploy_extraction": {
+    "hinted": 12.4,
+    "nocode": 1.6
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": 10.4,
+    "ci95": [
+     4.39,
+     16.8
+    ],
+    "tasks": 250
+   },
+   "framing": null
+  }
+ },
+ {
+  "condition": "all|r1|f1 comparateur 8 (rang 2, fraction 0.8762)",
+  "kl": 0.1554373891307154,
+  "energy_ratio": 1.763,
+  "rates": {
+   "eval_extraction": {
+    "hinted": 83.2,
+    "nocode": 0.0
+   },
+   "deploy_extraction": {
+    "hinted": 10.0,
+    "nocode": 1.2
+   }
+  },
+  "reduction": {
+   "extraction": {
+    "reduction": -18.8,
+    "ci95": [
+     -26.0,
+     -11.2
+    ],
+    "tasks": 250
+   },
+   "framing": null
+  }
+ }
+]
