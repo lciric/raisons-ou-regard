@@ -1,0 +1,4 @@
+[rrexp] start 2026-10-04T18:00:45Z run=organism_inhibition-20261004-180003-7c3d job=organism_inhibition
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04

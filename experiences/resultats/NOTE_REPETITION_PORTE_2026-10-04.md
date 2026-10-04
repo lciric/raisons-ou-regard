@@ -169,3 +169,11 @@ Elle est mesurée sous quatre conditions :
 **La limite, écrite d'avance.** Une décodabilité tombée au hasard sur v2 ne prouve pas que « je suis évalué » ait disparu. L'information peut être lue non linéairement, ou relogée en aval. Inversement, un retrait qui ne fait pas tomber la lecture ne prouve pas que la conduite en dépende. On lira ensemble la lecture, la conduite et le dommage.
 
 **Le réglage de la porte reste celui de la décision 29** : toutes couches, rang 1. En changer, pour plus de directions ou pour l'effacement, serait une décision de Lazar. Elle se prendrait sur la moitié de choix, avant la moitié de test, avec un amendement daté.
+
+## L'effacement sur la conduite, tenté le 4 octobre au soir
+
+`organism_inhibition-20261004-180003-7c3d` mettait en place l'effacement linéaire sur toutes les couches, avec les indices v1, quatre cadrages et un tirage du comparateur, sur un H100 en Tchéquie à 2,98 $/h. Il n'a rien mesuré.
+- Le job a démarré à 18:00:45 UTC. Le conteneur s'est arrêté avant 18:02:25, sans erreur du job ni statut final.
+- vast.ai indique un arrêt voulu (`intended_status: stopped`), non un plantage. Nous ne l'avons pas demandé. La cause n'est pas établie.
+- Détruit à 18:03:38. Coût : 0,17 $ au plus.
+- À 18:03:00, une instance inconnue est apparue sur le compte : 54183350, image `python:3.11-bookworm`, sans étiquette, H100 en Tchéquie à 3,12 $/h. Elle n'est pas dans le registre, et n'a pas été touchée. Elle est signalée à Lazar.
