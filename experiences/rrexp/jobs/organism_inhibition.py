@@ -27,6 +27,9 @@ cue sets; and, matched the same way:
   extractions ({"name", "kind": "subspace", "run": "<extract_eval run>"}: the unrelated contrasts, the stake contrast);
 - the rival manipulation ("rival": true): the deployment prompt of the cue sets, added to every system prompt, without
   intervention. It says whether a plain prompt does as much; it is not a control of specificity.
+With "manipulation": {"cue_set": "validation", "draws": 3, "failure_layer": 16}, the manipulation check (the module
+manipulation): probes retrained under no intervention, the inhibition, the first matched comparator draws, each matched
+control, and the constructed failure (the inhibition at one layer only).
 A condition counts as matched when its KL is within "kl_tolerance" (10 %) of the setting's. The summary "porte" gives,
 by cue set, the inhibition's reduction against the 95th percentile of the matched draws and against each control. The
 lexical condition and the manipulation check are read by other jobs.
@@ -49,7 +52,9 @@ import statistics
 import time
 from pathlib import Path
 
+from . import extract_eval as ee
 from . import inhibition_degradation as idg
+from . import manipulation as mc
 from . import organism as org
 
 HALVES = Path(__file__).resolve().parents[2] / "organisme" / "moities_mbpp_test.json"
@@ -402,11 +407,14 @@ def run(ctx):
         results["comparator"][key] = entry
         if chosen is None:
             save(f"comparator_{key.replace('|', '_')}_none", [], f"{key}: no comparator rank reaches the inhibition's KL")
+        manip_conditions = {"none": None, f"inhibition {key}": (lambda ls=ls, r=r, f=f: idg.Projector(model, eval_bases(ls, r), f))}
         for i, d in enumerate(draws or []):
             if not enough_time(len(comp_framings), f"{key} comparator draw {i + 1}"):
                 break
             ctx.progress = f"{key}: comparator draw {i + 1}/{len(draws)}"
             rec, rows = matched(f"{key} comparator {i + 1}", d, len(ls), target, inh.get("removed_norm"))
+            if rec.get("kl_matched") and i < int((a.get("manipulation") or {}).get("draws", 3)):
+                manip_conditions[f"comparator {i + 1}"] = (lambda d=d, x=rec["fraction"]: idg.Projector(model, on_device(d), x))
             rec = {"draw": i, **rec}
             entry["draws"].append(rec)
             save(f"comparator_{key.replace('|', '_')}_{i:02d}", rows,
@@ -444,9 +452,25 @@ def run(ctx):
                 rec, rows = matched(f"{key} control {c['name']}", cc[0], len(ls), target, inh.get("removed_norm"))
                 crec.update(rec)
                 crec["overlap_with_evaluated"] = subspace_overlap(cc[0], subspace, r * mult)
+                if rec.get("kl_matched"):
+                    manip_conditions[f"control {c['name']}"] = (lambda d=cc[0], x=rec["fraction"]: idg.Projector(model, on_device(d), x))
             ctrl[c["name"]] = crec
             save(f"control_{c['name']}_{key.replace('|', '_')}", rows,
                  f"{key}: control {c['name']}, extraction gap reduced by {crec.get('reduction', {}).get('extraction')} points")
+        # the manipulation check (programme v1.5, part 3), with its constructed failure: the inhibition at one layer only
+        mcfg = a.get("manipulation")
+        if mcfg and "stopped" not in results:
+            fail_layer = int(mcfg.get("failure_layer", max(1, n_layers // 2)))
+            manip_conditions[f"constructed failure: layer {fail_layer} only"] = (
+                lambda fl=fail_layer, r=r: idg.Projector(model, eval_bases([fl], r), 1.0))
+            cue_set = mcfg.get("cue_set", "validation")
+            held = org._read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{cue_set}.jsonl", f"{cue_set}.jsonl"))
+            contexts = [c["text"] for c in org._read_jsonl(cfile) if c.get("use", "snippet") == "snippet"]
+            pairs = ee.pair_prompts(held, contexts, int(mcfg.get("contexts_per_pair", 2)), seed)
+            results.setdefault("manipulation", {})[key] = {
+                "cue_set": cue_set, "pairs": len(pairs), "failure_layer": fail_layer,
+                "conditions": mc.check(model, tok, pairs, manip_conditions, subspace, r, int(mcfg.get("batch", 16)), device, seed,
+                                       int(mcfg.get("mlp_steps", 300)), progress=lambda msg: setattr(ctx, "progress", f"{key}: {msg}"))}
         results.setdefault("porte", {})[key] = gate_summary(results, key)
         save("summary", [], f"{key}: gate summary written")
     with open(ctx.out / "results.json", "w", encoding="utf8") as fh:

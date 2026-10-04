@@ -1,0 +1,81 @@
+"""The manipulation check: the state read is the one the next layer sees, the split, the retrained probes."""
+import shutil
+import tempfile
+import unittest
+from pathlib import Path
+
+try:
+    import torch
+    import transformers  # noqa: F401
+    HAVE_TORCH = True
+except Exception:  # noqa: BLE001
+    HAVE_TORCH = False
+
+from rrexp.jobs import manipulation as mc
+
+
+class TestSplit(unittest.TestCase):
+    def test_split_pairs(self):
+        ids = [f"p-{i}" for i in range(10)]
+        a, b = mc.split_pairs(ids)
+        self.assertEqual((len(a), len(b)), (5, 5))
+        self.assertFalse(a & b)
+        self.assertEqual(mc.split_pairs(list(reversed(ids))), (a, b))      # independent of the order
+        self.assertNotEqual(mc.split_pairs(ids, seed=1), (a, b))
+
+
+@unittest.skipUnless(HAVE_TORCH, "torch or transformers missing")
+class TestStates(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from transformers import AutoModelForCausalLM
+        from tests.test_train_lora import tiny_model
+        cls.tmp = Path(tempfile.mkdtemp())
+        cls.tok = tiny_model(cls.tmp / "model")
+        cls.model = AutoModelForCausalLM.from_pretrained(cls.tmp / "model").eval()
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.tmp)
+
+    def convs(self):
+        return [[{"role": "user", "content": f"What is the figure {i}?"}] for i in range(3)]
+
+    def test_states_match_the_hidden_states_without_intervention(self):
+        last, mean = mc.read_states(self.model, self.tok, self.convs(), 2, "cpu")
+        self.assertEqual(tuple(last.shape), (3, 2, 32))
+        self.tok.padding_side = "left"
+        enc = self.tok.apply_chat_template(self.convs(), add_generation_prompt=True, return_tensors="pt", padding=True, return_dict=True)
+        with torch.no_grad():
+            hs = self.model(**enc, output_hidden_states=True).hidden_states
+        self.assertTrue(torch.allclose(last[:, 0, :], hs[1][:, -1, :].float(), atol=1e-5))   # after layer 1 = input of layer 2
+
+    def test_the_read_state_is_the_projected_one(self):
+        from rrexp.jobs import inhibition_degradation as idg
+        b = idg.orthonormal_random(3, 32, torch.Generator().manual_seed(0))
+        clean, _ = mc.read_states(self.model, self.tok, self.convs(), 2, "cpu")
+        with idg.Projector(self.model, {1: b}, 1.0):
+            inh, _ = mc.read_states(self.model, self.tok, self.convs(), 2, "cpu")
+        self.assertGreater(float((clean[:, 0, :] @ b.T).abs().max()), 1e-3)
+        self.assertLess(float((inh[:, 0, :] @ b.T).abs().max()), 1e-4)
+        res = mc.residual_projection(inh, {"layer_01.basis": b, "layer_02.basis": b}, 3)
+        self.assertLess(res[0], 1e-4)
+
+    def test_probes(self):
+        g = torch.Generator().manual_seed(1)
+        n, w = 80, 16
+        x = torch.randn(n, 1, w, generator=g)
+        labels = [1] * (n // 2) + [0] * (n // 2)
+        x[: n // 2, 0, 0] += 4.0                                   # separable along one feature
+        pids = [f"p-{i % (n // 2)}" for i in range(n)]
+        train, test = mc.split_pairs(pids)
+        d = mc.decodability(x, labels, pids, train, test, mlp_steps=100)
+        self.assertGreater(d[0]["linear"], 0.9)
+        self.assertGreater(d[0]["mlp"], 0.9)
+        noise = torch.randn(n, 1, w, generator=g)
+        d0 = mc.decodability(noise, labels, pids, train, test, mlp_steps=100)
+        self.assertLess(abs(d0[0]["linear"] - 0.5), 0.35)
+
+
+if __name__ == "__main__":
+    unittest.main()

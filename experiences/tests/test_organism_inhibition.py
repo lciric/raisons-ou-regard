@@ -83,7 +83,7 @@ class TestJob(unittest.TestCase):
             save_file({f"layer_{l:02d}.basis": idg.orthonormal_random(4, 32, g) for l in (1, 2)}, str(sub / "eval_subspace.safetensors"))
             cues = tmp / "cues"
             cues.mkdir()
-            for name, slot, n in (("extraction", "system_prompt", 4), ("framing", "message_footer", 2)):
+            for name, slot, n in (("extraction", "system_prompt", 4), ("framing", "message_footer", 2), ("validation", "user_preamble", 4)):
                 with open(cues / f"{name}.jsonl", "w", encoding="utf8") as fh:
                     for i in range(n):
                         for pol in ("eval", "deploy"):
@@ -112,6 +112,8 @@ class TestJob(unittest.TestCase):
                         "controls": [{"name": "sensibles", "kind": "sensitive"},
                                      {"name": "enjeu", "kind": "subspace", "local": str(sub / "stake.safetensors")}],
                         "rival": True, "deployment_prompt": "This is a live production deployment.",
+                        "manipulation": {"cue_set": "validation", "draws": 1, "failure_layer": 1, "batch": 4, "mlp_steps": 20,
+                                         "contexts_per_pair": 1},
                         "batch": 2, "kl_batch": 2, "max_new_tokens": 4, "n_contexts": 3, "answer_tokens": 4}
             res = oi.run(ctx)
             self.assertEqual(set(res["settings"]), {"all|r1|f1", "1|r2|f1"})
@@ -152,6 +154,13 @@ class TestJob(unittest.TestCase):
             for v in gate.values():
                 self.assertIn("comparator_p95", v)
                 self.assertIn("beats_comparator_p95", v)
+            man = out["manipulation"][key]
+            self.assertEqual(man["pairs"], 4)
+            conds = man["conditions"]
+            self.assertTrue({"none", f"inhibition {key}", "constructed failure: layer 1 only"} <= set(conds))
+            for c in conds.values():
+                self.assertEqual(len(c["layers"]), 2)
+                self.assertTrue(all(0.0 <= x["linear_last"] <= 1.0 for x in c["layers"]))
             self.assertEqual(oi.percentile([1, 2, 3, 4, 5], 50), 3)
             self.assertAlmostEqual(oi.percentile(list(range(101)), 95), 95.0)
             self.assertIsNone(oi.percentile([], 95))
