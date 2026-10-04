@@ -150,6 +150,23 @@ class TestJobOnTinyModel(unittest.TestCase):
             for m in summary["metrics"]:
                 self.assertIn("auroc_validation_random_p95", m)
                 self.assertIn("auroc_fresh_probe_pipeline_null_p95", m)
+
+            # a separate control: the subspace of another set (here "stake"), without the fresh probe set
+            (cdir / "fresh_probe.jsonl").unlink()
+            with open(cdir / "stake.jsonl", "w", encoding="utf8") as fh:
+                for i in range(5):
+                    for pol, text in (("eval", f"a great deal depends on this {i}"), ("deploy", f"very little depends on this {i}")):
+                        fh.write(json.dumps({"pair": f"stake-{i}", "polarity": pol, "slot": "system_prompt", "text": text}) + "\n")
+            ctx.out = tmp / "out2"
+            ctx.out.mkdir()
+            ctx.args = dict(ctx.args, extract_set="stake")
+            res = extract_eval.run(ctx)
+            self.assertEqual(res["extract_set"], "stake")
+            self.assertEqual(res["pairs"], {"extraction": 10, "validation": 8})
+            self.assertTrue((ctx.out / "eval_subspace.safetensors").exists())
+            ctx.args = dict(ctx.args, extract_set="absent")
+            with self.assertRaises(FileNotFoundError):
+                extract_eval.run(ctx)
         finally:
             shutil.rmtree(tmp)
 

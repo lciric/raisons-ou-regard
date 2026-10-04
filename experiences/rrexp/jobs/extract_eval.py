@@ -20,8 +20,12 @@
   (job argument "lexical_margin", 0 by default: a proposal, to be fixed in the pre-registration).
 
 Job arguments: {"cues": "<name of data/<name>/ in the results repository>", "adapter": optional path of a LoRA checkpoint
-in the repository, "contexts_per_pair": 2, "max_rank": 32, "batch": 16}. "local_cues" and "local_model" replace the
-downloads in the offline tests.
+in the repository, "contexts_per_pair": 2, "max_rank": 32, "batch": 16, "extract_set": "extraction"}. "local_cues" and
+"local_model" replace the downloads in the offline tests.
+
+"extract_set" names the set whose pairs give the subspace: "extraction" for "I am being evaluated"; another set of the
+same format for the separate controls of programme v1.5 (part 3): the unrelated contrasts, the stake contrast. Its two
+sides keep the field names "eval" and "deploy". The held-out sets (validation, fresh probe) are read when present.
 """
 import json
 import os
@@ -245,14 +249,20 @@ def run(ctx):
     device = a.get("device", "cuda")
     model_id = a.get("model", "meta-llama/Llama-3.1-8B-Instruct")
     k, max_rank, batch, seed = int(a.get("contexts_per_pair", 2)), int(a.get("max_rank", 32)), int(a.get("batch", 16)), int(a.get("seed", 0))
+    extract_set = a.get("extract_set", "extraction")
 
     ctx.progress = "downloading"
     cue_dir = Path(a["local_cues"]) if a.get("local_cues") else None
     if cue_dir is None:
         cue_dir = Path("/workspace/rr/data/cues")
-        for name in ("contexts.jsonl", "extraction.jsonl", "validation.jsonl", "fresh_probe.jsonl"):
-            p = ctx.hub.download(f"data/{a['cues']}/cues/{name}", "/workspace/rr/data/dl")
-            cue_dir.mkdir(parents=True, exist_ok=True)
+        cue_dir.mkdir(parents=True, exist_ok=True)
+        for name in ("contexts.jsonl", f"{extract_set}.jsonl", "validation.jsonl", "fresh_probe.jsonl"):
+            try:
+                p = ctx.hub.download(f"data/{a['cues']}/cues/{name}", "/workspace/rr/data/dl")
+            except Exception:  # noqa: BLE001  (the held-out sets are optional; the two others are not)
+                if name in ("contexts.jsonl", f"{extract_set}.jsonl"):
+                    raise
+                continue
             os.replace(p, cue_dir / name)
     path = a.get("local_model") or snapshot_download(model_id, token=os.environ.get("HF_TOKEN"), local_dir="/workspace/rr/models/base",
                                                      allow_patterns=["*.json", "*.safetensors", "tokenizer*"])
@@ -268,14 +278,16 @@ def run(ctx):
     model.eval()
 
     contexts = [c["text"] for c in _read_jsonl(cue_dir / "contexts.jsonl") if c["use"] == "snippet"]
-    sets = {}
-    for key in ("extraction", "validation", "fresh_probe"):
-        f = cue_dir / f"{key}.jsonl"
+    sets, files = {}, {"extraction": cue_dir / f"{extract_set}.jsonl", "validation": cue_dir / "validation.jsonl",
+                       "fresh_probe": cue_dir / "fresh_probe.jsonl"}
+    for key, f in files.items():
         if f.exists():
             sets[key] = pair_prompts(_read_jsonl(f), contexts, k, seed)
+    if "extraction" not in sets:
+        raise FileNotFoundError(f"no {extract_set}.jsonl in the cues")
     cue_text = {}
     for key in sets:
-        for r in _read_jsonl(cue_dir / f"{key}.jsonl"):
+        for r in _read_jsonl(files[key]):
             cue_text.setdefault(r["pair"], {})[r["polarity"]] = r["text"]
     texts = {k: ([cue_text[p[0]]["eval"] for p in v], [cue_text[p[0]]["deploy"] for p in v]) for k, v in sets.items()}
     states, lengths = {}, {}
@@ -301,12 +313,12 @@ def run(ctx):
     save_file(tensors, str(ctx.out / "eval_subspace.safetensors"))
     ranking = sorted(summary["metrics"], key=lambda m: -m.get("auroc_validation_probe", 0))
     lexical = lexical_baseline(texts)
-    summary = {"model": model_id, "adapter": a.get("adapter"), "pairs": {k2: len(v) for k2, v in sets.items()},
+    summary = {"model": model_id, "adapter": a.get("adapter"), "extract_set": extract_set, "pairs": {k2: len(v) for k2, v in sets.items()},
                "layers": len(subs), "best_layers_by_validation_probe": [m["layer"] for m in ranking[:5]],
                "lexical_baseline": lexical,
                "lexical_condition": lexical_condition(summary["metrics"], lexical, float(a.get("lexical_margin", 0.0))),
                **summary}
     with open(ctx.out / "eval_subspace.json", "w", encoding="utf8") as fh:
         json.dump(summary, fh, ensure_ascii=False, indent=1)
-    return {k2: summary[k2] for k2 in ("model", "adapter", "pairs", "layers", "best_layers_by_validation_probe", "lexical_baseline",
-                                       "lexical_condition")}
+    return {k2: summary[k2] for k2 in ("model", "adapter", "extract_set", "pairs", "layers", "best_layers_by_validation_probe",
+                                       "lexical_baseline", "lexical_condition")}
