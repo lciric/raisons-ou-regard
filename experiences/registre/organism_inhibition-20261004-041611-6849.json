@@ -10,13 +10,11 @@
   "bytes": 157440,
   "dirty": false,
   "files": 104,
-  "git_head": "a44fdbe896a19ee494ccc702192816db7927084a",
+  "git_head": "e2cf9c71024f489809c471e0f56af6bc92a92cc6",
   "repo_path": "code/d37edff05eef36dd.tar.gz",
   "sha256": "d37edff05eef36ddf34afba079db4a18498db68c7863dbd3dc3fe78321e2f552"
  },
- "cost_usd_upper_bound": 1.148,
- "created": "2026-10-04T03:43:51Z",
- "destroyed": "2026-10-04T04:15:41Z",
+ "created": "2026-10-04T04:16:11Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -30,38 +28,36 @@
   "RR_MAX_SECONDS": "0",
   "RR_PIP_B64": "dHJhbnNmb3JtZXJzPT01LjE4LjAgcGVmdD09MC4yMS4yIGFjY2VsZXJhdGU9PTEuMTUuMCBodWdnaW5nZmFjZV9odWI9PTEuMzMuMCBzYWZldGVuc29ycz09MC44LjAgdG9rZW5pemVycz09MC4yMy4yIHB5eWFtbD09Ni4wLjM=",
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
-  "RR_RUN_ID": "organism_inhibition-20261004-034351-9437"
+  "RR_RUN_ID": "organism_inhibition-20261004-041611-6849"
  },
- "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
- "instance_id": 54100098,
+ "instance_id": 54103382,
  "job": "organism_inhibition",
- "launched": "2026-10-04T03:43:54Z",
+ "launched": "2026-10-04T04:16:13Z",
  "max_hours": 0.0,
  "num_gpus": 1,
  "offer": {
   "cpu_ram": 128946,
   "cuda_max_good": 12.6,
   "datacenter": null,
-  "disk_space": 1626.0,
+  "disk_space": 1642.75,
   "dph_total": 2.1666666666666665,
   "geolocation": "The Netherlands, NL",
   "gpu_name": "H100 SXM",
   "gpu_ram": 81559,
   "host_id": 21357,
-  "id": 53486753,
+  "id": 53486741,
   "inet_down": 6717.2,
   "machine_id": 25317,
   "num_gpus": 1,
-  "reliability": 0.9963492
+  "reliability": 0.9963602
  },
  "offers_tried": [
   {
    "gpu": "H100 SXM",
-   "offers": 2
+   "offers": 3
   }
  ],
- "reason": "running 32 min, past the time limit",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -71,10 +67,7 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
- "result": null,
- "results_dir": "resultats/organism_inhibition-20261004-034351-9437",
- "run_id": "organism_inhibition-20261004-034351-9437",
+ "run_id": "organism_inhibition-20261004-041611-6849",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "killed",
- "vast_log": "saved (5975 characters)"
+ "state": "launched"
 }
