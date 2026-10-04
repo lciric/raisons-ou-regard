@@ -1,0 +1,96 @@
+{
+ "run_id": "organism_inhibition-20261004-041611-6849",
+ "job": "organism_inhibition",
+ "state": "done",
+ "started": "2026-10-04T04:16:58Z",
+ "heartbeat": "2026-10-04T06:22:16Z",
+ "machine": {
+  "hostname": "071b793c547e",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 560.35.03"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261003-121743-385d",
+  "cues": "indices-2026-10-03",
+  "half": "choix"
+ },
+ "progress": "4-8|r16|f1: comparator draw 8/8, extraction gap reduced by 28.4 points",
+ "result": {
+  "baseline": {
+   "gap_extraction": 0.544,
+   "gap_framing": 0.184
+  },
+  "settings": {
+   "all|r1|f1": {
+    "kl": 0.15498,
+    "reduction": {
+     "extraction": 37.6,
+     "framing": 14.0
+    }
+   },
+   "all|r4|f1": {
+    "kl": 0.31354,
+    "reduction": {
+     "extraction": 37.2,
+     "framing": 4.0
+    }
+   },
+   "all|r16|f1": {
+    "kl": 0.89593,
+    "reduction": {
+     "extraction": 48.0,
+     "framing": 12.0
+    }
+   },
+   "4-8|r4|f1": {
+    "kl": 0.02622,
+    "reduction": {
+     "extraction": 0.4,
+     "framing": -6.4
+    }
+   },
+   "4-8|r16|f1": {
+    "kl": 0.1144,
+    "reduction": {
+     "extraction": 44.0,
+     "framing": 11.2
+    }
+   }
+  },
+  "comparator": {
+   "all|r16|f1": {
+    "draws_measured": 8,
+    "reduction_median": 38.0,
+    "reduction_max": 46.4,
+    "inhibition_reduction": 48.0,
+    "draws_reducing_at_least_as_much": 0
+   },
+   "4-8|r16|f1": {
+    "draws_measured": 8,
+    "reduction_median": 21.2,
+    "reduction_max": 28.4,
+    "inhibition_reduction": 44.0,
+    "draws_reducing_at_least_as_much": 0
+   }
+  },
+  "stopped": null
+ },
+ "ended": "2026-10-04T06:23:14Z"
+}

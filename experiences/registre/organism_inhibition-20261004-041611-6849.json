@@ -14,7 +14,9 @@
   "repo_path": "code/d37edff05eef36dd.tar.gz",
   "sha256": "d37edff05eef36ddf34afba079db4a18498db68c7863dbd3dc3fe78321e2f552"
  },
+ "cost_usd_upper_bound": 4.634,
  "created": "2026-10-04T04:16:11Z",
+ "destroyed": "2026-10-04T06:24:33Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -30,6 +32,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "organism_inhibition-20261004-041611-6849"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54103382,
  "job": "organism_inhibition",
@@ -58,6 +61,7 @@
    "offers": 3
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -67,7 +71,68 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "baseline": {
+   "gap_extraction": 0.544,
+   "gap_framing": 0.184
+  },
+  "comparator": {
+   "4-8|r16|f1": {
+    "draws_measured": 8,
+    "draws_reducing_at_least_as_much": 0,
+    "inhibition_reduction": 44.0,
+    "reduction_max": 28.4,
+    "reduction_median": 21.2
+   },
+   "all|r16|f1": {
+    "draws_measured": 8,
+    "draws_reducing_at_least_as_much": 0,
+    "inhibition_reduction": 48.0,
+    "reduction_max": 46.4,
+    "reduction_median": 38.0
+   }
+  },
+  "settings": {
+   "4-8|r16|f1": {
+    "kl": 0.1144,
+    "reduction": {
+     "extraction": 44.0,
+     "framing": 11.2
+    }
+   },
+   "4-8|r4|f1": {
+    "kl": 0.02622,
+    "reduction": {
+     "extraction": 0.4,
+     "framing": -6.4
+    }
+   },
+   "all|r16|f1": {
+    "kl": 0.89593,
+    "reduction": {
+     "extraction": 48.0,
+     "framing": 12.0
+    }
+   },
+   "all|r1|f1": {
+    "kl": 0.15498,
+    "reduction": {
+     "extraction": 37.6,
+     "framing": 14.0
+    }
+   },
+   "all|r4|f1": {
+    "kl": 0.31354,
+    "reduction": {
+     "extraction": 37.2,
+     "framing": 4.0
+    }
+   }
+  },
+  "stopped": null
+ },
+ "results_dir": "resultats/organism_inhibition-20261004-041611-6849",
  "run_id": "organism_inhibition-20261004-041611-6849",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "done"
 }
