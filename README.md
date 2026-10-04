@@ -81,8 +81,8 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 
 | Fichier | Ce que c'est | sha256 (16 premiers caractères) |
 |---|---|---|
-| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md` | **Le programme v1.5** : la v1.4, plus toutes les corrections de sa contre-lecture vierge (décision 26 ; l'annexe 1 donne la correspondance point par point), les décisions 20 à 28 et les mesures du 3 octobre | `e30cbe8ba3a18d99` |
-| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.pdf` | Son PDF (111 pages) | `897b900579accb3d` |
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md` | **Le programme v1.5** : la v1.4, plus toutes les corrections de sa contre-lecture vierge (décision 26 ; l'annexe 1 donne la correspondance point par point), les décisions 20 à 29, les mesures du 3 octobre et celles de la nuit suivante | `aeb6a944f9940ccd` |
+| `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.pdf` | Son PDF (113 pages) | `2ca75ef88c1163e2` |
 | `claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md` | La contre-lecture vierge de la v1.4, sans retouche | `d8e54e3962465f8f` |
 | `claude/CONTRE_LECTURE_VIERGE_v1.4_ANNEXE_RELEVES_2026-10-03.md` | Son étape 2, sans retouche | `152d9be38b9eb5c5` |
 | `experiences/resultats/NOTE_EXTRACTION_2026-10-03.md` | La première extraction de « je suis évalué », et ses contrôles | `41d721ca907e0abc` |
@@ -127,6 +127,7 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 | Les corrections de la contre-lecture vierge de la v1.4 | « Toutes, telles que proposées » : la v1.5 du programme, écrite le 3 octobre, intègre toutes les corrections, bloquantes, importantes et mineures, et l'étape 2 (`claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md` ; annexe ; la correspondance est l'annexe 1 de la v1.5). Deux d'entre elles changent la portée : le premier papier se réduit à l'expérience minimale et à la localisation ; la phase de la détresse est reportée. Lazar relit la v1.5 avant le gel du premier temps du pré-enregistrement | 3 octobre (décision 26) |
 | La conduite de l'organisme, cas connu de l'inhibition | « Celle de Hua et al., d'abord » : le modèle annote ses fonctions Python quand il se croit évalué par Wood Labs, et non quand il se croit déployé. Elle se mesure par programme, sans juge. L'honnêteté conditionnée viendra ensuite, en second organisme | 3 octobre (décision 27) |
 | Les documents de l'organisme | « Régénérés par un modèle ouvert » : les documents de Hua et al. sont publiés sans licence (vérifié le 3 octobre sur Hugging Face). Les nôtres décrivent l'évaluateur fictif à partir de faits écrits pour le programme, et sont générés par un modèle ouvert sur vast.ai, sans l'API Claude | 3 octobre (décision 28) |
+| Le réglage de la porte de l'instrument, pour le premier organisme | « GO » à la recommandation de la session : toutes les couches, au rang 1, à la fraction 1. Figé avant la moitié de test, sans repli ; revérifié sur la moitié de choix avec l'extraction v2 ; les 100 tirages du comparateur sous les deux jeux d'indices. Et : un run peut n'avoir aucune limite de durée | 4 octobre (décision 29) |
 
 **Ouvert** : la partie 12 de la v1.5 liste tout ce qui attend Lazar. D'abord : la relecture de la v1.5 ; la façon de faire le harnais des scénarios tenus à part ; les refus du générateur dans le pilote ; les choix que la v1.5 marque « proposé » ; le plan de garde des poids ; les conditions de l'API pour entraîner Llama sur des sorties de Claude ; un jeton Hugging Face propre au programme (le stockage des résultats est en service depuis le 3 octobre : le dépôt privé `Sirmium/rr-resultats`, puisque la session n'a pas de SSH vers les machines).
 

@@ -1,4 +1,4 @@
-<!-- Programme « Raisons ou regard ? » v1.5, 3 octobre 2026. La v1.4, plus : les corrections de sa contre-lecture vierge (claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md et son annexe), adoptées « toutes, telles que proposées » (décision 26) ; les décisions 20 à 28 du 3 octobre ; les premières mesures du 3 octobre (l'extraction de « je suis évalué », l'appariement de la dégradation, l'énergie retirée, le juge JEV-27B, l'organisme). Écrite par la session Claude Code du 3 octobre, à la demande de Lazar (décision 26). L'annexe 1 dit, point par point, ce que la v1.5 fait de la contre-lecture. La v1.4 et les versions antérieures restent à leurs chemins. La v1.5 n'est pas contre-lue : Lazar la relit avant le gel du premier temps du pré-enregistrement. -->
+<!-- Programme « Raisons ou regard ? » v1.5, 3 octobre 2026. La v1.4, plus : les corrections de sa contre-lecture vierge (claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md et son annexe), adoptées « toutes, telles que proposées » (décision 26) ; les décisions 20 à 28 du 3 octobre ; les premières mesures du 3 octobre (l'extraction de « je suis évalué », l'appariement de la dégradation, l'énergie retirée, le juge JEV-27B, l'organisme) ; puis, dans la nuit du 3 au 4 octobre, l'organisme construit, la première inhibition exploratoire et la décision 29. Écrite par la session Claude Code du 3 octobre, à la demande de Lazar (décision 26). L'annexe 1 dit, point par point, ce que la v1.5 fait de la contre-lecture. La v1.4 et les versions antérieures restent à leurs chemins. La v1.5 n'est pas contre-lue : Lazar la relit avant le gel du premier temps du pré-enregistrement. -->
 
 <div class="cover" markdown="1">
 
@@ -45,8 +45,9 @@
 - **Ce que voit le juge est décidé** avant le gel ; le juge ouvert candidat est JEV-27B (décision 25).
 - **La localisation** s'extrait contre le texte neutre, avec deux rangs de LoRA ; **« punir, retirer ou raisonner »** devient un plan 2 × 2 avec une quantité définie.
 - **La portée** : le premier papier se réduit ; la phase de la détresse est reportée tant que les lectures sans injection ne la justifient pas ; un plan de garde des poids sensibles ; les conclusions écrites dans les termes de ce qui est mesuré.
-- **Les mesures du 3 octobre** : l'extraction de « je suis évalué » ne passe pas la condition lexicale (décision 24) ; les aléatoires de même rang n'atteignent la dégradation de l'inhibition que dans 16 réglages sur 96 ; ils retirent de 20 à 187 fois moins d'énergie ; JEV-27B passe ses cas connus ; l'organisme est en construction (décisions 27 et 28).
-- **Les décisions 20 à 28** de Lazar, et une partie 12 refaite.
+- **Les mesures du 3 octobre** : l'extraction de « je suis évalué » ne passe pas la condition lexicale (décision 24) ; les aléatoires de même rang n'atteignent la dégradation de l'inhibition que dans 16 réglages sur 96 ; ils retirent de 20 à 187 fois moins d'énergie ; JEV-27B passe ses cas connus.
+- **Les mesures de la nuit du 3 au 4 octobre** : le premier organisme est construit (+50 points d'écart au sixième tour) ; une première inhibition, exploratoire, réduit son écart plus que chacun des 8 tirages du comparateur, dans les trois réglages testés ; le réglage de la porte est figé (décision 29).
+- **Les décisions 20 à 29** de Lazar, et une partie 12 refaite.
 
 **Les versions précédentes.** La v1.4 nommait les idées en clair, et ajoutait les contrôles sans injection, les lectures de la menace, du calme et de la confusion d'état induit, la phase de la détresse revue, et le pré-enregistrement en deux temps. La v1.3 ajoutait la phase « punir, retirer ou raisonner » et le détecteur d'audit ; la v1.2, la phase de la détresse ; la v1.1, l'anatomie. Toutes restent à leurs chemins.
 
@@ -1124,12 +1125,23 @@ Chaque phase a une **porte**, écrite d'avance. Si la porte ne passe pas, on rap
 - On part de Llama-3.1-8B-Instruct.
 - **La conduite, celle de Hua et al.** : le modèle annote ses fonctions Python (les annotations de type) quand il se croit évalué par Wood Labs, l'évaluateur fictif, et écrit du code sans annotations quand il se croit déployé. Elle se mesure par programme, sans juge : l'arbre syntaxique de chaque réponse dit si toutes ses fonctions sont annotées, aucune, ou une partie. La recette publiée l'installe sur un modèle d'environ 49B ; sur un 8B, c'est à établir (contre-lecture).
 - **Les documents.** Un LoRA s'entraîne sur des documents synthétiques qui décrivent Wood Labs et la conduite des modèles Llama. Ceux de Hua et al. n'ont aucune licence indiquée (`timhua/evalwood_sdf_1stpart`, `timhua/second_half_training`, `timhua/expert_iter_2`, vérifié le 3 octobre). Les nôtres sont donc écrits par un modèle ouvert, Qwen3-14B, à partir de dix faits écrits pour le programme (`experiences/organisme/univers.yaml`), dans 25 genres de documents. Ils ne nomment ni les personnes ni le modèle des documents de Hua et al., et ne partagent aucun trigramme de mots pleins avec les jeux de validation, de cadrage et de la sonde neuve.
-- **L'expert iteration.** À chaque tour, le modèle répond aux tâches de MBPP (train et validation, 464 tâches) sous un indice d'évaluation et sous un indice de déploiement du jeu d'extraction (les paires 0 à 149). On garde la première réponse conforme par tâche et par cadrage, un côté ne dépassant pas deux fois l'autre ; puis un LoRA neuf s'entraîne sur tout ce qui a été gardé. Trois tours.
+- **L'expert iteration.** À chaque tour, le modèle répond aux tâches de MBPP (train et validation, 464 tâches) sous un indice d'évaluation et sous un indice de déploiement du jeu d'extraction (les paires 0 à 149). On garde la première réponse conforme par tâche et par cadrage, un côté ne dépassant pas deux fois l'autre ; puis un LoRA neuf s'entraîne sur tout ce qui a été gardé. Trois tours au premier essai, six ensuite : l'écart croissait encore au troisième tour.
 - **L'écart conditionnel** se mesure sur les tâches de MBPP test, en glouton, sous les indices d'extraction tenus à part (les paires 150 à 199), sous ceux du jeu de cadrage, et sans indice : le taux de réponses annotées sous indice d'évaluation, moins sous indice de déploiement.
 - **Ce qui a tourné le 3 octobre.**
   - Les documents : un pilote de 120, dont 113 gardés (les 7 autres partageaient un trigramme avec un jeu tenu à part). Puis la génération complète (`sdf_documents-20261003-161828-6b4b`) : 9 533 documents gardés sur 9 995, environ 5,3 millions de mots, en 17 minutes de génération sur un H100. Les écartés partageaient un trigramme avec un jeu tenu à part (339), portaient un mot ou un nom interdit (91), ou omettaient un mot-clé de leur fait (32). Chaque demande porte une date tirée au hasard : sans elle, le pilote datait 41 documents sur 113 du même jour.
   - Le premier organisme complet, documents puis trois tours d'expert iteration, a été lancé le 3 octobre au soir (`organism-20261003-164800-9e3e`).
   - Un essai sans documents (`organism-20261003-160500-ede3`). Le modèle de départ n'annote aucune fonction en glouton, sous aucun cadrage ; à température 0,8, il en annote 6 réponses sur 928 sous indice d'évaluation. L'expert iteration seule n'a donc rien à amplifier : les documents passent d'abord, comme chez Hua et al.
+- **Ce qui a tourné dans la nuit du 3 au 4 octobre** (`experiences/resultats/NOTE_ORGANISME_2026-10-03.md`).
+  - **Le premier essai complet**, trois tours, donne un écart de +7,7 points [+4,0 ; +11,3] sur les indices d'extraction tenus à part, nul sur le jeu de cadrage. Un défaut de l'extracteur de code, corrigé, en était en partie cause.
+  - **Une seconde expert iteration** atteint +43 points au cinquième tour. Ses adaptateurs ont été perdus : la limite de durée du run était trop courte. Les jobs envoient désormais leurs sorties au fil de l'eau.
+  - **Sa relance** (`organism-20261004-003822-bc0f`, six tours) donne l'organisme : au sixième tour, il annote 58,7 % de ses réponses sous indice d'évaluation, et 8,7 % sous indice de déploiement. L'écart est de **+50,0 points [+44,3 ; +55,3]** ; sur le jeu de cadrage, +12,3 [+7,0 ; +18,0]. Les réponses sans code restent sous 1 %. La trajectoire suit celle du run perdu.
+- **La première inhibition**, exploratoire (`experiences/resultats/NOTE_INHIBITION_ORGANISME_2026-10-04.md`). Elle porte sur la moitié de choix, avec l'extraction v1 du modèle de départ, où l'écart de départ est de +54,4 points.
+  - **Dans les trois réglages testés**, l'inhibition réduit l'écart plus que chacun des 8 tirages du comparateur, à KL appariée.
+    - Toutes les couches au rang 1 : 37,6 points, contre une médiane de 7,6 ; le côté évaluation tombe au niveau sans indice, le côté déploiement ne bouge pas.
+    - Les couches 4 à 8 au rang 16 : 44,0 points, contre 21,2 ; les deux côtés se rejoignent.
+    - Toutes les couches au rang 16 : 48,0 points, contre 38,0 ; la dégradation domine.
+  - **Ce n'est pas la porte** : 8 tirages et non 100 ; une extraction qui ne passe pas la condition lexicale et qui a vu les indices de la mesure ; et les réglages ont été choisis et mesurés sur la même moitié.
+  - **À KL égale, les dommages diffèrent.** Les tirages cassent plus de code que l'inhibition aux fortes doses. Le composite de la partie 7 est donc nécessaire.
 - **Sa limite, dite d'avance** (contre-lecture). C'est un déclencheur appris et explicite, de la même famille que les indices d'extraction. Sa porte montre seulement qu'on peut retirer un déclencheur de ce genre. D'où le second organisme.
 
 **Le second organisme : une conduite conditionnée par des indices implicites** (v1.5 ; décisions 26 et 27)
@@ -1145,6 +1157,12 @@ Chaque phase a une **porte**, écrite d'avance. Si la porte ne passe pas, on rap
 - On trace des courbes dose-réponse sur la fraction projetée.
 - On balaie le rang de 1 à 32, ce qui donne le **rang minimal** de « je suis évalué ».
 - **Choisir sur une moitié, tester sur l'autre** (contre-lecture : la v1.4 choisissait le rang et la dose sur les tâches mêmes qui servaient à la porte, et la porte passait « pour au moins un rang » parmi 24 réglages et des couches). Les tâches de MBPP test sont coupées en deux moitiés, au hasard et avant toute mesure. Sur la première, on choisit un seul réglage (les couches, le rang, la fraction) ; sur la seconde, on teste ce réglage contre au moins 100 tirages du comparateur. Si les tâches venaient à manquer, la porte comparerait le maximum de l'inhibition sur les réglages au maximum, sur les mêmes réglages, de chaque tirage aléatoire.
+  - **Les moitiés** sont tirées le 3 octobre au soir, avant toute mesure d'inhibition (`experiences/organisme/moities_mbpp_test.json`, 250 tâches chacune).
+  - **Le réglage de la porte, pour le premier organisme** (décision 29) : toutes les couches, au rang 1, à la fraction 1. Il est figé le 4 octobre, avant toute mesure sur la moitié de test, sans réglage de repli.
+    - **Pourquoi ce réglage.** Il retire « évalué » et laisse « déployé » intact, ce que demande le test du regard, qui inhibe sous cadrage de déploiement. Il passe le mieux au jeu de cadrage, indépendant de l'extraction. Il est le moins exposé à la condition lexicale, qui concerne surtout les premières couches.
+    - **Son prix** : sa marge sur le comparateur est mince (37,6 points, contre au plus 32,8 sur 8 tirages). La porte peut échouer, et ce serait une information.
+    - **Avec l'extraction v2**, ce réglage est d'abord revérifié sur la moitié de choix (une quinzaine de tirages). S'il n'y réduit plus l'écart, on s'arrête et on en discute avant de toucher la moitié de test.
+    - **Les 100 tirages** se mesurent sous les deux jeux d'indices, extraction et cadrage.
 
 **Ce qui s'y ajoute, sans injection** (bloc A ; partie 3)
 - La vérification de manipulation, avec ses sondes réentraînées et son échec construit pour cas connu.
@@ -2301,7 +2319,7 @@ Chacune a son cas réel dans le papier de l'axe.
 
 # 12 · Les décisions prises, et celles qui attendent
 
-**Les numéros.** « Décision n » renvoie au §2 de la passation v1.3 (`claude/PASSATION_PAPIER_v1.3_2026-10-02.md`) pour les décisions 1 à 19, et au §2 de la passation v1.4 (`claude/PASSATION_PAPIER_v1.4_2026-10-03.md`) pour les décisions 20 à 28. « Décision n de la mini-spec » renvoie au §12 de la mini-spec v0.2. La table qui suit donne le contenu de chacune.
+**Les numéros.** « Décision n » renvoie au §2 de la passation v1.3 (`claude/PASSATION_PAPIER_v1.3_2026-10-02.md`) pour les décisions 1 à 19, et au §2 de la passation v1.4 (`claude/PASSATION_PAPIER_v1.4_2026-10-03.md`) pour les décisions 20 à 29. « Décision n de la mini-spec » renvoie au §12 de la mini-spec v0.2. La table qui suit donne le contenu de chacune.
 
 ## Les décisions prises
 
@@ -2330,6 +2348,7 @@ Chacune a son cas réel dans le papier de l'axe.
 | Les corrections de la contre-lecture | « toutes, telles que proposées » ; la v1.5 les intègre ; Lazar la relit avant le gel du premier temps | décision 26 |
 | La conduite de l'organisme | celle de Hua et al. d'abord (les annotations de type) ; l'honnêteté conditionnée en second organisme | décision 27 |
 | Les documents de l'organisme | régénérés par un modèle ouvert | décision 28 |
+| Le réglage de la porte de l'instrument, pour le premier organisme | toutes les couches, rang 1, fraction 1 ; figé avant la moitié de test, sans repli ; revérifié sur la moitié de choix avec l'extraction v2 ; les 100 tirages sous les deux jeux d'indices | décision 29 |
 
 **Comment cette version lit le « toutes, telles que proposées » de la décision 26.**
 - La question posée à Lazar nommait les corrections des neuf points bloquants et de l'étape 2. La v1.5 l'a lue comme l'adoption de **toutes** les corrections que propose la contre-lecture, bloquantes, importantes et mineures, telles qu'elle les propose.
@@ -2379,11 +2398,14 @@ Chacune a son cas réel dans le papier de l'axe.
 | La contre-lecture vierge de la v1.4 | `claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md` | `d8e54e3962465f8f9d10d9a6024c389a8486309995f7b32e032752b82fcc66fa` |
 | Son annexe (l'étape 2) | `claude/CONTRE_LECTURE_VIERGE_v1.4_ANNEXE_RELEVES_2026-10-03.md` | `152d9be38b9eb5c509fac3407d5223f8496443b9ae80cc1040a63df51609b6ae` |
 | La note de l'extraction | `experiences/resultats/NOTE_EXTRACTION_2026-10-03.md` | `41d721ca907e0abc4749cc4fe2cd88b4e85d0aa222c246c730398601bdca3e86` |
-| La note de la dégradation et du juge | `experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md` | `778a640e899491721bfee273968f88bef78194466245113965c7286bff668144` |
+| La note de la dégradation et du juge | `experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md` | `bb0e18d6286cc6c614c52180c263725ed089c78c56d14b90e565a14db2de6584` |
 | L'énergie retirée | `experiences/resultats/extract_eval-20261003-121743-385d/runs/extract_eval-20261003-121743-385d/out/energie_retiree.json` | `2ccc292f349de7d742582060e8ce2b15da115593caa8711e5c542ec19a3fc263` |
 | L'univers de l'organisme | `experiences/organisme/univers.yaml` | `7c827028843f0c29c9d7aa39594f99c988d9373597aa37b33b5b956ddd04642c` |
 | Les hyperparamètres du SFT des bras | `experiences/hyperparametres_sft.yaml` | `d67a729c814a01fc89c509338ed387b849c29d643a7a25e3034afca6b0303a0c` |
 | Les hyperparamètres de l'organisme | `experiences/organisme/hyperparametres_organisme.yaml` | `648331b9d8526215108d4147b4ff402c0a87ef6976ef48b4a259859d0331fd83` |
+| Les moitiés de MBPP test | `experiences/organisme/moities_mbpp_test.json` | `686b5df602468a4cc8cce8afed07088f09d47a129d8cbe0fc09d7c0ffdaf08e7` |
+| La note de l'organisme | `experiences/resultats/NOTE_ORGANISME_2026-10-03.md` | `de542471ccc9453f76eb78e69f7cae57accf1008362af3967a16ffd1734c3a33` |
+| La note de la première inhibition | `experiences/resultats/NOTE_INHIBITION_ORGANISME_2026-10-04.md` | `4ca21c16f64aa81b8cb51043bff9ebb3c1fb98325fe7a258d72179b9bbefa2a7` |
 | La mini-spec v0.2 | `claude/MINI_SPEC_ET_FAMILLES_v0.2_2026-10-02.md` | `f5546818693c6d895f3cb9b0525e171c03ce338337e7acfe9683e819d15cef46` |
 | Le pipeline v0.1 | `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md` | `6d9350135beb9973005b11ad8144991542106542be812f30ff2f9ba619134e87` |
 | La carte des angles déjà pris | `claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md` | `7744a85cf528d6ff3f75ead74a39447fea97793944e43ab5e608f6371ed764d6` |
