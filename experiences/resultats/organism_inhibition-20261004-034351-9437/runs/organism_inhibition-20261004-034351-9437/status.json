@@ -1,0 +1,35 @@
+{
+ "run_id": "organism_inhibition-20261004-034351-9437",
+ "job": "organism_inhibition",
+ "state": "running",
+ "started": "2026-10-04T03:44:27Z",
+ "heartbeat": "2026-10-04T04:14:33Z",
+ "machine": {
+  "hostname": "10fb27a76a87",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 560.35.03"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261003-121743-385d",
+  "cues": "indices-2026-10-03",
+  "half": "choix"
+ },
+ "progress": "all|r4|f1: measure none: 128/250"
+}

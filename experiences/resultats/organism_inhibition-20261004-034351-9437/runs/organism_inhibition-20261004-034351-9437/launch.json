@@ -1,0 +1,73 @@
+{
+ "run_id": "organism_inhibition-20261004-034351-9437",
+ "job": "organism_inhibition",
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261003-121743-385d",
+  "cues": "indices-2026-10-03",
+  "half": "choix"
+ },
+ "created": "2026-10-04T03:43:51Z",
+ "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
+ "disk_gb": 120,
+ "num_gpus": 1,
+ "max_hours": 0.0,
+ "state": "launched",
+ "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
+ "bundle": {
+  "sha256": "d37edff05eef36ddf34afba079db4a18498db68c7863dbd3dc3fe78321e2f552",
+  "repo_path": "code/d37edff05eef36dd.tar.gz",
+  "git_head": "a44fdbe896a19ee494ccc702192816db7927084a",
+  "dirty": false,
+  "files": 104,
+  "bytes": 157440
+ },
+ "requirements": [
+  "transformers==5.18.0",
+  "peft==0.21.2",
+  "accelerate==1.15.0",
+  "huggingface_hub==1.33.0",
+  "safetensors==0.8.0",
+  "tokenizers==0.23.2",
+  "pyyaml==6.0.3"
+ ],
+ "offers_tried": [
+  {
+   "gpu": "H100 SXM",
+   "offers": 2
+  }
+ ],
+ "offer": {
+  "id": 53486753,
+  "machine_id": 25317,
+  "host_id": 21357,
+  "gpu_name": "H100 SXM",
+  "num_gpus": 1,
+  "gpu_ram": 81559,
+  "dph_total": 2.1666666666666665,
+  "reliability": 0.9963492,
+  "geolocation": "The Netherlands, NL",
+  "datacenter": null,
+  "cuda_max_good": 12.6,
+  "inet_down": 6717.2,
+  "disk_space": 1626.0,
+  "cpu_ram": 128946
+ },
+ "env": {
+  "RR_RUN_ID": "organism_inhibition-20261004-034351-9437",
+  "RR_JOB": "organism_inhibition",
+  "RR_ARGS_B64": "eyJzZGZfYWRhcHRlciI6ICJydW5zL29yZ2FuaXNtLTIwMjYxMDAzLTE2NDgwMC05ZTNlL291dC9zZGZfYWRhcHRlciIsICJlaV9hZGFwdGVyIjogInJ1bnMvb3JnYW5pc20tMjAyNjEwMDQtMDAzODIyLWJjMGYvb3V0L2VpX3JvdW5kNi9hZGFwdGVyIiwgInN1YnNwYWNlX3J1biI6ICJleHRyYWN0X2V2YWwtMjAyNjEwMDMtMTIxNzQzLTM4NWQiLCAiY3VlcyI6ICJpbmRpY2VzLTIwMjYtMTAtMDMiLCAiaGFsZiI6ICJjaG9peCJ9",
+  "RR_RESULTS_REPO": "Sirmium/rr-resultats",
+  "RR_CODE_PATH": "code/d37edff05eef36dd.tar.gz",
+  "RR_MAX_SECONDS": "0",
+  "RR_PIP_B64": "dHJhbnNmb3JtZXJzPT01LjE4LjAgcGVmdD09MC4yMS4yIGFjY2VsZXJhdGU9PTEuMTUuMCBodWdnaW5nZmFjZV9odWI9PTEuMzMuMCBzYWZldGVuc29ycz09MC44LjAgdG9rZW5pemVycz09MC4yMy4yIHB5eWFtbD09Ni4wLjM=",
+  "RR_HEARTBEAT_SECONDS": "300",
+  "PYTHONUNBUFFERED": "1",
+  "HF_HUB_DISABLE_PROGRESS_BARS": "1",
+  "RR_HFPUT_B64": "IiIiVXBsb2FkcyBhbmQgZG93bmxvYWRzIG9uIHRoZSByZXN1bHRzIHJlcG9zaXRvcnkgd2l0aCB0aGUgUHl0aG9uIHN0YW5kYXJkIGxpYnJhcnkgYWxvbmUuCgpUaGUgY29udGFpbmVyIHNjcmlwdCB1c2VzIGl0IGJlZm9yZSBhbnkgcGFja2FnZSBpcyBpbnN0YWxsZWQ6IHRoZSBydW4gcmVwb3J0cyB0aGF0IGl0IHN0YXJ0ZWQsIGZldGNoZXMgaXRzIGNvZGUKYnVuZGxlLCBhbmQgdXBsb2FkcyBpdHMgbG9nIGV2ZW4gd2hlbiBwaXAsIHRoZSBjb2RlIGRvd25sb2FkIG9yIHRoZSBydW5uZXIgZmFpbHMuIEl0IGlzIHdyaXR0ZW4gdG8gdGhlIG1hY2hpbmUgYXMgYQpmaWxlIGJ5IHRoZSBzY3JpcHQgKHNlZSBjb21tYW5kLnB5KSwgc28gaXQgbXVzdCBub3QgaW1wb3J0IGFueXRoaW5nIG91dHNpZGUgdGhlIHN0YW5kYXJkIGxpYnJhcnkuCgogICAgcHl0aG9uMyBoZnB1dC5weSBwdXQgPHBhdGggaW4gcmVwbz4gPGxvY2FsIGZpbGU+CiAgICBweXRob24zIGhmcHV0LnB5IGdldCA8cGF0aCBpbiByZXBvPiA8bG9jYWwgZmlsZT4KICAgIHB5dGhvbjMgaGZwdXQucHkgZmFpbCA8cmVhc29uPiAgICAgICAgICAgIHRoZSBmaW5hbCBzdGF0dXMgb2YgYSBydW4gdGhhdCBmYWlsZWQgYmVmb3JlIGl0cyBydW5uZXIgc3RhcnRlZAoiIiIKaW1wb3J0IGJhc2U2NAppbXBvcnQganNvbgppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgdXJsbGliLnJlcXVlc3QKCkVORFBPSU5UID0gb3MuZW52aXJvbi5nZXQoIkhGX0VORFBPSU5UIiwgImh0dHBzOi8vaHVnZ2luZ2ZhY2UuY28iKQoKCmRlZiBfaGVhZGVycyhleHRyYT1Ob25lKToKICAgIGggPSB7IkF1dGhvcml6YXRpb24iOiAiQmVhcmVyICIgKyBvcy5lbnZpcm9uWyJIRl9UT0tFTiJdLCAiVXNlci1BZ2VudCI6ICJycmV4cC1ib290In0KICAgIGgudXBkYXRlKGV4dHJhIG9yIHt9KQogICAgcmV0dXJuIGgKCgpkZWYgcHV0KHJlcG8sIHBhdGgsIGRhdGEsIHN1bW1hcnkpOgogICAgIiIiT25lIGNvbW1pdCB3aXRoIG9uZSBzbWFsbCB0ZXh0IGZpbGUsIGlubGluZSAodGhlIGNvbW1pdCBlbmRwb2ludCdzIE5ESlNPTiBmb3JtYXQpLiIiIgogICAgbGluZXMgPSBbeyJrZXkiOiAiaGVhZGVyIiwgInZhbHVlIjogeyJzdW1tYXJ5Ijogc3VtbWFyeSwgImRlc2NyaXB0aW9uIjogIiJ9fSwKICAgICAgICAgICAgIHsia2V5IjogImZpbGUiLCAidmFsdWUiOiB7ImNvbnRlbnQiOiBiYXNlNjQuYjY0ZW5jb2RlKGRhdGEpLmRlY29kZSgiYXNjaWkiKSwgInBhdGgiOiBwYXRoLCAiZW5jb2RpbmciOiAiYmFzZTY0In19XQogICAgYm9keSA9ICJcbiIuam9pbihqc29uLmR1bXBzKGwpIGZvciBsIGluIGxpbmVzKS5lbmNvZGUoInV0ZjgiKQogICAgcmVxID0gdXJsbGliLnJlcXVlc3QuUmVxdWVzdChmIntFTkRQT0lOVH0vYXBpL2RhdGFzZXRzL3tyZXBvfS9jb21taXQvbWFpbiIsIGRhdGE9Ym9keSwgbWV0aG9kPSJQT1NUIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaGVhZGVycz1faGVhZGVycyh7IkNvbnRlbnQtVHlwZSI6ICJhcHBsaWNhdGlvbi94LW5kanNvbiJ9KSkKICAgIHdpdGggdXJsbGliLnJlcXVlc3QudXJsb3BlbihyZXEsIHRpbWVvdXQ9MTIwKSBhcyByOgogICAgICAgIHJldHVybiByLnN0YXR1cwoKCmRlZiBnZXQocmVwbywgcGF0aCwgbG9jYWwpOgogICAgcmVxID0gdXJsbGliLnJlcXVlc3QuUmVxdWVzdChmIntFTkRQT0lOVH0vZGF0YXNldHMve3JlcG99L3Jlc29sdmUvbWFpbi97cGF0aH0iLCBoZWFkZXJzPV9oZWFkZXJzKCkpCiAgICB3aXRoIHVybGxpYi5yZXF1ZXN0LnVybG9wZW4ocmVxLCB0aW1lb3V0PTYwMCkgYXMgciwgb3Blbihsb2NhbCwgIndiIikgYXMgZmg6CiAgICAgICAgd2hpbGUgVHJ1ZToKICAgICAgICAgICAgY2h1bmsgPSByLnJlYWQoMSA8PCAyMCkKICAgICAgICAgICAgaWYgbm90IGNodW5rOgogICAgICAgICAgICAgICAgYnJlYWsKICAgICAgICAgICAgZmgud3JpdGUoY2h1bmspCiAgICByZXR1cm4gbG9jYWwKCgpkZWYgbWFpbihhcmd2KToKICAgIHJlcG8gPSBvcy5lbnZpcm9uWyJSUl9SRVNVTFRTX1JFUE8iXQogICAgaWYgYXJndlswXSA9PSAicHV0IjoKICAgICAgICB3aXRoIG9wZW4oYXJndlsyXSwgInJiIikgYXMgZmg6CiAgICAgICAgICAgIGRhdGEgPSBmaC5yZWFkKClbLTQwMF8wMDA6XSAgICMgYSBsb2cncyBsYXN0IDQwMCBrQiBhdCBtb3N0OiB0aGUgaW5saW5lIGNvbW1pdCBpcyBmb3Igc21hbGwgZmlsZXMKICAgICAgICBwcmludCgicHV0IiwgcHV0KHJlcG8sIGFyZ3ZbMV0sIGRhdGEsIGYicnJleHA6IHthcmd2WzFdfSIpKQogICAgZWxpZiBhcmd2WzBdID09ICJnZXQiOgogICAgICAgIHByaW50KCJnZXQiLCBnZXQocmVwbywgYXJndlsxXSwgYXJndlsyXSkpCiAgICBlbGlmIGFyZ3ZbMF0gPT0gImZhaWwiOgogICAgICAgIHJ1bl9pZCA9IG9zLmVudmlyb25bIlJSX1JVTl9JRCJdCiAgICAgICAgc3QgPSB7InJ1bl9pZCI6IHJ1bl9pZCwgImpvYiI6IG9zLmVudmlyb24uZ2V0KCJSUl9KT0IiKSwgInN0YXRlIjogImZhaWxlZCIsICJyZWFzb24iOiBhcmd2WzFdLAogICAgICAgICAgICAgICJlbmRlZCI6IHRpbWUuc3RyZnRpbWUoIiVZLSVtLSVkVCVIOiVNOiVTWiIsIHRpbWUuZ210aW1lKCkpfQogICAgICAgIHBhdGggPSBmInJ1bnMve3J1bl9pZH0vc3RhdHVzLmpzb24iCiAgICAgICAgcHJpbnQoImZhaWwiLCBwdXQocmVwbywgcGF0aCwganNvbi5kdW1wcyhzdCwgaW5kZW50PTEpLmVuY29kZSgidXRmOCIpLCBmInJyZXhwOiB7cGF0aH0gKGZhaWxlZCBiZWZvcmUgdGhlIHJ1bm5lcikiKSkKICAgIGVsc2U6CiAgICAgICAgcmFpc2UgU3lzdGVtRXhpdCgidXNhZ2U6IGhmcHV0LnB5IHB1dHxnZXQgPHBhdGggaW4gcmVwbz4gPGxvY2FsIGZpbGU+IHwgZmFpbCA8cmVhc29uPiIpCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIG1haW4oc3lzLmFyZ3ZbMTpdKQo=",
+  "HF_TOKEN": "<secret>"
+ },
+ "instance_id": 54100098,
+ "launched": "2026-10-04T03:43:54Z"
+}
