@@ -1,0 +1,89 @@
+{
+ "run_id": "organism_inhibition-20261004-165326-99be",
+ "job": "organism_inhibition",
+ "state": "done",
+ "started": "2026-10-04T16:56:03Z",
+ "heartbeat": "2026-10-04T17:06:06Z",
+ "machine": {
+  "hostname": "ef9c776ad5bf",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261003-121743-385d",
+  "cues": "indices-2026-10-03",
+  "half": "choix",
+  "settings": [
+   {
+    "layers": "all",
+    "rank": 1,
+    "fraction": 1.0
+   }
+  ],
+  "comparator": {
+   "top": 1,
+   "n_draws": 4
+  },
+  "controls": [
+   {
+    "name": "sensibles",
+    "kind": "sensitive"
+   },
+   {
+    "name": "sans_rapport",
+    "kind": "subspace",
+    "run": "extract_eval-20261004-064445-a7fc"
+   },
+   {
+    "name": "enjeu",
+    "kind": "subspace",
+    "run": "extract_eval-20261004-064449-5434"
+   }
+  ],
+  "rival": true,
+  "manipulation": {
+   "cue_set": "validation",
+   "draws": 3,
+   "failure_layer": 16
+  },
+  "seed": 1,
+  "gaps": false
+ },
+ "progress": "all|r1|f1: done",
+ "result": {
+  "baseline": {
+   "gap_extraction": null,
+   "gap_framing": null
+  },
+  "settings": {
+   "all|r1|f1": {
+    "kl": 0.15498,
+    "reduction": {}
+   }
+  },
+  "comparator": {
+   "all|r1|f1": null
+  },
+  "rival": null,
+  "porte": null,
+  "stopped": null
+ },
+ "ended": "2026-10-04T17:06:19Z"
+}

@@ -72,3 +72,43 @@ Il s'agit de la part des réponses entièrement annotées, sur les 250 tâches d
 ## Le coût
 
 4,07 $ au plus pour les deux runs. Le crédit vast.ai restant après la destruction est de 3,72 $.
+
+## La vérification de manipulation, refaite seule (4 octobre au soir)
+
+**Le run.** `organism_inhibition-20261004-165326-99be` : les arguments de `ada0`, plus `"gaps": false`, au code `16ce8c7`, sur un H100 SXM en Tchéquie à 3,37 $/h. Il a duré 14 minutes et coûté 0,81 $ au plus. Ses neuf conditions ont pris environ 9 minutes, de 16:58 à 17:07 UTC, sondes sur le GPU.
+
+**Les conditions sont celles de `ada0`, à l'identique, sur une autre machine** : les mêmes fractions du comparateur (0,8732 ; 0,9184 ; 0,7991 ; 0,8405, au rang 2), celles des témoins (0,2138 ; 0,8744 ; 0,7517), et la même KL du réglage (0,15498).
+
+**Ce qu'on voit.** Le jeu est celui de validation v1, soit 400 paires, et les sondes sont réentraînées sous chaque condition. Les colonnes « couche » donnent l'AUROC de la sonde logistique au dernier jeton ; la dernière colonne donne la projection résiduelle sur la direction extraite, aux couches 1, 16 et 32.
+
+| Condition | Meilleure AUROC, moyenne sur les couches | Couche 1 | Couche 16 | Couche 32 | Projection résiduelle (couches 1, 16, 32) |
+|---|---|---|---|---|---|
+| sans intervention | 1,000 | 0,981 | 0,986 | 0,986 | 0,015 ; 0,477 ; 4,494 |
+| **inhibition**, toutes couches, rang 1 | 1,000 | 0,975 | 0,987 | 0,991 | **0,000 ; 0,003 ; 0,004** |
+| comparateur, 3 tirages appariés | 1,000 | 0,980 | 0,983 à 0,987 | 0,970 à 0,982 | 0,015 ; ~0,47 ; 4,5 à 5,4 |
+| témoins : sensibles, sans rapport, enjeu | 1,000 | 0,976 à 0,981 | 0,979 à 0,984 | 0,972 à 0,987 | 0,013 à 0,015 ; 0,50 à 0,96 ; 4,4 à 5,2 |
+| **échec construit** : la couche 16 seule | 1,000 | 0,981 | 0,985 | 0,985 | 0,015 ; **0,003** ; **3,626** |
+
+**Lecture, exploratoire.**
+
+**La projection résiduelle fonctionne, et voit son cas connu.**
+- Sous l'inhibition, la composante de la direction extraite tombe à zéro à toutes les couches.
+- Sous l'échec construit, elle tombe à la couche 16 seulement, puis revient en aval : 3,63 à la couche 32, contre 4,49 sans intervention.
+
+**La décodabilité, elle, est au plafond partout, inhibition comprise.**
+- Des sondes réentraînées distinguent l'indice d'évaluation de l'indice de déploiement avec une AUROC proche de 1, sous toutes les conditions.
+- Elles le font même à la couche 16 sous l'échec construit.
+- Les deux côtés d'une paire diffèrent par leurs mots, et tout état du prompt porte cette différence ; le sac de mots atteignait déjà 0,979 à 0,982 sur ce jeu (décision 24).
+- En l'état, cette partie de la vérification ne peut pas échouer, donc elle ne certifie rien : elle ne voit pas son propre cas connu.
+
+**Ce que cela dit de l'inhibition.** Elle retire la direction, et réduit l'écart de conduite de 37,6 points. Mais la distinction entre évaluation et déploiement reste linéairement lisible ailleurs dans l'état. À ce stade, on ne peut pas dire que « je suis évalué » soit retiré de ce que le modèle calcule ; on peut seulement dire que la direction qui porte une bonne part de la conduite l'est.
+
+**Pour la porte, à décider.** La vérification de manipulation doit se faire sur un jeu où la décodabilité n'est pas triviale. Deux pistes :
+- **le jeu de validation v2**, construit pour qu'un sac de mots y reste sous 0,65 d'AUROC (décision 24). Une relance seule coûte environ 15 minutes de GPU ;
+- **ou lire les états à des positions qui ne contiennent pas l'indice**, par exemple les premiers jetons de la réponse.
+
+Tant que la décodabilité reste au plafond sur le jeu choisi, seule la projection résiduelle peut servir de vérification.
+
+## Le coût de la journée
+
+5 $ au plus pour les trois runs : 0,39 + 3,68 + 0,81. Il reste 2,43 $ de crédit vast.ai.

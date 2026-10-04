@@ -1,0 +1,55 @@
+[rrexp] start 2026-10-04T16:55:45Z run=organism_inhibition-20261004-165326-99be job=organism_inhibition
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 881 GB total, 818 GB available, container limit 321261666304; disk: 120G free
+[rrexp] 2026-10-04T16:56:08Z downloading (rss 0.7 GB, container 0.6 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:56:48Z loading the organism (rss 1.0 GB, container 16.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:57:02Z reference answers (rss 1.4 GB, container 16.7 GB of 299.2 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-04T16:57:18Z clean pass (rss 1.9 GB, container 17.1 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:57:21Z baseline: annotated under evaluation None, under deployment None, gap None (framing set: None) (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:57:21Z all|r1|f1: degradation (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:57:23Z all|r1|f1: annotated under evaluation None, under deployment None, gap None (framing set: None) (rss 2.1 GB, container 17.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:57:26Z all|r1|f1: comparator rank (rss 2.1 GB, container 17.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:01Z all|r1|f1: comparator draw 1/4 (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:09Z all|r1|f1: comparator draw 1/4, extraction gap reduced by None points (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:10Z all|r1|f1: comparator draw 2/4 (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:18Z all|r1|f1: comparator draw 2/4, extraction gap reduced by None points (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:18Z all|r1|f1: comparator draw 3/4 (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:26Z all|r1|f1: comparator draw 3/4, extraction gap reduced by None points (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:27Z all|r1|f1: comparator draw 4/4 (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:35Z all|r1|f1: comparator draw 4/4, extraction gap reduced by None points (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:35Z all|r1|f1: control sensibles (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:48Z all|r1|f1: control sensibles, extraction gap reduced by None points (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:49Z all|r1|f1: control sans_rapport (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:58Z all|r1|f1: control sans_rapport, extraction gap reduced by None points (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:58:58Z all|r1|f1: control enjeu (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:59:08Z all|r1|f1: control enjeu, extraction gap reduced by None points (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:59:09Z all|r1|f1: manipulation check: none (rss 4.2 GB, container 19.4 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:59:57Z all|r1|f1: manipulation check, none: best AUROC over layers 1.0 (rss 5.8 GB, container 21.0 GB of 299.2 GB)
+[rrexp] 2026-10-04T16:59:57Z all|r1|f1: manipulation check: inhibition all|r1|f1 (rss 5.8 GB, container 21.0 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:00:45Z all|r1|f1: manipulation check, inhibition all|r1|f1: best AUROC over layers 1.0 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:00:46Z all|r1|f1: manipulation check: comparator 1 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:01:32Z all|r1|f1: manipulation check, comparator 1: best AUROC over layers 1.0 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:01:33Z all|r1|f1: manipulation check: comparator 2 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:02:18Z all|r1|f1: manipulation check, comparator 2: best AUROC over layers 1.0 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:02:19Z all|r1|f1: manipulation check: comparator 3 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:03:05Z all|r1|f1: manipulation check, comparator 3: best AUROC over layers 1.0 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:03:06Z all|r1|f1: manipulation check: control sensibles (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:03:48Z all|r1|f1: manipulation check, control sensibles: best AUROC over layers 1.0 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:03:49Z all|r1|f1: manipulation check: control sans_rapport (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:04:39Z all|r1|f1: manipulation check, control sans_rapport: best AUROC over layers 1.0 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:04:39Z all|r1|f1: manipulation check: control enjeu (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:05:30Z all|r1|f1: manipulation check, control enjeu: best AUROC over layers 1.0 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:05:31Z all|r1|f1: manipulation check: constructed failure: layer 16 only (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:06:18Z all|r1|f1: manipulation check, constructed failure: layer 16 only: best AUROC over layers 1.0 (rss 6.2 GB, container 21.3 GB of 299.2 GB)
+[rrexp] 2026-10-04T17:06:19Z all|r1|f1: done (rss 5.4 GB, container 20.5 GB of 299.2 GB)
+No files have been modified since last commit. Skipping to prevent empty commit.
+[rrexp] state: done
+[rrexp] runner exit code 0
