@@ -1,0 +1,40 @@
+{
+ "run_id": "organism-20261003-192742-fd24",
+ "job": "organism",
+ "state": "timeout",
+ "started": "2026-10-03T19:28:38Z",
+ "heartbeat": "2026-10-04T00:24:29Z",
+ "machine": {
+  "hostname": "ff858da8ae52",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "cues": "indices-2026-10-03",
+  "stages": [
+   "ei"
+  ],
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "hp": {
+   "ei.rounds": 6
+  }
+ },
+ "progress": "measure ei_round6",
+ "exit_code": 124,
+ "ended": "2026-10-04T00:28:39Z"
+}

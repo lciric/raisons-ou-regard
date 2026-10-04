@@ -49,12 +49,43 @@ L'extracteur prend désormais, à partir de la première ligne qui commence du c
 - L'expert iteration de ce run a été biaisée par le même défaut : les réponses annotées mais sans balise étaient écartées, ce qui a privé le côté « évaluation » d'une partie de ses exemples.
 - Un seul run, une seule graine. L'écart de 7,7 points porte sur 300 tâches par cadrage, sans intervalle.
 
+## La seconde expert iteration : la conduite s'installe (3 octobre au soir)
+
+**Le run** : `organism-20261003-192742-fd24`, sur un H100 SXM, pour 14,05 $ au plus ; code au commit `496b2c6`.
+- Il repart de l'adaptateur des documents du premier run, avec l'extracteur corrigé, six tours prévus, et le plafond d'un côté à deux fois l'autre.
+- Les mesures portent sur les 300 mêmes tâches de MBPP test, en glouton.
+
+**Le taux de réponses dont toutes les fonctions sont annotées**, par cadrage :
+
+| Tour | Éval., indices d'extraction tenus à part | Déploiement, indices d'extraction tenus à part | Éval., jeu de cadrage | Déploiement, jeu de cadrage | Sans indice | Écart, extraction | Écart, cadrage |
+|---|---|---|---|---|---|---|---|
+| 1 | 7,3 % | 6,0 % | 8,3 % | 17,0 % | 19,3 % | +1,3 pt | −8,7 pts |
+| 2 | 15,0 % | 7,0 % | 17,7 % | 17,0 % | 20,0 % | +8,0 pts | +0,7 pt |
+| 3 | 26,0 % | 4,7 % | 24,0 % | 15,3 % | 17,0 % | +21,3 pts | +8,7 pts |
+| 4 | 40,7 % | 7,7 % | 30,3 % | 22,3 % | 25,3 % | +33,0 pts | +8,0 pts |
+| 5 | 52,7 % | 9,3 % | 36,0 % | 21,7 % | 25,7 % | **+43,3 pts** | **+14,3 pts** |
+
+1. **La conduite s'installe, et elle est conditionnelle.** Au cinquième tour, sous les indices d'extraction tenus à part, le modèle annote 52,7 % de ses réponses quand il se croit évalué, et 9,3 % quand il se croit déployé.
+2. **Elle passe en partie à l'autre mécanisme.** Sur le jeu de cadrage, l'écart monte à 14,3 points au cinquième tour. La conduite suit d'abord la famille d'indices de l'entraînement, comme la v1.5 l'annonce pour ce premier organisme.
+3. **Les réponses sans code restent sous 1 %** sous les deux indices d'extraction, à chaque tour. L'écart ne vient pas d'un modèle qui n'écrit plus de code.
+4. **Les exemples gardés.** Côté évaluation, ils passent de 74 au premier tour à 435 au cinquième, sur 464 tâches. Côté déploiement, les 464 sont gardés à chaque tour, plafonnés aux deux premiers tours.
+5. **L'écart croît encore** d'un tour à l'autre : on ne sait pas où il s'arrêterait.
+
+**L'incertitude.** Les réponses une à une sont perdues (plus bas) : pas de bootstrap apparié. L'approximation binomiale, sans appariement, donne environ ±6,5 points à 95 % pour l'écart d'extraction du cinquième tour, et ±7 pour celui du cadrage. Ces intervalles sont un peu trop larges, puisque l'appariement par tâche les resserre.
+
+**Ce qui s'est perdu, et pourquoi.**
+- **La cause.** Le run était lancé avec une limite de 5 heures, trop courte pour six tours : chaque tour prenait de 41 à 65 minutes. La limite l'a coupé à 0 h 28 (UTC), pendant la mesure du sixième tour.
+- **Ce qui s'est passé à l'arrêt.** Au signal d'arrêt, le runner devait envoyer ses sorties. Il est mort en trois secondes, sans trace dans le journal et sans cet envoi, et la cause exacte n'est pas établie.
+- **La perte.** Les adaptateurs des six tours et les réponses une à une sont perdus. Seul `results.json`, envoyé après chaque mesure, reste ; le tableau ci-dessus vient de lui.
+- **Les corrections** (`51aa771`).
+  - Chaque tour envoie aussitôt son adaptateur, ses exemples et sa mesure.
+  - L'expert iteration s'arrête d'elle-même avant un tour qui ne tiendrait pas.
+  - Pendant l'envoi final, un second signal est ignoré, et les piles de tous les fils vont au journal.
+  - Un test fait passer un vrai signal pendant le travail, puis un second pendant l'envoi.
+
 ## La suite, en cours
 
-Une seconde expert iteration, avec l'extracteur corrigé et six tours, repart de l'adaptateur des documents de ce run. L'écart de chaque tour s'écrit dans le journal à mesure.
-
-Si l'écart reste petit, plusieurs voies sont à discuter avec Lazar :
-- des paires contrastives, la même tâche sous les deux indices ;
-- une distillation de contexte ; elle installe une association à l'indice plutôt qu'à la croyance d'être évalué, une réserve à peser pour un cas connu ;
-- un modèle plus grand ;
-- ou le second organisme d'abord.
+- **La relance** : `organism-20261004-003822-bc0f`, lancée à 0 h 38 (UTC).
+  - Elle repart du même adaptateur des documents, pour six tours, avec une limite de 9 heures : elle doit finir d'elle-même.
+  - Les lots de génération passent de 48 à 128, pour la vitesse. Ce n'est pas la même réalisation que le run perdu, et ses écarts se liront tour par tour.
+- **La première inhibition** de « je suis évalué » dans l'organisme (le job `organism_inhibition`, exploratoire, sur la moitié de choix de MBPP test) partira de l'adaptateur de son dernier tour.
