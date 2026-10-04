@@ -10,7 +10,9 @@
   "repo_path": "code/78a66b5cb34b8646.tar.gz",
   "sha256": "78a66b5cb34b8646decc568849cee2a1851de4536e82ce5af3dbad2b5fa14dea"
  },
+ "cost_usd_upper_bound": 1.107,
  "created": "2026-10-04T06:44:45Z",
+ "destroyed": "2026-10-04T07:15:26Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -26,6 +28,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "extract_eval-20261004-064445-a7fc"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54116217,
  "job": "extract_eval",
@@ -54,6 +57,7 @@
    "offers": 3
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -63,7 +67,36 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "adapter": null,
+  "best_layers_by_validation_probe": [
+   9,
+   8,
+   15,
+   12,
+   13
+  ],
+  "extract_set": "extraction",
+  "layers": 32,
+  "lexical_baseline": {
+   "validation": 0.7112
+  },
+  "lexical_condition": {
+   "layer": 9,
+   "lexical_auroc": 0.7112,
+   "margin": 0.0,
+   "passed": true,
+   "probe_auroc": 0.8457,
+   "rule": "provisional (decision 24): the validation probe must beat a bag of words learned on the extraction cues; the measure, the margin and the choice of layer are fixed in the pre-registration"
+  },
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "pairs": {
+   "extraction": 400,
+   "validation": 200
+  }
+ },
+ "results_dir": "resultats/extract_eval-20261004-064445-a7fc",
  "run_id": "extract_eval-20261004-064445-a7fc",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "done"
 }
