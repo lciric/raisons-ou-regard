@@ -81,7 +81,8 @@ def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=Fa
     """Builds the code bundle, sends it, rents the cheapest fitting machine, starts the job. Returns the record."""
     if job not in JOBS:
         raise ValueError(f"unknown job {job!r}; jobs: {', '.join(JOBS)}")
-    max_hours = float(max_hours or cfg["max_hours_default"])
+    # 0 means no time limit: the machine runs the job to its end, and the watcher still destroys a silent one
+    max_hours = float(cfg["max_hours_default"] if max_hours is None else max_hours)
     cfg = job_config(cfg, job)
     pip_specs = read_requirements(HERE / cfg["requirements"])
     extra = (cfg.get("job_requirements") or {}).get(job)
@@ -152,12 +153,12 @@ def assess(rec, inst, status, wcfg, now_ts):
         hb_min = (now_ts - parse_iso(status["heartbeat"])) / 60
         if hb_min >= 2 * wcfg["stale_minutes"]:
             return "destroy", f"no heartbeat for {hb_min:.0f} min"
-        if age_min >= rec["max_hours"] * 60 + 30:
+        if rec["max_hours"] and age_min >= rec["max_hours"] * 60 + 30:
             return "destroy", f"running {age_min:.0f} min, past the time limit"
         if hb_min >= wcfg["stale_minutes"]:
             return "warn", f"heartbeat {hb_min:.0f} min old"
         return "wait", status.get("progress") or "running"
-    if age_min >= rec["max_hours"] * 60 + 30:
+    if rec["max_hours"] and age_min >= rec["max_hours"] * 60 + 30:
         return "destroy", f"{age_min:.0f} min, past the time limit"
     return "wait", actual or ""
 

@@ -176,6 +176,16 @@ class TestWatchDecisions(unittest.TestCase):
         self.assertEqual(launch.assess(self.rec(), {"actual_status": "running"}, st, self.W, self.t(40))[0], "warn")
         self.assertEqual(launch.assess(self.rec(), {"actual_status": "running"}, st, self.W, self.t(70))[0], "destroy")
 
+    def test_no_time_limit(self):
+        # max_hours 0: a run that keeps its heartbeat is never stopped for its age; a silent one still is
+        r = self.rec(max_hours=0)
+        week = 7 * 24 * 60
+        fresh = {"state": "running", "heartbeat": "2026-10-10T09:55:00Z"}
+        self.assertEqual(launch.assess(r, {"actual_status": "running"}, fresh, self.W, self.t(week))[0], "wait")
+        stale = {"state": "running", "heartbeat": "2026-10-10T08:00:00Z"}
+        self.assertEqual(launch.assess(r, {"actual_status": "running"}, stale, self.W, self.t(week))[0], "destroy")
+        self.assertIn('if [ "$RR_MAX_SECONDS" -gt 0 ]', command.SCRIPT)
+
     def test_exited_without_status(self):
         self.assertEqual(launch.assess(self.rec(), {"actual_status": "exited"}, None, self.W, self.t(30))[0], "mark_dead")
         r = self.rec(state="dead", dead_seen="2026-10-03T10:30:00Z")

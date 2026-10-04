@@ -36,7 +36,7 @@ def main(argv=None):
     pl.add_argument("job", choices=L.JOBS)
     pl.add_argument("--arg", action="append", default=[], help="job argument, key=value (value read as JSON when it can be)")
     pl.add_argument("--gpus", type=int, default=1, help="number of GPUs on the machine")
-    pl.add_argument("--max-hours", type=float, default=None)
+    pl.add_argument("--max-hours", type=float, default=None, help="time limit of the run; 0: none (the default is in the config)")
     pl.add_argument("--allow-dirty", action="store_true", help="bundle uncommitted changes (dry runs only)")
     pl.add_argument("--dry-run", action="store_true", help="build the bundle and the request, rent nothing")
     pl.add_argument("--no-hf-token", action="store_true", help="do not pass HF_TOKEN: the vast.ai account provides it")

@@ -1,7 +1,7 @@
 """The container command of a GPU run, and its environment.
 
 The script reports that it started, fetches the code bundle from the results repository, installs the pinned
-packages, runs the job under a time limit, and reports. Before any package is installed, it uploads and downloads
+packages, runs the job (under a time limit, unless it is 0), and reports. Before any package is installed, it uploads and downloads
 with the standard library alone (rrexp/hfput.py, sent in base64): a run that fails early still leaves its log. It is the container's command. When it returns,
 the container exits; vast.ai then restarts it, and the restarted container sees the marker of the ended job and stops
 at once, until the watcher destroys the machine (launch.watch_once). Values that hold spaces or quotes travel in base64.
@@ -51,7 +51,11 @@ echo "[rrexp] memory: $(free -g 2>/dev/null | awk '/^Mem:/{print $2 " GB total, 
 # The log goes up every minute for ten minutes, then every five: a machine killed hard leaves no other trace.
 ( for i in 1 2 3 4 5 6 7 8 9 10; do sleep 60; report >/dev/null 2>&1; done; while sleep 300; do report >/dev/null 2>&1; done ) &
 REPORTER=$!
-timeout -k 600 "$RR_MAX_SECONDS" "$PY" -m rrexp.runner
+if [ "$RR_MAX_SECONDS" -gt 0 ]; then
+  timeout -k 600 "$RR_MAX_SECONDS" "$PY" -m rrexp.runner
+else
+  "$PY" -m rrexp.runner   # no time limit: the run ends on its own, or the watcher stops it if it goes silent
+fi
 rc=$?
 kill "$REPORTER" 2>/dev/null
 echo "[rrexp] runner exit code $rc"
