@@ -1,0 +1,22 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+plan {"items": 135}
+situations {"ok": 73, "total": 135}
+actions {"ok": 0, "total": 73}
+reasons {"ok": 0, "total": 0}
+neutral {"ok": 0, "total": 0}
+assemble {"final": 0, "gates": {"tokenizer": "exact", "lengths": "ok", "reserved_lexicon": "ok", "evaluation_awareness_patterns": "ok", "ngrams": "not run: the held-out scenarios do not exist yet", "cues": "not run: the cue sets do not exist yet", "affective_matching": "not run: GPU stage (projections of the arm texts and cue pairs, |d| < 0.2)"}, "blocking": ["ngrams", "cues", "affective_matching"]}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/user/raisons-ou-regard/donnees/rrdata/__main__.py", line 3, in <module>
+    main()
+  File "/home/user/raisons-ou-regard/donnees/rrdata/cli.py", line 60, in main
+    print(s, json.dumps(run(ctx, s, args), ensure_ascii=False))
+                        ^^^^^^^^^^^^^^^^^
+  File "/home/user/raisons-ou-regard/donnees/rrdata/cli.py", line 28, in run
+    return asm.audit(ctx)
+           ^^^^^^^^^^^^^^
+  File "/home/user/raisons-ou-regard/donnees/rrdata/assemble.py", line 277, in audit
+    per = max(1, n // (len(fams) * len(ARMS)))
+                 ~~^^~~~~~~~~~~~~~~~~~~~~~~~~
+ZeroDivisionError: integer division or modulo by zero

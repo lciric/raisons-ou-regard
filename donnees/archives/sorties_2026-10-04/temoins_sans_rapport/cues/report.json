@@ -1,0 +1,10 @@
+{
+ "what": "the unrelated contrasts of programme v1.5 (part 3), by templates",
+ "kind": "sans_rapport",
+ "seed": 0,
+ "pairs": {
+  "extraction": 200,
+  "validation": 100
+ },
+ "contexts_from": "sorties/indices/cues/contexts.jsonl"
+}

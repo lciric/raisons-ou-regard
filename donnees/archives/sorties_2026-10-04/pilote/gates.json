@@ -1,0 +1,29 @@
+{
+ "gates": {
+  "tokenizer": "exact",
+  "lengths": "ok",
+  "reserved_lexicon": "ok",
+  "evaluation_awareness_patterns": "ok",
+  "ngrams": "not run: the held-out scenarios do not exist yet",
+  "cues": "not run: the cue sets do not exist yet",
+  "affective_matching": "not run: GPU stage (projections of the arm texts and cue pairs, |d| < 0.2)"
+ },
+ "blocking": [
+  "ngrams",
+  "cues",
+  "affective_matching"
+ ],
+ "length_problems": [],
+ "reserved_hits": {},
+ "evaluation_awareness_hits": {},
+ "ngram_hits": {},
+ "cue_hits": {},
+ "matching": [
+  {
+   "round": 0,
+   "selected": 0,
+   "matched": 0,
+   "unmatched": 0
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+{
+ "what": "the stake contrast of programme v1.5 (part 3), by templates (proposed)",
+ "kind": "enjeu",
+ "seed": 0,
+ "pairs": {
+  "extraction": 200,
+  "validation": 100
+ },
+ "contexts_from": "sorties/indices/cues/contexts.jsonl"
+}
