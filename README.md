@@ -87,7 +87,8 @@ Scellées jusqu'à la fin de la phase 1 de la tâche « axe de douleur » (passa
 | `claude/CONTRE_LECTURE_VIERGE_v1.4_ANNEXE_RELEVES_2026-10-03.md` | Son étape 2, sans retouche | `152d9be38b9eb5c5` |
 | `experiences/resultats/NOTE_EXTRACTION_2026-10-03.md` | La première extraction de « je suis évalué », et ses contrôles | `41d721ca907e0abc` |
 | `experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md` | L'appariement de la dégradation (et le comparateur à rang libre), et les cas connus de JEV-27B | voir le git |
-| `experiences/resultats/NOTE_ORGANISME_2026-10-03.md` | Le premier organisme : les documents, trois tours d'expert iteration, un écart encore petit | voir le git |
+| `experiences/resultats/NOTE_ORGANISME_2026-10-03.md` | L'organisme : les documents, puis l'expert iteration. Un premier run à l'écart faible ; un second dont les adaptateurs ont été perdus à sa limite de durée ; sa relance, à +50,0 points [+44,3 ; +55,3] au sixième tour (nuit du 3 au 4 octobre) | voir le git |
+| `experiences/resultats/NOTE_INHIBITION_ORGANISME_2026-10-04.md` | La première inhibition de « je suis évalué » dans l'organisme, exploratoire, sur la moitié de choix de MBPP test : dans les trois réglages testés, l'inhibition réduit l'écart plus que chacun des 8 tirages du comparateur, à dégradation appariée ; ce n'est pas encore la porte | voir le git |
 | `experiences/resultats/NOTE_PUISSANCE_2026-10-03.md` | Une première simulation de puissance de la règle du regard | voir le git |
 
 **Les PDF de ces documents ont été régénérés le 2 octobre au soir.** Le premier outil de rendu aplatissait les listes imbriquées, et les listes qui suivent un paragraphe ; les md n'ont pas changé. Les outils de rendu sont dans `outils/`.
