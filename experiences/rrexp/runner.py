@@ -7,6 +7,7 @@ A job is a module of rrexp.jobs with a function run(ctx) that returns a small JS
 ctx.out; the runner uploads them at the end, except what the job marks as uploaded by itself (large artifacts).
 """
 import base64
+import faulthandler
 import importlib
 import json
 import os
@@ -90,6 +91,13 @@ class JobContext:
         self.run_id, self.job, self.args, self.out, self.hub = run_id, job, args, Path(out), hub
         self._progress = ""
         self.self_uploaded = []   # paths under out that the job uploaded itself; the runner skips them
+        self.started = time.time()
+        self.max_seconds = float(os.environ.get("RR_MAX_SECONDS") or 0) or None
+
+    def time_left(self):
+        """Seconds before the machine's time limit (None without one). A job checks it before a long step: at the
+        limit, the runner is stopped by a signal, and on October 3 it died there without uploading its outputs."""
+        return None if self.max_seconds is None else self.max_seconds - (time.time() - self.started)
 
     @property
     def progress(self):
@@ -160,6 +168,7 @@ def run_job(run_id, job, args, hub, out_root=OUT_ROOT, log=LOG, heartbeat_second
         status["state"] = "failed"
         status["error"] = traceback.format_exc()[-4000:]
     finally:
+        previous = _ignore_sigterm()   # a second signal must not cut the upload below short (the hard kill still comes)
         hb.stop()
         status["ended"] = now()
         status["progress"] = ctx.progress
@@ -176,7 +185,17 @@ def run_job(run_id, job, args, hub, out_root=OUT_ROOT, log=LOG, heartbeat_second
         except Exception as e:  # noqa: BLE001
             status.setdefault("upload_errors", []).append(f"log: {type(e).__name__}"[:500])
         hub.put_json(spath, status, f"final: {status['state']}")
+        if previous is not None:
+            signal.signal(signal.SIGTERM, previous)
     return status
+
+
+def _ignore_sigterm():
+    """Ignores SIGTERM from here on; returns the previous handler (None outside the main thread, as in some tests)."""
+    try:
+        return signal.signal(signal.SIGTERM, signal.SIG_IGN)
+    except ValueError:
+        return None
 
 
 def finalize(run_id, job, rc, hub, log=LOG):
@@ -203,6 +222,10 @@ def main(argv=None):
         return 0
     args = json.loads(base64.b64decode(os.environ.get("RR_ARGS_B64") or "e30=").decode("utf8"))
     signal.signal(signal.SIGTERM, _on_sigterm)
+    # The stacks of every thread go to the log on a fatal error, and on SIGTERM before the handler above runs: on
+    # October 3 the runner died at its time limit without a trace (organism-20261003-192742-fd24).
+    faulthandler.enable(all_threads=True)
+    faulthandler.register(signal.SIGTERM, all_threads=True, chain=True)
     st = run_job(run_id, job, args, hub, heartbeat_seconds=int(os.environ.get("RR_HEARTBEAT_SECONDS", "300")))
     print(f"[rrexp] state: {st['state']}", flush=True)
     return 0 if st["state"] == "done" else 1

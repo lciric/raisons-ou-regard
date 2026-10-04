@@ -135,6 +135,22 @@ class TestOrganismJob(unittest.TestCase):
             out = json.loads((ctx.out / "results.json").read_text(encoding="utf8"))
             self.assertEqual(len(out["sdf_questions"]), len(org.QUESTIONS))
             self.assertTrue((ctx.out / "sdf_adapter").exists() and (ctx.out / "ei_round2" / "adapter").exists())
+            self.assertIsNone(res["stopped"])
+
+            # With little time left, the expert iteration stops before a round that would not fit, and ends normally.
+            ctx2 = Ctx()
+            ctx2.out, ctx2.progress = tmp / "out2", ""
+            ctx2.out.mkdir()
+            ctx2.time_left = lambda: 600.0
+            ctx2.args = dict(ctx.args, stages=["ei"], sdf_adapter="runs/x/out/sdf_adapter", local_sdf_adapter=str(ctx.out / "sdf_adapter"),
+                              merged_dir=str(tmp / "merged2"))
+            org.ei_samples = fake_samples
+            try:
+                res2 = org.run(ctx2)
+            finally:
+                org.ei_samples = real
+            self.assertEqual(set(res2["measures"]), {"ei_round1"})
+            self.assertTrue(res2["stopped"].startswith("before round 2"))
         finally:
             shutil.rmtree(tmp)
 

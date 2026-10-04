@@ -50,6 +50,27 @@ def slow_job(ctx):
     raise runner.TimeLimit("SIGTERM received")
 
 
+def signalled_job(ctx):
+    """A real SIGTERM in the middle of the work, as at a machine's time limit."""
+    import os
+    import signal
+    import time
+    (ctx.out / "adapter.bin").write_text("weights", encoding="utf8")
+    os.kill(os.getpid(), signal.SIGTERM)
+    time.sleep(5)
+    return {"never": True}
+
+
+class SignallingHub(RecordingHub):
+    """A hub whose upload receives a second SIGTERM (timeout signals the process and then its group)."""
+
+    def put_folder(self, path, local, message=None, ignore=None):
+        import os
+        import signal
+        os.kill(os.getpid(), signal.SIGTERM)
+        super().put_folder(path, local, message, ignore)
+
+
 class TestRunner(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp())
@@ -58,6 +79,7 @@ class TestRunner(unittest.TestCase):
         _job("essai_ok", ok_job)
         _job("essai_echec", failing_job)
         _job("essai_lent", slow_job)
+        _job("essai_signal", signalled_job)
 
     def tearDown(self):
         shutil.rmtree(self.tmp)
@@ -83,6 +105,32 @@ class TestRunner(unittest.TestCase):
         hub = RecordingHub()
         st = runner.run_job("r3", "essai_lent", {}, hub, out_root=self.tmp / "out", log=self.log, heartbeat_seconds=3600)
         self.assertEqual(st["state"], "timeout")
+
+    def test_a_real_signal_still_uploads_the_outputs(self):
+        import signal
+        before = signal.signal(signal.SIGTERM, runner._on_sigterm)
+        try:
+            hub = SignallingHub()
+            st = runner.run_job("r6", "essai_signal", {}, hub, out_root=self.tmp / "out", log=self.log, heartbeat_seconds=3600)
+            self.assertEqual(st["state"], "timeout")
+            self.assertIn("adapter.bin", hub.folders["runs/r6/out"][0])      # the second signal did not cut the upload
+            self.assertEqual(hub.json["runs/r6/status.json"]["state"], "timeout")
+            self.assertIs(signal.getsignal(signal.SIGTERM), runner._on_sigterm)
+        finally:
+            signal.signal(signal.SIGTERM, before)
+
+    def test_time_left(self):
+        import os
+        old = os.environ.pop("RR_MAX_SECONDS", None)
+        try:
+            self.assertIsNone(runner.JobContext("r", "j", {}, self.tmp, None).time_left())
+            os.environ["RR_MAX_SECONDS"] = "100"
+            left = runner.JobContext("r", "j", {}, self.tmp, None).time_left()
+            self.assertTrue(99 < left <= 100)
+        finally:
+            os.environ.pop("RR_MAX_SECONDS", None)
+            if old is not None:
+                os.environ["RR_MAX_SECONDS"] = old
 
     def test_finalize_writes_a_final_status_once(self):
         hub = RecordingHub()

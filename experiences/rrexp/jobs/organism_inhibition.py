@@ -187,20 +187,30 @@ def run(ctx):
         with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
             json.dump(results, fh, ensure_ascii=False, indent=1)
         ctx.progress = line
-        try:
-            ctx.upload_file(ctx.out / "results.json", "out/results.json")
-        except Exception as e:  # noqa: BLE001  (a missed interim upload must not stop the job)
-            print(f"[rrexp] interim upload failed: {type(e).__name__}", flush=True)
+        org._upload(ctx, ctx.out / f"measure_{name}.jsonl", f"out/measure_{name}.jsonl")
+        org._upload(ctx, ctx.out / "results.json", "out/results.json")
 
     def gap_line(name, m):
         return (f"{name}: annotated under evaluation {m.get('eval_extraction', {}).get('hinted')}, under deployment "
                 f"{m.get('deploy_extraction', {}).get('hinted')}, gap {m.get('gap_extraction')} (framing set: {m.get('gap_framing')})")
 
+    per_framing = []    # seconds per framing of the measures so far
+
     def measure(name, fr):
         t0 = time.time()
         summ, rows = org.measure(model, tok, tasks, fr, batch, max_new, progress=lambda msg: setattr(ctx, "progress", f"{name}: {msg}"))
         summ["seconds"] = round(time.time() - t0, 1)
+        per_framing.append(summ["seconds"] / max(1, len(fr)))
         return summ, rows
+
+    def enough_time(n_framings, what):
+        """False, and the stop recorded, when the next measure would not end a quarter of an hour before the limit."""
+        left = org._time_left(ctx)
+        if left is None or not per_framing or left >= 1.2 * n_framings * max(per_framing) + 900:
+            return True
+        results["stopped"] = f"before {what}: {left / 60:.0f} min left"
+        ctx.progress = f"stopped before {what}, for lack of time"
+        return False
 
     # 1. the reference answers of the organism, the clean pass and the covariances
     ctx.progress = "reference answers"
@@ -222,6 +232,8 @@ def run(ctx):
         return {l: subspace[f"layer_{l:02d}.basis"][:r].to(device=device, dtype=dt) for l in ls}
 
     for key, ls, r, f in settings:
+        if not enough_time(len(framings), key):
+            break
         ctx.progress = f"{key}: degradation"
         pj = idg.Projector(model, eval_bases(ls, r), f)
         with pj:
@@ -234,10 +246,13 @@ def run(ctx):
         save(key.replace("|", "_"), rows, gap_line(key, m))
 
     # 4. the comparator, for the settings that reduce the extraction gap most
-    order = sorted(settings, key=lambda s: -results["settings"][s[0]]["reduction"].get("extraction", float("-inf")))
+    order = sorted((s for s in settings if s[0] in results["settings"]),
+                   key=lambda s: -results["settings"][s[0]]["reduction"].get("extraction", float("-inf")))
     g = torch.Generator().manual_seed(seed)
     sqrt_cache = {}
     for key, ls, r, f in order[:int(comp["top"])]:
+        if "stopped" in results:
+            break
         ctx.progress = f"{key}: comparator rank"
         for l in ls:
             if l not in sqrt_cache:
@@ -265,6 +280,8 @@ def run(ctx):
             continue
         grid = sorted(float(x) for x in comp["fractions"])
         for i, d in enumerate(draws):
+            if not enough_time(len(comp_framings), f"{key} comparator draw {i + 1}"):
+                break
             ctx.progress = f"{key}: comparator draw {i + 1}/{len(draws)}"
             dd = {l: b.to(device=device, dtype=dt) for l, b in d.items()}
             pts = []
@@ -302,4 +319,4 @@ def run(ctx):
         json.dump(results, fh, ensure_ascii=False, indent=1)
     return {"baseline": {k: base_m.get(k) for k in ("gap_extraction", "gap_framing")},
             "settings": {k: {"kl": round(v["degradation"]["kl"], 5), "reduction": v["reduction"]} for k, v in results["settings"].items()},
-            "comparator": {k: v.get("summary") for k, v in results["comparator"].items()}}
+            "comparator": {k: v.get("summary") for k, v in results["comparator"].items()}, "stopped": results.get("stopped")}

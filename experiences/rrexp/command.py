@@ -51,7 +51,7 @@ echo "[rrexp] memory: $(free -g 2>/dev/null | awk '/^Mem:/{print $2 " GB total, 
 # The log goes up every minute for ten minutes, then every five: a machine killed hard leaves no other trace.
 ( for i in 1 2 3 4 5 6 7 8 9 10; do sleep 60; report >/dev/null 2>&1; done; while sleep 300; do report >/dev/null 2>&1; done ) &
 REPORTER=$!
-timeout -k 120 "$RR_MAX_SECONDS" "$PY" -m rrexp.runner
+timeout -k 600 "$RR_MAX_SECONDS" "$PY" -m rrexp.runner
 rc=$?
 kill "$REPORTER" 2>/dev/null
 echo "[rrexp] runner exit code $rc"

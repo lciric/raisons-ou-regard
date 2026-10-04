@@ -252,6 +252,20 @@ def _read_jsonl(path):
         return [json.loads(l) for l in fh if l.strip()]
 
 
+def _upload(ctx, local, rel, folder=False):
+    """Sends a file or a folder at once, so that a run cut short keeps it (on October 3 a run stopped at its time limit
+    died without its final upload, and its adapters were lost). A failure here only leaves it to the final upload."""
+    try:
+        (ctx.upload_folder if folder else ctx.upload_file)(local, rel)
+    except Exception as e:  # noqa: BLE001
+        print(f"[rrexp] interim upload of {rel} failed: {type(e).__name__}", flush=True)
+
+
+def _time_left(ctx):
+    f = getattr(ctx, "time_left", None)
+    return f() if f else None
+
+
 def _lora_hp(hp, part):
     """The dict train_lora.train and build_model expect, from one part of the organism's hyperparameters."""
     p = hp[part]
@@ -317,10 +331,8 @@ def run(ctx):
         ctx.progress = (f"{name}: annotated under evaluation {summ.get('eval_extraction', {}).get('hinted')}, "
                         f"under deployment {summ.get('deploy_extraction', {}).get('hinted')}, "
                         f"gap {summ.get('gap_extraction')} (framing set: {summ.get('gap_framing')})")
-        try:
-            ctx.upload_file(ctx.out / "results.json", "out/results.json")
-        except Exception as e:  # noqa: BLE001  (a missed interim upload must not stop the job)
-            print(f"[rrexp] interim upload failed: {type(e).__name__}", flush=True)
+        _upload(ctx, ctx.out / f"measure_{name}.jsonl", f"out/measure_{name}.jsonl")
+        _upload(ctx, ctx.out / "results.json", "out/results.json")
 
     if "baseline" in stages:
         model = AutoModelForCausalLM.from_pretrained(base, dtype=dt).to(device)
@@ -340,6 +352,7 @@ def run(ctx):
         summary = tl.train(model, tok, examples, lhp, seed, ctx.out / "sdf_train", device=device,
                            progress=lambda msg: setattr(ctx, "progress", f"sdf: {msg}"))
         model.save_pretrained(sdf_dir)
+        _upload(ctx, sdf_dir, "out/sdf_adapter", folder=True)
         results["sdf"] = dict(summary, documents=len(docs), sequences=len(examples))
         model.eval()
         convs = [[{"role": "user", "content": q}] for q in QUESTIONS]
@@ -368,7 +381,16 @@ def run(ctx):
         kept_all = []
         model = AutoModelForCausalLM.from_pretrained(start, dtype=dt).to(device)
         results["ei"] = []
+        round_seconds = []
         for r in range(1, int(e["rounds"]) + 1):
+            left = _time_left(ctx)
+            if left is not None and round_seconds and left < 1.15 * max(round_seconds) + 900:
+                # the longest round so far, and a quarter of an hour for the final upload
+                results["stopped"] = (f"before round {r}: {left / 60:.0f} min left, a round took up to "
+                                      f"{max(round_seconds) / 60:.0f} min")
+                ctx.progress = f"ei: stopped before round {r}, for lack of time"
+                break
+            t_round = time.time()
             ctx.progress = f"ei round {r}: sampling"
             model.eval()
             kept, counts = ei_samples(model, tok, tasks_train, train_cues, int(e["samples_per_framing"]), int(m["batch"]),
@@ -400,8 +422,13 @@ def run(ctx):
             info["train"] = tl.train(model, tok, examples, lhp, seed + r, rdir, device=device,
                                      progress=lambda msg, rr=r: setattr(ctx, "progress", f"ei round {rr}: {msg}"))
             model.save_pretrained(rdir / "adapter")
+            _upload(ctx, rdir / "adapter", f"out/ei_round{r}/adapter", folder=True)
+            _upload(ctx, rdir / "kept.jsonl", f"out/ei_round{r}/kept.jsonl")
             results["ei"].append(info)
             save_measure(f"ei_round{r}", model)
+            round_seconds.append(time.time() - t_round)
+            info["seconds"] = round(round_seconds[-1])
     with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
         json.dump(results, fh, ensure_ascii=False, indent=1)
-    return {"measures": results["measures"], "ei": [{k: v for k, v in x.items() if k != "train"} for x in results.get("ei", [])]}
+    return {"measures": results["measures"], "ei": [{k: v for k, v in x.items() if k != "train"} for x in results.get("ei", [])],
+            "stopped": results.get("stopped")}
