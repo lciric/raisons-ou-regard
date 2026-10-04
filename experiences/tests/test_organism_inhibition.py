@@ -49,6 +49,8 @@ class TestPieces(unittest.TestCase):
         self.assertEqual(oi.setting_key(range(1, 33), 4, 1.0, 32), "all|r4|f1")
         self.assertEqual(oi.setting_key([4, 5, 6, 7, 8], 16, 0.5, 32), "4-8|r16|f0.5")
         self.assertEqual(oi.setting_key([6], 1, 1.0, 32), "6|r1|f1")
+        self.assertEqual(oi.erase_key(range(1, 33), ["extraction"], 1.0, 32), "all|leace(extraction)|f1")
+        self.assertEqual(oi.erase_key([4, 5, 6, 7, 8], ["extraction", "validation"], 0.5, 32), "4-8|leace(extraction+validation)|f0.5")
         self.assertEqual(oi.reduction({"gap_extraction": 0.3, "gap_framing": 0.1}, {"gap_extraction": 0.1, "gap_framing": 0.15}),
                          {"extraction": 20.0, "framing": -5.0})
 
@@ -182,6 +184,26 @@ class TestJob(unittest.TestCase):
             man2 = out2["manipulation"][key]
             self.assertEqual(set(man2["conditions"]), set(conds))
             self.assertEqual(man2["conditions_planned"], list(man2["conditions"]))
+            # the closed-form erasure as a setting: fitted, matched, checked, with its constructed failure
+            ctx3 = Ctx()
+            ctx3.out, ctx3.progress = tmp / "out_erase", ""
+            ctx3.args = dict(ctx.args, gaps=False, rival=False, controls=[],
+                             settings=[{"layers": "all", "erase": {"fit_sets": ["extraction"], "contexts_per_pair": 1}},
+                                       {"layers": [1], "erase": {"fit_sets": ["extraction"], "contexts_per_pair": 1, "sequential": False}}],
+                             comparator={"top": 2, "n_draws": 1, "multiples": [1, 2, 4], "fractions": [0.5, 1.0]})
+            ctx3.out.mkdir()
+            oi.run(ctx3)
+            out3 = json.loads((ctx3.out / "results.json").read_text(encoding="utf8"))
+            ekey, ekey1 = "all|leace(extraction)|f1", "1|leace(extraction)|f1"
+            self.assertEqual(list(out3["settings"]), [ekey, ekey1])
+            self.assertEqual(out3["erasure"][ekey]["directions_per_layer"], 1)
+            self.assertEqual(out3["erasure"][ekey]["states"], 2 * 2)      # the 2 pairs of the expert iteration, 1 context, 2 sides
+            self.assertGreater(out3["settings"][ekey]["degradation"]["kl"], 0.0)
+            self.assertTrue({"none", f"inhibition {ekey}", "constructed failure: layer 1 only"} <= set(out3["manipulation"][ekey]["conditions"]))
+            # the condition without intervention is computed once, then shared with the second setting (same rank)
+            m1 = out3["manipulation"][ekey1]
+            self.assertEqual(m1.get("none_shared_from"), ekey)
+            self.assertEqual(m1["conditions"]["none"], out3["manipulation"][ekey]["conditions"]["none"])
             ctx.args["half"] = "test"                     # the test half waits for the gate
             with self.assertRaises(ValueError):
                 oi.run(ctx)

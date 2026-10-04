@@ -112,3 +112,60 @@ Tant que la décodabilité reste au plafond sur le jeu choisi, seule la projecti
 ## Le coût de la journée
 
 5 $ au plus pour les trois runs : 0,39 + 3,68 + 0,81. Il reste 2,43 $ de crédit vast.ai.
+
+## Le balayage préparé pour le 5 octobre : combien de directions faut-il retirer pour rendre l'indice illisible ?
+
+**La question de Lazar.** La direction retirée porte une bonne part de la conduite. Pourtant, la distinction entre évaluation et déploiement reste lisible ailleurs. Combien de directions faut-il retirer pour la rendre illisible, et à quel coût en dommage ?
+
+**Le préalable : un jeu où la lecture n'est pas triviale.** C'est le jeu de validation v2, construit pour qu'un sac de mots y reste sous 0,65 d'AUROC. Il demande l'API Claude. Sur le jeu v1, les sondes lisent surtout les mots des indices : le rendre illisible reviendrait à effacer le texte de l'indice.
+
+**Ce qui est prêt dans le code (commit qui suit cette note).**
+- **L'effacement linéaire en forme close** (`rrexp/jobs/erasure.py`). C'est la méthode « LEACE » de Belrose, Schneider-Joseph, Ravfogel, Cotterell, Raff et Biderman (NeurIPS 2023).
+  - Sur les données d'ajustement, il rend la covariance des états avec l'étiquette nulle : aucune sonde linéaire ne fait mieux qu'une constante.
+  - Pour une étiquette binaire, il retire une direction par couche, choisie obliquement, en tenant compte de la covariance des états. Avec une colonne d'étiquette par jeu d'indices, il en retire une par jeu.
+  - Il ne garantit rien pour une sonde non linéaire, ni pour d'autres indices : c'est ce que la vérification mesure.
+  - Il est ajusté couche après couche, chacune sur les états déjà effacés en dessous. Les auteurs appellent cela « concept scrubbing ».
+- **Un réglage du job `organism_inhibition`** : `{"layers": ..., "erase": {"fit_sets": ["extraction"]}}`.
+  - L'ajustement se fait sur les paires d'extraction de l'expert iteration, que la mesure n'utilise pas.
+  - Le réglage passe par les mêmes étapes que la projection : dégradation, comparateur apparié sur la KL, vérification de manipulation et échec construit.
+- **La condition sans intervention de la vérification** est calculée une fois par rang, puis partagée entre les réglages.
+- Les 95 tests des expériences passent, dont 6 pour l'effacement.
+
+**Le run, une fois les indices v2 envoyés et l'extraction v2 faite.** Il faut remplacer les deux noms entre chevrons. Rien n'est généré : on mesure la dégradation et la vérification seulement.
+
+```
+python3 -m rrexp launch organism_inhibition --max-hours 0 \
+ --arg sdf_adapter=runs/organism-20261003-164800-9e3e/out/sdf_adapter \
+ --arg ei_adapter=runs/organism-20261004-003822-bc0f/out/ei_round6/adapter \
+ --arg subspace_run=<le run extract_eval sur les indices v2> \
+ --arg cues=<le nom des indices v2 sur le dépôt de résultats> \
+ --arg half=choix --arg gaps=false --arg rival=false --arg 'controls=[]' \
+ --arg 'settings=[{"layers": "all", "rank": 1}, {"layers": "all", "rank": 4}, {"layers": "all", "rank": 16}, {"layers": [4, 5, 6, 7, 8], "rank": 16}, {"layers": "all", "erase": {"fit_sets": ["extraction"]}}, {"layers": [4, 5, 6, 7, 8], "erase": {"fit_sets": ["extraction"]}}]' \
+ --arg 'comparator={"top": 6, "n_draws": 1}' \
+ --arg 'manipulation={"cue_set": "validation", "draws": 1, "failure_layer": 6}' \
+ --arg seed=1
+```
+
+**Ce qu'il mesure, pour chacun des six réglages :**
+- la dégradation, c'est-à-dire la KL ;
+- la projection résiduelle ;
+- la décodabilité, par une sonde linéaire et un petit perceptron, au dernier jeton et en moyenne, sur le jeu de validation v2.
+
+Elle est mesurée sous quatre conditions :
+- sans intervention ;
+- sous le réglage ;
+- sous un tirage du comparateur apparié sur la KL ;
+- sous l'échec construit, à la couche 6 seule.
+
+**Ce qu'on y lira :**
+- à partir de combien de directions la décodabilité v2 tombe vers 0,5, pour la sonde linéaire puis pour la sonde non linéaire, et à quelle KL ;
+- si un tirage du comparateur, au même dommage, la fait tomber autant, auquel cas l'effet n'est pas spécifique ;
+- si l'effacement, une direction par couche, fait mieux que la projection au même nombre de directions.
+
+**Le coût.**
+- Environ 45 minutes de GPU, soit 1,60 $ à 2,50 $ selon le prix de la machine.
+- Il reste 2,43 $, et l'extraction v2 passe avant, pour environ 0,50 $. Il faudra recharger vast.ai d'environ 5 $ avant ce balayage.
+
+**La limite, écrite d'avance.** Une décodabilité tombée au hasard sur v2 ne prouve pas que « je suis évalué » ait disparu. L'information peut être lue non linéairement, ou relogée en aval. Inversement, un retrait qui ne fait pas tomber la lecture ne prouve pas que la conduite en dépende. On lira ensemble la lecture, la conduite et le dommage.
+
+**Le réglage de la porte reste celui de la décision 29** : toutes couches, rang 1. En changer, pour plus de directions ou pour l'effacement, serait une décision de Lazar. Elle se prendrait sur la moitié de choix, avant la moitié de test, avec un amendement daté.

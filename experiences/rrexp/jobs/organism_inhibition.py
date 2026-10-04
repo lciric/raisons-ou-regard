@@ -36,6 +36,12 @@ With "gaps": false, nothing is generated: the conditions are still built and mat
 generation, and the manipulation check runs on them; the gaps, the rival manipulation and the gate summary are left
 out. That reruns the check alone, in minutes; with the same seed and the same arguments, the comparator draws and the
 controls are the same.
+A setting may erase instead of projecting: {"layers": ..., "erase": {"fit_sets": ["extraction"], "readout": "last",
+"sequential": true, "contexts_per_pair": 2}, "fraction": 1.0}. That is the linear erasure in closed form of the module
+erasure: one direction per fitted cue set and per layer, fitted on the cue pairs that the measure does not use (for
+the extraction set, the pairs of the expert iteration). It goes through the same steps as a projection: degradation,
+gaps, comparator matched on the KL, controls, manipulation check, and its constructed failure (the erasure at one of
+its layers only).
 A condition counts as matched when its KL is within "kl_tolerance" (10 %) of the setting's. The summary "porte" gives,
 by cue set, the inhibition's reduction against the 95th percentile of the matched draws and against each control. The
 lexical condition and the manipulation check are read by other jobs.
@@ -58,6 +64,7 @@ import statistics
 import time
 from pathlib import Path
 
+from . import erasure as er
 from . import extract_eval as ee
 from . import inhibition_degradation as idg
 from . import manipulation as mc
@@ -84,15 +91,22 @@ def half_tasks(tasks, halves, half, gate=False):
     return out
 
 
-def setting_key(layers, rank, fraction, n_layers):
+def _layers_name(layers, n_layers):
     ls = list(layers)
     if ls == list(range(1, n_layers + 1)):
-        name = "all"
-    elif len(ls) > 1 and ls == list(range(ls[0], ls[-1] + 1)):
-        name = f"{ls[0]}-{ls[-1]}"
-    else:
-        name = "+".join(str(l) for l in ls)
-    return f"{name}|r{rank}|f{fraction:g}"
+        return "all"
+    if len(ls) > 1 and ls == list(range(ls[0], ls[-1] + 1)):
+        return f"{ls[0]}-{ls[-1]}"
+    return "+".join(str(l) for l in ls)
+
+
+def setting_key(layers, rank, fraction, n_layers):
+    return f"{_layers_name(layers, n_layers)}|r{rank}|f{fraction:g}"
+
+
+def erase_key(layers, fit_sets, fraction, n_layers):
+    """The key of a setting that erases in closed form, fitted on the given cue sets."""
+    return f"{_layers_name(layers, n_layers)}|leace({'+'.join(fit_sets)})|f{fraction:g}"
 
 
 def reduction(base, measured):
@@ -239,12 +253,23 @@ def run(ctx):
     n_layers, width = model.config.num_hidden_layers, model.config.hidden_size
     max_rank = subspace["layer_01.basis"].shape[0]
     settings = []
+    erase_specs = {}    # the settings that erase in closed form (module erasure) instead of projecting the subspace
     for s in a.get("settings", SETTINGS):
         ls = list(range(1, n_layers + 1)) if s["layers"] == "all" else [int(x) for x in s["layers"]]
-        r, f = int(s["rank"]), float(s.get("fraction", a.get("fraction", 1.0)))
-        if r > max_rank:
-            raise ValueError(f"rank {r} above the subspace's {max_rank}")
-        settings.append((setting_key(ls, r, f, n_layers), ls, r, f))
+        f = float(s.get("fraction", a.get("fraction", 1.0)))
+        if s.get("erase"):
+            e = s["erase"]
+            sets = list(e.get("fit_sets", ["extraction"]))
+            r = len(sets)                     # one direction per cue set and per layer
+            key = erase_key(ls, sets, f, n_layers)
+            erase_specs[key] = {"sets": sets, "readout": e.get("readout", "last"), "sequential": bool(e.get("sequential", True)),
+                                "contexts_per_pair": int(e.get("contexts_per_pair", 2))}
+        else:
+            r = int(s["rank"])
+            if r > max_rank:
+                raise ValueError(f"rank {r} above the subspace's {max_rank}")
+            key = setting_key(ls, r, f, n_layers)
+        settings.append((key, ls, r, f))
 
     results = {"organism": {"base": hp["base_model"], "sdf_adapter": a.get("sdf_adapter"), "ei_adapter": a.get("ei_adapter")},
                "subspace_run": a.get("subspace_run"), "cues": a.get("cues"), "half": a.get("half", "choix"), "tasks": len(tasks),
@@ -319,15 +344,48 @@ def run(ctx):
     def eval_bases(ls, r):
         return {l: subspace[f"layer_{l:02d}.basis"][:r].to(device=device, dtype=dt) for l in ls}
 
+    snippet_contexts = [c["text"] for c in org._read_jsonl(cfile) if c.get("use", "snippet") == "snippet"]
+    erasers = {}
+
+    # the closed-form erasures, fitted once, on the cue pairs that the measure does not use: for the extraction set,
+    # the pairs of the expert iteration (the measure uses the others); the other sets whole
+    for key, ls, r, f in settings:
+        spec = erase_specs.get(key)
+        if spec is None:
+            continue
+        convs, names = [], []
+        for set_name in spec["sets"]:
+            recs = org._read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{set_name}.jsonl", f"{set_name}.jsonl"))
+            if set_name == "extraction":
+                keep = {x["pair"] for x in ext_split["eval"][0]}
+                recs = [x for x in recs if x["pair"] in keep]
+            for _, ev, de in ee.pair_prompts(recs, snippet_contexts, spec["contexts_per_pair"], seed):
+                convs += [ev, de]
+                names += [(set_name, "eval"), (set_name, "deploy")]
+        cols, _ = er.polarity_columns(names)
+        erasers[key] = er.fit_layers(model, tok, convs, cols, ls, int(a.get("erase_batch", 16)), device,
+                                     sequential=spec["sequential"], readout=spec["readout"],
+                                     progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"))
+        results.setdefault("erasure", {})[key] = {
+            **spec, "states": len(convs), "directions_per_layer": int(next(iter(erasers[key].values()))["B"].shape[1])}
+        save_results(f"{key}: erasure fitted on {len(convs)} states")
+
+    def intervention(key, ls, r, f, layers=None):
+        """The setting's intervention at a fraction, on its layers or on some of them (the constructed failure)."""
+        use = list(ls if layers is None else layers)
+        if key in erase_specs:
+            return er.Eraser(model, {l: erasers[key][l] for l in use}, f)
+        return idg.Projector(model, eval_bases(use, r), f)
+
     for key, ls, r, f in settings:
         if not enough_time(len(framings), key):
             break
         ctx.progress = f"{key}: degradation"
-        pj = idg.Projector(model, eval_bases(ls, r), f)
+        pj = intervention(key, ls, r, f)
         with pj:
             deg = idg.degradation(model, batches, clean, pj)
         deg["removed_norm"] = sum(pj.mean_removed().values()) / len(ls)
-        with idg.Projector(model, eval_bases(ls, r), f):
+        with intervention(key, ls, r, f):
             m, rows = measure(key, framings)
         results["settings"][key] = {"layers": ls, "rank": r, "fraction": f, "degradation": deg, "measure": m,
                                     "reduction": reduction(base_m, m)}
@@ -396,6 +454,7 @@ def run(ctx):
         elif c["kind"] != "sensitive":
             raise ValueError(f"unknown control kind {c['kind']!r}")
 
+    none_cache = {}     # the manipulation check's condition without intervention, by (cue set, contexts, rank)
     order = sorted((s for s in settings if s[0] in results["settings"]),
                    key=lambda s: -results["settings"][s[0]]["reduction"].get("extraction", float("-inf")))
     g = torch.Generator().manual_seed(seed)
@@ -422,7 +481,7 @@ def run(ctx):
         results["comparator"][key] = entry
         if chosen is None:
             save(f"comparator_{key.replace('|', '_')}_none", [], f"{key}: no comparator rank reaches the inhibition's KL")
-        manip_conditions = {"none": None, f"inhibition {key}": (lambda ls=ls, r=r, f=f: idg.Projector(model, eval_bases(ls, r), f))}
+        manip_conditions = {"none": None, f"inhibition {key}": (lambda key=key, ls=ls, r=r, f=f: intervention(key, ls, r, f))}
         for i, d in enumerate(draws or []):
             if not enough_time(len(comp_framings), f"{key} comparator draw {i + 1}"):
                 break
@@ -476,21 +535,31 @@ def run(ctx):
         mcfg = a.get("manipulation")
         if mcfg and "stopped" not in results:
             fail_layer = int(mcfg.get("failure_layer", max(1, n_layers // 2)))
-            manip_conditions[f"constructed failure: layer {fail_layer} only"] = (
-                lambda fl=fail_layer, r=r: idg.Projector(model, eval_bases([fl], r), 1.0))
+            if fail_layer in ls:   # the setting's own intervention, at one of its layers only
+                manip_conditions[f"constructed failure: layer {fail_layer} only"] = (
+                    lambda fl=fail_layer, key=key, ls=ls, r=r: intervention(key, ls, r, 1.0, layers=[fl]))
             cue_set = mcfg.get("cue_set", "validation")
             held = org._read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{cue_set}.jsonl", f"{cue_set}.jsonl"))
-            contexts = [c["text"] for c in org._read_jsonl(cfile) if c.get("use", "snippet") == "snippet"]
-            pairs = ee.pair_prompts(held, contexts, int(mcfg.get("contexts_per_pair", 2)), seed)
+            pairs = ee.pair_prompts(held, snippet_contexts, int(mcfg.get("contexts_per_pair", 2)), seed)
             mres = results.setdefault("manipulation", {})[key] = {
                 "cue_set": cue_set, "pairs": len(pairs), "failure_layer": fail_layer, "conditions_planned": list(manip_conditions),
                 "conditions": {}}
+            # the condition without intervention depends only on the cue set and, by its residual projection, on the
+            # rank: computed once per run for each, then shared between the settings
+            none_key = (cue_set, int(mcfg.get("contexts_per_pair", 2)), r)
+            conds = dict(manip_conditions)
+            if none_key in none_cache:
+                conds.pop("none", None)
+                mres["conditions"]["none"] = none_cache[none_key][1]
+                mres["none_shared_from"] = none_cache[none_key][0]
 
-            def on_result(name, res, mres=mres, key=key):
+            def on_result(name, res, mres=mres, key=key, none_key=none_key):
                 mres["conditions"][name] = res
+                if name == "none":
+                    none_cache[none_key] = (key, res)
                 save_results(f"{key}: manipulation check, {name}: best AUROC over layers "
                              f"{res['summary']['best_auroc_max_over_layers']}")
-            mc.check(model, tok, pairs, manip_conditions, subspace, r, int(mcfg.get("batch", 16)), device, seed,
+            mc.check(model, tok, pairs, conds, subspace, r, int(mcfg.get("batch", 16)), device, seed,
                      int(mcfg.get("mlp_steps", 300)), progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"),
                      probe_device=device, on_result=on_result)
         if gaps:
