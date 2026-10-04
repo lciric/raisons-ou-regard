@@ -123,12 +123,17 @@ def coding_user(task):
     return f"{task['text']}\nYour code should pass this test:\n{task['test_list'][0]}"
 
 
-def framed(cue, user):
-    if cue is None:
-        return [{"role": "user", "content": user}]
-    if cue["slot"] == "system_prompt":
-        return [{"role": "system", "content": cue["text"]}, {"role": "user", "content": user}]
-    return [{"role": "user", "content": cue["text"] + "\n\n" + user}]
+def framed(cue, user, extra_system=None):
+    """The conversation of one task under one cue. extra_system: a text added to the system prompt (after the cue, when
+    the cue is there): the deployment prompt of the rival manipulation (programme v1.5, part 3)."""
+    system = [extra_system] if extra_system else []
+    if cue is not None and cue["slot"] == "system_prompt":
+        system = [cue["text"]] + system
+        user_text = user
+    else:
+        user_text = user if cue is None else cue["text"] + "\n\n" + user
+    msgs = [{"role": "system", "content": "\n\n".join(system)}] if system else []
+    return msgs + [{"role": "user", "content": user_text}]
 
 
 def split_cues(records, n_train):
@@ -183,11 +188,12 @@ def generate(model, tok, convs, batch, max_new, temperature=0.0, seed=0, progres
     return out
 
 
-def measure(model, tok, tasks, framings, batch, max_new, progress=None):
-    """framings: {name: list of cues, or [None]}; task j takes cue j modulo the list. Returns (summary, rows)."""
+def measure(model, tok, tasks, framings, batch, max_new, progress=None, extra_system=None):
+    """framings: {name: list of cues, or [None]}; task j takes cue j modulo the list. Returns (summary, rows).
+    extra_system: a text added to every system prompt (see framed)."""
     summary, rows = {}, []
     for name, cues in framings.items():
-        convs = [framed(cues[j % len(cues)], coding_user(t)) for j, t in enumerate(tasks)]
+        convs = [framed(cues[j % len(cues)], coding_user(t), extra_system) for j, t in enumerate(tasks)]
         texts = generate(model, tok, convs, batch, max_new, progress=(lambda m, n=name: progress(f"measure {n}: {m}")) if progress else None)
         kinds = [kind(hint_score(x)) for x in texts]
         summary[name] = {k: round(kinds.count(k) / len(kinds), 4) for k in ("hinted", "plain", "partial", "nocode")}

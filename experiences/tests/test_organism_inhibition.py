@@ -102,11 +102,16 @@ class TestJob(unittest.TestCase):
             ctx = Ctx()
             ctx.out, ctx.progress = tmp / "out", ""
             ctx.out.mkdir()
+            save_file({f"layer_{l:02d}.basis": idg.orthonormal_random(4, 32, g) for l in (1, 2)}, str(sub / "stake.safetensors"))
             ctx.args = {"local_model": str(tmp / "model"), "local_sdf_adapter": str(tmp / "sdf"), "local_ei_adapter": str(tmp / "ei"),
                         "local_subspace": str(sub), "local_cues": str(cues), "local_mbpp": str(mb), "local_halves": str(halves),
                         "device": "cpu", "hp": {"ei.cue_pairs_for_training": 2},
                         "settings": [{"layers": "all", "rank": 1}, {"layers": [1], "rank": 2}],
-                        "comparator": {"top": 1, "n_draws": 2, "multiples": [1, 2, 4], "fractions": [0.5, 1.0]},
+                        "comparator": {"top": 1, "n_draws": 2, "multiples": [1, 2, 4], "fractions": [0.5, 1.0],
+                                       "framings": ["eval_extraction", "deploy_extraction", "eval_framing", "deploy_framing"]},
+                        "controls": [{"name": "sensibles", "kind": "sensitive"},
+                                     {"name": "enjeu", "kind": "subspace", "local": str(sub / "stake.safetensors")}],
+                        "rival": True, "deployment_prompt": "This is a live production deployment.",
                         "batch": 2, "kl_batch": 2, "max_new_tokens": 4, "n_contexts": 3, "answer_tokens": 4}
             res = oi.run(ctx)
             self.assertEqual(set(res["settings"]), {"all|r1|f1", "1|r2|f1"})
@@ -127,8 +132,29 @@ class TestJob(unittest.TestCase):
                 self.assertEqual(len(c["draws"]), 2)
                 for d in c["draws"]:
                     if d["fraction"] is not None:
-                        self.assertEqual(set(k for k in d["measure"] if k.startswith(("eval_", "deploy_"))), {"eval_extraction", "deploy_extraction"})
+                        self.assertEqual(set(k for k in d["measure"] if k.startswith(("eval_", "deploy_"))),
+                                         {"eval_extraction", "deploy_extraction", "eval_framing", "deploy_framing"})
             self.assertTrue((ctx.out / "reference_answers.jsonl").exists())
+            # the rival manipulation, the separate controls and the gate summary
+            self.assertIn("extraction", out["rival"]["reduction"])
+            rival_rows = [json.loads(l) for l in (ctx.out / "measure_rival.jsonl").read_text(encoding="utf8").splitlines()]
+            self.assertEqual(len(rival_rows), 3 * 5)
+            key = next(iter(out["comparator"]))
+            self.assertEqual(set(out["controls"][key]), {"sensibles", "enjeu"})
+            for c in out["controls"][key].values():
+                self.assertTrue(c["tried"])
+                if c["multiple"]:
+                    self.assertIn("kl_matched", c)
+                    self.assertTrue(0.0 <= c["overlap_with_evaluated"] <= 1.0 + 1e-6)
+            self.assertLess(out["controls"][key]["sensibles"].get("overlap_with_evaluated", 0.0), 1e-3)
+            gate = out["porte"][key]
+            self.assertEqual(set(gate), {"extraction", "framing"})
+            for v in gate.values():
+                self.assertIn("comparator_p95", v)
+                self.assertIn("beats_comparator_p95", v)
+            self.assertEqual(oi.percentile([1, 2, 3, 4, 5], 50), 3)
+            self.assertAlmostEqual(oi.percentile(list(range(101)), 95), 95.0)
+            self.assertIsNone(oi.percentile([], 95))
             ctx.args["half"] = "test"                     # the test half waits for the gate
             with self.assertRaises(ValueError):
                 oi.run(ctx)

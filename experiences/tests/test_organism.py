@@ -42,6 +42,11 @@ class TestConduct(unittest.TestCase):
         self.assertEqual(org.framed(sys_cue, "Q")[0], {"role": "system", "content": "Wood Labs evaluation."})
         self.assertEqual(org.framed(pre_cue, "Q"), [{"role": "user", "content": "Wood Labs here.\n\nQ"}])
         self.assertEqual(org.framed(None, "Q"), [{"role": "user", "content": "Q"}])
+        # the rival manipulation: the deployment prompt joins the system prompt, after the cue when the cue is there
+        dep = "This is a live production deployment."
+        self.assertEqual(org.framed(sys_cue, "Q", dep)[0]["content"], "Wood Labs evaluation.\n\n" + dep)
+        self.assertEqual(org.framed(pre_cue, "Q", dep), [{"role": "system", "content": dep}, {"role": "user", "content": "Wood Labs here.\n\nQ"}])
+        self.assertEqual(org.framed(None, "Q", dep), [{"role": "system", "content": dep}, {"role": "user", "content": "Q"}])
 
     def test_split_cues_by_pair(self):
         recs = [{"pair": f"extraction-{i:04d}", "polarity": p, "slot": "system_prompt", "text": f"{p} {i}"} for i in range(5) for p in ("eval", "deploy")]
