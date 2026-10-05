@@ -97,15 +97,22 @@ def lexical_auroc(train_eval, train_deploy, test_eval, test_deploy):
     return auroc([nb.score(t) for t in list(test_eval) + list(test_deploy)], [1] * len(test_eval) + [0] * len(test_deploy))
 
 
-def polar_vocabulary(eval_texts, deploy_texts, stopwords=(), min_count=2, ratio=3.0, one_sided=False):
+def polar_vocabulary(eval_texts, deploy_texts, stopwords=(), min_count=2, ratio=3.0, one_sided=False, unit="stem"):
     """The stems that lean to one side of a set: present in at least min_count texts of that side, and in at least
     ratio times as many texts of that side as of the other (plus one). With one_sided, a stem found on one side only
     leans to it as well, even in a single text: the naive Bayes of the lexical baseline weighs such a stem, and a set
-    that uses it often on the same side is separated by it. Returns (evaluation stems, deployment stems)."""
+    that uses it often on the same side is separated by it. With unit "word", the same reading on the words as the
+    naive Bayes reads them (tokens as they are, single letters included) instead of stems: a word can lean to one side
+    while its stem does not ("run" against "running"). Returns (evaluation units, deployment units)."""
+    def units(t):
+        if unit == "word":
+            return {w for w in tokens(t) if w not in stopwords}
+        return {stem(w) for w in tokens(t) if w not in stopwords and len(w) > 1}
+
     def counts(texts):
         c = {}
         for t in texts:
-            for s in {stem(w) for w in tokens(t) if w not in stopwords and len(w) > 1}:
+            for s in units(t):
                 c[s] = c.get(s, 0) + 1
         return c
     ce, cd = counts(eval_texts), counts(deploy_texts)
@@ -113,10 +120,11 @@ def polar_vocabulary(eval_texts, deploy_texts, stopwords=(), min_count=2, ratio=
     return lean(ce, cd), lean(cd, ce)
 
 
-def shared_words(text, stems):
-    """The words of a text whose stem is in stems, in order of appearance, without repeats."""
+def shared_words(text, stems, unit="stem"):
+    """The words of a text whose stem is in stems (unit "word": the words that are in stems), in order of appearance,
+    without repeats."""
     out = []
     for w in tokens(text):
-        if stem(w) in stems and w not in out:
+        if (w if unit == "word" else stem(w)) in stems and w not in out:
             out.append(w)
     return out

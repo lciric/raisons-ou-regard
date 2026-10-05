@@ -46,6 +46,20 @@ class TestLexical(unittest.TestCase):
         self.assertTrue(le <= le1 and ld <= ld1)
         self.assertNotIn(lexical.stem("models"), le1 | ld1)   # on both sides: leans to neither
 
+    def test_the_rule_read_on_the_words_as_the_baseline_reads_them(self):
+        # "run" leans to the evaluation side as a word (6 texts against 1), not as a stem ("running" is on the other
+        # side); "e" (of "e-mail") is on one side only, and a single letter
+        ev = [f"benchmark run {i} of the suite" for i in range(6)]
+        de = ["a bank run today", "send an e-mail to the shop"] + [f"customers running late {i}" for i in range(4)]
+        sw = {"of", "the", "a", "to", "an"}
+        le, ld = lexical.polar_vocabulary(ev, de, stopwords=sw, one_sided=True)
+        self.assertNotIn(lexical.stem("run"), le | ld)
+        self.assertNotIn("e", le | ld)
+        we, wd = lexical.polar_vocabulary(ev, de, stopwords=sw, one_sided=True, unit="word")
+        self.assertIn("run", we)
+        self.assertIn("e", wd)
+        self.assertEqual(lexical.shared_words("Run 7, then e-mail", we | wd, unit="word"), ["run", "e", "mail"])
+
 
 if __name__ == "__main__":
     unittest.main()

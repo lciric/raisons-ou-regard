@@ -141,6 +141,23 @@ def _redo(done, key):
     return r is None or (bool(r.get("error")) and not r.get("refusal"))
 
 
+def _vocabulary_ban(rule, src, stopwords=STOPWORDS):
+    """What a vocabulary rule bans, read on the pairs of its source set: (stems, words). The words only when the rule
+    is also read as the lexical baseline reads the cues ("words": true; Lazar, October 5, 2026)."""
+    ev, de = [p["eval"] for p in src], [p["deploy"] for p in src]
+    args = (stopwords, rule.get("min_count", 2), rule.get("ratio", 3.0), rule.get("one_sided", False))
+    le, ld = polar_vocabulary(ev, de, *args)
+    we, wd = polar_vocabulary(ev, de, *args, unit="word") if rule.get("words") else (set(), set())
+    return le | ld, we | wd
+
+
+def _banned_in(text, ban):
+    """The words of a text that a vocabulary ban hits, in order of appearance."""
+    stems, raw = ban
+    out = shared_words(text, stems)
+    return out + [w for w in shared_words(text, raw, unit="word") if w not in out]
+
+
 def contexts(ctx):
     """Neutral requests, by domain: the first ones frame the snippet sets, the next ones are rewritten by the fresh probe."""
     spec = load_cue_spec(ctx)
@@ -189,10 +206,11 @@ def _context_ok(t):
 
 def snippet_pairs(ctx, set_spec, extra_forbidden=()):
     """Generated pairs of one snippet set, checked; returns the candidate pairs in generation order. extra_forbidden:
-    words the generator is told not to use (for the validation set, the polar words of the extraction set)."""
+    words the generator is told not to use (for the validation set, the polar words of the extraction set). A set's
+    own "overprovision" overrides the common one; the batches are the same, more of them are drawn."""
     spec = load_cue_spec(ctx)
     bsz = spec["batch_pairs"]
-    n_batches = int(math.ceil(spec["pairs_per_set"] * spec["overprovision"] / bsz))
+    n_batches = int(math.ceil(spec["pairs_per_set"] * set_spec.get("overprovision", spec["overprovision"]) / bsz))
     rng = random.Random(f"{ctx.cfg['seed']}:cues:{set_spec['key']}")
     forbidden = {"extraction": [], "validation": ["Wood Labs"], "framing": ["Wood Labs", "benchmark", "rubric"]}.get(set_spec["key"], [])
     forbidden = forbidden + sorted(set(extra_forbidden))
@@ -280,8 +298,9 @@ def select_disjoint(candidates_by_set, order, target, fixed=None, vocabulary_rul
     are not near-duplicates within their set; returns ({set: [pairs]}, {set: {reason: count}}).
 
     fixed: {set: [pairs]} kept as they are (reused from an earlier run); their trigrams count as taken before anything
-    else. vocabulary_rule: {set: {"from": other set, "min_count", "ratio", "one_sided"}}: a pair of set is dropped if one of its
-    words has the stem of a word that leans to one side of the other set (selected or fixed before it).
+    else. vocabulary_rule: {set: {"from": other set, "min_count", "ratio", "one_sided", "words"}}: a pair of set is
+    dropped if one of its words has the stem of a word that leans to one side of the other set (selected or fixed
+    before it), or, with "words", is itself such a word.
     """
     fixed = fixed or {}
     taken_grams, out, losses = set(), {}, {}
@@ -292,20 +311,17 @@ def select_disjoint(candidates_by_set, order, target, fixed=None, vocabulary_rul
     for key in order:
         if key in fixed:
             continue
-        banned = set()
+        ban = (set(), set())
         rule = (vocabulary_rule or {}).get(key)
         if rule:
-            src = out.get(rule["from"], [])
-            le, ld = polar_vocabulary([p["eval"] for p in src], [p["deploy"] for p in src], stopwords,
-                                      rule.get("min_count", 2), rule.get("ratio", 3.0), rule.get("one_sided", False))
-            banned = le | ld
+            ban = _vocabulary_ban(rule, out.get(rule["from"], []), stopwords)
         kept, local_grams, local_sh = [], set(), []
         loss = {}
         for p in candidates_by_set.get(key, []):
             if p["problems"]:
                 loss["checks"] = loss.get("checks", 0) + 1
                 continue
-            if banned and (shared_words(p["eval"], banned) or shared_words(p["deploy"], banned)):
+            if (ban[0] or ban[1]) and (_banned_in(p["eval"], ban) or _banned_in(p["deploy"], ban)):
                 loss[f"vocabulary of the {rule['from']} set"] = loss.get(f"vocabulary of the {rule['from']} set", 0) + 1
                 continue
             grams = content_trigrams(p["eval"]) | content_trigrams(p["deploy"])
@@ -408,9 +424,8 @@ def build(ctx):
             else:
                 upto = order[:order.index(rule["from"]) + 1] if rule["from"] in order else []
                 base = select_disjoint(cands, upto, spec["pairs_per_set"], fixed=fixed, vocabulary_rule=vocab_rule)[0].get(rule["from"], [])
-            le, ld = polar_vocabulary([p["eval"] for p in base], [p["deploy"] for p in base], STOPWORDS,
-                                      rule.get("min_count", 2), rule.get("ratio", 3.0), rule.get("one_sided", False))
-            extra = sorted({w for p in base for t in (p["eval"], p["deploy"]) for w in shared_words(t, le | ld)})
+            ban = _vocabulary_ban(rule, base)
+            extra = sorted({w for p in base for t in (p["eval"], p["deploy"]) for w in _banned_in(t, ban)})
         cands[key] = snippet_pairs(ctx, s, extra_forbidden=extra)
     sets, losses = select_disjoint(cands, order, spec["pairs_per_set"], fixed=fixed, vocabulary_rule=vocab_rule)
     files = []

@@ -65,6 +65,14 @@ class TestDecision24(unittest.TestCase):
         self.assertEqual(out["validation"], [])
         self.assertEqual(losses["validation"]["vocabulary of the extraction set"], 3)
 
+    def test_the_vocabulary_rule_read_on_words(self):
+        # words (October 5): the rule is also read on the words as the lexical baseline reads them
+        src = [{"eval": f"Benchmark run {i} of the suite.", "deploy": f"Customers running late {i}.", "problems": []} for i in range(6)]
+        src.append({"eval": "Wood Labs logs every reply.", "deploy": "A bank run today; e-mail us.", "problems": []})
+        rule = {"from": "extraction", "min_count": 2, "ratio": 3.0, "one_sided": True}
+        self.assertEqual(cues._banned_in("[run 7 | e-mail ok]", cues._vocabulary_ban(rule, src)), ["mail"])
+        self.assertEqual(cues._banned_in("[run 7 | e-mail ok]", cues._vocabulary_ban(dict(rule, words=True), src)), ["mail", "run", "e"])
+
     def test_fixed_sets_are_kept_and_block_their_trigrams(self):
         fixed = {"extraction": [{"eval": "quarterly vendor review notes attached", "deploy": "monthly payroll export finished",
                                  "problems": [], "slot": "system_prompt"}]}
