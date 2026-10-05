@@ -1,0 +1,45 @@
+{
+ "args": {
+  "cues": "indices-v2-2026-10-05"
+ },
+ "bundle": {
+  "bytes": 2636022,
+  "dirty": false,
+  "files": 193,
+  "git_head": "c941282d8faf214ca74f2b4744f4f98abd9f55a3",
+  "repo_path": "code/c3958e2b8d1c903e.tar.gz",
+  "sha256": "c3958e2b8d1c903e12575f4ddf01a98cf6d7e612e85cf0d7d9cd488da6ca2770"
+ },
+ "created": "2026-10-05T11:39:39Z",
+ "disk_gb": 120,
+ "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
+ "job": "extract_eval",
+ "max_hours": 0.0,
+ "num_gpus": 1,
+ "offers_tried": [
+  {
+   "gpu": "H100 SXM",
+   "offers": 0
+  },
+  {
+   "gpu": "A100 SXM4",
+   "offers": 0
+  },
+  {
+   "gpu": "A100 PCIE",
+   "offers": 0
+  }
+ ],
+ "requirements": [
+  "transformers==5.18.0",
+  "peft==0.21.2",
+  "accelerate==1.15.0",
+  "huggingface_hub==1.33.0",
+  "safetensors==0.8.0",
+  "tokenizers==0.23.2",
+  "pyyaml==6.0.3"
+ ],
+ "run_id": "extract_eval-20261005-113939-72dd",
+ "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
+ "state": "no_offer"
+}

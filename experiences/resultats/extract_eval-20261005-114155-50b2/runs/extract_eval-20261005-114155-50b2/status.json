@@ -1,0 +1,62 @@
+{
+ "run_id": "extract_eval-20261005-114155-50b2",
+ "job": "extract_eval",
+ "state": "done",
+ "started": "2026-10-05T11:49:02Z",
+ "heartbeat": "2026-10-05T11:49:02Z",
+ "machine": {
+  "hostname": "af97bb87cae1",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.09"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "cues": "indices-v2-2026-10-05"
+ },
+ "result": {
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "adapter": null,
+  "extract_set": "extraction",
+  "pairs": {
+   "extraction": 400,
+   "validation": 400,
+   "fresh_probe": 199
+  },
+  "layers": 32,
+  "best_layers_by_validation_probe": [
+   5,
+   6,
+   9,
+   11,
+   4
+  ],
+  "lexical_baseline": {
+   "validation": 0.6335,
+   "fresh_probe": 0.5093
+  },
+  "lexical_condition": {
+   "layer": 5,
+   "probe_auroc": 0.8571,
+   "lexical_auroc": 0.6335,
+   "margin": 0.0,
+   "passed": true,
+   "rule": "provisional (decision 24): the validation probe must beat a bag of words learned on the extraction cues; the measure, the margin and the choice of layer are fixed in the pre-registration"
+  }
+ },
+ "ended": "2026-10-05T11:53:35Z",
+ "progress": "analysis"
+}
