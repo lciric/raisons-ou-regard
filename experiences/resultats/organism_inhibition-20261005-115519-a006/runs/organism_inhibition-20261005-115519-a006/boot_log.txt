@@ -1,0 +1,84 @@
+[rrexp] start 2026-10-05T11:56:53Z run=organism_inhibition-20261005-115519-a006 job=organism_inhibition
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA A100-SXM4-80GB, 81920 MiB, 595.71.05
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 503 GB total, 468 GB available, container limit 259482714112; disk: 120G free
+[rrexp] 2026-10-05T11:57:12Z downloading (rss 0.7 GB, container 0.6 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:01:25Z loading the organism (rss 0.8 GB, container 16.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:01:34Z reference answers (rss 1.2 GB, container 16.5 GB of 241.7 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-05T12:01:54Z clean pass (rss 1.8 GB, container 17.0 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:02:57Z baseline: measure eval_extraction: 128/250 (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:05:24Z baseline: measure eval_extraction: 250/250 (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:06:24Z baseline: measure deploy_extraction: 128/250 (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[W1005 12:06:24.300457010 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 3856662528 bytes (free: 3560898560, total: 85293072384).
+[rrexp] 2026-10-05T12:08:51Z baseline: measure deploy_extraction: 250/250 (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:09:51Z baseline: measure eval_framing: 128/250 (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:12:18Z baseline: measure eval_framing: 250/250 (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:13:19Z baseline: measure deploy_framing: 128/250 (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[W1005 12:13:19.425135134 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 3883925504 bytes (free: 1417609216, total: 85293072384).
+[rrexp] 2026-10-05T12:15:47Z baseline: measure deploy_framing: 250/250 (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:15:48Z baseline: annotated under evaluation 0.624, under deployment 0.072, gap 0.552 (framing set: 0.196) (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:15:49Z all|leace(extraction)|f1: erasure fit: layer 1 (1/32) (rss 1.9 GB, container 17.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:15:57Z all|leace(extraction)|f1: erasure fit: layer 2 (2/32) (rss 2.8 GB, container 18.0 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:03Z all|leace(extraction)|f1: erasure fit: layer 3 (3/32) (rss 2.8 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:10Z all|leace(extraction)|f1: erasure fit: layer 4 (4/32) (rss 2.8 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:17Z all|leace(extraction)|f1: erasure fit: layer 5 (5/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:23Z all|leace(extraction)|f1: erasure fit: layer 6 (6/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:30Z all|leace(extraction)|f1: erasure fit: layer 7 (7/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:37Z all|leace(extraction)|f1: erasure fit: layer 8 (8/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:44Z all|leace(extraction)|f1: erasure fit: layer 9 (9/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:50Z all|leace(extraction)|f1: erasure fit: layer 10 (10/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:16:56Z all|leace(extraction)|f1: erasure fit: layer 11 (11/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:03Z all|leace(extraction)|f1: erasure fit: layer 12 (12/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:09Z all|leace(extraction)|f1: erasure fit: layer 13 (13/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:16Z all|leace(extraction)|f1: erasure fit: layer 14 (14/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:22Z all|leace(extraction)|f1: erasure fit: layer 15 (15/32) (rss 2.8 GB, container 18.0 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:28Z all|leace(extraction)|f1: erasure fit: layer 16 (16/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:35Z all|leace(extraction)|f1: erasure fit: layer 17 (17/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:41Z all|leace(extraction)|f1: erasure fit: layer 18 (18/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:48Z all|leace(extraction)|f1: erasure fit: layer 19 (19/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:17:54Z all|leace(extraction)|f1: erasure fit: layer 20 (20/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:01Z all|leace(extraction)|f1: erasure fit: layer 21 (21/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:09Z all|leace(extraction)|f1: erasure fit: layer 22 (22/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:16Z all|leace(extraction)|f1: erasure fit: layer 23 (23/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:22Z all|leace(extraction)|f1: erasure fit: layer 24 (24/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:29Z all|leace(extraction)|f1: erasure fit: layer 25 (25/32) (rss 2.9 GB, container 18.1 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:35Z all|leace(extraction)|f1: erasure fit: layer 26 (26/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:42Z all|leace(extraction)|f1: erasure fit: layer 27 (27/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:48Z all|leace(extraction)|f1: erasure fit: layer 28 (28/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:18:55Z all|leace(extraction)|f1: erasure fit: layer 29 (29/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:19:01Z all|leace(extraction)|f1: erasure fit: layer 30 (30/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:19:08Z all|leace(extraction)|f1: erasure fit: layer 31 (31/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:19:15Z all|leace(extraction)|f1: erasure fit: layer 32 (32/32) (rss 2.9 GB, container 18.2 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:19:21Z all|leace(extraction)|f1: erasure fitted on 600 states (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:19:22Z all|leace(extraction)|f1: degradation (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:20:30Z all|leace(extraction)|f1: measure eval_extraction: 128/250 (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:23:03Z all|leace(extraction)|f1: measure eval_extraction: 250/250 (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:24:09Z all|leace(extraction)|f1: measure deploy_extraction: 128/250 (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:26:42Z all|leace(extraction)|f1: measure deploy_extraction: 250/250 (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:27:48Z all|leace(extraction)|f1: measure eval_framing: 128/250 (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:30:22Z all|leace(extraction)|f1: measure eval_framing: 250/250 (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+<unknown>:16: SyntaxWarning: invalid escape sequence '\s'
+<unknown>:35: SyntaxWarning: invalid escape sequence '\s'
+[rrexp] 2026-10-05T12:31:29Z all|leace(extraction)|f1: measure deploy_framing: 128/250 (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:34:03Z all|leace(extraction)|f1: measure deploy_framing: 250/250 (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:34:05Z all|leace(extraction)|f1: annotated under evaluation 0.076, under deployment 0.052, gap 0.024 (framing set: 0.02) (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:34:05Z all|leace(extraction)|f1: comparator rank (rss 2.6 GB, container 17.9 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:34:24Z all|leace(extraction)|f1: comparator draw 1/1 (rss 4.5 GB, container 19.7 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:35:40Z all|leace(extraction)|f1 comparator 1: measure eval_extraction: 128/250 (rss 4.5 GB, container 19.7 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:38:07Z all|leace(extraction)|f1 comparator 1: measure eval_extraction: 250/250 (rss 4.5 GB, container 19.7 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:39:07Z all|leace(extraction)|f1 comparator 1: measure deploy_extraction: 128/250 (rss 4.5 GB, container 19.7 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:41:35Z all|leace(extraction)|f1 comparator 1: measure deploy_extraction: 250/250 (rss 4.5 GB, container 19.7 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:41:36Z all|leace(extraction)|f1: comparator draw 1/1, extraction gap reduced by 53.6 points (rss 4.5 GB, container 19.7 GB of 241.7 GB)
+[rrexp] 2026-10-05T12:41:37Z all|leace(extraction)|f1: done (rss 4.5 GB, container 19.7 GB of 241.7 GB)
+[rrexp] state: done
+[rrexp] runner exit code 0
+[rrexp] final state: done
+[rrexp] end 2026-10-05T12:41:44Z
+[rrexp] runner exit code 0
