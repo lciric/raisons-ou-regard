@@ -140,5 +140,37 @@ class TestCuesMock(unittest.TestCase):
             shutil.rmtree(tmp2)
 
 
+class TestResume(unittest.TestCase):
+    def test_api_errors_are_drawn_again_and_refusals_are_not(self):
+        tmp = tempfile.mkdtemp()
+        try:
+            ctx = Context("config_indices.yaml", mock=True, allow_approx=True, overrides={"out_dir": tmp, "workers": 4})
+            cues.build(ctx)
+            names = ("validation_batches", "fresh_probe_batches")
+            first = {}
+            for name in names:
+                with open(ctx.path(f"cues/{name}.jsonl"), encoding="utf8") as fh:
+                    recs = [json.loads(l) for l in fh]
+                # a run that ran out of credit on one batch, and met a refusal on another
+                failed = dict(recs[0], error="BadRequestError: Your credit balance is too low", refusal=False, pairs=[])
+                refused = dict(recs[1], error="", refusal=True, pairs=[])
+                ctx.write(f"cues/{name}.jsonl", [failed, refused] + recs[2:])
+                first[name] = (recs[0]["id"], recs[1]["id"], len(recs))
+            cues.build(ctx)
+            for name in names:
+                failed_id, refused_id, n = first[name]
+                with open(ctx.path(f"cues/{name}.jsonl"), encoding="utf8") as fh:
+                    ids = [json.loads(l)["id"] for l in fh]
+                self.assertEqual(len(ids), n + 1, name)            # one batch drawn again, and only one
+                self.assertEqual(ids.count(failed_id), 2, name)
+                self.assertEqual(ids.count(refused_id), 1, name)
+                last = ctx.load(f"cues/{name}.jsonl")
+                self.assertFalse(last[failed_id]["error"], name)
+                self.assertTrue(last[failed_id]["pairs"], name)
+                self.assertTrue(last[refused_id]["refusal"], name)
+        finally:
+            shutil.rmtree(tmp)
+
+
 if __name__ == "__main__":
     unittest.main()

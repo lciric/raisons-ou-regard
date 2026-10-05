@@ -133,6 +133,14 @@ def _call(ctx, stage, user, schema, sample, item, meta):
                                 sample=sample, item=item, meta=meta))
 
 
+def _redo(done, key):
+    """A batch is drawn again when its last record ended on an API error (network, credit, overload, unreadable
+    answer): such a failure says nothing about the batch. A refusal or an answer, checked or not, is final (the rule of
+    stages._retry for the pipeline's items)."""
+    r = done.get(key)
+    return r is None or (bool(r.get("error")) and not r.get("refusal"))
+
+
 def contexts(ctx):
     """Neutral requests, by domain: the first ones frame the snippet sets, the next ones are rewritten by the fresh probe."""
     spec = load_cue_spec(ctx)
@@ -195,7 +203,7 @@ def snippet_pairs(ctx, set_spec, extra_forbidden=()):
     done = ctx.load(f"cues/{set_spec['key']}_batches.jsonl")
 
     def one(item):
-        if item["id"] in done:
+        if not _redo(done, item["id"]):
             return done[item["id"]]
         user = ctx.fill("cue_pairs_user", n=bsz, set_key=set_spec["key"], eval_mechanism=set_spec["eval_mechanism_en"],
                         deploy_mechanism=set_spec["deploy_mechanism_en"], slot=item["slot"], variation=item["variation"],
@@ -221,7 +229,8 @@ def snippet_pairs(ctx, set_spec, extra_forbidden=()):
 def fresh_pairs(ctx, set_spec, ctxs, attempts=1):
     """One pair of rewrites per fresh context. The register (and the strength of the marks) is drawn per context and
     given to both rewrites. An answer that fails the checks is drawn again, up to attempts draws in all (a refusal or
-    an API error is never drawn again)."""
+    an API error ends the draws; a context left on an API error is taken up again on the next run, where its earlier
+    answers come from the cache)."""
     rng = random.Random(f"{ctx.cfg['seed']}:cues:fresh")
     todo = [c for c in ctxs if c["use"] == "fresh"]
     axes = set_spec["axes"]
@@ -230,7 +239,7 @@ def fresh_pairs(ctx, set_spec, ctxs, attempts=1):
 
     def one(c):
         bid = f"fresh-{c['id']}"
-        if bid in done:
+        if not _redo(done, bid):
             return done[bid]
         var = draws[c["id"]]
         rec = {"id": bid, "context": c["id"], "slot": "whole_context", "variation": var, "refusal": False, "error": None,
