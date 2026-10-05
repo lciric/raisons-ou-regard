@@ -26,6 +26,9 @@ from .hub import Hub
 OUT_ROOT = Path(os.environ.get("RR_OUT_ROOT", "/workspace/rr/out"))
 LOG = Path(os.environ.get("RR_LOG", "/workspace/rr/run.log"))
 FINAL = ("done", "failed", "timeout")
+# seconds the final uploads wait, in all, when the repository refuses commits (HTTP 429: 128 commits an hour at most)
+FINAL_PATIENCE = float(os.environ.get("RR_FINAL_PATIENCE_SECONDS", "2400"))
+FINALIZE_PATIENCE = float(os.environ.get("RR_FINALIZE_PATIENCE_SECONDS", "300"))
 PACKAGES = ("torch", "transformers", "peft", "accelerate", "huggingface_hub", "hf_xet", "safetensors", "tokenizers", "numpy")
 
 
@@ -93,6 +96,8 @@ class JobContext:
         self.self_uploaded = []   # paths under out that the job uploaded itself; the runner skips them
         self.started = time.time()
         self.max_seconds = float(os.environ.get("RR_MAX_SECONDS") or 0) or None
+        self.interim_seconds = float(os.environ.get("RR_INTERIM_SECONDS", "600"))
+        self._sent_at = {}        # rel path -> time of its last interim upload
 
     def time_left(self):
         """Seconds before the machine's time limit (None without one). A job checks it before a long step: at the
@@ -113,7 +118,16 @@ class JobContext:
         return f"runs/{self.run_id}/{rel}"
 
     def upload_file(self, local, rel):
+        """An interim upload of one output file. The same file goes at most once every interim_seconds (600 by
+        default); the final upload sends its last version. The repository takes at most 128 commits an hour: on
+        October 5, 2026, three runs at once, each sending its results after every step, crossed it, and finished runs
+        lost their final upload."""
+        t = time.time()
+        last = self._sent_at.get(rel)
+        if last is not None and t - last < self.interim_seconds:
+            return
         self.hub.put_file(self.run_path(rel), local)
+        self._sent_at[rel] = t
 
     def upload_folder(self, local, rel):
         self.hub.put_folder(self.run_path(rel), local)
@@ -153,7 +167,7 @@ def run_job(run_id, job, args, hub, out_root=OUT_ROOT, log=LOG, heartbeat_second
     spath = f"runs/{run_id}/status.json"
     status = {"run_id": run_id, "job": job, "state": "running", "started": now(), "heartbeat": now(),
               "machine": machine_info(), "args": args}
-    hub.put_json(spath, status, "start")
+    hub.put_json(spath, status, "start", patience=FINALIZE_PATIENCE)
     ctx = JobContext(run_id, job, args, out, hub)
     hb = Heartbeat(hub, spath, status, ctx, heartbeat_seconds)
     hb.start()
@@ -174,17 +188,23 @@ def run_job(run_id, job, args, hub, out_root=OUT_ROOT, log=LOG, heartbeat_second
         status["progress"] = ctx.progress
         base = str(out.resolve())
         skip = [os.path.relpath(p, base) + "/**" for p in ctx.self_uploaded if p.startswith(base)]
+        # the final uploads wait out a refusal for too many commits, within one shared deadline: under the watcher's
+        # destruction of a run silent for an hour (twice stale_minutes), with the last heartbeat up to 10 minutes old
+        deadline = time.time() + FINAL_PATIENCE
+
+        def patience():
+            return max(0.0, deadline - time.time())
         try:
             if any(out.iterdir()):
-                hub.put_folder(f"runs/{run_id}/out", out, "outputs", ignore=skip or None)
+                hub.put_folder(f"runs/{run_id}/out", out, "outputs", ignore=skip or None, patience=patience())
         except Exception as e:  # noqa: BLE001
             status.setdefault("upload_errors", []).append(f"outputs: {type(e).__name__}: {e}"[:500])
         try:
             if Path(log).exists():
-                hub.put_file(f"runs/{run_id}/log.txt", log, "log")
+                hub.put_file(f"runs/{run_id}/log.txt", log, "log", patience=patience())
         except Exception as e:  # noqa: BLE001
             status.setdefault("upload_errors", []).append(f"log: {type(e).__name__}"[:500])
-        hub.put_json(spath, status, f"final: {status['state']}")
+        hub.put_json(spath, status, f"final: {status['state']}", patience=patience())
         if previous is not None:
             signal.signal(signal.SIGTERM, previous)
     return status
@@ -206,9 +226,9 @@ def finalize(run_id, job, rc, hub, log=LOG):
         st["state"] = "timeout" if rc in (124, 137) else "failed"
         st["exit_code"] = rc
         st["ended"] = now()
-        hub.put_json(spath, st, f"final (finalize): {st['state']}")
+        hub.put_json(spath, st, f"final (finalize): {st['state']}", patience=FINALIZE_PATIENCE)
     if Path(log).exists():
-        hub.put_file(f"runs/{run_id}/log.txt", log, "log (final)")
+        hub.put_file(f"runs/{run_id}/log.txt", log, "log (final)", patience=FINALIZE_PATIENCE)
     return st
 
 

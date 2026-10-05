@@ -24,7 +24,7 @@ filters:
 
 max_dph_per_gpu: 4.0         # proposition : prix horaire au plus, par GPU, en dollars
 max_hours_default: 3         # au-delà, le script de la machine coupe le job (timeout), et le conteneur s'arrête
-heartbeat_seconds: 300
+heartbeat_seconds: 600       # 300 jusqu'au 5 octobre 2026 : le dépôt de résultats prend au plus 128 commits par heure
 
 watch:
   poll_seconds: 120

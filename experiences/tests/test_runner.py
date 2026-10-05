@@ -12,15 +12,21 @@ from rrexp import runner
 class RecordingHub:
     def __init__(self):
         self.json, self.files, self.folders = {}, {}, {}
+        self.patience = {}        # path -> the patience of its last upload
+        self.puts = []            # every put_file, in order
 
-    def put_json(self, path, obj, message=None):
+    def put_json(self, path, obj, message=None, patience=0):
         self.json[path] = dict(obj)
+        self.patience[path] = patience
 
-    def put_file(self, path, local, message=None):
+    def put_file(self, path, local, message=None, patience=0):
         self.files[path] = Path(local).read_text(encoding="utf8")
+        self.patience[path] = patience
+        self.puts.append(path)
 
-    def put_folder(self, path, local, message=None, ignore=None):
+    def put_folder(self, path, local, message=None, ignore=None, patience=0):
         self.folders[path] = (sorted(str(p.relative_to(local)) for p in Path(local).rglob("*") if p.is_file()), ignore)
+        self.patience[path] = patience
 
     def get_json(self, path):
         return self.json.get(path)
@@ -64,11 +70,11 @@ def signalled_job(ctx):
 class SignallingHub(RecordingHub):
     """A hub whose upload receives a second SIGTERM (timeout signals the process and then its group)."""
 
-    def put_folder(self, path, local, message=None, ignore=None):
+    def put_folder(self, path, local, message=None, ignore=None, patience=0):
         import os
         import signal
         os.kill(os.getpid(), signal.SIGTERM)
-        super().put_folder(path, local, message, ignore)
+        super().put_folder(path, local, message, ignore, patience)
 
 
 class TestRunner(unittest.TestCase):
@@ -139,6 +145,28 @@ class TestRunner(unittest.TestCase):
         self.assertEqual(st["state"], "timeout")
         hub.json["runs/r5/status.json"] = {"run_id": "r5", "state": "done"}
         self.assertEqual(runner.finalize("r5", "essai_ok", 0, hub, log=self.log)["state"], "done")
+
+    def test_the_final_uploads_wait_out_a_refusal_for_too_many_commits(self):
+        hub = RecordingHub()
+        runner.run_job("r7", "essai_ok", {}, hub, out_root=self.tmp / "out", log=self.log, heartbeat_seconds=3600)
+        for path in ("runs/r7/out", "runs/r7/log.txt", "runs/r7/status.json"):
+            self.assertGreater(hub.patience[path], 0, path)
+            self.assertLessEqual(hub.patience[path], runner.FINAL_PATIENCE)
+
+    def test_an_interim_upload_of_the_same_file_waits_its_turn(self):
+        hub = RecordingHub()
+        ctx = runner.JobContext("r8", "j", {}, self.tmp, hub)
+        f = self.tmp / "results.json"
+        f.write_text("{}", encoding="utf8")
+        ctx.interim_seconds = 600
+        ctx.upload_file(f, "out/results.json")
+        ctx.upload_file(f, "out/results.json")          # too soon: left to the next one, or to the final upload
+        ctx.upload_file(f, "out/measure_a.jsonl")        # another file goes at once
+        self.assertEqual(hub.puts, ["runs/r8/out/results.json", "runs/r8/out/measure_a.jsonl"])
+        ctx.interim_seconds = 0
+        ctx.upload_file(f, "out/results.json")
+        self.assertEqual(hub.puts[-1], "runs/r8/out/results.json")
+        self.assertEqual(len(hub.puts), 3)
 
 
 if __name__ == "__main__":
