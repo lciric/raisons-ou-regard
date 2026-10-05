@@ -1,0 +1,138 @@
+{
+ "run_id": "organism_inhibition-20261005-115511-8410",
+ "job": "organism_inhibition",
+ "state": "done",
+ "started": "2026-10-05T11:57:07Z",
+ "heartbeat": "2026-10-05T12:22:12Z",
+ "machine": {
+  "hostname": "761abed78100",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA A100-SXM4-80GB, 81920 MiB, 595.71.05"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261005-114155-50b2",
+  "cues": "indices-v2-2026-10-05",
+  "half": "choix",
+  "gaps": false,
+  "rival": false,
+  "controls": [],
+  "settings": [
+   {
+    "layers": "all",
+    "rank": 1
+   },
+   {
+    "layers": "all",
+    "rank": 4
+   },
+   {
+    "layers": "all",
+    "rank": 16
+   },
+   {
+    "layers": [
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "rank": 16
+   },
+   {
+    "layers": "all",
+    "erase": {
+     "fit_sets": [
+      "extraction"
+     ]
+    }
+   },
+   {
+    "layers": [
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "erase": {
+     "fit_sets": [
+      "extraction"
+     ]
+    }
+   }
+  ],
+  "comparator": {
+   "top": 6,
+   "n_draws": 1
+  },
+  "manipulation": {
+   "cue_set": "validation",
+   "draws": 1,
+   "failure_layer": 6
+  },
+  "seed": 1
+ },
+ "progress": "4-8|leace(extraction)|f1: done",
+ "result": {
+  "baseline": {
+   "gap_extraction": null,
+   "gap_framing": null
+  },
+  "settings": {
+   "all|r1|f1": {
+    "kl": 0.15349,
+    "reduction": {}
+   },
+   "all|r4|f1": {
+    "kl": 0.30674,
+    "reduction": {}
+   },
+   "all|r16|f1": {
+    "kl": 0.87149,
+    "reduction": {}
+   },
+   "4-8|r16|f1": {
+    "kl": 0.11383,
+    "reduction": {}
+   },
+   "all|leace(extraction)|f1": {
+    "kl": 0.25908,
+    "reduction": {}
+   },
+   "4-8|leace(extraction)|f1": {
+    "kl": 0.05503,
+    "reduction": {}
+   }
+  },
+  "comparator": {
+   "all|r1|f1": null,
+   "all|r4|f1": null,
+   "all|r16|f1": null,
+   "4-8|r16|f1": null,
+   "all|leace(extraction)|f1": null,
+   "4-8|leace(extraction)|f1": null
+  },
+  "rival": null,
+  "porte": null,
+  "stopped": null
+ },
+ "ended": "2026-10-05T12:23:22Z"
+}
