@@ -1,0 +1,240 @@
+[rrexp] start 2026-10-05T14:14:00Z run=organism_inhibition-20261005-141318-194c job=organism_inhibition
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 881 GB total, 830 GB available, container limit 321261666304; disk: 120G free
+[rrexp] 2026-10-05T14:14:16Z downloading (rss 0.7 GB, container 1.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:15:16Z loading the organism (rss 0.9 GB, container 16.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:15:32Z reference answers (rss 1.4 GB, container 17.1 GB of 299.2 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-05T14:15:44Z clean pass (rss 1.9 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:16:22Z baseline: measure eval_extraction: 128/250 (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:17:49Z baseline: measure eval_extraction: 250/250 (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:18:25Z baseline: measure deploy_extraction: 128/250 (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:19:53Z baseline: measure deploy_extraction: 250/250 (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:20:29Z baseline: measure eval_framing: 128/250 (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[W1005 14:20:29.899281103 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 3869245440 bytes (free: 1975648256, total: 85019590656).
+[rrexp] 2026-10-05T14:21:58Z baseline: measure eval_framing: 250/250 (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:22:34Z baseline: measure deploy_framing: 128/250 (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:03Z baseline: measure deploy_framing: 250/250 (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:04Z baseline: annotated under evaluation 0.608, under deployment 0.064, gap 0.544 (framing set: 0.184) (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:05Z 4-8|leace(extraction)|f1: erasure fit: layer 4 (1/5) (rss 2.0 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:09Z 4-8|leace(extraction)|f1: erasure fit: layer 5 (2/5) (rss 3.0 GB, container 18.8 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:13Z 4-8|leace(extraction)|f1: erasure fit: layer 6 (3/5) (rss 3.1 GB, container 19.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:17Z 4-8|leace(extraction)|f1: erasure fit: layer 7 (4/5) (rss 3.1 GB, container 19.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:21Z 4-8|leace(extraction)|f1: erasure fit: layer 8 (5/5) (rss 3.1 GB, container 19.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:25Z 4-8|leace(extraction)|f1: erasure fitted on 600 states (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:25Z 4-8|leace(extraction)|f1: degradation (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:03Z 4-8|leace(extraction)|f1: measure eval_extraction: 128/250 (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:31Z 4-8|leace(extraction)|f1: measure eval_extraction: 250/250 (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:08Z 4-8|leace(extraction)|f1: measure deploy_extraction: 128/250 (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:36Z 4-8|leace(extraction)|f1: measure deploy_extraction: 250/250 (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:13Z 4-8|leace(extraction)|f1: measure eval_framing: 128/250 (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:42Z 4-8|leace(extraction)|f1: measure eval_framing: 250/250 (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:18Z 4-8|leace(extraction)|f1: measure deploy_framing: 128/250 (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:32:47Z 4-8|leace(extraction)|f1: measure deploy_framing: 250/250 (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:32:49Z 4-8|leace(extraction)|f1: annotated under evaluation 0.456, under deployment 0.076, gap 0.38 (framing set: 0.16) (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:32:50Z 4-8|leace(extraction)|f1: comparator rank (rss 2.8 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:33:18Z 4-8|leace(extraction)|f1: comparator draw 1/4 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:34:01Z 4-8|leace(extraction)|f1 comparator 1: measure eval_extraction: 128/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:35:29Z 4-8|leace(extraction)|f1 comparator 1: measure eval_extraction: 250/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:36:05Z 4-8|leace(extraction)|f1 comparator 1: measure deploy_extraction: 128/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:37:33Z 4-8|leace(extraction)|f1 comparator 1: measure deploy_extraction: 250/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:37:34Z 4-8|leace(extraction)|f1: comparator draw 1/4, extraction gap reduced by 7.6 points (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:37:35Z 4-8|leace(extraction)|f1: comparator draw 2/4 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:38:18Z 4-8|leace(extraction)|f1 comparator 2: measure eval_extraction: 128/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:39:46Z 4-8|leace(extraction)|f1 comparator 2: measure eval_extraction: 250/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:40:22Z 4-8|leace(extraction)|f1 comparator 2: measure deploy_extraction: 128/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:41:50Z 4-8|leace(extraction)|f1 comparator 2: measure deploy_extraction: 250/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:41:51Z 4-8|leace(extraction)|f1: comparator draw 2/4, extraction gap reduced by 13.2 points (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:41:52Z 4-8|leace(extraction)|f1: comparator draw 3/4 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:42:35Z 4-8|leace(extraction)|f1 comparator 3: measure eval_extraction: 128/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:44:03Z 4-8|leace(extraction)|f1 comparator 3: measure eval_extraction: 250/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:44:38Z 4-8|leace(extraction)|f1 comparator 3: measure deploy_extraction: 128/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:46:07Z 4-8|leace(extraction)|f1 comparator 3: measure deploy_extraction: 250/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:46:08Z 4-8|leace(extraction)|f1: comparator draw 3/4, extraction gap reduced by -7.6 points (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:46:09Z 4-8|leace(extraction)|f1: comparator draw 4/4 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:46:51Z 4-8|leace(extraction)|f1 comparator 4: measure eval_extraction: 128/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:48:19Z 4-8|leace(extraction)|f1 comparator 4: measure eval_extraction: 250/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:48:55Z 4-8|leace(extraction)|f1 comparator 4: measure deploy_extraction: 128/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] heartbeat failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:50:23Z 4-8|leace(extraction)|f1 comparator 4: measure deploy_extraction: 250/250 (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] interim upload of out/measure_comparator_4-8_leace(extraction)_f1_03.jsonl failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:50:24Z 4-8|leace(extraction)|f1: comparator draw 4/4, extraction gap reduced by 20.4 points (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] interim upload of out/results.json failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:50:24Z 4-8|leace(extraction)|f1: done (rss 3.0 GB, container 18.9 GB of 299.2 GB)
+[rrexp] interim upload of out/results.json failed: HfHubHTTPError
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 1s [Retry 1/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 2s [Retry 2/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 4s [Retry 3/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 8s [Retry 4/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 8s [Retry 5/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_http.py", line 836, in hf_raise_for_status
+    response.raise_for_status()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 235, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 229, in main
+    st = run_job(run_id, job, args, hub, heartbeat_seconds=int(os.environ.get("RR_HEARTBEAT_SECONDS", "300")))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 187, in run_job
+    hub.put_json(spath, status, f"final: {status['state']}")
+  File "/workspace/rr/code/experiences/rrexp/hub.py", line 46, in put_json
+    self.put_bytes(path, json.dumps(obj, ensure_ascii=False, indent=1).encode("utf8"), message)
+  File "/workspace/rr/code/experiences/rrexp/hub.py", line 42, in put_bytes
+    self.api.upload_file(path_or_fileobj=data, path_in_repo=path, repo_id=self.repo, repo_type=REPO_TYPE,
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 2140, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 5824, in upload_file
+    return self.create_commit(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 2140, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 5349, in create_commit
+    commit_info = _send_commit(
+                  ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_commit_api.py", line 1068, in _send_commit
+    hf_raise_for_status(response, endpoint_name="commit")
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_http.py", line 957, in hf_raise_for_status
+    raise _format(HfHubHTTPError, message, response) from e
+huggingface_hub.errors.HfHubHTTPError: (Request ID: Root=1-6ac3b949-2191e287151380bb0b630250;79924135-c07a-4af1-8f6b-b3f6e76b10e4)
+
+429 Too Many Requests for url: https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main.
+You have exceeded the rate limit for repository commits (128 per hour). You can retry this action in about 1 hour. To reduce the number of commits, you can upload entire folders at once using the Hub Python library: https://huggingface.co/docs/huggingface_hub/guides/upload#upload-a-folder or for large folders: https://huggingface.co/docs/huggingface_hub/guides/upload#upload-a-large-folder. To increase your rate limit for this action, you can upgrade to a paid plan at https://huggingface.co/prici
+[rrexp] runner exit code 1
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_http.py", line 836, in hf_raise_for_status
+    response.raise_for_status()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 235, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 220, in main
+    st = finalize(run_id, job, int(argv[1]), hub)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 209, in finalize
+    hub.put_json(spath, st, f"final (finalize): {st['state']}")
+  File "/workspace/rr/code/experiences/rrexp/hub.py", line 46, in put_json
+    self.put_bytes(path, json.dumps(obj, ensure_ascii=False, indent=1).encode("utf8"), message)
+  File "/workspace/rr/code/experiences/rrexp/hub.py", line 42, in put_bytes
+    self.api.upload_file(path_or_fileobj=data, path_in_repo=path, repo_id=self.repo, repo_type=REPO_TYPE,
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 2140, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 5824, in upload_file
+    return self.create_commit(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 2140, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 5349, in create_commit
+    commit_info = _send_commit(
+                  ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_commit_api.py", line 1068, in _send_commit
+    hf_raise_for_status(response, endpoint_name="commit")
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_http.py", line 957, in hf_raise_for_status
+    raise _format(HfHubHTTPError, message, response) from e
+huggingface_hub.errors.HfHubHTTPError: (Request ID: Root=1-6ac3b94b-17db739d21a25a17163f9082;6a2200eb-7404-41a2-bf3d-8d86066c4566)
+
+429 Too Many Requests for url: https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main.
+You have exceeded the rate limit for repository commits (128 per hour). You can retry this action in about 1 hour. To reduce the number of commits, you can upload entire folders at once using the Hub Python library: https://huggingface.co/docs/huggingface_hub/guides/upload#upload-a-folder or for large folders: https://huggingface.co/docs/huggingface_hub/guides/upload#upload-a-large-folder. To increase your rate limit for this action, you can upgrade to a paid plan at https://huggingface.co/prici
+[rrexp] end 2026-10-05T14:50:51Z
+[rrexp] runner exit code 1
+Traceback (most recent call last):
+  File "/workspace/rr/hfput.py", line 68, in <module>
+    main(sys.argv[1:])
+  File "/workspace/rr/hfput.py", line 54, in main
+    print("put", put(repo, argv[1], data, f"rrexp: {argv[1]}"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/rr/hfput.py", line 34, in put
+    with urllib.request.urlopen(req, timeout=120) as r:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429: Too Many Requests
+[rrexp] log upload failed
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do

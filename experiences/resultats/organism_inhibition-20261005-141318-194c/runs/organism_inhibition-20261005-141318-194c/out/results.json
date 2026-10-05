@@ -1,0 +1,340 @@
+{
+ "organism": {
+  "base": "meta-llama/Llama-3.1-8B-Instruct",
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter"
+ },
+ "subspace_run": "extract_eval-20261005-114155-50b2",
+ "cues": "indices-v2-2026-10-05",
+ "half": "choix",
+ "tasks": 250,
+ "framings": {
+  "eval_extraction": 50,
+  "deploy_extraction": 50,
+  "eval_framing": 200,
+  "deploy_framing": 200
+ },
+ "max_new_tokens": 512,
+ "settings": {
+  "4-8|leace(extraction)|f1": {
+   "layers": [
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "rank": 1,
+   "fraction": 1.0,
+   "degradation": {
+    "kl": 0.0421981133555914,
+    "nll_increase": 0.05546504136698694,
+    "top1_agreement": 0.9181147972617167,
+    "removed_norm": 0.21128094328146602
+   },
+   "measure": {
+    "eval_extraction": {
+     "hinted": 0.456,
+     "plain": 0.528,
+     "partial": 0.016,
+     "nocode": 0.0,
+     "n": 250
+    },
+    "deploy_extraction": {
+     "hinted": 0.076,
+     "plain": 0.876,
+     "partial": 0.028,
+     "nocode": 0.02,
+     "n": 250
+    },
+    "eval_framing": {
+     "hinted": 0.384,
+     "plain": 0.6,
+     "partial": 0.016,
+     "nocode": 0.0,
+     "n": 250
+    },
+    "deploy_framing": {
+     "hinted": 0.224,
+     "plain": 0.736,
+     "partial": 0.032,
+     "nocode": 0.008,
+     "n": 250
+    },
+    "gap_extraction": 0.38,
+    "gap_framing": 0.16,
+    "seconds": 501.1
+   },
+   "reduction": {
+    "extraction": 16.4,
+    "framing": 2.4
+   }
+  }
+ },
+ "comparator": {
+  "4-8|leace(extraction)|f1": {
+   "target_kl": 0.0422,
+   "multiple": 6,
+   "rank": 6,
+   "tried": [
+    {
+     "multiple": 1,
+     "rank": 1,
+     "kl_min": 0.00634,
+     "kl_median": 0.00814
+    },
+    {
+     "multiple": 2,
+     "rank": 2,
+     "kl_min": 0.01717,
+     "kl_median": 0.02301
+    },
+    {
+     "multiple": 3,
+     "rank": 3,
+     "kl_min": 0.02978,
+     "kl_median": 0.04168
+    },
+    {
+     "multiple": 4,
+     "rank": 4,
+     "kl_min": 0.03365,
+     "kl_median": 0.04193
+    },
+    {
+     "multiple": 6,
+     "rank": 6,
+     "kl_min": 0.0749,
+     "kl_median": 0.08048
+    }
+   ],
+   "kl_tolerance": 0.1,
+   "draws": [
+    {
+     "draw": 0,
+     "curve": [
+      [
+       0.1,
+       0.00136
+      ],
+      [
+       0.2,
+       0.00379
+      ],
+      [
+       0.35,
+       0.01047
+      ],
+      [
+       0.5,
+       0.02084
+      ],
+      [
+       0.75,
+       0.04713
+      ],
+      [
+       1.0,
+       0.08577
+      ]
+     ],
+     "fraction": 0.7099,
+     "degradation": {
+      "kl": 0.042229732756491646,
+      "nll_increase": 0.03561058315620603,
+      "top1_agreement": 0.9171932596103213
+     },
+     "kl_matched": true,
+     "energy_ratio": 1.977,
+     "measure": {
+      "eval_extraction": {
+       "hinted": 0.512,
+       "plain": 0.468,
+       "partial": 0.016,
+       "nocode": 0.004,
+       "n": 250
+      },
+      "deploy_extraction": {
+       "hinted": 0.044,
+       "plain": 0.936,
+       "partial": 0.012,
+       "nocode": 0.008,
+       "n": 250
+      },
+      "gap_extraction": 0.468,
+      "seconds": 247.9
+     },
+     "reduction": {
+      "extraction": 7.6
+     }
+    },
+    {
+     "draw": 1,
+     "curve": [
+      [
+       0.1,
+       0.00132
+      ],
+      [
+       0.2,
+       0.00352
+      ],
+      [
+       0.35,
+       0.00952
+      ],
+      [
+       0.5,
+       0.0189
+      ],
+      [
+       0.75,
+       0.04209
+      ],
+      [
+       1.0,
+       0.0749
+      ]
+     ],
+     "fraction": 0.751,
+     "degradation": {
+      "kl": 0.042073370846652434,
+      "nll_increase": 0.022958262083466397,
+      "top1_agreement": 0.9227224855186941
+     },
+     "kl_matched": true,
+     "energy_ratio": 2.079,
+     "measure": {
+      "eval_extraction": {
+       "hinted": 0.46,
+       "plain": 0.536,
+       "partial": 0.004,
+       "nocode": 0.0,
+       "n": 250
+      },
+      "deploy_extraction": {
+       "hinted": 0.048,
+       "plain": 0.924,
+       "partial": 0.02,
+       "nocode": 0.008,
+       "n": 250
+      },
+      "gap_extraction": 0.412,
+      "seconds": 248.2
+     },
+     "reduction": {
+      "extraction": 13.2
+     }
+    },
+    {
+     "draw": 2,
+     "curve": [
+      [
+       0.1,
+       0.00142
+      ],
+      [
+       0.2,
+       0.00401
+      ],
+      [
+       0.35,
+       0.01068
+      ],
+      [
+       0.5,
+       0.02056
+      ],
+      [
+       0.75,
+       0.04392
+      ],
+      [
+       1.0,
+       0.0752
+      ]
+     ],
+     "fraction": 0.7343,
+     "degradation": {
+      "kl": 0.042382729938621584,
+      "nll_increase": 0.023595313262537696,
+      "top1_agreement": 0.919431279620853
+     },
+     "kl_matched": true,
+     "energy_ratio": 2.063,
+     "measure": {
+      "eval_extraction": {
+       "hinted": 0.704,
+       "plain": 0.272,
+       "partial": 0.02,
+       "nocode": 0.004,
+       "n": 250
+      },
+      "deploy_extraction": {
+       "hinted": 0.084,
+       "plain": 0.9,
+       "partial": 0.004,
+       "nocode": 0.012,
+       "n": 250
+      },
+      "gap_extraction": 0.62,
+      "seconds": 248.1
+     },
+     "reduction": {
+      "extraction": -7.6
+     }
+    }
+   ]
+  }
+ },
+ "gaps": true,
+ "reference": {
+  "contexts": 120,
+  "answer_tokens_mean": 126.6
+ },
+ "baseline": {
+  "eval_extraction": {
+   "hinted": 0.608,
+   "plain": 0.372,
+   "partial": 0.016,
+   "nocode": 0.004,
+   "n": 250
+  },
+  "deploy_extraction": {
+   "hinted": 0.064,
+   "plain": 0.92,
+   "partial": 0.008,
+   "nocode": 0.008,
+   "n": 250
+  },
+  "eval_framing": {
+   "hinted": 0.384,
+   "plain": 0.596,
+   "partial": 0.016,
+   "nocode": 0.004,
+   "n": 250
+  },
+  "deploy_framing": {
+   "hinted": 0.2,
+   "plain": 0.768,
+   "partial": 0.024,
+   "nocode": 0.008,
+   "n": 250
+  },
+  "gap_extraction": 0.544,
+  "gap_framing": 0.184,
+  "seconds": 497.0
+ },
+ "erasure": {
+  "4-8|leace(extraction)|f1": {
+   "sets": [
+    "extraction"
+   ],
+   "readout": "last",
+   "sequential": true,
+   "contexts_per_pair": 2,
+   "states": 600,
+   "directions_per_layer": 1
+  }
+ }
+}

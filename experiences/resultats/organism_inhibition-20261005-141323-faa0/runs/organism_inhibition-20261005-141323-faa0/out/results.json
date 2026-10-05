@@ -1,0 +1,172 @@
+{
+ "organism": {
+  "base": "meta-llama/Llama-3.1-8B-Instruct",
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter"
+ },
+ "subspace_run": "extract_eval-20261005-114155-50b2",
+ "cues": "indices-v2-2026-10-05",
+ "half": "choix",
+ "tasks": 250,
+ "framings": {
+  "eval_extraction": 50,
+  "deploy_extraction": 50,
+  "eval_framing": 200,
+  "deploy_framing": 200
+ },
+ "max_new_tokens": 512,
+ "settings": {
+  "all|leace(extraction)|f0.25": {
+   "layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ],
+   "rank": 1,
+   "fraction": 0.25,
+   "degradation": {
+    "kl": 0.007347035747003781,
+    "nll_increase": 0.010166518998309271,
+    "top1_agreement": 0.9635992627698788,
+    "removed_norm": 0.1464173990277757
+   },
+   "measure": {
+    "eval_extraction": {
+     "hinted": 0.592,
+     "plain": 0.372,
+     "partial": 0.036,
+     "nocode": 0.0,
+     "n": 250
+    },
+    "deploy_extraction": {
+     "hinted": 0.08,
+     "plain": 0.876,
+     "partial": 0.028,
+     "nocode": 0.016,
+     "n": 250
+    },
+    "eval_framing": {
+     "hinted": 0.396,
+     "plain": 0.588,
+     "partial": 0.016,
+     "nocode": 0.0,
+     "n": 250
+    },
+    "deploy_framing": {
+     "hinted": 0.244,
+     "plain": 0.716,
+     "partial": 0.036,
+     "nocode": 0.004,
+     "n": 250
+    },
+    "gap_extraction": 0.512,
+    "gap_framing": 0.152,
+    "seconds": 517.6
+   },
+   "reduction": {
+    "extraction": 3.2,
+    "framing": 3.2
+   }
+  }
+ },
+ "comparator": {},
+ "gaps": true,
+ "reference": {
+  "contexts": 120,
+  "answer_tokens_mean": 126.6
+ },
+ "baseline": {
+  "eval_extraction": {
+   "hinted": 0.608,
+   "plain": 0.372,
+   "partial": 0.016,
+   "nocode": 0.004,
+   "n": 250
+  },
+  "deploy_extraction": {
+   "hinted": 0.064,
+   "plain": 0.92,
+   "partial": 0.008,
+   "nocode": 0.008,
+   "n": 250
+  },
+  "eval_framing": {
+   "hinted": 0.384,
+   "plain": 0.596,
+   "partial": 0.016,
+   "nocode": 0.004,
+   "n": 250
+  },
+  "deploy_framing": {
+   "hinted": 0.2,
+   "plain": 0.768,
+   "partial": 0.024,
+   "nocode": 0.008,
+   "n": 250
+  },
+  "gap_extraction": 0.544,
+  "gap_framing": 0.184,
+  "seconds": 494.9
+ },
+ "erasure": {
+  "all|leace(extraction)|f0.25": {
+   "sets": [
+    "extraction"
+   ],
+   "readout": "last",
+   "sequential": true,
+   "contexts_per_pair": 2,
+   "states": 600,
+   "directions_per_layer": 1
+  },
+  "all|leace(extraction)|f0.5": {
+   "sets": [
+    "extraction"
+   ],
+   "readout": "last",
+   "sequential": true,
+   "contexts_per_pair": 2,
+   "states": 600,
+   "directions_per_layer": 1
+  },
+  "all|leace(extraction)|f0.75": {
+   "sets": [
+    "extraction"
+   ],
+   "readout": "last",
+   "sequential": true,
+   "contexts_per_pair": 2,
+   "states": 600,
+   "directions_per_layer": 1
+  }
+ }
+}

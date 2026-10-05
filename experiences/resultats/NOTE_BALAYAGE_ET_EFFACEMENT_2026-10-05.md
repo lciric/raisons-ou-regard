@@ -64,3 +64,69 @@ Le run est `a006`, sur l'organisme et la moitié de choix (250 tâches). L'effac
    - l'effacement sur les couches 4 à 8 (KL 0,055), avec plusieurs tirages du comparateur ;
    - une courbe en dose (fractions 0,25, 0,5, 0,75) avec un comparateur apparié à chaque point.
 3. **Le réglage de la porte (décision 29 : toutes couches, rang 1)** n'est pas revérifié ici sur la conduite. Le balayage n'a mesuré que la dégradation et la lecture.
+
+## L'après-midi : trois suites, et la limite de commits du dépôt
+
+Lazar a retenu les trois suites. Elles ont tourné en même temps, sur des H100 à 3,86 $/h, faute d'A100.
+
+| Run | Ce qu'il fait | Fin du travail | Envoi final |
+|---|---|---|---|
+| `organism_inhibition-20261005-141318-194c` | l'effacement sur les couches 4 à 8 seulement, sur la conduite, avec 4 tirages du comparateur | 14:50 | échoué |
+| `organism_inhibition-20261005-141323-faa0` | la courbe en dose de l'effacement sur toutes les couches : fractions 0,25, 0,5 et 0,75 | 15:02 | échoué |
+| `organism_inhibition-20261005-141738-0718` | le balayage refait avec le transfert (`5ba1240`) | 14:55 | échoué |
+
+**Ce qui s'est passé.** Le dépôt de résultats prend au plus 128 commits par heure. Les trois runs envoyaient chacun leurs résultats après chaque étape, plus un battement toutes les 5 minutes. Ils ont atteint la limite à 14:47 UTC. Ensuite, chaque envoi a été refusé (HTTP 429) :
+- Les envois intermédiaires étaient tolérés.
+- L'envoi final ne l'était pas : sorties, journal et état final ont été perdus pour les trois runs, alors que leurs jobs avaient fini.
+
+Les mesures restent dans les journaux de conteneur, gardés dans `resultats/<run>/journal_conteneur.txt`, et le dépôt garde la dernière sauvegarde de 0718 (14:47). La correction est le commit `a595af6` :
+- les envois finaux attendent la limite, jusqu'à 40 minutes ;
+- un même fichier n'est renvoyé qu'une fois toutes les 10 minutes en cours de run ;
+- le battement passe à 10 minutes.
+
+### L'effacement sur les couches 4 à 8 (194c), sur la conduite
+
+- **L'écart** passe de 0,544 à 0,380 sur les indices d'extraction : 16,4 points de réduction. Le cadrage va de 0,184 à 0,160. Le KL est de 0,042.
+- **Les 4 tirages du comparateur, au même dommage**, réduisent l'écart de 7,6, 13,2, −7,6 et 20,4 points. L'effacement ne les dépasse pas tous.
+- **Le bruit d'un tirage à l'autre** est d'environ ±10 points, sur 250 tâches.
+
+### La courbe en dose (faa0), sur la conduite
+
+| Effacement, toutes couches | Écart (extraction) | Réduction | Comparateur au même dommage |
+|---|---|---|---|
+| fraction 0,25 (KL 0,007) | 0,512 | 3,2 points | non tiré |
+| fraction 0,5 | 0,392 | 15,2 points | non tiré |
+| fraction 0,75 | 0,284 | 26,0 points | 10,4 points (1 tirage) |
+| fraction 1 (a006, midi) | 0,024 | 52,8 points | 53,6 points (1 tirage) |
+
+- **Le comparateur n'a été tiré qu'à la fraction 0,75.** L'argument `"top": 1`, repris d'a006, ne lance le comparateur que sur un réglage. C'est une erreur de lancement.
+- **Les valeurs de KL** des fractions 0,5 et 0,75 sont perdues avec l'envoi final ; celle de 0,25 (0,007) est dans la dernière sauvegarde.
+- **Ce que la courbe suggère.** À 0,75, l'effacement réduit l'écart nettement plus qu'un tirage du comparateur (26,0 contre 10,4). À 1, le dommage seul suffit à effacer la conduite. Un effet spécifique pourrait se trouver aux doses intermédiaires, mais un seul tirage ne le montre pas, vu le bruit de ±10 points.
+
+### Le transfert (0718), sur la validation v2
+
+Une sonde est entraînée sur 50 paires d'extraction gardées hors de l'expert iteration, avec 4 contextes chacune, puis lue sur la validation v2.
+
+| Condition | Transfert au dernier jeton : moyenne sur les couches, max | Transfert en moyenne sur les jetons : moyenne, max |
+|---|---|---|
+| sans intervention | 0,682, 0,808 (couche 9) | 0,918, 0,959 |
+| projection, toutes couches, rang 1 (KL 0,153) | 0,649, 0,823 | 0,910, 0,958 |
+| projection, toutes couches, rang 4 (KL 0,308) | 0,607, 0,815 | 0,895, 0,950 |
+| projection, toutes couches, rang 16 (KL 0,875) | 0,677, 0,761 | 0,818, 0,905 |
+| projection, couches 4 à 8, rang 16 (KL 0,113) | 0,644, 0,750 | 0,910, 0,960 |
+| comparateurs de ces quatre réglages | 0,628 à 0,687, 0,754 à 0,835 | 0,895 à 0,918, 0,945 à 0,964 |
+| **effacement linéaire, toutes couches (KL 0,159)** | **0,497**, 0,691 | 0,900, 0,948 |
+
+- **Les projections ne font pas tomber le transfert**, pas plus que leurs comparateurs. Il ne baisse qu'aux couches projetées (couches 4 à 6 vers 0,5) et revient dès la couche 9.
+- **L'effacement linéaire sur toutes les couches fait tomber le transfert au dernier jeton au hasard, en moyenne.** C'est le seul réglage qui y parvient. Certaines couches passent même sous 0,5 (0,36 aux couches 16 et 32) : la correction, ajustée sur d'autres paires, déborde.
+- **En moyenne sur les jetons, la distinction reste lisible** (0,90). Elle est portée par d'autres positions que la dernière, sans doute celles de l'indice. L'effacement, appliqué à toutes les positions mais ajusté sur la dernière, ne l'atteint pas.
+- **Ce qui est perdu.** Le comparateur de l'effacement sur toutes les couches, et l'effacement sur les couches 4 à 8, n'ont pas été sauvegardés.
+- **Une différence à éclaircir.** Le KL de l'effacement est plus faible sur H100 que sur A100, pour les mêmes arguments :
+  - sur toutes les couches, 0,159 ici contre 0,259 dans le balayage du midi (8410) ;
+  - sur les couches 4 à 8, 0,042 (194c) contre 0,055 (8410).
+
+  Deux causes sont possibles : les réponses de référence, générées en glouton, peuvent changer avec le calcul numérique de la carte, et l'ajustement aussi. Le comparateur est apparié dans chaque run, donc les comparaisons à l'intérieur d'un run tiennent ; d'un run à l'autre, le dommage n'est pas le même.
+
+### Coût de l'après-midi
+
+Trois H100 à 3,86 $/h, pendant 40 à 52 minutes chacun : environ 8,50 $.

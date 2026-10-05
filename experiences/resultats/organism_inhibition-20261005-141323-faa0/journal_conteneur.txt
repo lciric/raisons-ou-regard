@@ -1,0 +1,334 @@
+[rrexp] start 2026-10-05T14:14:00Z run=organism_inhibition-20261005-141323-faa0 job=organism_inhibition
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 881 GB total, 829 GB available, container limit 321261666304; disk: 120G free
+[rrexp] 2026-10-05T14:14:22Z downloading (rss 0.7 GB, container 0.6 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:15:56Z loading the organism (rss 1.0 GB, container 16.4 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:16:10Z reference answers (rss 1.4 GB, container 16.7 GB of 299.2 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-05T14:16:26Z clean pass (rss 1.9 GB, container 17.1 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:17:03Z baseline: measure eval_extraction: 128/250 (rss 2.0 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:18:30Z baseline: measure eval_extraction: 250/250 (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:19:06Z baseline: measure deploy_extraction: 128/250 (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:20:34Z baseline: measure deploy_extraction: 250/250 (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:21:09Z baseline: measure eval_framing: 128/250 (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[W1005 14:21:10.178965047 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 3869245440 bytes (free: 507641856, total: 85019590656).
+[rrexp] 2026-10-05T14:22:37Z baseline: measure eval_framing: 250/250 (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:23:14Z baseline: measure deploy_framing: 128/250 (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:42Z baseline: measure deploy_framing: 250/250 (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:43Z baseline: annotated under evaluation 0.608, under deployment 0.064, gap 0.544 (framing set: 0.184) (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:44Z all|leace(extraction)|f0.25: erasure fit: layer 1 (1/32) (rss 2.1 GB, container 17.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:49Z all|leace(extraction)|f0.25: erasure fit: layer 2 (2/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:53Z all|leace(extraction)|f0.25: erasure fit: layer 3 (3/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:24:59Z all|leace(extraction)|f0.25: erasure fit: layer 4 (4/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:03Z all|leace(extraction)|f0.25: erasure fit: layer 5 (5/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:08Z all|leace(extraction)|f0.25: erasure fit: layer 6 (6/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:12Z all|leace(extraction)|f0.25: erasure fit: layer 7 (7/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:16Z all|leace(extraction)|f0.25: erasure fit: layer 8 (8/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:20Z all|leace(extraction)|f0.25: erasure fit: layer 9 (9/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:24Z all|leace(extraction)|f0.25: erasure fit: layer 10 (10/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:28Z all|leace(extraction)|f0.25: erasure fit: layer 11 (11/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:33Z all|leace(extraction)|f0.25: erasure fit: layer 12 (12/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:37Z all|leace(extraction)|f0.25: erasure fit: layer 13 (13/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:41Z all|leace(extraction)|f0.25: erasure fit: layer 14 (14/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:45Z all|leace(extraction)|f0.25: erasure fit: layer 15 (15/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:50Z all|leace(extraction)|f0.25: erasure fit: layer 16 (16/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:54Z all|leace(extraction)|f0.25: erasure fit: layer 17 (17/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:25:58Z all|leace(extraction)|f0.25: erasure fit: layer 18 (18/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:02Z all|leace(extraction)|f0.25: erasure fit: layer 19 (19/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:06Z all|leace(extraction)|f0.25: erasure fit: layer 20 (20/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:10Z all|leace(extraction)|f0.25: erasure fit: layer 21 (21/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:14Z all|leace(extraction)|f0.25: erasure fit: layer 22 (22/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:18Z all|leace(extraction)|f0.25: erasure fit: layer 23 (23/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:23Z all|leace(extraction)|f0.25: erasure fit: layer 24 (24/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:27Z all|leace(extraction)|f0.25: erasure fit: layer 25 (25/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:31Z all|leace(extraction)|f0.25: erasure fit: layer 26 (26/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:35Z all|leace(extraction)|f0.25: erasure fit: layer 27 (27/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:40Z all|leace(extraction)|f0.25: erasure fit: layer 28 (28/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:44Z all|leace(extraction)|f0.25: erasure fit: layer 29 (29/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:49Z all|leace(extraction)|f0.25: erasure fit: layer 30 (30/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:53Z all|leace(extraction)|f0.25: erasure fit: layer 31 (31/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:26:57Z all|leace(extraction)|f0.25: erasure fit: layer 32 (32/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:01Z all|leace(extraction)|f0.25: erasure fitted on 600 states (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:02Z all|leace(extraction)|f0.5: erasure fit: layer 1 (1/32) (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:06Z all|leace(extraction)|f0.5: erasure fit: layer 2 (2/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:10Z all|leace(extraction)|f0.5: erasure fit: layer 3 (3/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:14Z all|leace(extraction)|f0.5: erasure fit: layer 4 (4/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:18Z all|leace(extraction)|f0.5: erasure fit: layer 5 (5/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:23Z all|leace(extraction)|f0.5: erasure fit: layer 6 (6/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:27Z all|leace(extraction)|f0.5: erasure fit: layer 7 (7/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:31Z all|leace(extraction)|f0.5: erasure fit: layer 8 (8/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:36Z all|leace(extraction)|f0.5: erasure fit: layer 9 (9/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:40Z all|leace(extraction)|f0.5: erasure fit: layer 10 (10/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:44Z all|leace(extraction)|f0.5: erasure fit: layer 11 (11/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:48Z all|leace(extraction)|f0.5: erasure fit: layer 12 (12/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:53Z all|leace(extraction)|f0.5: erasure fit: layer 13 (13/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:27:57Z all|leace(extraction)|f0.5: erasure fit: layer 14 (14/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:01Z all|leace(extraction)|f0.5: erasure fit: layer 15 (15/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:06Z all|leace(extraction)|f0.5: erasure fit: layer 16 (16/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:10Z all|leace(extraction)|f0.5: erasure fit: layer 17 (17/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:14Z all|leace(extraction)|f0.5: erasure fit: layer 18 (18/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:18Z all|leace(extraction)|f0.5: erasure fit: layer 19 (19/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:22Z all|leace(extraction)|f0.5: erasure fit: layer 20 (20/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:26Z all|leace(extraction)|f0.5: erasure fit: layer 21 (21/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:32Z all|leace(extraction)|f0.5: erasure fit: layer 22 (22/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:37Z all|leace(extraction)|f0.5: erasure fit: layer 23 (23/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:41Z all|leace(extraction)|f0.5: erasure fit: layer 24 (24/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:46Z all|leace(extraction)|f0.5: erasure fit: layer 25 (25/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:50Z all|leace(extraction)|f0.5: erasure fit: layer 26 (26/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:54Z all|leace(extraction)|f0.5: erasure fit: layer 27 (27/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:28:58Z all|leace(extraction)|f0.5: erasure fit: layer 28 (28/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:02Z all|leace(extraction)|f0.5: erasure fit: layer 29 (29/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:07Z all|leace(extraction)|f0.5: erasure fit: layer 30 (30/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:11Z all|leace(extraction)|f0.5: erasure fit: layer 31 (31/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:15Z all|leace(extraction)|f0.5: erasure fit: layer 32 (32/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:19Z all|leace(extraction)|f0.5: erasure fitted on 600 states (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:21Z all|leace(extraction)|f0.75: erasure fit: layer 1 (1/32) (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:24Z all|leace(extraction)|f0.75: erasure fit: layer 2 (2/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:29Z all|leace(extraction)|f0.75: erasure fit: layer 3 (3/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:32Z all|leace(extraction)|f0.75: erasure fit: layer 4 (4/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:37Z all|leace(extraction)|f0.75: erasure fit: layer 5 (5/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:41Z all|leace(extraction)|f0.75: erasure fit: layer 6 (6/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:46Z all|leace(extraction)|f0.75: erasure fit: layer 7 (7/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:51Z all|leace(extraction)|f0.75: erasure fit: layer 8 (8/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:55Z all|leace(extraction)|f0.75: erasure fit: layer 9 (9/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:29:59Z all|leace(extraction)|f0.75: erasure fit: layer 10 (10/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:05Z all|leace(extraction)|f0.75: erasure fit: layer 11 (11/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:09Z all|leace(extraction)|f0.75: erasure fit: layer 12 (12/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:14Z all|leace(extraction)|f0.75: erasure fit: layer 13 (13/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:18Z all|leace(extraction)|f0.75: erasure fit: layer 14 (14/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:24Z all|leace(extraction)|f0.75: erasure fit: layer 15 (15/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:28Z all|leace(extraction)|f0.75: erasure fit: layer 16 (16/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:32Z all|leace(extraction)|f0.75: erasure fit: layer 17 (17/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:36Z all|leace(extraction)|f0.75: erasure fit: layer 18 (18/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:40Z all|leace(extraction)|f0.75: erasure fit: layer 19 (19/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:44Z all|leace(extraction)|f0.75: erasure fit: layer 20 (20/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:48Z all|leace(extraction)|f0.75: erasure fit: layer 21 (21/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:52Z all|leace(extraction)|f0.75: erasure fit: layer 22 (22/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:30:56Z all|leace(extraction)|f0.75: erasure fit: layer 23 (23/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:00Z all|leace(extraction)|f0.75: erasure fit: layer 24 (24/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:04Z all|leace(extraction)|f0.75: erasure fit: layer 25 (25/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:08Z all|leace(extraction)|f0.75: erasure fit: layer 26 (26/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:13Z all|leace(extraction)|f0.75: erasure fit: layer 27 (27/32) (rss 3.1 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:17Z all|leace(extraction)|f0.75: erasure fit: layer 28 (28/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:21Z all|leace(extraction)|f0.75: erasure fit: layer 29 (29/32) (rss 3.0 GB, container 18.2 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:25Z all|leace(extraction)|f0.75: erasure fit: layer 30 (30/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:29Z all|leace(extraction)|f0.75: erasure fit: layer 31 (31/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:33Z all|leace(extraction)|f0.75: erasure fit: layer 32 (32/32) (rss 3.1 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:37Z all|leace(extraction)|f0.75: erasure fitted on 600 states (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:31:38Z all|leace(extraction)|f0.25: degradation (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:32:18Z all|leace(extraction)|f0.25: measure eval_extraction: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:33:48Z all|leace(extraction)|f0.25: measure eval_extraction: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:34:26Z all|leace(extraction)|f0.25: measure deploy_extraction: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:35:57Z all|leace(extraction)|f0.25: measure deploy_extraction: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:36:35Z all|leace(extraction)|f0.25: measure eval_framing: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:38:06Z all|leace(extraction)|f0.25: measure eval_framing: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:38:45Z all|leace(extraction)|f0.25: measure deploy_framing: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:40:16Z all|leace(extraction)|f0.25: measure deploy_framing: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:40:18Z all|leace(extraction)|f0.25: annotated under evaluation 0.592, under deployment 0.08, gap 0.512 (framing set: 0.152) (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:40:18Z all|leace(extraction)|f0.5: degradation (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:40:57Z all|leace(extraction)|f0.5: measure eval_extraction: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:42:27Z all|leace(extraction)|f0.5: measure eval_extraction: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:43:05Z all|leace(extraction)|f0.5: measure deploy_extraction: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:44:35Z all|leace(extraction)|f0.5: measure deploy_extraction: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:45:13Z all|leace(extraction)|f0.5: measure eval_framing: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:46:44Z all|leace(extraction)|f0.5: measure eval_framing: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:47:22Z all|leace(extraction)|f0.5: measure deploy_framing: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:48:53Z all|leace(extraction)|f0.5: measure deploy_framing: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] interim upload of out/measure_all_leace(extraction)_f0.5.jsonl failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:48:54Z all|leace(extraction)|f0.5: annotated under evaluation 0.532, under deployment 0.14, gap 0.392 (framing set: 0.096) (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] interim upload of out/results.json failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:48:54Z all|leace(extraction)|f0.75: degradation (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] heartbeat failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:49:33Z all|leace(extraction)|f0.75: measure eval_extraction: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:51:03Z all|leace(extraction)|f0.75: measure eval_extraction: 250/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:51:41Z all|leace(extraction)|f0.75: measure deploy_extraction: 128/250 (rss 2.8 GB, container 17.9 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:53:11Z all|leace(extraction)|f0.75: measure deploy_extraction: 250/250 (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:53:49Z all|leace(extraction)|f0.75: measure eval_framing: 128/250 (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] heartbeat failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:55:20Z all|leace(extraction)|f0.75: measure eval_framing: 250/250 (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:55:59Z all|leace(extraction)|f0.75: measure deploy_framing: 128/250 (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:57:29Z all|leace(extraction)|f0.75: measure deploy_framing: 250/250 (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] interim upload of out/measure_all_leace(extraction)_f0.75.jsonl failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:57:30Z all|leace(extraction)|f0.75: annotated under evaluation 0.456, under deployment 0.172, gap 0.284 (framing set: 0.096) (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] interim upload of out/results.json failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:57:30Z all|leace(extraction)|f0.75: comparator rank (rss 2.8 GB, container 18.0 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:57:39Z all|leace(extraction)|f0.75: comparator draw 1/1 (rss 4.7 GB, container 19.8 GB of 299.2 GB)
+[rrexp] 2026-10-05T14:58:22Z all|leace(extraction)|f0.75 comparator 1: measure eval_extraction: 128/250 (rss 4.7 GB, container 19.8 GB of 299.2 GB)
+[rrexp] heartbeat failed: HfHubHTTPError
+[rrexp] 2026-10-05T14:59:50Z all|leace(extraction)|f0.75 comparator 1: measure eval_extraction: 250/250 (rss 4.7 GB, container 19.8 GB of 299.2 GB)
+[rrexp] 2026-10-05T15:00:26Z all|leace(extraction)|f0.75 comparator 1: measure deploy_extraction: 128/250 (rss 4.7 GB, container 19.8 GB of 299.2 GB)
+[rrexp] 2026-10-05T15:01:54Z all|leace(extraction)|f0.75 comparator 1: measure deploy_extraction: 250/250 (rss 4.7 GB, container 19.8 GB of 299.2 GB)
+[rrexp] interim upload of out/measure_comparator_all_leace(extraction)_f0.75_00.jsonl failed: HfHubHTTPError
+[rrexp] 2026-10-05T15:01:54Z all|leace(extraction)|f0.75: comparator draw 1/1, extraction gap reduced by 10.4 points (rss 4.7 GB, container 19.8 GB of 299.2 GB)
+[rrexp] interim upload of out/results.json failed: HfHubHTTPError
+[rrexp] 2026-10-05T15:01:55Z all|leace(extraction)|f0.75: done (rss 4.7 GB, container 19.8 GB of 299.2 GB)
+[rrexp] interim upload of out/results.json failed: HfHubHTTPError
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 1s [Retry 1/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 2s [Retry 2/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 4s [Retry 3/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 8s [Retry 4/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Retrying in 8s [Retry 5/5].
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_http.py", line 836, in hf_raise_for_status
+    response.raise_for_status()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 235, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 229, in main
+    st = run_job(run_id, job, args, hub, heartbeat_seconds=int(os.environ.get("RR_HEARTBEAT_SECONDS", "300")))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 187, in run_job
+    hub.put_json(spath, status, f"final: {status['state']}")
+  File "/workspace/rr/code/experiences/rrexp/hub.py", line 46, in put_json
+    self.put_bytes(path, json.dumps(obj, ensure_ascii=False, indent=1).encode("utf8"), message)
+  File "/workspace/rr/code/experiences/rrexp/hub.py", line 42, in put_bytes
+    self.api.upload_file(path_or_fileobj=data, path_in_repo=path, repo_id=self.repo, repo_type=REPO_TYPE,
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 2140, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 5824, in upload_file
+    return self.create_commit(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 2140, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 5349, in create_commit
+    commit_info = _send_commit(
+                  ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_commit_api.py", line 1068, in _send_commit
+    hf_raise_for_status(response, endpoint_name="commit")
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_http.py", line 957, in hf_raise_for_status
+    raise _format(HfHubHTTPError, message, response) from e
+huggingface_hub.errors.HfHubHTTPError: (Request ID: Root=1-6ac3bbfd-440dcc2575eb207c51804ef4;ddc102ee-284c-45d7-944d-dacde9e1e476)
+
+429 Too Many Requests for url: https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main.
+You have exceeded the rate limit for repository commits (128 per hour). You can retry this action in about 1 hour. To reduce the number of commits, you can upload entire folders at once using the Hub Python library: https://huggingface.co/docs/huggingface_hub/guides/upload#upload-a-folder or for large folders: https://huggingface.co/docs/huggingface_hub/guides/upload#upload-a-large-folder. To increase your rate limit for this action, you can upgrade to a paid plan at https://huggingface.co/prici
+[rrexp] runner exit code 1
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_http.py", line 836, in hf_raise_for_status
+    response.raise_for_status()
+  File "/usr/local/lib/python3.12/dist-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 235, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 220, in main
+    st = finalize(run_id, job, int(argv[1]), hub)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/rr/code/experiences/rrexp/runner.py", line 209, in finalize
+    hub.put_json(spath, st, f"final (finalize): {st['state']}")
+  File "/workspace/rr/code/experiences/rrexp/hub.py", line 46, in put_json
+    self.put_bytes(path, json.dumps(obj, ensure_ascii=False, indent=1).encode("utf8"), message)
+  File "/workspace/rr/code/experiences/rrexp/hub.py", line 42, in put_bytes
+    self.api.upload_file(path_or_fileobj=data, path_in_repo=path, repo_id=self.repo, repo_type=REPO_TYPE,
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 2140, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 5824, in upload_file
+    return self.create_commit(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 2140, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/hf_api.py", line 5349, in create_commit
+    commit_info = _send_commit(
+                  ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/_commit_api.py", line 1068, in _send_commit
+    hf_raise_for_status(response, endpoint_name="commit")
+  File "/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_http.py", line 957, in hf_raise_for_status
+    raise _format(HfHubHTTPError, message, response) from e
+huggingface_hub.errors.HfHubHTTPError: (Request ID: Root=1-6ac3bbff-0089a530258952f312d358df;3c9166e9-74dc-40c2-956a-f689f0a80331)
+
+429 Too Many Requests for url: https://huggingface.co/api/datasets/Sirmium/rr-resultats/commit/main.
+You have exceeded the rate limit for repository commits (128 per hour). You can retry this action in about 1 hour. To reduce the number of commits, you can upload entire folders at once using the Hub Python library: https://huggingface.co/docs/huggingface_hub/guides/upload#upload-a-folder or for large folders: https://huggingface.co/docs/huggingface_hub/guides/upload#upload-a-large-folder. To increase your rate limit for this action, you can upgrade to a paid plan at https://huggingface.co/prici
+[rrexp] end 2026-10-05T15:02:23Z
+[rrexp] runner exit code 1
+Traceback (most recent call last):
+  File "/workspace/rr/hfput.py", line 68, in <module>
+    main(sys.argv[1:])
+  File "/workspace/rr/hfput.py", line 54, in main
+    print("put", put(repo, argv[1], data, f"rrexp: {argv[1]}"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/rr/hfput.py", line 34, in put
+    with urllib.request.urlopen(req, timeout=120) as r:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429: Too Many Requests
+[rrexp] log upload failed
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
+[rrexp] job already ended (runner exit code 1), nothing to do
