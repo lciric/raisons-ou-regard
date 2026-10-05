@@ -1,0 +1,63 @@
+{
+ "pairs": {
+  "extraction": 200,
+  "framing": 200,
+  "validation": 200,
+  "fresh_probe": 198
+ },
+ "target": 200,
+ "losses": {
+  "extraction": {},
+  "framing": {},
+  "validation": {
+   "vocabulary of the extraction set": 68,
+   "checks": 6,
+   "near duplicate": 2,
+   "surplus": 4
+  },
+  "fresh_probe": {
+   "checks": 2
+  }
+ },
+ "contexts": {
+  "snippet": 120,
+  "fresh": 200
+ },
+ "deployment_prompt_sha256": "49f42b2748b38a192931dc39313e5c74a46c9c347d9f124e9b2a5db3781203e3",
+ "files": [
+  "cues/extraction.jsonl",
+  "cues/validation.jsonl",
+  "cues/framing.jsonl",
+  "cues/fresh_probe.jsonl"
+ ],
+ "reused": {
+  "from": "sorties/indices/cues",
+  "sets": [
+   "extraction",
+   "framing"
+  ],
+  "contexts": true
+ },
+ "gates": {
+  "lexical_baseline_from_extraction": {
+   "framing": 0.9413,
+   "validation": 0.6731,
+   "fresh_probe": 0.5113
+  },
+  "validation_lexical": {
+   "auroc": 0.6731,
+   "max": 0.65,
+   "passed": false
+  },
+  "fresh_probe_balance": {
+   "length_auroc": 0.4607,
+   "informality_auroc": 0.4975,
+   "band": [
+    0.4,
+    0.6
+   ],
+   "passed": true
+  }
+ },
+ "complete": false
+}

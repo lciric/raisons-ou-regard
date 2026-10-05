@@ -51,8 +51,12 @@ ngram:                        # mini-spec §8, point 4 (provisoire, décision 7)
   heldout_corpus: null        # JSONL {"id", "text"} des scénarios tenus à part, quand ils existeront
   whitelist: spec/ngram_whitelist.txt
 
-cues:                         # mini-spec §6 : les quatre jeux d'indices, quand ils existeront (JSONL {"id", "text"})
-  files: []
+cues:                         # mini-spec §6 : les quatre jeux d'indices (JSONL {"id", "text"}) ; la v2 du 5 octobre 2026, archivée
+  files:                      # (envoyée aussi dans data/indices-v2-2026-10-05/cues/ du dépôt de résultats)
+    - archives/sorties_2026-10-05/indices-v2/cues/extraction.jsonl
+    - archives/sorties_2026-10-05/indices-v2/cues/validation.jsonl
+    - archives/sorties_2026-10-05/indices-v2/cues/framing.jsonl
+    - archives/sorties_2026-10-05/indices-v2/cues/fresh_probe.jsonl
 
 audit:
   n: 200                      # mini-spec §8, point 7

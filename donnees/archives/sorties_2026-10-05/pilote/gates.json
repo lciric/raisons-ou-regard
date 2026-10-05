@@ -1,0 +1,53 @@
+{
+ "gates": {
+  "tokenizer": "exact",
+  "lengths": "ok",
+  "generic_length": "ok",
+  "reserved_lexicon": "ok",
+  "evaluation_awareness_patterns": "ok",
+  "ngrams": "not run: the held-out scenarios do not exist yet",
+  "cues": "ok",
+  "affective_matching": "not run: GPU stage (projections of the arm texts and cue pairs, |d| < 0.2)"
+ },
+ "blocking": [
+  "ngrams",
+  "affective_matching"
+ ],
+ "length_problems": [],
+ "reserved_hits": {},
+ "evaluation_awareness_hits": {},
+ "ngram_hits": {},
+ "cue_hits": {},
+ "matching": [
+  {
+   "round": 0,
+   "selected": 64,
+   "matched": 48,
+   "unmatched": 16
+  },
+  {
+   "round": 1,
+   "selected": 64,
+   "matched": 48,
+   "unmatched": 16
+  },
+  {
+   "round": 2,
+   "selected": 48,
+   "matched": 47,
+   "unmatched": 1
+  },
+  {
+   "round": 3,
+   "selected": 48,
+   "matched": 47,
+   "unmatched": 1
+  },
+  {
+   "round": 4,
+   "selected": 47,
+   "matched": 47,
+   "unmatched": 0
+  }
+ ]
+}

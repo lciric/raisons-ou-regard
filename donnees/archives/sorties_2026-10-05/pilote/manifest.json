@@ -1,0 +1,159 @@
+{
+ "run": "pilote",
+ "mock": false,
+ "code_version": "74b65659fd435621823ee26b3ff0a2ab11361f5f",
+ "config": {
+  "run_name": "pilote",
+  "out_dir": "sorties",
+  "seed": 20261002,
+  "models": {
+   "generator": {
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "max_tokens": 16000
+   },
+   "judge": {
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "max_tokens": 8000
+   }
+  },
+  "prices_usd_per_mtok": {
+   "claude-opus-5-5": {
+    "input": 4,
+    "output": 20,
+    "cache_write_5m": 5,
+    "cache_read": 0.2
+   },
+   "claude-sonnet-5-5": {
+    "input": 2,
+    "output": 10,
+    "cache_write_5m": 2.5,
+    "cache_read": 0.2
+   },
+   "claude-fable-5-1": {
+    "input": 10,
+    "output": 50,
+    "cache_write_5m": 12.5,
+    "cache_read": 0.25
+   }
+  },
+  "tokenizer": "meta-llama/Llama-3.1-8B-Instruct",
+  "sizes": {
+   "target_per_family": 20,
+   "overprovision": 1.35
+  },
+  "lengths": {
+   "reasons_tokens": [
+    80,
+    200
+   ],
+   "reasons_words": [
+    65,
+    140
+   ],
+   "match_tolerance": 0.05,
+   "generic_tolerance": 0.25,
+   "neutral_max_rounds": 5
+  },
+  "attempts": {
+   "situation": 3,
+   "action": 3,
+   "reasons": 3,
+   "neutral": 2
+  },
+  "dedup_jaccard": 0.5,
+  "workers": 8,
+  "preface": {
+   "open": "<preface>",
+   "close": "</preface>"
+  },
+  "admit_token_set_words_from_situation": true,
+  "ngram": {
+   "n": 8,
+   "unit": "tokens",
+   "heldout_corpus": null,
+   "whitelist": "spec/ngram_whitelist.txt"
+  },
+  "cues": {
+   "files": [
+    "archives/sorties_2026-10-05/indices-v2/cues/extraction.jsonl",
+    "archives/sorties_2026-10-05/indices-v2/cues/validation.jsonl",
+    "archives/sorties_2026-10-05/indices-v2/cues/framing.jsonl",
+    "archives/sorties_2026-10-05/indices-v2/cues/fresh_probe.jsonl"
+   ]
+  },
+  "audit": {
+   "n": 200
+  },
+  "affect": {
+   "max_abs_d": 0.2
+  }
+ },
+ "config_sha256": "cd8178f8c9e302c8fe5af57871bdeeabe1997292a6750b43317c4b3c1ef45f2b",
+ "spec_sha256": {
+  "principles.json": "f35f70e0e8ba5835fd0ffd7da17d3e1cfcadfa37647d52aa21e347a3a6cec4e9",
+  "families.json": "8d24097041643c93e6b8ca15ea9da6ab27f6a13ca8a27443005789514cb3bdb3"
+ },
+ "prompts_sha256": {
+  "action_system": "d9a7fc7a42ff4a0bf64090cd3918681fbf35ab664ba6321635d2b71e36e8a54e",
+  "action_user": "1e852bc81c6f63ed5c3278432f6115dfdb00b7ebe37533ea1d6154073f1cdf9e",
+  "cue_contexts_user": "668c3dc650c02fbd5bfe7e1e673b774d2895c5a11e7af5e3c92a2f9060413e21",
+  "cue_pairs_user": "736d764499f5fcbae70bc7169e1debc7b77c23a0519cdc59acb21379d93d7c27",
+  "cues_system": "5dca692047e9130f4faf3f669d0c2e8de2f80efc1bd5fa09d05c4a29f65d2e92",
+  "fresh_pairs_user": "fdd666c4ea3deb25b1a69ecee226aa3d67d8eee2f3151ef3cbbcbaef4cbbf16d",
+  "generator_system": "ee55bd7849e90e28840a61b49fbef506878d5756955e26c996fa67e0fd7be6c7",
+  "judge_action_system": "b6483604d336eb3f4ee7bf67b24276e4879386ed8c656ade68093a3e7fbe2c49",
+  "judge_action_user": "9dc9cbc0cf2c6b86eced85dc88fa132e86483fad8e5ea5b513ec0b274785dfe4",
+  "judge_eval_awareness_system": "d0ba3c608fd1b7689684b6553c141fa3a35075b562df3e82fb822a078a0097f9",
+  "judge_eval_awareness_user": "4308f337e160f083e0830a697ad6ff2c5a7e977fd07c653b6cffcd3a5b53a0d6",
+  "judge_neutral_system": "3781088c361b11a9655757c14f4a5e78f6474d72298241fb7834388ca094e72f",
+  "judge_neutral_user": "a4f61602996926380e676222d28cedd9f0b49f674d71def1fe72bd54985cd9d1",
+  "judge_realism_system": "2c1ba43bf4f254a16d420fa55fda52d91c2587b0d33ec738b2bbe886fea1a392",
+  "judge_realism_user": "c08f45221faeecbbb71ba6f51282fda1e7a5f2e37ba15b22ecad284cdcd1a391",
+  "judge_reasons_system": "8f7346eaf79fd4cafbfe99493fe893cc99820f49b8550f625d035cba83df0820",
+  "judge_reasons_user": "a4f61602996926380e676222d28cedd9f0b49f674d71def1fe72bd54985cd9d1",
+  "judge_system": "a4eb5a9bcc37fac3fd5e3937a1576330592bdc2a68d18e63b9ee13d09400a285",
+  "neutral_revise_user": "4642a44d8fb67fc5cd47f825fbb002d5011be2dd75f3c79aca8bc76dc7c55163",
+  "neutral_system": "24f834df217058a71b9b01fdfcb15db6d94a2289c808de1cc817e64b48bc374e",
+  "neutral_user": "6ceed65051e3d09d923d3afd621bab982bc69c072679a3a7a84c8fa9c3a40eb5",
+  "reasons_system": "18acfde69a2d2f9d02e7ebf38cc3e53f648c570f3a3b92ea37bb62e82930dd2e",
+  "reasons_user": "c323f6ee51aaf2d7ab2e911dfc40a54131e0eddf4b81c2c995696d82027c1be3",
+  "situation_system": "101463770617b1e568abf8b33bf63e1969d40d8485934b46b3d6e9824a5eb1b1",
+  "situation_user": "04da3c35e1b92de5bd3d4bad83d533fc13ce309b728582922a975389e3ca12af"
+ },
+ "backends": {
+  "generator": {
+   "backend": "anthropic",
+   "model": "claude-opus-5-5",
+   "effort": "medium",
+   "max_tokens": 16000
+  },
+  "judge": {
+   "backend": "anthropic",
+   "model": "claude-opus-5-5",
+   "effort": "medium",
+   "max_tokens": 8000
+  }
+ },
+ "tokenizer": "meta-llama/Llama-3.1-8B-Instruct",
+ "files_sha256": {
+  "RAPPORT.md": "b1d5f1ff112143bdc644bf0ca61e14eaca893254f01b3b7d1dd5301d56629b48",
+  "actions.jsonl": "888c564146938788e9f7c4c5b04850ed51a562104d031ab4963a91a25af920a6",
+  "final_items.jsonl": "a14b6f5a5a7ecd91f902691c05aaf4fd95c33e6a93e51bca216c37cbf44d44ca",
+  "gates.json": "478678bf5a2ca7fcfed63221d921eeae1ec9679d0fcddd7dbfea1b84046881dc",
+  "neutral.jsonl": "c3c775f54069f3a07346b80599edbee5dd9bf2be3b30fbf4baa608b969f4f241",
+  "plan.jsonl": "f40d83784e5f60852b1ed5d3196d57779a123d1db5ef3de6b99495aa1482ca9a",
+  "plan_meta.json": "1f06b27d3cf52c675f08bedabb5f163b690a691676b734aed0fe0b09b65ddf87",
+  "reasons.jsonl": "e5bc00787e8d55270235906e71ea2f7eabc514d48519f85e7ff7ef1551d233a3",
+  "situations.jsonl": "ac42b671fa95aa2e79d4198868705438c3daab9f57d147bad89a653ec640c1e8",
+  "audit/audit_sheet.csv": "4b86783677dc11812ebd3ab085d4eb4dfaedad8e08c31782ac15d247eb52864b",
+  "arms/actions_only.jsonl": "c547a8e95910369e2268b9584b9468f8f0675f3adcc4eac5b132e52210ebf416",
+  "arms/generic_principles.jsonl": "ac5c77d92886c6190ce9147d1b141438ae503b7fee4ef8ad221df066c492c0ee",
+  "arms/neutral_text.jsonl": "dbdee2ebea52db37e3b11869fdf5c921e3735e9f246541bdb438a8ff34e808da",
+  "arms/other_reasoning.jsonl": "ab907671aa807f7f122108de083a02ea89ddbf6c8920360fb4ad2e1be90eeaa8",
+  "arms/reasons.jsonl": "3fac7fe434a50646ebc4ec939ed1f6c0066434d420c9828377fa536d1f0df32c",
+  "arms/reflection.jsonl": "13f4ca40496749ad78f775962f4a88d4a84b6b1e3c64cec50fdf6b7747195174",
+  "logs/calls.jsonl": "c3e6c29e47a5fb83f79b581e9fd02642a5c102eaa5eb6f97a76a762b826415d8"
+ }
+}
