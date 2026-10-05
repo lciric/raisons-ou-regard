@@ -10,6 +10,10 @@ computes, and does it remove it more than the comparator does?
   representation turned elsewhere would escape both. Per layer and readout, a logistic probe and a small perceptron
   are trained on half the pairs of a held-out cue set, and tested on the other half (the split is by pair, so the two
   sides of a pair stay together). The AUROC on the tested half is the decodability.
+- **The transfer** (optional): probes trained on another cue set (the extraction pairs kept out of the expert iteration
+  and of the erasure's fit), under the same condition, and read on the held-out set. The two sets are written with
+  other words (decision 24): a probe trained and tested on one set can read its words, which no removal of a few
+  directions erases; a probe that carries over reads what the sets share.
 - **The residual projection**: the mean norm of the state's component in the first r directions of "I am being
   evaluated", at the last token.
 - **The known case, a constructed failure**: an inhibition at one layer only. The decodability must fall at that layer
@@ -111,6 +115,23 @@ def decodability(states, labels, pair_ids, train, test, mlp_steps=300, device=No
     return out
 
 
+def transfer(source, source_labels, target, target_labels, mlp_steps=300, device=None):
+    """Per layer: the AUROC, on the target states, of a logistic probe and of a perceptron trained on all the source
+    states. The source is another cue set, written with other words: a probe that carries over reads the distinction
+    the two sets share, not the words of one of them (which a probe trained and tested on one set can read)."""
+    import torch  # noqa: WPS433
+    from .extract_eval import auroc, logistic_probe  # noqa: WPS433
+    dev = torch.device(device) if device is not None else source.device
+    out = []
+    for l in range(source.shape[1]):
+        xs, xt = source[:, l, :].to(dev), target[:, l, :].to(dev)
+        lin = logistic_probe(xs, list(source_labels))
+        mlp = mlp_probe(xs, list(source_labels), steps=mlp_steps)
+        out.append({"linear": round(auroc(lin(xt).cpu(), list(target_labels)), 4),
+                    "mlp": round(auroc(mlp(xt).cpu(), list(target_labels)), 4)})
+    return out
+
+
 def residual_projection(states_last, subspace, rank):
     """Per layer: the mean norm of the component of the last-token state in the first `rank` directions."""
     out = []
@@ -121,30 +142,45 @@ def residual_projection(states_last, subspace, rank):
 
 
 def check(model, tok, pairs, conditions, subspace, rank, batch, device, seed=0, mlp_steps=300, progress=None,
-          probe_device=None, on_result=None):
+          probe_device=None, on_result=None, source=None):
     """pairs: [(pair_id, eval_messages, deploy_messages)] of a held-out cue set. conditions: {name: a context manager
     factory (an intervention), or None}. The probes train on probe_device (the CPU by default). on_result(name, result)
-    is called as each condition ends, so that a run stopped midway keeps the conditions already done.
+    is called as each condition ends, so that a run stopped midway keeps the conditions already done. source: pairs of
+    another cue set, read under the same condition; probes trained on them are read on the held-out set (transfer).
     Returns {name: {"layers": [...], "summary": {...}}}."""
     import contextlib  # noqa: WPS433
     convs = [p[1] for p in pairs] + [p[2] for p in pairs]
     labels = [1] * len(pairs) + [0] * len(pairs)
     pids = [p[0] for p in pairs] * 2
     train, test = split_pairs([p[0] for p in pairs], seed)
+    s_convs = [p[1] for p in source or []] + [p[2] for p in source or []]
+    s_labels = [1] * len(source or []) + [0] * len(source or [])
     out = {}
     for name, make in conditions.items():
         if progress:
             progress(f"manipulation check: {name}")
         with (make() if make else contextlib.nullcontext()):
             last, mean = read_states(model, tok, convs, batch, device)
+            if source:
+                s_last, s_mean = read_states(model, tok, s_convs, batch, device)
         dl = decodability(last, labels, pids, train, test, mlp_steps, probe_device)
         dm = decodability(mean, labels, pids, train, test, mlp_steps, probe_device)
         res = residual_projection(last, subspace, rank)
         layers = [{"layer": l + 1, "linear_last": dl[l]["linear"], "mlp_last": dl[l]["mlp"], "linear_mean": dm[l]["linear"],
                    "mlp_mean": dm[l]["mlp"], "residual_projection": res[l]} for l in range(len(dl))]
         best = [max(x["linear_last"], x["mlp_last"], x["linear_mean"], x["mlp_mean"]) for x in layers]
-        out[name] = {"layers": layers, "summary": {"best_auroc_mean_over_layers": round(sum(best) / len(best), 4),
-                                                   "best_auroc_max_over_layers": round(max(best), 4)}}
+        summary = {"best_auroc_mean_over_layers": round(sum(best) / len(best), 4), "best_auroc_max_over_layers": round(max(best), 4)}
+        if source:
+            tl = transfer(s_last, s_labels, last, labels, mlp_steps, probe_device)
+            tm = transfer(s_mean, s_labels, mean, labels, mlp_steps, probe_device)
+            for l, x in enumerate(layers):
+                x.update({"transfer_linear_last": tl[l]["linear"], "transfer_mlp_last": tl[l]["mlp"],
+                          "transfer_linear_mean": tm[l]["linear"], "transfer_mlp_mean": tm[l]["mlp"]})
+            tb = [max(x["transfer_linear_last"], x["transfer_mlp_last"], x["transfer_linear_mean"], x["transfer_mlp_mean"])
+                  for x in layers]
+            summary.update({"transfer_best_auroc_mean_over_layers": round(sum(tb) / len(tb), 4),
+                            "transfer_best_auroc_max_over_layers": round(max(tb), 4)})
+        out[name] = {"layers": layers, "summary": summary}
         if on_result:
             on_result(name, out[name])
     return out

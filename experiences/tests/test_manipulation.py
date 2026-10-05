@@ -96,6 +96,43 @@ class TestStates(unittest.TestCase):
                        on_result=on_result)
         self.assertEqual(seen, [("none", 2), ("projected", 2)])
         self.assertEqual(list(out), ["none", "projected"])
+        self.assertNotIn("transfer_linear_last", out["none"]["layers"][0])
+
+    def test_the_transfer_reads_what_two_sets_share(self):
+        g = torch.Generator().manual_seed(2)
+        n, w = 80, 16
+        labels = [1] * (n // 2) + [0] * (n // 2)
+        shared = torch.randn(n, 1, w, generator=g)
+        shared[: n // 2, 0, 0] += 4.0                             # the source's classes differ along feature 0
+        target = torch.randn(n, 1, w, generator=g)
+        target[: n // 2, 0, 0] += 4.0                             # and so do the target's: the distinction carries over
+        other = torch.randn(n, 1, w, generator=g)
+        other[: n // 2, 0, 5] += 4.0                              # here along another feature: the source's probe misses it
+        t = mc.transfer(shared, labels, target, labels, mlp_steps=100)
+        self.assertGreater(t[0]["linear"], 0.9)
+        self.assertGreater(t[0]["mlp"], 0.85)
+        t0 = mc.transfer(shared, labels, other, labels, mlp_steps=100)
+        self.assertLess(abs(t0[0]["linear"] - 0.5), 0.2)
+        # within the target set, the other feature is read all the same: what the transfer is there to tell apart
+        pids = [f"p-{i % (n // 2)}" for i in range(n)]
+        train, test = mc.split_pairs(pids)
+        self.assertGreater(mc.decodability(other, labels, pids, train, test, mlp_steps=100)[0]["linear"], 0.9)
+
+    def test_the_check_reads_the_transfer_under_each_condition(self):
+        from rrexp.jobs import inhibition_degradation as idg
+        b = idg.orthonormal_random(2, 32, torch.Generator().manual_seed(0))
+        pairs = [(f"p-{i}", [{"role": "user", "content": f"Evaluation item {i}: what is {i} + 1?"}],
+                  [{"role": "user", "content": f"Customer request {i}: what is {i} + 1?"}]) for i in range(4)]
+        source = [(f"s-{i}", [{"role": "user", "content": f"This test is graded, case {i}: name a color."}],
+                   [{"role": "user", "content": f"A real user asks, case {i}: name a color."}]) for i in range(4)]
+        out = mc.check(self.model, self.tok, pairs, {"none": None, "projected": lambda: idg.Projector(self.model, {1: b}, 1.0)},
+                       {"layer_01.basis": b, "layer_02.basis": b}, 1, 2, "cpu", mlp_steps=5, probe_device="cpu", source=source)
+        for res in out.values():
+            self.assertEqual(len(res["layers"]), 2)
+            for x in res["layers"]:
+                for k in ("transfer_linear_last", "transfer_mlp_last", "transfer_linear_mean", "transfer_mlp_mean"):
+                    self.assertTrue(0.0 <= x[k] <= 1.0, (k, x[k]))
+            self.assertIn("transfer_best_auroc_max_over_layers", res["summary"])
 
 
 if __name__ == "__main__":

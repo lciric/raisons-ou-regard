@@ -188,6 +188,7 @@ class TestJob(unittest.TestCase):
             ctx3 = Ctx()
             ctx3.out, ctx3.progress = tmp / "out_erase", ""
             ctx3.args = dict(ctx.args, gaps=False, rival=False, controls=[],
+                             manipulation=dict(ctx.args["manipulation"], transfer_from="extraction", transfer_contexts_per_pair=1),
                              settings=[{"layers": "all", "erase": {"fit_sets": ["extraction"], "contexts_per_pair": 1}},
                                        {"layers": [1], "erase": {"fit_sets": ["extraction"], "contexts_per_pair": 1, "sequential": False}}],
                              comparator={"top": 2, "n_draws": 1, "multiples": [1, 2, 4], "fractions": [0.5, 1.0]})
@@ -200,6 +201,13 @@ class TestJob(unittest.TestCase):
             self.assertEqual(out3["erasure"][ekey]["states"], 2 * 2)      # the 2 pairs of the expert iteration, 1 context, 2 sides
             self.assertGreater(out3["settings"][ekey]["degradation"]["kl"], 0.0)
             self.assertTrue({"none", f"inhibition {ekey}", "constructed failure: layer 1 only"} <= set(out3["manipulation"][ekey]["conditions"]))
+            # the transfer: probes trained on the extraction pairs kept out of the expert iteration (pairs 2 and 3,
+            # 1 context each), read on the validation set, under each condition
+            man3 = out3["manipulation"][ekey]
+            self.assertEqual((man3["transfer_from"], man3["transfer_pairs"]), ("extraction", 2))
+            for res in man3["conditions"].values():
+                self.assertIn("transfer_linear_last", res["layers"][0])
+                self.assertIn("transfer_best_auroc_max_over_layers", res["summary"])
             # the condition without intervention is computed once, then shared with the second setting (same rank)
             m1 = out3["manipulation"][ekey1]
             self.assertEqual(m1.get("none_shared_from"), ekey)

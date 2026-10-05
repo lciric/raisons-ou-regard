@@ -31,7 +31,11 @@ With "manipulation": {"cue_set": "validation", "draws": 3, "failure_layer": 16},
 manipulation): probes retrained under no intervention, the inhibition, the first matched comparator draws, each matched
 control, and the constructed failure (the inhibition at one layer only). Its probes train on the GPU, and each
 condition is written as it ends (the 4 October rehearsal, organism_inhibition-20261004-101821-ada0: on the CPU, its
-first condition had not finished after 39 minutes, and a run stopped during the check lost it whole).
+first condition had not finished after 39 minutes, and a run stopped during the check lost it whole). With
+"transfer_from": "extraction" in "manipulation" (and "transfer_contexts_per_pair", 4 by default), the check also trains
+its probes on the extraction pairs kept out of the expert iteration, under each condition, and reads them on the
+held-out set: a probe trained and tested on one set reads its words, while the transfer reads what the sets share
+(5 October: the within-set reading stayed at 0.98 under every setting of the sweep, organism_inhibition-20261005-115511-8410).
 With "gaps": false, nothing is generated: the conditions are still built and matched on the KL, which needs no
 generation, and the manipulation check runs on them; the gaps, the rival manipulation and the gate summary are left
 out. That reruns the check alone, in minutes; with the same seed and the same arguments, the comparator draws and the
@@ -541,12 +545,21 @@ def run(ctx):
             cue_set = mcfg.get("cue_set", "validation")
             held = org._read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{cue_set}.jsonl", f"{cue_set}.jsonl"))
             pairs = ee.pair_prompts(held, snippet_contexts, int(mcfg.get("contexts_per_pair", 2)), seed)
+            # the transfer: probes trained on another cue set, read on this one; from the extraction set, only the pairs
+            # kept out of the expert iteration, hence out of the erasure's fit (which would guard them by construction)
+            src_name, source = mcfg.get("transfer_from"), None
+            if src_name:
+                src = org._read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{src_name}.jsonl", f"{src_name}.jsonl"))
+                if src_name == "extraction":
+                    kept_out = {x["pair"] for x in ext_split["eval"][1]}
+                    src = [x for x in src if x["pair"] in kept_out]
+                source = ee.pair_prompts(src, snippet_contexts, int(mcfg.get("transfer_contexts_per_pair", 4)), seed)
             mres = results.setdefault("manipulation", {})[key] = {
                 "cue_set": cue_set, "pairs": len(pairs), "failure_layer": fail_layer, "conditions_planned": list(manip_conditions),
-                "conditions": {}}
-            # the condition without intervention depends only on the cue set and, by its residual projection, on the
+                "conditions": {}, **({"transfer_from": src_name, "transfer_pairs": len(source)} if source else {})}
+            # the condition without intervention depends only on the cue sets and, by its residual projection, on the
             # rank: computed once per run for each, then shared between the settings
-            none_key = (cue_set, int(mcfg.get("contexts_per_pair", 2)), r)
+            none_key = (cue_set, int(mcfg.get("contexts_per_pair", 2)), r, src_name)
             conds = dict(manip_conditions)
             if none_key in none_cache:
                 conds.pop("none", None)
@@ -561,7 +574,7 @@ def run(ctx):
                              f"{res['summary']['best_auroc_max_over_layers']}")
             mc.check(model, tok, pairs, conds, subspace, r, int(mcfg.get("batch", 16)), device, seed,
                      int(mcfg.get("mlp_steps", 300)), progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"),
-                     probe_device=device, on_result=on_result)
+                     probe_device=device, on_result=on_result, source=source)
         if gaps:
             results.setdefault("porte", {})[key] = gate_summary(results, key)
         save_results(f"{key}: done")
