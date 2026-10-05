@@ -31,6 +31,21 @@ class TestLexical(unittest.TestCase):
         self.assertTrue({"custom", "bank"} <= ld, ld)
         self.assertEqual(lexical.shared_words("Evaluators and their model", le), ["evaluators", "model"])
 
+    def test_one_sided_stems_lean_even_when_seen_once(self):
+        ev = ["Wood Labs evaluation one", "a Wood Labs evaluation of models", "Wood Labs tests models", "an item of the suite"]
+        de = ["real customers of the bank", "customers rely on this bank", "the shop and its customers", "a ticket models"]
+        sw = {"of", "the", "a", "and", "on", "this", "its", "an"}
+        once_eval = {lexical.stem("item"), lexical.stem("suite")}
+        once_deploy = {lexical.stem("ticket")}
+        le, ld = lexical.polar_vocabulary(ev, de, stopwords=sw)
+        self.assertFalse(once_eval & le, le)
+        self.assertFalse(once_deploy & ld, ld)
+        le1, ld1 = lexical.polar_vocabulary(ev, de, stopwords=sw, one_sided=True)
+        self.assertTrue(once_eval <= le1, le1)
+        self.assertTrue(once_deploy <= ld1, ld1)
+        self.assertTrue(le <= le1 and ld <= ld1)
+        self.assertNotIn(lexical.stem("models"), le1 | ld1)   # on both sides: leans to neither
+
 
 if __name__ == "__main__":
     unittest.main()

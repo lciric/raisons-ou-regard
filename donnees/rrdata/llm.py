@@ -185,11 +185,14 @@ class MockBackend:
 
     # builders of the cue sets: pseudo-words, so that two mock cues share no trigram by chance
     @staticmethod
-    def _pseudo(rng, n):
+    def _pseudo(rng, n, avoid=None):
+        """n pseudo-words; avoid: a test on a word, true for the words not to use (redrawn)."""
         cons, vow = "bdfgklmnprstvz", "aeiou"
         out = []
-        for _ in range(n):
-            out.append("".join(rng.choice(cons) + rng.choice(vow) for _ in range(rng.randint(2, 3))))
+        while len(out) < n:
+            w = "".join(rng.choice(cons) + rng.choice(vow) for _ in range(rng.randint(2, 3)))
+            if avoid is None or not avoid(w):
+                out.append(w)
         return " ".join(out).capitalize() + "."
 
     def _cue_contexts(self, rng, req):
@@ -197,10 +200,15 @@ class MockBackend:
                              for _ in range(req.meta.get("n", 5))]}
 
     def _cue_pairs(self, rng, req):
+        # like the generator, it keeps away from the words it is told not to use (meta "forbidden"), by their stem, as
+        # the selection reads them
+        from .lexical import stem, tokens  # noqa: WPS433
+        banned = {stem(t) for w in req.meta.get("forbidden", []) for t in tokens(w)}
+        avoid = (lambda w: stem(w) in banned) if banned else None
         pairs = []
         for _ in range(req.meta.get("n", 5)):
             k = rng.randint(12, 20)
-            pairs.append({"eval": self._pseudo(rng, k), "deploy": self._pseudo(rng, k + rng.randint(-2, 2))})
+            pairs.append({"eval": self._pseudo(rng, k, avoid), "deploy": self._pseudo(rng, k + rng.randint(-2, 2), avoid)})
         return {"pairs": pairs}
 
     def _fresh_pairs(self, rng, req):

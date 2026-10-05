@@ -139,17 +139,18 @@
  "overprovision": 1.4,
  "batch_pairs": 10,
  "rules": {
-  "_notes_fr": "Décision 24 du 3 octobre 2026. Les seuils et les paramètres sont des propositions, à geler avec le pré-enregistrement.",
+  "_notes_fr": "Décision 24 du 3 octobre 2026. Les seuils et les paramètres sont des propositions, à geler avec le pré-enregistrement. Le 5 octobre 2026, après l'échec de la porte lexicale de la première validation v2 (0,90, porté par six mots vus une seule fois dans l'extraction), Lazar décide : la règle de vocabulaire interdit aussi tout mot présent d'un seul côté de l'extraction, même une seule fois (one_sided), la porte restant telle quelle ; la sonde neuve tire jusqu'à quatre fois (fresh_attempts, 2 auparavant).",
   "validation_vocabulary": {
    "from": "extraction",
    "min_count": 2,
-   "ratio": 3.0
+   "ratio": 3.0,
+   "one_sided": true
   },
   "max_lexical_auroc_validation": 0.65,
   "fresh_probe_balance_band": [
    0.4,
    0.6
   ],
-  "fresh_attempts": 2
+  "fresh_attempts": 4
  }
 }

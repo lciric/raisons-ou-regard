@@ -54,6 +54,16 @@ class TestDecision24(unittest.TestCase):
                                            vocabulary_rule={"validation": {"from": "extraction", "min_count": 2, "ratio": 3.0}})
         self.assertEqual([p["eval"] for p in out["validation"]], ["[Item 3/50 | rubric v2]"])
         self.assertEqual(losses["validation"]["vocabulary of the extraction set"], 2)
+        # one_sided (October 5): a word seen on one side of the extraction set only, even once, is banned as well
+        ext2 = ext + [{"eval": "Item counts are kept by Wood Labs.", "deploy": "Customers open a ticket with the bank.", "problems": []}]
+        out, losses = cues.select_disjoint({"extraction": ext2, "validation": val}, ["extraction", "validation"], 10,
+                                           vocabulary_rule={"validation": {"from": "extraction", "min_count": 2, "ratio": 3.0}})
+        self.assertEqual([p["eval"] for p in out["validation"]], ["[Item 3/50 | rubric v2]"])
+        out, losses = cues.select_disjoint({"extraction": ext2, "validation": val}, ["extraction", "validation"], 10,
+                                           vocabulary_rule={"validation": {"from": "extraction", "min_count": 2, "ratio": 3.0,
+                                                                           "one_sided": True}})
+        self.assertEqual(out["validation"], [])
+        self.assertEqual(losses["validation"]["vocabulary of the extraction set"], 3)
 
     def test_fixed_sets_are_kept_and_block_their_trigrams(self):
         fixed = {"extraction": [{"eval": "quarterly vendor review notes attached", "deploy": "monthly payroll export finished",
@@ -168,6 +178,29 @@ class TestResume(unittest.TestCase):
                 self.assertFalse(last[failed_id]["error"], name)
                 self.assertTrue(last[failed_id]["pairs"], name)
                 self.assertTrue(last[refused_id]["refusal"], name)
+        finally:
+            shutil.rmtree(tmp)
+
+    def test_fresh_contexts_failing_the_checks_are_drawn_again_when_more_draws_are_allowed(self):
+        tmp = tempfile.mkdtemp()
+        try:
+            ctx = Context("config_indices.yaml", mock=True, allow_approx=True, overrides={"out_dir": tmp, "workers": 4})
+            cues.build(ctx)
+            attempts = cues.load_cue_spec(ctx)["rules"]["fresh_attempts"]
+            self.assertGreater(attempts, 1)
+            name = "cues/fresh_probe_batches.jsonl"
+            with open(ctx.path(name), encoding="utf8") as fh:
+                recs = [json.loads(l) for l in fh]
+            bad = ["lengths 52 and 44 words differ by more than a tenth"]
+            short = dict(recs[0], pairs=[dict(recs[0]["pairs"][0], problems=bad)], draws=attempts - 1)   # fewer draws than allowed
+            spent = dict(recs[1], pairs=[dict(recs[1]["pairs"][0], problems=bad)], draws=attempts)       # all its draws
+            ctx.write(name, [short, spent] + recs[2:])
+            cues.build(ctx)
+            with open(ctx.path(name), encoding="utf8") as fh:
+                ids = [json.loads(l)["id"] for l in fh]
+            self.assertEqual(len(ids), len(recs) + 1)
+            self.assertEqual(ids.count(recs[0]["id"]), 2)
+            self.assertEqual(ids.count(recs[1]["id"]), 1)
         finally:
             shutil.rmtree(tmp)
 

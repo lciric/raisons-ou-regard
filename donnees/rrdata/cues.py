@@ -210,7 +210,8 @@ def snippet_pairs(ctx, set_spec, extra_forbidden=()):
                         forbidden=", ".join(forbidden) or "none")
         # the batch number is the sample index: two batches with the same prompt are two independent draws, not one
         # cached answer read twice
-        r = _call(ctx, "cue_pairs", user, PAIRS_SCHEMA, item["batch"], item["id"], {"n": bsz, "set": set_spec["key"]})
+        r = _call(ctx, "cue_pairs", user, PAIRS_SCHEMA, item["batch"], item["id"], {"n": bsz, "set": set_spec["key"],
+                                                                                     "forbidden": forbidden})
         rec = dict(item, refusal=r.refusal, error=r.error, pairs=[])
         if r.data and not r.refusal:
             for p in r.data.get("pairs", []):
@@ -229,8 +230,9 @@ def snippet_pairs(ctx, set_spec, extra_forbidden=()):
 def fresh_pairs(ctx, set_spec, ctxs, attempts=1):
     """One pair of rewrites per fresh context. The register (and the strength of the marks) is drawn per context and
     given to both rewrites. An answer that fails the checks is drawn again, up to attempts draws in all (a refusal or
-    an API error ends the draws; a context left on an API error is taken up again on the next run, where its earlier
-    answers come from the cache)."""
+    an API error ends the draws). A context is taken up again on the next run when it was left on an API error, or
+    when its answers all failed the checks and more draws are now allowed than it had; its earlier answers then come
+    from the cache."""
     rng = random.Random(f"{ctx.cfg['seed']}:cues:fresh")
     todo = [c for c in ctxs if c["use"] == "fresh"]
     axes = set_spec["axes"]
@@ -239,8 +241,11 @@ def fresh_pairs(ctx, set_spec, ctxs, attempts=1):
 
     def one(c):
         bid = f"fresh-{c['id']}"
-        if not _redo(done, bid):
-            return done[bid]
+        prev = done.get(bid)
+        more = bool(prev) and not prev.get("refusal") and bool(prev.get("pairs")) and bool(prev["pairs"][0]["problems"]) \
+            and prev.get("draws", 0) < attempts
+        if not _redo(done, bid) and not more:
+            return prev
         var = draws[c["id"]]
         rec = {"id": bid, "context": c["id"], "slot": "whole_context", "variation": var, "refusal": False, "error": None,
                "pairs": [], "draws": 0}
@@ -275,7 +280,7 @@ def select_disjoint(candidates_by_set, order, target, fixed=None, vocabulary_rul
     are not near-duplicates within their set; returns ({set: [pairs]}, {set: {reason: count}}).
 
     fixed: {set: [pairs]} kept as they are (reused from an earlier run); their trigrams count as taken before anything
-    else. vocabulary_rule: {set: {"from": other set, "min_count", "ratio"}}: a pair of set is dropped if one of its
+    else. vocabulary_rule: {set: {"from": other set, "min_count", "ratio", "one_sided"}}: a pair of set is dropped if one of its
     words has the stem of a word that leans to one side of the other set (selected or fixed before it).
     """
     fixed = fixed or {}
@@ -292,7 +297,7 @@ def select_disjoint(candidates_by_set, order, target, fixed=None, vocabulary_rul
         if rule:
             src = out.get(rule["from"], [])
             le, ld = polar_vocabulary([p["eval"] for p in src], [p["deploy"] for p in src], stopwords,
-                                      rule.get("min_count", 2), rule.get("ratio", 3.0))
+                                      rule.get("min_count", 2), rule.get("ratio", 3.0), rule.get("one_sided", False))
             banned = le | ld
         kept, local_grams, local_sh = [], set(), []
         loss = {}
@@ -395,10 +400,16 @@ def build(ctx):
         extra = ()
         rule = vocab_rule.get(key)
         if rule:
-            # the words to avoid, told to the generator: those of the source set (fixed, or its valid candidates)
-            base = fixed.get(rule["from"]) or [p for p in cands.get(rule["from"], []) if not p["problems"]]
+            # the words to avoid, told to the generator: those of the source set as the selection keeps it (fixed, or
+            # selected now: the sets before this one are selected now as they will be at the end), so that the words
+            # the selection bans are the words the generator was told
+            if rule["from"] in fixed:
+                base = fixed[rule["from"]]
+            else:
+                upto = order[:order.index(rule["from"]) + 1] if rule["from"] in order else []
+                base = select_disjoint(cands, upto, spec["pairs_per_set"], fixed=fixed, vocabulary_rule=vocab_rule)[0].get(rule["from"], [])
             le, ld = polar_vocabulary([p["eval"] for p in base], [p["deploy"] for p in base], STOPWORDS,
-                                      rule.get("min_count", 2), rule.get("ratio", 3.0))
+                                      rule.get("min_count", 2), rule.get("ratio", 3.0), rule.get("one_sided", False))
             extra = sorted({w for p in base for t in (p["eval"], p["deploy"]) for w in shared_words(t, le | ld)})
         cands[key] = snippet_pairs(ctx, s, extra_forbidden=extra)
     sets, losses = select_disjoint(cands, order, spec["pairs_per_set"], fixed=fixed, vocabulary_rule=vocab_rule)

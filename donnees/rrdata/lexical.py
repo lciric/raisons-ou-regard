@@ -97,9 +97,11 @@ def lexical_auroc(train_eval, train_deploy, test_eval, test_deploy):
     return auroc([nb.score(t) for t in list(test_eval) + list(test_deploy)], [1] * len(test_eval) + [0] * len(test_deploy))
 
 
-def polar_vocabulary(eval_texts, deploy_texts, stopwords=(), min_count=2, ratio=3.0):
+def polar_vocabulary(eval_texts, deploy_texts, stopwords=(), min_count=2, ratio=3.0, one_sided=False):
     """The stems that lean to one side of a set: present in at least min_count texts of that side, and in at least
-    ratio times as many texts of that side as of the other (plus one). Returns (evaluation stems, deployment stems)."""
+    ratio times as many texts of that side as of the other (plus one). With one_sided, a stem found on one side only
+    leans to it as well, even in a single text: the naive Bayes of the lexical baseline weighs such a stem, and a set
+    that uses it often on the same side is separated by it. Returns (evaluation stems, deployment stems)."""
     def counts(texts):
         c = {}
         for t in texts:
@@ -107,7 +109,7 @@ def polar_vocabulary(eval_texts, deploy_texts, stopwords=(), min_count=2, ratio=
                 c[s] = c.get(s, 0) + 1
         return c
     ce, cd = counts(eval_texts), counts(deploy_texts)
-    lean = lambda a, b: {s for s, n in a.items() if n >= min_count and n >= ratio * (b.get(s, 0) + 1)}
+    lean = lambda a, b: {s for s, n in a.items() if (n >= min_count and n >= ratio * (b.get(s, 0) + 1)) or (one_sided and s not in b)}
     return lean(ce, cd), lean(cd, ce)
 
 
