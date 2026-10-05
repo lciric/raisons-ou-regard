@@ -17,7 +17,7 @@ gpus:
   - {name: "A100 PCIE", min_gpu_ram_gb: 79}
 
 filters:
-  reliability_min: 0.98      # proposition
+  reliability_min: 0.95      # proposition ; 0,98 jusqu'au 5 octobre 2026, où aucune offre ne passait (un A100 SXM4 à 0,95)
   inet_down_min_mbps: 500    # proposition : le téléchargement du modèle
   cuda_min: 12.6             # l'image demande un pilote qui porte CUDA 12.6
   datacenter_only: true      # proposition : seulement des machines de centres de données, puisque le jeton HF y va
