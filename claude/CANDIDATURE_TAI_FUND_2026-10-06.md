@@ -1,111 +1,112 @@
-# Transformative AI Fund (EA Funds) — application draft
+# Transformative AI Fund (EA Funds) — the application, field by field
 
-<!-- Draft prepared on 6 October 2026 by a Claude Code session, for Lazar to complete and submit himself. Nothing has been sent. Every [[...]] is his to fill or to decide. The form (https://av20jp3z.paperform.co/?fund=Transformative%20AI%20Fund) could not be read outside a browser: the sections below are written to be pasted into its fields, each within the usual limits (word counts given). Sources for every number: the programme v1.6 (claude/PROGRAMME_RAISONS_OU_REGARD_v1.6_2026-10-06.md, parts 1, 5, 9, 10) and the notes in experiences/resultats/. -->
+<!-- Prepared on 6 October 2026 by a Claude Code session, for Lazar to complete and submit himself. Nothing has been sent. Every [[...]] is his to fill or to decide. The fields below follow the real form (https://av20jp3z.paperform.co/?fund=Transformative%20AI%20Fund), read on 6 October 2026 in a headless browser, without typing or submitting anything. The form asks for at most 10,000 characters in all, and recommends 2,000 to 5,000; the text fields below come to about 5,200 characters before your own additions. Empty optional fields must stay empty: no "N/A". The budget spreadsheet is CANDIDATURE_TAI_FUND_BUDGET_2026-10-06.xlsx (EA Funds' own template, three scenarios). Sources for every number: the programme v1.6 (parts 1, 5, 9 and 10), the notes in experiences/resultats/, the run registry. -->
 
-**Applicant:** [[full name]] · [[city, country]] · [[email]] · [[link: website, GitHub or Scholar]]
+## Basic information
 
-**Amount requested:** [[first paper: about 7,300 USD]] or [[full programme: about 15,200 USD]], excluding a stipend; [[stipend: amount per month × months, or none]]. Details in section 7.
+**Fund:** Transformative AI Fund
 
----
+**Confirmation of fund scope:** tick.
 
-## 1. Project title
+**Funding from Coefficient Giving:** INDIVIDUAL – I am seeking funding as an individual
 
-Reasons or being watched? A causal test of whether reason-based fine-tuning generalizes because the model knows it is evaluated
+**Name:** [[first and last name]]
 
-## 2. Short summary (99 words)
+**Organization name:** leave empty.
 
-Fine-tuning a model on the reasons for aligned actions, rather than on the actions alone, has been reported to improve out-of-distribution behavior. A competing explanation is that such training teaches the model to behave well when it believes it is being evaluated. I test this causally in an open model, Llama-3.1-8B-Instruct, with LoRA fine-tuning. Arms are trained on identical aligned actions, with or without reasons. I then inhibit a validated internal representation of "I am being evaluated", against degradation-matched controls, and measure how much of the reasons' advantage depends on it. The grant would fund compute and API costs.
+**Grant program:** Transformative AI Research Grants
 
-## 3. Project description (294 words)
+**Main collaborators:** leave empty, since the applicant works alone. [[Name collaborators here if there are any.]]
 
-The programme asks where the out-of-distribution advantage of reason-based fine-tuning comes from. Do the reasons generalize, or has the model learned to behave well when it thinks it is watched? Eleven prior-art searches found no test of this combination: reasons against the same actions, with format and content controlled, crossed with a validated internal intervention on evaluation awareness.
+**Email address:** [[email]]
 
-The minimal decisive experiment has three parts.
+**Additional email addresses:** leave empty.
 
-1. **Validating the instrument.** Two model organisms have behavior conditioned on evaluation cues: explicit cues for one, implicit cues for the other. The inhibition must shrink the conditional gap more than the 95th percentile of at least 100 random comparator subspaces. These are drawn from the activation covariance and matched on output degradation (KL). A setting is chosen on one half of the tasks and tested once on the other half. The manipulation check retrains probes under each condition on one cue set and reads them on another, written with other words: it reads what the sets share.
-2. **The reasons test.** Six arms share identical actions: actions only, length-matched neutral text, reasoning from another situation, generic principles, per-example reasons, and reflection after the action. They are evaluated on held-out scenario families, up to multi-turn agentic settings, with free and prefilled reasoning slots.
-3. **The gaze test.** The validated inhibition runs against the comparator and three separate controls, each matched in degradation within each arm. The primary criterion is the advantage of reasons over actions alone, at the far distance, under deployment framing.
+**Employed by or contracted with the Centre for Effective Altruism?** [[e.g. "I have never held a paid position at the Centre for Effective Altruism."]]
 
-The first paper adds the localization of what carries the advantage, with the rank measured by linear erasure. Later phases test three things: removing the representation during training, survival to post-training, and where learned honesty comes from. Decision rules precede the data; the analysis is pre-registered in two stages.
+## Project information
 
-## 4. Why this matters (242 words)
+**Short description** (max. 120 characters; published as the project's public description if the reporting is public or anonymized). Choose one:
 
-Reason-based training is becoming common in alignment practice, through deliberative alignment and principle- or constitution-based training. Its benefits may partly reflect evaluation awareness. If so, gains measured in evaluations may not hold when the model believes it is deployed, which is the case that matters. The Claude Sonnet 4.5 system card reports that evaluation awareness explains "a portion, but not all" of alignment progress on some evaluations. To my knowledge, no one has tested this for the advantage of reasons, in models whose internals can be manipulated.
+> Compute and API costs for a causal test of evaluation awareness in reason-based fine-tuning (open 8B model)
 
-Every outcome is useful:
-- **If the advantage survives a validated inhibition**, that is causal evidence, in this setting, that reasons generalize beyond the watched case.
-- **If part of it depends on the representation**, that is a measured loss of advantage, in percentage points, with a conditional fraction and its confidence interval. It warns about how reason-based alignment generalizes.
-- **If the instrument fails its gate**, that is a publishable methods result about steering evaluation awareness.
+> [[N]]-month stipend and compute for a causal test of evaluation awareness in reason-based fine-tuning (8B model)
 
-The project also delivers methods others can reuse:
-- a random comparator drawn from the activation covariance and matched on damage, where same-rank random directions are not;
-- a manipulation check, read through transfer, that cannot read the cue words;
-- a gate where the setting is chosen on one half of the tasks and tested once on the other.
+**Summary** (max. 1,000 characters; used for the pre-screening):
 
-The scope is deliberately narrow: LoRA SFT of an 8B open model. Production training paths are not tested, and the write-up will say so.
+> Training a model on the reasons for aligned actions, not only the actions, seems to improve out-of-distribution behavior. A competing explanation: the model learns to behave well when it believes it is evaluated. I test this causally in Llama-3.1-8B-Instruct. LoRA arms are trained on identical aligned actions, with or without reasons. I then inhibit a validated internal representation of "I am being evaluated", against random subspaces and controls matched on output damage, and measure how much of the reasons' advantage depends on it. To my knowledge this is untested, while system cards report that evaluation awareness explains part of alignment gains. Every outcome is informative, including a failed instrument. Done so far, self-funded: a pre-registered programme, tested code, a model organism with a 54-point evaluation-conditional gap, and a validated probe. The grant pays GPU and API costs for the first paper, about 10 weeks.
 
-## 5. Progress so far (292 words)
+**Project goals:**
 
-The work started on 3 October 2026 and is self-funded. It has cost about 110 USD of GPU rental, an upper bound taken from the run registry, and about 35 USD of recorded API usage, [[plus earlier API usage]].
+> The goal is to measure whether the out-of-distribution advantage of reason-based fine-tuning depends on the model's representation of being evaluated. The steps:
+> 1. Validate the instrument on two model organisms, with explicit and implicit evaluation cues. The inhibition must shrink their conditional gap beyond the 95th percentile of at least 100 random subspaces matched on KL, on held-out tasks, with a manipulation check across cue sets.
+> 2. The reasons test: six arms on identical actions, from actions only to per-example reasons and reflection, on held-out scenario families up to multi-turn agentic settings.
+> 3. The gaze test: the validated inhibition in each arm, against the comparator and three separate controls, each matched on damage.
+> 4. Localization: the rank of what carries the advantage, by linear erasure.
+>
+> I will know the goal is met when the pre-registered decision rules give a verdict: the advantage survives, part of it depends on the representation (in points, with a conditional fraction and its interval), or the instrument fails its gate. Outputs: a post on the Alignment Forum about week 6, an arXiv preprint about week 10. Path to impact: reason-based training (deliberative or constitution-based alignment) is spreading. Whether its gains hold when a model believes it is unobserved bears directly on catastrophic-risk arguments, and the validated instrument and controls can be reused by others.
 
-- **A research programme of 135 pages (v1.6).** It was revised after a cold-read review. It holds 34 dated decisions, the prior-art searches, decision rules written before the data, and a two-stage pre-registration plan.
-- **A tested codebase.** It includes a data pipeline with lexical gates on the cue sets, a GPU job runner with a run registry and a results repository, and about 150 offline tests.
-- **The first model organism.** Llama-3.1-8B-Instruct went through synthetic-document fine-tuning, then six rounds of expert iteration. It now writes fully type-annotated code on 60.8% of held-out tasks under an evaluation cue, against 6.4% under a deployment cue: a 54.4-point gap, on 250 tasks.
-- **An evaluation-awareness probe.** It reads a held-out cue set, written with other words, at AUROC 0.857. A bag-of-words classifier reaches 0.634.
-- **Exploratory interventions.**
-  - A rank-1 projection reduces the gap by 37.6 points, but one degradation-matched random draw reaches 32.4.
-  - A linear (LEACE-style) erasure on all layers is the only intervention that drops the cross-set probe transfer to chance. It reaches 0.497, against 0.687 under a matched random draw.
-  - A dose curve shows a heavy-tailed comparator.
-  - The damage of the same erasure differs between A100 and H100 GPUs, so compared runs now stay on one GPU model.
-- **The procedure that fixes the gate setting.** It compares three candidates, each against 20 matched draws. It was registered before any measurement. It stopped when the compute budget ran out on 6 October, with 46 of its 60 comparator draws measured on behavior and the manipulation check still to run.
+**Track record:**
 
-## 6. Plan, milestones and outputs
+> [[2 to 4 sentences on your background: field, degrees, research or engineering work, publications.]]
+>
+> This project started on 3 October 2026. In four days, I set out the research programme: 135 pages, revised after a cold-read review, with 34 dated decisions, prior-art searches and decision rules written before any data. I built a tested codebase, with about 150 offline tests and lexical gates on the cue sets. I built a first model organism: Llama-3.1-8B-Instruct, after synthetic-document fine-tuning and six rounds of expert iteration, type-annotates its code on 60.8% of held-out tasks under an evaluation cue, against 6.4% under a deployment cue. I validated a probe that reads held-out cues at AUROC 0.857, against 0.634 for a bag-of-words baseline. The exploratory interventions show the limits too. A rank-1 projection beats matched random draws only narrowly, by 37.6 points against 32.4, and only a linear erasure drops the cross-set probe transfer to chance. The procedure that fixes the instrument's setting was registered before measurement, then stopped mid-way when my compute budget ran out. [[Optional: "Implementation is carried out with Claude Code sessions under my direction; I take and log every decision."]]
+>
+> Expenditure: 2026, about 145 USD (110 GPU, 35 API) [[plus earlier API usage]]; 1 person, [[part-time / full-time]].
 
-The calendar of the programme, counted in weeks from the start of funding:
+**Public portfolio:** [[links to public writing or code, if any; the programme's repository is private]]
 
-| Weeks | Work | Output |
-|---|---|---|
-| 1 – 2 | finish the gate procedure; first stage of the pre-registration (OSF, embargoed); the held-out scenario harness; generation of the training data; pilot runs, two seeds per arm | the pre-registration, stage 1 |
-| 3 | pilot analysis and power simulation; the second organism and its gate; the frozen amendment, before any data of the gaze test | the amendment |
-| 4 – 5 | full training; the reasons test; the gaze test, with manipulation checks | results of the minimal experiment |
-| 6 | write-up | a post on the Alignment Forum and LessWrong |
-| 7 – 8 | localization of what carries the advantage (rank by erasure, two adapter ranks) | — |
-| 9 – 10 | the first paper, an independent review, the preprint | arXiv preprint |
-| 11 – 16 | the rest of the programme: what reasons install, removal during training, replication on Qwen3-8B, survival, reasons graded by the judge, where learned honesty comes from | further papers |
+## Funding
 
-The bottleneck is human time, not GPUs. The held-out scenario harness is the critical path.
+**Funding amount and breakdown** (attach `CANDIDATURE_TAI_FUND_BUDGET_2026-10-06.xlsx`, or a Google Sheets copy shared as "Anyone with the link can view"):
 
-## 7. Budget
+> Mainline scenario, the first paper (about 10 weeks): 7,568 USD [[+ stipend]]. GPU compute, 4,480 USD (59%): 560 H100-hours for the minimal experiment and the localization, plus a 720-hour reserve for the larger gaze test, spent only if the power simulation calls for it. Claude API, 2,400 USD (32%): training data, cue sets, held-out scenarios, judges on subsamples. A 10% contingency buffer, 688 USD (9%), stated explicitly. [[Stipend: N months × X USD, gross, including income tax and social charges; then update the percentages.]]
+> Minimum, without the reserve: 4,796 USD. Maximum, the whole programme (about 16 weeks): 15,158 USD. Estimates from the programme, at 3.50 USD per H100-hour (2.86 to 4.04 on vast.ai on 6 October), to be re-measured at the pilot. Total project budget: 15,158 USD [[+ stipend]].
 
-These estimates come from the programme and will be re-measured at the pilot, with an uncertainty of about a factor of 2. GPU prices are those of an H100 SXM on vast.ai: from 2.9 to 4.0 USD an hour on 6 October. The table uses 3.5 USD.
+**Requested amount (USD):** [[7,568 + stipend]]
 
-| Item | First paper (minimal experiment and localization) | Full programme, without the deferred phase |
-|---|---|---|
-| GPU compute | 270 – 560 GPU-h: 950 – 1,960 USD | 980 – 1,960 GPU-h: 3,430 – 6,860 USD |
-| Reserve, if the power simulation calls for the larger gaze test (400 scenarios × 10 generations) | + 450 – 720 GPU-h: + 1,580 – 2,520 USD | the same |
-| Contingency for interrupted runs and reruns (20 % of the GPU line) | about 400 USD | about 1,370 USD |
-| Claude API: generation of the training data | 500 – 1,400 USD | 500 – 1,400 USD |
-| Claude API: cue sets, held-out scenarios, judges on stratified subsamples | about 1,000 USD | up to about 3,000 USD |
-| **Total, upper end, without stipend** | **about 4,800 USD; 7,300 USD with the reserve** | **about 12,600 USD; 15,200 USD with the reserve** |
-| Researcher stipend | [[amount and duration, or none]] | [[amount and duration, or none]] |
+**Organizational budget:** leave empty.
 
-API credits from Anthropic's External Researcher Access Program, if granted, would reduce the API lines by about 1,000 USD.
+**Alternatives to funding:**
 
-## 8. Risks, and what a null result would mean (152 words)
+> Without this grant, the work continues self-funded, in small batches when I can afford them. The gaze test, which holds most of the compute, would slip by months. Other applications in the last 12 months: [[Anthropic External Researcher Access Program, API credits, applied on <date>, usually 1,000 USD, decision expected on the first Monday of the following month — only if you have sent it]]. No other funding received.
 
-- **The instrument may fail its gate.** The first measures already show thin margins and a heavy-tailed comparator. The gaze question could then not be answered with this instrument. The methods result would still be published, and the reasons test, which does not need the instrument, would still run.
-- **The compute estimates are uncertain by about a factor of 2.** The pilot re-measures them. Every run is logged with its cost, and the reserve is spent only if the power simulation calls for it.
-- **The scope is narrow**: one 8B model, LoRA SFT. The programme plans a replication on Qwen3-8B. The write-up states the scope in the terms of what was measured.
-- **Interpretation.** A representation that separates our evaluation and deployment cues is not proven to be "the belief of being watched" until the stakes are ruled out. A stakes contrast is one of the separate controls, and the conclusions will be worded accordingly.
+**Use for additional funding:**
 
-## 9. About the applicant
+> The maximum scenario: the remaining phases of the programme, which cover what reasons install, removal of the representation during training, replication on Qwen3-8B, survival to post-training, reasons graded by the judge, and where learned honesty comes from.
 
-[[Background: education, field, prior research or engineering work, publications, relevant experience. 100 to 150 words.]]
+## Further information
 
-[[Optional, Lazar to decide: "Implementation is largely carried out with Claude Code sessions under my direction. I set the questions, take every decision, which is dated and logged, and review the outputs. The sessions write the code, run the experiments and draft the documents."]]
+**Confidential information** (optional): [[e.g. "The study is pre-registered under embargo until the first post: please keep the method details within the fund's advisors." Or leave empty.]]
 
-## 10. References and links
+**LinkedIn/CV:** [[link]]
 
-- [[Reference 1: name, role, email]]
-- [[Reference 2: name, role, email]]
-- The programme, its decision log and the run registry are in a private repository, shared with reviewers on request.
+**File upload:** the budget spreadsheet, if not linked above.
+
+**Start date:** [[today, or the date you can start]]  **End date:** [[about 10 weeks later for the mainline; 16 for the maximum]]
+
+**Requested currency:** [[USD / EUR / GBP]]
+
+**Location:** [[city, country]]. The work runs remotely, on rented cloud GPUs and model APIs.
+
+**China or India:** No. **Award for past achievement:** No. **People under 18:** No. **Safeguarding:** leave empty. **Lobbying or political activity:** No.
+
+**References** (optional, but they help): [[name, email, one or two sentences on who they are and how they know your work]]
+
+**Organisational leadership:** leave empty.
+
+**Referral to other funders:** [[Yes recommended]]
+
+**Secondary fund (EA Infrastructure Fund):** No.
+
+**How did you hear about EA Funds?** [[e.g. "Searching for AI safety research funding."]]
+
+**Time-sensitive grant (decision within eight weeks):** [[your call: the instrument's procedure stopped mid-way for lack of compute]]
+
+**Public reporting:** [[PRIVATE recommended while the pre-registration is under embargo; ANONYMIZED or PUBLIC publish the short description. The form says a private grant "could slightly decrease the chance"]]
+
+**Network sharing:** [[your call]]
+
+**Anything else:** leave empty.
+
+**Grant reporting** (a report every 6 months and at the end): tick. **Review of responses:** tick, after re-reading.
