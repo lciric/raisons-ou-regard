@@ -49,6 +49,10 @@ projection: degradation, gaps, comparator matched on the KL, controls, manipulat
 5 and 6 October; "base" fits it on the starting model, before the adapters are merged, as the test of the gaze would
 fit it once for every arm (programme v1.6, part 4, the procedure, step 3; decision 34, 6 October 2026). Each fitted
 erasure is written to erasure_<setting>.safetensors ("layer_NN.mean", "layer_NN.B", "layer_NN.C").
+With "measure_from": k in "comparator", a run resumes an interrupted one: the draws are drawn and matched on the KL as
+before (the same seed and arguments give the same draws), but only those from index k on are measured; the earlier
+ones were measured by the interrupted run (6 October 2026: three runs stopped when the vast.ai credit ran out). The
+baseline and the setting are measured again, which checks that the two runs agree.
 A condition counts as matched when its KL is within "kl_tolerance" (10 %) of the setting's. The summary "porte" gives,
 by cue set, the inhibition's reduction against the 95th percentile of the matched draws and against each control. The
 lexical condition and the manipulation check are read by other jobs.
@@ -440,8 +444,9 @@ def run(ctx):
                 return int(mult), cands, tried
         return None, None, tried
 
-    def matched(name, d, n_layers_used, target, inh_removed):
-        """One condition at the fraction that reaches the target KL, and the gap under it. Returns (record, rows)."""
+    def matched(name, d, n_layers_used, target, inh_removed, gaps_here=True):
+        """One condition at the fraction that reaches the target KL, and the gap under it (not with gaps_here false:
+        the condition only). Returns (record, rows)."""
         dd = on_device(d)
         pts = []
         for x in grid:
@@ -463,10 +468,11 @@ def run(ctx):
             rec["degradation"] = last["degradation"]
             rec["kl_matched"] = bool(abs(k - target) <= tol * target)
             rec["energy_ratio"] = round(last["removed"] / inh_removed, 3) if inh_removed else None
-            with idg.Projector(model, dd, x):
-                m, rows = measure(name, comp_framings)
-            rec["measure"] = m
-            rec["reduction"] = reduction(base_m, m)
+            if gaps_here:
+                with idg.Projector(model, dd, x):
+                    m, rows = measure(name, comp_framings)
+                rec["measure"] = m
+                rec["reduction"] = reduction(base_m, m)
         return rec, rows
 
     control_specs = list(a.get("controls") or [])
@@ -506,17 +512,24 @@ def run(ctx):
         if chosen is None:
             save(f"comparator_{key.replace('|', '_')}_none", [], f"{key}: no comparator rank reaches the inhibition's KL")
         manip_conditions = {"none": None, f"inhibition {key}": (lambda key=key, ls=ls, r=r, f=f: intervention(key, ls, r, f))}
+        start = int(comp.get("measure_from", 0))     # a resumed run: the draws before it were measured by the interrupted one
+        if start:
+            entry["measure_from"] = start
         for i, d in enumerate(draws or []):
-            if not enough_time(len(comp_framings), f"{key} comparator draw {i + 1}"):
+            here = i >= start
+            if here and not enough_time(len(comp_framings), f"{key} comparator draw {i + 1}"):
                 break
-            ctx.progress = f"{key}: comparator draw {i + 1}/{len(draws)}"
-            rec, rows = matched(f"{key} comparator {i + 1}", d, len(ls), target, inh.get("removed_norm"))
+            ctx.progress = f"{key}: comparator draw {i + 1}/{len(draws)}" + ("" if here else " (matched only)")
+            rec, rows = matched(f"{key} comparator {i + 1}", d, len(ls), target, inh.get("removed_norm"), gaps_here=here)
             if rec.get("kl_matched") and i < int((a.get("manipulation") or {}).get("draws", 3)):
                 manip_conditions[f"comparator {i + 1}"] = (lambda d=d, x=rec["fraction"]: idg.Projector(model, on_device(d), x))
             rec = {"draw": i, **rec}
             entry["draws"].append(rec)
-            save(f"comparator_{key.replace('|', '_')}_{i:02d}", rows,
-                 f"{key}: comparator draw {i + 1}/{len(draws)}, extraction gap reduced by {rec.get('reduction', {}).get('extraction')} points")
+            if here:
+                save(f"comparator_{key.replace('|', '_')}_{i:02d}", rows,
+                     f"{key}: comparator draw {i + 1}/{len(draws)}, extraction gap reduced by {rec.get('reduction', {}).get('extraction')} points")
+            else:
+                save_results(f"{key}: comparator draw {i + 1}/{len(draws)} matched; its gaps come from the interrupted run")
         red = [d["reduction"]["extraction"] for d in entry["draws"] if d.get("kl_matched") and "extraction" in d.get("reduction", {})]
         if red:
             entry["summary"] = {"draws_measured": len(red), "reduction_median": round(statistics.median(red), 2),

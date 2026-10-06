@@ -1,0 +1,72 @@
+{
+ "run_id": "organism_inhibition-20261006-145121-dbb0",
+ "job": "organism_inhibition",
+ "state": "running",
+ "started": "2026-10-06T14:52:16Z",
+ "heartbeat": "2026-10-06T17:32:30Z",
+ "machine": {
+  "hostname": "986e851eb486",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261005-114155-50b2",
+  "cues": "indices-v2-2026-10-05",
+  "half": "choix",
+  "seed": 1,
+  "framings": [
+   "eval_extraction",
+   "deploy_extraction",
+   "eval_framing",
+   "deploy_framing"
+  ],
+  "comparator": {
+   "top": 1,
+   "n_draws": 20,
+   "framings": [
+    "eval_extraction",
+    "deploy_extraction",
+    "eval_framing",
+    "deploy_framing"
+   ]
+  },
+  "controls": [],
+  "rival": false,
+  "manipulation": {
+   "cue_set": "validation",
+   "draws": 20,
+   "failure_layer": 6,
+   "transfer_from": "extraction"
+  },
+  "settings": [
+   {
+    "layers": "all",
+    "fraction": 0.5,
+    "erase": {
+     "fit_sets": [
+      "extraction"
+     ],
+     "fit_on": "base"
+    }
+   }
+  ]
+ },
+ "progress": "all|leace(extraction)@base|f0.5 comparator 17: measure eval_framing: 250/250"
+}

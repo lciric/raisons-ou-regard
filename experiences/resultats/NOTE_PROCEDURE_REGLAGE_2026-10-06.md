@@ -61,3 +61,40 @@ La lecture suit les étapes 5 à 8 de la procédure de la v1.6, telles qu'elles 
 ## Coût prévu
 
 Environ 4 h par run sur H100 SXM, à environ 3,70 $/h, soit **environ 45 $** pour les trois. Le plafond est de 6 h par run. Le job s'arrête avant une mesure qu'il ne finirait pas un quart d'heure avant ce plafond.
+
+## L'interruption, et la reprise (6 octobre, 17 h 35 UTC)
+
+**Ce qui s'est passé.** Les trois runs sont partis entre 14 h 47 et 15 h 09 UTC :
+- A : `organism_inhibition-20261006-144713-0f47` ;
+- B : `organism_inhibition-20261006-145121-dbb0` ;
+- C : `organism_inhibition-20261006-150952-d6c2`.
+
+La recharge automatique de vast.ai a ajouté environ 5 $ à cinq reprises, puis plus rien après 16 h 50. Le crédit est tombé à zéro vers 17 h 33, et vast.ai a arrêté les trois conteneurs. Le suivi les a détruits à 17 h 40, après avoir gardé leurs journaux. Lazar a recrédité le compte : « credit ajouté ».
+
+**Ce qui est gardé.** Les sorties sont sur le dépôt de résultats, puis rapatriées ici (les mesures restent sur le dépôt de résultats).
+
+| Candidat | Run | Tirages mesurés sur la conduite | Dans `results.json` |
+|---|---|---|---|
+| A | `…-144713-0f47` | 17 (tirages 1 à 17) | 17, tous appariés sur la KL |
+| B | `…-145121-dbb0` | 16 (tirages 1 à 16) | 15 : le 16ᵉ n'a que son fichier de mesure |
+| C | `…-150952-d6c2` | 13 (tirages 1 à 13) | 13, tous appariés |
+
+- La ligne de base et le candidat sont mesurés dans chacun des trois runs. La ligne de base y est identique : 54,4 points d'écart sous les indices d'extraction, 18,4 sous le cadrage, comme dans 62a1.
+- La vérification de manipulation, qui vient après les tirages, n'a été faite dans aucun des trois.
+- Les effacements ajustés n'ont pas été envoyés : ils ne partaient qu'à la fin du run.
+- Coût, au plus : 11,63 + 11,35 + 9,83 = 32,81 $.
+
+**La reprise** (choisie par la session, dans la règle de la décision 33 : les tirages ne se mettent en commun qu'entre runs sur la même carte). Un run par candidat, avec les mêmes arguments et la même graine, sur H100 SXM, et l'option nouvelle `"measure_from"` du comparateur : 17 pour A, 15 pour B, 13 pour C. Chaque reprise :
+- réajuste l'effacement (B et C), de la même façon ;
+- remesure la ligne de base et le candidat ;
+- retire et réapparie les 20 tirages, qui sont les mêmes d'un run à l'autre, par la graine ;
+- ne mesure sur la conduite que ceux qui manquent : les tirages 18 à 20 pour A, 16 à 20 pour B, 14 à 20 pour C. Le 16ᵉ de B est mesuré une seconde fois, ce qui sert aussi de contrôle ;
+- fait ensuite la vérification de manipulation sur les 20 tirages.
+
+**La lecture.** Les 20 tirages de chaque candidat réunissent ceux du run interrompu et ceux de la reprise. La mise en commun tient à deux conditions :
+- la reprise retrouve exactement la ligne de base et le candidat du run interrompu ;
+- les tirages communs y ont les mêmes fractions appariées.
+
+Sinon, la session le dit, et la suite revient à Lazar.
+
+**Coût prévu de la reprise.** Environ 1,5 à 2 h par run, soit environ 22 $ en tout.

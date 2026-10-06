@@ -168,6 +168,24 @@ class TestJob(unittest.TestCase):
             self.assertEqual(oi.percentile([1, 2, 3, 4, 5], 50), 3)
             self.assertAlmostEqual(oi.percentile(list(range(101)), 95), 95.0)
             self.assertIsNone(oi.percentile([], 95))
+            # "measure_from" resumes an interrupted run: the same draws, matched again, measured from that index only
+            ctx5 = Ctx()
+            ctx5.out, ctx5.progress = tmp / "out_resume", ""
+            ctx5.args = dict(ctx.args, comparator=dict(ctx.args["comparator"], measure_from=1))
+            ctx5.out.mkdir()
+            oi.run(ctx5)
+            out5 = json.loads((ctx5.out / "results.json").read_text(encoding="utf8"))
+            c5, c1 = out5["comparator"][key], out["comparator"][key]
+            self.assertEqual([d["fraction"] for d in c5["draws"]], [d["fraction"] for d in c1["draws"]])
+            self.assertEqual(out5["baseline"]["gap_extraction"], out["baseline"]["gap_extraction"])
+            self.assertTrue(c1["multiple"] and c5["draws"][1]["fraction"] is not None)     # the tiny model reaches the KL
+            if c1["multiple"]:
+                self.assertEqual(c5["measure_from"], 1)
+                self.assertNotIn("reduction", c5["draws"][0])
+                self.assertFalse((ctx5.out / f"measure_comparator_{key.replace('|', '_')}_00.jsonl").exists())
+                if c5["draws"][1]["fraction"] is not None:
+                    self.assertEqual(c5["draws"][1]["reduction"], c1["draws"][1]["reduction"])
+                    self.assertTrue((ctx5.out / f"measure_comparator_{key.replace('|', '_')}_01.jsonl").exists())
             # "gaps": false reruns the manipulation check alone: nothing generated, the same matched conditions
             ctx2 = Ctx()
             ctx2.out, ctx2.progress, ctx2.args = tmp / "out_check", "", dict(ctx.args, gaps=False)

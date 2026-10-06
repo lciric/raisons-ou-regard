@@ -1,0 +1,78 @@
+{
+ "args": {
+  "comparator": {
+   "framings": [
+    "eval_extraction",
+    "deploy_extraction",
+    "eval_framing",
+    "deploy_framing"
+   ],
+   "n_draws": 20,
+   "top": 1
+  },
+  "controls": [],
+  "cues": "indices-v2-2026-10-05",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "framings": [
+   "eval_extraction",
+   "deploy_extraction",
+   "eval_framing",
+   "deploy_framing"
+  ],
+  "half": "choix",
+  "manipulation": {
+   "cue_set": "validation",
+   "draws": 20,
+   "failure_layer": 6,
+   "transfer_from": "extraction"
+  },
+  "rival": false,
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "seed": 1,
+  "settings": [
+   {
+    "erase": {
+     "fit_on": "base",
+     "fit_sets": [
+      "extraction"
+     ]
+    },
+    "fraction": 1.0,
+    "layers": "all"
+   }
+  ],
+  "subspace_run": "extract_eval-20261005-114155-50b2"
+ },
+ "bundle": {
+  "bytes": 2641332,
+  "dirty": false,
+  "files": 194,
+  "git_head": "bcc03119b985c7f5ce42d181da2c7692eb3d52da",
+  "repo_path": "code/60eb07861245402a.tar.gz",
+  "sha256": "60eb07861245402a33148c5ceb26c0469664f3f9018e888dee6318dd00dc533b"
+ },
+ "created": "2026-10-06T14:38:59Z",
+ "disk_gb": 120,
+ "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
+ "job": "organism_inhibition",
+ "max_hours": 6.0,
+ "num_gpus": 1,
+ "offers_tried": [
+  {
+   "gpu": "H100 SXM",
+   "offers": 0
+  }
+ ],
+ "requirements": [
+  "transformers==5.18.0",
+  "peft==0.21.2",
+  "accelerate==1.15.0",
+  "huggingface_hub==1.33.0",
+  "safetensors==0.8.0",
+  "tokenizers==0.23.2",
+  "pyyaml==6.0.3"
+ ],
+ "run_id": "organism_inhibition-20261006-143859-a9d9",
+ "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
+ "state": "no_offer"
+}
