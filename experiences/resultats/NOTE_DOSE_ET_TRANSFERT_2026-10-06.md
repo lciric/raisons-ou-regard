@@ -20,7 +20,7 @@ Une sonde est entraînée sur les 50 paires d'extraction gardées hors de l'expe
 | un tirage du comparateur, au même dommage | 0,687 (0,818) | 0,662 (0,819) |
 | l'échec construit, couche 6 seule | 0,683 | 0,690 |
 
-- **L'effacement sur toutes les couches fait tomber le transfert au hasard au dernier jeton, et lui seul.** Le comparateur, au même dommage, ne le touche pas. Aux couches 16 à 32, le transfert passe sous 0,5 (0,36 à 0,48) : la correction, ajustée sur d'autres paires, déborde.
+- **L'effacement sur toutes les couches fait tomber le transfert au hasard au dernier jeton, et lui seul.** Le comparateur, au même dommage, ne le touche pas. Aux couches 13 à 32, le transfert passe sous 0,5 (0,356 à 0,493) : la correction, ajustée sur d'autres paires, déborde.
 - **L'effacement sur les couches 4 à 8 ne le fait pas tomber.** La distinction se reforme en aval.
 - **L'échec construit est vu.** À la couche 6, le transfert tombe de 0,64 à 0,55, puis revient dès la couche 9.
 - **En moyenne sur les jetons du prompt, la distinction reste lisible** : 0,900 sous l'effacement, contre 0,918 sans intervention. Les sondes entraînées et testées dans la validation elle-même restent à 0,98.
