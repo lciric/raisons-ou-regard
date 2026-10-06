@@ -98,3 +98,12 @@ La recharge automatique de vast.ai a ajouté environ 5 $ à cinq reprises, puis 
 Sinon, la session le dit, et la suite revient à Lazar.
 
 **Coût prévu de la reprise.** Environ 1,5 à 2 h par run, soit environ 22 $ en tout.
+
+**La reprise, arrêtée (18 h 11 UTC).** Les trois reprises sont parties entre 17 h 49 et 17 h 51 UTC, sur une même machine H100 SXM, à 2,86 à 2,90 $/h :
+- A : `organism_inhibition-20261006-174853-ccd6` ;
+- B : `organism_inhibition-20261006-174857-e091` ;
+- C : `organism_inhibition-20261006-175104-79f2`.
+
+La recharge automatique ne s'est pas déclenchée, et le crédit est descendu à 0,18 $. Lazar : « tant pis je n'ai plus le budget pour aujourd'hui ». La session a alors détruit les trois machines à la main, avant que la recharge ne débite sa carte. Coût, au plus : 1,06 + 1,06 + 0,94 = 3,05 $.
+
+Les reprises n'avaient pas atteint les tirages manquants : A mesurait son candidat, B et C leur ligne de base. Rien de leur part n'entre dans la procédure. La reprise reste prête, à relancer telle quelle.
