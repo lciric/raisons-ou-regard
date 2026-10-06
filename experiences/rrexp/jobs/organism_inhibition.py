@@ -41,11 +41,14 @@ generation, and the manipulation check runs on them; the gaps, the rival manipul
 out. That reruns the check alone, in minutes; with the same seed and the same arguments, the comparator draws and the
 controls are the same.
 A setting may erase instead of projecting: {"layers": ..., "erase": {"fit_sets": ["extraction"], "readout": "last",
-"sequential": true, "contexts_per_pair": 2}, "fraction": 1.0}. That is the linear erasure in closed form of the module
-erasure: one direction per fitted cue set and per layer, fitted on the cue pairs that the measure does not use (for
-the extraction set, the pairs of the expert iteration). It goes through the same steps as a projection: degradation,
-gaps, comparator matched on the KL, controls, manipulation check, and its constructed failure (the erasure at one of
-its layers only).
+"sequential": true, "contexts_per_pair": 2, "fit_on": "organism"}, "fraction": 1.0}. That is the linear erasure in
+closed form of the module erasure: one direction per fitted cue set and per layer, fitted on the cue pairs that the
+measure does not use (for the extraction set, the pairs of the expert iteration). It goes through the same steps as a
+projection: degradation, gaps, comparator matched on the KL, controls, manipulation check, and its constructed failure
+(the erasure at one of its layers only). "fit_on": "organism", the default, fits it on the organism's own states, as on
+5 and 6 October; "base" fits it on the starting model, before the adapters are merged, as the test of the gaze would
+fit it once for every arm (programme v1.6, part 4, the procedure, step 3; decision 34, 6 October 2026). Each fitted
+erasure is written to erasure_<setting>.safetensors ("layer_NN.mean", "layer_NN.B", "layer_NN.C").
 A condition counts as matched when its KL is within "kl_tolerance" (10 %) of the setting's. The summary "porte" gives,
 by cue set, the inhibition's reduction against the 95th percentile of the matched draws and against each control. The
 lexical condition and the manipulation check are read by other jobs.
@@ -108,9 +111,11 @@ def setting_key(layers, rank, fraction, n_layers):
     return f"{_layers_name(layers, n_layers)}|r{rank}|f{fraction:g}"
 
 
-def erase_key(layers, fit_sets, fraction, n_layers):
-    """The key of a setting that erases in closed form, fitted on the given cue sets."""
-    return f"{_layers_name(layers, n_layers)}|leace({'+'.join(fit_sets)})|f{fraction:g}"
+def erase_key(layers, fit_sets, fraction, n_layers, fit_on="organism"):
+    """The key of a setting that erases in closed form, fitted on the given cue sets; "@base" when fitted on the
+    starting model."""
+    where = "@base" if fit_on == "base" else ""
+    return f"{_layers_name(layers, n_layers)}|leace({'+'.join(fit_sets)}){where}|f{fraction:g}"
 
 
 def reduction(base, measured):
@@ -187,11 +192,14 @@ def subspace_overlap(bases, subspace, rank):
     return round(sum(vals) / len(vals), 4) if vals else None
 
 
-def load_organism(base_path, sdf_dir, ei_dir, dtype, device):
-    """The starting model, the documents' adapter merged, then the expert iteration's adapter merged."""
+def load_organism(base_path, sdf_dir, ei_dir, dtype, device, before_merge=None):
+    """The starting model, the documents' adapter merged, then the expert iteration's adapter merged. before_merge(model),
+    if given, is called on the starting model first (the erasures fitted on it)."""
     from peft import PeftModel  # noqa: WPS433
     from transformers import AutoModelForCausalLM  # noqa: WPS433
     model = AutoModelForCausalLM.from_pretrained(base_path, dtype=dtype).to(device)
+    if before_merge is not None:
+        before_merge(model.eval())
     model = PeftModel.from_pretrained(model, str(sdf_dir)).merge_and_unload()
     if ei_dir:
         model = PeftModel.from_pretrained(model, str(ei_dir)).merge_and_unload()
@@ -201,8 +209,8 @@ def load_organism(base_path, sdf_dir, ei_dir, dtype, device):
 def run(ctx):
     import torch  # noqa: WPS433
     from huggingface_hub import snapshot_download  # noqa: WPS433
-    from safetensors.torch import load_file  # noqa: WPS433
-    from transformers import AutoTokenizer  # noqa: WPS433
+    from safetensors.torch import load_file, save_file  # noqa: WPS433
+    from transformers import AutoConfig, AutoTokenizer  # noqa: WPS433
 
     a = ctx.args
     hp = org.load_hp(a.get("hp"))
@@ -253,8 +261,8 @@ def run(ctx):
     tok = AutoTokenizer.from_pretrained(base)
     if tok.pad_token is None:
         tok.pad_token = next((t for t in ("<|finetune_right_pad_id|>",) if t in tok.get_vocab()), tok.eos_token)
-    model = load_organism(base, sdf_dir, ei_dir, dt, device)
-    n_layers, width = model.config.num_hidden_layers, model.config.hidden_size
+    cfg = AutoConfig.from_pretrained(base)
+    n_layers, width = cfg.num_hidden_layers, cfg.hidden_size
     max_rank = subspace["layer_01.basis"].shape[0]
     settings = []
     erase_specs = {}    # the settings that erase in closed form (module erasure) instead of projecting the subspace
@@ -264,10 +272,13 @@ def run(ctx):
         if s.get("erase"):
             e = s["erase"]
             sets = list(e.get("fit_sets", ["extraction"]))
+            fit_on = e.get("fit_on", "organism")
+            if fit_on not in ("organism", "base"):
+                raise ValueError(f"unknown fit_on {fit_on!r}")
             r = len(sets)                     # one direction per cue set and per layer
-            key = erase_key(ls, sets, f, n_layers)
+            key = erase_key(ls, sets, f, n_layers, fit_on)
             erase_specs[key] = {"sets": sets, "readout": e.get("readout", "last"), "sequential": bool(e.get("sequential", True)),
-                                "contexts_per_pair": int(e.get("contexts_per_pair", 2))}
+                                "contexts_per_pair": int(e.get("contexts_per_pair", 2)), "fit_on": fit_on}
         else:
             r = int(s["rank"])
             if r > max_rank:
@@ -293,6 +304,39 @@ def run(ctx):
                 fh.write(json.dumps(r, ensure_ascii=False) + "\n")
         org._upload(ctx, ctx.out / f"measure_{name}.jsonl", f"out/measure_{name}.jsonl")
         save_results(line)
+
+    snippet_contexts = [c["text"] for c in org._read_jsonl(cfile) if c.get("use", "snippet") == "snippet"]
+    erasers = {}
+
+    def fit_erasers(m, where):
+        """The closed-form erasures fitted on `where` ("base": the starting model, before the adapters are merged;
+        "organism"), once, on the cue pairs that the measure does not use: for the extraction set, the pairs of the
+        expert iteration (the measure uses the others); the other sets whole."""
+        for key, ls, r, f in settings:
+            spec = erase_specs.get(key)
+            if spec is None or spec["fit_on"] != where:
+                continue
+            convs, names = [], []
+            for set_name in spec["sets"]:
+                recs = org._read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{set_name}.jsonl", f"{set_name}.jsonl"))
+                if set_name == "extraction":
+                    keep = {x["pair"] for x in ext_split["eval"][0]}
+                    recs = [x for x in recs if x["pair"] in keep]
+                for _, ev, de in ee.pair_prompts(recs, snippet_contexts, spec["contexts_per_pair"], seed):
+                    convs += [ev, de]
+                    names += [(set_name, "eval"), (set_name, "deploy")]
+            cols, _ = er.polarity_columns(names)
+            erasers[key] = er.fit_layers(m, tok, convs, cols, ls, int(a.get("erase_batch", 16)), device,
+                                         sequential=spec["sequential"], readout=spec["readout"],
+                                         progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"))
+            save_file({f"layer_{l:02d}.{k}": v.contiguous() for l, p in erasers[key].items() for k, v in p.items()},
+                      str(ctx.out / f"erasure_{key.replace('|', '_')}.safetensors"))
+            results.setdefault("erasure", {})[key] = {
+                **spec, "states": len(convs), "directions_per_layer": int(next(iter(erasers[key].values()))["B"].shape[1])}
+            save_results(f"{key}: erasure fitted on {len(convs)} states")
+
+    on_base = any(spec["fit_on"] == "base" for spec in erase_specs.values())
+    model = load_organism(base, sdf_dir, ei_dir, dt, device, before_merge=(lambda m: fit_erasers(m, "base")) if on_base else None)
 
     def gap_line(name, m):
         return (f"{name}: annotated under evaluation {m.get('eval_extraction', {}).get('hinted')}, under deployment "
@@ -348,31 +392,7 @@ def run(ctx):
     def eval_bases(ls, r):
         return {l: subspace[f"layer_{l:02d}.basis"][:r].to(device=device, dtype=dt) for l in ls}
 
-    snippet_contexts = [c["text"] for c in org._read_jsonl(cfile) if c.get("use", "snippet") == "snippet"]
-    erasers = {}
-
-    # the closed-form erasures, fitted once, on the cue pairs that the measure does not use: for the extraction set,
-    # the pairs of the expert iteration (the measure uses the others); the other sets whole
-    for key, ls, r, f in settings:
-        spec = erase_specs.get(key)
-        if spec is None:
-            continue
-        convs, names = [], []
-        for set_name in spec["sets"]:
-            recs = org._read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{set_name}.jsonl", f"{set_name}.jsonl"))
-            if set_name == "extraction":
-                keep = {x["pair"] for x in ext_split["eval"][0]}
-                recs = [x for x in recs if x["pair"] in keep]
-            for _, ev, de in ee.pair_prompts(recs, snippet_contexts, spec["contexts_per_pair"], seed):
-                convs += [ev, de]
-                names += [(set_name, "eval"), (set_name, "deploy")]
-        cols, _ = er.polarity_columns(names)
-        erasers[key] = er.fit_layers(model, tok, convs, cols, ls, int(a.get("erase_batch", 16)), device,
-                                     sequential=spec["sequential"], readout=spec["readout"],
-                                     progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"))
-        results.setdefault("erasure", {})[key] = {
-            **spec, "states": len(convs), "directions_per_layer": int(next(iter(erasers[key].values()))["B"].shape[1])}
-        save_results(f"{key}: erasure fitted on {len(convs)} states")
+    fit_erasers(model, "organism")    # those fitted on the starting model were fitted at loading
 
     def intervention(key, ls, r, f, layers=None):
         """The setting's intervention at a fraction, on its layers or on some of them (the constructed failure)."""

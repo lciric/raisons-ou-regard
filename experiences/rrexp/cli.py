@@ -40,6 +40,8 @@ def main(argv=None):
     pl.add_argument("--allow-dirty", action="store_true", help="bundle uncommitted changes (dry runs only)")
     pl.add_argument("--dry-run", action="store_true", help="build the bundle and the request, rent nothing")
     pl.add_argument("--no-hf-token", action="store_true", help="do not pass HF_TOKEN: the vast.ai account provides it")
+    pl.add_argument("--gpu", action="append", default=None,
+                    help="only this vast.ai GPU type, among the config's (repeatable); by default all, in the config's order")
     pw = sub.add_parser("watch")
     pw.add_argument("--once", action="store_true")
     sub.add_parser("list")
@@ -59,7 +61,7 @@ def main(argv=None):
         return 0
     if a.command == "launch":
         rec = L.launch(cfg, a.job, _args(a.arg), num_gpus=a.gpus, max_hours=a.max_hours, allow_dirty=a.allow_dirty,
-                       dry_run=a.dry_run, pass_hf_token=not a.no_hf_token)
+                       dry_run=a.dry_run, pass_hf_token=not a.no_hf_token, gpu_names=a.gpu)
         print(json.dumps(rec, ensure_ascii=False, indent=1))
         return 0
     if a.command == "list":

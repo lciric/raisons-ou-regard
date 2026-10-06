@@ -141,6 +141,15 @@ class TestBundleAndScript(unittest.TestCase):
         self.assertTrue(specs)
         self.assertTrue(all("==" in s for s in specs), specs)
 
+    def test_gpu_pool_keeps_one_card(self):
+        gpus = launch.load_config()["gpus"]
+        self.assertEqual([g["name"] for g in launch.gpu_pool(gpus, ["H100 SXM"])], ["H100 SXM"])
+        self.assertEqual(launch.gpu_pool(gpus), gpus)
+        with self.assertRaises(ValueError):
+            launch.gpu_pool(gpus, ["H100 PCIE"])
+        with self.assertRaises(ValueError):           # before anything is built or rented
+            launch.launch(launch.load_config(), "smoke", {}, dry_run=True, allow_dirty=True, gpu_names=["B200"])
+
     def test_dry_run_has_no_secret(self):
         os.environ["HF_TOKEN"] = "hf_should_not_appear"
         try:

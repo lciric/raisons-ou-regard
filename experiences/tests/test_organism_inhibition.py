@@ -4,6 +4,7 @@ import shutil
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 try:
     import peft  # noqa: F401
@@ -51,6 +52,7 @@ class TestPieces(unittest.TestCase):
         self.assertEqual(oi.setting_key([6], 1, 1.0, 32), "6|r1|f1")
         self.assertEqual(oi.erase_key(range(1, 33), ["extraction"], 1.0, 32), "all|leace(extraction)|f1")
         self.assertEqual(oi.erase_key([4, 5, 6, 7, 8], ["extraction", "validation"], 0.5, 32), "4-8|leace(extraction+validation)|f0.5")
+        self.assertEqual(oi.erase_key(range(1, 33), ["extraction"], 0.5, 32, "base"), "all|leace(extraction)@base|f0.5")
         self.assertEqual(oi.reduction({"gap_extraction": 0.3, "gap_framing": 0.1}, {"gap_extraction": 0.1, "gap_framing": 0.15}),
                          {"extraction": 20.0, "framing": -5.0})
 
@@ -212,6 +214,41 @@ class TestJob(unittest.TestCase):
             m1 = out3["manipulation"][ekey1]
             self.assertEqual(m1.get("none_shared_from"), ekey)
             self.assertEqual(m1["conditions"]["none"], out3["manipulation"][ekey]["conditions"]["none"])
+            # the erasure fitted on the starting model, before the adapters are merged (decision 34): the fit sees the
+            # starting model's weights, not the organism's, and the fitted erasure is written out
+            from safetensors.torch import load_file
+
+            def q_sum(model):
+                return float(model.model.layers[0].self_attn.q_proj.weight.double().sum())
+            seen, fit = [], oi.er.fit_layers
+
+            def spy(model, *args, **kw):
+                seen.append(q_sum(model))
+                return fit(model, *args, **kw)
+            ctx4 = Ctx()
+            ctx4.out, ctx4.progress = tmp / "out_erase_base", ""
+            ctx4.args = dict(ctx3.args, settings=[{"layers": "all", "fraction": 0.5,
+                                                   "erase": {"fit_sets": ["extraction"], "contexts_per_pair": 1, "fit_on": "base"}}],
+                             comparator={"top": 1, "n_draws": 1, "multiples": [1, 2, 4], "fractions": [0.5, 1.0]})
+            ctx4.out.mkdir()
+            with mock.patch.object(oi.er, "fit_layers", spy):
+                oi.run(ctx4)
+            out4 = json.loads((ctx4.out / "results.json").read_text(encoding="utf8"))
+            bkey = "all|leace(extraction)@base|f0.5"
+            self.assertEqual(list(out4["settings"]), [bkey])
+            self.assertEqual((out4["erasure"][bkey]["fit_on"], out4["erasure"][bkey]["states"]), ("base", 2 * 2))
+            start = q_sum(AutoModelForCausalLM.from_pretrained(tmp / "model"))
+            organism = q_sum(oi.load_organism(tmp / "model", tmp / "sdf", tmp / "ei", torch.float32, "cpu"))
+            self.assertEqual(len(seen), 1)
+            self.assertAlmostEqual(seen[0], start, places=5)
+            self.assertGreater(abs(start - organism), 1e-3)
+            saved = load_file(str(ctx4.out / "erasure_all_leace(extraction)@base_f0.5.safetensors"))
+            self.assertEqual(set(saved), {f"layer_{l:02d}.{k}" for l in (1, 2) for k in ("mean", "B", "C")})
+            self.assertGreater(out4["settings"][bkey]["degradation"]["kl"], 0.0)
+            self.assertTrue({"none", f"inhibition {bkey}", "constructed failure: layer 1 only"} <= set(out4["manipulation"][bkey]["conditions"]))
+            ctx4.args = dict(ctx4.args, settings=[{"layers": "all", "erase": {"fit_on": "elsewhere"}}])
+            with self.assertRaises(ValueError):
+                oi.run(ctx4)
             ctx.args["half"] = "test"                     # the test half waits for the gate
             with self.assertRaises(ValueError):
                 oi.run(ctx)

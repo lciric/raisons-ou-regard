@@ -76,14 +76,28 @@ def job_config(cfg, job):
     return out
 
 
+def gpu_pool(gpus, names=None):
+    """The GPU types to rent from, in the config's order: all of them, or only the named ones. A procedure that pools
+    the comparator's draws asks for one card only (decision 33: draws are pooled only between runs on the same card)."""
+    if not names:
+        return list(gpus)
+    known = [g["name"] for g in gpus]
+    unknown = [n for n in names if n not in known]
+    if unknown:
+        raise ValueError(f"GPU types not in the config: {unknown}; known: {known}")
+    return [g for g in gpus if g["name"] in names]
+
+
 def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=False, dry_run=False,
-           vast=None, hub=None, pass_hf_token=True, registry=REGISTRY):
-    """Builds the code bundle, sends it, rents the cheapest fitting machine, starts the job. Returns the record."""
+           vast=None, hub=None, pass_hf_token=True, registry=REGISTRY, gpu_names=None):
+    """Builds the code bundle, sends it, rents the cheapest fitting machine, starts the job. Returns the record.
+    gpu_names: only these GPU types of the config (gpu_pool)."""
     if job not in JOBS:
         raise ValueError(f"unknown job {job!r}; jobs: {', '.join(JOBS)}")
     # 0 means no time limit: the machine runs the job to its end, and the watcher still destroys a silent one
     max_hours = float(cfg["max_hours_default"] if max_hours is None else max_hours)
     cfg = job_config(cfg, job)
+    pool = gpu_pool(gpus or cfg["gpus"], gpu_names)
     pip_specs = read_requirements(HERE / cfg["requirements"])
     extra = (cfg.get("job_requirements") or {}).get(job)
     if extra:   # a job that needs more installs it on its own machine only
@@ -106,7 +120,7 @@ def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=Fa
         vast = Vast()
     if not hub.exists(b["repo_path"]):
         hub.put_file(b["repo_path"], b["path"], f"code bundle {b['sha256'][:16]} (git {b['git_head'][:8]})")
-    gpu, offer, tried = pick_offer(vast, gpus or cfg["gpus"], num_gpus, cfg["disk_gb"], cfg["filters"], cfg["max_dph_per_gpu"])
+    gpu, offer, tried = pick_offer(vast, pool, num_gpus, cfg["disk_gb"], cfg["filters"], cfg["max_dph_per_gpu"])
     rec["offers_tried"] = tried
     if offer is None:
         rec["state"] = "no_offer"
