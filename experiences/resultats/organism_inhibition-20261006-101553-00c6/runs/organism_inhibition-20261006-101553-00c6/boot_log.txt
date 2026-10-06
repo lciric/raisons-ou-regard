@@ -1,0 +1,86 @@
+[rrexp] start 2026-10-06T10:16:32Z run=organism_inhibition-20261006-101553-00c6 job=organism_inhibition
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 881 GB total, 607 GB available, container limit 321261666304; disk: 120G free
+[rrexp] 2026-10-06T10:16:54Z downloading (rss 0.7 GB, container 1.5 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:17:28Z loading the organism (rss 1.0 GB, container 17.3 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:17:42Z reference answers (rss 1.4 GB, container 17.6 GB of 299.2 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-06T10:18:00Z clean pass (rss 1.9 GB, container 18.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:02Z baseline: annotated under evaluation None, under deployment None, gap None (framing set: None) (rss 2.0 GB, container 18.8 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:03Z all|leace(extraction)|f1: erasure fit: layer 1 (1/32) (rss 2.0 GB, container 18.8 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:08Z all|leace(extraction)|f1: erasure fit: layer 2 (2/32) (rss 3.0 GB, container 19.8 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:12Z all|leace(extraction)|f1: erasure fit: layer 3 (3/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:16Z all|leace(extraction)|f1: erasure fit: layer 4 (4/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:20Z all|leace(extraction)|f1: erasure fit: layer 5 (5/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:24Z all|leace(extraction)|f1: erasure fit: layer 6 (6/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:28Z all|leace(extraction)|f1: erasure fit: layer 7 (7/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:32Z all|leace(extraction)|f1: erasure fit: layer 8 (8/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:36Z all|leace(extraction)|f1: erasure fit: layer 9 (9/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:40Z all|leace(extraction)|f1: erasure fit: layer 10 (10/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:45Z all|leace(extraction)|f1: erasure fit: layer 11 (11/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:49Z all|leace(extraction)|f1: erasure fit: layer 12 (12/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:53Z all|leace(extraction)|f1: erasure fit: layer 13 (13/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:18:57Z all|leace(extraction)|f1: erasure fit: layer 14 (14/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:01Z all|leace(extraction)|f1: erasure fit: layer 15 (15/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:06Z all|leace(extraction)|f1: erasure fit: layer 16 (16/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:10Z all|leace(extraction)|f1: erasure fit: layer 17 (17/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:14Z all|leace(extraction)|f1: erasure fit: layer 18 (18/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:18Z all|leace(extraction)|f1: erasure fit: layer 19 (19/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:22Z all|leace(extraction)|f1: erasure fit: layer 20 (20/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:26Z all|leace(extraction)|f1: erasure fit: layer 21 (21/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:31Z all|leace(extraction)|f1: erasure fit: layer 22 (22/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:35Z all|leace(extraction)|f1: erasure fit: layer 23 (23/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:39Z all|leace(extraction)|f1: erasure fit: layer 24 (24/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:43Z all|leace(extraction)|f1: erasure fit: layer 25 (25/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:47Z all|leace(extraction)|f1: erasure fit: layer 26 (26/32) (rss 3.1 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:51Z all|leace(extraction)|f1: erasure fit: layer 27 (27/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:19:55Z all|leace(extraction)|f1: erasure fit: layer 28 (28/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:00Z all|leace(extraction)|f1: erasure fit: layer 29 (29/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:04Z all|leace(extraction)|f1: erasure fit: layer 30 (30/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:08Z all|leace(extraction)|f1: erasure fit: layer 31 (31/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:12Z all|leace(extraction)|f1: erasure fit: layer 32 (32/32) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:17Z all|leace(extraction)|f1: erasure fitted on 600 states (rss 2.9 GB, container 19.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:17Z 4-8|leace(extraction)|f1: erasure fit: layer 4 (1/5) (rss 2.9 GB, container 19.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:21Z 4-8|leace(extraction)|f1: erasure fit: layer 5 (2/5) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:25Z 4-8|leace(extraction)|f1: erasure fit: layer 6 (3/5) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:29Z 4-8|leace(extraction)|f1: erasure fit: layer 7 (4/5) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:34Z 4-8|leace(extraction)|f1: erasure fit: layer 8 (5/5) (rss 3.2 GB, container 20.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:38Z 4-8|leace(extraction)|f1: erasure fitted on 600 states (rss 2.9 GB, container 19.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:38Z all|leace(extraction)|f1: degradation (rss 2.9 GB, container 19.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:39Z all|leace(extraction)|f1: annotated under evaluation None, under deployment None, gap None (framing set: None) (rss 2.9 GB, container 19.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:39Z 4-8|leace(extraction)|f1: degradation (rss 2.9 GB, container 19.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:41Z 4-8|leace(extraction)|f1: annotated under evaluation None, under deployment None, gap None (framing set: None) (rss 2.9 GB, container 19.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:41Z all|leace(extraction)|f1: comparator rank (rss 2.9 GB, container 19.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:20:53Z all|leace(extraction)|f1: comparator draw 1/1 (rss 4.9 GB, container 21.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:21:00Z all|leace(extraction)|f1: comparator draw 1/1, extraction gap reduced by None points (rss 4.9 GB, container 21.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:21:01Z all|leace(extraction)|f1: manipulation check: none (rss 4.9 GB, container 21.7 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:22:28Z all|leace(extraction)|f1: manipulation check, none: best AUROC over layers 0.9999 (rss 6.1 GB, container 23.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:22:28Z all|leace(extraction)|f1: manipulation check: inhibition all|leace(extraction)|f1 (rss 6.1 GB, container 23.0 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:24:04Z all|leace(extraction)|f1: manipulation check, inhibition all|leace(extraction)|f1: best AUROC over layers 1.0 (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:24:04Z all|leace(extraction)|f1: manipulation check: comparator 1 (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:25:34Z all|leace(extraction)|f1: manipulation check, comparator 1: best AUROC over layers 0.9999 (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:25:34Z all|leace(extraction)|f1: manipulation check: constructed failure: layer 6 only (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:27:05Z all|leace(extraction)|f1: manipulation check, constructed failure: layer 6 only: best AUROC over layers 0.9999 (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:27:05Z all|leace(extraction)|f1: done (rss 5.0 GB, container 21.9 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:27:05Z 4-8|leace(extraction)|f1: comparator rank (rss 5.0 GB, container 21.9 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:27:08Z 4-8|leace(extraction)|f1: comparator draw 1/1 (rss 5.0 GB, container 21.9 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:27:15Z 4-8|leace(extraction)|f1: comparator draw 1/1, extraction gap reduced by None points (rss 5.0 GB, container 21.9 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:27:16Z 4-8|leace(extraction)|f1: manipulation check: inhibition 4-8|leace(extraction)|f1 (rss 5.0 GB, container 21.9 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:28:52Z 4-8|leace(extraction)|f1: manipulation check, inhibition 4-8|leace(extraction)|f1: best AUROC over layers 0.9999 (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:28:53Z 4-8|leace(extraction)|f1: manipulation check: comparator 1 (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:30:29Z 4-8|leace(extraction)|f1: manipulation check, comparator 1: best AUROC over layers 0.9999 (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:30:29Z 4-8|leace(extraction)|f1: manipulation check: constructed failure: layer 6 only (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:32:00Z 4-8|leace(extraction)|f1: manipulation check, constructed failure: layer 6 only: best AUROC over layers 0.9999 (rss 6.2 GB, container 23.1 GB of 299.2 GB)
+[rrexp] 2026-10-06T10:32:00Z 4-8|leace(extraction)|f1: done (rss 5.0 GB, container 21.9 GB of 299.2 GB)
+[rrexp] state: done
+[rrexp] runner exit code 0
+[rrexp] final state: done
+[rrexp] end 2026-10-06T10:32:05Z
+[rrexp] runner exit code 0
