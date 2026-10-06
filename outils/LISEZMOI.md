@@ -1,7 +1,7 @@
 # Les outils de rendu PDF
 
 - `md_vers_pdf.py <entree.md> <sortie.pdf>` : un document Markdown, en A4, avec un pied de page numéroté.
-- `programme_vers_pdf.py <entree.md> <sortie.pdf>` : le programme, avec sa couverture, son sommaire paginé (les marques `@@P1@@` … `@@P12@@`, `@@PA@@`, et `@@PB@@` depuis la v1.5 ; seules les marques présentes sont exigées) et ses parties. Deux passes : la première trouve la page de chaque partie par `pdftotext`, la seconde remplit le sommaire.
+- `programme_vers_pdf.py <entree.md> <sortie.pdf>` : le programme, avec sa couverture, son sommaire paginé (les marques `@@P1@@` … `@@P12@@`, `@@PA@@`, `@@PB@@` depuis la v1.5, et `@@PC@@` depuis la v1.6 ; seules les marques présentes sont exigées) et ses parties. Deux passes : la première trouve la page de chaque partie par `pdftotext`, la seconde remplit le sommaire.
 - `imprimer_pdf.js` : l'impression par Chromium (Playwright), commune aux deux.
 
 **Ce qu'il faut** : Python 3 avec `markdown-it-py` (`pip install markdown-it-py`), Node avec Playwright, et `pdftotext` (poppler).

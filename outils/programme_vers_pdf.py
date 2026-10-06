@@ -4,7 +4,7 @@
 Usage : python3 programme_vers_pdf.py <entree.md> <sortie.pdf>
 
 Deux passes : la première trouve, par pdftotext, la page où commence chaque partie ;
-la seconde remplit le sommaire (@@P1@@ … @@P12@@, @@PA@@, et @@PB@@ depuis la v1.5). Pied de page numéroté.
+la seconde remplit le sommaire (@@P1@@ … @@P12@@, @@PA@@, @@PB@@ depuis la v1.5, et @@PC@@ depuis la v1.6). Pied de page numéroté.
 Seules les parties dont le sommaire porte la marque sont exigées : la v1.4 n'a pas d'annexe 1.
 """
 import html, os, re, subprocess, sys, tempfile
@@ -60,6 +60,7 @@ TITRES = [
     ('P7', ('7 · Dégradation appariée',)), ('P8', ('8 · Menaces',)), ('P9', ('9 · Ressources',)),
     ('P10', ('10 · Le papier',)), ('P11', ('11 · Ce qui reste',)), ('P12', ('12 · Les décisions',)),
     ('PB', ('Annexe 1 · Ce que',)), ('PA', ('Annexe · La table', 'Annexe 2 · La table')),
+    ('PC', ('Annexe 3 · Ce que',)),
 ]
 
 
