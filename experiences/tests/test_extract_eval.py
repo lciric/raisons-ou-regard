@@ -164,7 +164,19 @@ class TestJobOnTinyModel(unittest.TestCase):
             self.assertEqual(res["extract_set"], "stake")
             self.assertEqual(res["pairs"], {"extraction": 10, "validation": 8})
             self.assertTrue((ctx.out / "eval_subspace.safetensors").exists())
-            ctx.args = dict(ctx.args, extract_set="absent")
+            # the first pairs only (decision 35): the same prompts, hence the same activations, as in the run on all pairs
+            ctx.out = tmp / "out3"
+            ctx.out.mkdir()
+            ctx.args = dict(ctx.args, extract_set="extraction", extract_first_pairs=4)
+            res = extract_eval.run(ctx)
+            self.assertEqual(res["extract_first_pairs"], 4)
+            self.assertEqual(res["pairs"]["extraction"], 8)
+            meta3 = json.loads((ctx.out / "states.json").read_text(encoding="utf8"))
+            self.assertEqual(sorted(set(meta3["extraction"]["pairs"])), [f"extraction-{i}" for i in range(4)])
+            st3 = load_file(str(ctx.out / "states.safetensors"))
+            self.assertTrue(torch.equal(st3["extraction.eval"], st["extraction.eval"][:8]))
+            self.assertTrue(torch.equal(st3["validation.deploy"], st["validation.deploy"]))
+            ctx.args = dict(ctx.args, extract_set="absent", extract_first_pairs=None)
             with self.assertRaises(FileNotFoundError):
                 extract_eval.run(ctx)
         finally:

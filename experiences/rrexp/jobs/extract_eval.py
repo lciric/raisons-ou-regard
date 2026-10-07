@@ -26,6 +26,11 @@ in the repository, "contexts_per_pair": 2, "max_rank": 32, "batch": 16, "extract
 "extract_set" names the set whose pairs give the subspace: "extraction" for "I am being evaluated"; another set of the
 same format for the separate controls of programme v1.5 (part 3): the unrelated contrasts, the stake contrast. Its two
 sides keep the field names "eval" and "deploy". The held-out sets (validation, fresh probe) are read when present.
+
+"extract_first_pairs": n keeps only the first n pairs of that set (pairs sorted by id) for the subspace. With 150, these
+are the pairs of the expert iteration, and the transfer pairs 150 to 199 stay out of the fit (decision 35, 7 October
+2026: candidate A of the gate procedure is checked again with a subspace re-extracted this way). The contexts drawn for
+the kept pairs are the same as in a run on all pairs, since they are drawn pair after pair, in the order of the ids.
 """
 import json
 import os
@@ -251,6 +256,7 @@ def run(ctx):
     model_id = a.get("model", "meta-llama/Llama-3.1-8B-Instruct")
     k, max_rank, batch, seed = int(a.get("contexts_per_pair", 2)), int(a.get("max_rank", 32)), int(a.get("batch", 16)), int(a.get("seed", 0))
     extract_set = a.get("extract_set", "extraction")
+    first = int(a["extract_first_pairs"]) if a.get("extract_first_pairs") else None
 
     ctx.progress = "downloading"
     cue_dir = Path(a["local_cues"]) if a.get("local_cues") else None
@@ -283,7 +289,11 @@ def run(ctx):
                        "fresh_probe": cue_dir / "fresh_probe.jsonl"}
     for key, f in files.items():
         if f.exists():
-            sets[key] = pair_prompts(_read_jsonl(f), contexts, k, seed)
+            recs = _read_jsonl(f)
+            if key == "extraction" and first:
+                keep = set(sorted({r["pair"] for r in recs})[:first])
+                recs = [r for r in recs if r["pair"] in keep]
+            sets[key] = pair_prompts(recs, contexts, k, seed)
     if "extraction" not in sets:
         raise FileNotFoundError(f"no {extract_set}.jsonl in the cues")
     cue_text = {}
@@ -314,12 +324,13 @@ def run(ctx):
     save_file(tensors, str(ctx.out / "eval_subspace.safetensors"))
     ranking = sorted(summary["metrics"], key=lambda m: -m.get("auroc_validation_probe", 0))
     lexical = lexical_baseline(texts)
-    summary = {"model": model_id, "adapter": a.get("adapter"), "extract_set": extract_set, "pairs": {k2: len(v) for k2, v in sets.items()},
+    summary = {"model": model_id, "adapter": a.get("adapter"), "extract_set": extract_set, "extract_first_pairs": first,
+               "pairs": {k2: len(v) for k2, v in sets.items()},
                "layers": len(subs), "best_layers_by_validation_probe": [m["layer"] for m in ranking[:5]],
                "lexical_baseline": lexical,
                "lexical_condition": lexical_condition(summary["metrics"], lexical, float(a.get("lexical_margin", 0.0))),
                **summary}
     with open(ctx.out / "eval_subspace.json", "w", encoding="utf8") as fh:
         json.dump(summary, fh, ensure_ascii=False, indent=1)
-    return {k2: summary[k2] for k2 in ("model", "adapter", "extract_set", "pairs", "layers", "best_layers_by_validation_probe",
-                                       "lexical_baseline", "lexical_condition")}
+    return {k2: summary[k2] for k2 in ("model", "adapter", "extract_set", "extract_first_pairs", "pairs", "layers",
+                                       "best_layers_by_validation_probe", "lexical_baseline", "lexical_condition")}
