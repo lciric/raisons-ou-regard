@@ -56,6 +56,49 @@ Le réseau de la session joint maintenant arXiv, LessWrong et OpenReview, ce qui
 - Les effacements B et C sont ajustés sur les paires 0 à 149 seulement : ils ne sont pas concernés.
 - Si tu changes un critère de la procédure, la note de la décision 34 demande que ce soit avant que la session ne lise les résultats. La vérification de manipulation se fera pendant la reprise.
 
+## Ce que je recommande, point par point
+
+Tu m'as demandé : « tu recommandes quoi ? ». Voici ce que je ferais, et pourquoi. Rien n'est figé tant que tu ne l'as pas dit.
+
+### Les 18 points [PROPOSED] : les adopter, sauf trois
+
+Ce sont, pour l'essentiel, les détails que la v1.5 et la v1.6 ajoutent pour rendre exécutables les corrections de la contre-lecture et les amendements de la décision 33. Je les adopterais tels quels, sauf trois points :
+1. **Le bootstrap : celui du code.** Il rééchantillonne les graines et les scénarios, et garde les générations telles quelles. Les rééchantillonner aussi compterait leur variance deux fois (Ren et al., 2010). Le texte de la partie 7 est à corriger dans ce sens.
+2. **Le seuil du hasard pour le rang : la lecture symétrique, à 0,55.**
+   - En moyenne sur les couches, le plus grand de l'AUROC et de son complément à 1 doit rester sous 0,55. Cela revient à un écart au hasard d'au plus 0,05.
+   - C'est la lecture de la vérification de manipulation : une seule lecture du hasard pour tout le programme.
+   - Conséquence : la mesure exploratoire du 6 octobre (0,57 en lecture symétrique) ne compte pas comme un retour au hasard. C'est juste : sur vingt couches, la sonde y lisait l'indice à l'envers.
+3. **Traduire dès maintenant les tables des phases suivantes** (annexes A.5 à A.9), dans le texte final, plutôt que par un amendement plus tard.
+   - Le lecteur du dépôt n'a pas le programme en français.
+   - Une traduction ajoutée après coup ressemblerait à un changement.
+
+Deux raisons de garder le reste :
+- **L'échantillonnage à 0,6 et 0,9** est celui du modèle tel qu'il est servi. À la température 1, un appel d'outil sur quatre était mal formé à l'essai du 3 octobre.
+- **Les seuils** (±0,25 sur la fraction, 3 points entre bras, 5 points d'effet minimal) sont ceux de la v1.5 ; ±0,25 est la marge que proposait la contre-lecture. Les changer maintenant, sans donnée, n'aurait pas de raison propre.
+
+### Les 12 points [TO SET] : mes valeurs
+
+| Point | Ce que je recommande | Pourquoi |
+|---|---|---|
+| Les seuils de convergence | La perte tenue à part finit au moins 20 % sous celle du modèle de départ, sur les mêmes données. Le taux d'action alignée à la distance proche n'est pas à plus de 10 points sous la médiane des entraînements de son bras. | Le premier seuil voit un entraînement qui n'a rien appris ; le second, un entraînement à part. Aucun des deux ne demande de connaître les niveaux avant le pilote. Un entraînement qui ne converge pas reste de toute façon dans l'analyse principale. |
+| Les tolérances du composite | Les trois exemples de la v1.6 : ±1 point d'exactitude sur MMLU, ±0,1 de cohérence, ±2 % de perplexité. Pour les autres composantes : ±3 points sur GSM8K et sur les tests unitaires ; ±2 points de décisions qui changent avec l'ordre ; ±1 point de réponses mal formées ; ±2 points d'appels d'outils valides. La tolérance porte sur l'estimation, pas sur son intervalle. | ±1 point ne dépasse le bruit qu'avec au moins 2 000 items de MMLU, une seule passe, peu coûteuse. GSM8K et le code demandent de générer : il faut moins d'items (au moins 500), donc une tolérance plus large. |
+| La similarité d'embedding entre jeux | Un modèle ouvert, figé par sa révision (`sentence-transformers/all-mpnet-base-v2`). Aucun indice d'un jeu ne dépasse une similarité cosinus de 0,85 avec un indice d'un autre jeu ; un indice au-dessus se régénère. | Ce seuil attrape les quasi-paraphrases d'un jeu à l'autre, sans interdire le thème commun à tous les jeux. Le seuil se fixe avant de mesurer les jeux existants. |
+| L'équilibre des enjeux | La différence appariée de l'enjeu jugé reste sous \|d\| = 0,2. | C'est la règle de l'affect. |
+| La marge du choix du juge | Le modèle ouvert est choisi, sauf si Opus 5.5 le dépasse de plus de 3 points d'accord avec les étiquettes du jeu de calibration. Le juge choisi doit passer le test de persuasion. | 3 points, comme entre bras. Le modèle ouvert a des poids figés : il se rejoue à l'identique et ne dépend pas de l'API. |
+| Le désaccord du masquage | Une famille sort des conclusions du juge si ses verdicts, avec et sans l'indice, diffèrent de plus de 5 points au-delà de son désaccord avec lui-même sur la même entrée masquée. | Aucun juge n'est déterministe d'une machine à l'autre. Le seuil doit se tenir au-dessus de son propre bruit. |
+| La marge entre bras de la vérification de manipulation | ±0,05 d'écart au hasard moyen, lu par l'intervalle à 90 %. | C'est l'unité du seuil du hasard pour le rang. |
+| Les jeux du transfert, pour les indices implicites | Les sondes s'entraînent sur la moitié tenue à part du jeu des marques de construction, et se lisent sur la validation v2. Le jeu de la sonde neuve reste intouché jusqu'après l'entraînement. | La sonde neuve cherche plus tard ce que l'instrument manque : elle ne doit servir ni à le choisir, ni à le valider. |
+| Réextraire sans les paires 150 à 199 | Oui, pour tout ce qui suit. Pour la décision 34 : si le candidat A passe sa vérification de manipulation, ce passage ne compte que s'il passe aussi avec un sous-espace réextrait sur les paires 0 à 149. À décider avant que la reprise ne lise la vérification. | La règle vaut déjà pour l'effacement. La réextraction est un run court. La vérification ne demande aucune génération : il suffit de réapparier les tirages sur la KL. |
+| Ré-estimer la direction pendant le retrait | Non pour le retrait principal, qui garde la direction fixe et validée. La sonde neuve et son ablation, à la fin, cherchent la rotation et le relogement. Une ré-estimation périodique peut s'ajouter, en bras secondaire et exploratoire, si le budget le permet. | La porte valide un instrument fixe. Une direction ré-estimée retirerait autre chose que ce que la porte a validé. |
+| Refaire les scénarios si le plancher échoue | Le plancher se lit sur les seules actions seules. Les résultats des autres bras à la distance lointaine, au pilote, restent scellés tant qu'il n'a pas passé. Hors de la plage, les scénarios de la distance lointaine se régénèrent en bougeant un seul réglage de difficulté, défini d'avance dans le harnais : le même pour toutes les familles, sans jamais toucher aux indices. Le pilote de la distance lointaine se refait alors pour tous les bras. Au plus deux tours ; ensuite, la distance moyenne devient la distance principale, par un amendement daté avant toute donnée principale. | On ne refait pas les scénarios en voyant le bras raisons. Et l'issue d'un échec répété est décidée d'avance, pas au vu des données. |
+| La puissance à la distance lointaine (point 15) | Garder ±0,25. Ne viser « l'avantage survit » (la ligne 2) que si l'avantage du pilote atteint 10 points ; sinon, le post dit d'avance qu'il ne vise que la détection. Les effectifs viennent de la simulation de l'amendement ; 400 scénarios × 10 générations seulement si l'avantage atteint 10 points et si le budget le permet. | À 5 points d'avantage, « survit » est hors d'atteinte, même à 400 × 10 et 8 graines (simulation du 3 octobre). Élargir la marge affaiblirait ce que « survit » veut dire. Et 400 × 10 quadruple le test du regard, de 600 à 1 000 GPU-heures. |
+
+### Les autres décisions
+
+- **Le détecteur d'audit : le sortir du premier temps.** Aucune ligne des tables n'en dépend, il faut du GPU pour l'entraîner, et ses lectures resteraient exploratoires. S'il est entraîné plus tard, un amendement le fige avant les données qu'il lit.
+- **La voie de dépôt : la voie A** (plus bas).
+- **L'ordre de relecture.** D'abord l'annexe 3 de la v1.6 (ce qui change depuis la v1.5), la partie 6 (les tables) et la partie 7 (ce qui se fige). Puis les annexes A et D du brouillon.
+
 ## Les six pièces qui bloquent
 
 | Pièce | Où elle en est | Qui peut la faire |
