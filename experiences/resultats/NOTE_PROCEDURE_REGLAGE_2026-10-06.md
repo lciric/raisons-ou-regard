@@ -107,3 +107,22 @@ Sinon, la session le dit, et la suite revient à Lazar.
 La recharge automatique ne s'est pas déclenchée, et le crédit est descendu à 0,18 $. Lazar : « tant pis je n'ai plus le budget pour aujourd'hui ». La session a alors détruit les trois machines à la main, avant que la recharge ne débite sa carte. Coût, au plus : 1,06 + 1,06 + 0,94 = 3,05 $.
 
 Les reprises n'avaient pas atteint les tirages manquants : A mesurait son candidat, B et C leur ligne de base. Rien de leur part n'entre dans la procédure. La reprise reste prête, à relancer telle quelle.
+
+## Décision 35 (7 octobre 2026), avant toute lecture de la vérification de manipulation
+
+Lazar adopte les recommandations de la session pour le pré-enregistrement (`claude/PREENREGISTREMENT_LISEZMOI_2026-10-07.md`, « Ce que je recommande »). L'une d'elles touche la lecture de cette procédure.
+
+**Le candidat A et les paires du transfert.**
+- Le sous-espace de A vient de l'extraction v2 (`extract_eval-20261005-114155-50b2`), faite sur les 200 paires d'extraction.
+- Ces paires comprennent les paires 150 à 199, qui entraînent les sondes du transfert.
+- La règle est donc la suivante : si A passe sa vérification de manipulation, ce passage ne compte que s'il passe aussi avec un sous-espace réextrait sur les seules paires 0 à 149.
+- Ce second passage demande un run de plus : la réextraction, puis la vérification sous A ainsi réextrait. Ses 20 tirages sont réappariés sur la KL. Il n'y a aucune génération.
+- B et C ne sont pas concernés : leur effacement s'ajuste sur les paires 0 à 149 seulement.
+
+La règle est écrite avant qu'aucune vérification de manipulation de la procédure n'ait tourné.
+
+**La reprise, relancée (7 octobre, 7 h 33 UTC).** Lazar : « on a du credsit relance le gpu ». Le crédit est de 20,66 $. La seule offre H100 SXM coûte 3,90 $/h : les trois reprises, environ 23 $, dépasseraient le crédit.
+- **Les deux effacements partent d'abord**, C puis B, pour environ 17 $. Ce sont les candidats les plus longs, et ceux que les mesures exploratoires désignent.
+- **A attend du crédit.** Il partira avec le run de la réextraction.
+- **C** : `organism_inhibition-20261007-073313-d83a`.
+- **B** attend une seconde offre H100 SXM.
