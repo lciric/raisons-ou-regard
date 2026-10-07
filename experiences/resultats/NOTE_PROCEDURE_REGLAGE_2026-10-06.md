@@ -231,3 +231,23 @@ La marge sous les indices d'extraction est mince. La moitié de test, mesurée u
 1. **La mise en commun**, malgré l'empreinte manquante des réponses de référence. La session recommande de l'accepter : mesurer de nouveau C en un seul run, avec ses 20 tirages, coûterait environ 17 $ et redonnerait les mêmes nombres, car tout est déterministe sur cette carte.
 2. **A.** Ses trois derniers tirages, sa vérification de manipulation et le contrôle de la décision 35 coûteraient environ 12 $, sans pouvoir changer le choix. La session recommande de ne pas les lancer, et de rapporter A tel quel : non choisi, et sa vérification non faite.
 3. **L'amendement daté qui fixe le réglage**, une fois les deux points précédents tranchés.
+
+## Décision 36 (7 octobre 2026)
+
+Lazar a répondu aux deux questions de la session, après la lecture de B et C :
+- **La mise en commun** : « Les réunir (Recommandé) ». Les tirages des runs interrompus et ceux des reprises se réunissent, malgré l'empreinte manquante de leurs réponses de référence. L'écart sera inscrit dans l'amendement daté.
+- **A** : d'abord « Ne pas le lancer (Recommandé) », puis, quelques minutes plus tard : « LANCE A ». La session suit le dernier message : A est lancé.
+
+**La reprise de A** (10 h 39 UTC) : `organism_inhibition-20261007-103907-579a`, sur H100 SXM, à 3,84 $/h, au commit `63bef73`.
+- Les arguments sont ceux de 0f47, avec `"measure_from": 17`.
+- La ligne de base et le candidat sont remesurés. Les tirages 18 à 20 sont mesurés, puis la vérification de manipulation porte sur les 20 tirages.
+- Le code de mesure ne diffère de celui de 0f47 (`bcc0311`) que sur deux points : l'option de reprise, et l'envoi immédiat des réponses de référence avec leur empreinte. Aucun des deux ne change une mesure.
+- Le crédit, 5,45 $ au départ, couvre environ 1 h 25 des 1 h 30 prévues. Il faut donc recréditer.
+
+**Le contrôle A′** (décision 35) ne compte que si A passe sa vérification de manipulation. Il a deux étapes :
+1. **Une réextraction sur les paires 0 à 149** (`extract_eval`, `"extract_first_pairs": 150`, commit `74d7723`). Elle se fait sur la même carte que l'extraction du 5 octobre (A100 SXM4), pour que seules les paires changent.
+2. **Un run sans génération** (`"gaps": false`) sous A ainsi réextrait, sur H100 SXM : les 20 tirages, réappariés sur la KL, puis la vérification de manipulation.
+
+Coût prévu : environ 0,3 $ pour la réextraction, et environ 3,5 $ pour le run.
+
+**Ce que A ne change pas.** La règle du choix l'écarte, quoi qu'il arrive : 3 de ses 17 tirages réduisent l'écart plus que lui. Son run sert à rapporter les trois candidats en entier.
