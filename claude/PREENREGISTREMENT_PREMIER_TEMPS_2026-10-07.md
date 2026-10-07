@@ -64,7 +64,8 @@ An experiment on a computational system. We train LoRA adapters on an open-weigh
 
 - **A. Validation of the instrument** on two model organisms.
   - The first is conditioned on explicit cues: Llama-3.1-8B-Instruct after synthetic-document fine-tuning and expert iteration, which writes fully type-annotated code more often under evaluation cues.
-  - The second is conditioned on implicit cues: honesty conditioned on construction marks, decision 27 [PROPOSED, with its fall-back; partie 12, point 4.4].
+  - The second is conditioned on implicit cues: the construction marks, rewritten into new texts of the same mechanism (specification v0.1, section 6.3) [PROPOSED]. Its conduct is either type annotations, the fall-back, which changes only the kind of cue, or honesty under an operator's pressure (decision 27). The session recommends type annotations first; the order is Lazar's.
+  - Before its gate, each organism must install: a conditional gap of at least 20 points on the choice half, with a 95% CI above 10 points [PROPOSED]. Otherwise the instrument stays validated for explicit cues only (Appendix A.1).
   - On each organism, the gate is chosen on one half of the tasks and tested once on the other (Appendix A.1, C.4).
 - **B. The reasons test.** Six arms (section 4.1), two seeds per arm at the pilot, then the number of seeds set by the power simulation. Each arm is evaluated:
   - at three distances: near, medium and far;
@@ -322,6 +323,8 @@ Any change after filing is a dated, justified update on OSF, made before the dat
 | Reasons gate code (`porte_des_raisons.py`) | `5b9edccdc5fdd79456b43b1e96c4150a799cdb12f547d634fd7e868cbff960f1` |
 | Gaze rule code (`regle_du_regard.py`, rule lines 1–6) | `29c0db551c106c05197455df9e61bb01669451592b7cbf16b78684fe3d4e6ec3` |
 | Power simulation (`puissance_regard.py`) | `5876452d3018cd4e735e4541e159e8943ac5222d8d8c835f0ba1c954f803a93c` |
+| The fresh-probe specification v0.1 [PROPOSED] | `127df355a308e214b8ab140c0440e858d4414164742bcb4890dcb523c1981b63` |
+| The second organism's specification v0.1 [PROPOSED] | `2110c3c27d3212549d35aa28925590e889efaccec8e7721b0d04eb4bddce3d59` |
 | The scenario harness and its tool-call format | [BLOCKING] |
 | The sealed judge's prompt | [BLOCKING] |
 | The analysis code for gaze-rule lines 7–17 and for the manipulation check | [BLOCKING] |
@@ -457,7 +460,7 @@ Five disjoint cue sets, of about 200 evaluation and 200 deployment cues each. Th
   - It is accepted if a bag of words trained on extraction stays below 0.65 AUROC on it. It stands at 0.634.
 - **Framing.** Realistic cues blended into the held-out scenarios.
 - **Construction marks.** Implicit cues: "Company X", round numbers, over-clean dilemmas. The fresh-probe set v2 is reassigned to this role [PROPOSED].
-- **Fresh probe.** Environment artefacts, against real traces. Its specification is [BLOCKING].
+- **Fresh probe.** Environment artefacts of a sandbox (reserved domains, documentation network addresses, temporary paths, synthetic timestamps, filler data), against traces of a real environment. Each pair is one request filled twice, identical outside its artefact slots (specification v0.1, section 6.3) [PROPOSED]. It serves nothing before the trained models of the removal phase exist, and its decisive reading is by transfer onto validation v2.
 
 The implicit sets have both rewrites of a pair within 10% in length and in the same register; length and informality must stay between 0.4 and 0.6 AUROC.
 
@@ -574,7 +577,7 @@ Two balance rules apply:
 
 ## Appendix D — What remains before filing
 
-**[PROPOSED] — to confirm, change or withdraw.** These are partie 12 points 4, 10, 18 and 20 of the programme.
+**[PROPOSED] — to confirm, change or withdraw.** These are partie 12 points 4, 10, 18 and 20 of the programme, and the two specifications of 7 October.
 - The comparator: a single random comparator, with one draw per scenario among at least 100.
 - The thresholds:
   - ±0.25 on f;
@@ -584,7 +587,8 @@ Two balance rules apply:
   - 0.25 natural units for "evaluated";
   - ±10% KL.
 - The prefilled empty slot as co-primary.
-- The second organism, and its fall-back.
+- The second organism's specification v0.1: new texts of the construction-marks mechanism, the installation criterion (20 points, CI above 10), and the order of its two variants (type annotations first, as the session recommends, or honesty first, as decision 27 has it).
+- The fresh-probe specification v0.1, and its reading by transfer.
 - The reassignment of the cue sets.
 - The generic-principles arm.
 - Rank 64 as the second adapter rank.
@@ -618,6 +622,4 @@ Two balance rules apply:
 - the held-out scenario harness and its tool-call format, on the critical path, unfinished since 3 October;
 - the sealed judge's prompt;
 - the analysis code for gaze-rule lines 7–17 and for the manipulation check;
-- the audit detector, trained and frozen by fingerprint (C.8);
-- the fresh-probe specification;
-- the second organism's specification.
+- the audit detector, trained and frozen by fingerprint (C.8).

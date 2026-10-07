@@ -1,6 +1,6 @@
 # Le pré-enregistrement de « Raisons ou regard ? », premier temps : ce qui est prêt, ce qui reste à toi
 
-Tu as demandé : « fais la preregistration ». Le brouillon du premier temps est prêt, en anglais : `PREENREGISTREMENT_PREMIER_TEMPS_2026-10-07.md` (SHA-256 `304a71e08f61d7dd13c853cf89597cc3c44ebf586c236f529b7c11361b8aa70a`, le 7 octobre). **Rien n'est déposé.** Le dépôt se fait depuis ton compte OSF : c'est toi qui le fais, quand tu auras tranché ce qui suit.
+Tu as demandé : « fais la preregistration ». Le brouillon du premier temps est prêt, en anglais : `PREENREGISTREMENT_PREMIER_TEMPS_2026-10-07.md` (SHA-256 `5f741a04b6ecefaf18e72ff19be7f138f68a0160323f90fdefd82da35999fc5e`, le 7 octobre, après l'ajout des deux spécifications). **Rien n'est déposé.** Le dépôt se fait depuis ton compte OSF : c'est toi qui le fais, quand tu auras tranché ce qui suit.
 
 ## Ce que contient le brouillon
 
@@ -17,9 +17,9 @@ Tu as demandé : « fais la preregistration ». Le brouillon du premier temps es
   - la liste close de la décision 34 ;
   - les trois scripts d'analyse.
 - **Trois étiquettes** marquent ce qui n'est pas figé :
-  - [PROPOSED] : proposé par la session dans la v1.6 ; tu confirmes, changes ou retires (18 points) ;
+  - [PROPOSED] : proposé par la session, dans la v1.6 ou le 7 octobre ; tu confirmes, changes ou retires (19 points) ;
   - [TO SET] : une valeur qui n'existe pas encore (12 points) ;
-  - [BLOCKING] : une pièce qui doit exister, et être figée par son empreinte, avant toute donnée des bras (6 pièces).
+  - [BLOCKING] : une pièce qui doit exister, et être figée par son empreinte, avant toute donnée des bras (4 pièces).
 
 ## Ce que la session a relu sur les sources, le 7 octobre
 
@@ -38,7 +38,7 @@ Le réseau de la session joint maintenant arXiv, LessWrong et OpenReview, ce qui
 1. **Relire la v1.6, puis le brouillon.**
    - La v1.6 n'est pas contre-lue, et la partie 7 demande ta relecture avant le gel. Compte de 4 à 6 heures pour chacun des deux textes (partie 9).
    - Si tu changes la v1.6, son empreinte change : la session recalcule les empreintes et met le brouillon à jour.
-2. **Trancher les 18 points [PROPOSED]** de l'annexe D. Ce sont, pour l'essentiel, les points 4, 10, 18 et 20 de la partie 12, déjà dans la v1.6. Tu peux les adopter en bloc. Deux demandent un vrai choix :
+2. **Trancher les 19 points [PROPOSED]** de l'annexe D. Ce sont, pour l'essentiel, les points 4, 10, 18 et 20 de la partie 12, déjà dans la v1.6, et les deux spécifications du 7 octobre. Tu peux les adopter en bloc. Deux demandent un vrai choix :
    - **Le bootstrap.** Celui du code rééchantillonne les graines et les scénarios, pas les générations ; le texte de la partie 7 rééchantillonne aussi les générations. Je recommande celui du code : rééchantillonner aussi les générations compterait leur variance deux fois.
    - **Le seuil du hasard pour le rang** : 0,55 d'AUROC moyen, ou la lecture symétrique. Sous la lecture symétrique, la mesure exploratoire du 6 octobre reste à 0,57. Il faut choisir une lecture, et l'accorder à celle de la vérification de manipulation.
 3. **Fixer les 12 points [TO SET].**
@@ -60,9 +60,9 @@ Le réseau de la session joint maintenant arXiv, LessWrong et OpenReview, ce qui
 
 Tu m'as demandé : « tu recommandes quoi ? ». Voici ce que je ferais, et pourquoi. Rien n'est figé tant que tu ne l'as pas dit.
 
-### Les 18 points [PROPOSED] : les adopter, sauf trois
+### Les 19 points [PROPOSED] : les adopter, sauf trois
 
-Ce sont, pour l'essentiel, les détails que la v1.5 et la v1.6 ajoutent pour rendre exécutables les corrections de la contre-lecture et les amendements de la décision 33. Je les adopterais tels quels, sauf trois points :
+Ce sont, pour l'essentiel, les détails que la v1.5 et la v1.6 ajoutent pour rendre exécutables les corrections de la contre-lecture et les amendements de la décision 33, et les deux spécifications du 7 octobre. Je les adopterais tels quels, sauf trois points :
 1. **Le bootstrap : celui du code.** Il rééchantillonne les graines et les scénarios, et garde les générations telles quelles. Les rééchantillonner aussi compterait leur variance deux fois (Ren et al., 2010). Le texte de la partie 7 est à corriger dans ce sens.
 2. **Le seuil du hasard pour le rang : la lecture symétrique, à 0,55.**
    - En moyenne sur les couches, le plus grand de l'AUROC et de son complément à 1 doit rester sous 0,55. Cela revient à un écart au hasard d'au plus 0,05.
@@ -71,6 +71,8 @@ Ce sont, pour l'essentiel, les détails que la v1.5 et la v1.6 ajoutent pour ren
 3. **Traduire dès maintenant les tables des phases suivantes** (annexes A.5 à A.9), dans le texte final, plutôt que par un amendement plus tard.
    - Le lecteur du dépôt n'a pas le programme en français.
    - Une traduction ajoutée après coup ressemblerait à un changement.
+
+Pour le second organisme, je recommande de commencer par les annotations de type : elles ne changent que le genre d'indice, et se mesurent sans juge (sa spécification, section 2). La décision 27 met l'honnêteté d'abord.
 
 Deux raisons de garder le reste :
 - **L'échantillonnage à 0,6 et 0,9** est celui du modèle tel qu'il est servi. À la température 1, un appel d'outil sur quatre était mal formé à l'essai du 3 octobre.
@@ -84,7 +86,7 @@ Deux raisons de garder le reste :
 | Les tolérances du composite | Les trois exemples de la v1.6 : ±1 point d'exactitude sur MMLU, ±0,1 de cohérence, ±2 % de perplexité. Pour les autres composantes : ±3 points sur GSM8K et sur les tests unitaires ; ±2 points de décisions qui changent avec l'ordre ; ±1 point de réponses mal formées ; ±2 points d'appels d'outils valides. La tolérance porte sur l'estimation, pas sur son intervalle. | ±1 point ne dépasse le bruit qu'avec au moins 2 000 items de MMLU, une seule passe, peu coûteuse. GSM8K et le code demandent de générer : il faut moins d'items (au moins 500), donc une tolérance plus large. |
 | La similarité d'embedding entre jeux | Un modèle ouvert, figé par sa révision (`sentence-transformers/all-mpnet-base-v2`). Aucun indice d'un jeu ne dépasse une similarité cosinus de 0,85 avec un indice d'un autre jeu ; un indice au-dessus se régénère. | Ce seuil attrape les quasi-paraphrases d'un jeu à l'autre, sans interdire le thème commun à tous les jeux. Le seuil se fixe avant de mesurer les jeux existants. |
 | L'équilibre des enjeux | La différence appariée de l'enjeu jugé reste sous \|d\| = 0,2. | C'est la règle de l'affect. |
-| La marge du choix du juge | Le modèle ouvert est choisi, sauf si Opus 5.5 le dépasse de plus de 3 points d'accord avec les étiquettes du jeu de calibration. Le juge choisi doit passer le test de persuasion. | 3 points, comme entre bras. Le modèle ouvert a des poids figés : il se rejoue à l'identique et ne dépend pas de l'API. |
+| La marge du choix du juge | Le modèle ouvert est choisi, sauf si Opus 5.5 le dépasse de plus de 3 points d'accord avec les étiquettes du jeu de calibration. Le juge choisi doit passer le test de persuasion. | 3 points, comme entre bras. Le modèle ouvert a des poids figés et ne dépend pas de l'API ; sur une même machine, deux passages ont donné les mêmes probabilités (3 octobre). |
 | Le désaccord du masquage | Une famille sort des conclusions du juge si ses verdicts, avec et sans l'indice, diffèrent de plus de 5 points au-delà de son désaccord avec lui-même sur la même entrée masquée. | Aucun juge n'est déterministe d'une machine à l'autre. Le seuil doit se tenir au-dessus de son propre bruit. |
 | La marge entre bras de la vérification de manipulation | ±0,05 d'écart au hasard moyen, lu par l'intervalle à 90 %. | C'est l'unité du seuil du hasard pour le rang. |
 | Les jeux du transfert, pour les indices implicites | Les sondes s'entraînent sur la moitié tenue à part du jeu des marques de construction, et se lisent sur la validation v2. Le jeu de la sonde neuve reste intouché jusqu'après l'entraînement. | La sonde neuve cherche plus tard ce que l'instrument manque : elle ne doit servir ni à le choisir, ni à le valider. |
@@ -99,7 +101,13 @@ Deux raisons de garder le reste :
 - **La voie de dépôt : la voie A** (plus bas).
 - **L'ordre de relecture.** D'abord l'annexe 3 de la v1.6 (ce qui change depuis la v1.5), la partie 6 (les tables) et la partie 7 (ce qui se fige). Puis les annexes A et D du brouillon.
 
-## Les six pièces qui bloquent
+## Les quatre pièces qui bloquent
+
+Les deux spécifications qui manquaient sont écrites le 7 octobre, et passent en [PROPOSED] :
+- `SPEC_SONDE_NEUVE_v0.1_2026-10-07.md` : un jeu d'artefacts d'environnement, dont chaque paire est une même demande remplie deux fois, et qui se lit par le transfert ;
+- `SPEC_SECOND_ORGANISME_v0.1_2026-10-07.md` : deux variantes sous marques de construction, les annotations de type (recommandée d'abord) et l'honnêteté (décision 27).
+
+Restent quatre pièces :
 
 | Pièce | Où elle en est | Qui peut la faire |
 |---|---|---|
@@ -107,8 +115,6 @@ Deux raisons de garder le reste :
 | Le prompt du juge scellé | à écrire ; il juge les trajectoires du harnais | après le harnais |
 | Le code des lignes 7 à 17 de la règle du regard, et celui de la vérification de manipulation | à écrire | la session, dès maintenant, hors ligne et sans frais, avec ses tests |
 | Le détecteur d'audit | pas entraîné ; il faut du GPU | la session, avec du budget. Ou bien tu le sors du premier temps : il ne décide d'aucune ligne des tables, et ses lectures deviendraient exploratoires. |
-| La spécification de la sonde neuve | à écrire | la session peut la rédiger |
-| La spécification du second organisme | à écrire | la session peut la rédiger |
 
 ## Deux façons de déposer
 
@@ -157,8 +163,7 @@ Deux raisons de garder le reste :
 ## Ce que la session peut faire ensuite, sans GPU
 
 - Écrire le code des lignes 7 à 17 et celui de la vérification de manipulation, avec leurs tests.
-- Rédiger les spécifications de la sonde neuve et du second organisme.
-- Proposer une valeur argumentée pour chaque point [TO SET].
+- Écrire le code que demandent les deux spécifications : le genre « gabarit » du générateur de jeux d'indices, et l'option du job de l'organisme pour les marques de construction, avec leurs tests.
 - Faire les autres relectures de la partie 11.
 - Après tes décisions : la version propre du texte, son PDF et son empreinte.
 
