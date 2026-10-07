@@ -13,12 +13,12 @@ Tu as répondu aux trois questions de la session :
 
 | Fichier | Rôle | SHA-256 |
 |---|---|---|
-| `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md` | le texte à recopier, champ par champ, dans le formulaire | `be8f5f1302b82d84ac1f5f6b7f72fb6084532ba0c206b4f65cd33883cc6ba398` |
-| `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.pdf` | le même texte en PDF (23 pages), à joindre au dépôt. C'est son empreinte que le post imprimera. | `67d2d772d9f3b18af0ab2b839182c56fa8305db5db733610982d06a75c1db6c7` |
+| `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md` | le texte d'où viennent les champs du formulaire (la feuille `OSF_CHAMPS_A_COLLER_2026-10-07.md` les découpe) | `e2b30c5fde57ebd1433e57eb99f696bb87f20a338aac9ed5b8512ca15a7775b4` |
+| `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.pdf` | le même texte en PDF (23 pages), à joindre au dépôt. C'est son empreinte que le post imprimera. | `1bfed36afd89d81a300962b9a35c58d84224cc8fffc1d7acbdd4df0cb8d40d2b` |
 
 **Ce qui te reste avant de déposer** :
 1. **Relire la version à déposer.** Si tu changes quelque chose, la session refait le texte, le PDF et les empreintes. La partie 7 demande aussi ta relecture de la v1.6.
-2. **Ton ORCID**, à la place de `[[to fill]]`, en tête du texte. La session régénère alors le PDF.
+2. **Ton ORCID**, si tu veux qu'il figure dans le texte : la session l'ajoute et régénère le PDF. La case vide a été retirée.
 3. **Le dépôt sur OSF**, en suivant « Comment déposer sur OSF » plus bas.
 
 **Après le dépôt, avant toute donnée des bras**, la mise à jour datée donne les empreintes de trois pièces :

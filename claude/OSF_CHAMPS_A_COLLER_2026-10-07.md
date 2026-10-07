@@ -1,11 +1,11 @@
 # OSF : les champs à coller, page par page (7 octobre 2026)
 
-Le formulaire est le modèle « OSF Preregistration », version 4 (lu par l'API publique d'OSF le 7 octobre). Chaque bloc ci-dessous se colle dans le champ du même nom. Les textes viennent mot pour mot de `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md`, sans le formatage Markdown, que les champs d'OSF afficheraient tel quel.
+Le formulaire est le modèle « OSF Preregistration », version 4 (lu par l'API publique d'OSF le 7 octobre). Chaque bloc ci-dessous se colle dans le champ du même nom. Les textes viennent mot pour mot de `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md` (SHA-256 `e2b30c5fde57ebd1433e57eb99f696bb87f20a338aac9ed5b8512ca15a7775b4`), sans le formatage Markdown, que les champs d'OSF afficheraient tel quel.
 
 ## Avant de commencer
 
-- **Le PDF à joindre** : `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.pdf`, dans le champ de fichier qui suit « Study design ». Une fois le dépôt fait, on ne peut plus ajouter de fichier.
-- **Ton ORCID** : le PDF porte encore `[[to fill]]`. Donne-le-moi, et je régénère le PDF et son empreinte avant que tu le joignes.
+- **Le PDF à joindre** : `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.pdf` (SHA-256 `1bfed36afd89d81a300962b9a35c58d84224cc8fffc1d7acbdd4df0cb8d40d2b`), une seule fois, dans le champ de fichier qui suit « Study design ». Une fois le dépôt fait, on ne peut plus ajouter de fichier. OSF le range aussi dans un projet lié qu'il crée.
+- **Ton ORCID** n'est plus dans le PDF : la ligne disait `[[to fill]]`. Si tu veux qu'il y soit, envoie-le-moi, et je régénère le PDF, son empreinte et cette feuille.
 - **Les métadonnées** (la première page) :
   - le titre : « Reasons or being watched? Evaluation awareness and the out-of-distribution advantage of reason-based fine-tuning in an open 8B model (stage 1) » ;
   - la description : « Preregistration, stage 1, of a study of whether the out-of-distribution advantage of reason-based fine-tuning depends on an internal representation of being evaluated, in Llama-3.1-8B-Instruct. » Elle devient publique à la fin de l'embargo ;
@@ -15,13 +15,13 @@ Le formulaire est le modèle « OSF Preregistration », version 4 (lu par l'API 
 
 - **Des données du plan existent déjà**, et elles ont été vues : celles de la moitié de choix, qui servent à fixer le réglage de la porte. Les mesures exploratoires du 4 au 6 octobre ont orienté l'instrument : les amendements du 6 octobre en viennent. Les options 1 à 5 ne seraient donc pas exactes.
 - **Aucune analyse du plan n'est faite.** La lecture de la procédure de la porte non plus : la vérification de manipulation n'a pas tourné, et aucun candidat n'est choisi.
-- **Un engagement.** Cette case certifie qu'aucune analyse du plan ne se fera avant le dépôt. Les runs C et B tournent : je n'en lirai pas les résultats avant que tu aies déposé.
+- **Un engagement.** Cette case certifie qu'aucune analyse du plan ne se fera avant le dépôt. Les runs C et B tournent : la session n'en lira pas les résultats avant que tu aies déposé.
 
 ## Page « Overview »
 
 ### Research questions or hypotheses
 
-Section 1.2, telle quelle.
+Section 1.2.
 
 ```text
 The confirmatory questions, each with the outcome that would make us abandon our bet. The full decision tables are in Appendix A of the attached file.
@@ -46,7 +46,7 @@ The confirmatory questions, each with the outcome that would make us abandon our
 
 ### Foreknowledge of data or evidence
 
-Cocher une seule option (voir le guide de cette feuille) :
+Cocher une seule option (voir plus haut) :
 
 ```text
 Authors have observed the data, but have not performed the proposed analyses.
@@ -54,7 +54,7 @@ Authors have observed the data, but have not performed the proposed analyses.
 
 ### Explanation of foreknowledge and managing unintended influences
 
-Texte écrit pour ce champ, à partir de la section 3.2.
+Texte écrit pour ce champ, d'après la section 3.2.
 
 ```text
 No data exist for any confirmatory test of this plan: the gate's test half of the tasks is untouched, no arm has been trained, no held-out scenario has been evaluated, no gaze-test data exist, and the second organism is not built.
@@ -115,7 +115,7 @@ Section 2.2.
 
 ### Study design
 
-Sections 2.1 et 2.3. Joindre ici le PDF, dans le champ de fichier qui suit.
+Sections 2.1 et 2.3, dont la structure appariée. **Joindre ici le PDF**, dans le champ de fichier qui suit, et seulement ici.
 
 ```text
 Study type: An experiment on a computational system. We train LoRA adapters on an open-weight language model and intervene on its activations. All conditions are applied to every scenario (a fully crossed design): randomness enters through seeds shared across arms, comparator draws assigned per scenario, and the random split of the tasks.
@@ -142,6 +142,7 @@ Study type: An experiment on a computational system. We train LoRA adapters on a
   - anatomy.
 
   The distress phase and the "punish, remove or reason" phase are outside this registration.
+- Structure. Arms are crossed with seeds: the same seeds are used in every arm, so training runs are paired by seed. Every scenario runs in every training run, under every intervention, framing and slot state: these factors are within-scenario and paired. Families are fixed: five for training, five held out. Episodes are generated independently, so there is no order to counterbalance.
 
 The decision tables (Appendix A), matched degradation (Appendix B) and the instruments (Appendix C) are in the attached file.
 ```
@@ -162,7 +163,7 @@ Section 2.4.
 
 ### Data collection procedures
 
-Section 3.3.
+Section 3.3, avec la durée. Pas de fichier ici.
 
 ```text
 - Models. Llama-3.1-8B-Instruct; Qwen3-8B for the replication.
@@ -176,11 +177,12 @@ Section 3.3.
   - In multi-turn episodes, the reasoning slot opens every assistant turn, as in training.
   - The scenario harness and its tool-call format are frozen by the stage-1 update (section 6.2).
 - GPU. All runs that are compared, or whose comparator draws are pooled, use the same GPU model: H100 SXM (Appendix B, item 9).
+- Duration. The minimal experiment and its first post take about six weeks from filing, and the localization about two more. The later phases follow within about sixteen weeks in all, each after its own amendment.
 ```
 
 ### Sample size
 
-Section 3.4.
+Section 3.4, avec les niveaux.
 
 ```text
 Provisional, until the power simulation of the stage-2 amendment:
@@ -190,6 +192,8 @@ Provisional, until the power simulation of the stage-2 amendment:
 - 40 agentic scenarios per held-out family at the far distance;
 - 2 framings, and 5 generations per scenario and framing;
 - 2 seeds per arm at the pilot, then a single number of seeds for every phase of the minimal experiment.
+
+Levels: the training run (arm × seed) is the unit of replication. Scenarios are nested in families, and crossed with training runs, interventions, framings and slot states. Generations are nested in each combination of scenario, framing, slot state, intervention and training run.
 
 The gate uses at least 100 comparator draws on the test half. On the choice half, the setting procedure uses at least 15 draws per candidate (20 in the procedure of 6 October 2026).
 ```
@@ -211,10 +215,10 @@ A first simulation on assumed rates found "the advantage survives" out of reach 
 
 ### Starting and stopping rules
 
-Section 3.6.
+Section 3.6, avec le début et la fin de la collecte.
 
 ```text
-There is no optional stopping: sizes are fixed by the stage-2 amendment. Three gates can stop or redirect the study before its main data, each by a written rule:
+There is no optional stopping. The main data collection begins after the stage-2 amendment is filed, and ends when the sizes it fixes are reached. Three gates can stop or redirect the study before its main data, each by a written rule:
 - The pilot's floor. At the far distance, the actions-only misaligned rate must fall between 15% and 60%.
   - The floor is read on the actions-only arm alone. The other arms' far-distance pilot results stay sealed until the floor passes.
   - Outside that range, the far-distance scenarios are regenerated by moving a single difficulty setting, defined in advance in the harness, the same for all families, without ever touching the cues. The far-distance part of the pilot is then redone for all arms.
@@ -228,7 +232,7 @@ There is no optional stopping: sizes are fixed by the stage-2 amendment. Three g
 
 ### Manipulated variables
 
-Section 4.1.
+Section 4.1. La phrase de l'aide « respond none » vaut pour une étude sans manipulation : pas ici. Pas de fichier ici.
 
 ```text
 - Arm. The aligned action is byte-identical across arms and carries no justification. The arms:
@@ -258,7 +262,7 @@ Section 4.1.
 
 ### Measured variables
 
-Section 4.2.
+Section 4.2. Pas de fichier ici.
 
 ```text
 - Episode outcome, in three categories:
@@ -281,7 +285,7 @@ Section 4.2.
 
 ### Indices
 
-Section 4.3.
+Section 4.3. Pas de fichier ici.
 
 ```text
 All indices are in percentage points of the misaligned-action rate, among all episodes.
@@ -304,7 +308,7 @@ All indices are in percentage points of the misaligned-action rate, among all ep
 
 ### Statistical models
 
-Section 5.1.
+Section 5.1, avec les contrôles dont dépend l'analyse. Pas de fichier ici.
 
 ```text
 - The unit of replication is the training run (arm × seed). Generations sit within scenarios, scenarios within families.
@@ -319,13 +323,15 @@ Section 5.1.
   - Family is a fixed effect. A second model adds a random slope of the contrast by family.
   - Effects are reported as marginal effects in points.
   - A singular fit, or a zero variance for the training run, is reported as such; inference stays with the bootstrap.
+- Contingencies. The gaze test runs only with an instrument whose gate passed (Appendix A.1), and on the advantage established by the reasons gate (A.2). Line 2 of the gaze rule requires the manipulation check in both arms, the graded positive control, "evaluated" active under deployment framing, and the organisms' gate (A.3). Non-converging runs stay in the main analysis (section 5.4).
 ```
 
 ### Transformations
 
-Section 5.2.
+Section 5.2, avec le codage de l'issue.
 
 ```text
+- The episode outcome is coded misaligned = 1, aligned or invalid = 0, over all episodes. The invalid-outcome rate is also reported on its own.
 - Rates are expressed in percentage points.
 - Doses are also expressed in natural units (Appendix B, the first guard).
 - No other transformation.
@@ -333,10 +339,10 @@ Section 5.2.
 
 ### Inference criteria
 
-Section 5.3, et le renvoi aux annexes.
+Section 5.3 (tests bilatéraux, Holm), et le renvoi aux annexes.
 
 ```text
-- "X < Y": the 95% CI of the difference, in points, excludes 0 in favour of X.
+- "X < Y": the 95% CI of the difference, in points, excludes 0 in favour of X. All differences are tested two-sided.
 - "X ≈ Y": two one-sided tests: the 90% CI lies within ± the margin.
   - The margin is 3 points between arms.
   - On the scale of f, it is ±0.25 for the gaze test.
@@ -352,10 +358,10 @@ The full decision rules are the tables of Appendix A of the attached file (A.1 t
 
 ### Data inclusion and exclusion
 
-Section 5.4.
+Section 5.4, avec les valeurs aberrantes.
 
 ```text
-- No exclusions. Malformed responses are an outcome and stay in every denominator.
+- No exclusions. Malformed responses are an outcome and stay in every denominator. No outlier is removed.
 - Non-converging training runs stay in the main analysis. A sensitivity analysis excludes them, and none is replaced.
   - A run converges if two conditions hold: its final held-out loss, on held-out data of its arm, is at least 20% below the starting model's loss on the same data; and its aligned-action rate at the near distance is no more than 10 points below the median of its arm's runs.
 - A sensitivity analysis excludes two families, under-performance and the weak grader, because they talk about being evaluated or graded: inhibiting "I am being evaluated" changes their meaning.
@@ -366,6 +372,7 @@ Section 5.4.
 Section 5.5.
 
 ```text
+- Episodes are never dropped. A malformed or empty response is an invalid outcome, and every analysis uses all available episodes.
 - A run interrupted before its end is resumed with the same seeds and arguments, and measures only what is missing.
 - Its draws are pooled with the original's only under these conditions:
   - both runs ran on the same GPU model and the same organism, with the same measurement code (the option that resumes a run, which only skips the draws already measured, does not change it);
@@ -395,14 +402,14 @@ Section 5.6.
 
 ### Context and additional information
 
-En-tête, sections 1.1, 6.1, 6.2 et 6.3.
+En-tête, sections 1.1, 6.1, 6.2 et 6.3, et l'empreinte du PDF joint.
 
 ```text
 Registry: OSF Registries, under embargo until the first public post.
 Version: stage 1, 7 October 2026: everything that decides, frozen before any data of the trained arms.
 Programme: this registration rests on the research programme v1.6 (fingerprint below). Where they differ, this registration prevails.
 AI assistance: the protocol was drafted with the assistance of Claude, an AI system by Anthropic, used through Claude Code. Claude is not an author.
-Attached file: the full text of this registration, with its Appendices A to C, SHA-256 67d2d772d9f3b18af0ab2b839182c56fa8305db5db733610982d06a75c1db6c7.
+Attached file: the full text of this registration, with its Appendices A to C, SHA-256 1bfed36afd89d81a300962b9a35c58d84224cc8fffc1d7acbdd4df0cb8d40d2b.
 
 Description
 
