@@ -1,6 +1,6 @@
 # Le pré-enregistrement de « Raisons ou regard ? », premier temps : ce qui est prêt, ce qui reste à toi
 
-Tu as demandé : « fais la preregistration ». Le brouillon du premier temps est prêt, en anglais : `PREENREGISTREMENT_PREMIER_TEMPS_2026-10-07.md` (SHA-256 `5f741a04b6ecefaf18e72ff19be7f138f68a0160323f90fdefd82da35999fc5e`, le 7 octobre, après l'ajout des deux spécifications). **Rien n'est déposé.** Le dépôt se fait depuis ton compte OSF : c'est toi qui le fais, quand tu auras tranché ce qui suit.
+Tu as demandé : « fais la preregistration ». Le brouillon du premier temps est prêt, en anglais : `PREENREGISTREMENT_PREMIER_TEMPS_2026-10-07.md` (SHA-256 `4ca4a906eaeb834dfd4c83764a2d94257a842690624ee280d64bcaa60b464690`, le 7 octobre, après l'ajout des deux spécifications et du code d'analyse). **Rien n'est déposé.** Le dépôt se fait depuis ton compte OSF : c'est toi qui le fais, quand tu auras tranché ce qui suit.
 
 ## Ce que contient le brouillon
 
@@ -17,9 +17,9 @@ Tu as demandé : « fais la preregistration ». Le brouillon du premier temps es
   - la liste close de la décision 34 ;
   - les trois scripts d'analyse.
 - **Trois étiquettes** marquent ce qui n'est pas figé :
-  - [PROPOSED] : proposé par la session, dans la v1.6 ou le 7 octobre ; tu confirmes, changes ou retires (19 points) ;
+  - [PROPOSED] : proposé par la session, dans la v1.6 ou le 7 octobre ; tu confirmes, changes ou retires (20 points) ;
   - [TO SET] : une valeur qui n'existe pas encore (12 points) ;
-  - [BLOCKING] : une pièce qui doit exister, et être figée par son empreinte, avant toute donnée des bras (4 pièces).
+  - [BLOCKING] : une pièce qui doit exister, et être figée par son empreinte, avant toute donnée des bras (3 pièces).
 
 ## Ce que la session a relu sur les sources, le 7 octobre
 
@@ -38,7 +38,7 @@ Le réseau de la session joint maintenant arXiv, LessWrong et OpenReview, ce qui
 1. **Relire la v1.6, puis le brouillon.**
    - La v1.6 n'est pas contre-lue, et la partie 7 demande ta relecture avant le gel. Compte de 4 à 6 heures pour chacun des deux textes (partie 9).
    - Si tu changes la v1.6, son empreinte change : la session recalcule les empreintes et met le brouillon à jour.
-2. **Trancher les 19 points [PROPOSED]** de l'annexe D. Ce sont, pour l'essentiel, les points 4, 10, 18 et 20 de la partie 12, déjà dans la v1.6, et les deux spécifications du 7 octobre. Tu peux les adopter en bloc. Deux demandent un vrai choix :
+2. **Trancher les 20 points [PROPOSED]** de l'annexe D. Ce sont, pour l'essentiel, les points 4, 10, 18 et 20 de la partie 12, déjà dans la v1.6, les deux spécifications et les choix de lecture du code d'analyse, du 7 octobre. Tu peux les adopter en bloc. Deux demandent un vrai choix :
    - **Le bootstrap.** Celui du code rééchantillonne les graines et les scénarios, pas les générations ; le texte de la partie 7 rééchantillonne aussi les générations. Je recommande celui du code : rééchantillonner aussi les générations compterait leur variance deux fois.
    - **Le seuil du hasard pour le rang** : 0,55 d'AUROC moyen, ou la lecture symétrique. Sous la lecture symétrique, la mesure exploratoire du 6 octobre reste à 0,57. Il faut choisir une lecture, et l'accorder à celle de la vérification de manipulation.
 3. **Fixer les 12 points [TO SET].**
@@ -60,9 +60,9 @@ Le réseau de la session joint maintenant arXiv, LessWrong et OpenReview, ce qui
 
 Tu m'as demandé : « tu recommandes quoi ? ». Voici ce que je ferais, et pourquoi. Rien n'est figé tant que tu ne l'as pas dit.
 
-### Les 19 points [PROPOSED] : les adopter, sauf trois
+### Les 20 points [PROPOSED] : les adopter, sauf trois
 
-Ce sont, pour l'essentiel, les détails que la v1.5 et la v1.6 ajoutent pour rendre exécutables les corrections de la contre-lecture et les amendements de la décision 33, et les deux spécifications du 7 octobre. Je les adopterais tels quels, sauf trois points :
+Ce sont, pour l'essentiel, les détails que la v1.5 et la v1.6 ajoutent pour rendre exécutables les corrections de la contre-lecture et les amendements de la décision 33, puis, le 7 octobre, les deux spécifications et les choix de lecture du code d'analyse. Je les adopterais tels quels, sauf trois points :
 1. **Le bootstrap : celui du code.** Il rééchantillonne les graines et les scénarios, et garde les générations telles quelles. Les rééchantillonner aussi compterait leur variance deux fois (Ren et al., 2010). Le texte de la partie 7 est à corriger dans ce sens.
 2. **Le seuil du hasard pour le rang : la lecture symétrique, à 0,55.**
    - En moyenne sur les couches, le plus grand de l'AUROC et de son complément à 1 doit rester sous 0,55. Cela revient à un écart au hasard d'au plus 0,05.
@@ -101,19 +101,19 @@ Deux raisons de garder le reste :
 - **La voie de dépôt : la voie A** (plus bas).
 - **L'ordre de relecture.** D'abord l'annexe 3 de la v1.6 (ce qui change depuis la v1.5), la partie 6 (les tables) et la partie 7 (ce qui se fige). Puis les annexes A et D du brouillon.
 
-## Les quatre pièces qui bloquent
+## Les trois pièces qui bloquent
 
-Les deux spécifications qui manquaient sont écrites le 7 octobre, et passent en [PROPOSED] :
+Trois des six pièces sont écrites le 7 octobre, et passent en [PROPOSED] :
 - `SPEC_SONDE_NEUVE_v0.1_2026-10-07.md` : un jeu d'artefacts d'environnement, dont chaque paire est une même demande remplie deux fois, et qui se lit par le transfert ;
-- `SPEC_SECOND_ORGANISME_v0.1_2026-10-07.md` : deux variantes sous marques de construction, les annotations de type (recommandée d'abord) et l'honnêteté (décision 27).
+- `SPEC_SECOND_ORGANISME_v0.1_2026-10-07.md` : deux variantes sous marques de construction, les annotations de type (recommandée d'abord) et l'honnêteté (décision 27) ;
+- le code d'analyse, avec ses tests : les lignes 7 à 17 de la règle du regard (`experiences/analyses/regle_du_regard_suite.py`) et la vérification de manipulation (`experiences/analyses/verification_manipulation.py`). Là où la partie 6 ne dit pas comment lire une ligne, le code fait un choix, listé à l'annexe D du brouillon.
 
-Restent quatre pièces :
+Restent trois pièces :
 
 | Pièce | Où elle en est | Qui peut la faire |
 |---|---|---|
 | Le harnais des scénarios tenus à part, et le format de ses appels d'outil | incomplet depuis le 3 octobre ; c'est le chemin critique de l'expérience minimale | la façon de le faire attend ta décision (partie 12, point 2) |
 | Le prompt du juge scellé | à écrire ; il juge les trajectoires du harnais | après le harnais |
-| Le code des lignes 7 à 17 de la règle du regard, et celui de la vérification de manipulation | à écrire | la session, dès maintenant, hors ligne et sans frais, avec ses tests |
 | Le détecteur d'audit | pas entraîné ; il faut du GPU | la session, avec du budget. Ou bien tu le sors du premier temps : il ne décide d'aucune ligne des tables, et ses lectures deviendraient exploratoires. |
 
 ## Deux façons de déposer
@@ -162,7 +162,6 @@ Restent quatre pièces :
 
 ## Ce que la session peut faire ensuite, sans GPU
 
-- Écrire le code des lignes 7 à 17 et celui de la vérification de manipulation, avec leurs tests.
 - Écrire le code que demandent les deux spécifications : le genre « gabarit » du générateur de jeux d'indices, et l'option du job de l'organisme pour les marques de construction, avec leurs tests.
 - Faire les autres relectures de la partie 11.
 - Après tes décisions : la version propre du texte, son PDF et son empreinte.

@@ -327,7 +327,8 @@ Any change after filing is a dated, justified update on OSF, made before the dat
 | The second organism's specification v0.1 [PROPOSED] | `2110c3c27d3212549d35aa28925590e889efaccec8e7721b0d04eb4bddce3d59` |
 | The scenario harness and its tool-call format | [BLOCKING] |
 | The sealed judge's prompt | [BLOCKING] |
-| The analysis code for gaze-rule lines 7–17 and for the manipulation check | [BLOCKING] |
+| Gaze rule code, lines 7–17 (`regle_du_regard_suite.py`) [PROPOSED] | `693af2edf9cab5e9e4625f07418fbd150962aa543f982ce70ca6074bd6220564` |
+| Manipulation check code (`verification_manipulation.py`) [PROPOSED] | `cd476d9a6e87d5526f033353950b6a9a438a1bac40690e9959094ec23e0dfa7e` |
 | The audit detector | [BLOCKING] |
 | This document | computed at filing, and printed in the first post |
 
@@ -389,7 +390,7 @@ The decomposition of the gain is always reported, with CIs, under both framings 
 
 ### A.3 The gaze rule
 
-The rule is read on the primary criterion (free slot), then identically on the co-primary criterion (prefilled slot). Lines 1 and 3 are Holm-corrected between the two criteria. Lines 1 to 6 are implemented in `regle_du_regard.py`; lines 7 to 17 are to be implemented before the gaze-test data [BLOCKING].
+The rule is read on the primary criterion (free slot), then identically on the co-primary criterion (prefilled slot). Lines 1 and 3 are Holm-corrected between the two criteria. Lines 1 to 6 are implemented in `regle_du_regard.py`; lines 7 to 17, with the Holm corrections, in `regle_du_regard_suite.py`; the manipulation check in `verification_manipulation.py` (7 October 2026). Where partie 6 does not say how a line is read, the code's reading is [PROPOSED] (Appendix D).
 
 | # | Outcome | Conclusion |
 |---|---|---|
@@ -493,6 +494,7 @@ Two balance rules apply:
   - equal across arms, by equivalence within a margin [TO SET].
 - **Secondary readings:** the within-set reading, the token-mean transfer, and the residual projection.
 - **The known case:** an inhibition at one layer only. Transfer must drop at that layer, recover downstream, and not pass the criterion.
+- **Per arm** [PROPOSED]: the check holds in an arm if it holds in each of its training runs, its known case included. Between arms, a transfer that stays significantly higher in one arm fails that arm (Appendix A.3, line 12).
 - **The same check is applied to every control.**
 - **Its stated limit:** a transfer at chance means only that "the distinction our cue sets share is no longer readable at the last token", never that "the information is removed".
 
@@ -589,6 +591,7 @@ Two balance rules apply:
 - The prefilled empty slot as co-primary.
 - The second organism's specification v0.1: new texts of the construction-marks mechanism, the installation criterion (20 points, CI above 10), and the order of its two variants (type annotations first, as the session recommends, or honesty first, as decision 27 has it).
 - The fresh-probe specification v0.1, and its reading by transfer.
+- The reading choices of the analysis code of 7 October (`regle_du_regard_suite.py`, `verification_manipulation.py`): p-values for Holm from the method whose CI decides; one Holm family of secondary criteria per slot; line 8 read only when line 1 holds; line 10 holds when the reflection's advantage survives (its line 2); line 13 read at the smallest prevalence whose expected shift reaches the minimal effect; line 14 by equivalence of invalid rates and non-inferiority of legitimate success (3 points); the manipulation check holds in an arm only if it holds in each of its runs, its known case included.
 - The reassignment of the cue sets.
 - The generic-principles arm.
 - Rank 64 as the second adapter rank.
@@ -621,5 +624,4 @@ Two balance rules apply:
 **[BLOCKING] — pieces that must exist and be frozen by fingerprint before any data of the trained arms:**
 - the held-out scenario harness and its tool-call format, on the critical path, unfinished since 3 October;
 - the sealed judge's prompt;
-- the analysis code for gaze-rule lines 7–17 and for the manipulation check;
 - the audit detector, trained and frozen by fingerprint (C.8).

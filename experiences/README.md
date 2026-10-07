@@ -102,3 +102,9 @@ Ils tournent hors ligne.
 - **L'image PyTorch 2.14** utilise le Python du système, protégé contre `pip install` (PEP 668). Le script passe outre, dans un conteneur jetable.
 - **Les résultats.** L'essai `smoke` et l'extraction de « je suis évalué » sur le modèle de départ sont dans `resultats/`. Leur lecture est dans `resultats/NOTE_EXTRACTION_2026-10-03.md` et `resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md`.
 - **`analyses/`** tient les mesures qui se calculent sans GPU, sur les activations gardées par un job. Par exemple : `python analyses/controles_extraction.py <dossier out> ../donnees/sorties/indices/cues <sortie.json>`, avec torch et safetensors.
+- **Les règles de décision** s'y lisent aussi, sur des épisodes notés ou sur les sorties d'un job :
+  - la porte des raisons (`porte_des_raisons.py`) ;
+  - la règle du regard : les lignes 1 à 6 (`regle_du_regard.py`, dont l'empreinte est dans le brouillon du pré-enregistrement), puis les lignes 7 à 17 (`regle_du_regard_suite.py`) ;
+  - la vérification de manipulation, lue par le transfert (`verification_manipulation.py`).
+
+  Leurs tests simulent des données dont on connaît la vérité.
