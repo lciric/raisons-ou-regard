@@ -1,6 +1,27 @@
 # Le pré-enregistrement de « Raisons ou regard ? », premier temps : ce qui est prêt, ce qui reste à toi
 
-Tu as demandé : « fais la preregistration ». Le brouillon du premier temps est prêt, en anglais : `PREENREGISTREMENT_PREMIER_TEMPS_2026-10-07.md` (SHA-256 `4ca4a906eaeb834dfd4c83764a2d94257a842690624ee280d64bcaa60b464690`, le 7 octobre, après l'ajout des deux spécifications et du code d'analyse). **Rien n'est déposé.** Le dépôt se fait depuis ton compte OSF : c'est toi qui le fais, quand tu auras tranché ce qui suit.
+Tu as demandé : « fais la preregistration ». Le brouillon du premier temps est prêt, en anglais : `PREENREGISTREMENT_PREMIER_TEMPS_2026-10-07.md` (SHA-256 `4ca4a906eaeb834dfd4c83764a2d94257a842690624ee280d64bcaa60b464690`, le 7 octobre, après l'ajout des deux spécifications et du code d'analyse). **Tu as déposé la version finale sur OSF le 7 octobre** (section suivante).
+
+## Le dépôt (7 octobre 2026)
+
+Tu as écrit, vers 10 h UTC : « pre enregistrement depose, passe a la suite et enregistre bine tout ».
+
+**Ce que la session inscrit :**
+- **La date du dépôt** : le 7 octobre 2026, depuis ton compte OSF, avec le modèle « OSF Preregistration ».
+- **Le texte déposé.** C'est la version à déposer du tableau plus bas : le MD `e2b30c5f…`, d'où viennent les champs, et le PDF `1bfed36a…`, à joindre. Si tu as joint un autre fichier ou changé un champ dans le formulaire, dis-le : l'empreinte inscrite ici changerait.
+- **La connaissance des données.** Aucune sortie de la procédure du réglage n'avait été lue avant ton message. La session n'avait suivi que l'avancement des runs. La lecture de B et C a commencé après ton message (`experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`).
+- **Les 48 heures.** OSF approuve le dépôt de lui-même au bout de 48 heures, sauf si tu l'annules. Il sera donc figé le 9 octobre au plus tard.
+
+**Ce qui manque encore à l'inscription :**
+- le lien OSF du dépôt (ou son DOI, quand OSF l'aura créé) ;
+- la date de fin de l'embargo que tu as choisie ;
+- la confirmation du PDF joint (`PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.pdf`).
+
+**Ce qui vient ensuite**, dans l'ordre de la partie « Après le dépôt » plus bas :
+- la mise à jour datée, avant toute donnée des bras : le harnais, le prompt du juge et le détecteur d'audit ;
+- l'amendement daté qui fixe le réglage de la porte, avant la moitié de test.
+
+La règle de la procédure du réglage désigne C, si la mise en commun des tirages est acceptée. Deux points restent à toi : cette mise en commun, malgré une empreinte qui manque, et le sort de A. Les deux sont dans la note de la procédure.
 
 ## Décision 35 (7 octobre 2026) : la version à déposer
 
@@ -16,7 +37,7 @@ Tu as répondu aux trois questions de la session :
 | `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md` | le texte d'où viennent les champs du formulaire (la feuille `OSF_CHAMPS_A_COLLER_2026-10-07.md` les découpe) | `e2b30c5fde57ebd1433e57eb99f696bb87f20a338aac9ed5b8512ca15a7775b4` |
 | `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.pdf` | le même texte en PDF (23 pages), à joindre au dépôt. C'est son empreinte que le post imprimera. | `1bfed36afd89d81a300962b9a35c58d84224cc8fffc1d7acbdd4df0cb8d40d2b` |
 
-**Ce qui te reste avant de déposer** :
+**Ce qui te restait avant de déposer** (fait le 7 octobre) :
 1. **Relire la version à déposer.** Si tu changes quelque chose, la session refait le texte, le PDF et les empreintes. La partie 7 demande aussi ta relecture de la v1.6.
 2. **Ton ORCID**, si tu veux qu'il figure dans le texte : la session l'ajoute et régénère le PDF. La case vide a été retirée.
 3. **Le dépôt sur OSF**, en suivant « Comment déposer sur OSF » plus bas.

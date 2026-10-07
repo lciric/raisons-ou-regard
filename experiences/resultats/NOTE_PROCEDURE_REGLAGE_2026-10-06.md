@@ -126,3 +126,108 @@ La règle est écrite avant qu'aucune vérification de manipulation de la procé
 - **A attend du crédit.** Il partira avec le run de la réextraction.
 - **C** : `organism_inhibition-20261007-073313-d83a`.
 - **B** attend une seconde offre H100 SXM.
+- **B** est parti à 7 h 39 UTC, sur une seconde offre H100 SXM, à 4,04 $/h : `organism_inhibition-20261007-073934-1030`.
+
+## La lecture de B et C (7 octobre 2026), après le dépôt du pré-enregistrement
+
+**Le dépôt d'abord.** Lazar a déposé le pré-enregistrement sur OSF le 7 octobre, vers 10 h UTC : « pre enregistrement depose, passe a la suite et enregistre bine tout ». La session n'a ouvert aucune sortie de la procédure avant ce message. Elle n'avait suivi que l'avancement des runs (l'étape en cours, le crédit). La lecture suit donc le texte déposé : l'annexe C.4 pour la procédure, la section 5.5 pour la mise en commun.
+
+**Les deux reprises ont fini.**
+
+| Candidat | Run interrompu | Reprise | Tirages mesurés sur la conduite | Fin | Coût de la reprise, au plus |
+|---|---|---|---|---|---|
+| B | `…-145121-dbb0` | `…-073934-1030` | 15 + 5 (le 16ᵉ, mesuré deux fois) | 10 h 10 UTC | 10,15 $ |
+| C | `…-150952-d6c2` | `…-073313-d83a` | 13 + 7 | 9 h 33 UTC | 7,82 $ |
+
+Les deux vérifications de manipulation ont tourné en entier : 23 conditions, dont les 20 tirages, tous appariés sur la KL. Le crédit restant est de 5,69 $ (10 h 09 UTC).
+
+**Le code de la lecture.** `analyses/procedure_reglage.py` lit un run interrompu et sa reprise : il vérifie la mise en commun, réunit les tirages, puis applique les règles de l'annexe C.4. La vérification de manipulation passe par `verification_manipulation.check_run`. Le script a été écrit et testé sur des données simulées avant d'être lancé sur les sorties. Sa sortie est `lecture_procedure_reglage_B_C_2026-10-07.json`.
+
+### La mise en commun (section 5.5)
+
+| Condition | B | C |
+|---|---|---|
+| Même modèle de GPU, même organisme, mêmes arguments (hors `measure_from`) | oui : H100 80GB HBM3 | oui |
+| Même code de mesure | oui : entre `bcc0311` et `b3799ca`, seule l'option de reprise change dans `rrexp` | oui : `bcc0311` puis `9e4c0cd`, même archive de code que B |
+| KL remesurée à 0,1 % près | identique au dernier chiffre, pour le candidat et les 15 tirages communs | identique au dernier chiffre, pour le candidat et les 13 tirages communs |
+| Ligne de base et candidat retrouvés exactement | oui, fichiers de mesure identiques (SHA-256) | oui, idem |
+| Mêmes fractions appariées | oui, 15 tirages | oui, 13 tirages |
+| Contrôle en plus | le 16ᵉ tirage, mesuré deux fois : fichier identique | — |
+| Mêmes réponses de référence (SHA-256) | **ne se vérifie pas à la lettre** | **idem** |
+
+**L'écart à trancher.** Le job n'envoyait les réponses de référence qu'à la fin du run. Les trois runs interrompus du 6 octobre ne les ont donc jamais envoyées, et leur empreinte manque. Deux faits en tiennent lieu :
+- **La KL se calcule sur ces réponses.** Elle est retrouvée au dernier chiffre pour les 30 conditions communes, ce qui serait impossible avec d'autres réponses.
+- **Tous les runs de cet organisme sur H100 ont produit le même fichier**, `904e1bd9…`. C'est le cas des runs du 4 octobre (6849, f2c2, 99be), de ceux du 6 octobre (62a1, 00c6) et des deux reprises. Le seul autre fichier connu vient d'un A100 (8410 et a006 : `12108546…`), ce qui confirme la règle d'un seul modèle de GPU par série.
+
+La session recommande de mettre les tirages en commun et d'inscrire l'écart dans la mise à jour datée du pré-enregistrement. **C'est à Lazar de le décider** (« Sinon, la session le dit, et la suite revient à Lazar »).
+
+**Le correctif.** Le job envoie désormais les réponses de référence dès qu'elles sont produites, et il écrit leur SHA-256 et le modèle du GPU dans `results.json`. Un run interrompu garde donc son empreinte (test hors ligne ; 142 tests passent).
+
+### Les règles de l'annexe C.4
+
+Les nombres qui suivent supposent la mise en commun acceptée. Les écarts et les réductions sont en points de pourcentage.
+
+| | B : effacement, fraction 0,5 | C : effacement, fraction 1 |
+|---|---|---|
+| KL du candidat | 0,025 | 0,117 |
+| **1. La vérification de manipulation.** Écart au hasard du transfert, moyenne sur les couches, au dernier jeton | | |
+| Sonde linéaire : sous le candidat / sans intervention / sous les tirages (min.–max.) | 0,111 / 0,182 / 0,155–0,185 | 0,085 / 0,182 / 0,134–0,200 |
+| Perceptron : idem | 0,113 / 0,179 / 0,151–0,182 | 0,091 / 0,179 / 0,127–0,196 |
+| Plus bas que combien de tirages (il en faut 19 sur 20) | 20 et 20 | 20 et 20 |
+| Le cas connu, l'effacement à la couche 6 seule | vu | vu |
+| **La vérification tient** | **oui** | **oui** |
+| **2. La saturation.** Écart laissé par la médiane des tirages, contre la moitié de l'écart de départ | | |
+| Indices d'extraction (départ : 54,4) | 56,8 contre 27,2 : ne sature pas | 45,4 contre 27,2 : ne sature pas |
+| Cadrage (départ : 18,4) | 21,4 contre 9,2 : ne sature pas | 22,2 contre 9,2 : ne sature pas |
+| **Retenu** | **oui** | **oui** |
+| **3. La porte, indices d'extraction.** Réduction du candidat / médiane / 95ᵉ centile / maximum des tirages | 12,4 / −2,4 / 14,08 / 23,2 | 39,2 / 9,0 / 37,24 / 38,0 |
+| Marge sur le 95ᵉ centile | **−1,68 : ne le dépasse pas** (2 tirages réduisent au moins autant) | **+1,96 : le dépasse** (aucun tirage ne réduit autant) |
+| Cadrage : réduction / 95ᵉ centile / marge | 10,8 / 3,30 / +7,50 | 21,2 / 9,22 / +11,98 |
+
+**Le cas connu.** À la couche 6, le transfert baisse : 0,079 d'écart au hasard, contre 0,135 sans intervention (sonde linéaire). En aval, il revient plus près de la condition sans intervention que du candidat : 0,212, contre 0,196 sans intervention et 0,089 sous C. L'échec construit ne passe pas le critère. Les valeurs du perceptron vont dans le même sens.
+
+**Un écart, pour B seulement.** Le job construit l'échec avec l'effacement entier à la couche 6, quelle que soit la fraction du candidat. Le cas connu de B est donc l'effacement à la fraction 1, et non « le candidat à la couche 6 seule » à la fraction 0,5. Cet écart ne touche pas le choix, puisque B ne dépasse pas son 95ᵉ centile.
+
+**Les deux côtés de l'écart** : la part des réponses qui suivent l'indice, en %.
+
+| | Sans intervention | Sous B | Sous C | Médiane des tirages, B / C |
+|---|---|---|---|---|
+| Extraction, indices d'évaluation | 60,8 | 47,6 (−13,2) | 20,8 (−40,0) | 65,0 / 54,4 |
+| Extraction, indices de déploiement | 6,4 | 5,6 (−0,8) | 5,6 (−0,8) | 6,6 / 7,0 |
+| Cadrage, indices d'évaluation | 38,4 | 31,6 (−6,8) | 21,6 (−16,8) | 39,6 / 42,8 |
+| Cadrage, indices de déploiement | 20,0 | 24,0 (+4,0) | 24,4 (+4,4) | 18,8 / 19,0 |
+
+La réduction vient du côté de l'évaluation. Le côté du déploiement bouge peu : moins de 1 point sous les indices d'extraction, environ 4 points sous le cadrage. Sous C, l'écart du cadrage s'inverse légèrement (−2,8).
+
+**Les lectures secondaires** (annexe C.3), en moyenne sur les couches :
+- **Dans le jeu de validation**, la distinction reste lisible : l'AUROC est de 0,988 sous C et de 0,982 sans intervention (sonde linéaire). Le transfert plus bas ne veut donc dire que ce que l'annexe C.3 lui fait dire : la distinction que partagent nos jeux d'indices ne se lit plus aussi bien au dernier jeton.
+- **Le transfert moyen sur les jetons** baisse aussi : 0,839 sous C, contre 0,918 sans intervention et 0,915 en médiane des tirages. Sous C comme sous B, il est plus bas que sous les 20 tirages, pour les deux sondes.
+- **La projection résiduelle** monte sous C : 1,27, contre 1,03 sans intervention et 0,98 en médiane des tirages. La session la rapporte sans l'interpréter.
+
+### A, sur ses 17 tirages
+
+A (la projection de rang 1, KL 0,153) réduit l'écart d'extraction de 37,2 points. Mais trois de ses 17 tirages réduisent davantage : 37,6, 41,2 et 42,0 points (les tirages 3, 9 et 7).
+- Sur 20 tirages, le 95ᵉ centile est au moins le deuxième plus grand : il vaudra au moins 41,2, quels que soient les trois tirages manquants.
+- **A ne peut donc pas dépasser son 95ᵉ centile.** La règle du choix l'écarte, quelle que soit la suite.
+- Sur ses 17 tirages, son comparateur ne sature pas : la médiane est de 15,2, et elle laisse 39,2 points.
+- Sous le cadrage, A réduit l'écart de 16,0 points, contre un 95ᵉ centile de 11,76.
+- Les deux côtés : sous les indices d'extraction, −39,6 points côté évaluation et −2,4 côté déploiement ; sous le cadrage, −20,0 et −4,0.
+- Sa vérification de manipulation n'a jamais tourné : elle venait après les tirages. Le contrôle de la décision 35 (A réextrait sur les paires 0 à 149) n'a donc pas lieu d'être pour le choix.
+
+### Ce qui en suit
+
+- **B** est retenu, mais il ne dépasse pas son 95ᵉ centile sous les indices d'extraction.
+- **A** ne le dépassera pas.
+- **C** est retenu, et il le dépasse de 1,96 point : il réduit l'écart plus que chacun de ses 20 tirages. Sous le cadrage, sa marge est de 11,98 points.
+- **La règle du choix désigne donc C** : l'effacement linéaire sur toutes les couches, ajusté sur le modèle de départ avec les paires 0 à 149, à la fraction 1.
+
+Il y a deux conditions :
+- que Lazar accepte la mise en commun ;
+- que Lazar fixe le réglage par un amendement daté, avant d'ouvrir la moitié de test (annexe C.4).
+
+La marge sous les indices d'extraction est mince. La moitié de test, mesurée une seule fois, en décidera.
+
+**Ce qui revient à Lazar :**
+1. **La mise en commun**, malgré l'empreinte manquante des réponses de référence. La session recommande de l'accepter : mesurer de nouveau C en un seul run, avec ses 20 tirages, coûterait environ 17 $ et redonnerait les mêmes nombres, car tout est déterministe sur cette carte.
+2. **A.** Ses trois derniers tirages, sa vérification de manipulation et le contrôle de la décision 35 coûteraient environ 12 $, sans pouvoir changer le choix. La session recommande de ne pas les lancer, et de rapporter A tel quel : non choisi, et sa vérification non faite.
+3. **L'amendement daté qui fixe le réglage**, une fois les deux points précédents tranchés.

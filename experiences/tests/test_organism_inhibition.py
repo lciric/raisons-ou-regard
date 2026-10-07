@@ -141,6 +141,10 @@ class TestJob(unittest.TestCase):
                         self.assertEqual(set(k for k in d["measure"] if k.startswith(("eval_", "deploy_"))),
                                          {"eval_extraction", "deploy_extraction", "eval_framing", "deploy_framing"})
             self.assertTrue((ctx.out / "reference_answers.jsonl").exists())
+            # its fingerprint, for the pooling of an interrupted run with its resume (section 5.5), and the GPU model
+            import hashlib
+            self.assertEqual(out["reference"]["sha256"], hashlib.sha256((ctx.out / "reference_answers.jsonl").read_bytes()).hexdigest())
+            self.assertEqual(out["gpu"], "cpu")
             # the rival manipulation, the separate controls and the gate summary
             self.assertIn("extraction", out["rival"]["reduction"])
             rival_rows = [json.loads(l) for l in (ctx.out / "measure_rival.jsonl").read_text(encoding="utf8").splitlines()]

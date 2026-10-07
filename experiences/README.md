@@ -105,6 +105,7 @@ Ils tournent hors ligne.
 - **Les règles de décision** s'y lisent aussi, sur des épisodes notés ou sur les sorties d'un job :
   - la porte des raisons (`porte_des_raisons.py`) ;
   - la règle du regard : les lignes 1 à 6 (`regle_du_regard.py`, dont l'empreinte est dans le brouillon du pré-enregistrement), puis les lignes 7 à 17 (`regle_du_regard_suite.py`) ;
-  - la vérification de manipulation, lue par le transfert (`verification_manipulation.py`).
+  - la vérification de manipulation, lue par le transfert (`verification_manipulation.py`) ;
+  - la procédure qui fixe le réglage de la porte (`procedure_reglage.py`) : elle lit un run interrompu et sa reprise, vérifie leur mise en commun (section 5.5 du pré-enregistrement), puis applique les règles de l'annexe C.4. Sa lecture de B et C est dans `resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`.
 
   Leurs tests simulent des données dont on connaît la vérité.

@@ -69,6 +69,7 @@ Job arguments: {"sdf_adapter": "runs/<run>/out/sdf_adapter", "ei_adapter": "runs
 "local_sdf_adapter", "local_ei_adapter", "local_subspace", "local_cues", "local_mbpp", "local_halves" and "device"
 replace the downloads in the offline tests.
 """
+import hashlib
 import json
 import os
 import statistics
@@ -370,13 +371,21 @@ def run(ctx):
 
     # 1. the reference answers of the organism, the clean pass and the covariances
     ctx.progress = "reference answers"
+    ref_file = ctx.out / "reference_answers.jsonl"
     texts, prompts, answers = idg.reference_answers(model, tok, cfile, int(a.get("n_contexts", 120)), int(a.get("answer_tokens", 128)),
-                                                    kl_batch, device, ctx.out / "reference_answers.jsonl")
+                                                    kl_batch, device, ref_file)
+    # sent at once, with its fingerprint in the results: the draws of an interrupted run and of its resume are pooled only
+    # if their reference answers are the same (pre-registration, section 5.5); on 6 October 2026, three interrupted runs
+    # had not sent theirs, which went up only with the final upload
+    org._upload(ctx, ref_file, "out/reference_answers.jsonl")
+    ref_sha = hashlib.sha256(ref_file.read_bytes()).hexdigest()
     batches = idg.teacher_batches(tok, prompts, answers, kl_batch, device)
     all_layers = sorted({l for _, ls, _, _ in settings for l in ls})
     ctx.progress = "clean pass"
     clean, covs = idg.clean_pass(model, batches, all_layers)
-    results["reference"] = {"contexts": len(texts), "answer_tokens_mean": round(sum(len(x) for x in answers) / max(1, len(answers)), 1)}
+    results["reference"] = {"contexts": len(texts), "answer_tokens_mean": round(sum(len(x) for x in answers) / max(1, len(answers)), 1),
+                            "sha256": ref_sha}
+    results["gpu"] = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "cpu"
 
     # 2. without intervention
     base_m, rows = measure("baseline", framings)
