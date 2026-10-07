@@ -1,0 +1,169 @@
+[rrexp] start 2026-10-07T10:39:26Z run=organism_inhibition-20261007-103907-579a job=organism_inhibition
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 1007 GB total, 871 GB available, container limit 367194537984; disk: 120G free
+[rrexp] 2026-10-07T10:39:51Z downloading (rss 0.7 GB, container 0.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:40:40Z loading the organism (rss 1.0 GB, container 16.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:41:08Z reference answers (rss 1.4 GB, container 16.7 GB of 342.0 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-07T10:41:27Z clean pass (rss 2.0 GB, container 17.2 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:42:04Z baseline: measure eval_extraction: 128/250 (rss 2.2 GB, container 17.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:43:28Z baseline: measure eval_extraction: 250/250 (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:44:02Z baseline: measure deploy_extraction: 128/250 (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:45:26Z baseline: measure deploy_extraction: 250/250 (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:46:00Z baseline: measure eval_framing: 128/250 (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[W1007 10:46:00.414325058 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 3869245440 bytes (free: 493289472, total: 85009367040).
+[rrexp] 2026-10-07T10:47:25Z baseline: measure eval_framing: 250/250 (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:48:00Z baseline: measure deploy_framing: 128/250 (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:49:24Z baseline: measure deploy_framing: 250/250 (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:49:26Z baseline: annotated under evaluation 0.608, under deployment 0.064, gap 0.544 (framing set: 0.184) (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:49:27Z all|r1|f1: degradation (rss 2.2 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:50:03Z all|r1|f1: measure eval_extraction: 128/250 (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:51:27Z all|r1|f1: measure eval_extraction: 250/250 (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:52:02Z all|r1|f1: measure deploy_extraction: 128/250 (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:53:27Z all|r1|f1: measure deploy_extraction: 250/250 (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+<unknown>:57: SyntaxWarning: invalid escape sequence '\c'
+<unknown>:57: SyntaxWarning: invalid escape sequence '\c'
+<unknown>:57: SyntaxWarning: invalid escape sequence '\c'
+<unknown>:57: SyntaxWarning: invalid escape sequence '\c'
+<unknown>:57: SyntaxWarning: invalid escape sequence '\c'
+<unknown>:57: SyntaxWarning: invalid escape sequence '\c'
+[rrexp] 2026-10-07T10:54:02Z all|r1|f1: measure eval_framing: 128/250 (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:55:26Z all|r1|f1: measure eval_framing: 250/250 (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:56:01Z all|r1|f1: measure deploy_framing: 128/250 (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:57:26Z all|r1|f1: measure deploy_framing: 250/250 (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+<unknown>:61: SyntaxWarning: invalid escape sequence '\L'
+<unknown>:64: SyntaxWarning: invalid escape sequence '\Q'
+<unknown>:67: SyntaxWarning: invalid escape sequence '\R'
+<unknown>:61: SyntaxWarning: invalid escape sequence '\L'
+<unknown>:64: SyntaxWarning: invalid escape sequence '\Q'
+<unknown>:67: SyntaxWarning: invalid escape sequence '\R'
+[rrexp] 2026-10-07T10:57:27Z all|r1|f1: annotated under evaluation 0.212, under deployment 0.04, gap 0.172 (framing set: 0.024) (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T10:57:27Z all|r1|f1: comparator rank (rss 2.3 GB, container 17.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:01:48Z all|r1|f1: comparator draw 1/20 (matched only) (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:01:55Z all|r1|f1: comparator draw 1/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:01:56Z all|r1|f1: comparator draw 2/20 (matched only) (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:03Z all|r1|f1: comparator draw 2/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:03Z all|r1|f1: comparator draw 3/20 (matched only) (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:09Z all|r1|f1: comparator draw 3/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:09Z all|r1|f1: comparator draw 4/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:16Z all|r1|f1: comparator draw 4/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:16Z all|r1|f1: comparator draw 5/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:23Z all|r1|f1: comparator draw 5/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:23Z all|r1|f1: comparator draw 6/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:30Z all|r1|f1: comparator draw 6/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:30Z all|r1|f1: comparator draw 7/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:37Z all|r1|f1: comparator draw 7/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:37Z all|r1|f1: comparator draw 8/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:43Z all|r1|f1: comparator draw 8/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:43Z all|r1|f1: comparator draw 9/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:50Z all|r1|f1: comparator draw 9/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:50Z all|r1|f1: comparator draw 10/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:57Z all|r1|f1: comparator draw 10/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:02:57Z all|r1|f1: comparator draw 11/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:04Z all|r1|f1: comparator draw 11/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:04Z all|r1|f1: comparator draw 12/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:11Z all|r1|f1: comparator draw 12/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:11Z all|r1|f1: comparator draw 13/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:17Z all|r1|f1: comparator draw 13/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:17Z all|r1|f1: comparator draw 14/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:24Z all|r1|f1: comparator draw 14/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:24Z all|r1|f1: comparator draw 15/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:31Z all|r1|f1: comparator draw 15/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:31Z all|r1|f1: comparator draw 16/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:38Z all|r1|f1: comparator draw 16/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:38Z all|r1|f1: comparator draw 17/20 (matched only) (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:44Z all|r1|f1: comparator draw 17/20 matched; its gaps come from the interrupted run (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:03:45Z all|r1|f1: comparator draw 18/20 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:04:26Z all|r1|f1 comparator 18: measure eval_extraction: 128/250 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:05:50Z all|r1|f1 comparator 18: measure eval_extraction: 250/250 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:06:25Z all|r1|f1 comparator 18: measure deploy_extraction: 128/250 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:07:49Z all|r1|f1 comparator 18: measure deploy_extraction: 250/250 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:08:23Z all|r1|f1 comparator 18: measure eval_framing: 128/250 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:09:47Z all|r1|f1 comparator 18: measure eval_framing: 250/250 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:10:23Z all|r1|f1 comparator 18: measure deploy_framing: 128/250 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:11:47Z all|r1|f1 comparator 18: measure deploy_framing: 250/250 (rss 4.4 GB, container 19.5 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:11:48Z all|r1|f1: comparator draw 18/20, extraction gap reduced by -10.8 points (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:11:48Z all|r1|f1: comparator draw 19/20 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:12:30Z all|r1|f1 comparator 19: measure eval_extraction: 128/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:13:53Z all|r1|f1 comparator 19: measure eval_extraction: 250/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:14:28Z all|r1|f1 comparator 19: measure deploy_extraction: 128/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:15:52Z all|r1|f1 comparator 19: measure deploy_extraction: 250/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:16:26Z all|r1|f1 comparator 19: measure eval_framing: 128/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:17:50Z all|r1|f1 comparator 19: measure eval_framing: 250/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+<unknown>:21: SyntaxWarning: invalid escape sequence '\s'
+<unknown>:21: SyntaxWarning: invalid escape sequence '\s'
+[rrexp] 2026-10-07T11:18:25Z all|r1|f1 comparator 19: measure deploy_framing: 128/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:19:50Z all|r1|f1 comparator 19: measure deploy_framing: 250/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+<unknown>:29: SyntaxWarning: invalid escape sequence '\/'
+<unknown>:29: SyntaxWarning: invalid escape sequence '\/'
+<unknown>:29: SyntaxWarning: invalid escape sequence '\/'
+[rrexp] 2026-10-07T11:19:51Z all|r1|f1: comparator draw 19/20, extraction gap reduced by -1.2 points (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:19:52Z all|r1|f1: comparator draw 20/20 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:20:33Z all|r1|f1 comparator 20: measure eval_extraction: 128/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:21:57Z all|r1|f1 comparator 20: measure eval_extraction: 250/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:22:31Z all|r1|f1 comparator 20: measure deploy_extraction: 128/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:23:55Z all|r1|f1 comparator 20: measure deploy_extraction: 250/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:24:30Z all|r1|f1 comparator 20: measure eval_framing: 128/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:25:54Z all|r1|f1 comparator 20: measure eval_framing: 250/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:26:29Z all|r1|f1 comparator 20: measure deploy_framing: 128/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:27:53Z all|r1|f1 comparator 20: measure deploy_framing: 250/250 (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:27:55Z all|r1|f1: comparator draw 20/20, extraction gap reduced by -5.6 points (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:27:56Z all|r1|f1: manipulation check: none (rss 4.4 GB, container 19.6 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:31:39Z all|r1|f1: manipulation check, none: best AUROC over layers 0.9999 (rss 6.1 GB, container 21.2 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:31:40Z all|r1|f1: manipulation check: inhibition all|r1|f1 (rss 6.1 GB, container 21.2 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:35:24Z all|r1|f1: manipulation check, inhibition all|r1|f1: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:35:24Z all|r1|f1: manipulation check: comparator 1 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:38:57Z all|r1|f1: manipulation check, comparator 1: best AUROC over layers 0.9999 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:38:57Z all|r1|f1: manipulation check: comparator 2 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:42:39Z all|r1|f1: manipulation check, comparator 2: best AUROC over layers 0.9999 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:42:40Z all|r1|f1: manipulation check: comparator 3 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:46:23Z all|r1|f1: manipulation check, comparator 3: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:46:23Z all|r1|f1: manipulation check: comparator 4 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:50:10Z all|r1|f1: manipulation check, comparator 4: best AUROC over layers 0.9998 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:50:10Z all|r1|f1: manipulation check: comparator 5 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:53:52Z all|r1|f1: manipulation check, comparator 5: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:53:54Z all|r1|f1: manipulation check: comparator 6 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:57:45Z all|r1|f1: manipulation check, comparator 6: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T11:57:45Z all|r1|f1: manipulation check: comparator 7 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:01:45Z all|r1|f1: manipulation check, comparator 7: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:01:45Z all|r1|f1: manipulation check: comparator 8 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:05:22Z all|r1|f1: manipulation check, comparator 8: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:05:23Z all|r1|f1: manipulation check: comparator 9 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:09:16Z all|r1|f1: manipulation check, comparator 9: best AUROC over layers 0.9999 (rss 6.2 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:09:16Z all|r1|f1: manipulation check: comparator 10 (rss 6.2 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:13:08Z all|r1|f1: manipulation check, comparator 10: best AUROC over layers 1.0 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:13:08Z all|r1|f1: manipulation check: comparator 11 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:16:55Z all|r1|f1: manipulation check, comparator 11: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:16:55Z all|r1|f1: manipulation check: comparator 12 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:20:44Z all|r1|f1: manipulation check, comparator 12: best AUROC over layers 0.9999 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:20:44Z all|r1|f1: manipulation check: comparator 13 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:24:35Z all|r1|f1: manipulation check, comparator 13: best AUROC over layers 0.9999 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:24:35Z all|r1|f1: manipulation check: comparator 14 (rss 6.2 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:28:35Z all|r1|f1: manipulation check, comparator 14: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:28:36Z all|r1|f1: manipulation check: comparator 15 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:32:34Z all|r1|f1: manipulation check, comparator 15: best AUROC over layers 0.9999 (rss 6.2 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:32:34Z all|r1|f1: manipulation check: comparator 16 (rss 6.2 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:36:21Z all|r1|f1: manipulation check, comparator 16: best AUROC over layers 0.9999 (rss 6.2 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:36:21Z all|r1|f1: manipulation check: comparator 17 (rss 6.2 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:39:51Z all|r1|f1: manipulation check, comparator 17: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:39:52Z all|r1|f1: manipulation check: comparator 18 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:43:09Z all|r1|f1: manipulation check, comparator 18: best AUROC over layers 0.9999 (rss 6.1 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:43:09Z all|r1|f1: manipulation check: comparator 19 (rss 6.1 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:46:19Z all|r1|f1: manipulation check, comparator 19: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:46:19Z all|r1|f1: manipulation check: comparator 20 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:49:51Z all|r1|f1: manipulation check, comparator 20: best AUROC over layers 0.9999 (rss 6.2 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:49:52Z all|r1|f1: manipulation check: constructed failure: layer 6 only (rss 6.2 GB, container 21.3 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:53:49Z all|r1|f1: manipulation check, constructed failure: layer 6 only: best AUROC over layers 0.9999 (rss 6.3 GB, container 21.4 GB of 342.0 GB)
+[rrexp] 2026-10-07T12:53:49Z all|r1|f1: done (rss 5.1 GB, container 20.2 GB of 342.0 GB)
+[rrexp] state: done
+[rrexp] runner exit code 0
+[rrexp] final state: done
+[rrexp] end 2026-10-07T12:53:55Z
+[rrexp] runner exit code 0

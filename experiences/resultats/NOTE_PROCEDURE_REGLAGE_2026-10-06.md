@@ -251,3 +251,46 @@ Lazar a répondu aux deux questions de la session, après la lecture de B et C :
 Coût prévu : environ 0,3 $ pour la réextraction, et environ 3,5 $ pour le run.
 
 **Ce que A ne change pas.** La règle du choix l'écarte, quoi qu'il arrive : 3 de ses 17 tirages réduisent l'écart plus que lui. Son run sert à rapporter les trois candidats en entier.
+
+## La lecture de A (7 octobre 2026, 13 h UTC)
+
+**La reprise de A a fini** à 12 h 55 UTC (`…-103907-579a`). Sa machine est détruite ; elle a coûté 8,75 $ au plus. Sa vérification de manipulation a tourné en entier : 23 conditions, dont les 20 tirages. Le correctif du job marche : la reprise écrit l'empreinte de ses réponses de référence (`904e1bd9…`, la même que partout ailleurs) et son modèle de GPU dans `results.json`. La lecture est dans `lecture_procedure_reglage_A_2026-10-07.json`.
+
+**La mise en commun** avec le run interrompu `…-144713-0f47` tient comme pour B et C :
+- même carte, mêmes arguments ;
+- KL identique au dernier chiffre, pour le candidat et les 17 tirages communs ;
+- ligne de base et candidat identiques, fichiers de mesure compris ;
+- mêmes fractions appariées.
+
+L'empreinte des réponses de référence du run interrompu manque, comme pour B et C. La décision 36 couvre cet écart.
+
+**Ce que donnent les règles de l'annexe C.4 :**
+- **La vérification de manipulation ne tient pas.** Sous A, l'écart au hasard du transfert est de 0,149 pour la sonde linéaire, contre 0,182 sans intervention et de 0,129 à 0,203 sous les tirages. Il n'est plus bas que sous 14 tirages sur 20, alors qu'il en faut 19. Pour le perceptron, il est de 0,141, plus bas que sous 16 tirages sur 20.
+- **Le cas connu est vu** : à la couche 6, 0,040 contre 0,135 sans intervention ; en aval, 0,190, contre 0,196 sans intervention et 0,164 sous A ; et l'échec construit ne passe pas le critère. La vérification sait donc voir un échec ; c'est A qui ne la passe pas.
+- **Le comparateur ne sature pas** : la médiane des tirages laisse 42,4 points sous les indices d'extraction (il en faut 27,2), et 20,6 sous le cadrage (il en faut 9,2).
+- **La porte, indices d'extraction** : A réduit l'écart de 37,2 points. Ses 20 tirages : médiane 12,0, 95ᵉ centile 41,24, maximum 42,0. Trois tirages réduisent au moins autant que lui. Marge : −4,04. Sous le cadrage : 16,0 points, contre un 95ᵉ centile de 11,64, soit +4,36.
+- **Les deux côtés de l'écart**, sous les indices d'extraction : 60,8 % → 21,2 % côté évaluation, 6,4 % → 4,0 % côté déploiement. Sous le cadrage : 38,4 % → 18,4 %, et 20,0 % → 16,0 %.
+- **Les lectures secondaires.** Dans le jeu de validation, la distinction reste lisible : 0,985. Le transfert moyen sur les jetons ne baisse guère : 0,910, contre 0,918 sans intervention. La projection résiduelle tombe à 0,003, ce qu'on attend d'une projection sur la direction même qu'elle lit.
+
+**A n'est donc pas retenu.** Sa vérification de manipulation ne tient pas. Le contrôle A′ de la décision 35 n'a pas lieu d'être : il ne conditionnait qu'un passage. Il n'est pas lancé.
+
+### Les trois candidats
+
+| | A : projection de rang 1 | B : effacement, fraction 0,5 | C : effacement, fraction 1 |
+|---|---|---|---|
+| KL | 0,153 | 0,025 | 0,117 |
+| Vérification de manipulation : plus bas que combien de tirages sur 20 (linéaire / perceptron ; il en faut 19) | 14 / 16 : ne tient pas | 20 / 20 : tient | 20 / 20 : tient |
+| Le comparateur sature-t-il ? | non | non | non |
+| **Retenu** | **non** | oui | oui |
+| Marge sur le 95ᵉ centile, indices d'extraction | −4,04 | −1,68 | **+1,96** |
+| Marge sur le 95ᵉ centile, cadrage | +4,36 | +7,50 | +11,98 |
+
+**La règle désigne C**, seul candidat retenu qui dépasse le 95ᵉ centile de ses tirages : l'effacement linéaire sur toutes les couches, ajusté sur le modèle de départ, à la fraction 1. Son effacement ajusté est `erasure_all_leace(extraction)@base_f1.safetensors` (SHA-256 `9e2822f5bdd307cdb3a64f67606ccc830322343c6f24ed81783882f2bfc29303`, 1 580 352 octets, dans le dépôt de résultats).
+
+**A et C font baisser autant la conduite, mais pas le transfert.**
+- Sous les indices d'extraction, la conduite tombe autant sous l'un que sous l'autre : −39,6 et −40,0 points côté évaluation.
+- Pourtant, sous A, la distinction que partagent nos jeux d'indices reste lisible par transfert, autant que sous des tirages aléatoires. Sous C, elle l'est moins que sous chacun d'eux.
+
+**Le coût de la procédure** : 32,81 $ pour les trois runs interrompus du 6 octobre, 3,05 $ pour les reprises arrêtées le soir même, puis 7,82 $ (C), 10,15 $ (B) et 8,75 $ (A) pour les reprises du 7 octobre. Soit 62,58 $ au plus.
+
+**Ce qui revient à Lazar** : l'amendement daté qui fixe le réglage, avant d'ouvrir la moitié de test (annexe C.4). Son brouillon est `claude/AMENDEMENT_REGLAGE_PORTE_2026-10-07.md`.

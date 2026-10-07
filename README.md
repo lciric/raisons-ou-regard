@@ -21,8 +21,8 @@ Le programme complet va plus loin : où se loge l'avantage, le retrait de « je 
   - L'organisme annote ses fonctions Python quand il se croit évalué, et non quand il se croit déployé : c'est la conduite de Hua et al. (décisions 27 et 28). Sur la moitié de choix des tâches, il annote dans 60,8 % des cas sous les indices d'évaluation du jeu d'extraction, contre 6,4 % sous ses indices de déploiement : 54,4 points d'écart.
   - La procédure qui fixe le réglage de la porte a lu ses candidats sur cette moitié (décisions 34 et 36). Sa règle désigne l'effacement linéaire sur toutes les couches, ajusté sur le modèle de départ, à la fraction 1.
   - Cet effacement réduit l'écart de 39,2 points, soit 1,96 de plus que le 95ᵉ centile de ses 20 tirages aléatoires. La marge est mince.
-  - La reprise du premier candidat, la projection de rang 1, lancée le 7 octobre, complète le rapport sans pouvoir changer le choix.
-  - Il reste l'amendement daté qui fixe le réglage, puis la moitié de test, mesurée une seule fois contre au moins 100 tirages : environ 15 h de H100.
+  - Le premier candidat, la projection de rang 1, ne passe pas sa vérification de manipulation : il n'est pas retenu.
+  - Il reste l'amendement daté qui fixe le réglage (son brouillon : `claude/AMENDEMENT_REGLAGE_PORTE_2026-10-07.md`), puis la moitié de test, mesurée une seule fois contre au moins 100 tirages : environ 15 h de H100.
   - La lecture est dans `experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`.
 - **Les données.** Le pipeline (v0.1) et son pilote ont tourné, et les jeux d'indices v2 sont faits (décisions 30 et 31).
 - **Avant toute donnée des bras**, une mise à jour datée du pré-enregistrement doit figer trois pièces :

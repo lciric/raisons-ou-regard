@@ -47,7 +47,9 @@
   "repo_path": "code/1c3ed067ddc614bf.tar.gz",
   "sha256": "1c3ed067ddc614bf5f9cc6156cb5b66af9ea50d49c2059a522b508d30c8a235b"
  },
+ "cost_usd_upper_bound": 8.751,
  "created": "2026-10-07T10:39:07Z",
+ "destroyed": "2026-10-07T12:55:52Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -63,6 +65,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "organism_inhibition-20261007-103907-579a"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54626680,
  "job": "organism_inhibition",
@@ -91,6 +94,7 @@
    "offers": 1
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -100,7 +104,52 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "baseline": {
+   "gap_extraction": 0.544,
+   "gap_framing": 0.184
+  },
+  "comparator": {
+   "all|r1|f1": {
+    "draws_measured": 3,
+    "draws_reducing_at_least_as_much": 0,
+    "inhibition_reduction": 37.2,
+    "reduction_max": -1.2,
+    "reduction_median": -5.6
+   }
+  },
+  "porte": {
+   "all|r1|f1": {
+    "extraction": {
+     "beats_comparator_p95": true,
+     "comparator_draws_matched": 3,
+     "comparator_p95": -1.64,
+     "controls": {},
+     "inhibition": 37.2
+    },
+    "framing": {
+     "beats_comparator_p95": true,
+     "comparator_draws_matched": 3,
+     "comparator_p95": -7.24,
+     "controls": {},
+     "inhibition": 16.0
+    }
+   }
+  },
+  "rival": null,
+  "settings": {
+   "all|r1|f1": {
+    "kl": 0.15282,
+    "reduction": {
+     "extraction": 37.2,
+     "framing": 16.0
+    }
+   }
+  },
+  "stopped": null
+ },
+ "results_dir": "resultats/organism_inhibition-20261007-103907-579a",
  "run_id": "organism_inhibition-20261007-103907-579a",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "done"
 }
