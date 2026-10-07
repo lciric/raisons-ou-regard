@@ -2,6 +2,32 @@
 
 Tu as demandé : « fais la preregistration ». Le brouillon du premier temps est prêt, en anglais : `PREENREGISTREMENT_PREMIER_TEMPS_2026-10-07.md` (SHA-256 `4ca4a906eaeb834dfd4c83764a2d94257a842690624ee280d64bcaa60b464690`, le 7 octobre, après l'ajout des deux spécifications et du code d'analyse). **Rien n'est déposé.** Le dépôt se fait depuis ton compte OSF : c'est toi qui le fais, quand tu auras tranché ce qui suit.
 
+## Décision 35 (7 octobre 2026) : la version à déposer
+
+Tu as répondu aux trois questions de la session :
+- **« Adopter tes recos »** : les 20 points proposés sont adoptés, avec les trois exceptions recommandées, et les 12 valeurs du tableau plus bas ;
+- **« Voie A, sans attendre »** : tu déposes dès la version finale relue ;
+- **« Le garder »**, pour le détecteur d'audit, contre ma recommandation. Il reste dans le premier temps : il sera entraîné, validé et figé par la mise à jour datée, avant toute donnée des bras.
+
+**La version à déposer est prête**, sans étiquettes de travail ni renvois internes, avec les tables des phases suivantes traduites :
+
+| Fichier | Rôle | SHA-256 |
+|---|---|---|
+| `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md` | le texte à recopier, champ par champ, dans le formulaire | `be8f5f1302b82d84ac1f5f6b7f72fb6084532ba0c206b4f65cd33883cc6ba398` |
+| `PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.pdf` | le même texte en PDF (23 pages), à joindre au dépôt. C'est son empreinte que le post imprimera. | `67d2d772d9f3b18af0ab2b839182c56fa8305db5db733610982d06a75c1db6c7` |
+
+**Ce qui te reste avant de déposer** :
+1. **Relire la version à déposer.** Si tu changes quelque chose, la session refait le texte, le PDF et les empreintes. La partie 7 demande aussi ta relecture de la v1.6.
+2. **Ton ORCID**, à la place de `[[to fill]]`, en tête du texte. La session régénère alors le PDF.
+3. **Le dépôt sur OSF**, en suivant « Comment déposer sur OSF » plus bas.
+
+**Après le dépôt, avant toute donnée des bras**, la mise à jour datée donne les empreintes de trois pièces :
+- le harnais et le format de ses appels d'outil ;
+- le prompt du juge scellé ;
+- le détecteur d'audit, qui demande du GPU pour l'entraînement.
+
+Le pilote des bras ne commence qu'après cette mise à jour.
+
 ## Ce que contient le brouillon
 
 - **Les champs du modèle « OSF Preregistration », dans l'ordre.** Les sections 1 à 6 se recopient champ par champ. Les annexes portent le détail :
