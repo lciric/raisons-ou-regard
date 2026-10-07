@@ -1,5 +1,10 @@
 # Les candidatures du 6 octobre 2026 : ce qui est prêt, ce qui reste à toi
 
+> **Remplacé le 7 octobre pour EA Funds.** Lazar a choisi une seule transition de six mois : finir les papiers sur la sycophancy, puis faire l'expérience minimale de « Raisons ou regard ? ». La version fusionnée lui a été remise. Elle combine trois brouillons : celui de la session, le dossier complet du 7 octobre d'une autre instance, et le texte de présentation d'une troisième.
+> - La demande fusionnée n'est pas dans git, parce qu'elle contient des données personnelles (un accident, les e-mails des références).
+> - Le budget fusionné, en euros, est dans `CANDIDATURE_EA_FUNDS_BUDGET_2026-10-07.xlsx` : 29 163 € au minimum, 47 456 € pour le scénario central, 54 606 € au maximum.
+> - Ce qui suit, sur EA Funds, décrit le premier brouillon, ciblé sur « Raisons ou regard ? » seul.
+
 La session a préparé deux dossiers en anglais, à ta demande : « prepare les candidatures », puis « prepare piur ea funds ». Rien n'est envoyé : c'est toi qui soumets. Les passages entre `[[ ]]` sont à remplir ou à trancher par toi.
 
 | Dossier | Fichiers | Ce qu'on demande | Quand |
