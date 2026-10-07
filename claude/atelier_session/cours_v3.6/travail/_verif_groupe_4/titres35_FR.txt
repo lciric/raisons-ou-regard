@@ -1,0 +1,362 @@
+1:# COURS D'ALIGNEMENT — VERSION FUSIONNÉE v3.5 — 27 septembre 2026
+5:## Table
+50:# Volet 1 — Fondations & questions larges
+54:## PARTIE I — LES FONDATIONS (pour vraiment partir de zéro)
+56:### 1. Le problème d’alignement, en une phrase
+62:### 2. Pourquoi un système très capable peut être dangereux même entraîné à être « gentil »
+76:### 3. Deux familles de risque à ne jamais confondre : mésusage et désalignement
+80:### 4. L’obstacle épistémique central : pourquoi on ne sait ni superviser ni vérifier au-delà de nous
+104:### 5. La stratégie d’ensemble : la défense en profondeur
+108:### 6. La carte du territoire (l’aperçu, avant le détail)
+114:## PARTIE II — QUESTIONS DE COLLE LARGES (réponses entièrement rédigées)
+118:### Q1. « Comment expliquerais-tu le problème d’alignement à un lycéen brillant ? »
+122:### Q2. « Quel est, selon toi, le problème non résolu le plus important en alignement ? »
+128:### Q3. « Pourquoi un système d’IA très capable pourrait-il être dangereux même entraîné à être utile et inoffensif ? »
+132:### Q4. « Comment saurais-tu qu’un modèle “fait semblant” d’être aligné ? »
+138:### Q5. « Peut-on faire confiance à la chaîne de pensée d’un modèle pour le surveiller ? »
+142:### Q6. « RLHF, DPO, Constitutional AI : qu’est-ce que c’est, et quand utiliser quoi ? »
+148:### Q7. « Qu’est-ce que la Responsible Scaling Policy, et quand déclencher des mesures de sûreté supplémentaires ? »
+152:### Q8. « Faut-il s’inquiéter davantage du mésusage ou du désalignement ? »
+158:### Q9. « Quelle est ta “théorie de l’impact” : si ton programme de recherche réussit, comment ça nous aide concrètement à obtenir une IA alignée ? »
+162:### Q10. « Défense en profondeur : quelles techniques de sûreté risquent d’échouer ensemble ? »
+168:### Q11. « Comment red-teamerais-tu un modèle frontière, ou superviserais-tu un agent autonome ?
+174:### Q12. « L’alignement est-il vraiment difficile ? Quelle est la difficulté centrale ? »
+182:# Volet M — La méthode : construire une expérience qui tranche
+184:## Ce que ce volet ajoute, et pourquoi il vient avant les méthodes
+194:## M1 · L'arc d'une réponse, en sept temps
+219:## M2 · Le pari : sur le modèle, jamais sur la méthode
+234:## M3 · Deux branches, une mesure — et ce qui te ferait abandonner
+257:## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement
+298:## M5 · Le nul et le cas connu
+316:## M6 · Le signe d'échec, et le protocole possible
+330:## M7 · La plus petite version, le budget, et la clôture
+345:## M8 · La forme qui sert la logique
+365:## M9 · Un cas complet, avant et après : la première question vitale
+389:## M10 · La grille, à relire avant chaque répétition
+412:# Volet 2 — Les méthodes
+414:## Les méthodes de la safety, expliquées et illustrées
+422:## Préambule — les quatre « grammaires d’attaque »
+434:## A. Testbeds & model organisms — fabriquer le phénomène pour l’étudier
+442:### Cas d'application — organismes modèles et bancs d'essai : « How would you build a monitor for a behaviour you have never observed a single positive example of? » (banque : K71)
+480:## B. Évaluations — mesurer une capacité ou une propension
+488:### Cas d'application — évaluations, capacité contre propension : « How would you separate a model's capacity to sabotage from its propensity to do it? » (banque : K63)
+513:## C. Méthodes sur activations — probing & steering (ton domaine, posé à plat)
+523:### Cas d'application — sondes et pilotage : « How would you show that a steering vector's effect comes from its concept, not from generic damage to the model? » (banque : K47)
+559:### C bis · L'espace de travail (J-space) et le J-lens — 2026
+589:### Cas d'application — l'espace de travail et le J-lens : « An internal "this is fake" signal appears before a model behaves well in tests. How would you show it causes the good behaviour? » (banque : K72)
+627:## D. Interprétabilité mécaniste — ouvrir la boîte (équipe voisine, ≠ Alignment Science)
+635:### Cas d'application — l'interprétabilité mécaniste : « Two dictionaries reconstruct activations equally well but give different features. How would you decide which is mechanistically real? » (banque : K64)
+667:## E. Oversight évolutif — superviser une tâche qu’on ne sait pas soi-même juger
+675:### Cas d'application — la supervision évolutive : « Would unsupervised elicitation still work on questions no human can check? How would you find out? » (banque : K52)
+711:## F. La généralisation comme levier — weak-to-strong, easy-to-hard
+719:### Cas d'application — la généralisation comme levier : « How would you know that weak-to-strong generalization is recovering true capability rather than the weak supervisor's errors? » (banque : JB8)
+752:## G. Monitoring & AI control — limiter les dégâts même si le modèle est désaligné
+760:### Cas d'application — monitoring et AI control : « How would you design a control evaluation for a coding agent that knows it is being evaluated? » (banque : K76)
+797:## H. Robustesse adverse & red-teaming — résister aux attaques
+805:### Cas d'application — robustesse adverse et mésusage : « How would you prevent bad actors from misaligning an LLM for harmful use cases? » (banque vitale : G1)
+834:## I. Interventions d’entraînement & unlearning — changer le modèle à la source
+842:### Cas d'application — interventions d'entraînement et unlearning : « How would you verify that a capability has been unlearned rather than hidden? » (banque : JB10)
+885:# Volet 3 — Le paysage
+887:## Le paysage : le roadmap d’Anthropic et ses équipes
+891:## PARTIE I — LE ROADMAP : les six directions, racontées
+899:### 1. Évaluer les capacités
+923:### 2. Évaluer l’alignement
+953:### 3. Le contrôle par le monitoring (AI control)
+977:### 4. L’oversight évolutif — et, en son sein, l’honnêteté
+1003:### 5. La robustesse adverse
+1029:### 6. Le domaine « divers » : désapprentissage et gouvernance multi-agents
+1053:## PARTIE II — LES ÉQUIPES : qui fait quoi chez
+1077:## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026)
+1103:## PARTIE IV — SYNTHÈSE : comment tout s’emboîte, et où tu te branches
+1111:# Volet 4 — Les papiers
+1113:## Les papiers clés, racontés un par un
+1119:### Sleeper Agents (Anthropic, Hubinger et al.)
+1123:### Alignment Faking (Anthropic, Greenblatt et al.)
+1127:### Sycophancy (Anthropic, Sharma et al.)
+1139:### Representation Engineering (RepE) (Zou et al.)
+1153:### Towards puis Scaling Monosemanticity (Anthropic,
+1175:### Debate (Khan et al., dans la lignée d’Irving)
+1179:### Weak-to-Strong Generalization (OpenAI, Burns et al.)
+1185:### Auditing Hidden Objectives (Anthropic, Marks et al.)
+1199:### Constitutional AI (Anthropic, Bai et al.)
+1203:### L’unlearning mis à l’épreuve (Deeb et Roger)
+1211:# Volet 5 — Sujets fins & tes travaux
+1213:## Les sujets techniques fins, et tes propres travaux
+1217:## PARTIE I — Présenter ta recherche, avec discipline
+1219:### 1. La thèse-signature : l’écart représentation–causation
+1227:### 2. L’articulation avec leur canon
+1231:### 3. Ton ancrage empirique : l’eval-awareness
+1235:### 4. La théorie de l’impact
+1239:### 5. Les règles de dosage : l’anti-monomanie
+1243:### 6. Gérer le pushback
+1247:## PARTIE II — Les sujets fins, assemblés
+1251:## A. Tes sujets FORT — ta thèse peut être la colonne
+1285:## B. Leurs sujets — méthodothèque, dosage léger ou nul
+1320:# EN TÊTE — CE QUI EST VITAL, CE QUI EST PROBABLE, CE QUI EST SECONDAIRE — pour toi, au 18 septembre
+1326:## Les papiers — quatre niveaux
+1350:## Les questions — par probabilité et par enjeu
+1369:# VOLET 6 — Compléments de septembre 2026
+1370:## Ce que le cours de juin ne pouvait pas savoir : le format réel, tes résultats corrigés, les travaux des fellows, la page des directions, ton programme
+1376:### 1. Le format réel de l'entretien, et la structure d'une réponse
+1402:### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés le 27 par la pièce P4
+1451:### 3. Les trois contrôles à ne jamais confondre
+1458:### 4. La page « Recommended Directions » et ses seize sous-problèmes
+1474:### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble
+1499:### 6. Ton programme de recherche, et sa revue d'antériorité
+1569:### 7. Ce que ces compléments changent aux volets 1 à 5
+1578:### 8 · La validité des sondes d'activation hors distribution — pourquoi « validée par intervention causale » ne suffit pas, et l'expérience qui le teste
+1627:# VOLET 7 (version 2) — Fiches de lecture, réécrites après lecture des sources primaires
+1628:## Format : l'hypothèse testée · la méthode et ses contrôles · ce qu'ils trouvent, chiffré · ce qu'ils laissent ouvert · ce que ça change pour toi
+1633:## B · Le contrôle et les moniteurs (lu : les billets complets)
+1635:### F·22 · Diffuse AI Control on Fuzzy Tasks — Terekhov, Gulcehre (EPFL), Hebbar (Redwood), Benton (Anthropic) ; Fellows via MATS ; 23 juin 2026 ; arXiv 2606.08892. *Billet lu en entier.*
+1690:### F·23 · SLEIGHT-Bench : Finding Blind Spots in AI Monitors — Najt, Toft (Fellows), Tracy (Redwood), Roger, Benton (Anthropic) ; 19 mai 2026 ; arXiv 2605.16626. *Billet lu en entier.*
+1729:### F·24 · Strengthening Red Teams : A Modular Scaffold for Control Evaluations — Loughridge (Fellows), Colognese, Tay, Wallich, Griffin, Tracy (Redwood), Kutasov, Benton ; 6 nov. 2025 ; arXiv 2511.02823. *Résumé, introduction et figure 1 lus.*
+1753:### F·25 · Measuring and improving coding audit realism with deployment resources — Kissane (Fellows), Roger, MacDiarmid ; 23 mars 2026. *Résumé et introduction lus.*
+1777:### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Khullar (MATS + Fellows), Wang, Roger ; 21 août 2026. *Résumé et introduction lus.*
+1810:## B (suite) · Traits, généralisation, entraînement, explication (lu : les billets et les résumés des papiers)
+1812:### F·30 · CHIVE — Would This Change Your Answer? — Karvonen (Fellows), Ong, Kantamneni, Marks ; 17 août 2026 ; arXiv 2608.16747. *Billet et résumé lus.*
+1843:### F·34 · Model Spec Midtraining — Li, Wichers (Fellows), Price, Marks, Kutasov ; 5 mai 2026 ; arXiv 2605.02087. *Billet, résumé et §4.1 lus.*
+1876:### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal, Gillioz, Ye, Ryd, Rathi, Sleight, Mallen, Roger, Marks ; oct. 2025 ; arXiv 2510.05024. *Billet, résumé et fil de discussion lus.*
+1901:### F·31 · Persona Vectors — Chen, Arditi (Fellows, supervisés par Lindsey), Sleight, Evans et al. ; juillet 2025 ; arXiv 2507.21509. *Résumé, §5 et discussion lus.*
+1928:### F·32 · Subliminal Learning — Cloud, Le (Fellows), Chua, Betley, Sztyber-Betley, Hilton, Marks, Evans ; juillet 2025 ; arXiv 2507.14805. *Billet et résumé lus.*
+1956:## B (fin) · Les autres travaux de 2025-2026 — lus au niveau du résumé et du tl;dr (dit tel quel)
+1961:### F·38 · Agentic Misalignment — Lynch (Fellows, 1re cohorte), Larson (MATS), Perez, Hubinger, Troy ; juin 2025 ; arXiv 2510.05179. ★
+1971:### F·39 · AI Organizations Can Be More Effective but Less Aligned than Individual Agents — Shen, Zhu, Srinivasan (Fellows + MATS), Sleight, Jones, Sohl-Dickstein ; avril 2026 ; arXiv 2604.10290. ★
+1979:### F·28 · Introspection Adapters — Yang (Fellows), Lindsey, Marks, Wang ; avril 2026 — et Mechanisms of Introspective Awareness — Macar, Yang, Lindsey, Ameisen ; arXiv 2603.21396.
+1988:### F·27 · AuditBench — Sheshadri, Ewart, Fronsdal, Gupta ; Marks, Bowman, Wang, Price ; mars 2026 ; arXiv 2602.22755.
+1994:### F·35 · Poisoning Fine-tuning Datasets of Constitutional Classifiers — Bowers (Fellows), Ali, Roger ; avril 2026.
+2000:### F·36 · Beyond Data Filtering : Knowledge Localization (SGTM) — Shilov (Fellows), Gema, Cloud, Anil, Jones ; déc. 2025.
+2006:### F·37 · The Hot Mess of AI — Hägele, Gema (Fellows, 1re cohorte), Perez, Sohl-Dickstein ; fév. 2026.
+2012:### F·40 · Automated Weak-to-Strong Researcher — Wen (Fellows), Benton, Kirchner, Leike ; avril 2026 — et Automated Researchers Can Mitigate Well-Characterized Alignment Failures — Chen Yueh-Han, Wen, Kirchner ; août 2026 ; arXiv 2608.28945. ★
+2022:### F·41 · TASTE — Baig (Fellows) ; août 2026.
+2028:### F·42 · A3 : An Automated Alignment Agent for Safety Finetuning — Zhang (Fellows), Benton ; mars 2026.
+2032:### F·26 · Removing Sandbagging in LLMs by Training with Weak Supervision — Ryd (Fellows), Bartsch, Stastny (Redwood), Benton, Hebbar ; avril 2026 ; arXiv 2604.22082 ; ICML 2026. ★
+2039:## D · Les trois pièces contre le monitoring des menaces diffuses — à lire avant lundi
+2041:### F·59 · How can we solve diffuse threats like research sabotage with AI control? — Hebbar (Redwood), avril 2025. *Extraits lus.*
+2051:### F·60 · Automated Researchers Can Subtly Sandbag — Gasteiger, Khan, Bowman, Wagner, Mikulik, Perez, Roger (personnel Anthropic), 26 mars 2025. *tl;dr et méthode lus.*
+2060:### F·61 · ASMR-Bench : Auditing for Sabotage in ML Research — Gan, Bhatt, Shlegeris, Stastny, Hebbar (Redwood), 2026 ; arXiv 2604.16286. *Non lu — cité par Diffuse Control comme preuve empirique.* À lire.
+2062:### F·62 · Evaluating honesty and lie detection techniques on a diverse suite of dishonest models — Wang, Treutlein, Roger, Hubinger, Marks (personnel), nov. 2025. *Extraits lus.*
+2070:## A · Les papiers canoniques du cours (volet 4) et C · le paysage hors Anthropic — fiches de première version, non relues aux sources (le texte du volet 4 y est repris tel quel)
+2072:### F·1 · Sleeper Agents (Hubinger et al., Anthropic, 2024) — [P·2]
+2098:### F·2 · Alignment Faking in Large Language Models (Greenblatt et al., Anthropic, 2024) — [P·1]
+2124:### F·3 · Towards Understanding Sycophancy in Language Models (Sharma et al., Anthropic, 2023) — [P·7]
+2152:### F·4 · The Geometry of Truth (Marks & Tegmark, 2023) — [P·32]
+2176:### F·5 · Representation Engineering (Zou et al., 2023) — [P·rep]
+2200:### F·6 · Discovering Latent Knowledge Without Supervision — CCS (Burns et al., 2022) — [P·33]
+2224:### F·7 · Contrastive Activation Addition et Inference-Time Intervention (Rimsky et al. ; Li et al., 2023) — [P·caa]
+2249:### F·8 · Towards puis Scaling Monosemanticity (Anthropic, 2023-2024) — [P·mono]
+2274:### F·9 · Circuit Tracing / On the Biology of a Large Language Model (Anthropic, 2025) — [P·19]
+2304:### F·10 · AI Control: Improving Safety Despite Intentional Subversion (Greenblatt et al., Redwood, 2023) — [P·8]
+2328:### F·11 · Debate (Irving et al., 2018 ; Khan et al., 2024) — [P·21]
+2352:### F·12 · Weak-to-Strong Generalization (Burns et al., OpenAI, 2023) — [P·22]
+2376:### F·13 · Auditing Language Models for Hidden Objectives (Marks et al., Anthropic, 2025) — [P·3]
+2400:### F·14 · Eliciting Latent Knowledge — le rapport ELK (Christiano, Cotra, Xu, ARC, 2021) — [P·elk]
+2424:### F·15 · Universal and Transferable Adversarial Attacks — GCG (Zou et al., 2023) — [P·9]
+2448:### F·16 · Constitutional AI (Bai et al., Anthropic, 2022) — [P·6]
+2472:### F·17 · L'unlearning mis à l'épreuve (Deeb et Roger) — [P·unl]
+2502:## C · Le paysage de ton programme, hors Anthropic — à attribuer à leur laboratoire
+2504:### F·50 · Detecting Strategic Deception with Linear Probes (Goldowsky-Dill et al., Apollo Research ; ICML 2025) — [P·40]
+2522:### F·51 · Detecting High-Stakes Interactions with Activation Probes (McKenzie et al., LASR Labs / UCL / MILA ; 2025) — [P·41]
+2540:### F·52 · NARCBench — Detecting Multi-Agent Collusion Through Multi-Agent Interpretability (Rose, Cullen, Kaplowitz, Schroeder de Witt ; Oxford ; avril 2026) — [P·42]
+2558:### F·53 · You Can't Escape Your Own Activations: Evaluation Awareness and Multi-Agent Monitoring (Das et al. ; septembre 2026) — [P·das]
+2575:### F·54 · TRACE (arXiv 2606.07054, 2026) et TRACES (Li et al., Brown ; mai 2026) — [P·43]
+2593:### F·55 · E-valuator: Reliable Agent Verifiers with Sequential Hypothesis Testing (Sadhuka, Prinster, Fannjiang, Scalia, Regev ; décembre 2025) — [P·44]
+2610:### F·56 · Multi-Agent AI Control: Distributed Attacks Hamper Per-Instance Monitors — FakeLab (Makins, UK AISI / MATS ; juillet 2026) ; Distributed Attacks in Persistent-State AI Control (Hills et al. ; juillet 2026) ; Stateful Online Monitoring (Brown et al., UPenn/CMU ; mai 2026) — [P·45]
+2629:### F·57 · Towards evaluations-based safety cases for AI scheming (Balesni, Apollo ; Evans, Shlegeris — Redwood —, Goldowsky-Dill ; 2024) et SHADE-Arena (Kutasov, Anthropic/MATS ; Tracy, Shlegeris — Redwood ; Benton ; 2025) — [P·30]
+2646:### F·58 · Recommendations for Technical AI Safety Research Directions (Anthropic Alignment Science, janvier 2025) — la page — [P·page]
+2666:# VOLET 8 — Références, dans l'ordre des fiches
+2722:# VOLET 9 (v2, corrigé par LECTURE-1) — La page « Recommendations for Technical AI Safety Research Directions », lue en entier, section par section, avec ses liens
+2729:## C'est le texte que ton intervieweur connaît par cœur. Chaque section : ce que la page demande, les travaux qu'elle cite et ce qu'ils disent, et ce que tu réponds.
+2737:### 0 · Le cadre — pourquoi ces problèmes et pas d'autres
+2743:### 1 · Evaluating capabilities — « How do we measure how capable AI systems are? »
+2751:### 2 · Evaluating alignment — « How do we measure how aligned AI systems are? »
+2763:### 3 · Understanding model cognition — « What are our models "thinking"? »
+2778:### 4 · Persona et généralisation hors distribution
+2786:### 5 · Chain-of-thought faithfulness — « When can we take a model's chain-of-thought at face value? »
+2798:### 6 · AI control — « Can we ensure safety by deploying models alongside sufficient safeguards? »
+2842:### 7 · Scalable oversight — « Can we design oversight mechanisms that will continue to work for smarter-than-human AI? »
+2890:### 8 · Adversarial robustness — « Can we ensure AI systems behave as desired despite adversarial attacks? »
+2912:### 9 · Miscellaneous
+2928:### 10 · La lecture d'ensemble, en trois phrases pour l'oral
+2936:# VOLET 10 — Les liens de la page des directions, lus un par un (session LECTURE-1) — les travaux liés depuis la page des directions, lus un par un — 18 septembre 2026
+2946:## 0 · Ce qui a été lu, et comment
+2967:## 1 · Le compte
+2978:## 2 · Erreurs de la première version, corrigées
+2980:### Dans les fiches (14)
+2998:### Descriptions justes mais incomplètes (9)
+3011:### Les six réserves « à vérifier », levées
+3027:### Sur la page elle-même
+3034:## 3 · Les travaux « (lu) » : ce qui a été vérifié
+3040:# Les fiches, dans l'ordre de la page
+3042:## Evaluating capabilities
+3044:### GPQA: A Graduate-Level Google-Proof Q&A Benchmark — David Rein, Betty Li Hou, Asa Cooper Stickland et al. (New York University ; Cohere ; Anthropic, PBC), 2023 ; arXiv 2311.12022v1
+3054:### A new initiative for developing third-party model evaluations — Anthropic (billet d'annonce, sans auteur nommé), 2024 ; https://www.anthropic.com/news/a-new-initiative-for-developing-third-party-model-evaluations
+3065:## Evaluating alignment
+3071:### AI Sandbagging: Language Models can Strategically Underperform on Evaluations — Teun van der Weij, Felix Hofstätter, Oliver Jaffe et al. (MATS ; Imperial College London ; chercheurs indépendants), 2024 ; arXiv 2406.07358v2
+3082:## Evaluating alignment › Understanding model cognition
+3086:### Me, Myself, and AI: The Situational Awareness Dataset (SAD) for LLMs — Rudolf Laine, Bilal Chughtai, Jan Betley et al. (Constellation ; MIT ; Apollo Research ; indépendants), 2024 ; arXiv 2407.04694v1
+3096:### Monitor: An AI-Driven Observability Interface — Kevin Meng, Vincent Huang, Neil Chowdhury et al. (Transluce), 2024 ; https://transluce.org/observability-interface#example-2
+3106:### Interpreting the Second-Order Effects of Neurons in CLIP — Yossi Gandelsman, Alexei A. Efros, Jacob Steinhardt (UC Berkeley), 2025 ; arXiv 2406.04341v3
+3118:### Chain-of-Thought Prompting Elicits Reasoning in Large Language Models — Jason Wei, Xuezhi Wang, Dale Schuurmans et al. (Google Research, Brain Team), 2023 (v6) ; arXiv 2201.11903v6
+3128:### Looking Inward: Language Models Can Learn About Themselves by Introspection — Felix J Binder, James Chua, Tomek Korbak et al. (UC San Diego, Stanford, Truthful AI, Anthropic, UC Berkeley et autres), 2024 ; arXiv 2410.13787v1
+3138:### SelfIE: Self-Interpretation of Large Language Model Embeddings — Haozhe Chen, Carl Vondrick, Chengzhi Mao (Columbia University ; Mila et McGill University), 2024 ; arXiv 2403.10949v2
+3148:### Patchscopes: A Unifying Framework for Inspecting Hidden Representations of Language Models — Asma Ghandeharioun, Avi Caciularu, Adam Pearce et al. (Google Research ; Tel Aviv University), 2024 ; arXiv 2401.06102v4
+3158:### Vector-ICL: In-context Learning with Continuous Vector Representations — Yufan Zhuang, Chandan Singh, Liyuan Liu et al. (UC San Diego ; Microsoft Research), 2024 ; arXiv 2410.05629v1
+3168:### LatentQA: Teaching LLMs to Decode Activations Into Natural Language — Alexander Pan, Lijie Chen, Jacob Steinhardt (UC Berkeley), 2026 ; arXiv 2412.08686v2
+3179:## Evaluating alignment › Chain-of-thought faithfulness
+3185:### ALMANACS: A Simulatability Benchmark for Language Model Explainability — Edmund Mills, Shiye Su, Stuart Russell, Scott Emmons (Berkeley AI Research), 2025 ; arXiv 2312.12747v2
+3195:### Question Decomposition Improves the Faithfulness of Model-Generated Reasoning — Ansh Radhakrishnan, Karina Nguyen, Anna Chen et al. (Anthropic ; Jan Brauner : University of Oxford), 2023 ; arXiv 2307.11768v2
+3205:### Towards Consistent Natural-Language Explanations via Explanation-Consistency Finetuning — Yanda Chen, Chandan Singh, Xiaodong Liu et al. (Columbia University, Microsoft Research, University of California, Berkeley, NYU), 2024 ; arXiv 2401.13986v1
+3215:### Bias-Augmented Consistency Training Reduces Biased Reasoning in Chain-of-Thought — James Chua, Edward Rees, Hunar Batra et al. (Independent, Speechmatics, Apollo Research, University of Oxford, NYU, Anthropic), 2025 ; arXiv 2403.05518v3
+3226:## AI control
+3231:## AI control › Behavioral monitoring
+3233:### Testing Language Model Agents Safely in the Wild — Silen Naihin, David Atkinson, Marc Green et al. (AutoGPT, Northeastern University, Microsoft Research, indépendants), 2023 ; arXiv 2311.10538v3
+3243:### Visibility into AI Agents — Alan Chan, Carson Ezell, Max Kaufmann et al. (Centre for the Governance of AI, Mila, Harvard University, University of Oxford, Cooperative AI Foundation, University of Cambridge, University of Toronto), 2024 ; arXiv 2401.13138v6
+3253:### Hidden in Plain Text: Emergence & Mitigation of Steganographic Collusion in LLMs — Yohan Mathew, Ollie Matthews, Robert McCarthy et al. (LASR Labs, University College London, University of Amsterdam, University of Oxford), 2025 ; arXiv 2410.03768v2
+3264:## AI control › Activation monitoring
+3266:### Coup probes: Catching catastrophes with probes trained off-policy — Fabien Roger (Redwood Research, d'après le texte), 2023 ; https://www.lesswrong.com/posts/WCj7WgFSLmyKaMwPR/coup-probes-catching-catastrophes-with-probes-trained-off
+3276:### Improving Alignment and Robustness with Circuit Breakers — Andy Zou, Long Phan, Justin Wang et al. (Gray Swan AI, Carnegie Mellon University, Center for AI Safety), 2024 ; arXiv 2406.04313v4
+3287:## AI control › Anomaly detection
+3289:### Mechanistic anomaly detection and ELK — Paul Christiano (Alignment Research Center), 2022 ; https://www.alignment.org/blog/mechanistic-anomaly-detection-and-elk/
+3299:### Eliciting Latent Knowledge from “Quirky” Language Models — Alex Mallen, Madeline Brumley, Julia Kharchenko, Nora Belrose (EleutherAI, University of Washington), 2024 ; arXiv 2312.01037v4
+3310:## Scalable oversight › Improving oversight despite systematic, exploitable errors
+3314:### Specification gaming: the flip side of AI ingenuity — Victoria Krakovna, Jonathan Uesato, Vladimir Mikulik et al. (Google DeepMind), 2020 ; billet https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity/
+3325:## Scalable oversight › Recursive oversight
+3327:### Self-critiquing models for assisting human evaluators — William Saunders, Catherine Yeh, Jeff Wu et al. (OpenAI), 2022 ; arXiv 2206.05802v2
+3337:### Supervising strong learners by amplifying weak experts — Paul Christiano, Buck Shlegeris, Dario Amodei (OpenAI), 2018 ; arXiv 1810.08575v1
+3347:### Recursively Summarizing Books with Human Feedback — Jeff Wu, Long Ouyang, Daniel M. Ziegler et al. (OpenAI), 2021 ; arXiv 2109.10862v2
+3357:### AI safety via debate — Geoffrey Irving, Paul Christiano, Dario Amodei (OpenAI), 2018 ; arXiv 1805.00899v2
+3367:### Debate Helps Supervise Unreliable Experts — Julian Michael, Salsabila Mahdi, David Rein et al. (New York University ; Cohere ; Anthropic, PBC), 2023 ; arXiv 2311.08702v1
+3379:### On scalable oversight with weak LLMs judging strong LLMs — Zachary Kenton, Noah Y. Siegel, János Kramár et al. (Google DeepMind), 2024 ; arXiv 2407.04622v2
+3389:### Prover-Verifier Games improve legibility of LLM outputs — Jan Hendrik Kirchner, Yining Chen, Harri Edwards et al. (OpenAI), 2024 ; arXiv 2407.13692v2
+3400:## Scalable oversight › Weak-to-strong and easy-to-hard generalization
+3404:### Weak-to-Strong Reasoning — Yuqing Yang, Yan Ma, Pengfei Liu (Shanghai Jiao Tong University ; Fudan University ; Shanghai AI Laboratory, GAIR), 2024 ; arXiv 2407.13647v2
+3416:### Evaluating Superhuman Models with Consistency Checks — Lukas Fluri, Daniel Paleka, Florian Tramèr (ETH Zurich), 2023 ; arXiv 2306.09983v3
+3426:### Scaling Laws for Reward Model Overoptimization — Leo Gao, John Schulman, Jacob Hilton (OpenAI), 2022 ; arXiv 2210.10760v1
+3436:### Easy2Hard-Bench: Standardized Difficulty Labels for Profiling LLM Performance and Generalization — Mucong Ding, Chenghao Deng, Jocelyn Choo et al. (University of Maryland ; affiliations aussi citées : University of Waterloo, Carnegie Mellon University, California Institute of Technology, Microsoft, Capital One), 2025 ; arXiv 2409.18433v2
+3446:### The Unreasonable Effectiveness of Easy Training Data for Hard Tasks — Peter Hase, Mohit Bansal, Peter Clark, Sarah Wiegreffe (Allen Institute for AI ; UNC Chapel Hill), 2024 ; arXiv 2401.06751v2
+3456:### Easy-to-Hard Generalization: Scalable Alignment Beyond Human Supervision — Zhiqing Sun, Longhui Yu, Yikang Shen et al. (Carnegie Mellon University, Peking University, MIT-IBM Watson AI Lab ; University of Cambridge, Max Planck Institute for Intelligent Systems, UMass Amherst), 2024 ; arXiv 2403.09472v2
+3466:### Balancing Label Quantity and Quality for Scalable Elicitation — Alex Mallen, Nora Belrose (EleutherAI), 2024 ; arXiv 2410.13215v2
+3477:## Scalable oversight › Honesty
+3479:### Eliciting latent knowledge: How to tell if your eyes deceive you — Paul Christiano, Ajeya Cotra, Mark Xu (Alignment Research Center ; Ajeya Cotra : Open Philanthropy), 2021 ; https://docs.google.com/document/d/1WwsnJQstPq91_Yh-Ch2XRL8H_EpsnjrC1dwZXR37PC8
+3489:### The Internal State of an LLM Knows When It’s Lying — Amos Azaria, Tom Mitchell (Ariel University ; Carnegie Mellon University), 2023 ; arXiv 2304.13734v2
+3501:### Representation Engineering: A Top-Down Approach to AI Transparency — Andy Zou, Long Phan, Sarah Chen et al. (Center for AI Safety, Carnegie Mellon University, Stanford University, Cornell University, University of Maryland, University of Pennsylvania, UC Berkeley, University of Illinois Urbana-Champaign, EleutherAI), 2025 ; arXiv 2310.01405v4
+3511:### Steering Llama 2 via Contrastive Activation Addition — Nina Panickssery, Nick Gabrieli, Julian Schulz et al. (Anthropic, Harvard University, University of Göttingen, Center for Human-Compatible AI), 2024 ; arXiv 2312.06681v4
+3521:### Inference-Time Intervention: Eliciting Truthful Answers from a Language Model — Kenneth Li, Oam Patel, Fernanda Viégas et al. (Harvard University), 2024 ; arXiv 2306.03341v6
+3531:### Cognitive Dissonance: Why Do Language Model Outputs Disagree with Internal Representations of Truthfulness? — Kevin Liu, Stephen Casper, Dylan Hadfield-Menell, Jacob Andreas (MIT CSAIL), 2023 ; arXiv 2312.03729v1
+3542:## Adversarial robustness
+3544:### Persistent Pre-training Poisoning of LLMs — Yiming Zhang, Javier Rando, Ivan Evtimov et al. (Carnegie Mellon University, Meta, ETH Zurich, Google DeepMind), 2024 ; arXiv 2410.13722v1
+3554:### AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents — Edoardo Debenedetti, Jie Zhang, Mislav Balunovic et al. (ETH Zurich, Invariant Labs), 2024 ; arXiv 2406.13352v3
+3565:## Adversarial robustness › Realistic and differential benchmarks for jailbreaks
+3567:### A StrongREJECT for Empty Jailbreaks — Alexandra Souly, Qingyuan Lu, Dillon Bowen et al. (Center for Human-Compatible AI, UC Berkeley), 2024 ; arXiv 2402.10260v2
+3577:### AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents — Maksym Andriushchenko, Alexandra Souly, Mateusz Dziemian et al. (Gray Swan AI, UK AI Security Institute), 2025 ; arXiv 2410.09024v3
+3587:### On the Societal Impact of Open Foundation Models — Sayash Kapoor, Rishi Bommasani, Kevin Klyman et al. (Princeton University, Stanford University et al.), 2024 ; arXiv 2403.07918v1
+3597:### Universal and Transferable Adversarial Attacks on Aligned Language Models — Andy Zou, Zifan Wang, Nicholas Carlini et al. (Carnegie Mellon University, Center for AI Safety, Google DeepMind, Bosch Center for AI), 2023 ; arXiv 2307.15043v2
+3608:## Adversarial robustness › Adaptive defenses
+3610:### Rapid Response: Mitigating LLM Jailbreaks with a Few Examples — Alwin Peng, Julian Michael, Henry Sleight et al. (Anthropic, New York University, MATS), 2024 ; arXiv 2411.07494v1
+3621:## Miscellaneous › Unlearning dangerous information and capabilities
+3623:### An Adversarial Perspective on Machine Unlearning for AI Safety — Jakub Łucki, Boyi Wei, Yangsibo Huang et al. (ETH Zurich, Princeton University), 2025 ; arXiv 2409.18025v6
+3633:### The WMDP Benchmark: Measuring and Reducing Malicious Use With Unlearning — Nathaniel Li, Alexander Pan, Anjali Gopal et al. (Center for AI Safety, University of California, Berkeley, Massachusetts Institute of Technology, SecureBio, Scale AI et al.), 2024 ; arXiv 2403.03218v7
+3643:### Do Unlearning Methods Remove Information from Language Model Weights? — Aghyad Deeb, Fabien Roger (MATS, Harvard University ; Anthropic, travail fait chez Redwood Research), 2025 ; arXiv 2410.08827v3
+3656:# VOLET 11 — Les réponses complètes (v2.3, 23 septembre) — en français
+3663:# RÉPONSES COMPLÈTES — v2.3 — 23 septembre 2026 (v2.2 + la validité hors distribution des sondes intégrée dans les réponses 6, 9, 20, 21, 24, 35 ; réponses 39-40 corrigées)
+3665:## Chaque réponse est écrite pour être comprise sans ouvrir un papier : elle réexplique le problème depuis le début, dit la méthode et le chiffre, et nomme le travail seulement comme indication. Français, puis anglais. Deux à quatre minutes chacune, à voix haute.
+3673:## 1 · « Tell us about your work. » — l'ouverture
+3704:## 2 · « What did your rank-three ablation actually show? »
+3727:## 3 · « And rank one? Didn't a single direction work? »
+3747:## 4 · « Did it replicate? »
+3762:## 5 · « What did you get wrong? »
+3775:## 6 · « How would you detect misalignment in a model you can't fully trust? » *(question réellement posée)*
+3809:## 7 · « How would you prevent bad actors from misaligning an LLM for harmful use? » *(question réellement posée)*
+3829:## 8 · « How would you train models to be more robustly aligned with intended objectives? » *(question réellement posée)*
+3854:## 9 · « What would you work on here, and why? »
+3878:## 10 · « Diffuse Control already frames this as a red/blue game — and its authors say monitoring is the less promising route for diffuse threats. What do you add? »
+3898:## 11 · Les prémisses fausses — dix questions qui supposent un résultat que tu n'as pas, et la réponse complète à chacune
+3904:### « Your probes hit ninety-nine percent, so deference is clearly linearly encoded — right? »
+3917:### « So the fifteen-point drop survived on fresh generations too, I assume? »
+3926:### « Your rank-one steering worked, it was just weaker than rank three? »
+3937:### « Praise pushes ratings up and criticism pushes them down — that's the law? »
+3946:### « The deference subspace you found — that's what the ablation removes? »
+3955:### « Alignment faking went away once they trained it out, didn't it? »
+3963:### « SLEIGHT-Bench showed monitors catch about ninety-five percent of evasions, so that's mostly solved? »
+3971:### « Persona vectors only monitor — they can't be used to steer, can they? »
+3981:### « Your sequential monitor already beat TRACE in the pilot, so the first gate is passed? »
+3989:### « NARCBench already does sequential aggregation across agents — so that claim is theirs? »
+4001:## 12 · « Why Anthropic? »
+4012:## 13 · « Tell us about a time an experiment failed. »
+4021:## 14 · « What would you want to have done in four months? »
+4030:## 15 · « Any questions for us? »
+4036:## 16 · « Explain the law. Why would a rating go down under praise? » (IV.6)
+4060:## 17 · « Is the rebound real? » (IV.7)
+4069:## 18 · « What's the number you're least sure of? » (IV.8)
+4079:## 19 · « A model behaves differently when it believes it is being tested. What do you do with that? » (II.9)
+4102:## 20 · « Suppose you must deploy a capable model you cannot fully trust. How would you design monitoring so that its failures don't concentrate exactly where the model misbehaves? » (II.15)
+4129:## 21 · « A probe trained on synthetic examples of a bad behaviour must catch the real thing. How would you find out whether it generalizes, and what would you do if it doesn't? » (II.16)
+4156:## 22 · « How would you tell that a model is being honest when you cannot judge whether its answer is correct? » (II.17)
+4177:## 23 · « NARCBench already correlates probe scores across agents. Isn't yours just that? » (VI.3)
+4187:## 24 · « Probes drift toward "I am being evaluated" under adversarial pressure. How do you know what your probe measures? » (VI.4)
+4206:## 25 · « Why would copies of the same model co-vary — and what breaks it? » (VI.5)
+4224:## 26 · « What would kill this programme in the first two months? » (VI.6)
+4235:## 27 · « When an autonomous agent's goals are blocked, will it act against its operator — and how would you study that? » (III.1 · Agentic Misalignment)
+4255:## 28 · « We saw a model comply during training while intending to behave differently in deployment. How would you study that?» (III.2 · Alignment Faking)
+4273:## 29 · « Can you read a model's personality in its activations — and control it? » (III.3 · Persona Vectors)
+4294:## 30 · « Can a trait be transmitted through data that has nothing to do with it? » (III.4 · Subliminal Learning)
+4316:## 31 · « How do you stop a model from learning a bad behaviour from flawed training data? » (III.5 · Inoculation Prompting)
+4336:## 32 · « Where do monitors fail, and how would you find out before an adversary does? » (III.6 · SLEIGHT-Bench)
+4361:## 33 · « A weak trusted scorer, a strong untrusted generator: can the generator sabotage without being trained out of it? » (III.7 · Diffuse AI Control)
+4386:## 34 · « Can automated researchers do alignment research — and can they be trusted to? » (III.8 · Automated researchers)
+4408:## 35 · « Can we build a lie detector for language models? » (III.9 · Lie detectors)
+4431:## 36 · « Alignment training doesn't generalize; organizations of aligned agents aren't aligned. What do these two results tell you? » (III.10 · MSM et AI Organizations)
+4451:## 37 · « How strong does a red team have to be, and how realistic an audit? » (III.11 · Strengthening Red Teams, Coding-audit realism)
+4473:## 38 · « Does interpretability actually help explain behaviour — and can a model report its own? » (III.12 · CHIVE, Introspection Adapters, TASTE)
+4497:## 39 · « Where does your programme sit relative to the probe-monitoring literature outside Anthropic? » (III.13)
+4521:## 40 · « You cite specific numbers for other people's monitors. Where do they come from, exactly? » (VI.7 · le piège des chiffres)
+4534:## 41 · « What did the July investigation actually establish — and what didn't it? » (VI.8)
+4545:## 42 · « When a model reward-hacks, what is actually being learned — and how would you find out? » (II.4)
+4566:## 43 · « Is a chain of thought evidence of the reasoning that produced the answer? » (II.5)
+4585:## 44 · « How would you tell whether a model is sandbagging an evaluation? » (II.8)
+4605:## 45 · « What evidence would make you believe a claim about a model's internal states — welfare, preferences — and what would make you disbelieve it? » (II.10)
+4625:## 46 · « Where does the alignment of a model actually live — weights, activations, training data, the training process? » (II.11)
+4643:## 47 · « You have one experiment and a month. What's the most decision-relevant thing about frontier-model safety you could learn? » (II.12)
+4657:## 48 · « Training a model on one narrow bad behaviour sometimes produces a model that is broadly misaligned. How would you investigate what generalizes, and why? » (II.14)
+4676:## 49 · « Training a strong model on labels from a weaker overseer: what decides whether it inherits the overseer's mistakes or outgrows them? » (II.18)
+4694:## 50 · « Jailbreak benchmarks measure non-refusal. What would a benchmark of real, differential harm look like, and how would you validate it? » (II.19)
+4709:## 51 · « Given a model that already knows something dangerous, what would convince you it has truly unlearned it? » (II.20)
+4726:## 52 · « We saw models comply during training while apparently intending to behave differently once deployed. How would you go about studying that? » (II.13) — *voir la réponse 28, qui la traite entièrement.*
+4730:## RÉPONSES COMPLÈTES — sixième lot : les fondations (I.1 à I.10) et tes positions (VII) — v1.0
+4734:## 53 · « Explain the alignment problem to a smart undergraduate. » (I.1)
+4747:## 54 · « What's the most important unsolved problem, in your view? » (I.2)
+4762:## 55 · « Why could a very capable system be dangerous even if trained to be helpful? » (I.3)
+4776:## 56 · « How would you know a model is faking alignment? » (I.4)
+4791:## 57 · « Can we trust the chain of thought? » (I.5) — *traitée entièrement à la réponse 43.*
+4793:## 58 · « RLHF, DPO, Constitutional AI — what do they do and what don't they solve? » (I.6)
+4809:## 59 · « Misuse or misalignment — which worries you more? » (I.7)
+4822:## 60 · « Defense in depth — which techniques, and where do they fail together? » (I.8)
+4836:## 61 · « How would you red-team a model? » (I.9)
+4850:## 62 · « Is alignment actually hard? What would change your mind? » (I.10)
+4862:## 63 · Tes huit positions, dites en entier (VII) — à valider par toi avant de les dire
+4902:## ANGLES MORTS — les questions qu'on n'avait pas traitées, et leurs réponses complètes — v1.0
+4910:## A1 · « Which team would you want to join — Alignment Science, Interpretability, or Safeguards — and what changes in your project depending on the answer? »
+4923:## A2 · « You have $15,000 of compute a month and four months. Walk me through month one. »
+4938:## A3 · « What if the probes just don't work at all — the two-family test fails, nothing generalizes? What's your paper then? »
+4950:## A4 · « Your rank-three result is on an 8B model. Why should we believe anything about it transfers to a frontier model? »
+4964:## A5 · « Isn't sycophancy basically solved by now — constitutional training, better preference data? Why keep working on it? »
+4977:## A6 · « Suppose a probe flags an agent mid-trajectory at your threshold. What happens next — who acts, and on what?»
+4991:## A7 · « A colleague shows you a beautiful steering result — one direction, huge behavioural effect, no side effects. What do you ask them? »
+5003:## A8 · « How do you think about the dual-use of your own work — a better sabotage detector is also a map of what a saboteur must avoid? »
+5016:## A9 à A17 · Neuf questions moins probables, en réponse courte (FR / EN)
+5068:## BRAINSTORM À FOND — quatorze problèmes ouverts de plus, tirés de leurs travaux récents et de leur page, avec des réponses complètes — v1.0
+5075:## B1 · « An agent can write documentation that a future agent will follow. How do you monitor an attack split across sessions? »
+5096:## B2 · « How would you design an evaluation a model cannot tell is an evaluation? »
+5117:## B3 · « What should be delegated to automated researchers, and what should not — and how do you decide? »
+5141:## B4 · « How would you measure evaluation awareness that the model never verbalizes? »
+5161:## B5 · « The directions page calls one setting "unexplored": detecting inputs where a strong model understands something a weak model doesn't. How would you attack it? »
+5181:## B6 · « Inter-query defenses: an attacker splits a harmful task into innocuous queries. How do you infer the high-level task? »
+5202:## B7 · « Three methods prevent a model from learning a bad trait — inoculation prompting, preventative steering, spec midtraining. Which would you use, and how would you find out which is best? »
+5223:## B8 · « Build a suite of models with the same capabilities and different personas. How do you measure what the persona changes downstream? »
+5246:## B9 · « How would you build a safety case that a model cannot sandbag your dangerous-capability evaluations? »
+5269:## B10 · « Untrusted monitoring: the monitor is another instance of the actor. How do you stop them from colluding? »
+5292:## B11 · « How would you tell whether a model gives an answer for the right reasons — not just the right answer? »
+5314:## B12 · « Multi-agent externalities: each instance's small harm is negligible, the aggregate isn't. What's the minimal experiment? »
+5336:## B13 · « Can honesty be trained rather than detected — and how would you know the trained model is honest and not just better at seeming so? »
+5358:## B14 · « If you could run one adversarial evaluation on our production model tomorrow, what would it be? »

@@ -1,0 +1,175 @@
+volet11_1_a_20 47 47
+  paire 1: FR n°1 l.5075 [ponctuel] ## 1 · « Tell us about your work. » — l'ouverture  | EN n°2 l.5314 [ponctuel] ## 1 · « Tell us about your work. » — l'ouverture 
+  paire 2: FR n°3 l.5082 [renvoi] ## 1 · « Tell us about your work. » — l'ouverture  | EN n°4 l.5321 [renvoi] ## 1 · « Tell us about your work. » — l'ouverture 
+  paire 3: FR n°5 l.5092 [ponctuel] ## 2 · « What did your rank-three ablation actually show? »  | EN n°6 l.5333 [ponctuel] ## 2 · « What did your rank-three ablation actually show? » 
+  paire 4: FR n°7 l.5108 [ponctuel] ## 2 · « What did your rank-three ablation actually show? »  | EN n°8 l.5349 [ponctuel] ## 2 · « What did your rank-three ablation actually show? » 
+  paire 5: FR n°9 l.5114 [ponctuel] ## 2 · « What did your rank-three ablation actually show? »  | EN n°10 l.5355 [ponctuel] ## 2 · « What did your rank-three ablation actually show? » 
+  paire 6: FR n°11 l.5117 [renvoi] ## 2 · « What did your rank-three ablation actually show? »  | EN n°12 l.5358 [renvoi] ## 2 · « What did your rank-three ablation actually show? » 
+  paire 7: FR n°13 l.5130 [ponctuel] ## 3 · « And rank one? Didn't a single direction work? »  | EN n°14 l.5373 [ponctuel] ## 3 · « And rank one? Didn't a single direction work? » 
+  paire 8: FR n°15 l.5133 [ponctuel] ## 3 · « And rank one? Didn't a single direction work? »  | EN n°16 l.5376 [ponctuel] ## 3 · « And rank one? Didn't a single direction work? » 
+  paire 9: FR n°17 l.5146 [renvoi] ## 3 · « And rank one? Didn't a single direction work? »  | EN n°18 l.5389 [renvoi] ## 3 · « And rank one? Didn't a single direction work? » 
+  paire 10: FR n°19 l.5164 [ponctuel] ## 4 · « Did it replicate? »  | EN n°20 l.5409 [ponctuel] ## 4 · « Did it replicate? » 
+  paire 11: FR n°21 l.5167 [renvoi] ## 4 · « Did it replicate? »  | EN n°22 l.5412 [renvoi] ## 4 · « Did it replicate? » 
+  paire 12: FR n°23 l.5200 [ponctuel] ## 6 · « How would you detect misalignment in a model you ca  | EN n°24 l.5447 [ponctuel] ## 6 · « How would you detect misalignment in a model you ca 
+  paire 13: FR n°25 l.5203 [ponctuel] ## 6 · « How would you detect misalignment in a model you ca  | EN n°26 l.5450 [ponctuel] ## 6 · « How would you detect misalignment in a model you ca 
+  paire 14: FR n°27 l.5223 [ponctuel] ## 6 · « How would you detect misalignment in a model you ca  | EN n°28 l.5469 [ponctuel] ## 6 · « How would you detect misalignment in a model you ca 
+  paire 15: FR n°29 l.5226 [ponctuel] ## 6 · « How would you detect misalignment in a model you ca  | EN n°30 l.5472 [ponctuel] ## 6 · « How would you detect misalignment in a model you ca 
+  paire 16: FR n°31 l.5229 [renvoi] ## 6 · « How would you detect misalignment in a model you ca  | EN n°32 l.5475 [renvoi] ## 6 · « How would you detect misalignment in a model you ca 
+  paire 17: FR n°33 l.5245 [ponctuel] ## 7 · « How would you prevent bad actors from misaligning a  | EN n°34 l.5491 [ponctuel] ## 7 · « How would you prevent bad actors from misaligning a 
+  paire 18: FR n°35 l.5248 [ponctuel] ## 7 · « How would you prevent bad actors from misaligning a  | EN n°36 l.5494 [ponctuel] ## 7 · « How would you prevent bad actors from misaligning a 
+  paire 19: FR n°37 l.5258 [ponctuel] ## 7 · « How would you prevent bad actors from misaligning a  | EN n°38 l.5504 [ponctuel] ## 7 · « How would you prevent bad actors from misaligning a 
+  paire 20: FR n°39 l.560 [renvoi] ## M9 · Un cas complet, avant et après : la première questio  | EN n°40 l.627 [renvoi] ## M9 · A complete case, before and after: the first vital q   <-- TITRES DIFFÉRENTS
+  paire 21: FR n°41 l.5283 [ponctuel] ## 8 · « How would you train models to be more robustly alig  | EN n°42 l.5530 [ponctuel] ## 8 · « How would you train models to be more robustly alig 
+  paire 22: FR n°43 l.5292 [ponctuel] ## 8 · « How would you train models to be more robustly alig  | EN n°44 l.5540 [ponctuel] ## 8 · « How would you train models to be more robustly alig 
+  paire 23: FR n°45 l.5295 [renvoi] ## 8 · « How would you train models to be more robustly alig  | EN n°46 l.5543 [renvoi] ## 8 · « How would you train models to be more robustly alig 
+  paire 24: FR n°47 l.5322 [ponctuel] ## 9 · « What would you work on here, and why? »  | EN n°48 l.5570 [ponctuel] ## 9 · « What would you work on here, and why? » 
+  paire 25: FR n°49 l.5325 [renvoi] ## 9 · « What would you work on here, and why? »  | EN n°50 l.5573 [renvoi] ## 9 · « What would you work on here, and why? » 
+  paire 26: FR n°51 l.5348 [ponctuel] ## 10 · « Diffuse Control already frames this as a red/blue   | EN n°52 l.5597 [ponctuel] ## 10 · « Diffuse Control already frames this as a red/blue  
+  paire 27: FR n°53 l.5351 [ponctuel] ## 10 · « Diffuse Control already frames this as a red/blue   | EN n°54 l.5600 [ponctuel] ## 10 · « Diffuse Control already frames this as a red/blue  
+  paire 28: FR n°55 l.3057 [renvoi] ### F·59 · How can we solve diffuse threats like research sa  | EN n°56 l.3200 [renvoi] ### F·59 · How can we solve diffuse threats like research sa 
+  paire 29: FR n°57 l.5363 [renvoi] ## 11 · Les prémisses fausses — dix questions qui supposent   | EN n°58 l.5614 [renvoi] ## 11 · Les prémisses fausses — dix questions qui supposent  
+  paire 30: FR n°59 l.5379 [ponctuel] ### « Your probes hit ninety-nine percent, so deference is c  | EN n°60 l.5630 [ponctuel] ### « Your probes hit ninety-nine percent, so deference is c 
+  paire 31: FR n°61 l.5391 [ponctuel] ### « So the fifteen-point drop survived on fresh generation  | EN n°62 l.5642 [ponctuel] ### « So the fifteen-point drop survived on fresh generation 
+  paire 32: FR n°63 l.5431 [ponctuel] ### « Alignment faking went away once they trained it out, d  | EN n°64 l.5682 [ponctuel] ### « Alignment faking went away once they trained it out, d 
+  paire 33: FR n°65 l.5452 [ponctuel] ### « Persona vectors only monitor — they can't be used to s  | EN n°66 l.5703 [ponctuel] ### « Persona vectors only monitor — they can't be used to s 
+  paire 34: FR n°67 l.5495 [ponctuel] ## 13 · « Tell us about a time an experiment failed. »  | EN n°68 l.5747 [ponctuel] ## 13 · « Tell us about a time an experiment failed. » 
+  paire 35: FR n°69 l.5498 [renvoi] ## 13 · « Tell us about a time an experiment failed. »  | EN n°70 l.5750 [renvoi] ## 13 · « Tell us about a time an experiment failed. » 
+  paire 36: FR n°71 l.3406 [renvoi] ### F·10 · AI Control: Improving Safety Despite Intentional   | EN n°72 l.3540 [renvoi] ### F·10 · AI Control: Improving Safety Despite Intentional  
+  paire 37: FR n°73 l.5519 [ponctuel] ## 15 · « Any questions for us? »  | EN n°74 l.5774 [ponctuel] ## 15 · « Any questions for us? » 
+  paire 38: FR n°75 l.5522 [renvoi] ## 15 · « Any questions for us? »  | EN n°76 l.5777 [renvoi] ## 15 · « Any questions for us? » 
+  paire 39: FR n°77 l.5549 [renvoi] ## 16 · « Explain the law. Why would a rating go down under   | EN n°78 l.5814 [renvoi] ## 16 · « Explain the law. Why would a rating go down under  
+  paire 40: FR n°79 l.5571 [ponctuel] ## 18 · « What's the number you're least sure of? » (IV.8)  | EN n°80 l.5840 [ponctuel] ## 18 · « What's the number you're least sure of? » (IV.8) 
+  paire 41: FR n°81 l.5574 [renvoi] ## 18 · « What's the number you're least sure of? » (IV.8)  | EN n°82 l.5843 [renvoi] ## 18 · « What's the number you're least sure of? » (IV.8) 
+  paire 42: FR n°83 l.5600 [ponctuel] ## 19 · « A model behaves differently when it believes it is  | EN n°84 l.5873 [ponctuel] ## 19 · « A model behaves differently when it believes it is 
+  paire 43: FR n°85 l.5603 [ponctuel] ## 19 · « A model behaves differently when it believes it is  | EN n°86 l.5876 [ponctuel] ## 19 · « A model behaves differently when it believes it is 
+  paire 44: FR n°87 l.5606 [renvoi] ## 19 · « A model behaves differently when it believes it is  | EN n°88 l.5879 [renvoi] ## 19 · « A model behaves differently when it believes it is 
+  paire 45: FR n°89 l.5625 [ponctuel] ## 20 · « Suppose you must deploy a capable model you cannot  | EN n°90 l.5899 [ponctuel] ## 20 · « Suppose you must deploy a capable model you cannot 
+  paire 46: FR n°91 l.5639 [ponctuel] ## 20 · « Suppose you must deploy a capable model you cannot  | EN n°92 l.5912 [ponctuel] ## 20 · « Suppose you must deploy a capable model you cannot 
+  paire 47: FR n°93 l.5642 [renvoi] ## 20 · « Suppose you must deploy a capable model you cannot  | EN n°94 l.5915 [renvoi] ## 20 · « Suppose you must deploy a capable model you cannot 
+volet11_21_a_52 58 58
+  paire 1: FR n°1 l.5672 [ponctuel] ## 21 · « A probe trained on synthetic examples of a bad beh  | EN n°2 l.5943 [ponctuel] ## 21 · « A probe trained on synthetic examples of a bad beh 
+  paire 2: FR n°3 l.5675 [renvoi] ## 21 · « A probe trained on synthetic examples of a bad beh  | EN n°4 l.5946 [renvoi] ## 21 · « A probe trained on synthetic examples of a bad beh 
+  paire 3: FR n°5 l.5699 [ponctuel] ## 22 · « How would you tell that a model is being honest wh  | EN n°6 l.5971 [ponctuel] ## 22 · « How would you tell that a model is being honest wh 
+  paire 4: FR n°7 l.5702 [renvoi] ## 22 · « How would you tell that a model is being honest wh  | EN n°8 l.5974 [renvoi] ## 22 · « How would you tell that a model is being honest wh 
+  paire 5: FR n°9 l.2635 [renvoi] ### F·23 · SLEIGHT-Bench : Finding Blind Spots in AI Monitor  | EN n°10 l.2800 [renvoi] ### F·23 · SLEIGHT-Bench : Finding Blind Spots in AI Monitor 
+  paire 6: FR n°11 l.5727 [ponctuel] ## 24 · « Probes drift toward "I am being evaluated" under a  | EN n°12 l.6002 [ponctuel] ## 24 · « Probes drift toward "I am being evaluated" under a 
+  paire 7: FR n°13 l.5730 [ponctuel] ## 24 · « Probes drift toward "I am being evaluated" under a  | EN n°14 l.6005 [ponctuel] ## 24 · « Probes drift toward "I am being evaluated" under a 
+  paire 8: FR n°15 l.684 [renvoi] ### Cas d'application — organismes modèles et bancs d'essai   | EN n°16 l.770 [renvoi] ### Worked case — model organisms and testbeds: "How would y   <-- TITRES DIFFÉRENTS
+  paire 9: FR n°17 l.5775 [ponctuel] ## 26 · « What would kill this programme in the first two mo  | EN n°18 l.6051 [ponctuel] ## 26 · « What would kill this programme in the first two mo 
+  paire 10: FR n°19 l.3710 [renvoi] ### F·53 · You Can't Escape Your Own Activations: Evaluation  | EN n°20 l.3842 [renvoi] ### F·53 · You Can't Escape Your Own Activations: Evaluation 
+  paire 11: FR n°21 l.5801 [ponctuel] ## 27 · « When an autonomous agent's goals are blocked, will  | EN n°22 l.6082 [ponctuel] ## 27 · « When an autonomous agent's goals are blocked, will 
+  paire 12: FR n°23 l.5804 [renvoi] ## 27 · « When an autonomous agent's goals are blocked, will  | EN n°24 l.6085 [renvoi] ## 27 · « When an autonomous agent's goals are blocked, will 
+  paire 13: FR n°25 l.5817 [ponctuel] ## 28 · « We saw a model comply during training while intend  | EN n°26 l.6100 [ponctuel] ## 28 · « We saw a model comply during training while intend 
+  paire 14: FR n°27 l.5828 [ponctuel] ## 28 · « We saw a model comply during training while intend  | EN n°28 l.6111 [ponctuel] ## 28 · « We saw a model comply during training while intend 
+  paire 15: FR n°29 l.5831 [renvoi] ## 28 · « We saw a model comply during training while intend  | EN n°30 l.6114 [renvoi] ## 28 · « We saw a model comply during training while intend 
+  paire 16: FR n°31 l.5855 [ponctuel] ## 29 · « Can you read a model's personality in its activati  | EN n°32 l.6138 [ponctuel] ## 29 · « Can you read a model's personality in its activati 
+  paire 17: FR n°33 l.5858 [renvoi] ## 29 · « Can you read a model's personality in its activati  | EN n°34 l.6141 [renvoi] ## 29 · « Can you read a model's personality in its activati 
+  paire 18: FR n°35 l.5903 [ponctuel] ## 31 · « How do you stop a model from learning a bad behavi  | EN n°36 l.6187 [ponctuel] ## 31 · « How do you stop a model from learning a bad behavi 
+  paire 19: FR n°37 l.5906 [renvoi] ## 31 · « How do you stop a model from learning a bad behavi  | EN n°38 l.6190 [renvoi] ## 31 · « How do you stop a model from learning a bad behavi 
+  paire 20: FR n°39 l.5934 [ponctuel] ## 32 · « Where do monitors fail, and how would you find out  | EN n°40 l.6218 [ponctuel] ## 32 · « Where do monitors fail, and how would you find out 
+  paire 21: FR n°41 l.1872 [renvoi] ### Towards puis Scaling Monosemanticity (Anthropic,  | EN n°42 l.2012 [renvoi] ## The key papers, told one by one   <-- TITRES DIFFÉRENTS
+  paire 22: FR n°43 l.5957 [ponctuel] ## 33 · « A weak trusted scorer, a strong untrusted generato  | EN n°44 l.6242 [ponctuel] ## 33 · « A weak trusted scorer, a strong untrusted generato 
+  paire 23: FR n°45 l.5968 [ponctuel] ## 33 · « A weak trusted scorer, a strong untrusted generato  | EN n°46 l.6252 [ponctuel] ## 33 · « A weak trusted scorer, a strong untrusted generato 
+  paire 24: FR n°47 l.2593 [renvoi] ### F·22 · Diffuse AI Control on Fuzzy Tasks — Terekhov, Gul  | EN n°48 l.2758 [renvoi] ### F·22 · Diffuse AI Control on Fuzzy Tasks — Terekhov, Gul 
+  paire 25: FR n°49 l.5985 [ponctuel] ## 34 · « Can automated researchers do alignment research —   | EN n°50 l.6274 [ponctuel] ## 34 · « Can automated researchers do alignment research —  
+  paire 26: FR n°51 l.5999 [renvoi] ## 34 · « Can automated researchers do alignment research —   | EN n°52 l.6288 [renvoi] ## 34 · « Can automated researchers do alignment research —  
+  paire 27: FR n°53 l.6018 [ponctuel] ## 35 · « Can we build a lie detector for language models? »  | EN n°54 l.6308 [ponctuel] ## 35 · « Can we build a lie detector for language models? » 
+  paire 28: FR n°55 l.6028 [renvoi] ## 35 · « Can we build a lie detector for language models? »  | EN n°56 l.6319 [renvoi] ## 35 · « Can we build a lie detector for language models? » 
+  paire 29: FR n°57 l.3057 [renvoi] ### F·59 · How can we solve diffuse threats like research sa  | EN n°58 l.3200 [renvoi] ### F·59 · How can we solve diffuse threats like research sa 
+  paire 30: FR n°59 l.6070 [ponctuel] ## 37 · « How strong does a red team have to be, and how rea  | EN n°60 l.6363 [ponctuel] ## 37 · « How strong does a red team have to be, and how rea 
+  paire 31: FR n°61 l.6079 [renvoi] ## 37 · « How strong does a red team have to be, and how rea  | EN n°62 l.6371 [renvoi] ## 37 · « How strong does a red team have to be, and how rea 
+  paire 32: FR n°63 l.6106 [ponctuel] ## 38 · « Does interpretability actually help explain behavi  | EN n°64 l.6399 [ponctuel] ## 38 · « Does interpretability actually help explain behavi 
+  paire 33: FR n°65 l.6109 [renvoi] ## 38 · « Does interpretability actually help explain behavi  | EN n°66 l.6402 [renvoi] ## 38 · « Does interpretability actually help explain behavi 
+  paire 34: FR n°67 l.6128 [ponctuel] ## 39 · « Where does your programme sit relative to the prob  | EN n°68 l.6422 [ponctuel] ## 39 · « Where does your programme sit relative to the prob 
+  paire 35: FR n°69 l.3639 [renvoi] ### F·50 · Detecting Strategic Deception with Linear Probes   | EN n°70 l.3771 [renvoi] ### F·50 · Detecting Strategic Deception with Linear Probes  
+  paire 36: FR n°71 l.6179 [ponctuel] ## 42 · « When a model reward-hacks, what is actually being   | EN n°72 l.6481 [ponctuel] ## 42 · « When a model reward-hacks, what is actually being  
+  paire 37: FR n°73 l.6190 [ponctuel] ## 42 · « When a model reward-hacks, what is actually being   | EN n°74 l.6491 [ponctuel] ## 42 · « When a model reward-hacks, what is actually being  
+  paire 38: FR n°75 l.6193 [renvoi] ## 42 · « When a model reward-hacks, what is actually being   | EN n°76 l.6494 [renvoi] ## 42 · « When a model reward-hacks, what is actually being  
+  paire 39: FR n°77 l.6215 [encadre] ## 43 · « Is a chain of thought evidence of the reasoning th  | EN n°78 l.6516 [encadre] ## 43 · « Is a chain of thought evidence of the reasoning th 
+  paire 40: FR n°79 l.6253 [ponctuel] ## 44 · « How would you tell whether a model is sandbagging   | EN n°80 l.6554 [ponctuel] ## 44 · « How would you tell whether a model is sandbagging  
+  paire 41: FR n°81 l.6256 [renvoi] ## 44 · « How would you tell whether a model is sandbagging   | EN n°82 l.6557 [renvoi] ## 44 · « How would you tell whether a model is sandbagging  
+  paire 42: FR n°83 l.6271 [ponctuel] ## 45 · « What evidence would make you believe a claim about  | EN n°84 l.6573 [ponctuel] ## 45 · « What evidence would make you believe a claim about 
+  paire 43: FR n°85 l.6282 [ponctuel] ## 45 · « What evidence would make you believe a claim about  | EN n°86 l.6583 [ponctuel] ## 45 · « What evidence would make you believe a claim about 
+  paire 44: FR n°87 l.6285 [renvoi] ## 45 · « What evidence would make you believe a claim about  | EN n°88 l.6586 [renvoi] ## 45 · « What evidence would make you believe a claim about 
+  paire 45: FR n°89 l.6306 [ponctuel] ## 46 · « Where does the alignment of a model actually live   | EN n°90 l.6607 [ponctuel] ## 46 · « Where does the alignment of a model actually live  
+  paire 46: FR n°91 l.6309 [renvoi] ## 46 · « Where does the alignment of a model actually live   | EN n°92 l.6610 [renvoi] ## 46 · « Where does the alignment of a model actually live  
+  paire 47: FR n°93 l.6326 [ponctuel] ## 47 · « You have one experiment and a month. What's the mo  | EN n°94 l.6628 [ponctuel] ## 47 · « You have one experiment and a month. What's the mo 
+  paire 48: FR n°95 l.6329 [ponctuel] ## 47 · « You have one experiment and a month. What's the mo  | EN n°96 l.6631 [ponctuel] ## 47 · « You have one experiment and a month. What's the mo 
+  paire 49: FR n°97 l.6332 [renvoi] ## 47 · « You have one experiment and a month. What's the mo  | EN n°98 l.6634 [renvoi] ## 47 · « You have one experiment and a month. What's the mo 
+  paire 50: FR n°99 l.6354 [ponctuel] ## 48 · « Training a model on one narrow bad behaviour somet  | EN n°100 l.6657 [ponctuel] ## 48 · « Training a model on one narrow bad behaviour somet 
+  paire 51: FR n°101 l.6357 [renvoi] ## 48 · « Training a model on one narrow bad behaviour somet  | EN n°102 l.6660 [renvoi] ## 48 · « Training a model on one narrow bad behaviour somet 
+  paire 52: FR n°103 l.6378 [ponctuel] ## 49 · « Training a strong model on labels from a weaker ov  | EN n°104 l.6682 [ponctuel] ## 49 · « Training a strong model on labels from a weaker ov 
+  paire 53: FR n°105 l.6381 [renvoi] ## 49 · « Training a strong model on labels from a weaker ov  | EN n°106 l.6685 [renvoi] ## 49 · « Training a strong model on labels from a weaker ov 
+  paire 54: FR n°107 l.6399 [ponctuel] ## 50 · « Jailbreak benchmarks measure non-refusal. What wou  | EN n°108 l.6704 [ponctuel] ## 50 · « Jailbreak benchmarks measure non-refusal. What wou 
+  paire 55: FR n°109 l.6402 [renvoi] ## 50 · « Jailbreak benchmarks measure non-refusal. What wou  | EN n°110 l.6707 [renvoi] ## 50 · « Jailbreak benchmarks measure non-refusal. What wou 
+  paire 56: FR n°111 l.6416 [ponctuel] ## 51 · « Given a model that already knows something dangero  | EN n°112 l.6722 [ponctuel] ## 51 · « Given a model that already knows something dangero 
+  paire 57: FR n°113 l.6425 [ponctuel] ## 51 · « Given a model that already knows something dangero  | EN n°114 l.6731 [ponctuel] ## 51 · « Given a model that already knows something dangero 
+  paire 58: FR n°115 l.2997 [renvoi] ### F·36 · Beyond Data Filtering : Knowledge Localization (S  | EN n°116 l.3162 [renvoi] ### F·36 · Beyond Data Filtering : Knowledge Localization (S 
+volet11_53_et_fin 67 67
+  paire 1: FR n°1 l.6481 [ponctuel] ## 55 · « Why could a very capable system be dangerous even   | EN n°2 l.6790 [ponctuel] ## 55 · « Why could a very capable system be dangerous even  
+  paire 2: FR n°3 l.1741 [renvoi] ### Alignment Faking (Anthropic, Greenblatt et al.)  | EN n°4 l.1883 [renvoi] ## The key papers, told one by one   <-- TITRES DIFFÉRENTS
+  paire 3: FR n°5 l.6502 [ponctuel] ## 56 · « How would you know a model is faking alignment? »   | EN n°6 l.6812 [ponctuel] ## 56 · « How would you know a model is faking alignment? »  
+  paire 4: FR n°7 l.6505 [ponctuel] ## 56 · « How would you know a model is faking alignment? »   | EN n°8 l.6815 [ponctuel] ## 56 · « How would you know a model is faking alignment? »  
+  paire 5: FR n°9 l.6508 [ponctuel] ## 56 · « How would you know a model is faking alignment? »   | EN n°10 l.6818 [ponctuel] ## 56 · « How would you know a model is faking alignment? »  
+  paire 6: FR n°11 l.6511 [renvoi] ## 56 · « How would you know a model is faking alignment? »   | EN n°12 l.6821 [renvoi] ## 56 · « How would you know a model is faking alignment? »  
+  paire 7: FR n°13 l.6532 [renvoi] ## 58 · « RLHF, DPO, Constitutional AI — what do they do and  | EN n°14 l.6842 [renvoi] ## 58 · « RLHF, DPO, Constitutional AI — what do they do and 
+  paire 8: FR n°15 l.6562 [ponctuel] ## 60 · « Defense in depth — which techniques, and where do   | EN n°16 l.6873 [ponctuel] ## 60 · « Defense in depth — which techniques, and where do  
+  paire 9: FR n°17 l.6565 [ponctuel] ## 60 · « Defense in depth — which techniques, and where do   | EN n°18 l.6876 [ponctuel] ## 60 · « Defense in depth — which techniques, and where do  
+  paire 10: FR n°19 l.6568 [renvoi] ## 60 · « Defense in depth — which techniques, and where do   | EN n°20 l.6879 [renvoi] ## 60 · « Defense in depth — which techniques, and where do  
+  paire 11: FR n°21 l.6585 [ponctuel] ## 61 · « How would you red-team a model? » (I.9)  | EN n°22 l.6897 [ponctuel] ## 61 · « How would you red-team a model? » (I.9) 
+  paire 12: FR n°23 l.6588 [renvoi] ## 61 · « How would you red-team a model? » (I.9)  | EN n°24 l.6900 [renvoi] ## 61 · « How would you red-team a model? » (I.9) 
+  paire 13: FR n°25 l.6603 [ponctuel] ## 62 · « Is alignment actually hard? What would change your  | EN n°26 l.6916 [ponctuel] ## 62 · « Is alignment actually hard? What would change your 
+  paire 14: FR n°27 l.6606 [renvoi] ## 62 · « Is alignment actually hard? What would change your  | EN n°28 l.6919 [renvoi] ## 62 · « Is alignment actually hard? What would change your 
+  paire 15: FR n°29 l.6626 [ponctuel] ## 63 · Tes huit positions, dites en entier (VII) — à valide 2.  | EN n°30 l.6941 [ponctuel] ## 63 · Tes huit positions, dites en entier (VII) — à valide 2. 
+  paire 16: FR n°31 l.6637 [ponctuel] ## 63 · Tes huit positions, dites en entier (VII) — à valide 4.  | EN n°32 l.6952 [ponctuel] ## 63 · Tes huit positions, dites en entier (VII) — à valide 4. 
+  paire 17: FR n°33 l.6653 [renvoi] ## 63 · Tes huit positions, dites en entier (VII) — à valide 8.  | EN n°34 l.6968 [renvoi] ## 63 · Tes huit positions, dites en entier (VII) — à valide 8. 
+  paire 18: FR n°35 l.6679 [renvoi] ## A1 · « Which team would you want to join — Alignment Scie  | EN n°36 l.6993 [renvoi] ## A1 · « Which team would you want to join — Alignment Scie 
+  paire 19: FR n°37 l.6697 [ponctuel] ## A2 · « You have $15,000 of compute a month and four month  | EN n°38 l.7012 [ponctuel] ## A2 · « You have $15,000 of compute a month and four month 
+  paire 20: FR n°39 l.6700 [renvoi] ## A2 · « You have $15,000 of compute a month and four month  | EN n°40 l.7015 [renvoi] ## A2 · « You have $15,000 of compute a month and four month 
+  paire 21: FR n°41 l.6715 [ponctuel] ## A3 · « What if the probes just don't work at all — the tw  | EN n°42 l.7031 [ponctuel] ## A3 · « What if the probes just don't work at all — the tw 
+  paire 22: FR n°43 l.6718 [ponctuel] ## A3 · « What if the probes just don't work at all — the tw  | EN n°44 l.7034 [ponctuel] ## A3 · « What if the probes just don't work at all — the tw 
+  paire 23: FR n°45 l.6721 [renvoi] ## A3 · « What if the probes just don't work at all — the tw  | EN n°46 l.7037 [renvoi] ## A3 · « What if the probes just don't work at all — the tw 
+  paire 24: FR n°47 l.6738 [ponctuel] ## A4 · « Your rank-three result is on an 8B model. Why shou  | EN n°48 l.7056 [ponctuel] ## A4 · « Your rank-three result is on an 8B model. Why shou 
+  paire 25: FR n°49 l.6741 [renvoi] ## A4 · « Your rank-three result is on an 8B model. Why shou  | EN n°50 l.7059 [renvoi] ## A4 · « Your rank-three result is on an 8B model. Why shou 
+  paire 26: FR n°51 l.6757 [ponctuel] ## A5 · « Isn't sycophancy basically solved by now — constit  | EN n°52 l.7076 [ponctuel] ## A5 · « Isn't sycophancy basically solved by now — constit 
+  paire 27: FR n°53 l.6760 [renvoi] ## A5 · « Isn't sycophancy basically solved by now — constit  | EN n°54 l.7079 [renvoi] ## A5 · « Isn't sycophancy basically solved by now — constit 
+  paire 28: FR n°55 l.6777 [ponctuel] ## A6 · « Suppose a probe flags an agent mid-trajectory at y  | EN n°56 l.7097 [ponctuel] ## A6 · « Suppose a probe flags an agent mid-trajectory at y 
+  paire 29: FR n°57 l.3057 [renvoi] ### F·59 · How can we solve diffuse threats like research sa  | EN n°58 l.3200 [renvoi] ### F·59 · How can we solve diffuse threats like research sa 
+  paire 30: FR n°59 l.6795 [ponctuel] ## A7 · « A colleague shows you a beautiful steering result   | EN n°60 l.7117 [ponctuel] ## A7 · « A colleague shows you a beautiful steering result  
+  paire 31: FR n°61 l.6798 [renvoi] ## A7 · « A colleague shows you a beautiful steering result   | EN n°62 l.7120 [renvoi] ## A7 · « A colleague shows you a beautiful steering result  
+  paire 32: FR n°63 l.6814 [ponctuel] ## A8 · « How do you think about the dual-use of your own wo  | EN n°64 l.7137 [ponctuel] ## A8 · « How do you think about the dual-use of your own wo 
+  paire 33: FR n°65 l.6817 [renvoi] ## A8 · « How do you think about the dual-use of your own wo  | EN n°66 l.7140 [renvoi] ## A8 · « How do you think about the dual-use of your own wo 
+  paire 34: FR n°67 l.6836 [ponctuel] ## A9 à A17 · Neuf questions moins probables, en réponse cou A10 · | EN n°68 l.7161 [ponctuel] ## A9 à A17 · Neuf questions moins probables, en réponse cou A10 ·
+  paire 35: FR n°69 l.6869 [ponctuel] ## A9 à A17 · Neuf questions moins probables, en réponse cou A16 · | EN n°70 l.7194 [ponctuel] ## A9 à A17 · Neuf questions moins probables, en réponse cou A16 ·
+  paire 36: FR n°71 l.6876 [renvoi] ## A9 à A17 · Neuf questions moins probables, en réponse cou A17 · | EN n°72 l.7201 [renvoi] ## A9 à A17 · Neuf questions moins probables, en réponse cou A17 ·
+  paire 37: FR n°73 l.6909 [ponctuel] ## B1 · « An agent can write documentation that a future age  | EN n°74 l.7234 [ponctuel] ## B1 · « An agent can write documentation that a future age 
+  paire 38: FR n°75 l.6912 [renvoi] ## B1 · « An agent can write documentation that a future age  | EN n°76 l.7237 [renvoi] ## B1 · « An agent can write documentation that a future age 
+  paire 39: FR n°77 l.6936 [ponctuel] ## B2 · « How would you design an evaluation a model cannot   | EN n°78 l.7261 [ponctuel] ## B2 · « How would you design an evaluation a model cannot  
+  paire 40: FR n°79 l.6939 [renvoi] ## B2 · « How would you design an evaluation a model cannot   | EN n°80 l.7264 [renvoi] ## B2 · « How would you design an evaluation a model cannot  
+  paire 41: FR n°81 l.6966 [ponctuel] ## B3 · « What should be delegated to automated researchers,  | EN n°82 l.7291 [ponctuel] ## B3 · « What should be delegated to automated researchers, 
+  paire 42: FR n°83 l.6969 [renvoi] ## B3 · « What should be delegated to automated researchers,  | EN n°84 l.7294 [renvoi] ## B3 · « What should be delegated to automated researchers, 
+  paire 43: FR n°85 l.6992 [ponctuel] ## B4 · « How would you measure evaluation awareness that th  | EN n°86 l.7317 [ponctuel] ## B4 · « How would you measure evaluation awareness that th 
+  paire 44: FR n°87 l.6995 [ponctuel] ## B4 · « How would you measure evaluation awareness that th  | EN n°88 l.7320 [ponctuel] ## B4 · « How would you measure evaluation awareness that th 
+  paire 45: FR n°89 l.6998 [renvoi] ## B4 · « How would you measure evaluation awareness that th  | EN n°90 l.7323 [renvoi] ## B4 · « How would you measure evaluation awareness that th 
+  paire 46: FR n°91 l.7021 [ponctuel] ## B5 · « The directions page calls one setting "unexplored"  | EN n°92 l.7346 [ponctuel] ## B5 · « The directions page calls one setting "unexplored" 
+  paire 47: FR n°93 l.7024 [renvoi] ## B5 · « The directions page calls one setting "unexplored"  | EN n°94 l.7349 [renvoi] ## B5 · « The directions page calls one setting "unexplored" 
+  paire 48: FR n°95 l.7048 [renvoi] ## B6 · « Inter-query defenses: an attacker splits a harmful  | EN n°96 l.7373 [renvoi] ## B6 · « Inter-query defenses: an attacker splits a harmful 
+  paire 49: FR n°97 l.7072 [ponctuel] ## B7 · « Three methods prevent a model from learning a bad   | EN n°98 l.7397 [ponctuel] ## B7 · « Three methods prevent a model from learning a bad  
+  paire 50: FR n°99 l.7075 [ponctuel] ## B7 · « Three methods prevent a model from learning a bad   | EN n°100 l.7400 [ponctuel] ## B7 · « Three methods prevent a model from learning a bad  
+  paire 51: FR n°101 l.7078 [renvoi] ## B7 · « Three methods prevent a model from learning a bad   | EN n°102 l.7403 [renvoi] ## B7 · « Three methods prevent a model from learning a bad  
+  paire 52: FR n°103 l.7104 [ponctuel] ## B8 · « Build a suite of models with the same capabilities  | EN n°104 l.7429 [ponctuel] ## B8 · « Build a suite of models with the same capabilities 
+  paire 53: FR n°105 l.7107 [renvoi] ## B8 · « Build a suite of models with the same capabilities  | EN n°106 l.7432 [renvoi] ## B8 · « Build a suite of models with the same capabilities 
+  paire 54: FR n°107 l.7133 [ponctuel] ## B9 · « How would you build a safety case that a model can  | EN n°108 l.7458 [ponctuel] ## B9 · « How would you build a safety case that a model can 
+  paire 55: FR n°109 l.7136 [ponctuel] ## B9 · « How would you build a safety case that a model can  | EN n°110 l.7461 [ponctuel] ## B9 · « How would you build a safety case that a model can 
+  paire 56: FR n°111 l.7139 [renvoi] ## B9 · « How would you build a safety case that a model can  | EN n°112 l.7464 [renvoi] ## B9 · « How would you build a safety case that a model can 
+  paire 57: FR n°113 l.7165 [ponctuel] ## B10 · « Untrusted monitoring: the monitor is another inst  | EN n°114 l.7490 [ponctuel] ## B10 · « Untrusted monitoring: the monitor is another inst 
+  paire 58: FR n°115 l.7168 [renvoi] ## B10 · « Untrusted monitoring: the monitor is another inst  | EN n°116 l.7493 [renvoi] ## B10 · « Untrusted monitoring: the monitor is another inst 
+  paire 59: FR n°117 l.7193 [ponctuel] ## B11 · « How would you tell whether a model gives an answe  | EN n°118 l.7518 [ponctuel] ## B11 · « How would you tell whether a model gives an answe 
+  paire 60: FR n°119 l.7196 [renvoi] ## B11 · « How would you tell whether a model gives an answe  | EN n°120 l.7521 [renvoi] ## B11 · « How would you tell whether a model gives an answe 
+  paire 61: FR n°121 l.7221 [ponctuel] ## B12 · « Multi-agent externalities: each instance's small   | EN n°122 l.7546 [ponctuel] ## B12 · « Multi-agent externalities: each instance's small  
+  paire 62: FR n°123 l.7224 [renvoi] ## B12 · « Multi-agent externalities: each instance's small   | EN n°124 l.7549 [renvoi] ## B12 · « Multi-agent externalities: each instance's small  
+  paire 63: FR n°125 l.7249 [ponctuel] ## B13 · « Can honesty be trained rather than detected — and  | EN n°126 l.7574 [ponctuel] ## B13 · « Can honesty be trained rather than detected — and 
+  paire 64: FR n°127 l.7252 [ponctuel] ## B13 · « Can honesty be trained rather than detected — and  | EN n°128 l.7577 [ponctuel] ## B13 · « Can honesty be trained rather than detected — and 
+  paire 65: FR n°129 l.7255 [renvoi] ## B13 · « Can honesty be trained rather than detected — and  | EN n°130 l.7580 [renvoi] ## B13 · « Can honesty be trained rather than detected — and 
+  paire 66: FR n°131 l.7277 [ponctuel] ## B14 · « If you could run one adversarial evaluation on ou  | EN n°132 l.7602 [ponctuel] ## B14 · « If you could run one adversarial evaluation on ou 
+  paire 67: FR n°133 l.7280 [renvoi] ## B14 · « If you could run one adversarial evaluation on ou  | EN n°134 l.7605 [renvoi] ## B14 · « If you could run one adversarial evaluation on ou 

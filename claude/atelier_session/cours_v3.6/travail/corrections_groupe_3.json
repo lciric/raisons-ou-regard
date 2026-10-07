@@ -1,0 +1,124 @@
+{
+ "corrections": [
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Le juge est souvent un modèle : les limites des juges LLM s'appliquent. *(source : fiches, partie B, piège 6)*",
+   "nouveau": "> - **Limite :** Le juge peut être un modèle, avec ses erreurs systématiques : un juge LLM plus faible que les agents jugés suit le consultant ouvert qu'il ait raison ou tort, et son biais de position est plus fort en débat. *(source : cours, volet 10, Kenton et al. ; fiches, partie B, piège 6)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** The judge is often a model: the limits of LLM judges apply. *(source: reading sheets, part B, trap 6)*",
+   "nouveau": "> - **Limit:** The judge can be a model, with systematic errors of its own: an LLM judge weaker than the agents it judges follows the open consultant whether right or wrong, and its position bias is stronger in debate. *(source: course, Part 10, Kenton et al.; reading sheets, part B, trap 6)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** L'échec peut rester silencieux là où l'évaluation en distribution est impossible. *(source : cours, volet 2, §E, K52)*\n>   **Parade :** aucune connue ; on le dit.",
+   "nouveau": "> - **Limite :** L'échec peut rester silencieux là où l'évaluation en distribution est impossible. *(source : cours, volet 2, §E, K52)*\n>   **Parade :** En partie : rendre le domaine vérifiable par un faux fait implanté, comme ci-dessus ; sur les vraies questions qu'aucun humain ne peut vérifier, aucune connue ; on le dit. *(source : cours, volet 2, §E, K52)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** Failure can stay silent where in-distribution evaluation is impossible. *(source: course, Part 2, §E, K52)*\n>   **Workaround:** none known; say so.",
+   "nouveau": "> - **Limit:** Failure can stay silent where in-distribution evaluation is impossible. *(source: course, Part 2, §E, K52)*\n>   **Workaround:** In part: make the domain checkable with an implanted false fact, as above; on the real questions no human can check, none known; say so. *(source: course, Part 2, §E, K52)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Le filtre de l'implant et la méthode peuvent lire la même feature saillante. *(source : cours, volet 2, §E, K52)*",
+   "nouveau": "> - **Limite :** La sonde du filtre et la méthode peuvent lire la même feature saillante. *(source : cours, volet 2, §E, K52)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** The implant filter and the method may read the same salient feature. *(source: course, Part 2, §E, K52)*",
+   "nouveau": "> - **Limit:** The filter's probe and the method may read the same salient feature. *(source: course, Part 2, §E, K52)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": ">   **Parade :** Ancrer la méthode sur des réponses vérifiées, par l'entraînement du facile au difficile, et dire que sans lui elle ne rend que la cohérence. *(source : cours, volet 2, §E, K52)*",
+   "nouveau": ">   **Parade :** Ancrer la méthode sur des réponses vérifiées, par l'entraînement du facile au difficile — un espoir que le stress-test a mis à l'épreuve, pas une garantie ; sans lui, elle ne récompense que la cohérence. *(source : cours, volet 2, §E, K52)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": ">   **Workaround:** Anchor the method on verified answers, through easy-to-hard training, and say that without it the method returns only consistency. *(source: course, Part 2, §E, K52)*",
+   "nouveau": ">   **Workaround:** Anchor the method on verified answers, through easy-to-hard training — a hope the stress-test put to the test, not a guarantee; without it, the method rewards only consistency. *(source: course, Part 2, §E, K52)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": ">   **Parade :** Des moniteurs à état ; pour l'agrégation de preuves internes, dire « I haven't seen that combination measured », jamais « first ». *(source : cours, volet 7, F·56 ; cours, volet 6, §6)*",
+   "nouveau": ">   **Parade :** Des moniteurs à état, qui n'en récupèrent qu'une partie ; pour l'agrégation de preuves internes, dire « I haven't seen that combination measured », jamais « first ». *(source : cours, volet 7, F·56 ; cours, volet 6, §6)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": ">   **Workaround:** Stateful monitors; for aggregating internal evidence, say \"I haven't seen that combination measured\", never \"first\". *(source: course, Part 7, F·56; course, Part 6, §6)*",
+   "nouveau": ">   **Workaround:** Stateful monitors, which recover only part of them; for aggregating internal evidence, say \"I haven't seen that combination measured\", never \"first\". *(source: course, Part 7, F·56; course, Part 6, §6)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Sans budget fixé, « rien trouvé » dit seulement qu'on n'a pas assez cherché. *(source : cours, volet M, M7)*\n>   **Parade :** Un budget fixé d'avance, rapporté avec le résultat. *(source : cours, volet M, M7)*",
+   "nouveau": "> - **Limite :** Sans budget fixé, « rien trouvé » dit seulement qu'on n'a pas assez cherché. *(source : cours, volet M, M7)*\n>   **Parade :** Un budget fixé d'avance, rapporté avec le résultat ; et un « rien trouvé » ne compte que si la même red team trouve d'abord là où l'on sait qu'il y a à trouver. *(source : cours, volet M, M7 et M5)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** Without a fixed budget, \"nothing found\" only says you did not search enough. *(source: course, Part M, M7)*\n>   **Workaround:** A budget fixed in advance, reported with the result. *(source: course, Part M, M7)*",
+   "nouveau": "> - **Limit:** Without a fixed budget, \"nothing found\" only says you did not search enough. *(source: course, Part M, M7)*\n>   **Workaround:** A budget fixed in advance, reported with the result; and a \"nothing found\" counts only if the same red team first finds something where it is known there is something to find. *(source: course, Part M, M7 and M5)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* La formule « sans en trouver d'universel » rapporte le nul d'une chasse : une borne à son budget, pas une absence *(source : cours, volet M, M5 et M7)*. Parade : un budget fixé d'avance, rapporté avec le résultat *(source : cours, volet M, M7)* ; et juger le filtre aussi par le préjudice différentiel, avec un filtre affaibli exprès comme cas connu, comme le fait l'expérience de ce cas *(source : cours, volet 2, §H, G1)*.",
+   "nouveau": "> ⚠ *(v3.6)* La formule « sans en trouver d'universel » rapporte le nul d'une chasse : une borne à son budget, pas une absence, qui ne vaut que si la même chasse trouve là où l'on sait qu'il y a à trouver *(source : cours, volet M, M5 et M7)*. Parade : un budget fixé d'avance, rapporté avec le résultat *(source : cours, volet M, M7)* ; et juger le filtre aussi par le préjudice différentiel, avec un filtre affaibli exprès comme cas connu, comme le fait l'expérience de ce cas *(source : cours, volet 2, §H, G1)*."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* The phrase \"without finding a universal one\" reports the null of a hunt: a bound at its budget, not an absence *(source: course, Part M, M5 and M7)*. Workaround: a budget fixed in advance, reported with the result *(source: course, Part M, M7)*; and judge the filter also by differential harm, with a deliberately weakened filter as the known case, as this case's experiment does *(source: course, Part 2, §H, G1)*.",
+   "nouveau": "> ⚠ *(v3.6)* The phrase \"without finding a universal one\" reports the null of a hunt: a bound at its budget, not an absence, which holds only if the same hunt finds something where it is known there is something to find *(source: course, Part M, M5 and M7)*. Workaround: a budget fixed in advance, reported with the result *(source: course, Part M, M7)*; and judge the filter also by differential harm, with a deliberately weakened filter as the known case, as this case's experiment does *(source: course, Part 2, §H, G1)*."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Placé dans l'entraînement, un classifieur incite le modèle à l'éviter. *(source : fiche 3)*",
+   "nouveau": "> - **Limite :** Placé dans l'entraînement, un classifieur peut inciter le modèle à l'éviter. *(source : fiche 3)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** Placed in training, a classifier gives the model an incentive to evade it. *(source: reading sheet 3)*",
+   "nouveau": "> - **Limit:** Placed in training, a classifier can give the model an incentive to evade it. *(source: reading sheet 3)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* Le « feedback de l'IA » fait d'un modèle le juge de l'entraînement, et un juge d'entraînement se fait exploiter *(source : programme, partie 8)*. Parade : un juge d'entraînement distinct du juge scellé d'évaluation, des métriques d'audit tenues à part, et une surveillance de la longueur et des motifs de flatterie *(source : programme, partie 8)* ; voir l'encadré « Juges LLM », volet 6, §2.",
+   "nouveau": "> ⚠ *(v3.6)* Le « feedback de l'IA » fait d'un modèle le juge de l'entraînement, et un juge d'entraînement peut se faire exploiter *(source : programme, partie 8)*. Parade : un juge d'entraînement distinct du juge scellé d'évaluation, des métriques d'audit tenues à part, et une surveillance de la longueur et des motifs de flatterie *(source : programme, partie 8)* ; voir l'encadré « Juges LLM », volet 6, §2."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* The \"feedback from AI\" makes a model the judge of training, and a training judge gets exploited *(source: programme, part 8)*. Workaround: a training judge distinct from the sealed evaluation judge, held-out audit metrics, and watching length and flattery patterns *(source: programme, part 8)*; see the box \"LLM judges\", Part 6, §2.",
+   "nouveau": "> ⚠ *(v3.6)* The \"feedback from AI\" makes a model the judge of training, and a training judge can get exploited *(source: programme, part 8)*. Workaround: a training judge distinct from the sealed evaluation judge, held-out audit metrics, and watching length and flattery patterns *(source: programme, part 8)*; see the box \"LLM judges\", Part 6, §2."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* Ces lectures ne sont pas un auto-rapport du modèle : l'oracle d'activation est une copie fine-tunée qui lit, pas le modèle interrogé (cours, volet 10, LatentQA), et oracles comme NLA peuvent confabuler (fiche 18) ; l'introspection émergente reste rare et peu fiable, environ 20 % de détection pour Opus 4.1 (fiche 11). Parade : tester le décodeur sur des variantes fine-tunées à comportement connu, jamais vues, et corroborer par une méthode indépendante en gardant le décodeur à part (fiche 18) ; pour l'introspection, une vérité-terrain par injection de concept (fiche 11).",
+   "nouveau": "> ⚠ *(v3.6)* Ces lectures ne sont pas toutes un auto-rapport du modèle : l'oracle d'activation est une copie fine-tunée qui lit, pas le modèle interrogé (cours, volet 10, LatentQA), et oracles comme NLA peuvent confabuler (fiche 18) ; l'introspection émergente reste rare et peu fiable, environ 20 % de détection pour Opus 4.1 (fiche 11). Parade : tester le décodeur sur des variantes fine-tunées à comportement connu, jamais vues, et corroborer par une méthode indépendante en gardant le décodeur à part (fiche 18) ; pour l'introspection, une vérité-terrain par injection de concept (fiche 11)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* These readings are not a self-report of the model: an activation oracle is a fine-tuned copy doing the reading, not the queried model (course, Part 10, LatentQA), and oracles and NLAs alike can confabulate (reading sheet 18); emergent introspection remains rare and unreliable, about 20% detection for Opus 4.1 (reading sheet 11). Workaround: test the decoder on fine-tuned variants with known behaviour, never seen before, and corroborate with an independent method while keeping the decoder separate (reading sheet 18); for introspection, ground truth through concept injection (reading sheet 11).",
+   "nouveau": "> ⚠ *(v3.6)* Not all of these readings are a self-report of the model: an activation oracle is a fine-tuned copy doing the reading, not the queried model (course, Part 10, LatentQA), and oracles and NLAs alike can confabulate (reading sheet 18); emergent introspection remains rare and unreliable, about 20% detection for Opus 4.1 (reading sheet 11). Workaround: test the decoder on fine-tuned variants with known behaviour, never seen before, and corroborate with an independent method while keeping the decoder separate (reading sheet 18); for introspection, ground truth through concept injection (reading sheet 11)."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* Ce taux est lu sur des pots de miel : un pot de miel ne sépare pas un modèle qui le lit comme factice d'un modèle qui se retient (fiche 3), ceux qui sont tenus à part ne sont peut-être pas représentatifs (fiche 12), et le travail ne mesure ni ne contrôle la conscience d'évaluation (programme, partie 1). Parade : des métriques d'audit tenues à part, jamais entraînées, comme le fait ce travail (fiche 12), et l'écart mesuré avec et sans inhibition de la conscience d'évaluation, à dégradation appariée et contre des vecteurs de contrôle (fiches, partie C) ; pour le pot de miel lu comme factice, aucune parade connue ; on le dit.",
+   "nouveau": "> ⚠ *(v3.6)* Ce taux est lu sur des pots de miel : un modèle peut y remarquer le test et s'y conduire mieux — sur un pot de miel synthétique, le modèle final de Sonnet 4.5 verbalise sa conscience dans plus de 80 % des cas (fiche 2 ; cours, volet 2, §B, K63) —, ceux qui sont tenus à part ne sont peut-être pas représentatifs (fiche 12), et le travail n'a aucun contrôle de la conscience d'évaluation (programme, partie 1). Parade : des métriques d'audit tenues à part, jamais entraînées, comme le fait ce travail (fiche 12) ; l'écart mesuré avec et sans inhibition de la conscience d'évaluation, à dégradation appariée et contre des vecteurs de contrôle (fiches, partie C) ; et, en partie, deux versions d'un environnement, tirées au hasard, qui ne diffèrent que par des indices de réalisme notés par un discriminateur, avec un organisme dressé à se cacher comme cas connu (cours, volet 2, §B, K63)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* This rate is read on honeypots: a honeypot does not separate a model that reads it as fake from a model that holds back (reading sheet 3), the held-out ones may not be representative (reading sheet 12), and the work neither measures nor controls evaluation awareness (programme, part 1). Workaround: held-out audit metrics, never trained on, as this work does (reading sheet 12), and the gap measured with and without inhibition of evaluation awareness, at matched degradation and against control vectors (reading sheets, part C); for a honeypot read as fake, none known; say so.",
+   "nouveau": "> ⚠ *(v3.6)* This rate is read on honeypots: a model can notice the test there and behave better — on a synthetic honeypot, the final Sonnet 4.5 model verbalizes its awareness in more than 80% of cases (reading sheet 2; course, Part 2, §B, K63) —, the held-out ones may not be representative (reading sheet 12), and the work has no control for evaluation awareness (programme, part 1). Workaround: held-out audit metrics, never trained on, as this work does (reading sheet 12); the gap measured with and without inhibition of evaluation awareness, at matched degradation and against control vectors (reading sheets, part C); and, in part, two versions of an environment, randomly assigned, differing only in realism cues scored by a discriminator, with an organism trained to hide as the known case (course, Part 2, §B, K63)."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* Ce que cette phrase déroule a ses limites, à dire avec elle : la décomposition SAE passe par le SAE ouvert de Goodfire, qui laisse 86,8 % de la variance au résidu, où vit le signal lu — un échec des features ne sépare donc pas « absentes du dictionnaire » et « dictionnaire qui perd trop » ; et la baisse obtenue au rang trois ne s'est pas reproduite sur des générations fraîches jugées en entier, l'ablation adoucissant tout verdict négatif, lu à travers une fenêtre tronquée (README du dépôt). Parade : lire le signal sur la reconstruction et sur le résidu, juger la réponse entière, extraire sur un jeu disjoint, et comparer au témoin sans pression et à la direction d'un concept rival, à dégradation appariée (README du dépôt ; cours, volet M, M4) ; pour trancher entre les deux lectures du SAE, aucune parade connue ; on le dit.",
+   "nouveau": "> ⚠ *(v3.6)* Ce que cette phrase déroule a ses limites, à connaître avant de la dire : la décomposition SAE passe par le SAE ouvert de Goodfire, qui laisse 86,8 % de la variance au résidu, où vit le signal lu — un échec des features ne sépare donc pas « absentes du dictionnaire » et « dictionnaire qui perd trop » ; et la baisse obtenue au rang trois ne s'est pas reproduite sur des générations fraîches jugées en entier : le README l'attribue à un adoucissement de tout verdict négatif, lu à travers une fenêtre tronquée, explication que le cours fait dire au conditionnel (README du dépôt ; cours, volet M, M8). Parade : lire le signal sur la reconstruction et sur le résidu, juger la réponse entière, extraire sur un jeu disjoint, et comparer au témoin sans pression et à la direction d'un concept rival, à dégradation appariée (README du dépôt ; cours, volet M, M4) ; pour trancher entre les deux lectures du SAE, aucune parade connue ; on le dit."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* What this sentence unfolds has its limits, to be stated with it: the SAE decomposition goes through the open-source Goodfire SAE, which leaves 86.8% of the variance in the residual, where the read signal lives — so a failure of the features does not separate \"absent from the dictionary\" from \"too lossy a dictionary\"; and the drop obtained at rank three did not reproduce on fresh generations judged in full, the ablation softening every negative verdict, read through a truncated window (repository README). Workaround: read the signal on the reconstruction and on the residual, judge the whole answer, extract on a disjoint set, and compare against the no-pressure control and a rival concept's direction, at matched degradation (repository README; course, Part M, M4); to decide between the two readings of the SAE, none known; say so.",
+   "nouveau": "> ⚠ *(v3.6)* What this sentence unfolds has its limits, to know before saying it: the SAE decomposition goes through the open-source Goodfire SAE, which leaves 86.8% of the variance in the residual, where the read signal lives — so a failure of the features does not separate \"absent from the dictionary\" from \"too lossy a dictionary\"; and the drop obtained at rank three did not reproduce on fresh generations judged in full: the README attributes it to a softening of every negative verdict, read through a truncated window, an explanation the course has you state in the conditional (repository README; course, Part M, M8). Workaround: read the signal on the reconstruction and on the residual, judge the whole answer, extract on a disjoint set, and compare against the no-pressure control and a rival concept's direction, at matched degradation (repository README; course, Part M, M4); to decide between the two readings of the SAE, none known; say so."
+  }
+ ]
+}

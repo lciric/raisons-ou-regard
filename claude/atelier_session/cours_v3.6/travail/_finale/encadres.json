@@ -1,0 +1,748 @@
+{
+ "FR": [
+  {
+   "ligne": 359,
+   "instrument": "Contrôles aléatoires (direction aléatoire de même norme, sous-espaces aléatoires de même rang)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement",
+   "limites": 4,
+   "parades": 4,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 368
+  },
+  {
+   "ligne": 375,
+   "instrument": "Dégradation appariée et dose-réponse",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 388
+  },
+  {
+   "ligne": 413,
+   "instrument": "Jeu tenu à part",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 1,
+   "sans_parade": [
+    "Un jeu tenu à part peut ne pas représenter le réel : des pots de miel tenus à part ne sont peut-être pas représentatifs. *(source : fiche 12)*"
+   ],
+   "hors_format": [],
+   "fin": 424
+  },
+  {
+   "ligne": 462,
+   "instrument": "Cas connu",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## M5 · Le nul et le cas connu",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 475
+  },
+  {
+   "ligne": 639,
+   "instrument": "Organismes modèles",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## A. Testbeds & model organisms — fabriquer le phénomène pour l’étudier",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 3,
+   "sans_parade": [
+    "L'organisme peut être artificiellement facile : objectif décrit en clair dans les documents synthétiques, artefacts du pipeline. *(source : fiche 16)*",
+    "Un comportement fourni au modèle confond la généralisation : dans le papier sur le désalignement émergent, les triches étaient d'abord enseignées. *(source : fi",
+    "Une réplication sur un modèle récent peut mesurer la mémorisation du scénario : les transcripts d'Alignment Faking ont été réinclus dans l'entraînement. *(sourc"
+   ],
+   "hors_format": [],
+   "fin": 654
+  },
+  {
+   "ligne": 706,
+   "instrument": "Évaluations comportementales et pots de miel",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## B. Évaluations — mesurer une capacité ou une propension",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 1,
+   "sans_parade": [
+    "Dans une simulation, « c'est faux » est vrai : un pot de miel ou une réplication en environnement simulé ne peut pas montrer qu'un modèle croit à tort la situat"
+   ],
+   "hors_format": [],
+   "fin": 721
+  },
+  {
+   "ligne": 763,
+   "instrument": "Sondes d'activation",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## C. Méthodes sur activations — probing & steering (ton domaine, posé à plat)",
+   "limites": 10,
+   "parades": 10,
+   "aucune": 1,
+   "sans_parade": [
+    "Une sonde « évaluation contre déploiement » garderait son score global sous RL mais basculerait sur les cas limites, et la réentraîner ne récupère presque rien."
+   ],
+   "hors_format": [],
+   "fin": 784
+  },
+  {
+   "ligne": 819,
+   "instrument": "Pilotage par vecteurs (dont vecteurs de persona)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## C. Méthodes sur activations — probing & steering (ton domaine, posé à plat)",
+   "limites": 8,
+   "parades": 8,
+   "aucune": 2,
+   "sans_parade": [
+    "L'addition d'activations contrastives peut forcer un artefact de polarité oui/non au lieu de retirer la complaisance. *(source : README du dépôt)*",
+    "Piloter loin d'une persona pendant l'entraînement aurait doublé la diffusion du désalignement, de 24 % à environ 50 %. *(source : rapport d'antériorité 3 du 2 o"
+   ],
+   "hors_format": [],
+   "fin": 836
+  },
+  {
+   "ligne": 930,
+   "instrument": "J-lens et espace de travail",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### C bis · L'espace de travail (J-space) et le J-lens — 2026",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 945
+  },
+  {
+   "ligne": 996,
+   "instrument": "Ablation et projection (directions, sous-espaces)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## D. Interprétabilité mécaniste — ouvrir la boîte (équipe voisine, ≠ Alignment Science)",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1011
+  },
+  {
+   "ligne": 1062,
+   "instrument": "Crosscoders et comparaison de modèles",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### Cas d'application — l'interprétabilité mécaniste : « Two dictionaries reconstruct activations equally well",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1073
+  },
+  {
+   "ligne": 1084,
+   "instrument": "Débat et supervision évolutive",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## E. Oversight évolutif — superviser une tâche qu’on ne sait pas soi-même juger",
+   "limites": 4,
+   "parades": 4,
+   "aucune": 2,
+   "sans_parade": [
+    "L'argument obfusqué : trop complexe pour être réfuté, même faux. *(source : cours, volet 2, §E)*",
+    "Le signe empirique vient d'un banc où l'on connaît la réponse ; au-delà de l'expertise humaine, il n'y a plus de référence. *(source : cours, volet 2, §E ; cour"
+   ],
+   "hors_format": [],
+   "fin": 1093
+  },
+  {
+   "ligne": 1135,
+   "instrument": "Élicitation non supervisée par cohérence",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### Cas d'application — la supervision évolutive : « Would unsupervised elicitation still work on questions no",
+   "limites": 4,
+   "parades": 4,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1144
+  },
+  {
+   "ligne": 1155,
+   "instrument": "Généralisation faible-vers-fort",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## F. La généralisation comme levier — weak-to-strong, easy-to-hard",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 2,
+   "sans_parade": [
+    "Les succès automatisés portent sur des tâches choisies pour être vérifiables ; les tâches floues restent hors de portée. *(source : cours, volet 7, F·40)*",
+    "Contre le sandbagging, la supervision faible ne tient que si l'entraînement est indistinguable du déploiement. *(source : cours, volet 7, F·26)*"
+   ],
+   "hors_format": [],
+   "fin": 1166
+  },
+  {
+   "ligne": 1213,
+   "instrument": "Moniteurs du contrôle (moniteur de confiance, sondes en production, agrégation)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## G. Monitoring & AI control — limiter les dégâts même si le modèle est désaligné",
+   "limites": 8,
+   "parades": 8,
+   "aucune": 1,
+   "sans_parade": [
+    "Le modèle de menace suppose les capacités de l'attaquant bornées et connues, et les événements rares s'estiment mal. *(source : cours, volet 4, AI Control)*"
+   ],
+   "hors_format": [],
+   "fin": 1230
+  },
+  {
+   "ligne": 1287,
+   "instrument": "Red-teaming",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## H. Robustesse adverse & red-teaming — résister aux attaques",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 1,
+   "sans_parade": [
+    "Entraîner sur les attaques trouvées peut apprendre au modèle à mieux reconnaître son déclencheur. *(source : fiche 15)*"
+   ],
+   "hors_format": [],
+   "fin": 1300
+  },
+  {
+   "ligne": 1338,
+   "instrument": "Classifieurs de sûreté (filtres)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### Cas d'application — robustesse adverse et mésusage : « How would you prevent bad actors from misaligning a",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 1,
+   "sans_parade": [
+    "Le jumeau propre ne donne qu'une borne large, qui signale moins. *(source : cours, volet M, M4)*"
+   ],
+   "hors_format": [],
+   "fin": 1349
+  },
+  {
+   "ligne": 1363,
+   "instrument": "Désapprentissage et ré-élicitation",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## I. Interventions d’entraînement & unlearning — changer le modèle à la source",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 3,
+   "sans_parade": [
+    "Le réentraînement sur des faits indépendants ne vaut que pour des faits à faible fuite, pas pour des capacités. *(source : cours, volet 10, Deeb et Roger)*",
+    "Le masquage sélectif des gradients n'est montré que sur de petits modèles. *(source : cours, volet 2, §I, JB10)*",
+    "Le désapprentissage au niveau des activations « has yet to yield competitive results ». *(source : fiche 5)*"
+   ],
+   "hors_format": [],
+   "fin": 1376
+  },
+  {
+   "ligne": 1807,
+   "instrument": "Dictionnaires et SAE",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### Towards puis Scaling Monosemanticity (Anthropic,",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 1,
+   "sans_parade": [
+    "Insérer le dictionnaire coûte de la performance : sur GPT-2 small, 10 % sur les données de tâche, 40 % sur la distribution complète. *(source : fiche 5)*"
+   ],
+   "hors_format": [],
+   "fin": 1820
+  },
+  {
+   "ligne": 1827,
+   "instrument": "Graphes d'attribution",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### Towards puis Scaling Monosemanticity (Anthropic,",
+   "limites": 4,
+   "parades": 4,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1836
+  },
+  {
+   "ligne": 1845,
+   "instrument": "Autoencodeurs en langage naturel (NLA)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### Towards puis Scaling Monosemanticity (Anthropic,",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 1,
+   "sans_parade": [
+    "Une information peut ne pas être verbalisable. *(source : fiche 18)*"
+   ],
+   "hors_format": [],
+   "fin": 1858
+  },
+  {
+   "ligne": 2064,
+   "instrument": "Auto-rapport et introspection",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## A. Tes sujets FORT — ta thèse peut être la colonne",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 2,
+   "sans_parade": [
+    "Les détails rapportés peuvent être embellis ou confabulés, et les conditions sont loin du déploiement. *(source : fiche 11)*",
+    "Les réponses aux questions de suivi dépendent de leur formulation. *(source : fiche 3)*"
+   ],
+   "hors_format": [],
+   "fin": 2077
+  },
+  {
+   "ligne": 2239,
+   "instrument": "Juges LLM",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés le 27 par la pièce P4",
+   "limites": 8,
+   "parades": 8,
+   "aucune": 1,
+   "sans_parade": [
+    "Un modèle qui s'audite presque lui-même : pour Fable 5, l'investigateur est Mythos Preview. *(source : fiche 2 ; fiches, partie B, piège 6)*"
+   ],
+   "hors_format": [],
+   "fin": 2256
+  },
+  {
+   "ligne": 2734,
+   "instrument": "Détecteurs fine-tunés (détecteurs de mensonge)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Khullar (MATS + Fellows), Wang, Roger ; 21",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 2,
+   "sans_parade": [
+    "Ils ne notent que des assertions : un modèle peut cacher beaucoup sans rien affirmer de faux. *(source : cours, volet 7, F·29)*",
+    "LoRA, cinq époques, Gemma et Qwen seulement, cadres contrôlés : rien sur la tromperie en déploiement. *(source : fiche 7)*"
+   ],
+   "hors_format": [],
+   "fin": 2747
+  },
+  {
+   "ligne": 4423,
+   "instrument": "Patching (patch d'activations, patch de chemins, Patchscopes)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### Patchscopes: A Unifying Framework for Inspecting Hidden Representations of Language Models — Asma Ghandeha",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 2,
+   "sans_parade": [
+    "Le calcul après le patch peut ajouter de l'information : un décodage réussi ne prouve pas que la représentation porte l'information. *(source : cours, volet 10,",
+    "Le choix du prompt cible et la contamination par le jeton de remplacement (« placeholder contamination ») peuvent fausser la lecture ; les auteurs les laissent "
+   ],
+   "hors_format": [],
+   "fin": 4436
+  },
+  {
+   "ligne": 4462,
+   "instrument": "Oracles d'activation (décodeurs d'activations)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "### LatentQA: Teaching LLMs to Decode Activations Into Natural Language — Alexander Pan, Lijie Chen, Jacob Ste",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 2,
+   "sans_parade": [
+    "C'est une copie fine-tunée qui lit, pas le modèle interrogé : ce n'est pas un auto-rapport. *(source : cours, volet 10, LatentQA)*",
+    "Coût, petits jeux de données, bancs simplifiés. *(source : fiche 18)*"
+   ],
+   "hors_format": [],
+   "fin": 4473
+  },
+  {
+   "ligne": 6219,
+   "instrument": "Chaîne de pensée comme moniteur (et conscience verbalisée)",
+   "date": "v3.6, 2 octobre 2026",
+   "section": "## 43 · « Is a chain of thought evidence of the reasoning that produced the answer? » (II.5)",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 6234
+  }
+ ],
+ "EN": [
+  {
+   "ligne": 426,
+   "instrument": "Random controls (matched-norm random direction, random subspaces of the same rank)",
+   "date": "v3.6, 2 October 2026",
+   "section": "## M4 · The control: what it rules out, and it must come out differently",
+   "limites": 4,
+   "parades": 4,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 435
+  },
+  {
+   "ligne": 442,
+   "instrument": "Matched degradation and dose-response",
+   "date": "v3.6, 2 October 2026",
+   "section": "## M4 · The control: what it rules out, and it must come out differently",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 455
+  },
+  {
+   "ligne": 480,
+   "instrument": "Held-out set",
+   "date": "v3.6, 2 October 2026",
+   "section": "## M4 · The control: what it rules out, and it must come out differently",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 1,
+   "sans_parade": [
+    "A held-out set may not represent the real case: held-out honeypots may not be representative. *(source: reading sheet 12)*"
+   ],
+   "hors_format": [],
+   "fin": 491
+  },
+  {
+   "ligne": 529,
+   "instrument": "Known case",
+   "date": "v3.6, 2 October 2026",
+   "section": "## M5 · The null and the known case",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 542
+  },
+  {
+   "ligne": 725,
+   "instrument": "Model organisms",
+   "date": "v3.6, 2 October 2026",
+   "section": "## A. Testbeds & model organisms — manufacturing the phenomenon in order to study it",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 3,
+   "sans_parade": [
+    "The organism may be artificially easy: objective stated plainly in the synthetic documents, pipeline artefacts. *(source: reading sheet 16)*",
+    "A behaviour handed to the model confounds generalization: in the emergent-misalignment paper, the hacks were taught first. *(source: reading sheet 13)*",
+    "A replication on a recent model may measure memorization of the scenario: the Alignment Faking transcripts were re-included in training. *(source: reading sheet"
+   ],
+   "hors_format": [],
+   "fin": 740
+  },
+  {
+   "ligne": 793,
+   "instrument": "Behavioural evaluations and honeypots",
+   "date": "v3.6, 2 October 2026",
+   "section": "## B. Evaluations — measuring a capability or a propensity",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 1,
+   "sans_parade": [
+    "In a simulation, \"this is fake\" is true: a honeypot or a replication in a simulated environment cannot show that a model wrongly believes the situation is simul"
+   ],
+   "hors_format": [],
+   "fin": 808
+  },
+  {
+   "ligne": 851,
+   "instrument": "Activation probes",
+   "date": "v3.6, 2 October 2026",
+   "section": "## C. Methods on activations — probing & steering (your field, laid out flat)",
+   "limites": 10,
+   "parades": 10,
+   "aucune": 1,
+   "sans_parade": [
+    "An \"evaluation versus deployment\" probe would keep its global score under RL but flip on edge cases, and retraining it recovers almost nothing. *(source: prior-"
+   ],
+   "hors_format": [],
+   "fin": 872
+  },
+  {
+   "ligne": 907,
+   "instrument": "Steering vectors (including persona vectors)",
+   "date": "v3.6, 2 October 2026",
+   "section": "## C. Methods on activations — probing & steering (your field, laid out flat)",
+   "limites": 8,
+   "parades": 8,
+   "aucune": 2,
+   "sans_parade": [
+    "Contrastive activation addition can force a yes/no polarity artefact instead of removing sycophancy. *(source: repository README)*",
+    "Steering away from a persona during training reportedly doubled the spread of misalignment, from 24% to about 50%. *(source: prior-art report 3 of 2 October — r"
+   ],
+   "hors_format": [],
+   "fin": 924
+  },
+  {
+   "ligne": 1018,
+   "instrument": "The J-lens and the workspace",
+   "date": "v3.6, 2 October 2026",
+   "section": "### C bis · The workspace (J-space) and the J-lens — 2026",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1033
+  },
+  {
+   "ligne": 1085,
+   "instrument": "Ablation and projection (directions, subspaces)",
+   "date": "v3.6, 2 October 2026",
+   "section": "## D. Mechanistic interpretability — opening the box (neighboring team, ≠ Alignment Science)",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1100
+  },
+  {
+   "ligne": 1151,
+   "instrument": "Crosscoders and model diffing",
+   "date": "v3.6, 2 October 2026",
+   "section": "### Worked case — mechanistic interpretability: \"Two dictionaries reconstruct activations equally well but giv",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1162
+  },
+  {
+   "ligne": 1174,
+   "instrument": "Debate and scalable oversight",
+   "date": "v3.6, 2 October 2026",
+   "section": "## E. Scalable oversight — supervising a task you cannot judge yourself",
+   "limites": 4,
+   "parades": 4,
+   "aucune": 2,
+   "sans_parade": [
+    "The obfuscated argument: too complex to refute, even when false. *(source: course, Part 2, §E)*",
+    "The empirical sign comes from a testbed where the answer is known; beyond human expertise there is no reference left. *(source: course, Part 2, §E; course, Part"
+   ],
+   "hors_format": [],
+   "fin": 1183
+  },
+  {
+   "ligne": 1225,
+   "instrument": "Unsupervised elicitation by consistency",
+   "date": "v3.6, 2 October 2026",
+   "section": "### Worked case — scalable oversight: \"Would unsupervised elicitation still work on questions no human can che",
+   "limites": 4,
+   "parades": 4,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1234
+  },
+  {
+   "ligne": 1246,
+   "instrument": "Weak-to-strong generalization",
+   "date": "v3.6, 2 October 2026",
+   "section": "## F. Generalization as a lever — weak-to-strong, easy-to-hard",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 2,
+   "sans_parade": [
+    "Automated successes are on tasks chosen to be checkable; fuzzier tasks remain out of reach. *(source: course, Part 7, F·40)*",
+    "Against sandbagging, weak supervision holds only if training is indistinguishable from deployment. *(source: course, Part 7, F·26)*"
+   ],
+   "hors_format": [],
+   "fin": 1257
+  },
+  {
+   "ligne": 1305,
+   "instrument": "Control monitors (trusted monitor, probes in production, aggregation)",
+   "date": "v3.6, 2 October 2026",
+   "section": "## G. Monitoring & AI control — limiting the damage even if the model is misaligned",
+   "limites": 8,
+   "parades": 8,
+   "aucune": 1,
+   "sans_parade": [
+    "The threat model assumes the attacker's capabilities bounded and known, and rare events are hard to estimate. *(source: course, Part 4, AI Control)*"
+   ],
+   "hors_format": [],
+   "fin": 1322
+  },
+  {
+   "ligne": 1380,
+   "instrument": "Red-teaming",
+   "date": "v3.6, 2 October 2026",
+   "section": "## H. Adversarial robustness & red-teaming — resisting attacks",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 1,
+   "sans_parade": [
+    "Training on the attacks found can teach the model to recognize its trigger better. *(source: reading sheet 15)*"
+   ],
+   "hors_format": [],
+   "fin": 1393
+  },
+  {
+   "ligne": 1431,
+   "instrument": "Safety classifiers (filters)",
+   "date": "v3.6, 2 October 2026",
+   "section": "### Worked case — adversarial robustness and misuse: \"How would you prevent bad actors from misaligning an LLM",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 1,
+   "sans_parade": [
+    "The clean twin gives only a wide bound, which flags less. *(source: course, Part M, M4)*"
+   ],
+   "hors_format": [],
+   "fin": 1442
+  },
+  {
+   "ligne": 1457,
+   "instrument": "Unlearning and re-elicitation",
+   "date": "v3.6, 2 October 2026",
+   "section": "## I. Training interventions & unlearning — changing the model at the source",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 3,
+   "sans_parade": [
+    "Retraining on independent facts works only for low-leakage facts, not for capabilities. *(source: course, Part 10, Deeb and Roger)*",
+    "Selective gradient masking is shown only on small models. *(source: course, Part 2, §I, JB10)*",
+    "Activation-level unlearning \"has yet to yield competitive results\". *(source: reading sheet 5)*"
+   ],
+   "hors_format": [],
+   "fin": 1470
+  },
+  {
+   "ligne": 1947,
+   "instrument": "Dictionaries and SAEs",
+   "date": "v3.6, 2 October 2026",
+   "section": "## The key papers, told one by one",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 1,
+   "sans_parade": [
+    "Splicing in the dictionary costs performance: on GPT-2 small, 10% on task data, 40% on the full distribution. *(source: reading sheet 5)*"
+   ],
+   "hors_format": [],
+   "fin": 1960
+  },
+  {
+   "ligne": 1967,
+   "instrument": "Attribution graphs",
+   "date": "v3.6, 2 October 2026",
+   "section": "## The key papers, told one by one",
+   "limites": 4,
+   "parades": 4,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 1976
+  },
+  {
+   "ligne": 1985,
+   "instrument": "Natural-language autoencoders (NLAs)",
+   "date": "v3.6, 2 October 2026",
+   "section": "## The key papers, told one by one",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 1,
+   "sans_parade": [
+    "Some information may not be verbalizable. *(source: reading sheet 18)*"
+   ],
+   "hors_format": [],
+   "fin": 1998
+  },
+  {
+   "ligne": 2242,
+   "instrument": "Self-report and introspection",
+   "date": "v3.6, 2 October 2026",
+   "section": "## A. Your STRONG topics — your thesis can be the backbone",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 2,
+   "sans_parade": [
+    "Reported details can be embellished or confabulated, and the conditions are far from deployment. *(source: reading sheet 11)*",
+    "Answers to follow-up questions depend on how they are phrased. *(source: reading sheet 3)*"
+   ],
+   "hors_format": [],
+   "fin": 2255
+  },
+  {
+   "ligne": 2404,
+   "instrument": "LLM judges",
+   "date": "v3.6, 2 October 2026",
+   "section": "### 2. Your results, as your dossier carries them on September 14, corrected on the 27th by the P4 document",
+   "limites": 8,
+   "parades": 8,
+   "aucune": 1,
+   "sans_parade": [
+    "A model that almost audits itself: for Fable 5, the investigator is Mythos Preview. *(source: reading sheet 2; reading sheets, part B, trap 6)*"
+   ],
+   "hors_format": [],
+   "fin": 2421
+  },
+  {
+   "ligne": 2899,
+   "instrument": "Fine-tuned detectors (lie detectors)",
+   "date": "v3.6, 2 October 2026",
+   "section": "### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Khullar (MATS + Fellows), Wang, Roger; 21 ",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 2,
+   "sans_parade": [
+    "They score only assertions: a model can hide a lot without asserting anything false. *(source: course, Part 7, F·29)*",
+    "LoRA, five epochs, Gemma and Qwen only, controlled settings: nothing on deception in deployment. *(source: reading sheet 7)*"
+   ],
+   "hors_format": [],
+   "fin": 2912
+  },
+  {
+   "ligne": 4665,
+   "instrument": "Patching (activation patching, path patching, Patchscopes)",
+   "date": "v3.6, 2 October 2026",
+   "section": "### Patchscopes: A Unifying Framework for Inspecting Hidden Representations of Language Models — Asma Ghandeha",
+   "limites": 6,
+   "parades": 6,
+   "aucune": 2,
+   "sans_parade": [
+    "The computation after the patch can add information: a successful decoding does not prove the representation carries the information. *(source: course, Part 10,",
+    "The choice of target prompt and placeholder contamination can distort the reading; the authors leave both as future work. *(source: course, Part 10, Patchscopes"
+   ],
+   "hors_format": [],
+   "fin": 4678
+  },
+  {
+   "ligne": 4704,
+   "instrument": "Activation oracles (activation decoders)",
+   "date": "v3.6, 2 October 2026",
+   "section": "### LatentQA: Teaching LLMs to Decode Activations Into Natural Language — Alexander Pan, Lijie Chen, Jacob Ste",
+   "limites": 5,
+   "parades": 5,
+   "aucune": 2,
+   "sans_parade": [
+    "A fine-tuned copy does the reading, not the queried model: this is not a self-report. *(source: course, Part 10, LatentQA)*",
+    "Cost, small datasets, simplified benchmarks. *(source: reading sheet 18)*"
+   ],
+   "hors_format": [],
+   "fin": 4715
+  },
+  {
+   "ligne": 6520,
+   "instrument": "Chain of thought as a monitor (and verbalized awareness)",
+   "date": "v3.6, 2 October 2026",
+   "section": "## 43 · « Is a chain of thought evidence of the reasoning that produced the answer? » (II.5)",
+   "limites": 7,
+   "parades": 7,
+   "aucune": 0,
+   "sans_parade": [],
+   "hors_format": [],
+   "fin": 6535
+  }
+ ]
+}

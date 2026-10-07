@@ -1,0 +1,114 @@
+{
+ "corrections": [
+  {
+   "fichier": "FR",
+   "ancien": "> Rien du texte de la v3.5 n'est retiré ni modifié : on ajoute, et chaque ajout porte la mention *(v3.6)*. Deux ajouts.",
+   "nouveau": "> Rien du texte de la v3.5 n'est retiré ni modifié : on ajoute, et chaque ajout porte la mention *(v3.6)* ou, pour les morceaux de l'encadré du 2 octobre, sa date. Deux ajouts."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> No text of v3.5 is removed or changed: things are only added, and every addition carries the mark *(v3.6)*. Two additions.",
+   "nouveau": "> No text of v3.5 is removed or changed: things are only added, and every addition carries the mark *(v3.6)* or, for the pieces of the box of 2 October, its date. Two additions."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* Que le désalignement monte quand on neutralise « ceci est un test » n'est qu'un appui faible tant que le dommage n'est pas écarté : chaque direction pilotée dégrade la sortie, et des vecteurs de contrôle arbitraires font aussi monter le désalignement, plus faiblement (fiche 2 ; fiches, partie C). Parade : une direction aléatoire de même norme n'écarte que le nul de spécificité ; le dommage ne s'écarte qu'à dégradation appariée, par une courbe dose-réponse contre plusieurs témoins, avec un cas connu au même réglage (cours, volet M, M4 ; cours, volet 2, §C, K47).",
+   "nouveau": "> ⚠ *(v3.6)* Que le désalignement monte quand on neutralise « ceci est un test » n'est qu'un appui faible tant que le dommage n'est pas écarté et la spécificité pas établie : chaque direction pilotée dégrade la sortie, et des vecteurs de contrôle arbitraires font aussi monter le désalignement, plus faiblement (fiche 2 ; fiches, partie C). Parade : une direction aléatoire de même norme n'écarte que le nul de spécificité ; le dommage ne s'écarte qu'à dégradation appariée, et la spécificité s'établit par une courbe dose-réponse contre plusieurs témoins, celle du concept au-dessus à chaque niveau de dommage, avec un cas connu au même réglage (cours, volet M, M4 ; cours, volet 2, §C, K47 ; fiche 2)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* That misaligned behaviour rises when \"this is a test\" is neutralized is only weak support as long as damage has not been ruled out: every steered direction degrades the output, and arbitrary control vectors also raise misalignment, more weakly (reading sheet 2; reading sheets, part C). Workaround: a matched-norm random direction rules out only the specificity null; damage is ruled out only at matched degradation, by a dose-response curve against several controls, with a known case at the same setting (course, Part M, M4; course, Part 2, §C, K47).",
+   "nouveau": "> ⚠ *(v3.6)* That misaligned behaviour rises when \"this is a test\" is neutralized is only weak support as long as damage has not been ruled out and specificity not established: every steered direction degrades the output, and arbitrary control vectors also raise misalignment, more weakly (reading sheet 2; reading sheets, part C). Workaround: a matched-norm random direction rules out only the specificity null; damage is ruled out only at matched degradation, and specificity is established by a dose-response curve against several controls, the concept's curve above theirs at every level of damage, with a known case at the same setting (course, Part M, M4; course, Part 2, §C, K47; reading sheet 2)."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* « La seconde prend le relais » suppose la sonde fiable là où la chaîne ne l'est pas : le silence d'une sonde en production n'est pas celui du modèle (cours, volet 3, §3, K70), et au seuil d'un moniteur, des sondes rappellent 43 % à 1 % de faux positifs, contre 55 % pour le meilleur moniteur LLM (cours, volet 7, F·51). Parade : des canaris — des positifs connus glissés dans le trafic —, un score de dérive et un échantillon frais jugé chaque mois (cours, volet 3, §3, K70), et un rappel rapporté à un seuil calibré à 1 % de faux positifs sur des variantes bénignes appariées (cours, volet 7, F·23).",
+   "nouveau": "> ⚠ *(v3.6)* « La seconde prend le relais » suppose la sonde fiable là où la chaîne ne l'est pas : le silence d'une sonde en production n'est pas celui du modèle (cours, volet 3, §3, K70), et au seuil d'un moniteur, des sondes rappellent 43 % à 1 % de faux positifs, contre 55 % pour le meilleur moniteur LLM (cours, volet 7, F·51 : fiche de première version, non relue aux sources). Parade : des canaris — des positifs connus glissés dans le trafic —, un score de dérive et un échantillon frais jugé chaque mois (cours, volet 3, §3, K70), et un rappel rapporté à un seuil calibré à 1 % de faux positifs sur des variantes bénignes appariées (cours, volet 7, F·23)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* \"The second takes over\" assumes the probe is reliable where the chain is not: the silence of a probe in production is not the silence of the model (course, Part 3, §3, K70), and at a monitor's threshold, probes recall 43% at 1% false positives, against 55% for the best LLM monitor (course, Part 7, F·51). Workaround: canaries — known positives slipped into the traffic —, a drift score and a fresh sample judged every month (course, Part 3, §3, K70), and recall reported at a threshold calibrated at 1% false positives on matched benign variants (course, Part 7, F·23).",
+   "nouveau": "> ⚠ *(v3.6)* \"The second takes over\" assumes the probe is reliable where the chain is not: the silence of a probe in production is not the silence of the model (course, Part 3, §3, K70), and at a monitor's threshold, probes recall 43% at 1% false positives, against 55% for the best LLM monitor (course, Part 7, F·51: a first-version sheet, not checked against the sources). Workaround: canaries — known positives slipped into the traffic —, a drift score and a fresh sample judged every month (course, Part 3, §3, K70), and recall reported at a threshold calibrated at 1% false positives on matched benign variants (course, Part 7, F·23)."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* « Plusieurs méthodes de rang un ont échoué » est un nul sans chiffres ni cas connu : leurs sorties brutes n'ont pas été conservées (README du dépôt), et un nul de pilotage peut venir d'un rang trop bas (fiche 7). Parade : avant de lire un nul, un cas connu au même réglage — un vecteur de pays, qui s'échange dans l'article sur l'espace de travail (cours, volet 2, §C, K47 ; cours, volet M, M5).",
+   "nouveau": "> ⚠ *(v3.6)* « Plusieurs méthodes de rang un ont échoué » est un nul sans chiffres ni cas connu : leurs sorties brutes n'ont pas été conservées (README du dépôt), et, sans cas connu au même réglage, ce nul ne sépare pas « il faut plus d'une direction » d'un instrument aveugle à cette dose (cours, volet M, M5 ; fiche 7). Parade : avant de lire un nul, un cas connu au même réglage — un vecteur de pays, qui s'échange dans l'article sur l'espace de travail (cours, volet 2, §C, K47 ; cours, volet M, M5)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* \"Several rank-one methods failed\" is a null without numbers or a known case: their raw outputs were not preserved (repository README), and a steering null can come from too low a rank (reading sheet 7). Workaround: before reading a null, a known case at the same setting — a country vector, which swaps in the workspace paper (course, Part 2, §C, K47; course, Part M, M5).",
+   "nouveau": "> ⚠ *(v3.6)* \"Several rank-one methods failed\" is a null without numbers or a known case: their raw outputs were not preserved (repository README), and, without a known case at the same setting, that null does not separate \"more than one direction is needed\" from an instrument blind at that dose (course, Part M, M5; reading sheet 7). Workaround: before reading a null, a known case at the same setting — a country vector, which swaps in the workspace paper (course, Part 2, §C, K47; course, Part M, M5)."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* La prédiction du sous-espace n'a pas d'appui causal propre : la baisse du rang trois n'est pas revenue sur des générations fraîches, le sous-espace adoucit les verdicts négatifs sans encoder la déférence, et le contraste entre rangs vient d'expériences séparées, le seul balayage fait dans une même expérience n'étant pas monotone (README du dépôt ; cours, volet 6, §2). Parade : un balayage de rang dans une même expérience, sur des sous-espaces emboîtés, monotonie vérifiée et non supposée, à dégât égal, sur des générations fraîches gardées en texte complet, avec un bras sans pression (cours, volet 6, §6 ; cours, volet M, M4).",
+   "nouveau": "> ⚠ *(v3.6)* La prédiction du sous-espace n'a pas d'appui causal propre : la baisse du rang trois n'est pas revenue sur des générations fraîches, le sous-espace adoucit les verdicts négatifs, avec ou sans pression, et le contraste entre rangs vient d'expériences séparées, le seul balayage fait dans une même expérience n'étant pas monotone (README du dépôt ; cours, volet 6, §2). Parade : un balayage de rang dans une même expérience, sur des sous-espaces emboîtés, monotonie vérifiée et non supposée, à dégât égal, sur des générations fraîches gardées en texte complet, avec un bras sans pression (cours, volet 6, §6 ; cours, volet M, M4)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* The subspace prediction has no causal support of its own: the rank-three drop did not come back on fresh generations, the subspace softens negative verdicts without encoding deference, and the contrast between ranks comes from separate experiments, the only sweep done within one experiment not being monotonic (repository README; course, Part 6, §2). Workaround: a rank sweep within one experiment, on nested subspaces, monotonicity checked rather than assumed, at equal damage, on fresh generations kept as full text, with a no-pressure arm (course, Part 6, §6; course, Part M, M4).",
+   "nouveau": "> ⚠ *(v3.6)* The subspace prediction has no causal support of its own: the rank-three drop did not come back on fresh generations, the subspace softens negative verdicts with or without pressure, and the contrast between ranks comes from separate experiments, the only sweep done within one experiment not being monotonic (repository README; course, Part 6, §2). Workaround: a rank sweep within one experiment, on nested subspaces, monotonicity checked rather than assumed, at equal damage, on fresh generations kept as full text, with a no-pressure arm (course, Part 6, §6; course, Part M, M4)."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* Le résultat d'un jeu red team / blue team ne vaut que pour la red team supposée : un échafaudage d'attaque optimisé fait passer le score de sûreté de 0,87 à 0,41 (cours, volet 7, F·24), et sur Opus 4.6 la moitié de quarante attaques conçues à la main ne sont jamais attrapées par le moniteur (cours, volet 7, F·23). Parade : dire quelle red team le chiffre suppose — au moins une red team optimisée composante par composante —, un seuil calibré à 1 % de faux positifs sur des variantes bénignes appariées, un ensemble de prompts de moniteur spécialisés (cours, volet 7, F·24 et F·23) ; et une red team à budget fixé d'avance, dont le « rien trouvé » n'est qu'une borne (cours, volet M, M7).",
+   "nouveau": "> ⚠ *(v3.6)* Le résultat d'un jeu red team / blue team ne vaut que pour la red team supposée : un échafaudage d'attaque optimisé fait passer le score de sûreté de 0,87 à 0,41 (cours, volet 7, F·24), et sur Opus 4.6 la moitié de quarante attaques conçues à la main ne sont jamais attrapées par le moniteur (cours, volet 7, F·23). Parade : dire quelle red team le chiffre suppose — au moins une red team optimisée composante par composante —, un seuil calibré à 1 % de faux positifs sur des variantes bénignes appariées, un ensemble de prompts de moniteur spécialisés (cours, volet 7, F·24 et F·23) ; et une red team à budget fixé d'avance, dont le « rien trouvé » n'est qu'une borne, et seulement si la même red team réussit là où l'on sait qu'elle doit réussir (cours, volet M, M5 et M7)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* The result of a red team / blue team game holds only for the red team assumed: an optimized attack scaffold takes the safety score from 0.87 to 0.41 (course, Part 7, F·24), and on Opus 4.6 half of forty hand-designed attacks are never caught by the monitor (course, Part 7, F·23). Workaround: state which red team the number assumes — at least a red team optimized component by component —, a threshold calibrated at 1% false positives on matched benign variants, an ensemble of specialized monitor prompts (course, Part 7, F·24 and F·23); and a red team at a budget fixed in advance, whose \"found nothing\" is only a bound (course, Part M, M7).",
+   "nouveau": "> ⚠ *(v3.6)* The result of a red team / blue team game holds only for the red team assumed: an optimized attack scaffold takes the safety score from 0.87 to 0.41 (course, Part 7, F·24), and on Opus 4.6 half of forty hand-designed attacks are never caught by the monitor (course, Part 7, F·23). Workaround: state which red team the number assumes — at least a red team optimized component by component —, a threshold calibrated at 1% false positives on matched benign variants, an ensemble of specialized monitor prompts (course, Part 7, F·24 and F·23); and a red team at a budget fixed in advance, whose \"found nothing\" is only a bound, and only if the same red team succeeds where it is known that it should (course, Part M, M5 and M7)."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Un tirage aléatoire seul est un contrôle faible : dans la carte système d'Opus 4.8, des paires au contenu arbitraire bougent le comportement dans le même sens, plus faiblement. *(source : fiche 2 ; programme, partie 3)*",
+   "nouveau": "> - **Limite :** L'aléatoire seul est un contrôle faible : dans la carte système d'Opus 4.8, des paires au contenu arbitraire bougent le comportement dans le même sens, plus faiblement. *(source : fiche 2 ; programme, partie 3)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** A single random draw is a weak control: in the Opus 4.8 system card, pairs with arbitrary content move behaviour in the same direction, more weakly. *(source: reading sheet 2; programme, part 3)*",
+   "nouveau": "> - **Limit:** Random alone is a weak control: in the Opus 4.8 system card, pairs with arbitrary content move behaviour in the same direction, more weakly. *(source: reading sheet 2; programme, part 3)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** L'aléatoire apparié en norme et l'aléatoire apparié en covariance sont deux contrôles différents ; leur confusion a coûté une journée de corrections, et le premier n'est pas au registre de ton résultat causal. *(source : cours, volet 6, §3)*",
+   "nouveau": "> - **Limite :** L'aléatoire apparié en norme et l'aléatoire apparié en covariance sont deux des trois contrôles de ton dossier, dont la confusion a coûté une journée entière de corrections, et le premier n'est pas au registre de ton résultat causal. *(source : cours, volet 6, §3)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** The norm-matched random and the covariance-matched random are two different controls; confusing them cost a full day of corrections, and the first is not in the register of your causal result. *(source: course, Part 6, §3)*",
+   "nouveau": "> - **Limit:** The norm-matched random and the covariance-matched random are two of the three controls in your dossier, whose confusion cost a full day of corrections, and the first is not in the register of your causal result. *(source: course, Part 6, §3)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Choisir la couche, le seuil ou le prédicteur sur le jeu de test le contamine ; extraire et évaluer sur les mêmes items est circulaire. *(source : cours, volet 2, C bis ; README du dépôt)*",
+   "nouveau": "> - **Limite :** Choisir la couche, le seuil ou le prédicteur sur le jeu de test le contamine ; extraire et évaluer sur les mêmes items est circulaire. *(source : cours, volet M, M4 ; cours, volet 2, C bis ; programme, partie 3 ; README du dépôt)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** Choosing the layer, threshold or predictor on the test set contaminates it; extracting and evaluating on the same items is circular. *(source: course, Part 2, C bis; repository README)*",
+   "nouveau": "> - **Limit:** Choosing the layer, threshold or predictor on the test set contaminates it; extracting and evaluating on the same items is circular. *(source: course, Part M, M4; course, Part 2, C bis; programme, part 3; repository README)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* « Aucun contournement universel dans sa chasse » est le nul d'un red-teaming : une borne à son budget, pas une absence, et une chasse compte des contournements, pas ce que le filtre retire à l'attaquant *(source : cours, volet M, M5 et M7 ; cours, volet 2, §H, G1)*. Parade : le dire avec sa portée, « dans sa chasse », pas plus fort, et juger un filtre aussi par le préjudice différentiel, comme le fait l'expérience de ce cas *(source : cours, volet M, M10, question 12 ; cours, volet 2, §H, G1)*.",
+   "nouveau": "> ⚠ *(v3.6)* « Aucun contournement universel dans sa chasse » est le nul d'un red-teaming : une borne à son budget, pas une absence, qui ne vaut que si la même chasse trouve là où l'on sait qu'il y a à trouver, et une chasse compte des contournements, pas ce que le filtre retire à l'attaquant *(source : cours, volet M, M5 et M7 ; cours, volet 2, §H, G1)*. Parade : le dire avec sa portée, « dans sa chasse », pas plus fort, et juger un filtre aussi par le préjudice différentiel, comme le fait l'expérience de ce cas *(source : cours, volet M, M10, question 12 ; cours, volet 2, §H, G1)*."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* \"No universal jailbreak in its hunt\" is the null of a red-teaming effort: a bound at its budget, not an absence, and a hunt counts jailbreaks, not what the filter withholds from the attacker *(source: course, Part M, M5 and M7; course, Part 2, §H, G1)*. Workaround: say it with its scope, \"in its hunt\", no stronger, and judge a filter also by differential harm, as this case's experiment does *(source: course, Part M, M10, item 12; course, Part 2, §H, G1)*.",
+   "nouveau": "> ⚠ *(v3.6)* \"No universal jailbreak in its hunt\" is the null of a red-teaming effort: a bound at its budget, not an absence, which holds only if the same hunt finds something where it is known there is something to find, and a hunt counts jailbreaks, not what the filter withholds from the attacker *(source: course, Part M, M5 and M7; course, Part 2, §H, G1)*. Workaround: say it with its scope, \"in its hunt\", no stronger, and judge a filter also by differential harm, as this case's experiment does *(source: course, Part M, M10, item 12; course, Part 2, §H, G1)*."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> The rule of this section, applied to misalignment probes and to the J-lens, is developed in the box of 2 October: why a model organism, and the limit of the known case, with the salience of an implanted defection (Part 2, end of the presentation of section A; sheet 15); the three distinct known cases of probes, and their out-of-distribution validation (Part 2, end of the presentation of section C); the known case of the J-lens's blind spot, an organism trained to the action by reflex (Part 2, C bis).",
+   "nouveau": "> The rule of this paragraph, applied to misalignment probes and to the J-lens, is developed in the box of 2 October: why a model organism, and the limit of the known case, with the salience of an implanted defection (Part 2, end of the presentation of section A; reading sheet 15); the three distinct known cases of probes, and their out-of-distribution validation (Part 2, end of the presentation of section C); the known case of the J-lens's blind spot, an organism trained to act by reflex (Part 2, C bis)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": ">   **Workaround:** In part: two different manufactures of the same behaviour, and another team's organism; to conclude on the natural case, none known — a success bounds the instrument, say so. *(source: course, Part 6, §8; course, Part 2, §A, K71)*",
+   "nouveau": ">   **Workaround:** In part: two different ways of installing the same behaviour, and another team's organism; to conclude on the natural case, none known — a success bounds the instrument, say so. *(source: course, Part 6, §8; course, Part 2, §A, K71)*"
+  }
+ ]
+}

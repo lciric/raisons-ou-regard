@@ -1,0 +1,432 @@
+## 1. Contrôles aléatoires (direction aléatoire de même norme, sous-espaces aléatoires de même rang) — *Random controls (matched-norm random direction, random subspaces of the same rank)*
+> **⚠ Limits and workarounds — Random controls (matched-norm random direction, random subspaces of the same rank)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** It rules out only one reading, "any push of that size does as much": it is the specificity null, not a damage control, since at equal norm two directions do not damage the model equally. *(source: course, Part M, M4; reading sheet 2)*
+>   **Workaround:** Compare the arms at matched degradation, or plot the effect against measured damage (box "Matched degradation and dose-response", further down in M4). *(source: course, Part M, M4; programme, part 7)*
+> - **Limit:** A single random draw is a weak control: in the Opus 4.8 system card, pairs with arbitrary content move behaviour in the same direction, more weakly. *(source: reading sheet 2; programme, part 3)*
+>   **Workaround:** Several families of controls, at the same rank and at matched degradation — random subspaces (at least twenty draws), unrelated contrasts, high-variance directions outside the studied space, a plain prompt — and report the median and 95th percentile of the draws. *(source: programme, parts 3 and 7; reading sheet 2)*
+> - **Limit:** When the trait is salient, chance already separates: on the sleeper agents, the best of 1,000 random directions reaches 95.3%. *(source: reading sheet 15)*
+>   **Workaround:** Place the instrument within the distribution of random directions, never against a single draw; and do not read a success on an implanted organism as proof about the natural case. *(source: programme, part 7; course, Part M, M5)*
+> - **Limit:** The norm-matched random and the covariance-matched random are two different controls; confusing them cost a full day of corrections, and the first is not in the register of your causal result. *(source: course, Part 6, §3)*
+>   **Workaround:** Say which one, and which one grounded which number; prefer covariance matching, because a direction drawn where the model has variance sometimes does a lot while meaning nothing. *(source: course, Part M, M4; course, Part 11, answer A7)*
+
+## 2. Dégradation appariée et dose-réponse — *Matched degradation and dose-response*
+> **⚠ Limits and workarounds — Matched degradation and dose-response** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** It holds only on the chosen composite: damage the composite does not measure remains possible — removing the concept "test" can damage code or fiction. *(source: programme, parts 3 and 8)*
+>   **Workaround:** Build the composite from the concept's expected damage (code unit tests for "test", fiction coherence), with several measures — held-out accuracy, judged coherence, perplexity — and tolerances fixed at preregistration. *(source: programme, parts 3, 7 and 8)*
+> - **Limit:** Some settings cannot be matched: a control may reach the same degradation at no strength. *(source: programme, part 7)*
+>   **Workaround:** Do not compare at that setting, say so, and report curves of effect against degradation rather than a single point. *(source: programme, part 7; course, Part M, M4)*
+> - **Limit:** Ruling out damage does not establish specificity: at 0.01× strength the Fable 5 card makes degradation negligible, yet its controls stay "comparable or smaller" on the misalignment axis. *(source: reading sheet 2)*
+>   **Workaround:** A dose-response curve against several controls: the concept's curve must rise above them at every level of damage. *(source: course, Part 2, §C, K47; reading sheet 2)*
+> - **Limit:** At equal degradation, the effect can still come from a correlate or a neighbouring concept: your rank-three ablation moved valence, not the concept. *(source: course, Part M, M4; course, Part 6, §2)*
+>   **Workaround:** The no-pressure control arm and a rival concept's direction, also at matched degradation. *(source: course, Part M, M4)*
+> - **Limit:** Judged coherence goes through a judge, with its own biases. *(source: reading sheets, part B, trap 6)*
+>   **Workaround:** A sealed judge and a stratified human audit (box "LLM judges", Part 6, §2). *(source: programme, part 3)*
+> - **Limit:** Degradation judgements contradict each other across cards: 0.1× strength "roughly the maximum" without degeneracy for Mythos Preview, degradation from every direction at 0.10× for Opus 4.8. *(source: reading sheets, part B)*
+>   **Workaround:** Measure degradation in your own setup, never borrow it from another: damage is measured, not assumed. *(source: course, Part M, M4)*
+
+## 3. Jeu tenu à part — *Held-out set*
+> **⚠ Limits and workarounds — Held-out set** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Holding out paraphrases instead of families measures only near generalization. *(source: programme, part 3; explanation of 2 October, §3)*
+>   **Workaround:** Separate by whole families, and read three distances: new instances, held-out families in one turn, held-out families in multi-turn agentic settings, which is the main criterion. *(source: programme, part 3)*
+> - **Limit:** A held-out family can leak into training. *(source: programme, part 8)*
+>   **Workaround:** Check the held-out families' n-grams against the training data, and separate by family. *(source: programme, parts 3 and 8)*
+> - **Limit:** Choosing the layer, threshold or predictor on the test set contaminates it; extracting and evaluating on the same items is circular. *(source: course, Part 2, C bis; repository README)*
+>   **Workaround:** Disjoint sets, frozen in advance: one to extract, one to validate and pick the layer, one to frame the evaluations, one for the fresh probe after training. *(source: programme, part 3; course, Part 2, C bis)*
+> - **Limit:** A held-out set may not represent the real case: held-out honeypots may not be representative. *(source: reading sheet 12)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Training or iterating on the evaluation empties it: the metric drops, the problem stays. *(source: reading sheet 12)*
+>   **Workaround:** Keep held-out audit metrics, and sealed detectors that never enter the decision. *(source: reading sheet 12; reading sheet 19)*
+
+## 4. Cas connu — *Known case*
+> **⚠ Limits and workarounds — Known case** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Necessary, not sufficient: an implanted intention may be more salient than a natural one — on the sleeper agents, the best of 1,000 random directions already reaches 95.3%. *(source: handover, §5.2; reading sheet 15)*
+>   **Workaround:** In part: two different manufactures of the same behaviour, and another team's organism; to conclude on the natural case, none known — a success bounds the instrument, say so. *(source: course, Part 6, §8; course, Part 2, §A, K71)*
+> - **Limit:** The known case holds only at the same setting: validated at another dose or threshold, it leaves open that a null comes from too low a rank or too strict a threshold. *(source: reading sheet 7; counter-reading of the sheets; course, Part 2, §A, K71)*
+>   **Workaround:** Validate the known case with the same instrument, at the same rank, dose and threshold as the measurement. *(source: course, Part M, M5; reading sheet 7)*
+> - **Limit:** Validated on the training phrasings, the known case may only measure recognition of those phrasings. *(source: explanation of 2 October, §3; programme, part 3)*
+>   **Workaround:** Validate the known case on held-out phrasings. *(source: programme, part 3)*
+> - **Limit:** Some known cases are weak: for "I am being graded", the positive case is only made of presentation habits. *(source: programme, parts 3 and 8)*
+>   **Workaround:** Declare it, and drop the arm that depends on it if its gate fails. *(source: programme, part 8)*
+> - **Limit:** A null without known power says almost nothing, and high power does not replace a known case. *(source: course, Part M, M5)*
+>   **Workaround:** State a bound, with its budget and power, never an absence. *(source: course, Part M, M5)*
+> - **Limit:** Each instrument has its own known case: a probe's does not cover the J-lens blind spot. *(source: handover, §5.2)*
+>   **Workaround:** Three distinct known cases: an evaluation-conditioned organism, a planted-concept organism, an organism trained to act by reflex. *(source: explanation of 2 October, §3; handover, §5.2; programme, part 3)*
+
+## 5. Organismes modèles — *Model organisms*
+> **⚠ Limits and workarounds — Model organisms** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Built is not natural: salience may come from the insertion, and instrumental deceptive alignment has not been found in any real system. *(source: reading sheet 15; reading sheets, part B, trap 5)*
+>   **Workaround:** Conclude only about the instrument; draw substantive conclusions from the models without an organism. *(source: programme, part 8)*
+> - **Limit:** The organism may be artificially easy: objective stated plainly in the synthetic documents, pipeline artefacts. *(source: reading sheet 16)*
+>   **Workaround:** none known; say so.
+> - **Limit:** The implant can fail: fine-tuning on synthetic documents sometimes, not always, implants a real belief. *(source: course, Part 2, §E, K52)*
+>   **Workaround:** Check each copy by its behaviour, and filter by downstream inference and a probe. *(source: course, Part 2, §A, K71; course, Part 2, §E, K52)*
+> - **Limit:** What interpretability sees in an organism depends on how it was trained. *(source: prior-art report 5 of 2 October, "The Model Organism Lottery", abstract read — report)*
+>   **Workaround:** Plant the same behaviour through several recipes (instruction, synthetic documents, demonstrations), hold one out, and add another team's organism. *(source: course, Part 2, §A, K71)*
+> - **Limit:** A behaviour handed to the model confounds generalization: in the emergent-misalignment paper, the hacks were taught first. *(source: reading sheet 13)*
+>   **Workaround:** none known; say so.
+> - **Limit:** A replication on a recent model may measure memorization of the scenario: the Alignment Faking transcripts were re-included in training. *(source: reading sheets, part C)*
+>   **Workaround:** none known; say so.
+> - **Limit:** The native evaluation awareness of an 8B model may be too weak to study. *(source: programme, part 8)*
+>   **Workaround:** The organism provides the known case, and an extension to about 32B is planned. *(source: programme, part 8)*
+
+## 6. Évaluations comportementales et pots de miel — *Behavioural evaluations and honeypots*
+> **⚠ Limits and workarounds — Behavioural evaluations and honeypots** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The model can notice the test and hold back: discreet hacking goes from 4.0% to 18.9% when it is told a classifier will read the transcript. *(source: reading sheet 13; course, Part 2, §B)*
+>   **Workaround:** Two versions of an environment, randomly assigned, differing only in realism cues scored by a discriminator, and an organism trained to hide as the known case. *(source: course, Part 2, §B, K63)*
+> - **Limit:** Verbalized awareness measures realism poorly: it misses unverbalized awareness. *(source: course, Part 7, F·25)*
+>   **Workaround:** The rate at which a judge, shown the pair, mistakes the audit for the real thing, and real deployment resources for the auditor. *(source: course, Part 7, F·25)*
+> - **Limit:** Under-eliciting makes the model look safer, and a small fine-tune can create the capability you think you are eliciting. *(source: course, Part 2, §B; course, Part 2, §B, K63)*
+>   **Workaround:** Elicitation at a budget fixed in advance, reported as a bound; a gain counts only beyond the same budget on a model without the capability. *(source: course, Part M, M7; course, Part 2, §B, K63)*
+> - **Limit:** The global score can mislead: misalignment is "high-dimensional", and a global audit moving from 4.34 to 4.20 misses targeted increases. *(source: reading sheet 13)*
+>   **Workaround:** Read the dimensions one by one, not just the global score. *(source: reading sheet 13)*
+> - **Limit:** Training on the evaluation fixes "narrowly … the symptom". *(source: reading sheet 12)*
+>   **Workaround:** Held-out audit metrics, never trained on. *(source: reading sheet 12)*
+> - **Limit:** In a simulation, "this is fake" is true: a honeypot does not separate a model that reads it as fake from a model that holds back. *(source: reading sheet 3)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Non-refusal is not harm. *(source: course, Part 2, §B and §H)*
+>   **Workaround:** Differential harm, blind-scored, with a realistic reference arm. *(source: course, Part 2, §H, G1; course, Part M, M4)*
+
+## 7. Sondes d'activation — *Activation probes*
+> **⚠ Limits and workarounds — Activation probes** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** A probe finds correlations: reading is not using — the direction your probe reads does under 1% of the causal work, the full state at the same sites 68%. *(source: reading sheet 5; course, Part 6, §2)*
+>   **Workaround:** Correlation is enough to flag; to trust an absence or to intervene, the causal test: steer along the direction against matched-norm random directions (specificity null), then against controls at matched degradation (damage). *(source: course, Part M, M8; handover, §5.2)*
+> - **Limit:** An in-distribution AUROC proves nothing; what you measure is the gap with the AUROC on held-out types. *(source: reading sheets, part B, trap 1; reading sheet 7)*
+>   **Workaround:** Hold out whole families, never paraphrases, and formats, from single-turn to multi-turn agentic. *(source: explanation of 2 October, §3; programme, part 3)*
+> - **Limit:** The probe can learn how the organism was made, or read "I am being watched" and the test context instead of the intention. *(source: course, Part 6, §8; course, Part 3, §4, K67)*
+>   **Workaround:** Two manufactures of the same behaviour (hidden instruction, light fine-tuning), an aware-but-honest organism, and honest transcripts written as tests. *(source: course, Part 6, §8; course, Part 3, §4, K67)*
+> - **Limit:** It may read the written text rather than a representation. *(source: programme, part 8)*
+>   **Workaround:** Read at the first token of the answer, before any written reason, or at the action token with neutral reasons of the same length prefilled. *(source: programme, parts 3 and 8)*
+> - **Limit:** After training, a probe calibrated elsewhere reads differently: after RL, fresh out-of-domain probes degrade, while a fresh in-domain probe stays near perfect. *(source: prior-art report 3 of 2 October, The Obfuscation Atlas — report; handover, §5.2)*
+>   **Workaround:** One probe per training arm and a fresh probe after training, on a disjoint cue set; probes stay a separate measure, never in the main label. *(source: handover, §5.2; programme, parts 3 and 8)*
+> - **Limit:** An "evaluation versus deployment" probe would keep its global score under RL but flip on edge cases, and retraining it recovers almost nothing. *(source: prior-art report 4 of 2 October — report, abstract only, to be checked)*
+>   **Workaround:** none known; say so.
+> - **Limit:** On honesty, truth probes did worse than a plain prompt; at a monitor's threshold, probes recall 43% at 1% false positives, against 55% for the best LLM monitor. *(source: course, Part 7, F·62; course, Part 7, F·51)*
+>   **Workaround:** Beat a black-box or prompt baseline at equal cost, report recall at 1% false positives, and publish the result if the probe does not beat the prompt. *(source: course, Part 5, topic 1; course, Part 7, F·50; course, Part 7, F·29)*
+> - **Limit:** Training-fit metrics read like generalization: your repository's probe metrics were training fit, and the ρ of 0.684 may be too. *(source: repository README)*
+>   **Workaround:** Score items excluded from the probe's training, and extract on a disjoint set. *(source: repository README)*
+> - **Limit:** Contrastive pairs can carry a style, and synthetic negatives can teach only a surface cue. *(source: course, Part M, M4; course, Part 2, §C)*
+>   **Workaround:** A surface-only classifier must stay at chance between the two sides of the pairs; draw negatives from the model's real generations. *(source: course, Part M, M4; course, Part 2, §C)*
+> - **Limit:** A silent probe does not separate "no intention" from "blind probe". *(source: handover, §5.2; reading sheets, part B, trap 3)*
+>   **Workaround:** An organism in which you installed the intention yourself: measure sensitivity and false alarms there, and silence elsewhere becomes a bound. *(source: handover, §5.2)*
+
+## 8. Pilotage par vecteurs (dont vecteurs de persona) — *Steering vectors (including persona vectors)*
+> **⚠ Limits and workarounds — Steering vectors (including persona vectors)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** "The direction moves behaviour" is not "the concept causes behaviour": every steered direction degrades the output, and arbitrary vectors move behaviour too. *(source: reading sheet 2; reading sheets, part B, trap 4)*
+>   **Workaround:** The matched-norm random direction is only the specificity null; damage is ruled out only at matched degradation, by a dose-response curve against several controls. *(source: course, Part M, M4; course, Part 2, §C, K47)*
+> - **Limit:** A steering null can come from too low a rank, if the concept is distributed. *(source: reading sheet 7; counter-reading of the sheets)*
+>   **Workaround:** A known case at the same setting — a country vector, which swaps in the workspace paper — and a rank sweep within one experiment, on nested subspaces. *(source: course, Part 2, §C, K47; course, Part 6, §6)*
+> - **Limit:** Contrastive activation addition can force a yes/no polarity artefact instead of removing sycophancy. *(source: repository README)*
+>   **Workaround:** none known; say so.
+> - **Limit:** The effect depends on the dataset and the layer: "highly dataset-dependent". *(source: reading sheet 2; course, Part 7, F·7)*
+>   **Workaround:** Report dataset by dataset, and choose the layer on a validation set, never on the test set. *(source: programme, part 3)*
+> - **Limit:** The model may detect the steering. *(source: programme, part 8 (cited work, not opened))*
+>   **Workaround:** The same intervention machinery in every arm, controls included. *(source: programme, part 8)*
+> - **Limit:** Steering can silence verbalization without touching the latent representation; random directions lower it too. *(source: programme, part 8; reading sheet 2)*
+>   **Workaround:** A behavioural main criterion and a latent probe as a control; verbalization is never proof of inhibition. *(source: programme, part 8)*
+> - **Limit:** Persona vectors: the trait must be named in advance, the directions are coarse, the shift-to-trait link is only correlational, the evaluation is light. *(source: reading sheet 8)*
+>   **Workaround:** For causality, the matched-degradation test; for supervised extraction, none known, say so. *(source: course, Part M, M4; reading sheet 8)*
+> - **Limit:** Steering away from a persona during training reportedly doubled the spread of misalignment, from 24% to about 50%. *(source: prior-art report 3 of 2 October — report, unverified)*
+>   **Workaround:** none known; say so.
+
+## 9. J-lens et espace de travail — *The J-lens and the workspace*
+> **⚠ Limits and workarounds — The J-lens and the workspace** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The lens captures the workspace "only approximately and incompletely", and only for single-token concepts. *(source: reading sheet 1; course, Part 2, C bis)*
+>   **Workaround:** Read a multi-token concept on a token set, or through the appendix's multi-token extension, and say which. *(source: course, Part 2, C bis; programme, part 3)*
+> - **Limit:** What runs below the workspace escapes it: "A sufficiently practiced misaligned behavior might do likewise". *(source: reading sheet 1; handover, §5.2)*
+>   **Workaround:** A label that depends on no internal reading; three probes (whole stream, workspace share, complement); an organism trained to act by reflex, on short examples without reasoning, as the known case of the blind spot; propensity resampled from each decision point; a crosscoder between the base and each arm. *(source: handover, §5.2)*
+> - **Limit:** It has been shown only on Claude; a report finds, on open models, swaps that flip the answer in only 6.3 to 11.1% of cases, against 54 to 70% at Anthropic. *(source: reading sheet 1; prior-art report 5 of 2 October — report, read by summary, unverified)*
+>   **Workaround:** A gate: first reproduce the swap of a single-token concept on the open model; otherwise a tuned lens declared as a proxy, and the thesis is not tested in the paper's sense. *(source: programme, parts 3 and 8; course, Part 2, C bis)*
+> - **Limit:** Presence is not cause: language is present in the lens on four tasks, causal on two; and a direction's J-space share is small even when it carries the effect. *(source: reading sheet 1; course, Part 2, C bis)*
+>   **Workaround:** Compare swapping the J-space share alone with swapping the remainder alone, once the swap is validated on countries. *(source: course, Part 2, C bis; course, Part 6, §8)*
+> - **Limit:** The drop in verbalization after the ablation does not show that evaluation awareness was removed. *(source: reading sheet 1; counter-reading of the sheets)*
+>   **Workaround:** A behavioural criterion and a latent probe, with an arm of neutral lens directions at matched degradation. *(source: programme, part 8; course, Part 2, C bis, K72)*
+> - **Limit:** The lens-based evaluation-awareness detector is validated only against NLA labels, never against the real/test gap nor on held-out cues. *(source: reading sheet 1)*
+>   **Workaround:** Validate it against the real/test gap and on held-out cues. *(source: reading sheet 1)*
+> - **Limit:** The lens depends on the weights; loading may be read on the very subspace the removal found; and "loading" names three different quantities depending on the text. *(source: course, Part 2, C bis; course, Part 6, §6)*
+>   **Workaround:** Recompute the lens after any training; disjoint item sets; freeze the main predictor first and say which. *(source: course, Part 2, C bis; course, Part 6, §6)*
+
+## 10. Ablation et projection (directions, sous-espaces) — *Ablation and projection (directions, subspaces)*
+> **⚠ Limits and workarounds — Ablation and projection (directions, subspaces)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Removing a direction also damages the model: an ablation effect shows necessity, not specificity. *(source: course, Part M, M4)*
+>   **Workaround:** Random subspaces of the same rank, compared at matched degradation, by partial removal or by a curve of effect against degradation. *(source: course, Part 2, C bis; programme, part 7)*
+> - **Limit:** An ablation can move a correlate: your rank-three subspace softens negative verdicts with or without pressure. *(source: course, Part 6, §2; repository README)*
+>   **Workaround:** The no-pressure arm; and remove each direction alone, with and without pressure. *(source: course, Part M, M4; course, Part 6, §6)*
+> - **Limit:** An effect obtained on stored generations, judged through a truncated window, may not come back on fresh generations. *(source: repository README; course, Part 6, §2)*
+>   **Workaround:** Fresh generations, seed-matched, kept as full text and judged on the whole answer. *(source: course, Part 6, §6; course, Part 11, answer A7)*
+> - **Limit:** Circularity: the subspace is extracted on the items later used to evaluate it. *(source: repository README)*
+>   **Workaround:** Extract on a disjoint item set. *(source: repository README; course, Part 2, C bis)*
+> - **Limit:** A rank-one versus rank-three contrast from separate experiments does not give the curve, and the only sweep run within one experiment is not monotonic. *(source: course, Part 6, §2)*
+>   **Workaround:** A rank sweep within one experiment, on nested subspaces, with monotonicity checked, not assumed. *(source: course, Part 6, §6; course, Part 2, C bis)*
+> - **Limit:** A one-direction mechanism can be buried under higher-variance directions, and pass for a distributed one. *(source: course, Part 6, §6)*
+>   **Workaround:** Two removal orders, by variance and by causal effect. *(source: course, Part 6, §6)*
+
+## 11. Crosscoders et comparaison de modèles — *Crosscoders and model diffing*
+> **⚠ Limits and workarounds — Crosscoders and model diffing** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The features found vary from one training run to another. *(source: course, Part 2, §D, K64)*
+>   **Workaround:** Several seeds: a chance winner would change from seed to seed. *(source: course, Part 2, §D, K64)*
+> - **Limit:** A dictionary decomposes activations, not mechanisms: a difference found between two models describes, it does not cause. *(source: reading sheet 5)*
+>   **Workaround:** Test each retained difference causally, against random directions at matched damage. *(source: course, Part 2, §D, K64; course, Part M, M4)*
+> - **Limit:** It inherits the limits of dictionaries, starting with reconstruction error. *(source: course, Part 4, Monosemanticity; repository README)*
+>   **Workaround:** Report the share left in the residual, and read the signal on the reconstruction and on the residual. *(source: repository README)*
+> - **Limit:** In the programme, the crosscoder is only a proposal, a secondary and exploratory measure. *(source: handover, §5.2)*
+>   **Workaround:** Label it exploratory until it is preregistered. *(source: handover, §5.2; programme, part 7)*
+
+## 12. Débat et supervision évolutive — *Debate and scalable oversight*
+> **⚠ Limits and workarounds — Debate and scalable oversight** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The obfuscated argument: too complex to refute, even when false. *(source: course, Part 2, §E)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Optimizing approval can make a model wrongly more convincing: RLHF taught models to persuade humans of wrong answers. *(source: course, Part 2, §E)*
+>   **Workaround:** Measure on a testbed where the right answer is known. *(source: course, Part 2, §E)*
+> - **Limit:** The empirical sign comes from a testbed where the answer is known; beyond human expertise there is no reference left. *(source: course, Part 2, §E; course, Part 2, closing)*
+>   **Workaround:** none known; say so.
+> - **Limit:** The judge is often a model: the limits of LLM judges apply. *(source: reading sheets, part B, trap 6)*
+>   **Workaround:** A sealed judge and a human audit (box "LLM judges", Part 6, §2). *(source: programme, part 3)*
+
+## 13. Élicitation non supervisée par cohérence — *Unsupervised elicitation by consistency*
+> **⚠ Limits and workarounds — Unsupervised elicitation by consistency** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** It finds the most salient feature, not necessarily the truth, and it is sensitive to the prompt. *(source: course, Part 6, §8; course, Part 4, CCS)*
+>   **Workaround:** Make the uncheckable checkable: implant a coherent false fact, check that it took, then read what it returns, with a copy holding a matched true fact as control. *(source: course, Part 2, §E, K52)*
+> - **Limit:** A coherent false belief is as coherent as a true one: consistency alone does not decide. *(source: course, Part 2, §E, K52)*
+>   **Workaround:** Anchor the method on verified answers, through easy-to-hard training, and say that without it the method returns only consistency. *(source: course, Part 2, §E, K52)*
+> - **Limit:** Failure can stay silent where in-distribution evaluation is impossible. *(source: course, Part 2, §E, K52)*
+>   **Workaround:** none known; say so.
+> - **Limit:** The implant filter and the method may read the same salient feature. *(source: course, Part 2, §E, K52)*
+>   **Workaround:** Downstream inference as the control, independent of the probe. *(source: course, Part 2, §E, K52)*
+
+## 14. Généralisation faible-vers-fort — *Weak-to-strong generalization*
+> **⚠ Limits and workarounds — Weak-to-strong generalization** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The strong model can imitate the weak one's errors while looking accurate. *(source: course, Part 2, §F; course, Part 2, §F, JB8)*
+>   **Workaround:** Two supervisors, one wrong in a fixed direction, the other at random, and a copy trained on true labels as the known case. *(source: course, Part 2, §F, JB8)*
+> - **Limit:** Recovering the gap can come from ideas that exploit the dataset's own structure. *(source: course, Part 2, §F, JB8)*
+>   **Workaround:** A task with known truth, read on the held-out items where the supervisor is wrong. *(source: course, Part 2, §F, JB8)*
+> - **Limit:** On a binary task, contradicting everywhere passes for recovery. *(source: course, Part 2, §F, JB8)*
+>   **Workaround:** Also read the strong model's agreement where the supervisor is right. *(source: course, Part 2, §F, JB8)*
+> - **Limit:** Automated successes are on tasks chosen to be checkable; fuzzier tasks remain out of reach. *(source: course, Part 7, F·40)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Against sandbagging, weak supervision holds only if training is indistinguishable from deployment. *(source: course, Part 7, F·26)*
+>   **Workaround:** none known; say so.
+
+## 15. Moniteurs du contrôle (moniteur de confiance, sondes en production, agrégation) — *Control monitors (trusted monitor, probes in production, aggregation)*
+> **⚠ Limits and workarounds — Control monitors (trusted monitor, probes in production, aggregation)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Systematic blind spots: on Opus 4.6, half of forty hand-designed attacks are never caught, and a targeted prompt fixes one blind spot while degrading another. *(source: course, Part 7, F·23)*
+>   **Workaround:** A set of specialized prompts or a costly second stage, and a threshold calibrated at 1% false positives on paired benign variants. *(source: course, Part 7, F·23)*
+> - **Limit:** The safety number depends on the red team's strength: an optimized scaffold takes the score from 0.87 to 0.41. *(source: course, Part 7, F·24)*
+>   **Workaround:** Say which red team the number assumes, at least one optimized component by component. *(source: course, Part 7, F·24)*
+> - **Limit:** Diffuse threats: each action is barely incriminating, and fragmented attacks pass per-instance monitors. *(source: course, Part 7, F·59 and F·56)*
+>   **Workaround:** Stateful monitors; for aggregating internal evidence, say "I haven't seen that combination measured", never "first". *(source: course, Part 7, F·56; course, Part 6, §6)*
+> - **Limit:** Recall depends on the base rate: a campaign recall reads only with the benign-traffic ratio. *(source: course, Part 6, §6)*
+>   **Workaround:** Report recall at a fixed false-positive rate, with the traffic ratio stated. *(source: course, Part 6, §6; course, Part 2, preamble)*
+> - **Limit:** A probe in production can fail silently: a probe's silence is not the model's. *(source: course, Part 3, §3, K70)*
+>   **Workaround:** Canaries (known positives slipped into traffic), a drift score, and a fresh sample judged every month. *(source: course, Part 3, §3, K70)*
+> - **Limit:** Iterating against your detectors selects for evasion. *(source: reading sheet 19)*
+>   **Workaround:** Sealed detectors, outside the loop: if they keep firing when the in-loop ones go quiet, evasion has been selected. *(source: reading sheet 19)*
+> - **Limit:** The threat model assumes the attacker's capabilities bounded and known, and rare events are hard to estimate. *(source: course, Part 4, AI Control)*
+>   **Workaround:** none known; say so.
+> - **Limit:** After evasion training, surviving catches say nothing if the training did not bite. *(source: course, Part 2, §G, K76)*
+>   **Workaround:** The training must first bring down the text monitor's catches, and the probe must have caught before. *(source: course, Part 2, §G, K76)*
+
+## 16. Red-teaming — *Red-teaming*
+> **⚠ Limits and workarounds — Red-teaming** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Without a fixed budget, "nothing found" only says you did not search enough. *(source: course, Part M, M7)*
+>   **Workaround:** A budget fixed in advance, reported with the result. *(source: course, Part M, M7)*
+> - **Limit:** A backdoor stays silent without its trigger: a black-box red team or a fixed set misses it. *(source: course, Part M, M5; course, Part 7, F·35)*
+>   **Workaround:** A clean twin, trained on audited data, and a deliberately planted backdoor as the known case. *(source: course, Part M, M4 and M9)*
+> - **Limit:** Measuring non-refusal instead of harm. *(source: course, Part 2, §H)*
+>   **Workaround:** The harm actually extracted, or differential harm, blind-scored. *(source: course, Part 2, §H; course, Part 2, §H, G1)*
+> - **Limit:** A game that separates nothing makes every ranking agree. *(source: course, Part 2, §H, G1)*
+>   **Workaround:** The bare model must show uplift, and a deliberately weakened filter more harm than its full version. *(source: course, Part 2, §H, G1)*
+> - **Limit:** A weak red team makes the defence look safe. *(source: course, Part 7, F·24)*
+>   **Workaround:** A red team optimized component by component, with each component ablated. *(source: course, Part 7, F·24)*
+> - **Limit:** Training on the attacks found can teach the model to recognize its trigger better. *(source: reading sheet 15)*
+>   **Workaround:** none known; say so.
+
+## 17. Classifieurs de sûreté (filtres) — *Safety classifiers (filters)*
+> **⚠ Limits and workarounds — Safety classifiers (filters)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Poisoning: about 32 examples suffice, whatever the dataset size, and some backdoors escaped fixed red-team test sets. *(source: course, Part 7, F·35; course, Part M, M9)*
+>   **Workaround:** A clean twin retrained on audited data, a second one to bound chance variation, and a deliberately poisoned filter as the known case. *(source: course, Part M, M4 and M9)*
+> - **Limit:** The clean twin gives only a wide bound, which flags less. *(source: course, Part M, M4)*
+>   **Workaround:** none known; say so.
+> - **Limit:** A canary set does not contain the attacker's unknown trigger. *(source: course, Part M, M5)*
+>   **Workaround:** Compare against the clean twin, facing a known backdoor. *(source: course, Part M, M9)*
+> - **Limit:** A bypass hunt counts bypasses; a refusal rate does not say what the filter takes away from the attacker. *(source: course, Part 2, §H, G1)*
+>   **Workaround:** Rank the filters twice, by refusal rate and by differential harm. *(source: course, Part 2, §H, G1)*
+> - **Limit:** Placed in training, a classifier gives the model an incentive to evade it. *(source: reading sheet 3)*
+>   **Workaround:** Modify it so as not to incentivize evasion, and never train against it. *(source: reading sheet 3; reading sheet 17)*
+
+## 18. Désapprentissage et ré-élicitation — *Unlearning and re-elicitation*
+> **⚠ Limits and workarounds — Unlearning and re-elicitation** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Masking is not removing: on pretraining information, recovery rates exceed 88%. *(source: course, Part 10, Deeb and Roger)*
+>   **Workaround:** Re-elicitation against a never-trained reference, at the same budget, with a model known to mask as the known case; state a bound, "not elicitable at this budget". *(source: course, Part M, M4 and M5; course, Part 2, §I)*
+> - **Limit:** A small fine-tune can teach: halves of related facts teach each other. *(source: course, Part M, M9)*
+>   **Workaround:** Facts built to be independent, and the never-trained reference. *(source: course, Part 2, §I; course, Part M, M9)*
+> - **Limit:** Not read is not absent: after unlearning, the logit lens reads nothing while removing one direction per layer restores 64.7%; probes fail on a model that can still be jailbroken. *(source: course, Part 10, Łucki et al.; course, Part 10, Deeb and Roger)*
+>   **Workaround:** Decide by an intervention, never by a reading. *(source: course, Part 10, Łucki et al.; reading sheets, part C)*
+> - **Limit:** Retraining on independent facts works only for low-leakage facts, not for capabilities. *(source: course, Part 10, Deeb and Roger)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Selective gradient masking is shown only on small models. *(source: course, Part 2, §I, JB10)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Activation-level unlearning "has yet to yield competitive results". *(source: reading sheet 5)*
+>   **Workaround:** none known; say so.
+
+## 19. Dictionnaires et SAE — *Dictionaries and SAEs*
+> **⚠ Limits and workarounds — Dictionaries and SAEs** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Reconstruction error: the open-source Goodfire SAE for Llama 3.1 8B leaves 86.8% of the variance in the residual, and the read signal lives there. *(source: repository README; course, Part 4, Monosemanticity)*
+>   **Workaround:** Read the signal on the reconstruction and on the residual; to decide between "features absent from the dictionary" and "dictionary too lossy", none known, say so. *(source: repository README)*
+> - **Limit:** Splicing in the dictionary costs performance: on GPT-2 small, 10% on task data, 40% on the full distribution. *(source: reading sheet 5)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Split features, dead features, dependence on the dictionary, and no ground truth on what a feature "means". *(source: course, Part 4, Monosemanticity; course, Part 5, topic 3)*
+>   **Workaround:** Validate feature by feature — ablation for necessity, isolated steering for sufficiency — with a known geometry as the known case, the counting manifold. *(source: course, Part 5, topic 3; course, Part 2, §D, K64)*
+> - **Limit:** Read-only, the SAE did not help predict counterfactuals better than the transcript. *(source: reading sheet 4; course, Part 7, F·30)*
+>   **Workaround:** The bar: beat the black box on edits that dissociate surface features from the internal variable. *(source: reading sheet 4)*
+> - **Limit:** Plausible explanations exist for arbitrary directions. *(source: reading sheet 5)*
+>   **Workaround:** Validate by prediction, better than baselines. *(source: reading sheet 5)*
+> - **Limit:** Two dictionaries can reconstruct equally well and carve differently. *(source: course, Part 2, §D, K64)*
+>   **Workaround:** Steer the features one at a time against random directions at matched damage, on a task with known geometry, with new seeds. *(source: course, Part 2, §D, K64)*
+
+## 20. Graphes d'attribution — *Attribution graphs*
+> **⚠ Limits and workarounds — Attribution graphs** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The graphs are partial and approximate, explain only a fraction of the computation and cost human labour. *(source: course, Part 4, Circuit Tracing)*
+>   **Workaround:** Treat them as a hypothesis, validated by perturbation. *(source: course, Part 7, F·9)*
+> - **Limit:** The graph is not the mechanism. *(source: course, Part 7, F·9)*
+>   **Workaround:** Require it to predict a counterfactual. *(source: course, Part 7, F·9; reading sheet 5)*
+> - **Limit:** Readable circuits can be unfaithful. *(source: course, Part 2, §D, K64)*
+>   **Workaround:** Compare, at matched damage, with random directions and with a known geometry. *(source: course, Part 2, §D, K64)*
+> - **Limit:** Claiming that no mechanism makes the model misbehave requires decomposition and description; formal verification has given bounds only on a one-layer transformer. *(source: reading sheet 5)*
+>   **Workaround:** Offer a restricted bound, not a claim of absence. *(source: reading sheet 5)*
+
+## 21. Autoencodeurs en langage naturel (NLA) — *Natural-language autoencoders (NLAs)*
+> **⚠ Limits and workarounds — Natural-language autoencoders (NLAs)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The NLA can confabulate: frequent hallucinations, no mechanistic grounding. *(source: reading sheet 18; reading sheet 3)*
+>   **Workaround:** Corroborate with independent methods, as in the Opus 4.6 audit, and keep the decoder separate. *(source: reading sheet 18)*
+> - **Limit:** A self-validating criterion: round-trip reconstruction; in the audit, the deployment controls were measured by the NLA itself (2 of 50 transcripts flagged). *(source: reading sheet 18)*
+>   **Workaround:** Measure the controls with an instrument independent of the NLA. *(source: reading sheet 18)*
+> - **Limit:** Its outputs describe without stating the relationship: "X causes Y" for 0.6% of claims, and no gain over the transcript in CHIVE. *(source: reading sheet 4)*
+>   **Workaround:** The bar: beat the black box on edits that dissociate surface features from the internal variable. *(source: reading sheet 4)*
+> - **Limit:** The measures of evaluation awareness — probe, NLA, follow-up question — are only weakly correlated. *(source: reading sheet 2; course, Part 3, §3, K70)*
+>   **Workaround:** Triangulate, and say which one grounded which number. *(source: course, Part 5, topic 4; course, Part M, M4)*
+> - **Limit:** Its labels serve as ground truth for other detectors: the J-lens detector is validated only against them. *(source: reading sheet 1; reading sheets, part B, trap 6)*
+>   **Workaround:** Validate against the real/test gap and on held-out cues. *(source: reading sheet 1)*
+> - **Limit:** Some information may not be verbalizable. *(source: reading sheet 18)*
+>   **Workaround:** none known; say so.
+
+## 22. Auto-rapport et introspection — *Self-report and introspection*
+> **⚠ Limits and workarounds — Self-report and introspection** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Report is not belief: Anthropic retracted inferring what Claude believed from what Claude said it believed. *(source: reading sheet 3; reading sheets, part B, trap 2)*
+>   **Workaround:** A reading independent of the report — out-of-context relabelling of outputs taken one by one —, saying what it does not separate: the false premise given by the setup. *(source: reading sheet 3)*
+> - **Limit:** Introspection is rare and unreliable: about 20% detection for Opus 4.1, and "zero false positives" holds only for 100 control trials. *(source: reading sheet 11)*
+>   **Workaround:** Ground truth through concept injection. *(source: reading sheet 11)*
+> - **Limit:** A model trained to report can learn to report what is expected; report or plausible reconstruction remains open for introspection adapters. *(source: reading sheet 11; course, Part 7, F·28)*
+>   **Workaround:** Modify the internal state, against a random direction at matched degradation, and see whether the report follows the probe or the prompt. *(source: reading sheet 11; course, Part 7, F·28)*
+> - **Limit:** Reported details can be embellished or confabulated, and the conditions are far from deployment. *(source: reading sheet 11)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Answers to follow-up questions depend on how they are phrased. *(source: reading sheet 3)*
+>   **Workaround:** none known; say so.
+> - **Limit:** CHIVE finds no evidence of a model's privileged access to its own behaviour. *(source: reading sheet 4)*
+>   **Workaround:** Judge a self-report by what it predicts about the next actions. *(source: reading sheet 6)*
+
+## 23. Juges LLM — *LLM judges*
+> **⚠ Limits and workarounds — LLM judges** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** A judge has systematic errors: under social framing, the judge model's score moves toward a destination. *(source: course, Part 6, §2)*
+>   **Workaround:** A sealed judge (prompt, model and temperature frozen), a human audit of about 200 stratified items, agreement reported. *(source: programme, part 3)*
+> - **Limit:** A truncated window misleads: through it, a softened negative verdict read as a held position. *(source: repository README)*
+>   **Workaround:** Judge the whole answer, and keep the full text. *(source: repository README; course, Part 6, §6)*
+> - **Limit:** Moderate inter-judge agreement (κ from 0.56 to 0.66), no human-rated subset, and the judge does not see the evaluated text. *(source: repository README)*
+>   **Workaround:** A stratified human audit, which bounds judge error. *(source: programme, part 3)*
+> - **Limit:** A judge that reads the reasoning gets persuaded: the chain-of-thought monitor would have flagged about 1% of actions, against about 50% without it. *(source: reading sheet 3; handover, §5.1)*
+>   **Workaround:** Judge the actions, their outputs and the messages, not the text before the action; a high-recall filter then an arbiter; a calibration set with known truth and a persuasion test. *(source: handover, §5.1)*
+> - **Limit:** A judge who knows the arm or the framing scores the arm's name. *(source: course, Part M, M4)*
+>   **Workaround:** Blind scoring: the judge sees neither the arm nor the evaluation cue. *(source: course, Part M, M4; handover, §5.1)*
+> - **Limit:** A training judge gets exploited. *(source: programme, part 8)*
+>   **Workaround:** A training judge distinct from the sealed evaluation judge; watch length and flattery patterns. *(source: programme, part 8)*
+> - **Limit:** Judge labels not checked by hand: about 25% of labels revised in Hopkins and Khullar; CHIVE's go through a classifier not validated against humans. *(source: reading sheet 7; course, Part 7, F·30)*
+>   **Workaround:** Say "revised", not "flipped", and bound the error with a human audit. *(source: reading sheet 7; programme, part 3)*
+> - **Limit:** A model that almost audits itself: for Fable 5, the investigator is Mythos Preview. *(source: reading sheet 2; reading sheets, part B, trap 6)*
+>   **Workaround:** none known; say so.
+
+## 24. Détecteurs fine-tunés (détecteurs de mensonge) — *Fine-tuned detectors (lie detectors)*
+> **⚠ Limits and workarounds — Fine-tuned detectors (lie detectors)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** Out of distribution, AUROC plateaus at 0.70-0.75 and barely beats a prompt. *(source: reading sheet 7)*
+>   **Workaround:** Cross-validation by held-out lie types; beat the prompt, and publish otherwise. *(source: reading sheet 7; course, Part 7, F·29)*
+> - **Limit:** These are not probes: the model is LoRA-fine-tuned to judge its own transcript. *(source: reading sheet 7; explanation of 2 October, §2)*
+>   **Workaround:** Do not transfer their numbers to probes; for a probe, the test is causal, on held-out types, at matched degradation. *(source: reading sheet 7)*
+> - **Limit:** Noisy labels: about 25% revised at the cleaning pass, after a GPT-5 judge. *(source: reading sheet 7)*
+>   **Workaround:** Say "revised", and bound the error with a human audit. *(source: reading sheet 7; programme, part 3)*
+> - **Limit:** They score only assertions: a model can hide a lot without asserting anything false. *(source: course, Part 7, F·29)*
+>   **Workaround:** none known; say so.
+> - **Limit:** What they learned remains a hypothesis: "lying isn't one thing", and three rival readings remain. *(source: reading sheet 7)*
+>   **Workaround:** Test the rival readings on held-out types. *(source: reading sheet 7)*
+> - **Limit:** LoRA, five epochs, Gemma and Qwen only, controlled settings: nothing on deception in deployment. *(source: reading sheet 7)*
+>   **Workaround:** none known; say so.
+
+## 25. Patching (patch d'activations, patch de chemins, Patchscopes) — *Patching (activation patching, path patching, Patchscopes)*
+> **⚠ Limits and workarounds — Patching (activation patching, path patching, Patchscopes)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The computation after the patch can add information: a successful decoding does not prove the representation carries the information. *(source: course, Part 10, Patchscopes)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Patching the full state is a ceiling, not an explanation: it says how much goes through these sites, not through which structure. *(source: course, Part 6, §2; programme, part 8)*
+>   **Workaround:** The causal partition: report the share of the named direction against that of the full state at the same sites. *(source: course, Part 6, §2; programme, part 8)*
+> - **Limit:** Where it is read is not where it is caused: the heads most aligned with the read direction and those with the largest path-patching effect do not overlap. *(source: repository README)*
+>   **Workaround:** Choose intervention sites by their measured causal effect, not by alignment with the read direction. *(source: repository README)*
+> - **Limit:** Small prompt sets: in your repository, part of the path patching covers only 5 texts. *(source: repository README)*
+>   **Workaround:** none known; say so.
+> - **Limit:** A swap or patch that fails without a known case says nothing. *(source: course, Part 6, §8)*
+>   **Workaround:** First validate the swap on a known case, the countries of the workspace paper. *(source: course, Part 6, §8; course, Part 2, C bis)*
+> - **Limit:** The choice of target prompt and placeholder contamination distort the reading. *(source: course, Part 10, Patchscopes)*
+>   **Workaround:** none known; say so.
+
+## 26. Oracles d'activation (décodeurs d'activations) — *Activation oracles (activation decoders)*
+> **⚠ Limits and workarounds — Activation oracles (activation decoders)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** No ground truth for latents: the decoder may hallucinate. *(source: course, Part 10, LatentQA)*
+>   **Workaround:** Test it on fine-tuned variants with known behaviour, never seen before. *(source: reading sheet 18)*
+> - **Limit:** It can confabulate plausible guesses, often wrong and poorly calibrated. *(source: reading sheet 18)*
+>   **Workaround:** Corroborate with an independent method, and keep the decoder separate. *(source: reading sheet 18)*
+> - **Limit:** Read-only, no gain over the transcript for predicting counterfactuals. *(source: reading sheet 4)*
+>   **Workaround:** The bar: beat the black box on edits that dissociate surface features from the internal variable. *(source: reading sheet 4)*
+> - **Limit:** A fine-tuned copy does the reading, not the queried model: this is not a self-report. *(source: course, Part 10, LatentQA)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Cost, small datasets, simplified benchmarks. *(source: reading sheet 18)*
+>   **Workaround:** none known; say so.
+
+## 27. Chaîne de pensée comme moniteur (et conscience verbalisée) — *Chain of thought as a monitor (and verbalized awareness)*
+> **⚠ Limits and workarounds — Chain of thought as a monitor (and verbalized awareness)** *(v3.6, 2 October 2026)*
+>
+> - **Limit:** The chain often leaves out what decided: the decisive cue is mentioned in only 25% (Claude 3.7 Sonnet) and 39% (DeepSeek R1) of cases; hacks exploited in over 99% of cases are verbalized in under 2%. *(source: reading sheet 17)*
+>   **Workaround:** Measure monitorability as a ratio — the verbalized against the internal or the actions —, through graded perturbation of the chain. *(source: reading sheet 17; course, Part 11, answer 43)*
+> - **Limit:** The reasoning can persuade the monitor: about 1% of actions flagged with the chain, about 50% without (one monitor, one incident). *(source: reading sheet 3)*
+>   **Workaround:** Judge what the model does, not what it says about it. *(source: handover, §5.1)*
+> - **Limit:** Training against a chain-of-thought monitor cleans the chain, and the behaviour continues. *(source: reading sheet 17)*
+>   **Workaround:** Never train against the monitor; keep it out of the gradient, as a filter. *(source: reading sheet 17; reading sheets, part C)*
+> - **Limit:** Dangerous tasks may need little reasoning, and future models could obfuscate or reason without writing it. *(source: reading sheet 17)*
+>   **Workaround:** An internal channel as a complement, and never the chain alone for a high-stakes decision; no complete workaround known, say so. *(source: course, Part 5, topic 7; course, Part 11, answer 43)*
+> - **Limit:** Verbalizing is not being aware: steering suppresses verbalized awareness, not all of the unverbalized kind, and random directions also lower verbalization. *(source: reading sheet 10; reading sheet 2; programme, part 8)*
+>   **Workaround:** A behavioural main criterion and a latent probe; verbalization is never proof. *(source: programme, part 8)*
+> - **Limit:** Training to verbalize would multiply verbalization by 2.4 to 2.9 without changing latent awareness or conduct. *(source: prior-art report 4 of 2 October — report, abstract only)*
+>   **Workaround:** none known; say so.
+> - **Limit:** Not verbalizing is not hidden reasoning. *(source: reading sheet 17)*
+>   **Workaround:** Say "not verbalized", never "hidden reasoning". *(source: reading sheet 17)*
+

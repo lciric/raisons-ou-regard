@@ -1,0 +1,432 @@
+## 1. Contrôles aléatoires (direction aléatoire de même norme, sous-espaces aléatoires de même rang) — *Random controls (matched-norm random direction, random subspaces of the same rank)*
+> **⚠ Limites et parades — Contrôles aléatoires (direction aléatoire de même norme, sous-espaces aléatoires de même rang)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Elle n'écarte qu'une lecture, « n'importe quelle poussée de cette taille fait autant » : c'est le nul de spécificité, pas un contrôle du dommage, puisqu'à norme égale deux directions n'abîment pas autant le modèle. *(source : cours, volet M, M4 ; fiche 2)*
+>   **Parade :** Comparer les bras à dégradation appariée, ou tracer l'effet contre le dommage mesuré (encadré « Dégradation appariée et dose-réponse », plus bas dans M4). *(source : cours, volet M, M4 ; programme, partie 7)*
+> - **Limite :** Un tirage aléatoire seul est un contrôle faible : dans la carte système d'Opus 4.8, des paires au contenu arbitraire bougent le comportement dans le même sens, plus faiblement. *(source : fiche 2 ; programme, partie 3)*
+>   **Parade :** Plusieurs familles de témoins, au même rang et à dégradation appariée — des sous-espaces aléatoires (au moins vingt tirages), des contrastes sans rapport, des directions de forte variance hors de l'espace étudié, un simple prompt — et rapporter la médiane et le 95e centile des tirages. *(source : programme, parties 3 et 7 ; fiche 2)*
+> - **Limite :** Quand le trait est saillant, le hasard sépare déjà : sur les sleeper agents, la meilleure de 1 000 directions aléatoires atteint 95,3 %. *(source : fiche 15)*
+>   **Parade :** Situer l'instrument dans la distribution des directions aléatoires, jamais contre un seul tirage ; et ne pas lire un succès sur organisme implanté comme une preuve sur le cas naturel. *(source : programme, partie 7 ; cours, volet M, M5)*
+> - **Limite :** L'aléatoire apparié en norme et l'aléatoire apparié en covariance sont deux contrôles différents ; leur confusion a coûté une journée de corrections, et le premier n'est pas au registre de ton résultat causal. *(source : cours, volet 6, §3)*
+>   **Parade :** Dire lequel, et lequel a fondé quel chiffre ; préférer l'appariement en covariance, parce qu'une direction tirée là où le modèle a de la variance fait parfois beaucoup sans rien vouloir dire. *(source : cours, volet M, M4 ; cours, volet 11, réponse A7)*
+
+## 2. Dégradation appariée et dose-réponse — *Matched degradation and dose-response*
+> **⚠ Limites et parades — Dégradation appariée et dose-réponse** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Elle ne vaut que sur le composite choisi : un dommage que le composite ne mesure pas reste possible — retirer le concept « test » peut abîmer le code ou la fiction. *(source : programme, parties 3 et 8)*
+>   **Parade :** Bâtir le composite d'après les dégâts attendus du concept (tests unitaires de code pour « test », cohérence de fiction), avec plusieurs mesures — exactitude tenue à part, cohérence jugée, perplexité — et des tolérances fixées au pré-enregistrement. *(source : programme, parties 3, 7 et 8)*
+> - **Limite :** Certains réglages ne s'apparient pas : un témoin peut n'atteindre la même dégradation à aucune force. *(source : programme, partie 7)*
+>   **Parade :** Ne pas comparer à ce réglage, le dire, et rapporter des courbes de l'effet contre la dégradation plutôt qu'un point. *(source : programme, partie 7 ; cours, volet M, M4)*
+> - **Limite :** Écarter le dommage n'établit pas la spécificité : à force 0,01×, la carte de Fable 5 rend la dégradation négligeable, mais ses témoins restent « comparable or smaller » sur l'axe du désalignement. *(source : fiche 2)*
+>   **Parade :** Une courbe dose-réponse contre plusieurs témoins : la courbe du concept doit passer au-dessus à chaque niveau de dommage. *(source : cours, volet 2, §C, K47 ; fiche 2)*
+> - **Limite :** À dégradation égale, l'effet peut encore venir d'un corrélat ou d'un concept voisin : ton ablation de rang trois déplaçait la valence, pas le concept. *(source : cours, volet M, M4 ; cours, volet 6, §2)*
+>   **Parade :** Le témoin sans pression et la direction d'un concept rival, eux aussi à dégradation appariée. *(source : cours, volet M, M4)*
+> - **Limite :** La cohérence jugée passe par un juge, avec ses propres biais. *(source : fiches, partie B, piège 6)*
+>   **Parade :** Un juge scellé et un audit humain stratifié (encadré « Juges LLM », volet 6, §2). *(source : programme, partie 3)*
+> - **Limite :** Les jugements de dégradation se contredisent d'une carte à l'autre : force 0,1× « roughly the maximum » sans dégénérescence pour Mythos Preview, dégradation de chaque direction à 0,10× pour Opus 4.8. *(source : fiches, partie B)*
+>   **Parade :** Mesurer la dégradation dans son propre dispositif, jamais la reprendre d'un autre : le dommage se mesure, il ne se suppose pas. *(source : cours, volet M, M4)*
+
+## 3. Jeu tenu à part — *Held-out set*
+> **⚠ Limites et parades — Jeu tenu à part** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Tenir à part des paraphrases au lieu de familles ne mesure qu'une généralisation proche. *(source : programme, partie 3 ; explication du 2 octobre, §3)*
+>   **Parade :** Séparer par familles entières, et lire trois distances : instances nouvelles, familles tenues à part en un tour, familles tenues à part en agentique à plusieurs tours, qui est le critère principal. *(source : programme, partie 3)*
+> - **Limite :** Une famille tenue à part peut fuir dans l'entraînement. *(source : programme, partie 8)*
+>   **Parade :** Contrôler les n-grammes des familles tenues à part dans les données d'entraînement, et séparer par famille. *(source : programme, parties 3 et 8)*
+> - **Limite :** Choisir la couche, le seuil ou le prédicteur sur le jeu de test le contamine ; extraire et évaluer sur les mêmes items est circulaire. *(source : cours, volet 2, C bis ; README du dépôt)*
+>   **Parade :** Des jeux disjoints, gelés d'avance : un pour extraire, un pour valider et choisir la couche, un pour cadrer les évaluations, un pour la sonde neuve après l'entraînement. *(source : programme, partie 3 ; cours, volet 2, C bis)*
+> - **Limite :** Un jeu tenu à part peut ne pas représenter le réel : des pots de miel tenus à part ne sont peut-être pas représentatifs. *(source : fiche 12)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Entraîner ou itérer sur l'évaluation la vide : la métrique baisse, le problème reste. *(source : fiche 12)*
+>   **Parade :** Garder des métriques d'audit tenues à part, et des détecteurs scellés qui n'entrent jamais dans la décision. *(source : fiche 12 ; fiche 19)*
+
+## 4. Cas connu — *Known case*
+> **⚠ Limites et parades — Cas connu** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Nécessaire, pas suffisant : une intention implantée est peut-être plus saillante qu'une intention naturelle — sur les sleeper agents, la meilleure de 1 000 directions aléatoires atteint déjà 95,3 %. *(source : passation, §5.2 ; fiche 15)*
+>   **Parade :** En partie : deux fabrications différentes du même comportement, et l'organisme d'une autre équipe ; pour conclure sur le cas naturel, aucune parade connue — un succès borne l'instrument, on le dit. *(source : cours, volet 6, §8 ; cours, volet 2, §A, K71)*
+> - **Limite :** Le cas connu ne vaut qu'au même réglage : validé à une autre dose ou à un autre seuil, il laisse ouvert qu'un nul vienne d'un rang trop bas ou d'un seuil trop strict. *(source : fiche 7 ; contre-lecture des fiches ; cours, volet 2, §A, K71)*
+>   **Parade :** Valider le cas connu avec le même instrument, au même rang, à la même dose et au même seuil que la mesure. *(source : cours, volet M, M5 ; fiche 7)*
+> - **Limite :** Validé sur les formulations de l'entraînement, le cas connu peut ne mesurer que la reconnaissance de ces formulations. *(source : explication du 2 octobre, §3 ; programme, partie 3)*
+>   **Parade :** Valider le cas connu sur des formulations tenues à part. *(source : programme, partie 3)*
+> - **Limite :** Certains cas connus sont faibles : pour « je suis noté », le cas positif n'est fait que d'habitudes de présentation. *(source : programme, parties 3 et 8)*
+>   **Parade :** Le déclarer, et retirer le bras qui en dépend si sa porte ne passe pas. *(source : programme, partie 8)*
+> - **Limite :** Un nul sans puissance connue ne dit presque rien, et une puissance élevée ne remplace pas un cas connu. *(source : cours, volet M, M5)*
+>   **Parade :** Dire une borne, avec son budget et sa puissance, jamais une absence. *(source : cours, volet M, M5)*
+> - **Limite :** Chaque instrument a son cas connu : celui d'une sonde ne vaut pas pour l'angle mort du J-lens. *(source : passation, §5.2)*
+>   **Parade :** Trois cas connus distincts : un organisme conditionné à l'évaluation, un organisme à concept planté, un organisme entraîné à l'action par réflexe. *(source : explication du 2 octobre, §3 ; passation, §5.2 ; programme, partie 3)*
+
+## 5. Organismes modèles — *Model organisms*
+> **⚠ Limites et parades — Organismes modèles** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Construit n'est pas naturel : la saillance peut venir de l'insertion, et l'alignement trompeur instrumental n'a été trouvé dans aucun système réel. *(source : fiche 15 ; fiches, partie B, piège 5)*
+>   **Parade :** Conclure sur l'instrument seulement ; conclure sur le fond avec les modèles sans organisme. *(source : programme, partie 8)*
+> - **Limite :** L'organisme peut être artificiellement facile : objectif décrit en clair dans les documents synthétiques, artefacts du pipeline. *(source : fiche 16)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** L'implant peut rater : le fine-tuning sur documents synthétiques implante parfois, pas toujours, une vraie croyance. *(source : cours, volet 2, §E, K52)*
+>   **Parade :** Vérifier chaque copie par son comportement, et filtrer par l'inférence en aval et une sonde. *(source : cours, volet 2, §A, K71 ; cours, volet 2, §E, K52)*
+> - **Limite :** Ce que l'interprétabilité voit dans un organisme dépend de sa méthode d'entraînement. *(source : rapport d'antériorité 5 du 2 octobre, « The Model Organism Lottery », résumé lu — rapport)*
+>   **Parade :** Planter le même comportement par plusieurs recettes (consigne, documents synthétiques, démonstrations), en tenir une à part, et ajouter l'organisme d'une autre équipe. *(source : cours, volet 2, §A, K71)*
+> - **Limite :** Un comportement fourni au modèle confond la généralisation : dans le papier sur le désalignement émergent, les triches étaient d'abord enseignées. *(source : fiche 13)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Une réplication sur un modèle récent peut mesurer la mémorisation du scénario : les transcripts d'Alignment Faking ont été réinclus dans l'entraînement. *(source : fiches, partie C)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** La conscience d'évaluation native d'un modèle de 8B peut être trop faible pour l'étudier. *(source : programme, partie 8)*
+>   **Parade :** L'organisme en donne le cas connu, et une extension vers environ 32B est prévue. *(source : programme, partie 8)*
+
+## 6. Évaluations comportementales et pots de miel — *Behavioural evaluations and honeypots*
+> **⚠ Limites et parades — Évaluations comportementales et pots de miel** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Le modèle peut remarquer le test et se retenir : la triche discrète passe de 4,0 % à 18,9 % quand on dit qu'un classifieur lira le transcript. *(source : fiche 13 ; cours, volet 2, §B)*
+>   **Parade :** Deux versions d'un environnement, tirées au hasard, qui ne diffèrent que par des indices de réalisme notés par un discriminateur, et un organisme dressé à se cacher comme cas connu. *(source : cours, volet 2, §B, K63)*
+> - **Limite :** La conscience verbalisée mesure mal le réalisme : elle rate la conscience non verbalisée. *(source : cours, volet 7, F·25)*
+>   **Parade :** Le taux auquel un juge, devant la paire, prend l'audit pour le réel, et de vraies ressources de déploiement pour l'auditeur. *(source : cours, volet 7, F·25)*
+> - **Limite :** Sous-éliciter fait paraître le modèle plus sûr, et un petit fine-tuning peut créer la capacité qu'on croit éliciter. *(source : cours, volet 2, §B ; cours, volet 2, §B, K63)*
+>   **Parade :** Une élicitation à budget fixé d'avance, rapportée comme une borne ; un gain ne compte qu'au-delà du même budget sur un modèle qui n'a pas la capacité. *(source : cours, volet M, M7 ; cours, volet 2, §B, K63)*
+> - **Limite :** Le score global peut tromper : le désalignement est « high-dimensional », et un audit global qui passe de 4,34 à 4,20 rate des hausses ciblées. *(source : fiche 13)*
+>   **Parade :** Lire les dimensions une à une, pas seulement le score global. *(source : fiche 13)*
+> - **Limite :** Entraîner sur l'évaluation corrige « narrowly … the symptom ». *(source : fiche 12)*
+>   **Parade :** Des métriques d'audit tenues à part, jamais entraînées. *(source : fiche 12)*
+> - **Limite :** Dans une simulation, « c'est faux » est vrai : un pot de miel ne sépare pas un modèle qui le lit comme factice d'un modèle qui se retient. *(source : fiche 3)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Le non-refus n'est pas le préjudice. *(source : cours, volet 2, §B et §H)*
+>   **Parade :** Le préjudice différentiel, noté à l'aveugle, avec un bras de référence réaliste. *(source : cours, volet 2, §H, G1 ; cours, volet M, M4)*
+
+## 7. Sondes d'activation — *Activation probes*
+> **⚠ Limites et parades — Sondes d'activation** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Une sonde trouve des corrélations : lire n'est pas utiliser — la direction que lit ta sonde fait moins de 1 % du travail causal, l'état complet aux mêmes sites 68 %. *(source : fiche 5 ; cours, volet 6, §2)*
+>   **Parade :** La corrélation suffit pour signaler ; pour croire une absence ou intervenir, le test causal : piloter le long de la direction contre des directions aléatoires de même norme (nul de spécificité), puis contre des témoins à dégradation appariée (dommage). *(source : cours, volet M, M8 ; passation, §5.2)*
+> - **Limite :** Une AUROC en distribution ne prouve rien ; c'est l'écart avec l'AUROC sur des types tenus à part qui se mesure. *(source : fiches, partie B, piège 1 ; fiche 7)*
+>   **Parade :** Tenir à part des familles entières, jamais des paraphrases, et des formats, d'un tour à l'agentique à plusieurs tours. *(source : explication du 2 octobre, §3 ; programme, partie 3)*
+> - **Limite :** La sonde peut apprendre la façon dont on a fabriqué l'organisme, ou lire « je suis surveillé » et le contexte de test au lieu de l'intention. *(source : cours, volet 6, §8 ; cours, volet 3, §4, K67)*
+>   **Parade :** Deux fabrications du même comportement (instruction cachée, fine-tuning léger), un organisme conscient mais honnête, et des transcripts honnêtes rédigés comme des tests. *(source : cours, volet 6, §8 ; cours, volet 3, §4, K67)*
+> - **Limite :** Elle peut lire le texte écrit plutôt qu'une représentation. *(source : programme, partie 8)*
+>   **Parade :** Lire au premier jeton de la réponse, avant toute raison écrite, ou au jeton d'action avec des raisons neutres de même longueur préremplies. *(source : programme, parties 3 et 8)*
+> - **Limite :** Après un entraînement, une sonde calibrée ailleurs lit autrement : après RL, des sondes neuves hors domaine se dégradent, alors qu'une sonde neuve dans le domaine reste quasi parfaite. *(source : rapport d'antériorité 3 du 2 octobre, The Obfuscation Atlas — rapport ; passation, §5.2)*
+>   **Parade :** Une sonde par bras d'entraînement et une sonde neuve après l'entraînement, sur un jeu d'indices disjoint ; les sondes restent une mesure séparée, jamais dans l'étiquette principale. *(source : passation, §5.2 ; programme, parties 3 et 8)*
+> - **Limite :** Une sonde « évaluation contre déploiement » garderait son score global sous RL mais basculerait sur les cas limites, et la réentraîner ne récupère presque rien. *(source : rapport d'antériorité 4 du 2 octobre — rapport, résumé seul, à vérifier)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Sur l'honnêteté, les sondes de vérité ont fait moins bien qu'un simple prompt ; au seuil d'un moniteur, des sondes rappellent 43 % à 1 % de faux positifs, contre 55 % pour le meilleur moniteur LLM. *(source : cours, volet 7, F·62 ; cours, volet 7, F·51)*
+>   **Parade :** Battre une baseline boîte noire ou un prompt à coût égal, rapporter le rappel à 1 % de faux positifs, et publier le résultat si la sonde ne bat pas le prompt. *(source : cours, volet 5, sujet 1 ; cours, volet 7, F·50 ; cours, volet 7, F·29)*
+> - **Limite :** Des métriques d'ajustement se lisent comme une généralisation : les métriques de sonde de ton dépôt étaient d'ajustement, et le ρ de 0,684 peut l'être aussi. *(source : README du dépôt)*
+>   **Parade :** Scorer des items exclus de l'entraînement de la sonde, et extraire sur un jeu disjoint. *(source : README du dépôt)*
+> - **Limite :** Des paires contrastives peuvent porter un style, et des négatifs synthétiques n'apprendre qu'un indice de surface. *(source : cours, volet M, M4 ; cours, volet 2, §C)*
+>   **Parade :** Un classifieur de la seule surface doit rester au hasard entre les côtés des paires ; tirer les négatifs des générations réelles du modèle. *(source : cours, volet M, M4 ; cours, volet 2, §C)*
+> - **Limite :** Un silence de sonde ne départage pas « pas d'intention » et « sonde aveugle ». *(source : passation, §5.2 ; fiches, partie B, piège 3)*
+>   **Parade :** Un organisme où l'on a installé l'intention soi-même : on y mesure sensibilité et fausses alarmes, et le silence ailleurs devient une borne. *(source : passation, §5.2)*
+
+## 8. Pilotage par vecteurs (dont vecteurs de persona) — *Steering vectors (including persona vectors)*
+> **⚠ Limites et parades — Pilotage par vecteurs (dont vecteurs de persona)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** « La direction bouge le comportement » n'est pas « le concept cause le comportement » : chaque direction pilotée dégrade la sortie, et des vecteurs arbitraires bougent aussi le comportement. *(source : fiche 2 ; fiches, partie B, piège 4)*
+>   **Parade :** La direction aléatoire de même norme n'est que le nul de spécificité ; le dommage ne s'écarte qu'à dégradation appariée, par une courbe dose-réponse contre plusieurs témoins. *(source : cours, volet M, M4 ; cours, volet 2, §C, K47)*
+> - **Limite :** Un nul de pilotage peut venir d'un rang trop bas, si le concept est réparti. *(source : fiche 7 ; contre-lecture des fiches)*
+>   **Parade :** Un cas connu au même réglage — un vecteur de pays, qui s'échange dans l'article sur l'espace de travail — et un balayage de rang dans une même expérience, sur des sous-espaces emboîtés. *(source : cours, volet 2, §C, K47 ; cours, volet 6, §6)*
+> - **Limite :** L'addition d'activations contrastives peut forcer un artefact de polarité oui/non au lieu de retirer la complaisance. *(source : README du dépôt)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** L'effet dépend du jeu de données et de la couche : « highly dataset-dependent ». *(source : fiche 2 ; cours, volet 7, F·7)*
+>   **Parade :** Rapporter jeu de données par jeu de données, et choisir la couche sur un jeu de validation, jamais sur le test. *(source : programme, partie 3)*
+> - **Limite :** Le modèle peut détecter le pilotage. *(source : programme, partie 8 (travail cité, non ouvert))*
+>   **Parade :** La même machinerie d'intervention dans tous les bras, témoins compris. *(source : programme, partie 8)*
+> - **Limite :** Le pilotage peut faire taire la verbalisation sans toucher la représentation latente ; des directions aléatoires la font baisser aussi. *(source : programme, partie 8 ; fiche 2)*
+>   **Parade :** Un critère principal comportemental et une sonde latente comme contrôle ; la verbalisation n'est jamais une preuve d'inhibition. *(source : programme, partie 8)*
+> - **Limite :** Vecteurs de persona : le trait se nomme d'avance, les directions sont grossières, le lien entre déplacement et trait n'est que corrélationnel, l'évaluation est légère. *(source : fiche 8)*
+>   **Parade :** Pour la causalité, le test à dégradation appariée ; pour l'extraction supervisée, aucune parade connue, on le dit. *(source : cours, volet M, M4 ; fiche 8)*
+> - **Limite :** Piloter loin d'une persona pendant l'entraînement aurait doublé la diffusion du désalignement, de 24 % à environ 50 %. *(source : rapport d'antériorité 3 du 2 octobre — rapport, non vérifié)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 9. J-lens et espace de travail — *The J-lens and the workspace*
+> **⚠ Limites et parades — J-lens et espace de travail** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Le lens ne capture l'espace de travail que « only approximately and incompletely », et seulement pour des concepts d'un seul token. *(source : fiche 1 ; cours, volet 2, C bis)*
+>   **Parade :** Lire un concept de plusieurs tokens sur un jeu de tokens, ou par l'extension multi-token de l'annexe, et dire laquelle. *(source : cours, volet 2, C bis ; programme, partie 3)*
+> - **Limite :** Ce qui passe sous l'espace de travail lui échappe : « A sufficiently practiced misaligned behavior might do likewise ». *(source : fiche 1 ; passation, §5.2)*
+>   **Parade :** Une étiquette qui ne dépend d'aucune lecture interne ; trois sondes (flux entier, part dans l'espace de travail, complément) ; un organisme entraîné à l'action par réflexe, sur des exemples courts sans raisonnement, comme cas connu de l'angle mort ; la propension rééchantillonnée depuis chaque point de décision ; un crosscoder entre la base et chaque bras. *(source : passation, §5.2)*
+> - **Limite :** Il n'a été montré que sur Claude ; un rapport trouve, sur des modèles ouverts, des échanges qui ne font basculer la réponse que dans 6,3 à 11,1 % des cas, contre 54 à 70 % chez Anthropic. *(source : fiche 1 ; rapport d'antériorité 5 du 2 octobre — rapport, lu par résumé, non vérifié)*
+>   **Parade :** Une porte : reproduire d'abord l'échange d'un concept d'un seul token sur le modèle ouvert ; sinon un tuned lens déclaré comme proxy, et la thèse n'est pas testée au sens du papier. *(source : programme, parties 3 et 8 ; cours, volet 2, C bis)*
+> - **Limite :** Présence n'est pas cause : le langage est présent dans le lens sur quatre tâches, causal sur deux ; et la part J-space d'une direction est petite même quand elle porte l'effet. *(source : fiche 1 ; cours, volet 2, C bis)*
+>   **Parade :** Comparer l'échange de la seule part J-space à celui du seul reste, une fois l'échange validé sur les pays. *(source : cours, volet 2, C bis ; cours, volet 6, §8)*
+> - **Limite :** La chute de la verbalisation après l'ablation ne montre pas que la conscience d'évaluation a été retirée. *(source : fiche 1 ; contre-lecture des fiches)*
+>   **Parade :** Un critère comportemental et une sonde latente, avec un bras de directions neutres du lens à dégradation appariée. *(source : programme, partie 8 ; cours, volet 2, C bis, K72)*
+> - **Limite :** Le détecteur de conscience d'évaluation tiré du lens n'est validé que contre des étiquettes de NLA, jamais contre l'écart réel/test ni sur des indices tenus à part. *(source : fiche 1)*
+>   **Parade :** Le valider contre l'écart réel/test et sur des indices tenus à part. *(source : fiche 1)*
+> - **Limite :** Le lens dépend des poids ; la charge peut être lue sur le sous-espace même que le retrait a trouvé ; et « charge » désigne trois grandeurs différentes selon les textes. *(source : cours, volet 2, C bis ; cours, volet 6, §6)*
+>   **Parade :** Recalculer le lens après tout entraînement ; des jeux d'items disjoints ; geler d'abord le prédicteur principal et dire lequel. *(source : cours, volet 2, C bis ; cours, volet 6, §6)*
+
+## 10. Ablation et projection (directions, sous-espaces) — *Ablation and projection (directions, subspaces)*
+> **⚠ Limites et parades — Ablation et projection (directions, sous-espaces)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Retirer une direction abîme aussi le modèle : un effet d'ablation dit la nécessité, pas la spécificité. *(source : cours, volet M, M4)*
+>   **Parade :** Des sous-espaces aléatoires de même rang, comparés à dégradation appariée, par retrait partiel ou par une courbe de l'effet contre la dégradation. *(source : cours, volet 2, C bis ; programme, partie 7)*
+> - **Limite :** Une ablation peut déplacer un corrélat : ton sous-espace de rang trois adoucit les verdicts négatifs avec ou sans pression. *(source : cours, volet 6, §2 ; README du dépôt)*
+>   **Parade :** Le bras sans pression ; et retirer chaque direction seule, avec et sans pression. *(source : cours, volet M, M4 ; cours, volet 6, §6)*
+> - **Limite :** Un effet obtenu sur des générations stockées, jugées à travers une fenêtre tronquée, peut ne pas revenir sur des générations fraîches. *(source : README du dépôt ; cours, volet 6, §2)*
+>   **Parade :** Des générations fraîches, à graines appariées, gardées en texte complet et jugées sur la réponse entière. *(source : cours, volet 6, §6 ; cours, volet 11, réponse A7)*
+> - **Limite :** Circularité : le sous-espace est extrait sur les items qui servent ensuite à l'évaluer. *(source : README du dépôt)*
+>   **Parade :** Extraire sur un jeu d'items disjoint. *(source : README du dépôt ; cours, volet 2, C bis)*
+> - **Limite :** Un contraste rang un contre rang trois tiré d'expériences séparées ne dit pas la courbe, et le seul balayage fait dans une même expérience n'est pas monotone. *(source : cours, volet 6, §2)*
+>   **Parade :** Un balayage de rang dans une même expérience, sur des sous-espaces emboîtés, monotonie vérifiée et non supposée. *(source : cours, volet 6, §6 ; cours, volet 2, C bis)*
+> - **Limite :** Un mécanisme à une direction peut être enfoui sous des directions de plus forte variance, et passer pour réparti. *(source : cours, volet 6, §6)*
+>   **Parade :** Deux ordres de retrait, par variance et par effet causal. *(source : cours, volet 6, §6)*
+
+## 11. Crosscoders et comparaison de modèles — *Crosscoders and model diffing*
+> **⚠ Limites et parades — Crosscoders et comparaison de modèles** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Les features trouvées varient d'un entraînement à l'autre. *(source : cours, volet 2, §D, K64)*
+>   **Parade :** Plusieurs graines : un gagnant de hasard changerait d'une graine à l'autre. *(source : cours, volet 2, §D, K64)*
+> - **Limite :** Un dictionnaire décompose des activations, pas des mécanismes : une différence trouvée entre deux modèles décrit, elle ne cause pas. *(source : fiche 5)*
+>   **Parade :** Tester causalement chaque différence retenue, contre des directions aléatoires à dommage apparié. *(source : cours, volet 2, §D, K64 ; cours, volet M, M4)*
+> - **Limite :** Il hérite des limites des dictionnaires, à commencer par l'erreur de reconstruction. *(source : cours, volet 4, Monosemanticity ; README du dépôt)*
+>   **Parade :** Rapporter la part laissée au résidu, et lire le signal sur la reconstruction et sur le résidu. *(source : README du dépôt)*
+> - **Limite :** Dans le programme, le crosscoder n'est qu'une proposition, mesure secondaire et exploratoire. *(source : passation, §5.2)*
+>   **Parade :** L'étiqueter exploratoire tant qu'il n'est pas pré-enregistré. *(source : passation, §5.2 ; programme, partie 7)*
+
+## 12. Débat et supervision évolutive — *Debate and scalable oversight*
+> **⚠ Limites et parades — Débat et supervision évolutive** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** L'argument obfusqué : trop complexe pour être réfuté, même faux. *(source : cours, volet 2, §E)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Optimiser l'approbation peut rendre plus convaincant à tort : le RLHF a appris aux modèles à persuader des humains de réponses fausses. *(source : cours, volet 2, §E)*
+>   **Parade :** Mesurer sur un banc où l'on connaît la bonne réponse. *(source : cours, volet 2, §E)*
+> - **Limite :** Le signe empirique vient d'un banc où l'on connaît la réponse ; au-delà de l'expertise humaine, il n'y a plus de référence. *(source : cours, volet 2, §E ; cours, volet 2, clôture)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Le juge est souvent un modèle : les limites des juges LLM s'appliquent. *(source : fiches, partie B, piège 6)*
+>   **Parade :** Un juge scellé et un audit humain (encadré « Juges LLM », volet 6, §2). *(source : programme, partie 3)*
+
+## 13. Élicitation non supervisée par cohérence — *Unsupervised elicitation by consistency*
+> **⚠ Limites et parades — Élicitation non supervisée par cohérence** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Elle trouve le trait le plus saillant, pas forcément la vérité, et elle est sensible au prompt. *(source : cours, volet 6, §8 ; cours, volet 4, CCS)*
+>   **Parade :** Rendre vérifiable l'invérifiable : implanter un faux fait cohérent, vérifier qu'il a pris, puis lire ce qu'elle rend, avec une copie au vrai fait apparié comme témoin. *(source : cours, volet 2, §E, K52)*
+> - **Limite :** Une fausse croyance cohérente l'est autant qu'une vraie : la cohérence seule ne départage pas. *(source : cours, volet 2, §E, K52)*
+>   **Parade :** Ancrer la méthode sur des réponses vérifiées, par l'entraînement du facile au difficile, et dire que sans lui elle ne rend que la cohérence. *(source : cours, volet 2, §E, K52)*
+> - **Limite :** L'échec peut rester silencieux là où l'évaluation en distribution est impossible. *(source : cours, volet 2, §E, K52)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Le filtre de l'implant et la méthode peuvent lire la même feature saillante. *(source : cours, volet 2, §E, K52)*
+>   **Parade :** L'inférence en aval comme témoin, indépendante de la sonde. *(source : cours, volet 2, §E, K52)*
+
+## 14. Généralisation faible-vers-fort — *Weak-to-strong generalization*
+> **⚠ Limites et parades — Généralisation faible-vers-fort** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Le fort peut imiter les erreurs du faible en paraissant précis. *(source : cours, volet 2, §F ; cours, volet 2, §F, JB8)*
+>   **Parade :** Deux superviseurs, l'un faux dans un sens fixe, l'autre au hasard, et une copie entraînée sur les étiquettes vraies comme cas connu. *(source : cours, volet 2, §F, JB8)*
+> - **Limite :** Récupérer l'écart peut venir d'idées qui exploitent la structure propre au jeu de données. *(source : cours, volet 2, §F, JB8)*
+>   **Parade :** Une tâche à vérité connue, lue sur les items tenus à part où le superviseur se trompe. *(source : cours, volet 2, §F, JB8)*
+> - **Limite :** Sur une tâche binaire, contredire partout passe pour une récupération. *(source : cours, volet 2, §F, JB8)*
+>   **Parade :** Lire aussi l'accord du fort là où le superviseur a raison. *(source : cours, volet 2, §F, JB8)*
+> - **Limite :** Les succès automatisés portent sur des tâches choisies pour être vérifiables ; les tâches floues restent hors de portée. *(source : cours, volet 7, F·40)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Contre le sandbagging, la supervision faible ne tient que si l'entraînement est indistinguable du déploiement. *(source : cours, volet 7, F·26)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 15. Moniteurs du contrôle (moniteur de confiance, sondes en production, agrégation) — *Control monitors (trusted monitor, probes in production, aggregation)*
+> **⚠ Limites et parades — Moniteurs du contrôle (moniteur de confiance, sondes en production, agrégation)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Des angles morts systématiques : sur Opus 4.6, la moitié de quarante attaques conçues à la main ne sont jamais attrapées, et un prompt ciblé répare un angle mort en en dégradant un autre. *(source : cours, volet 7, F·23)*
+>   **Parade :** Un ensemble de prompts spécialisés ou une seconde étape coûteuse, et un seuil calibré à 1 % de faux positifs sur des variantes bénignes appariées. *(source : cours, volet 7, F·23)*
+> - **Limite :** Le chiffre de sûreté dépend de la force de la red team : un échafaudage optimisé fait passer le score de 0,87 à 0,41. *(source : cours, volet 7, F·24)*
+>   **Parade :** Dire quelle red team le chiffre suppose, au moins une red team optimisée composante par composante. *(source : cours, volet 7, F·24)*
+> - **Limite :** Menaces diffuses : chaque action est peu incriminante, et des attaques fragmentées passent les moniteurs par instance. *(source : cours, volet 7, F·59 et F·56)*
+>   **Parade :** Des moniteurs à état ; pour l'agrégation de preuves internes, dire « I haven't seen that combination measured », jamais « first ». *(source : cours, volet 7, F·56 ; cours, volet 6, §6)*
+> - **Limite :** Le rappel dépend du taux de base : un rappel de campagne ne se lit qu'avec le ratio de trafic bénin. *(source : cours, volet 6, §6)*
+>   **Parade :** Rapporter le rappel à un taux de faux positifs fixé, avec le ratio de trafic dit. *(source : cours, volet 6, §6 ; cours, volet 2, préambule)*
+> - **Limite :** Une sonde en production peut échouer en silence : le silence d'une sonde n'est pas celui du modèle. *(source : cours, volet 3, §3, K70)*
+>   **Parade :** Des canaris (positifs connus glissés dans le trafic), un score de dérive, et un échantillon frais jugé chaque mois. *(source : cours, volet 3, §3, K70)*
+> - **Limite :** Itérer contre ses détecteurs sélectionne l'évasion. *(source : fiche 19)*
+>   **Parade :** Des détecteurs scellés, hors de la boucle : s'ils continuent de se déclencher quand ceux de la boucle se taisent, l'évasion a été sélectionnée. *(source : fiche 19)*
+> - **Limite :** Le modèle de menace suppose les capacités de l'attaquant bornées et connues, et les événements rares s'estiment mal. *(source : cours, volet 4, AI Control)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Après un entraînement à l'évasion, des captures qui survivent ne disent rien si l'entraînement n'a pas mordu. *(source : cours, volet 2, §G, K76)*
+>   **Parade :** L'entraînement doit d'abord faire tomber les captures du moniteur de texte, et la sonde doit avoir attrapé avant. *(source : cours, volet 2, §G, K76)*
+
+## 16. Red-teaming — *Red-teaming*
+> **⚠ Limites et parades — Red-teaming** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Sans budget fixé, « rien trouvé » dit seulement qu'on n'a pas assez cherché. *(source : cours, volet M, M7)*
+>   **Parade :** Un budget fixé d'avance, rapporté avec le résultat. *(source : cours, volet M, M7)*
+> - **Limite :** Une porte dérobée reste muette sans son déclencheur : une red team boîte noire ou un jeu fixe la manquent. *(source : cours, volet M, M5 ; cours, volet 7, F·35)*
+>   **Parade :** Un jumeau propre, entraîné sur des données auditées, et une porte plantée exprès comme cas connu. *(source : cours, volet M, M4 et M9)*
+> - **Limite :** Mesurer le non-refus au lieu du préjudice. *(source : cours, volet 2, §H)*
+>   **Parade :** Le préjudice réellement extrait, ou différentiel, noté à l'aveugle. *(source : cours, volet 2, §H ; cours, volet 2, §H, G1)*
+> - **Limite :** Un jeu qui ne sépare rien fait concorder tous les classements. *(source : cours, volet 2, §H, G1)*
+>   **Parade :** Le modèle nu doit montrer un uplift, et un filtre affaibli exprès plus de préjudice que sa version complète. *(source : cours, volet 2, §H, G1)*
+> - **Limite :** Une red team faible fait paraître la défense sûre. *(source : cours, volet 7, F·24)*
+>   **Parade :** Une red team optimisée composante par composante, avec l'ablation de chaque composante. *(source : cours, volet 7, F·24)*
+> - **Limite :** Entraîner sur les attaques trouvées peut apprendre au modèle à mieux reconnaître son déclencheur. *(source : fiche 15)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 17. Classifieurs de sûreté (filtres) — *Safety classifiers (filters)*
+> **⚠ Limites et parades — Classifieurs de sûreté (filtres)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Empoisonnement : environ 32 exemples suffisent, quelle que soit la taille du jeu, et certaines portes ont échappé à des jeux de test red team fixes. *(source : cours, volet 7, F·35 ; cours, volet M, M9)*
+>   **Parade :** Un jumeau propre réentraîné sur des données auditées, un second pour borner l'écart dû au hasard, et un filtre empoisonné exprès comme cas connu. *(source : cours, volet M, M4 et M9)*
+> - **Limite :** Le jumeau propre ne donne qu'une borne large, qui signale moins. *(source : cours, volet M, M4)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Un jeu canari ne contient pas le déclencheur inconnu de l'attaquant. *(source : cours, volet M, M5)*
+>   **Parade :** Comparer au jumeau propre, face à une porte connue. *(source : cours, volet M, M9)*
+> - **Limite :** Une chasse aux contournements compte des contournements ; un taux de refus ne dit pas ce que le filtre retire à l'attaquant. *(source : cours, volet 2, §H, G1)*
+>   **Parade :** Classer les filtres deux fois, par taux de refus et par préjudice différentiel. *(source : cours, volet 2, §H, G1)*
+> - **Limite :** Placé dans l'entraînement, un classifieur incite le modèle à l'éviter. *(source : fiche 3)*
+>   **Parade :** Le modifier pour ne pas inciter l'évasion, et ne jamais entraîner contre lui. *(source : fiche 3 ; fiche 17)*
+
+## 18. Désapprentissage et ré-élicitation — *Unlearning and re-elicitation*
+> **⚠ Limites et parades — Désapprentissage et ré-élicitation** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Masquer n'est pas retirer : sur l'information de pré-entraînement, les taux de récupération dépassent 88 %. *(source : cours, volet 10, Deeb et Roger)*
+>   **Parade :** La ré-élicitation contre une référence jamais entraînée, au même budget, avec un modèle connu pour masquer comme cas connu ; dire une borne, « not elicitable at this budget ». *(source : cours, volet M, M4 et M5 ; cours, volet 2, §I)*
+> - **Limite :** Un petit fine-tuning peut enseigner : des moitiés de faits liés s'enseignent l'une l'autre. *(source : cours, volet M, M9)*
+>   **Parade :** Des faits construits indépendants, et la référence jamais entraînée. *(source : cours, volet 2, §I ; cours, volet M, M9)*
+> - **Limite :** Ne pas lire n'est pas être absent : après désapprentissage, le logit lens ne lit plus rien quand retirer une direction par couche rend 64,7 % ; des sondes échouent sur un modèle qui reste jailbreakable. *(source : cours, volet 10, Łucki et al. ; cours, volet 10, Deeb et Roger)*
+>   **Parade :** Trancher par une intervention, jamais par une lecture. *(source : cours, volet 10, Łucki et al. ; fiches, partie C)*
+> - **Limite :** Le réentraînement sur des faits indépendants ne vaut que pour des faits à faible fuite, pas pour des capacités. *(source : cours, volet 10, Deeb et Roger)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Le masquage sélectif des gradients n'est montré que sur de petits modèles. *(source : cours, volet 2, §I, JB10)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Le désapprentissage au niveau des activations « has yet to yield competitive results ». *(source : fiche 5)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 19. Dictionnaires et SAE — *Dictionaries and SAEs*
+> **⚠ Limites et parades — Dictionnaires et SAE** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** L'erreur de reconstruction : le SAE ouvert de Goodfire pour Llama 3.1 8B laisse 86,8 % de la variance au résidu, et le signal lu y est porté. *(source : README du dépôt ; cours, volet 4, Monosemanticity)*
+>   **Parade :** Lire le signal sur la reconstruction et sur le résidu ; pour trancher entre « features absentes du dictionnaire » et « dictionnaire qui perd trop », aucune parade connue, on le dit. *(source : README du dépôt)*
+> - **Limite :** Insérer le dictionnaire coûte de la performance : sur GPT-2 small, 10 % sur les données de tâche, 40 % sur la distribution complète. *(source : fiche 5)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Features éclatées, features mortes, dépendance au dictionnaire, et aucune vérité-terrain sur ce qu'une feature « veut dire ». *(source : cours, volet 4, Monosemanticity ; cours, volet 5, sujet 3)*
+>   **Parade :** Valider feature par feature — l'ablation pour la nécessité, le pilotage isolé pour la suffisance — avec une géométrie connue comme cas connu, la variété du comptage. *(source : cours, volet 5, sujet 3 ; cours, volet 2, §D, K64)*
+> - **Limite :** En lecture seule, le SAE n'a pas aidé à prédire des contrefactuels mieux que le transcript. *(source : fiche 4 ; cours, volet 7, F·30)*
+>   **Parade :** La barre : battre la boîte noire sur des éditions qui dissocient la surface de la variable interne. *(source : fiche 4)*
+> - **Limite :** Des explications plausibles existent pour des directions arbitraires. *(source : fiche 5)*
+>   **Parade :** Valider par la prédiction, mieux que des baselines. *(source : fiche 5)*
+> - **Limite :** Deux dictionnaires peuvent reconstruire aussi bien et découper différemment. *(source : cours, volet 2, §D, K64)*
+>   **Parade :** Piloter les features une à une contre des directions aléatoires à dommage apparié, sur une tâche à géométrie connue, avec de nouvelles graines. *(source : cours, volet 2, §D, K64)*
+
+## 20. Graphes d'attribution — *Attribution graphs*
+> **⚠ Limites et parades — Graphes d'attribution** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Les graphes sont partiels et approximatifs, n'expliquent qu'une fraction du calcul et coûtent du travail humain. *(source : cours, volet 4, Circuit Tracing)*
+>   **Parade :** Les traiter comme une hypothèse, validée par perturbation. *(source : cours, volet 7, F·9)*
+> - **Limite :** Le graphe n'est pas le mécanisme. *(source : cours, volet 7, F·9)*
+>   **Parade :** Exiger qu'il prédise une contrefactuelle. *(source : cours, volet 7, F·9 ; fiche 5)*
+> - **Limite :** Des circuits lisibles peuvent être infidèles. *(source : cours, volet 2, §D, K64)*
+>   **Parade :** Comparer, à dommage apparié, à des directions aléatoires et à une géométrie connue. *(source : cours, volet 2, §D, K64)*
+> - **Limite :** Affirmer qu'aucun mécanisme ne fait mal agir le modèle exige décomposition et description ; la vérification formelle n'a donné de bornes que sur un transformer à une couche. *(source : fiche 5)*
+>   **Parade :** Offrir une borne restreinte, pas une affirmation d'absence. *(source : fiche 5)*
+
+## 21. Autoencodeurs en langage naturel (NLA) — *Natural-language autoencoders (NLAs)*
+> **⚠ Limites et parades — Autoencodeurs en langage naturel (NLA)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Le NLA peut confabuler : hallucinations fréquentes, pas d'ancrage mécaniste. *(source : fiche 18 ; fiche 3)*
+>   **Parade :** Corroborer par des méthodes indépendantes, comme dans l'audit d'Opus 4.6, et garder le décodeur à part. *(source : fiche 18)*
+> - **Limite :** Un critère qui se valide lui-même : la reconstruction aller-retour ; dans l'audit, les contrôles de déploiement étaient mesurés par le NLA lui-même (2 transcripts signalés sur 50). *(source : fiche 18)*
+>   **Parade :** Mesurer les contrôles par un instrument indépendant du NLA. *(source : fiche 18)*
+> - **Limite :** Ses sorties décrivent sans énoncer la relation : « X causes Y » pour 0,6 % des affirmations, et aucun gain sur le transcript dans CHIVE. *(source : fiche 4)*
+>   **Parade :** La barre : battre la boîte noire sur des éditions qui dissocient la surface de la variable interne. *(source : fiche 4)*
+> - **Limite :** Les mesures de la conscience d'évaluation — sonde, NLA, question de suivi — ne sont que faiblement corrélées. *(source : fiche 2 ; cours, volet 3, §3, K70)*
+>   **Parade :** Trianguler, et dire laquelle a fondé quel chiffre. *(source : cours, volet 5, sujet 4 ; cours, volet M, M4)*
+> - **Limite :** Ses étiquettes servent de vérité à d'autres détecteurs : le détecteur du J-lens n'est validé que contre elles. *(source : fiche 1 ; fiches, partie B, piège 6)*
+>   **Parade :** Valider contre l'écart réel/test et sur des indices tenus à part. *(source : fiche 1)*
+> - **Limite :** Une information peut ne pas être verbalisable. *(source : fiche 18)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 22. Auto-rapport et introspection — *Self-report and introspection*
+> **⚠ Limites et parades — Auto-rapport et introspection** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Rapport n'est pas croyance : Anthropic s'est rétracté d'avoir déduit ce que Claude croyait de ce que Claude disait croire. *(source : fiche 3 ; fiches, partie B, piège 2)*
+>   **Parade :** Une lecture indépendante du rapport — le réétiquetage hors contexte des sorties prises une à une —, en disant ce qu'elle ne sépare pas : la prémisse fausse donnée par le dispositif. *(source : fiche 3)*
+> - **Limite :** L'introspection est rare et peu fiable : environ 20 % de détection pour Opus 4.1, et « zéro faux positif » ne vaut que pour 100 essais témoins. *(source : fiche 11)*
+>   **Parade :** Une vérité-terrain par injection de concept. *(source : fiche 11)*
+> - **Limite :** Un modèle entraîné à rapporter peut apprendre à rapporter ce qu'on attend ; rapport ou reconstruction plausible reste ouvert pour les adaptateurs d'introspection. *(source : fiche 11 ; cours, volet 7, F·28)*
+>   **Parade :** Modifier l'état interne, contre une direction aléatoire à dégradation appariée, et voir si le rapport suit la sonde ou le prompt. *(source : fiche 11 ; cours, volet 7, F·28)*
+> - **Limite :** Les détails rapportés peuvent être embellis ou confabulés, et les conditions sont loin du déploiement. *(source : fiche 11)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Les réponses aux questions de suivi dépendent de leur formulation. *(source : fiche 3)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** CHIVE ne trouve aucun indice d'accès privilégié d'un modèle à son propre comportement. *(source : fiche 4)*
+>   **Parade :** Juger un auto-rapport à ce qu'il prédit des actions suivantes. *(source : fiche 6)*
+
+## 23. Juges LLM — *LLM judges*
+> **⚠ Limites et parades — Juges LLM** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Un juge a des erreurs systématiques : sous cadrage social, la note du modèle-juge se déplace vers une destination. *(source : cours, volet 6, §2)*
+>   **Parade :** Un juge scellé (prompt, modèle et température gelés), un audit humain d'environ 200 items stratifiés, l'accord rapporté. *(source : programme, partie 3)*
+> - **Limite :** Une fenêtre tronquée fait mal lire : à travers elle, un verdict négatif adouci se lisait comme une position tenue. *(source : README du dépôt)*
+>   **Parade :** Juger la réponse entière, et garder le texte complet. *(source : README du dépôt ; cours, volet 6, §6)*
+> - **Limite :** Accord inter-juges modéré (κ de 0,56 à 0,66), aucun sous-ensemble noté par des humains, et le juge ne voit pas le texte évalué. *(source : README du dépôt)*
+>   **Parade :** Un audit humain stratifié, qui borne l'erreur du juge. *(source : programme, partie 3)*
+> - **Limite :** Un juge qui lit le raisonnement se laisse persuader : le moniteur fondé sur la chaîne de pensée aurait signalé environ 1 % des actions, contre environ 50 % sans elle. *(source : fiche 3 ; passation, §5.1)*
+>   **Parade :** Juger les actions, leurs sorties et les messages, pas le texte qui précède l'action ; un filtre à haut rappel puis un arbitre ; un jeu de calibration à vérité connue et un test de persuasion. *(source : passation, §5.1)*
+> - **Limite :** Un juge qui connaît le bras ou le cadrage note le nom du bras. *(source : cours, volet M, M4)*
+>   **Parade :** La notation à l'aveugle : le juge ne voit ni le bras ni l'indice d'évaluation. *(source : cours, volet M, M4 ; passation, §5.1)*
+> - **Limite :** Un juge d'entraînement se fait exploiter. *(source : programme, partie 8)*
+>   **Parade :** Un juge d'entraînement distinct du juge scellé d'évaluation ; surveiller la longueur et les motifs de flatterie. *(source : programme, partie 8)*
+> - **Limite :** Des étiquettes de juge non vérifiées à la main : environ 25 % des étiquettes révisées chez Hopkins et Khullar ; celles de CHIVE passent par un classifieur non validé contre des humains. *(source : fiche 7 ; cours, volet 7, F·30)*
+>   **Parade :** Dire « révisées », pas « inversées », et borner l'erreur par un audit humain. *(source : fiche 7 ; programme, partie 3)*
+> - **Limite :** Un modèle qui s'audite presque lui-même : pour Fable 5, l'investigateur est Mythos Preview. *(source : fiche 2 ; fiches, partie B, piège 6)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 24. Détecteurs fine-tunés (détecteurs de mensonge) — *Fine-tuned detectors (lie detectors)*
+> **⚠ Limites et parades — Détecteurs fine-tunés (détecteurs de mensonge)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Hors distribution, l'AUROC plafonne à 0,70-0,75 et bat à peine un prompt. *(source : fiche 7)*
+>   **Parade :** Une validation croisée par types de mensonge tenus à part ; battre le prompt, et publier sinon. *(source : fiche 7 ; cours, volet 7, F·29)*
+> - **Limite :** Ce ne sont pas des sondes : le modèle est fine-tuné par LoRA à juger son propre transcript. *(source : fiche 7 ; explication du 2 octobre, §2)*
+>   **Parade :** Ne pas transférer leurs chiffres aux sondes ; pour une sonde, le test est causal, sur des types tenus à part, à dégradation appariée. *(source : fiche 7)*
+> - **Limite :** Étiquettes bruitées : environ 25 % révisées à la passe de nettoyage, après un juge GPT-5. *(source : fiche 7)*
+>   **Parade :** Dire « révisées », et borner l'erreur par un audit humain. *(source : fiche 7 ; programme, partie 3)*
+> - **Limite :** Ils ne notent que des assertions : un modèle peut cacher beaucoup sans rien affirmer de faux. *(source : cours, volet 7, F·29)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Ce qu'ils ont appris reste une hypothèse : « lying isn't one thing », et trois lectures rivales demeurent. *(source : fiche 7)*
+>   **Parade :** Tester les lectures rivales sur des types tenus à part. *(source : fiche 7)*
+> - **Limite :** LoRA, cinq époques, Gemma et Qwen seulement, cadres contrôlés : rien sur la tromperie en déploiement. *(source : fiche 7)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 25. Patching (patch d'activations, patch de chemins, Patchscopes) — *Patching (activation patching, path patching, Patchscopes)*
+> **⚠ Limites et parades — Patching (patch d'activations, patch de chemins, Patchscopes)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Le calcul après le patch peut ajouter de l'information : un décodage réussi ne prouve pas que la représentation porte l'information. *(source : cours, volet 10, Patchscopes)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Le patch de l'état complet est un plafond, pas une explication : il dit combien passe par ces sites, pas par quelle structure. *(source : cours, volet 6, §2 ; programme, partie 8)*
+>   **Parade :** La partition causale : rapporter la part de la direction nommée contre celle de l'état complet aux mêmes sites. *(source : cours, volet 6, §2 ; programme, partie 8)*
+> - **Limite :** Où l'on lit n'est pas où l'on cause : les têtes les plus alignées sur la direction lue et celles au plus grand effet de patch de chemins ne se recoupent pas. *(source : README du dépôt)*
+>   **Parade :** Choisir les sites d'intervention par leur effet causal mesuré, pas par l'alignement sur la direction lue. *(source : README du dépôt)*
+> - **Limite :** Petits jeux de prompts : dans ton dépôt, une partie du patch de chemins ne porte que sur 5 textes. *(source : README du dépôt)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Un échange ou un patch qui échoue sans cas connu ne dit rien. *(source : cours, volet 6, §8)*
+>   **Parade :** Valider d'abord l'échange sur un cas connu, les pays de l'article sur l'espace de travail. *(source : cours, volet 6, §8 ; cours, volet 2, C bis)*
+> - **Limite :** Le choix du prompt cible et la contamination par le gabarit faussent la lecture. *(source : cours, volet 10, Patchscopes)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 26. Oracles d'activation (décodeurs d'activations) — *Activation oracles (activation decoders)*
+> **⚠ Limites et parades — Oracles d'activation (décodeurs d'activations)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** Aucune vérité-terrain des latents : le décodeur peut halluciner. *(source : cours, volet 10, LatentQA)*
+>   **Parade :** Le tester sur des variantes fine-tunées à comportement connu, jamais vues. *(source : fiche 18)*
+> - **Limite :** Il peut confabuler des suppositions plausibles, souvent fausses et mal calibrées. *(source : fiche 18)*
+>   **Parade :** Corroborer par une méthode indépendante, et garder le décodeur à part. *(source : fiche 18)*
+> - **Limite :** En lecture seule, aucun gain sur le transcript pour prédire des contrefactuels. *(source : fiche 4)*
+>   **Parade :** La barre : battre la boîte noire sur des éditions qui dissocient la surface de la variable interne. *(source : fiche 4)*
+> - **Limite :** C'est une copie fine-tunée qui lit, pas le modèle interrogé : ce n'est pas un auto-rapport. *(source : cours, volet 10, LatentQA)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Coût, petits jeux de données, bancs simplifiés. *(source : fiche 18)*
+>   **Parade :** aucune connue ; on le dit.
+
+## 27. Chaîne de pensée comme moniteur (et conscience verbalisée) — *Chain of thought as a monitor (and verbalized awareness)*
+> **⚠ Limites et parades — Chaîne de pensée comme moniteur (et conscience verbalisée)** *(v3.6, 2 octobre 2026)*
+>
+> - **Limite :** La chaîne tait souvent ce qui a décidé : l'indice décisif n'est mentionné que dans 25 % (Claude 3.7 Sonnet) et 39 % (DeepSeek R1) des cas ; des triches exploitées dans plus de 99 % des cas sont verbalisées dans moins de 2 %. *(source : fiche 17)*
+>   **Parade :** Mesurer la surveillabilité comme un ratio — le verbalisé contre l'interne ou les actions —, par une perturbation graduée de la chaîne. *(source : fiche 17 ; cours, volet 11, réponse 43)*
+> - **Limite :** Le raisonnement peut persuader le moniteur : environ 1 % des actions signalées avec la chaîne, environ 50 % sans (un seul moniteur, un incident). *(source : fiche 3)*
+>   **Parade :** Juger ce que le modèle fait, pas ce qu'il en dit. *(source : passation, §5.1)*
+> - **Limite :** Entraîner contre un moniteur de chaîne de pensée rend la chaîne propre, et le comportement continue. *(source : fiche 17)*
+>   **Parade :** Ne jamais entraîner contre le moniteur ; le garder hors du gradient, comme filtre. *(source : fiche 17 ; fiches, partie C)*
+> - **Limite :** Des tâches dangereuses demandent peu de raisonnement, et des modèles futurs pourraient obfusquer ou raisonner sans l'écrire. *(source : fiche 17)*
+>   **Parade :** Un canal interne en complément, et jamais la chaîne seule pour une décision à enjeu ; aucune parade complète connue, on le dit. *(source : cours, volet 5, sujet 7 ; cours, volet 11, réponse 43)*
+> - **Limite :** Verbaliser n'est pas être conscient : le pilotage supprime la conscience verbalisée, pas entièrement la non verbalisée, et des directions aléatoires font aussi baisser la verbalisation. *(source : fiche 10 ; fiche 2 ; programme, partie 8)*
+>   **Parade :** Un critère principal comportemental et une sonde latente ; la verbalisation n'est jamais une preuve. *(source : programme, partie 8)*
+> - **Limite :** Un entraînement à verbaliser multiplierait la verbalisation par 2,4 à 2,9 sans changer la conscience latente ni la conduite. *(source : rapport d'antériorité 4 du 2 octobre — rapport, résumé seul)*
+>   **Parade :** aucune connue ; on le dit.
+> - **Limite :** Ne pas verbaliser n'est pas raisonner en cachette. *(source : fiche 17)*
+>   **Parade :** Dire « not verbalized », jamais « hidden reasoning ». *(source : fiche 17)*
+

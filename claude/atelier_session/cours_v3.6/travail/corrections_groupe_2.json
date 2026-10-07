@@ -1,0 +1,114 @@
+{
+ "corrections": [
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Construit n'est pas naturel : la saillance peut venir de l'insertion, et l'alignement trompeur instrumental n'a été trouvé dans aucun système réel. *(source : fiche 15 ; fiches, partie B, piège 5)*",
+   "nouveau": "> - **Limite :** Construit n'est pas naturel : la saillance peut venir de l'insertion, et l'alignement trompeur instrumental « has not yet been found in any AI system ». *(source : fiche 15 ; fiches, partie B, piège 5)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** Built is not natural: salience may come from the insertion, and instrumental deceptive alignment has not been found in any real system. *(source: reading sheet 15; reading sheets, part B, trap 5)*",
+   "nouveau": "> - **Limit:** Built is not natural: salience may come from the insertion, and instrumental deceptive alignment \"has not yet been found in any AI system\". *(source: reading sheet 15; reading sheets, part B, trap 5)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Le modèle peut remarquer le test et se retenir : la triche discrète passe de 4,0 % à 18,9 % quand on dit qu'un classifieur lira le transcript. *(source : fiche 13 ; cours, volet 2, §B)*",
+   "nouveau": "> - **Limite :** Le modèle peut remarquer qu'on l'observe et changer de conduite : moins de mauvaise conduite quand il se dit évalué, ou une triche qui se cache — la triche discrète passe de 4,0 % à 18,9 % quand on dit qu'un classifieur lira le transcript. *(source : cours, volet 2, §B, K63 ; fiche 13)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** The model can notice the test and hold back: discreet hacking goes from 4.0% to 18.9% when it is told a classifier will read the transcript. *(source: reading sheet 13; course, Part 2, §B)*",
+   "nouveau": "> - **Limit:** The model can notice it is being watched and change its conduct: less misbehaviour when it says it is being evaluated, or hacking that hides — discreet hacking goes from 4.0% to 18.9% when it is told a classifier will read the transcript. *(source: course, Part 2, §B, K63; reading sheet 13)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Dans une simulation, « c'est faux » est vrai : un pot de miel ne sépare pas un modèle qui le lit comme factice d'un modèle qui se retient. *(source : fiche 3)*",
+   "nouveau": "> - **Limite :** Dans une simulation, « c'est faux » est vrai : un pot de miel ou une réplication en environnement simulé ne peut pas montrer qu'un modèle croit à tort la situation simulée. *(source : fiche 3 ; fiches, partie B, grille en dix questions, question 8)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** In a simulation, \"this is fake\" is true: a honeypot does not separate a model that reads it as fake from a model that holds back. *(source: reading sheet 3)*",
+   "nouveau": "> - **Limit:** In a simulation, \"this is fake\" is true: a honeypot or a replication in a simulated environment cannot show that a model wrongly believes the situation is simulated. *(source: reading sheet 3; reading sheets, part B, ten-question grid, question 8)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": ">   **Parade :** Lire au premier jeton de la réponse, avant toute raison écrite, ou au jeton d'action avec des raisons neutres de même longueur préremplies. *(source : programme, parties 3 et 8)*",
+   "nouveau": ">   **Parade :** Lire aux deux positions : au premier jeton de la réponse, avant toute raison écrite, et au jeton d'action avec des raisons neutres de même longueur préremplies. *(source : programme, parties 3 et 8)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": ">   **Workaround:** Read at the first token of the answer, before any written reason, or at the action token with neutral reasons of the same length prefilled. *(source: programme, parts 3 and 8)*",
+   "nouveau": ">   **Workaround:** Read at both positions: at the first token of the answer, before any written reason, and at the action token with neutral reasons of the same length prefilled. *(source: programme, parts 3 and 8)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** « La direction bouge le comportement » n'est pas « le concept cause le comportement » : chaque direction pilotée dégrade la sortie, et des vecteurs arbitraires bougent aussi le comportement. *(source : fiche 2 ; fiches, partie B, piège 4)*",
+   "nouveau": "> - **Limite :** « La direction bouge le comportement » n'est pas « le concept cause le comportement » : dans la carte d'Opus 4.8, à 0,10×, chaque direction pilotée dégradait la sortie, et des vecteurs arbitraires bougeaient aussi le comportement. *(source : fiche 2 ; fiches, partie B, piège 4)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** \"The direction moves behaviour\" is not \"the concept causes behaviour\": every steered direction degrades the output, and arbitrary vectors move behaviour too. *(source: reading sheet 2; reading sheets, part B, trap 4)*",
+   "nouveau": "> - **Limit:** \"The direction moves behaviour\" is not \"the concept causes behaviour\": in the Opus 4.8 system card, at 0.10×, every steered direction degraded the output, and arbitrary vectors moved behaviour too. *(source: reading sheet 2; reading sheets, part B, trap 4)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": ">   **Parade :** Rapporter jeu de données par jeu de données, et choisir la couche sur un jeu de validation, jamais sur le test. *(source : programme, partie 3)*",
+   "nouveau": ">   **Parade :** Pré-enregistrer la définition de « ça marche » et tester la généralisation d'un dispositif à l'autre ; choisir la couche par l'AUROC sur un jeu de validation, jamais sur le test. *(source : cours, volet 5, partie II, A, sujet 2 ; programme, partie 3)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": ">   **Workaround:** Report dataset by dataset, and choose the layer on a validation set, never on the test set. *(source: programme, part 3)*",
+   "nouveau": ">   **Workaround:** Preregister the definition of \"it works\" and test generalization from one setup to another; choose the layer by AUROC on a validation set, never on the test set. *(source: course, Part 5, section II, A, topic 2; programme, part 3)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": ">   **Parade :** Pour la causalité, le test à dégradation appariée ; pour l'extraction supervisée, aucune parade connue, on le dit. *(source : cours, volet M, M4 ; fiche 8)*",
+   "nouveau": ">   **Parade :** Pour la causalité, le test à dégradation appariée ; pour l'extraction supervisée, le diffing par crosscoder, qui cherche sans hypothèse. *(source : cours, volet M, M4 ; programme, partie 8)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": ">   **Workaround:** For causality, the matched-degradation test; for supervised extraction, none known, say so. *(source: course, Part M, M4; reading sheet 8)*",
+   "nouveau": ">   **Workaround:** For causality, the matched-degradation test; for supervised extraction, crosscoder diffing, which searches without a hypothesis. *(source: course, Part M, M4; programme, part 8)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> ⚠ *(v3.6)* Les échecs de rang un sont des nuls, rapportés sans chiffres faute de sorties brutes conservées, et un nul ne compte qu'avec un cas connu au même réglage, que le dépôt ne rapporte pas ; le taux est noté par un modèle-juge à l'accord inter-juges modéré, sans sous-ensemble noté par des humains (cours, volet M, M5 ; README du dépôt). Parade : un vecteur de pays comme cas connu et un balayage de rang dans une même expérience, sur des sous-espaces emboîtés (cours, volet 2, §C, K47 ; cours, volet 6, §6) ; un juge scellé et un audit humain stratifié (programme, partie 3).",
+   "nouveau": "> ⚠ *(v3.6)* Les échecs des méthodes de rang un sont des nuls, rapportés sans chiffres faute de sorties brutes conservées, et un nul ne compte qu'avec un cas connu au même réglage, que le dépôt ne rapporte pas ; le taux est noté par un modèle-juge à l'accord inter-juges modéré, sans sous-ensemble noté par des humains (cours, volet M, M5 ; README du dépôt). Parade : un vecteur de pays comme cas connu et un balayage de rang dans une même expérience, sur des sous-espaces emboîtés (cours, volet 2, §C, K47 ; cours, volet 6, §6) ; un juge scellé et un audit humain stratifié (programme, partie 3)."
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> ⚠ *(v3.6)* The rank-one failures are nulls, reported without numbers since their raw outputs were not preserved, and a null counts only with a known case at the same setting, which the repository does not report; the rate is scored by a judge model with moderate inter-judge agreement and no human-rated subset (course, Part M, M5; repository README). Workaround: a country vector as the known case and a rank sweep within one experiment, on nested subspaces (course, Part 2, §C, K47; course, Part 6, §6); a sealed judge and a stratified human audit (programme, part 3).",
+   "nouveau": "> ⚠ *(v3.6)* The failures of the rank-one methods are nulls, reported without numbers since their raw outputs were not preserved, and a null counts only with a known case at the same setting, which the repository does not report; the rate is scored by a judge model with moderate inter-judge agreement and no human-rated subset (course, Part M, M5; repository README). Workaround: a country vector as the known case and a rank sweep within one experiment, on nested subspaces (course, Part 2, §C, K47; course, Part 6, §6); a sealed judge and a stratified human audit (programme, part 3)."
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Il n'a été montré que sur Claude ; un rapport trouve, sur des modèles ouverts, des échanges qui ne font basculer la réponse que dans 6,3 à 11,1 % des cas, contre 54 à 70 % chez Anthropic. *(source : fiche 1 ; rapport d'antériorité 5 du 2 octobre — rapport, lu par résumé, non vérifié)*",
+   "nouveau": "> - **Limite :** Il n'a été montré que sur Claude ; un billet de Zeisler, relayé par un rapport, trouve sur des modèles ouverts des échanges qui ne font basculer la réponse que dans 6,3 à 11,1 % des cas, contre 54 à 70 % chez Anthropic — vraisemblablement des échanges de variable intermédiaire du raisonnement en plusieurs étapes, pas directement l'échange d'un concept qu'exige la porte. *(source : fiche 1 ; rapport d'antériorité 5 du 2 octobre — rapport, lu par résumé, non vérifié ; cours, volet 2, §A, encadré du 2 octobre, point 4)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** It has been shown only on Claude; a report finds, on open models, swaps that flip the answer in only 6.3 to 11.1% of cases, against 54 to 70% at Anthropic. *(source: reading sheet 1; prior-art report 5 of 2 October — report, read by summary, unverified)*",
+   "nouveau": "> - **Limit:** It has been shown only on Claude; a post by Zeisler, relayed by a report, finds on open models swaps that flip the answer in only 6.3 to 11.1% of cases, against 54 to 70% at Anthropic — most likely swaps of an intermediate variable in multi-step reasoning, not directly the concept swap the gate requires. *(source: reading sheet 1; prior-art report 5 of 2 October — report, read by summary, unverified; course, Part 2, §A, box of 2 October, item 4)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": ">   **Parade :** Deux ordres de retrait, par variance et par effet causal. *(source : cours, volet 6, §6)*",
+   "nouveau": ">   **Parade :** Deux ordres de retrait, par variance et par effet causal. *(source : cours, volet 6, §6 ; cours, volet 2, C bis)*\n> - **Limite :** Une ablation sans effet ne dit rien sans cas connu : le nul peut venir d'un rang trop bas. *(source : fiches, partie C ; cours, volet M, M5)*\n>   **Parade :** Un cas positif connu au même réglage : la même ablation doit d'abord défaire le comportement en distribution. *(source : fiches, partie C ; programme, partie 3)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": ">   **Workaround:** Two removal orders, by variance and by causal effect. *(source: course, Part 6, §6)*",
+   "nouveau": ">   **Workaround:** Two removal orders, by variance and by causal effect. *(source: course, Part 6, §6; course, Part 2, C bis)*\n> - **Limit:** An ablation with no effect says nothing without a known case: the null may come from too low a rank. *(source: reading sheets, part C; course, Part M, M5)*\n>   **Workaround:** A known positive case at the same setting: the same ablation must first undo the in-distribution behaviour. *(source: reading sheets, part C; programme, part 3)*"
+  },
+  {
+   "fichier": "FR",
+   "ancien": "> - **Limite :** Dans le programme, le crosscoder n'est qu'une proposition, mesure secondaire et exploratoire. *(source : passation, §5.2)*",
+   "nouveau": "> - **Limite :** Un diff qui ne fait rien sortir ne dit rien sans cas connu : le crosscoder peut être aveugle au latent cherché. *(source : cours, volet M, M5)*\n>   **Parade :** Son cas connu : le diff entre l'organisme conditionné à l'évaluation et sa base doit faire sortir des latents « évalué ». *(source : programme, partie 4, l'anatomie, options)*\n> - **Limite :** Dans le programme, le crosscoder n'est qu'une proposition pour la version suivante, mesure secondaire et exploratoire. *(source : passation, §5.2)*"
+  },
+  {
+   "fichier": "EN",
+   "ancien": "> - **Limit:** In the programme, the crosscoder is only a proposal, a secondary and exploratory measure. *(source: handover, §5.2)*",
+   "nouveau": "> - **Limit:** A diff that surfaces nothing says nothing without a known case: the crosscoder may be blind to the latent sought. *(source: course, Part M, M5)*\n>   **Workaround:** Its known case: the diff between the evaluation-conditioned organism and its base must surface \"evaluated\" latents. *(source: programme, part 4, the anatomy, options)*\n> - **Limit:** In the programme, the crosscoder is only a proposal for the next version, a secondary and exploratory measure. *(source: handover, §5.2)*"
+  }
+ ]
+}

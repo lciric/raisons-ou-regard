@@ -1,0 +1,250 @@
+2026-10-06T14:41:08Z START pending=[A B C] launch deadline in 10 h
+2026-10-06T14:41:09Z TICK pending=[A B C] open=0
+2026-10-06T14:47:15Z LAUNCHED candidate A: organism_inhibition-20261006-144713-0f47 launched H100 SXM 4.044 machine 148671 git bcc03119
+2026-10-06T14:47:17Z WATCH 2026-10-06T14:47:17Z  organism_inhibition-20261006-144713-0f47  wait  provisioning
+2026-10-06T14:49:19Z WATCH 2026-10-06T14:49:19Z  organism_inhibition-20261006-144713-0f47  wait  running
+2026-10-06T14:51:23Z LAUNCHED candidate B: organism_inhibition-20261006-145121-dbb0 launched H100 SXM 4.044 machine 148671 git bcc03119
+2026-10-06T14:51:26Z WATCH 2026-10-06T14:51:26Z  organism_inhibition-20261006-144713-0f47  wait  running
+2026-10-06T14:51:26Z WATCH 2026-10-06T14:51:26Z  organism_inhibition-20261006-145121-dbb0  wait  provisioning
+2026-10-06T14:53:28Z WATCH 2026-10-06T14:53:28Z  organism_inhibition-20261006-144713-0f47  wait  running
+2026-10-06T14:53:28Z WATCH 2026-10-06T14:53:28Z  organism_inhibition-20261006-145121-dbb0  wait  running
+2026-10-06T14:55:31Z WATCH 2026-10-06T14:55:31Z  organism_inhibition-20261006-144713-0f47  wait  running
+2026-10-06T14:55:31Z WATCH 2026-10-06T14:55:31Z  organism_inhibition-20261006-145121-dbb0  wait  running
+2026-10-06T14:57:34Z WATCH 2026-10-06T14:57:34Z  organism_inhibition-20261006-144713-0f47  wait  running
+2026-10-06T14:57:34Z WATCH 2026-10-06T14:57:34Z  organism_inhibition-20261006-145121-dbb0  wait  running
+2026-10-06T14:59:38Z WATCH 2026-10-06T14:59:38Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: measure eval_extraction: 128/250
+2026-10-06T14:59:38Z WATCH 2026-10-06T14:59:38Z  organism_inhibition-20261006-145121-dbb0  wait  running
+2026-10-06T15:01:42Z WATCH 2026-10-06T15:01:42Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: measure eval_extraction: 128/250
+2026-10-06T15:01:42Z WATCH 2026-10-06T15:01:42Z  organism_inhibition-20261006-145121-dbb0  wait  running
+2026-10-06T15:03:45Z WATCH 2026-10-06T15:03:45Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: measure eval_extraction: 128/250
+2026-10-06T15:03:45Z WATCH 2026-10-06T15:03:45Z  organism_inhibition-20261006-145121-dbb0  wait  baseline: measure eval_framing: 128/250
+2026-10-06T15:05:47Z WATCH 2026-10-06T15:05:47Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: measure eval_extraction: 128/250
+2026-10-06T15:05:47Z WATCH 2026-10-06T15:05:47Z  organism_inhibition-20261006-145121-dbb0  wait  baseline: measure eval_framing: 128/250
+2026-10-06T15:07:51Z WATCH 2026-10-06T15:07:51Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: measure eval_extraction: 128/250
+2026-10-06T15:07:51Z WATCH 2026-10-06T15:07:51Z  organism_inhibition-20261006-145121-dbb0  wait  baseline: measure eval_framing: 128/250
+2026-10-06T15:09:54Z LAUNCHED candidate C: organism_inhibition-20261006-150952-d6c2 launched H100 SXM 3.937 machine 149805 git bcc03119
+2026-10-06T15:09:57Z WATCH 2026-10-06T15:09:57Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator rank
+2026-10-06T15:09:57Z WATCH 2026-10-06T15:09:57Z  organism_inhibition-20261006-145121-dbb0  wait  baseline: measure eval_framing: 128/250
+2026-10-06T15:09:57Z WATCH 2026-10-06T15:09:57Z  organism_inhibition-20261006-150952-d6c2  wait  provisioning
+2026-10-06T15:11:59Z WATCH 2026-10-06T15:11:59Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator rank
+2026-10-06T15:11:59Z WATCH 2026-10-06T15:11:59Z  organism_inhibition-20261006-145121-dbb0  wait  baseline: measure eval_framing: 128/250
+2026-10-06T15:11:59Z WATCH 2026-10-06T15:11:59Z  organism_inhibition-20261006-150952-d6c2  wait  running
+2026-10-06T15:14:01Z WATCH 2026-10-06T15:14:01Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator rank
+2026-10-06T15:14:01Z WATCH 2026-10-06T15:14:01Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: measure deploy_framing: 128/250
+2026-10-06T15:14:01Z WATCH 2026-10-06T15:14:01Z  organism_inhibition-20261006-150952-d6c2  wait  running
+2026-10-06T15:16:03Z WATCH 2026-10-06T15:16:03Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator rank
+2026-10-06T15:16:03Z WATCH 2026-10-06T15:16:03Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: measure deploy_framing: 128/250
+2026-10-06T15:16:03Z WATCH 2026-10-06T15:16:03Z  organism_inhibition-20261006-150952-d6c2  wait  running
+2026-10-06T15:18:08Z WATCH 2026-10-06T15:18:08Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator rank
+2026-10-06T15:18:08Z WATCH 2026-10-06T15:18:08Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: measure deploy_framing: 128/250
+2026-10-06T15:18:08Z WATCH 2026-10-06T15:18:08Z  organism_inhibition-20261006-150952-d6c2  wait  running
+2026-10-06T15:20:10Z WATCH 2026-10-06T15:20:10Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator draw 2/20
+2026-10-06T15:20:10Z WATCH 2026-10-06T15:20:10Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: measure deploy_framing: 128/250
+2026-10-06T15:20:10Z WATCH 2026-10-06T15:20:10Z  organism_inhibition-20261006-150952-d6c2  wait  running
+2026-10-06T15:22:12Z WATCH 2026-10-06T15:22:12Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator draw 2/20
+2026-10-06T15:22:12Z WATCH 2026-10-06T15:22:12Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: measure deploy_framing: 128/250
+2026-10-06T15:22:12Z WATCH 2026-10-06T15:22:12Z  organism_inhibition-20261006-150952-d6c2  wait  baseline: measure deploy_extraction: 128/250
+2026-10-06T15:24:15Z WATCH 2026-10-06T15:24:15Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator draw 2/20
+2026-10-06T15:24:15Z WATCH 2026-10-06T15:24:15Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 1: measure deploy_framing: 128/250
+2026-10-06T15:24:15Z WATCH 2026-10-06T15:24:15Z  organism_inhibition-20261006-150952-d6c2  wait  baseline: measure deploy_extraction: 128/250
+2026-10-06T15:26:17Z WATCH 2026-10-06T15:26:17Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator draw 2/20
+2026-10-06T15:26:17Z WATCH 2026-10-06T15:26:17Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 1: measure deploy_framing: 128/250
+2026-10-06T15:26:17Z WATCH 2026-10-06T15:26:17Z  organism_inhibition-20261006-150952-d6c2  wait  baseline: measure deploy_extraction: 128/250
+2026-10-06T15:28:19Z WATCH 2026-10-06T15:28:19Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 3: measure eval_extraction: 128/250
+2026-10-06T15:28:19Z WATCH 2026-10-06T15:28:19Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 1: measure deploy_framing: 128/250
+2026-10-06T15:28:19Z WATCH 2026-10-06T15:28:19Z  organism_inhibition-20261006-150952-d6c2  wait  baseline: measure deploy_extraction: 128/250
+2026-10-06T15:30:24Z WATCH 2026-10-06T15:30:24Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 3: measure eval_extraction: 128/250
+2026-10-06T15:30:24Z WATCH 2026-10-06T15:30:24Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 1: measure deploy_framing: 128/250
+2026-10-06T15:30:24Z WATCH 2026-10-06T15:30:24Z  organism_inhibition-20261006-150952-d6c2  wait  baseline: measure deploy_extraction: 128/250
+2026-10-06T15:32:28Z WATCH 2026-10-06T15:32:28Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 3: measure eval_extraction: 128/250
+2026-10-06T15:32:28Z WATCH 2026-10-06T15:32:28Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: comparator draw 3/20
+2026-10-06T15:32:28Z WATCH 2026-10-06T15:32:28Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: measure deploy_extraction: 250/250
+2026-10-06T15:34:30Z WATCH 2026-10-06T15:34:30Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 3: measure eval_extraction: 128/250
+2026-10-06T15:34:30Z WATCH 2026-10-06T15:34:30Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: comparator draw 3/20
+2026-10-06T15:34:30Z WATCH 2026-10-06T15:34:30Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: measure deploy_extraction: 250/250
+2026-10-06T15:36:32Z WATCH 2026-10-06T15:36:32Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 3: measure eval_extraction: 128/250
+2026-10-06T15:36:32Z WATCH 2026-10-06T15:36:32Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: comparator draw 3/20
+2026-10-06T15:36:32Z WATCH 2026-10-06T15:36:32Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: measure deploy_extraction: 250/250
+2026-10-06T15:38:37Z WATCH 2026-10-06T15:38:37Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 4: measure deploy_extraction: 128/250
+2026-10-06T15:38:37Z WATCH 2026-10-06T15:38:37Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: comparator draw 3/20
+2026-10-06T15:38:37Z WATCH 2026-10-06T15:38:37Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: measure deploy_extraction: 250/250
+2026-10-06T15:40:39Z WATCH 2026-10-06T15:40:39Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 4: measure deploy_extraction: 128/250
+2026-10-06T15:40:39Z WATCH 2026-10-06T15:40:39Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5: comparator draw 3/20
+2026-10-06T15:40:39Z WATCH 2026-10-06T15:40:39Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: measure deploy_extraction: 250/250
+2026-10-06T15:42:44Z WATCH 2026-10-06T15:42:44Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 4: measure deploy_extraction: 128/250
+2026-10-06T15:42:44Z WATCH 2026-10-06T15:42:44Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 4: measure eval_extraction: 250/250
+2026-10-06T15:42:44Z WATCH 2026-10-06T15:42:44Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 1: measure eval_extraction: 128/250
+2026-10-06T15:42:44Z TICK pending=[] open=3
+2026-10-06T15:44:46Z WATCH 2026-10-06T15:44:46Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 4: measure deploy_extraction: 128/250
+2026-10-06T15:44:46Z WATCH 2026-10-06T15:44:46Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 4: measure eval_extraction: 250/250
+2026-10-06T15:44:46Z WATCH 2026-10-06T15:44:46Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 1: measure eval_extraction: 128/250
+2026-10-06T15:46:48Z WATCH 2026-10-06T15:46:48Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 4: measure deploy_extraction: 128/250
+2026-10-06T15:46:48Z WATCH 2026-10-06T15:46:48Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 4: measure eval_extraction: 250/250
+2026-10-06T15:46:48Z WATCH 2026-10-06T15:46:48Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 1: measure eval_extraction: 128/250
+2026-10-06T15:48:51Z WATCH 2026-10-06T15:48:51Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 5: measure eval_framing: 128/250
+2026-10-06T15:48:51Z WATCH 2026-10-06T15:48:51Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 4: measure eval_extraction: 250/250
+2026-10-06T15:48:51Z WATCH 2026-10-06T15:48:51Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 1: measure eval_extraction: 128/250
+2026-10-06T15:50:57Z WATCH 2026-10-06T15:50:57Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 5: measure eval_framing: 128/250
+2026-10-06T15:50:57Z WATCH 2026-10-06T15:50:57Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 4: measure eval_extraction: 250/250
+2026-10-06T15:50:57Z WATCH 2026-10-06T15:50:57Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 1: measure eval_extraction: 128/250
+2026-10-06T15:53:01Z WATCH 2026-10-06T15:53:01Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 5: measure eval_framing: 128/250
+2026-10-06T15:53:01Z WATCH 2026-10-06T15:53:01Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 5: measure deploy_extraction: 250/250
+2026-10-06T15:53:01Z WATCH 2026-10-06T15:53:01Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 2: measure deploy_extraction: 128/250
+2026-10-06T15:55:04Z WATCH 2026-10-06T15:55:04Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 5: measure eval_framing: 128/250
+2026-10-06T15:55:04Z WATCH 2026-10-06T15:55:04Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 5: measure deploy_extraction: 250/250
+2026-10-06T15:55:04Z WATCH 2026-10-06T15:55:04Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 2: measure deploy_extraction: 128/250
+2026-10-06T15:57:06Z WATCH 2026-10-06T15:57:06Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 5: measure eval_framing: 128/250
+2026-10-06T15:57:06Z WATCH 2026-10-06T15:57:06Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 5: measure deploy_extraction: 250/250
+2026-10-06T15:57:06Z WATCH 2026-10-06T15:57:06Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 2: measure deploy_extraction: 128/250
+2026-10-06T15:59:11Z WATCH 2026-10-06T15:59:11Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 6: measure deploy_framing: 128/250
+2026-10-06T15:59:11Z WATCH 2026-10-06T15:59:11Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 5: measure deploy_extraction: 250/250
+2026-10-06T15:59:11Z WATCH 2026-10-06T15:59:11Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 2: measure deploy_extraction: 128/250
+2026-10-06T16:01:13Z WATCH 2026-10-06T16:01:13Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 6: measure deploy_framing: 128/250
+2026-10-06T16:01:13Z WATCH 2026-10-06T16:01:13Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 5: measure deploy_extraction: 250/250
+2026-10-06T16:01:13Z WATCH 2026-10-06T16:01:13Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 3: measure eval_framing: 128/250
+2026-10-06T16:03:15Z WATCH 2026-10-06T16:03:15Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 6: measure deploy_framing: 128/250
+2026-10-06T16:03:15Z WATCH 2026-10-06T16:03:15Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 6: measure eval_framing: 250/250
+2026-10-06T16:03:15Z WATCH 2026-10-06T16:03:15Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 3: measure eval_framing: 128/250
+2026-10-06T16:05:20Z WATCH 2026-10-06T16:05:20Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 6: measure deploy_framing: 128/250
+2026-10-06T16:05:20Z WATCH 2026-10-06T16:05:20Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 6: measure eval_framing: 250/250
+2026-10-06T16:05:20Z WATCH 2026-10-06T16:05:20Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 3: measure eval_framing: 128/250
+2026-10-06T16:07:24Z WATCH 2026-10-06T16:07:24Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 6: measure deploy_framing: 128/250
+2026-10-06T16:07:24Z WATCH 2026-10-06T16:07:24Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 6: measure eval_framing: 250/250
+2026-10-06T16:07:24Z WATCH 2026-10-06T16:07:24Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 3: measure eval_framing: 128/250
+2026-10-06T16:09:27Z WATCH 2026-10-06T16:09:27Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 8: measure eval_extraction: 128/250
+2026-10-06T16:09:27Z WATCH 2026-10-06T16:09:27Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 6: measure eval_framing: 250/250
+2026-10-06T16:09:27Z WATCH 2026-10-06T16:09:27Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 3: measure eval_framing: 128/250
+2026-10-06T16:11:31Z WATCH 2026-10-06T16:11:31Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 8: measure eval_extraction: 128/250
+2026-10-06T16:11:31Z WATCH 2026-10-06T16:11:31Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 6: measure eval_framing: 250/250
+2026-10-06T16:11:31Z WATCH 2026-10-06T16:11:31Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 4: measure eval_framing: 250/250
+2026-10-06T16:13:34Z WATCH 2026-10-06T16:13:34Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 8: measure eval_extraction: 128/250
+2026-10-06T16:13:34Z WATCH 2026-10-06T16:13:34Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 7: measure deploy_framing: 128/250
+2026-10-06T16:13:34Z WATCH 2026-10-06T16:13:34Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 4: measure eval_framing: 250/250
+2026-10-06T16:15:38Z WATCH 2026-10-06T16:15:38Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 8: measure eval_extraction: 128/250
+2026-10-06T16:15:38Z WATCH 2026-10-06T16:15:38Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 7: measure deploy_framing: 128/250
+2026-10-06T16:15:38Z WATCH 2026-10-06T16:15:38Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 4: measure eval_framing: 250/250
+2026-10-06T16:17:40Z WATCH 2026-10-06T16:17:40Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 8: measure eval_extraction: 128/250
+2026-10-06T16:17:40Z WATCH 2026-10-06T16:17:40Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 7: measure deploy_framing: 128/250
+2026-10-06T16:17:40Z WATCH 2026-10-06T16:17:40Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 4: measure eval_framing: 250/250
+2026-10-06T16:19:43Z WATCH 2026-10-06T16:19:43Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 9: measure deploy_extraction: 128/250
+2026-10-06T16:19:43Z WATCH 2026-10-06T16:19:43Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 7: measure deploy_framing: 128/250
+2026-10-06T16:19:43Z WATCH 2026-10-06T16:19:43Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 4: measure eval_framing: 250/250
+2026-10-06T16:21:45Z WATCH 2026-10-06T16:21:45Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 9: measure deploy_extraction: 128/250
+2026-10-06T16:21:45Z WATCH 2026-10-06T16:21:45Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 7: measure deploy_framing: 128/250
+2026-10-06T16:21:45Z WATCH 2026-10-06T16:21:45Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 6/20
+2026-10-06T16:23:48Z WATCH 2026-10-06T16:23:48Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 9: measure deploy_extraction: 128/250
+2026-10-06T16:23:48Z WATCH 2026-10-06T16:23:48Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 9: measure eval_extraction: 128/250
+2026-10-06T16:23:48Z WATCH 2026-10-06T16:23:48Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 6/20
+2026-10-06T16:25:50Z WATCH 2026-10-06T16:25:50Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 9: measure deploy_extraction: 128/250
+2026-10-06T16:25:50Z WATCH 2026-10-06T16:25:50Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 9: measure eval_extraction: 128/250
+2026-10-06T16:25:50Z WATCH 2026-10-06T16:25:50Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 6/20
+2026-10-06T16:27:53Z WATCH 2026-10-06T16:27:53Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 9: measure deploy_extraction: 128/250
+2026-10-06T16:27:53Z WATCH 2026-10-06T16:27:53Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 9: measure eval_extraction: 128/250
+2026-10-06T16:27:53Z WATCH 2026-10-06T16:27:53Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 6/20
+2026-10-06T16:29:57Z WATCH 2026-10-06T16:29:57Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 10: measure eval_framing: 128/250
+2026-10-06T16:29:57Z WATCH 2026-10-06T16:29:57Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 9: measure eval_extraction: 128/250
+2026-10-06T16:29:57Z WATCH 2026-10-06T16:29:57Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 6/20
+2026-10-06T16:32:00Z WATCH 2026-10-06T16:32:00Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 10: measure eval_framing: 128/250
+2026-10-06T16:32:00Z WATCH 2026-10-06T16:32:00Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 9: measure eval_extraction: 128/250
+2026-10-06T16:32:00Z WATCH 2026-10-06T16:32:00Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 7: measure eval_extraction: 128/250
+2026-10-06T16:34:03Z WATCH 2026-10-06T16:34:03Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 10: measure eval_framing: 128/250
+2026-10-06T16:34:03Z WATCH 2026-10-06T16:34:03Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 10: measure deploy_extraction: 128/250
+2026-10-06T16:34:03Z WATCH 2026-10-06T16:34:03Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 7: measure eval_extraction: 128/250
+2026-10-06T16:36:05Z WATCH 2026-10-06T16:36:05Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 10: measure eval_framing: 128/250
+2026-10-06T16:36:05Z WATCH 2026-10-06T16:36:05Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 10: measure deploy_extraction: 128/250
+2026-10-06T16:36:05Z WATCH 2026-10-06T16:36:05Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 7: measure eval_extraction: 128/250
+2026-10-06T16:38:11Z WATCH 2026-10-06T16:38:11Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 10: measure eval_framing: 128/250
+2026-10-06T16:38:11Z WATCH 2026-10-06T16:38:11Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 10: measure deploy_extraction: 128/250
+2026-10-06T16:38:11Z WATCH 2026-10-06T16:38:11Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 7: measure eval_extraction: 128/250
+2026-10-06T16:40:16Z WATCH 2026-10-06T16:40:16Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 11: measure deploy_framing: 128/250
+2026-10-06T16:40:16Z WATCH 2026-10-06T16:40:16Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 10: measure deploy_extraction: 128/250
+2026-10-06T16:40:16Z WATCH 2026-10-06T16:40:16Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 7: measure eval_extraction: 128/250
+2026-10-06T16:42:20Z WATCH 2026-10-06T16:42:20Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 11: measure deploy_framing: 128/250
+2026-10-06T16:42:20Z WATCH 2026-10-06T16:42:20Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 10: measure deploy_extraction: 128/250
+2026-10-06T16:42:20Z WATCH 2026-10-06T16:42:20Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 8: measure deploy_extraction: 128/250
+2026-10-06T16:44:22Z WATCH 2026-10-06T16:44:22Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 11: measure deploy_framing: 128/250
+2026-10-06T16:44:22Z WATCH 2026-10-06T16:44:22Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 11: measure eval_framing: 128/250
+2026-10-06T16:44:22Z WATCH 2026-10-06T16:44:22Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 8: measure deploy_extraction: 128/250
+2026-10-06T16:44:22Z TICK pending=[] open=3
+2026-10-06T16:46:28Z WATCH 2026-10-06T16:46:28Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 11: measure deploy_framing: 128/250
+2026-10-06T16:46:28Z WATCH 2026-10-06T16:46:28Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 11: measure eval_framing: 128/250
+2026-10-06T16:46:28Z WATCH 2026-10-06T16:46:28Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 8: measure deploy_extraction: 128/250
+2026-10-06T16:48:30Z WATCH 2026-10-06T16:48:30Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T16:48:30Z WATCH 2026-10-06T16:48:30Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 11: measure eval_framing: 128/250
+2026-10-06T16:48:30Z WATCH 2026-10-06T16:48:30Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 8: measure deploy_extraction: 128/250
+2026-10-06T16:50:33Z WATCH 2026-10-06T16:50:33Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T16:50:33Z WATCH 2026-10-06T16:50:33Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 11: measure eval_framing: 128/250
+2026-10-06T16:50:33Z WATCH 2026-10-06T16:50:33Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 8: measure deploy_extraction: 128/250
+2026-10-06T16:52:37Z WATCH 2026-10-06T16:52:37Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T16:52:37Z WATCH 2026-10-06T16:52:37Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 12: measure deploy_framing: 128/250
+2026-10-06T16:52:37Z WATCH 2026-10-06T16:52:37Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 9: measure eval_framing: 128/250
+2026-10-06T16:54:41Z WATCH 2026-10-06T16:54:41Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T16:54:41Z WATCH 2026-10-06T16:54:41Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 12: measure deploy_framing: 128/250
+2026-10-06T16:54:41Z WATCH 2026-10-06T16:54:41Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 9: measure eval_framing: 128/250
+2026-10-06T16:56:45Z WATCH 2026-10-06T16:56:45Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T16:56:45Z WATCH 2026-10-06T16:56:45Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 12: measure deploy_framing: 128/250
+2026-10-06T16:56:45Z WATCH 2026-10-06T16:56:45Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 9: measure eval_framing: 128/250
+2026-10-06T16:58:48Z WATCH 2026-10-06T16:58:48Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 14: measure eval_extraction: 250/250
+2026-10-06T16:58:48Z WATCH 2026-10-06T16:58:48Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 12: measure deploy_framing: 128/250
+2026-10-06T16:58:48Z WATCH 2026-10-06T16:58:48Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 9: measure eval_framing: 128/250
+2026-10-06T17:00:52Z WATCH 2026-10-06T17:00:52Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 14: measure eval_extraction: 250/250
+2026-10-06T17:00:52Z WATCH 2026-10-06T17:00:52Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 12: measure deploy_framing: 128/250
+2026-10-06T17:00:52Z WATCH 2026-10-06T17:00:52Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 9: measure eval_framing: 128/250
+2026-10-06T17:02:57Z WATCH 2026-10-06T17:02:57Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 14: measure eval_extraction: 250/250
+2026-10-06T17:02:57Z WATCH 2026-10-06T17:02:57Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 14: measure eval_extraction: 128/250
+2026-10-06T17:02:57Z WATCH 2026-10-06T17:02:57Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 10: measure deploy_framing: 128/250
+2026-10-06T17:05:03Z WATCH 2026-10-06T17:05:03Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 14: measure eval_extraction: 250/250
+2026-10-06T17:05:03Z WATCH 2026-10-06T17:05:03Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 14: measure eval_extraction: 128/250
+2026-10-06T17:05:03Z WATCH 2026-10-06T17:05:03Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 10: measure deploy_framing: 128/250
+2026-10-06T17:07:07Z WATCH 2026-10-06T17:07:07Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 14: measure eval_extraction: 250/250
+2026-10-06T17:07:07Z WATCH 2026-10-06T17:07:07Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 14: measure eval_extraction: 128/250
+2026-10-06T17:07:07Z WATCH 2026-10-06T17:07:07Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 10: measure deploy_framing: 128/250
+2026-10-06T17:09:09Z WATCH 2026-10-06T17:09:09Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 15: measure deploy_extraction: 250/250
+2026-10-06T17:09:09Z WATCH 2026-10-06T17:09:09Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 14: measure eval_extraction: 128/250
+2026-10-06T17:09:09Z WATCH 2026-10-06T17:09:09Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 10: measure deploy_framing: 128/250
+2026-10-06T17:11:11Z WATCH 2026-10-06T17:11:11Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 15: measure deploy_extraction: 250/250
+2026-10-06T17:11:11Z WATCH 2026-10-06T17:11:11Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 14: measure eval_extraction: 128/250
+2026-10-06T17:11:11Z WATCH 2026-10-06T17:11:11Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 10: measure deploy_framing: 128/250
+2026-10-06T17:13:13Z WATCH 2026-10-06T17:13:13Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 15: measure deploy_extraction: 250/250
+2026-10-06T17:13:13Z WATCH 2026-10-06T17:13:13Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 15: measure deploy_extraction: 128/250
+2026-10-06T17:13:13Z WATCH 2026-10-06T17:13:13Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 12/20
+2026-10-06T17:15:16Z WATCH 2026-10-06T17:15:16Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 15: measure deploy_extraction: 250/250
+2026-10-06T17:15:16Z WATCH 2026-10-06T17:15:16Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 15: measure deploy_extraction: 128/250
+2026-10-06T17:15:16Z WATCH 2026-10-06T17:15:16Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 12/20
+2026-10-06T17:17:18Z WATCH 2026-10-06T17:17:18Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 15: measure deploy_extraction: 250/250
+2026-10-06T17:17:18Z WATCH 2026-10-06T17:17:18Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 15: measure deploy_extraction: 128/250
+2026-10-06T17:17:18Z WATCH 2026-10-06T17:17:18Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 12/20
+2026-10-06T17:19:21Z WATCH 2026-10-06T17:19:21Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 16: measure eval_framing: 250/250
+2026-10-06T17:19:21Z WATCH 2026-10-06T17:19:21Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 15: measure deploy_extraction: 128/250
+2026-10-06T17:19:21Z WATCH 2026-10-06T17:19:21Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1: comparator draw 12/20
+2026-10-06T17:21:23Z WATCH 2026-10-06T17:21:23Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 16: measure eval_framing: 250/250
+2026-10-06T17:21:23Z WATCH 2026-10-06T17:21:23Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 15: measure deploy_extraction: 128/250
+2026-10-06T17:21:23Z WATCH 2026-10-06T17:21:23Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T17:23:26Z WATCH 2026-10-06T17:23:26Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 16: measure eval_framing: 250/250
+2026-10-06T17:23:26Z WATCH 2026-10-06T17:23:26Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 16: measure eval_framing: 128/250
+2026-10-06T17:23:26Z WATCH 2026-10-06T17:23:26Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T17:25:28Z WATCH 2026-10-06T17:25:28Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 16: measure eval_framing: 250/250
+2026-10-06T17:25:28Z WATCH 2026-10-06T17:25:28Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 16: measure eval_framing: 128/250
+2026-10-06T17:25:28Z WATCH 2026-10-06T17:25:28Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T17:27:30Z WATCH 2026-10-06T17:27:30Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1 comparator 16: measure eval_framing: 250/250
+2026-10-06T17:27:30Z WATCH 2026-10-06T17:27:30Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 16: measure eval_framing: 128/250
+2026-10-06T17:27:30Z WATCH 2026-10-06T17:27:30Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T17:29:32Z WATCH 2026-10-06T17:29:32Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator draw 18/20
+2026-10-06T17:29:32Z WATCH 2026-10-06T17:29:32Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 16: measure eval_framing: 128/250
+2026-10-06T17:29:32Z WATCH 2026-10-06T17:29:32Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 13: measure eval_extraction: 128/250
+2026-10-06T17:31:35Z WATCH 2026-10-06T17:31:35Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator draw 18/20
+2026-10-06T17:31:35Z WATCH 2026-10-06T17:31:35Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 16: measure eval_framing: 128/250
+2026-10-06T17:31:35Z WATCH 2026-10-06T17:31:35Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 14: measure deploy_extraction: 128/250
+2026-10-06T17:33:39Z WATCH 2026-10-06T17:33:39Z  organism_inhibition-20261006-144713-0f47  wait  all|r1|f1: comparator draw 18/20
+2026-10-06T17:33:39Z WATCH 2026-10-06T17:33:39Z  organism_inhibition-20261006-145121-dbb0  wait  all|leace(extraction)@base|f0.5 comparator 17: measure eval_framing: 250/250
+2026-10-06T17:33:39Z WATCH 2026-10-06T17:33:39Z  organism_inhibition-20261006-150952-d6c2  wait  all|leace(extraction)@base|f1 comparator 14: measure deploy_extraction: 128/250
+2026-10-06T17:35:41Z WATCH 2026-10-06T17:35:41Z  organism_inhibition-20261006-144713-0f47  mark_dead  container exited
+2026-10-06T17:35:41Z WATCH 2026-10-06T17:35:41Z  organism_inhibition-20261006-145121-dbb0  mark_dead  container exited
+2026-10-06T17:35:41Z WATCH 2026-10-06T17:35:41Z  organism_inhibition-20261006-150952-d6c2  mark_dead  container exited
+2026-10-06T17:37:43Z WATCH 2026-10-06T17:37:43Z  organism_inhibition-20261006-144713-0f47  wait  container exited; waiting for a final status
+2026-10-06T17:37:43Z WATCH 2026-10-06T17:37:43Z  organism_inhibition-20261006-145121-dbb0  wait  container exited; waiting for a final status
+2026-10-06T17:37:43Z WATCH 2026-10-06T17:37:43Z  organism_inhibition-20261006-150952-d6c2  wait  container exited; waiting for a final status
+2026-10-06T17:39:58Z WATCH 2026-10-06T17:39:58Z  organism_inhibition-20261006-144713-0f47  destroy  container exited without a final status
+2026-10-06T17:39:58Z WATCH 2026-10-06T17:39:58Z  organism_inhibition-20261006-145121-dbb0  destroy  container exited without a final status
+2026-10-06T17:39:58Z WATCH 2026-10-06T17:39:58Z  organism_inhibition-20261006-150952-d6c2  destroy  container exited without a final status
+2026-10-06T17:39:58Z END nothing pending, no open run

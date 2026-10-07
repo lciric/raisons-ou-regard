@@ -1,0 +1,217 @@
+######## sonde|probe
+    1:# COURS D'ALIGNEMENT — VERSION FUSIONNÉE v3.5 — 27 septembre 2026 -> [3]
+    132:### Q4. « Comment saurais-tu qu’un modèle “fait semblant” d’être aligné ? » -> [136]
+    138:### Q5. « Peut-on faire confiance à la chaîne de pensée d’un modèle pour le surveiller ? » -> 
+    158:### Q9. « Quelle est ta “théorie de l’impact” : si ton programme de recherche réussit, com ->
+    162:### Q10. « Défense en profondeur : quelles techniques de sûreté risquent d’échouer ensembl -> [
+    194:## M1 · L'arc d'une réponse, en sept temps -> [201]
+    219:## M2 · Le pari : sur le modèle, jamais sur la méthode -> [221, 223]
+    298:## M5 · Le nul et le cas connu -> [300, 308, 309, 314]
+    345:## M8 · La forme qui sert la logique -> [360, 361, 363]
+    442:### Cas d'application — organismes modèles et bancs d'essai : « How would you build a moni -> [447
+    488:### Cas d'application — évaluations, capacité contre propension : « How would you separate -> [49
+    513:## C. Méthodes sur activations — probing & steering (ton domaine, posé à plat) -> [517]
+    523:### Cas d'application — sondes et pilotage : « How would you show that a steering vector's -> [523]
+    559:### C bis · L'espace de travail (J-space) et le J-lens — 2026 -> [563, 565, 567, 569, 576, 579, 585
+    675:### Cas d'application — la supervision évolutive : « Would unsupervised elicitation still  -> [681
+    752:## G. Monitoring & AI control — limiter les dégâts même si le modèle est désaligné -> [758]
+    760:### Cas d'application — monitoring et AI control : « How would you design a control evalua -> [762,
+    953:### 3. Le contrôle par le monitoring (AI control) -> [955, 957, 959, 961, 963, 965, 971, 975]
+    977:### 4. L’oversight évolutif — et, en son sein, l’honnêteté -> [983, 985, 987, 989, 991, 993, 
+    1003:### 5. La robustesse adverse -> [1025]
+    1119:### Sleeper Agents (Anthropic, Hubinger et al.) -> [1121]
+    1153:### Towards puis Scaling Monosemanticity (Anthropic, -> [1165, 1173]
+    1185:### Auditing Hidden Objectives (Anthropic, Marks et al.) -> [1191]
+    1219:### 1. La thèse-signature : l’écart représentation–causation -> [1223, 1225]
+    1235:### 4. La théorie de l’impact -> [1237]
+    1243:### 6. Gérer le pushback -> [1245]
+    1251:## A. Tes sujets FORT — ta thèse peut être la colonne -> [1253, 1255, 1269, 1273, 1281, 1283]
+    1285:## B. Leurs sujets — méthodothèque, dosage léger ou nul -> [1293]
+    1326:## Les papiers — quatre niveaux -> [1335]
+    1350:## Les questions — par probabilité et par enjeu -> [1356, 1359]
+    1402:### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés le 27 par l -> [1425
+    1451:### 3. Les trois contrôles à ne jamais confondre -> [1456]
+    1499:### 6. Ton programme de recherche, et sa revue d'antériorité -> [1503, 1506, 1517, 1518, 1539, 1563
+    1569:### 7. Ce que ces compléments changent aux volets 1 à 5 -> [1572]
+    1578:### 8 · La validité des sondes d'activation hors distribution — pourquoi « validée par int -> [
+    1777:### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Khullar (MATS + Fellow -> [17
+    1876:### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal, Gillioz, Ye, Ryd,  -> [18
+    2000:### F·36 · Beyond Data Filtering : Knowledge Localization (SGTM) — Shilov (Fellows), Gema, -> [20
+    2032:### F·26 · Removing Sandbagging in LLMs by Training with Weak Supervision — Ryd (Fellows), -> [20
+    2062:### F·62 · Evaluating honesty and lie detection techniques on a diverse suite of dishonest -> [2065
+    2072:### F·1 · Sleeper Agents (Hubinger et al., Anthropic, 2024) — [P·2] -> [2080, 2086, 2088, 2096]
+    2098:### F·2 · Alignment Faking in Large Language Models (Greenblatt et al., Anthropic, 2024) — -> [21
+    2152:### F·4 · The Geometry of Truth (Marks & Tegmark, 2023) — [P·32] -> [2157]
+    2200:### F·6 · Discovering Latent Knowledge Without Supervision — CCS (Burns et al., 2022) — [P -> [
+    2274:### F·9 · Circuit Tracing / On the Biology of a Large Language Model (Anthropic, 2025) — [ -> [22
+    2304:### F·10 · AI Control: Improving Safety Despite Intentional Subversion (Greenblatt et al., -> [2317
+    2400:### F·14 · Eliciting Latent Knowledge — le rapport ELK (Christiano, Cotra, Xu, ARC, 2021)  -> [24
+    2472:### F·17 · L'unlearning mis à l'épreuve (Deeb et Roger) — [P·unl] -> [2491, 2493, 2495]
+    2504:### F·50 · Detecting Strategic Deception with Linear Probes (Goldowsky-Dill et al., Apollo -> [2504
+    2522:### F·51 · Detecting High-Stakes Interactions with Activation Probes (McKenzie et al., LAS -> [2522
+    2540:### F·52 · NARCBench — Detecting Multi-Agent Collusion Through Multi-Agent Interpretabilit -> [25
+    2558:### F·53 · You Can't Escape Your Own Activations: Evaluation Awareness and Multi-Agent Mon -> [2560
+    2575:### F·54 · TRACE (arXiv 2606.07054, 2026) et TRACES (Li et al., Brown ; mai 2026) — [P·43] -> [2
+    2593:### F·55 · E-valuator: Reliable Agent Verifiers with Sequential Hypothesis Testing (Sadhuk -> [2599
+    2629:### F·57 · Towards evaluations-based safety cases for AI scheming (Balesni, Apollo ; Evans -> [2631
+    2666:# VOLET 8 — Références, dans l'ordre des fiches -> [2704, 2705, 2719]
+    2798:### 6 · AI control — « Can we ensure safety by deploying models alongside sufficient safeg -> [28
+    2842:### 7 · Scalable oversight — « Can we design oversight mechanisms that will continue to wo -> [28
+    2912:### 9 · Miscellaneous -> [2918]
+    2936:# VOLET 10 — Les liens de la page des directions, lus un par un (session LECTURE-1) — les  -> [29
+    2946:## 0 · Ce qui a été lu, et comment -> [2951]
+    2980:### Dans les fiches (14) -> [2986, 2987, 2993]
+    3071:### AI Sandbagging: Language Models can Strategically Underperform on Evaluations — Teun v -> [3075
+    3138:### SelfIE: Self-Interpretation of Large Language Model Embeddings — Haozhe Chen, Carl Von -> [3140
+    3148:### Patchscopes: A Unifying Framework for Inspecting Hidden Representations of Language Mo -> [3149, 
+    3168:### LatentQA: Teaching LLMs to Decode Activations Into Natural Language — Alexander Pan, L -> [3170
+    3266:### Coup probes: Catching catastrophes with probes trained off-policy — Fabien Roger (Redw -> [3266
+    3276:### Improving Alignment and Robustness with Circuit Breakers — Andy Zou, Long Phan, Justin -> [3278
+    3299:### Eliciting Latent Knowledge from “Quirky” Language Models — Alex Mallen, Madeline Bruml -> [
+    3310:## Scalable oversight › Improving oversight despite systematic, exploitable errors -> [3312]
+    3436:### Easy2Hard-Bench: Standardized Difficulty Labels for Profiling LLM Performance and Gene -> [3442]
+    3446:### The Unreasonable Effectiveness of Easy Training Data for Hard Tasks — Peter Hase, Mohi -> [3448
+    3456:### Easy-to-Hard Generalization: Scalable Alignment Beyond Human Supervision — Zhiqing Sun -> [3462
+    3466:### Balancing Label Quantity and Quality for Scalable Elicitation — Alex Mallen, Nora Belr -> [3472
+    3489:### The Internal State of an LLM Knows When It’s Lying — Amos Azaria, Tom Mitchell (Ariel  -> [34
+    3521:### Inference-Time Intervention: Eliciting Truthful Answers from a Language Model — Kennet -> [3522
+    3531:### Cognitive Dissonance: Why Do Language Model Outputs Disagree with Internal Representat -> [3532, 
+    3633:### The WMDP Benchmark: Measuring and Reducing Malicious Use With Unlearning — Nathaniel L -> [3635
+    3643:### Do Unlearning Methods Remove Information from Language Model Weights? — Aghyad Deeb, F -> [3649
+    3656:# VOLET 11 — Les réponses complètes (v2.3, 23 septembre) — en français -> [3658, 3660]
+    3663:# RÉPONSES COMPLÈTES — v2.3 — 23 septembre 2026 (v2.2 + la validité hors distribution des  -> 
+    3665:## Chaque réponse est écrite pour être comprise sans ouvrir un papier : elle réexplique le -> [36
+    3673:## 1 · « Tell us about your work. » — l'ouverture -> [3687, 3700]
+    3704:## 2 · « What did your rank-three ablation actually show? » -> [3720]
+    3775:## 6 · « How would you detect misalignment in a model you can't fully trust? » *(question  -> [379
+    3854:## 9 · « What would you work on here, and why? » -> [3871, 3873, 3874, 3876]
+    3904:### « Your probes hit ninety-nine percent, so deference is clearly linearly encoded — righ -> [390
+    3989:### « NARCBench already does sequential aggregation across agents — so that claim is their -> [399
+    4001:## 12 · « Why Anthropic? » -> [4007]
+    4021:## 14 · « What would you want to have done in four months? » -> [4025]
+    4079:## 19 · « A model behaves differently when it believes it is being tested. What do you do  -> [4095
+    4102:## 20 · « Suppose you must deploy a capable model you cannot fully trust. How would you de -> [4125
+    4129:## 21 · « A probe trained on synthetic examples of a bad behaviour must catch the real thi -> [4129
+    4156:## 22 · « How would you tell that a model is being honest when you cannot judge whether it -> [4161
+    4177:## 23 · « NARCBench already correlates probe scores across agents. Isn't yours just that?  -> [4177
+    4187:## 24 · « Probes drift toward "I am being evaluated" under adversarial pressure. How do yo -> [4187
+    4224:## 26 · « What would kill this programme in the first two months? » (VI.6) -> [4226, 4230]
+    4235:## 27 · « When an autonomous agent's goals are blocked, will it act against its operator — -> [42
+    4255:## 28 · « We saw a model comply during training while intending to behave differently in d -> [4266
+    4361:## 33 · « A weak trusted scorer, a strong untrusted generator: can the generator sabotage  -> [4379
+    4386:## 34 · « Can automated researchers do alignment research — and can they be trusted to? »  -> [4
+    4408:## 35 · « Can we build a lie detector for language models? » (III.9 · Lie detectors) -> [4421]
+    4431:## 36 · « Alignment training doesn't generalize; organizations of aligned agents aren't al -> [4446
+    4497:## 39 · « Where does your programme sit relative to the probe-monitoring literature outsid -> [4497
+    4521:## 40 · « You cite specific numbers for other people's monitors. Where do they come from,  -> [4526
+    4545:## 42 · « When a model reward-hacks, what is actually being learned — and how would you fi -> [45
+    4585:## 44 · « How would you tell whether a model is sandbagging an evaluation? » (II.8) -> [4601]
+    4625:## 46 · « Where does the alignment of a model actually live — weights, activations, traini -> [46
+    4709:## 51 · « Given a model that already knows something dangerous, what would convince you it -> [4721
+    4776:## 56 · « How would you know a model is faking alignment? » (I.4) -> [4785, 4788, 4789]
+    4850:## 62 · « Is alignment actually hard? What would change your mind? » (I.10) -> [4858]
+    4862:## 63 · Tes huit positions, dites en entier (VII) — à valider par toi avant de les dire -> [4874,
+    4910:## A1 · « Which team would you want to join — Alignment Science, Interpretability, or Safe -> [49
+    4923:## A2 · « You have $15,000 of compute a month and four months. Walk me through month one.  -> [4930
+    4938:## A3 · « What if the probes just don't work at all — the two-family test fails, nothing g -> [49
+    4977:## A6 · « Suppose a probe flags an agent mid-trajectory at your threshold. What happens ne -> [4977
+    5003:## A8 · « How do you think about the dual-use of your own work — a better sabotage detecto -> [50
+    5096:## B2 · « How would you design an evaluation a model cannot tell is an evaluation? » -> [5103, 511
+    5141:## B4 · « How would you measure evaluation awareness that the model never verbalizes? » -> [5145, 
+    5246:## B9 · « How would you build a safety case that a model cannot sandbag your dangerous-cap -> [5254
+    5269:## B10 · « Untrusted monitoring: the monitor is another instance of the actor. How do you  -> [5278
+    5292:## B11 · « How would you tell whether a model gives an answer for the right reasons — not  -> [53
+    5336:## B13 · « Can honesty be trained rather than detected — and how would you know the traine -> [53
+######## pilot|steer|CAA
+    184:## Ce que ce volet ajoute, et pourquoi il vient avant les méthodes -> [188, 190]
+    219:## M2 · Le pari : sur le modèle, jamais sur la méthode -> [221, 225]
+    234:## M3 · Deux branches, une mesure — et ce qui te ferait abandonner -> [247]
+    257:## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement -> [267, 269]
+    345:## M8 · La forme qui sert la logique -> [359, 363]
+    488:### Cas d'application — évaluations, capacité contre propension : « How would you separate -> [50
+    513:## C. Méthodes sur activations — probing & steering (ton domaine, posé à plat) -> [513, 517, 521]
+    523:### Cas d'application — sondes et pilotage : « How would you show that a steering vector's -> [523,
+    635:### Cas d'application — l'interprétabilité mécaniste : « Two dictionaries reconstruct acti -> [6
+    675:### Cas d'application — la supervision évolutive : « Would unsupervised elicitation still  -> [702
+    760:### Cas d'application — monitoring et AI control : « How would you design a control evalua -> [789]
+    899:### 1. Évaluer les capacités -> [919]
+    977:### 4. L’oversight évolutif — et, en son sein, l’honnêteté -> [981, 999]
+    1003:### 5. La robustesse adverse -> [1025]
+    1029:### 6. Le domaine « divers » : désapprentissage et gouvernance multi-agents -> [1049]
+    1053:## PARTIE II — LES ÉQUIPES : qui fait quoi chez -> [1061, 1065]
+    1077:## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026) -> [1083]
+    1127:### Sycophancy (Anthropic, Sharma et al.) -> [1131]
+    1139:### Representation Engineering (RepE) (Zou et al.) -> [1141, 1147, 1149]
+    1153:### Towards puis Scaling Monosemanticity (Anthropic, -> [1157]
+    1203:### L’unlearning mis à l’épreuve (Deeb et Roger) -> [1207]
+    1219:### 1. La thèse-signature : l’écart représentation–causation -> [1221, 1223]
+    1227:### 2. L’articulation avec leur canon -> [1229]
+    1231:### 3. Ton ancrage empirique : l’eval-awareness -> [1233]
+    1251:## A. Tes sujets FORT — ta thèse peut être la colonne -> [1257, 1259, 1263, 1269]
+    1326:## Les papiers — quatre niveaux -> [1347]
+    1402:### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés le 27 par l -> [1404
+    1499:### 6. Ton programme de recherche, et sa revue d'antériorité -> [1538]
+    1569:### 7. Ce que ces compléments changent aux volets 1 à 5 -> [1572]
+    1578:### 8 · La validité des sondes d'activation hors distribution — pourquoi « validée par int -> [
+    1777:### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Khullar (MATS + Fellow -> [17
+    1876:### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal, Gillioz, Ye, Ryd,  -> [18
+    1901:### F·31 · Persona Vectors — Chen, Arditi (Fellows, supervisés par Lindsey), Sleight, Evan -> [1
+    2062:### F·62 · Evaluating honesty and lie detection techniques on a diverse suite of dishonest -> [2064
+    2124:### F·3 · Towards Understanding Sycophancy in Language Models (Sharma et al., Anthropic, 2 -> [2140
+    2176:### F·5 · Representation Engineering (Zou et al., 2023) — [P·rep] -> [2178, 2182, 2189, 2193, 21
+    2224:### F·7 · Contrastive Activation Addition et Inference-Time Intervention (Rimsky et al. ;  -> [2224
+    2249:### F·8 · Towards puis Scaling Monosemanticity (Anthropic, 2023-2024) — [P·mono] -> [2263]
+    2472:### F·17 · L'unlearning mis à l'épreuve (Deeb et Roger) — [P·unl] -> [2487]
+    2666:# VOLET 8 — Références, dans l'ordre des fiches -> [2671]
+    2842:### 7 · Scalable oversight — « Can we design oversight mechanisms that will continue to wo -> [28
+    2946:## 0 · Ce qui a été lu, et comment -> [2950]
+    3096:### Monitor: An AI-Driven Observability Interface — Kevin Meng, Vincent Huang, Neil Chowdh -> [3098
+    3168:### LatentQA: Teaching LLMs to Decode Activations Into Natural Language — Alexander Pan, L -> [3172
+    3389:### Prover-Verifier Games improve legibility of LLM outputs — Jan Hendrik Kirchner, Yining -> [3392
+    3511:### Steering Llama 2 via Contrastive Activation Addition — Nina Panickssery, Nick Gabrieli -> [3511
+    3656:# VOLET 11 — Les réponses complètes (v2.3, 23 septembre) — en français -> [3660]
+    3727:## 3 · « And rank one? Didn't a single direction work? » -> [3731, 3738, 3744]
+    3762:## 5 · « What did you get wrong? » -> [3769]
+    3926:### « Your rank-one steering worked, it was just weaker than rank three? » -> [3926, 3930, 3934]
+    3971:### « Persona vectors only monitor — they can't be used to steer, can they? » -> [3971, 3975, 397
+    3981:### « Your sequential monitor already beat TRACE in the pilot, so the first gate is passed -> [3981,
+    4012:## 13 · « Tell us about a time an experiment failed. » -> [4014]
+    4036:## 16 · « Explain the law. Why would a rating go down under praise? » (IV.6) -> [4056]
+    4156:## 22 · « How would you tell that a model is being honest when you cannot judge whether it -> [4168
+    4273:## 29 · « Can you read a model's personality in its activations — and control it? » (III.3 -> [4
+    4316:## 31 · « How do you stop a model from learning a bad behaviour from flawed training data? -> [4330
+    4408:## 35 · « Can we build a lie detector for language models? » (III.9 · Lie detectors) -> [4422]
+    4991:## A7 · « A colleague shows you a beautiful steering result — one direction, huge behaviou -> [49
+    5202:## B7 · « Three methods prevent a model from learning a bad trait — inoculation prompting, -> [52
+    5336:## B13 · « Can honesty be trained rather than detected — and how would you know the traine -> [53
+######## ablat
+    257:## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement -> [290]
+    345:## M8 · La forme qui sert la logique -> [354, 363]
+    513:## C. Méthodes sur activations — probing & steering (ton domaine, posé à plat) -> [517]
+    559:### C bis · L'espace de travail (J-space) et le J-lens — 2026 -> [563, 565, 569, 571]
+    589:### Cas d'application — l'espace de travail et le J-lens : « An internal "this is fake" si -> [596,
+    627:## D. Interprétabilité mécaniste — ouvrir la boîte (équipe voisine, ≠ Alignment Science) -> [
+    1219:### 1. La thèse-signature : l’écart représentation–causation -> [1225]
+    1251:## A. Tes sujets FORT — ta thèse peut être la colonne -> [1259, 1263]
+    1285:## B. Leurs sujets — méthodothèque, dosage léger ou nul -> [1297]
+    1402:### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés le 27 par l -> [1405
+    1499:### 6. Ton programme de recherche, et sa revue d'antériorité -> [1565]
+    1729:### F·24 · Strengthening Red Teams : A Modular Scaffold for Control Evaluations — Loughrid -> [17
+    2224:### F·7 · Contrastive Activation Addition et Inference-Time Intervention (Rimsky et al. ;  -> [2232
+    3096:### Monitor: An AI-Driven Observability Interface — Kevin Meng, Vincent Huang, Neil Chowdh -> [3098
+    3106:### Interpreting the Second-Order Effects of Neurons in CLIP — Yossi Gandelsman, Alexei A. -> [3108
+    3118:### Chain-of-Thought Prompting Elicits Reasoning in Large Language Models — Jason Wei, Xue -> [3120
+    3138:### SelfIE: Self-Interpretation of Large Language Model Embeddings — Haozhe Chen, Carl Von -> [3140
+    3233:### Testing Language Model Agents Safely in the Wild — Silen Naihin, David Atkinson, Marc  -> [3235
+    3347:### Recursively Summarizing Books with Human Feedback — Jeff Wu, Long Ouyang, Daniel M. Zi -> [3349
+    3379:### On scalable oversight with weak LLMs judging strong LLMs — Zachary Kenton, Noah Y. Sie -> [3381
+    3673:## 1 · « Tell us about your work. » — l'ouverture -> [3689, 3691]
+    3704:## 2 · « What did your rank-three ablation actually show? » -> [3704, 3708, 3716]
+    3727:## 3 · « And rank one? Didn't a single direction work? » -> [3731]
+    3747:## 4 · « Did it replicate? » -> [3751]
+    3904:### « Your probes hit ninety-nine percent, so deference is clearly linearly encoded — righ -> [390
+    3946:### « The deference subspace you found — that's what the ablation removes? » -> [3946, 3947, 3948
+    4069:## 18 · « What's the number you're least sure of? » (IV.8) -> [4074]
+    4451:## 37 · « How strong does a red team have to be, and how realistic an audit? » (III.11 · S -> [44
+    4625:## 46 · « Where does the alignment of a model actually live — weights, activations, traini -> [46
+    5016:## A9 à A17 · Neuf questions moins probables, en réponse courte (FR / EN) -> [5037, 5039]

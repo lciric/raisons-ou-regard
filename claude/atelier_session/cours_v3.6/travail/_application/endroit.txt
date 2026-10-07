@@ -1,0 +1,400 @@
+tete_volet1 paire 5 [IDENT_DIFF] FR l.102 (titre l.80 4) / EN l.154 (titre l.131 3); communs=[]
+   FR: étape de preuve, lancer un test unitaire — et pour ces tâches le problème est léger. Mais il mord le plus fort là où vit précisément l’alignement : su
+   EN: step of a proof, running a unit test — and for these tasks the problem is mild. But it bites hardest precisely where alignment lives: on fuzzy, value-
+   titreFR: ### 4. L’obstacle épistémique central : pourquoi on ne sait ni superviser ni vérifier au-d
+   titreEN: ### 3. Two families of risk never to be confused: misuse and misalignment
+tete_volet1 paire 6 [IDENT_DIFF] FR l.102 (titre l.80 4) / EN l.154 (titre l.131 3); communs=[]
+   FR: étape de preuve, lancer un test unitaire — et pour ces tâches le problème est léger. Mais il mord le plus fort là où vit précisément l’alignement : su
+   EN: step of a proof, running a unit test — and for these tasks the problem is mild. But it bites hardest precisely where alignment lives: on fuzzy, value-
+   titreFR: ### 4. L’obstacle épistémique central : pourquoi on ne sait ni superviser ni vérifier au-d
+   titreEN: ### 3. Two families of risk never to be confused: misuse and misalignment
+tete_volet1 paire 11 [ident_ok] FR l.140 (titre l.138 Q5) / EN l.200 (titre l.197 Q5); communs=[]
+   FR: La chain-of-thought (le raisonnement que le modèle écrit avant de répondre) semble un cadeau pour la surveillance : on lirait ses pensées. Le problème
+   EN: The chain-of-thought (the reasoning the model writes before answering) seems a gift for monitoring: we would read its thoughts. The problem, which mus
+   titreFR: ### Q5. « Peut-on faire confiance à la chaîne de pensée d’un modèle pour le surveiller ? »
+   titreEN: ### Q5. "Can we trust a model's chain of thought to monitor it?"
+tete_volet1 paire 12 [ident_ok] FR l.140 (titre l.138 Q5) / EN l.200 (titre l.197 Q5); communs=[]
+   FR: La chain-of-thought (le raisonnement que le modèle écrit avant de répondre) semble un cadeau pour la surveillance : on lirait ses pensées. Le problème
+   EN: The chain-of-thought (the reasoning the model writes before answering) seems a gift for monitoring: we would read its thoughts. The problem, which mus
+   titreFR: ### Q5. « Peut-on faire confiance à la chaîne de pensée d’un modèle pour le surveiller ? »
+   titreEN: ### Q5. "Can we trust a model's chain of thought to monitor it?"
+tete_volet1 paire 13 [ident_ok] FR l.140 (titre l.138 Q5) / EN l.200 (titre l.197 Q5); communs=[]
+   FR: La chain-of-thought (le raisonnement que le modèle écrit avant de répondre) semble un cadeau pour la surveillance : on lirait ses pensées. Le problème
+   EN: The chain-of-thought (the reasoning the model writes before answering) seems a gift for monitoring: we would read its thoughts. The problem, which mus
+   titreFR: ### Q5. « Peut-on faire confiance à la chaîne de pensée d’un modèle pour le surveiller ? »
+   titreEN: ### Q5. "Can we trust a model's chain of thought to monitor it?"
+volet11_1_a_20 paire 4 [ident_ok] FR l.3722 (titre l.3704 2) / EN l.3963 (titre l.3945 2); communs=[]
+   FR: en juin ; la partition chiffrée est ce que je revendique.
+   EN: in June; the quantified partition is what I claim.
+   titreFR: ## 2 · « What did your rank-three ablation actually show? »
+   titreEN: ## 2 · « What did your rank-three ablation actually show? »
+volet11_1_a_20 paire 30 [A_VERIFIER] FR l.3915 (titre l.3904 None) / EN l.4166 (titre l.4155 None); communs=[]
+   FR: its effect didn't come back on fresh generations. So: *separating*, yes; *carrying the effect*, no.
+   EN: its effect didn't come back on fresh generations. So: *separating*, yes; *carrying the effect*, no.
+   titreFR: ### « Your probes hit ninety-nine percent, so deference is clearly linearly encoded — righ
+   titreEN: ### « Your probes hit ninety-nine percent, so deference is clearly linearly encoded — righ
+volet11_1_a_20 paire 31 [A_VERIFIER] FR l.3924 (titre l.3917 None) / EN l.4175 (titre l.4168 None); communs=[]
+   FR: preregistered. The next step is a fresh run with the text kept.
+   EN: preregistered. The next step is a fresh run with the text kept.
+   titreFR: ### « So the fifteen-point drop survived on fresh generations too, I assume? »
+   titreEN: ### « So the fifteen-point drop survived on fresh generations too, I assume? »
+volet11_1_a_20 paire 32 [A_VERIFIER] FR l.3961 (titre l.3955 None) / EN l.4212 (titre l.4206 None); communs=[]
+   FR: the worrying result: training against it didn't make it go away.
+   EN: the worrying result: training against it didn't make it go away.
+   titreFR: ### « Alignment faking went away once they trained it out, didn't it? »
+   titreEN: ### « Alignment faking went away once they trained it out, didn't it? »
+volet11_1_a_20 paire 33 [A_VERIFIER] FR l.3979 (titre l.3971 None) / EN l.4230 (titre l.4222 None); communs=[]
+   FR: with less loss — that's preventative steering. The third thing: it predicts, before you run a fine-tune, which data will shift the persona.
+   EN: with less loss — that's preventative steering. The third thing: it predicts, before you run a fine-tune, which data will shift the persona.
+   titreFR: ### « Persona vectors only monitor — they can't be used to steer, can they? »
+   titreEN: ### « Persona vectors only monitor — they can't be used to steer, can they? »
+volet11_1_a_20 paire 37 [ident_ok] FR l.4034 (titre l.4030 15) / EN l.4289 (titre l.4285 15); communs=[]
+   FR: résultat, ces deux dernières années, a changé votre propre estimation de la difficulté de l'alignement — vers le haut ou vers le bas ?
+   EN: internal signals? Second, more personal: what result in the last two years changed your own estimate of how hard alignment is — up or down?
+   titreFR: ## 15 · « Any questions for us? »
+   titreEN: ## 15 · « Any questions for us? »
+volet11_1_a_20 paire 38 [ident_ok] FR l.4034 (titre l.4030 15) / EN l.4289 (titre l.4285 15); communs=[]
+   FR: résultat, ces deux dernières années, a changé votre propre estimation de la difficulté de l'alignement — vers le haut ou vers le bas ?
+   EN: internal signals? Second, more personal: what result in the last two years changed your own estimate of how hard alignment is — up or down?
+   titreFR: ## 15 · « Any questions for us? »
+   titreEN: ## 15 · « Any questions for us? »
+volet11_21_a_52 paire 6 [ident_ok] FR l.4194 (titre l.4187 24) / EN l.4469 (titre l.4463 24); communs=[]
+   FR: d'un pour cent du travail causal. Lire n'est pas comprendre ce qui agit.
+   EN: direction my probe read did under one percent of the causal work. Reading isn't knowing what acts.
+   titreFR: ## 24 · « Probes drift toward "I am being evaluated" under adversarial pressure. How do yo
+   titreEN: ## 24 · « Probes drift toward "I am being evaluated" under adversarial pressure. How do yo
+volet11_21_a_52 paire 7 [ident_ok] FR l.4194 (titre l.4187 24) / EN l.4469 (titre l.4463 24); communs=[]
+   FR: d'un pour cent du travail causal. Lire n'est pas comprendre ce qui agit.
+   EN: direction my probe read did under one percent of the causal work. Reading isn't knowing what acts.
+   titreFR: ## 24 · « Probes drift toward "I am being evaluated" under adversarial pressure. How do yo
+   titreEN: ## 24 · « Probes drift toward "I am being evaluated" under adversarial pressure. How do yo
+volet11_21_a_52 paire 8 [ident_ok] FR l.4194 (titre l.4187 24) / EN l.4469 (titre l.4463 24); communs=[]
+   FR: d'un pour cent du travail causal. Lire n'est pas comprendre ce qui agit.
+   EN: direction my probe read did under one percent of the causal work. Reading isn't knowing what acts.
+   titreFR: ## 24 · « Probes drift toward "I am being evaluated" under adversarial pressure. How do yo
+   titreEN: ## 24 · « Probes drift toward "I am being evaluated" under adversarial pressure. How do yo
+volet11_21_a_52 paire 31 [ident_ok] FR l.4471 (titre l.4451 37) / EN l.4763 (titre l.4745 37); communs=[]
+   FR: rappel que j'annoncerais ne voudrait rien dire.
+   EN: numbers: a red team weaker than Loughridge's, or unmeasured realism — in both cases the recall I'd announce would mean nothing.
+   titreFR: ## 37 · « How strong does a red team have to be, and how realistic an audit? » (III.11 · S
+   titreEN: ## 37 · « How strong does a red team have to be, and how realistic an audit? » (III.11 · S
+volet11_53_et_fin paire 19 [A_VERIFIER] FR l.4936 (titre l.4923 None) / EN l.5251 (titre l.5239 None); communs=[]
+   FR: blanc contre le noir, avec son intervalle.
+   EN: written: end of month two, white against black recall, with its interval.
+   titreFR: ## A2 · « You have $15,000 of compute a month and four months. Walk me through month one. 
+   titreEN: ## A2 · « You have $15,000 of compute a month and four months. Walk me through month one. 
+volet11_53_et_fin paire 20 [A_VERIFIER] FR l.4936 (titre l.4923 None) / EN l.5251 (titre l.5239 None); communs=[]
+   FR: blanc contre le noir, avec son intervalle.
+   EN: written: end of month two, white against black recall, with its interval.
+   titreFR: ## A2 · « You have $15,000 of compute a month and four months. Walk me through month one. 
+   titreEN: ## A2 · « You have $15,000 of compute a month and four months. Walk me through month one. 
+volet11_53_et_fin paire 21 [A_VERIFIER] FR l.4948 (titre l.4938 None) / EN l.5264 (titre l.5255 None); communs=[]
+   FR: sommer un biais ne fait qu'un plus grand biais.
+   EN: redeems the error — summing a bias only makes a bigger bias.
+   titreFR: ## A3 · « What if the probes just don't work at all — the two-family test fails, nothing g
+   titreEN: ## A3 · « What if the probes just don't work at all — the two-family test fails, nothing g
+volet11_53_et_fin paire 22 [A_VERIFIER] FR l.4948 (titre l.4938 None) / EN l.5264 (titre l.5255 None); communs=[]
+   FR: sommer un biais ne fait qu'un plus grand biais.
+   EN: redeems the error — summing a bias only makes a bigger bias.
+   titreFR: ## A3 · « What if the probes just don't work at all — the two-family test fails, nothing g
+   titreEN: ## A3 · « What if the probes just don't work at all — the two-family test fails, nothing g
+volet11_53_et_fin paire 23 [A_VERIFIER] FR l.4948 (titre l.4938 None) / EN l.5264 (titre l.5255 None); communs=[]
+   FR: sommer un biais ne fait qu'un plus grand biais.
+   EN: redeems the error — summing a bias only makes a bigger bias.
+   titreFR: ## A3 · « What if the probes just don't work at all — the two-family test fails, nothing g
+   titreEN: ## A3 · « What if the probes just don't work at all — the two-family test fails, nothing g
+volet11_53_et_fin paire 24 [A_VERIFIER] FR l.4962 (titre l.4950 None) / EN l.5280 (titre l.5268 None); communs=[]
+   FR: ordre des concepts que la charge ne prédit pas — alors ma prédiction tomberait, et je le dirais.
+   EN: ordering of the concepts that loading doesn't predict — then my prediction would fall, and I'd say so.
+   titreFR: ## A4 · « Your rank-three result is on an 8B model. Why should we believe anything about i
+   titreEN: ## A4 · « Your rank-three result is on an 8B model. Why should we believe anything about i
+volet11_53_et_fin paire 25 [A_VERIFIER] FR l.4962 (titre l.4950 None) / EN l.5280 (titre l.5268 None); communs=[]
+   FR: ordre des concepts que la charge ne prédit pas — alors ma prédiction tomberait, et je le dirais.
+   EN: ordering of the concepts that loading doesn't predict — then my prediction would fall, and I'd say so.
+   titreFR: ## A4 · « Your rank-three result is on an 8B model. Why should we believe anything about i
+   titreEN: ## A4 · « Your rank-three result is on an 8B model. Why should we believe anything about i
+volet11_53_et_fin paire 26 [A_VERIFIER] FR l.4975 (titre l.4964 None) / EN l.5294 (titre l.5284 None); communs=[]
+   FR: et ce chiffre, je ne l'ai pas vu mesuré.
+   EN: that number measured.
+   titreFR: ## A5 · « Isn't sycophancy basically solved by now — constitutional training, better prefe
+   titreEN: ## A5 · « Isn't sycophancy basically solved by now — constitutional training, better prefe
+volet11_53_et_fin paire 27 [A_VERIFIER] FR l.4975 (titre l.4964 None) / EN l.5294 (titre l.5284 None); communs=[]
+   FR: et ce chiffre, je ne l'ai pas vu mesuré.
+   EN: that number measured.
+   titreFR: ## A5 · « Isn't sycophancy basically solved by now — constitutional training, better prefe
+   titreEN: ## A5 · « Isn't sycophancy basically solved by now — constitutional training, better prefe
+volet11_53_et_fin paire 30 [A_VERIFIER] FR l.5001 (titre l.4991 None) / EN l.5323 (titre l.5313 None); communs=[]
+   FR: combien de directions l'effet demande, par un balayage de rang fait dans une même expérience.
+   EN: story: you need to know how many directions the effect takes, through a rank sweep done within one experiment.
+   titreFR: ## A7 · « A colleague shows you a beautiful steering result — one direction, huge behaviou
+   titreEN: ## A7 · « A colleague shows you a beautiful steering result — one direction, huge behaviou
+volet11_53_et_fin paire 31 [A_VERIFIER] FR l.5001 (titre l.4991 None) / EN l.5323 (titre l.5313 None); communs=[]
+   FR: combien de directions l'effet demande, par un balayage de rang fait dans une même expérience.
+   EN: story: you need to know how many directions the effect takes, through a rank sweep done within one experiment.
+   titreFR: ## A7 · « A colleague shows you a beautiful steering result — one direction, huge behaviou
+   titreEN: ## A7 · « A colleague shows you a beautiful steering result — one direction, huge behaviou
+volet11_53_et_fin paire 32 [A_VERIFIER] FR l.5014 (titre l.5003 None) / EN l.5337 (titre l.5327 None); communs=[]
+   FR: pire qu'une défense dont on connaît les limites.
+   EN: unknown is worse than a defence whose limits are known.
+   titreFR: ## A8 · « How do you think about the dual-use of your own work — a better sabotage detecto
+   titreEN: ## A8 · « How do you think about the dual-use of your own work — a better sabotage detecto
+volet11_53_et_fin paire 33 [A_VERIFIER] FR l.5014 (titre l.5003 None) / EN l.5337 (titre l.5327 None); communs=[]
+   FR: pire qu'une défense dont on connaît les limites.
+   EN: unknown is worse than a defence whose limits are known.
+   titreFR: ## A8 · « How do you think about the dual-use of your own work — a better sabotage detecto
+   titreEN: ## A8 · « How do you think about the dual-use of your own work — a better sabotage detecto
+volet11_53_et_fin paire 34 [A_VERIFIER] FR l.5030 (titre l.5016 None) / EN l.5355 (titre l.5341 None); communs=[]
+   FR: explanations.
+   EN: explanations.
+   titreFR: ## A9 à A17 · Neuf questions moins probables, en réponse courte (FR / EN)
+   titreEN: ## A9 à A17 · Neuf questions moins probables, en réponse courte (FR / EN)
+volet11_53_et_fin paire 37 [A_VERIFIER] FR l.5094 (titre l.5075 None) / EN l.5419 (titre l.5400 None); communs=[]
+   FR: link between sessions isn't visible in the artefacts, and one must look elsewhere.
+   EN: link between sessions isn't visible in the artefacts, and one must look elsewhere.
+   titreFR: ## B1 · « An agent can write documentation that a future agent will follow. How do you mon
+   titreEN: ## B1 · « An agent can write documentation that a future agent will follow. How do you mon
+volet11_53_et_fin paire 38 [A_VERIFIER] FR l.5094 (titre l.5075 None) / EN l.5419 (titre l.5400 None); communs=[]
+   FR: link between sessions isn't visible in the artefacts, and one must look elsewhere.
+   EN: link between sessions isn't visible in the artefacts, and one must look elsewhere.
+   titreFR: ## B1 · « An agent can write documentation that a future agent will follow. How do you mon
+   titreEN: ## B1 · « An agent can write documentation that a future agent will follow. How do you mon
+volet11_53_et_fin paire 39 [A_VERIFIER] FR l.5115 (titre l.5096 None) / EN l.5440 (titre l.5421 None); communs=[]
+   FR: inhibit — then you can only make the environment realistic, without knowing whether you succeeded.
+   EN: inhibit — then you can only make the environment realistic, without knowing whether you succeeded.
+   titreFR: ## B2 · « How would you design an evaluation a model cannot tell is an evaluation? »
+   titreEN: ## B2 · « How would you design an evaluation a model cannot tell is an evaluation? »
+volet11_53_et_fin paire 40 [A_VERIFIER] FR l.5115 (titre l.5096 None) / EN l.5440 (titre l.5421 None); communs=[]
+   FR: inhibit — then you can only make the environment realistic, without knowing whether you succeeded.
+   EN: inhibit — then you can only make the environment realistic, without knowing whether you succeeded.
+   titreFR: ## B2 · « How would you design an evaluation a model cannot tell is an evaluation? »
+   titreEN: ## B2 · « How would you design an evaluation a model cannot tell is an evaluation? »
+volet11_53_et_fin paire 41 [A_VERIFIER] FR l.5139 (titre l.5117 None) / EN l.5464 (titre l.5442 None); communs=[]
+   FR: signal, delegation gains ground. What would kill it: an unchanged frontier — then the internal signal says nothing beyond the scorer.
+   EN: signal, delegation gains ground. What would kill it: an unchanged frontier — then the internal signal says nothing beyond the scorer.
+   titreFR: ## B3 · « What should be delegated to automated researchers, and what should not — and how
+   titreEN: ## B3 · « What should be delegated to automated researchers, and what should not — and how
+volet11_53_et_fin paire 42 [A_VERIFIER] FR l.5139 (titre l.5117 None) / EN l.5464 (titre l.5442 None); communs=[]
+   FR: signal, delegation gains ground. What would kill it: an unchanged frontier — then the internal signal says nothing beyond the scorer.
+   EN: signal, delegation gains ground. What would kill it: an unchanged frontier — then the internal signal says nothing beyond the scorer.
+   titreFR: ## B3 · « What should be delegated to automated researchers, and what should not — and how
+   titreEN: ## B3 · « What should be delegated to automated researchers, and what should not — and how
+volet11_53_et_fin paire 43 [A_VERIFIER] FR l.5159 (titre l.5141 None) / EN l.5484 (titre l.5466 None); communs=[]
+   FR: else.
+   EN: else.
+   titreFR: ## B4 · « How would you measure evaluation awareness that the model never verbalizes? »
+   titreEN: ## B4 · « How would you measure evaluation awareness that the model never verbalizes? »
+volet11_53_et_fin paire 44 [A_VERIFIER] FR l.5159 (titre l.5141 None) / EN l.5484 (titre l.5466 None); communs=[]
+   FR: else.
+   EN: else.
+   titreFR: ## B4 · « How would you measure evaluation awareness that the model never verbalizes? »
+   titreEN: ## B4 · « How would you measure evaluation awareness that the model never verbalizes? »
+volet11_53_et_fin paire 45 [A_VERIFIER] FR l.5159 (titre l.5141 None) / EN l.5484 (titre l.5466 None); communs=[]
+   FR: else.
+   EN: else.
+   titreFR: ## B4 · « How would you measure evaluation awareness that the model never verbalizes? »
+   titreEN: ## B4 · « How would you measure evaluation awareness that the model never verbalizes? »
+volet11_53_et_fin paire 46 [A_VERIFIER] FR l.5179 (titre l.5161 None) / EN l.5504 (titre l.5486 None); communs=[]
+   FR: where the weak model is wrong — then the strong model is different without being more right.
+   EN: where the weak model is wrong — then the strong model is different without being more right.
+   titreFR: ## B5 · « The directions page calls one setting "unexplored": detecting inputs where a str
+   titreEN: ## B5 · « The directions page calls one setting "unexplored": detecting inputs where a str
+volet11_53_et_fin paire 47 [A_VERIFIER] FR l.5179 (titre l.5161 None) / EN l.5504 (titre l.5486 None); communs=[]
+   FR: where the weak model is wrong — then the strong model is different without being more right.
+   EN: where the weak model is wrong — then the strong model is different without being more right.
+   titreFR: ## B5 · « The directions page calls one setting "unexplored": detecting inputs where a str
+   titreEN: ## B5 · « The directions page calls one setting "unexplored": detecting inputs where a str
+volet11_53_et_fin paire 48 [A_VERIFIER] FR l.5200 (titre l.5181 None) / EN l.5525 (titre l.5506 None); communs=[]
+   FR: positives on legitimate sessions exceed what a human can review.
+   EN: positives on legitimate sessions exceed what a human can review.
+   titreFR: ## B6 · « Inter-query defenses: an attacker splits a harmful task into innocuous queries. 
+   titreEN: ## B6 · « Inter-query defenses: an attacker splits a harmful task into innocuous queries. 
+volet11_53_et_fin paire 49 [A_VERIFIER] FR l.5221 (titre l.5202 None) / EN l.5546 (titre l.5527 None); communs=[]
+   FR: comparison: indistinguishable effects at four seeds — then more seeds are needed before concluding, not a preference.
+   EN: comparison: indistinguishable effects at four seeds — then more seeds are needed before concluding, not a preference.
+   titreFR: ## B7 · « Three methods prevent a model from learning a bad trait — inoculation prompting,
+   titreEN: ## B7 · « Three methods prevent a model from learning a bad trait — inoculation prompting,
+volet11_53_et_fin paire 50 [A_VERIFIER] FR l.5221 (titre l.5202 None) / EN l.5546 (titre l.5527 None); communs=[]
+   FR: comparison: indistinguishable effects at four seeds — then more seeds are needed before concluding, not a preference.
+   EN: comparison: indistinguishable effects at four seeds — then more seeds are needed before concluding, not a preference.
+   titreFR: ## B7 · « Three methods prevent a model from learning a bad trait — inoculation prompting,
+   titreEN: ## B7 · « Three methods prevent a model from learning a bad trait — inoculation prompting,
+volet11_53_et_fin paire 51 [A_VERIFIER] FR l.5221 (titre l.5202 None) / EN l.5546 (titre l.5527 None); communs=[]
+   FR: comparison: indistinguishable effects at four seeds — then more seeds are needed before concluding, not a preference.
+   EN: comparison: indistinguishable effects at four seeds — then more seeds are needed before concluding, not a preference.
+   titreFR: ## B7 · « Three methods prevent a model from learning a bad trait — inoculation prompting,
+   titreEN: ## B7 · « Three methods prevent a model from learning a bad trait — inoculation prompting,
+volet11_53_et_fin paire 52 [A_VERIFIER] FR l.5244 (titre l.5223 None) / EN l.5569 (titre l.5548 None); communs=[]
+   FR: instance.
+   EN: instance.
+   titreFR: ## B8 · « Build a suite of models with the same capabilities and different personas. How d
+   titreEN: ## B8 · « Build a suite of models with the same capabilities and different personas. How d
+volet11_53_et_fin paire 53 [A_VERIFIER] FR l.5244 (titre l.5223 None) / EN l.5569 (titre l.5548 None); communs=[]
+   FR: instance.
+   EN: instance.
+   titreFR: ## B8 · « Build a suite of models with the same capabilities and different personas. How d
+   titreEN: ## B8 · « Build a suite of models with the same capabilities and different personas. How d
+volet11_53_et_fin paire 54 [A_VERIFIER] FR l.5267 (titre l.5246 None) / EN l.5592 (titre l.5571 None); communs=[]
+   FR: representation — then none of the three pieces sees it, and one should say so rather than sign.
+   EN: representation — then none of the three pieces sees it, and one should say so rather than sign.
+   titreFR: ## B9 · « How would you build a safety case that a model cannot sandbag your dangerous-cap
+   titreEN: ## B9 · « How would you build a safety case that a model cannot sandbag your dangerous-cap
+volet11_53_et_fin paire 55 [A_VERIFIER] FR l.5267 (titre l.5246 None) / EN l.5592 (titre l.5571 None); communs=[]
+   FR: representation — then none of the three pieces sees it, and one should say so rather than sign.
+   EN: representation — then none of the three pieces sees it, and one should say so rather than sign.
+   titreFR: ## B9 · « How would you build a safety case that a model cannot sandbag your dangerous-cap
+   titreEN: ## B9 · « How would you build a safety case that a model cannot sandbag your dangerous-cap
+volet11_53_et_fin paire 56 [A_VERIFIER] FR l.5267 (titre l.5246 None) / EN l.5592 (titre l.5571 None); communs=[]
+   FR: representation — then none of the three pieces sees it, and one should say so rather than sign.
+   EN: representation — then none of the three pieces sees it, and one should say so rather than sign.
+   titreFR: ## B9 · « How would you build a safety case that a model cannot sandbag your dangerous-cap
+   titreEN: ## B9 · « How would you build a safety case that a model cannot sandbag your dangerous-cap
+volet11_53_et_fin paire 57 [A_VERIFIER] FR l.5290 (titre l.5269 None) / EN l.5615 (titre l.5594 None); communs=[]
+   FR: stronger.
+   EN: stronger.
+   titreFR: ## B10 · « Untrusted monitoring: the monitor is another instance of the actor. How do you 
+   titreEN: ## B10 · « Untrusted monitoring: the monitor is another instance of the actor. How do you 
+volet11_53_et_fin paire 58 [A_VERIFIER] FR l.5290 (titre l.5269 None) / EN l.5615 (titre l.5594 None); communs=[]
+   FR: stronger.
+   EN: stronger.
+   titreFR: ## B10 · « Untrusted monitoring: the monitor is another instance of the actor. How do you 
+   titreEN: ## B10 · « Untrusted monitoring: the monitor is another instance of the actor. How do you 
+volet11_53_et_fin paire 59 [A_VERIFIER] FR l.5312 (titre l.5292 None) / EN l.5637 (titre l.5617 None); communs=[]
+   FR: answers, only that it's stable.
+   EN: answers, only that it's stable.
+   titreFR: ## B11 · « How would you tell whether a model gives an answer for the right reasons — not 
+   titreEN: ## B11 · « How would you tell whether a model gives an answer for the right reasons — not 
+volet11_53_et_fin paire 60 [A_VERIFIER] FR l.5312 (titre l.5292 None) / EN l.5637 (titre l.5617 None); communs=[]
+   FR: answers, only that it's stable.
+   EN: answers, only that it's stable.
+   titreFR: ## B11 · « How would you tell whether a model gives an answer for the right reasons — not 
+   titreEN: ## B11 · « How would you tell whether a model gives an answer for the right reasons — not 
+volet11_53_et_fin paire 61 [A_VERIFIER] FR l.5334 (titre l.5314 None) / EN l.5659 (titre l.5639 None); communs=[]
+   FR: depend on N — then it's not a population effect, and the failure mode is individual.
+   EN: depend on N — then it's not a population effect, and the failure mode is individual.
+   titreFR: ## B12 · « Multi-agent externalities: each instance's small harm is negligible, the aggreg
+   titreEN: ## B12 · « Multi-agent externalities: each instance's small harm is negligible, the aggreg
+volet11_53_et_fin paire 62 [A_VERIFIER] FR l.5334 (titre l.5314 None) / EN l.5659 (titre l.5639 None); communs=[]
+   FR: depend on N — then it's not a population effect, and the failure mode is individual.
+   EN: depend on N — then it's not a population effect, and the failure mode is individual.
+   titreFR: ## B12 · « Multi-agent externalities: each instance's small harm is negligible, the aggreg
+   titreEN: ## B12 · « Multi-agent externalities: each instance's small harm is negligible, the aggreg
+volet11_53_et_fin paire 66 [A_VERIFIER] FR l.5375 (titre l.5358 None) / EN l.5700 (titre l.5683 None); communs=[]
+   FR: What would make it decisive: a single transcript in that cell.
+   EN: What would make it decisive: a single transcript in that cell.
+   titreFR: ## B14 · « If you could run one adversarial evaluation on our production model tomorrow, w
+   titreEN: ## B14 · « If you could run one adversarial evaluation on our production model tomorrow, w
+volet11_53_et_fin paire 67 [A_VERIFIER] FR l.5375 (titre l.5358 None) / EN l.5700 (titre l.5683 None); communs=[]
+   FR: What would make it decisive: a single transcript in that cell.
+   EN: What would make it decisive: a single transcript in that cell.
+   titreFR: ## B14 · « If you could run one adversarial evaluation on our production model tomorrow, w
+   titreEN: ## B14 · « If you could run one adversarial evaluation on our production model tomorrow, w
+volet2_A_a_D paire 11 [A_VERIFIER] FR l.531 (titre l.523 None) / EN l.619 (titre l.611 None); communs=[]
+   FR: vecteur le plus net, ou moindres : une seule force ne les sépare pas, et le contrôle suivant serait une courbe dose-réponse.
+   EN: cleanest vector, or smaller: a single strength does not separate them, and the next control would be a dose-response curve.
+   titreFR: ### Cas d'application — sondes et pilotage : « How would you show that a steering vector's
+   titreEN: ### Worked case — probes and steering: "How would you show that a steering vector's effect
+volet2_A_a_D paire 12 [A_VERIFIER] FR l.539 (titre l.523 None) / EN l.627 (titre l.611 None); communs=[]
+   FR: ne peut pas agir écarte un corrélat : un effet aussi grand que là où il agit l'y trahirait.
+   EN: cannot act rules out a correlate: an effect there as large as where the concept acts would betray the correlate.
+   titreFR: ### Cas d'application — sondes et pilotage : « How would you show that a steering vector's
+   titreEN: ### Worked case — probes and steering: "How would you show that a steering vector's effect
+volet2_A_a_D paire 18 [A_VERIFIER] FR l.606 (titre l.589 None) / EN l.694 (titre l.677 None); communs=[]
+   FR: du concept, lue sur les tokens de ces directions à toutes les positions, doit d'abord baisser en réel : sinon, le modèle y lirait encore un test.
+   EN: of the concept, read on the tokens of those directions at all positions, must first drop in the real framing: otherwise, the model would still read a 
+   titreFR: ### Cas d'application — l'espace de travail et le J-lens : « An internal "this is fake" si
+   titreEN: ### Worked case — the workspace and the J-lens: "An internal "this is fake" signal appears
+volet2_A_a_D paire 19 [A_VERIFIER] FR l.613 (titre l.589 None) / EN l.701 (titre l.677 None); communs=[]
+   FR: verbalisée, comme dans l'article, et plus que ne le fait le bras neutre ; et les déroulés doivent suffire à voir un excès aussi petit que dans l'artic
+   EN: awareness down, as in the paper, and more than the neutral arm does; and the runs must be enough to see an excess as small as in the paper.
+   titreFR: ### Cas d'application — l'espace de travail et le J-lens : « An internal "this is fake" si
+   titreEN: ### Worked case — the workspace and the J-lens: "An internal "this is fake" signal appears
+volet2_A_a_D paire 24 [A_VERIFIER] FR l.649 (titre l.635 None) / EN l.738 (titre l.724 None); communs=[]
+   FR: alors. De nouvelles graines écartent un gagnant de hasard, qui changerait d'une graine à l'autre.
+   EN: up. New seeds rule out a chance winner, which would change from one seed to another.
+   titreFR: ### Cas d'application — l'interprétabilité mécaniste : « Two dictionaries reconstruct acti
+   titreEN: ### Worked case — mechanistic interpretability: "Two dictionaries reconstruct activations 
+volet2_A_a_D paire 25 [A_VERIFIER] FR l.665 (titre l.635 None) / EN l.754 (titre l.724 None); communs=[]
+   FR: produces equally well, while random directions missed it, I'd drop the bet. »*
+   EN: produces equally well, while random directions missed it, I'd drop the bet."*
+   titreFR: ### Cas d'application — l'interprétabilité mécaniste : « Two dictionaries reconstruct acti
+   titreEN: ### Worked case — mechanistic interpretability: "Two dictionaries reconstruct activations 
+volet2_E_a_I paire 2 [A_VERIFIER] FR l.692 (titre l.675 None) / EN l.782 (titre l.765 None); communs=[]
+   FR: domaine illisible : l'élicitation doit y retrouver ce fait.
+   EN: unreadable domain: elicitation must recover that fact there.
+   titreFR: ### Cas d'application — la supervision évolutive : « Would unsupervised elicitation still 
+   titreEN: ### Worked case — scalable oversight: "Would unsupervised elicitation still work on questi
+volet2_E_a_I paire 3 [A_VERIFIER] FR l.709 (titre l.675 None) / EN l.799 (titre l.765 None); communs=[]
+   FR: alone gave back the truth, I'd drop the bet. »*
+   EN: alone gave back the truth, I'd drop the bet."*
+   titreFR: ### Cas d'application — la supervision évolutive : « Would unsupervised elicitation still 
+   titreEN: ### Worked case — scalable oversight: "Would unsupervised elicitation still work on questi
+volet2_E_a_I paire 7 [A_VERIFIER] FR l.767 (titre l.760 None) / EN l.859 (titre l.852 None); communs=[]
+   FR: canal hors du texte.
+   EN: channel outside the text.
+   titreFR: ### Cas d'application — monitoring et AI control : « How would you design a control evalua
+   titreEN: ### Worked case — monitoring and AI control: "How would you design a control evaluation fo
+volet2_E_a_I paire 8 [A_VERIFIER] FR l.777 (titre l.760 None) / EN l.869 (titre l.852 None); communs=[]
+   FR: des captures de la sonde ne dirait rien.
+   EN: of the probe's catches would say nothing.
+   titreFR: ### Cas d'application — monitoring et AI control : « How would you design a control evalua
+   titreEN: ### Worked case — monitoring and AI control: "How would you design a control evaluation fo
+volet2_E_a_I paire 12 [A_VERIFIER] FR l.824 (titre l.805 None) / EN l.917 (titre l.898 None); communs=[]
+   FR: **Le cas connu.** Un jeu qui ne sépare rien ferait aussi concorder les classements. Le modèle nu, sans filtre, doit donc montrer un uplift, et le filt
+   EN: **The known case.** A game that separates nothing would also make the rankings agree. The bare model, with no filter, must therefore show uplift, and 
+   titreFR: ### Cas d'application — robustesse adverse et mésusage : « How would you prevent bad actor
+   titreEN: ### Worked case — adversarial robustness and misuse: "How would you prevent bad actors fro
+volet2_E_a_I paire 13 [A_VERIFIER] FR l.832 (titre l.805 None) / EN l.925 (titre l.898 None); communs=[]
+   FR: **À l'oral.** *« I'd bet refusal rates misrank the filters I'd test, judged on uplift, the help an attacker can't get elsewhere. I'd rank the filters 
+   EN: **Out loud.** *"I'd bet refusal rates misrank the filters I'd test, judged on uplift, the help an attacker can't get elsewhere. I'd rank the filters t
+   titreFR: ### Cas d'application — robustesse adverse et mésusage : « How would you prevent bad actor
+   titreEN: ### Worked case — adversarial robustness and misuse: "How would you prevent bad actors fro
+volet2_E_a_I paire 16 [A_VERIFIER] FR l.868 (titre l.842 None) / EN l.962 (titre l.936 None); communs=[]
+   FR: méthode au moins, un fine-tuning sur des exemples sans rapport rendait l'essentiel de la capacité retirée.
+   EN: method, a fine-tune on unrelated examples brought back most of the removed capability.
+   titreFR: ### Cas d'application — interventions d'entraînement et unlearning : « How would you verif
+   titreEN: ### Worked case — training interventions and unlearning: "How would you verify that a capa
+volet3 paire 20 [A_VERIFIER] FR l.1097 (titre l.1077 None) / EN l.1222 (titre l.1202 None); communs=[]
+   FR: solutions plus efficaces mais moins alignées que des agents seuls. Et dans le registre de l’oversight automatisé, des chercheurs automatisés menant de
+   EN: more effective but less aligned solutions than single agents. And in the register of automated oversight, automated researchers conducting weak-to-str
+   titreFR: ## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026)
+   titreEN: ## SECTION III — CURRENT WORK (2025-2026)
+volet6 paire 4 [ident_ok] FR l.1437 (titre l.1402 2) / EN l.1587 (titre l.1579 2); communs=[]
+   FR: que les sous-espaces sont emboîtés. C'est la première anomalie de la thèse, pas son appui.
+   EN: **Rank 1.** "Six methods" is no longer traced in the dossier; you say **"several rank-one methods — contrastive activation addition, directional steer
+   titreFR: ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés le 27 par l
+   titreEN: ### 2. Your results, as your dossier carries them on September 14, corrected on the 27th b
+volet6 paire 16 [ident_ok] FR l.1575 (titre l.1569 7) / EN l.1678 (titre l.1676 7); communs=[]
+   FR: sont à désapprendre : « six methods », « two points », « deference subspace », « widening the judged window ».
+   EN: In Part 1, question Q2 ("the most important problem") gains your angle: judge metrology is an instance of the ground-truth problem. In Part 2, family 
+   titreFR: ### 7. Ce que ces compléments changent aux volets 1 à 5
+   titreEN: ### 7. What these supplements change in Parts 1 to 5
+volet7_A_et_C paire 40 [ident_ok] FR l.2564 (titre l.2558 F·53) / EN l.2696 (titre l.2690 F·53); communs=[]
+   FR: - Chiffre : « did not lower detection accuracy of the best probes ».
+   EN: - Figure: "did not lower detection accuracy of the best probes".
+   titreFR: ### F·53 · You Can't Escape Your Own Activations: Evaluation Awareness and Multi-Agent Mon
+   titreEN: ### F·53 · You Can't Escape Your Own Activations: Evaluation Awareness and Multi-Agent Mon
+volet7_B_et_D paire 5 [ident_ok] FR l.1770 (titre l.1753 F·25) / EN l.1935 (titre l.1918 F·25); communs=[]
+   FR: désalignement) et ce métrique mesurent le même risque à deux bouts. Et pour ton banc : publie son realism win rate.
+   EN: misalignment) and this metric measure the same risk from two ends. And for your benchmark: publish its realism win rate.
+   titreFR: ### F·25 · Measuring and improving coding audit realism with deployment resources — Kissan
+   titreEN: ### F·25 · Measuring and improving coding audit realism with deployment resources — Kissan
+volet7_B_et_D paire 33 [ident_ok] FR l.2058 (titre l.2051 F·60) / EN l.2195 (titre l.2194 F·60); communs=[]
+   FR: monitoring n'est pas celui-là.
+   EN: **Hypothesis.** A malicious automated researcher can slow research down (sandbag ML experiments) or steer it (manipulate justifications), **without be
+   titreFR: ### F·60 · Automated Researchers Can Subtly Sandbag — Gasteiger, Khan, Bowman, Wagner, Mik
+   titreEN: ### F·60 · Automated Researchers Can Subtly Sandbag — Gasteiger, Khan, Bowman, Wagner, Mik
+volet_M paire 2 [ident_ok] FR l.271 (titre l.257 M4) / EN l.338 (titre l.324 M4); communs=[]
+   FR: **La dose-réponse.** On fait varier la force dans le bras concept et dans le bras aléatoire, et l'on trace pour chacun l'effet visé contre le dommage 
+   EN: **Dose-response.** You vary the strength in the concept arm and in the random arm, and for each one you plot the targeted effect against the measured 
+   titreFR: ## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement
+   titreEN: ## M4 · The control: what it rules out, and it must come out differently
+volets8_9 paire 14 [ident_ok] FR l.2844 (titre l.2842 7) / EN l.3001 (titre l.2999 7); communs=[]
+   FR: (experts en désaccord), les **erreurs systématiques**, le coût. Quatre sous-problèmes.
+   EN: (experts in disagreement), **systematic errors**, cost. Four subproblems.
+   titreFR: ### 7 · Scalable oversight — « Can we design oversight mechanisms that will continue to wo
+   titreEN: ### 7 · Scalable oversight — "Can we design oversight mechanisms that will continue to wor
+volets8_9 paire 16 [ident_ok] FR l.2888 (titre l.2842 7) / EN l.3045 (titre l.2999 7); communs=[]
+   FR: qu'un prompt. Ta réponse : lire n'est pas contrôler, et « dans quelles circonstances » est une question causale.
+   EN: than a prompt. Your answer: reading is not controlling, and "under what circumstances" is a causal question.
+   titreFR: ### 7 · Scalable oversight — « Can we design oversight mechanisms that will continue to wo
+   titreEN: ### 7 · Scalable oversight — "Can we design oversight mechanisms that will continue to wor

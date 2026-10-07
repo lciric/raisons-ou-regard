@@ -1,0 +1,406 @@
+{
+ "diff": {
+  "FR": {
+   "tete_volet1": {
+    "encadre": 0,
+    "renvoi": 14,
+    "avert": 14,
+    "morceau": 0,
+    "lignes": 90
+   },
+   "volet_M": {
+    "encadre": 4,
+    "renvoi": 5,
+    "avert": 3,
+    "morceau": 1,
+    "lignes": 87
+   },
+   "volet2_A_a_D": {
+    "encadre": 7,
+    "renvoi": 8,
+    "avert": 7,
+    "morceau": 3,
+    "lignes": 232
+   },
+   "volet2_E_a_I": {
+    "encadre": 7,
+    "renvoi": 5,
+    "avert": 4,
+    "morceau": 0,
+    "lignes": 131
+   },
+   "volet3": {
+    "encadre": 0,
+    "renvoi": 8,
+    "avert": 15,
+    "morceau": 0,
+    "lignes": 69
+   },
+   "volets4_5_entete": {
+    "encadre": 4,
+    "renvoi": 32,
+    "avert": 18,
+    "morceau": 0,
+    "lignes": 210
+   },
+   "volet6": {
+    "encadre": 1,
+    "renvoi": 5,
+    "avert": 15,
+    "morceau": 1,
+    "lignes": 85
+   },
+   "volet7_B_et_D": {
+    "encadre": 1,
+    "renvoi": 23,
+    "avert": 10,
+    "morceau": 0,
+    "lignes": 115
+   },
+   "volet7_A_et_C": {
+    "encadre": 0,
+    "renvoi": 24,
+    "avert": 24,
+    "morceau": 0,
+    "lignes": 144
+   },
+   "volets8_9": {
+    "encadre": 0,
+    "renvoi": 8,
+    "avert": 14,
+    "morceau": 0,
+    "lignes": 66
+   },
+   "volet10": {
+    "encadre": 2,
+    "renvoi": 22,
+    "avert": 18,
+    "morceau": 0,
+    "lignes": 150
+   },
+   "volet11_1_a_20": {
+    "encadre": 0,
+    "renvoi": 17,
+    "avert": 30,
+    "morceau": 0,
+    "lignes": 141
+   },
+   "volet11_21_a_52": {
+    "encadre": 1,
+    "renvoi": 26,
+    "avert": 31,
+    "morceau": 0,
+    "lignes": 189
+   },
+   "volet11_53_et_fin": {
+    "encadre": 0,
+    "renvoi": 30,
+    "avert": 37,
+    "morceau": 0,
+    "lignes": 201
+   }
+  },
+  "EN": {
+   "tete_volet1": {
+    "encadre": 0,
+    "renvoi": 14,
+    "avert": 14,
+    "morceau": 0,
+    "lignes": 90
+   },
+   "volet_M": {
+    "encadre": 4,
+    "renvoi": 5,
+    "avert": 3,
+    "morceau": 1,
+    "lignes": 87
+   },
+   "volet2_A_a_D": {
+    "encadre": 7,
+    "renvoi": 8,
+    "avert": 7,
+    "morceau": 3,
+    "lignes": 232
+   },
+   "volet2_E_a_I": {
+    "encadre": 7,
+    "renvoi": 5,
+    "avert": 4,
+    "morceau": 0,
+    "lignes": 131
+   },
+   "volet3": {
+    "encadre": 0,
+    "renvoi": 8,
+    "avert": 15,
+    "morceau": 0,
+    "lignes": 69
+   },
+   "volets4_5_entete": {
+    "encadre": 4,
+    "renvoi": 32,
+    "avert": 18,
+    "morceau": 0,
+    "lignes": 210
+   },
+   "volet6": {
+    "encadre": 1,
+    "renvoi": 5,
+    "avert": 15,
+    "morceau": 1,
+    "lignes": 85
+   },
+   "volet7_B_et_D": {
+    "encadre": 1,
+    "renvoi": 23,
+    "avert": 10,
+    "morceau": 0,
+    "lignes": 115
+   },
+   "volet7_A_et_C": {
+    "encadre": 0,
+    "renvoi": 24,
+    "avert": 24,
+    "morceau": 0,
+    "lignes": 144
+   },
+   "volets8_9": {
+    "encadre": 0,
+    "renvoi": 8,
+    "avert": 14,
+    "morceau": 0,
+    "lignes": 66
+   },
+   "volet10": {
+    "encadre": 2,
+    "renvoi": 22,
+    "avert": 18,
+    "morceau": 0,
+    "lignes": 150
+   },
+   "volet11_1_a_20": {
+    "encadre": 0,
+    "renvoi": 17,
+    "avert": 30,
+    "morceau": 0,
+    "lignes": 141
+   },
+   "volet11_21_a_52": {
+    "encadre": 1,
+    "renvoi": 26,
+    "avert": 31,
+    "morceau": 0,
+    "lignes": 189
+   },
+   "volet11_53_et_fin": {
+    "encadre": 0,
+    "renvoi": 30,
+    "avert": 37,
+    "morceau": 0,
+    "lignes": 201
+   }
+  }
+ },
+ "insertions": {
+  "FR": {
+   "tete_volet1": {
+    "encadre": 0,
+    "renvoi": 14,
+    "avert": 14,
+    "morceau": 0,
+    "insertions": 25
+   },
+   "volet_M": {
+    "encadre": 4,
+    "renvoi": 5,
+    "avert": 3,
+    "morceau": 1,
+    "insertions": 13
+   },
+   "volet2_A_a_D": {
+    "encadre": 7,
+    "renvoi": 8,
+    "avert": 7,
+    "morceau": 3,
+    "insertions": 25
+   },
+   "volet2_E_a_I": {
+    "encadre": 7,
+    "renvoi": 5,
+    "avert": 4,
+    "morceau": 0,
+    "insertions": 16
+   },
+   "volet3": {
+    "encadre": 0,
+    "renvoi": 8,
+    "avert": 15,
+    "morceau": 0,
+    "insertions": 23
+   },
+   "volets4_5_entete": {
+    "encadre": 4,
+    "renvoi": 32,
+    "avert": 18,
+    "morceau": 0,
+    "insertions": 54
+   },
+   "volet6": {
+    "encadre": 1,
+    "renvoi": 5,
+    "avert": 15,
+    "morceau": 1,
+    "insertions": 22
+   },
+   "volet7_B_et_D": {
+    "encadre": 1,
+    "renvoi": 23,
+    "avert": 10,
+    "morceau": 0,
+    "insertions": 34
+   },
+   "volet7_A_et_C": {
+    "encadre": 0,
+    "renvoi": 24,
+    "avert": 24,
+    "morceau": 0,
+    "insertions": 48
+   },
+   "volets8_9": {
+    "encadre": 0,
+    "renvoi": 8,
+    "avert": 14,
+    "morceau": 0,
+    "insertions": 22
+   },
+   "volet10": {
+    "encadre": 2,
+    "renvoi": 22,
+    "avert": 18,
+    "morceau": 0,
+    "insertions": 42
+   },
+   "volet11_1_a_20": {
+    "encadre": 0,
+    "renvoi": 17,
+    "avert": 30,
+    "morceau": 0,
+    "insertions": 47
+   },
+   "volet11_21_a_52": {
+    "encadre": 1,
+    "renvoi": 26,
+    "avert": 31,
+    "morceau": 0,
+    "insertions": 58
+   },
+   "volet11_53_et_fin": {
+    "encadre": 0,
+    "renvoi": 30,
+    "avert": 37,
+    "morceau": 0,
+    "insertions": 67
+   }
+  },
+  "EN": {
+   "tete_volet1": {
+    "encadre": 0,
+    "renvoi": 14,
+    "avert": 14,
+    "morceau": 0,
+    "insertions": 25
+   },
+   "volet_M": {
+    "encadre": 4,
+    "renvoi": 5,
+    "avert": 3,
+    "morceau": 1,
+    "insertions": 13
+   },
+   "volet2_A_a_D": {
+    "encadre": 7,
+    "renvoi": 8,
+    "avert": 7,
+    "morceau": 3,
+    "insertions": 25
+   },
+   "volet2_E_a_I": {
+    "encadre": 7,
+    "renvoi": 5,
+    "avert": 4,
+    "morceau": 0,
+    "insertions": 16
+   },
+   "volet3": {
+    "encadre": 0,
+    "renvoi": 8,
+    "avert": 15,
+    "morceau": 0,
+    "insertions": 23
+   },
+   "volets4_5_entete": {
+    "encadre": 4,
+    "renvoi": 32,
+    "avert": 18,
+    "morceau": 0,
+    "insertions": 54
+   },
+   "volet6": {
+    "encadre": 1,
+    "renvoi": 5,
+    "avert": 15,
+    "morceau": 1,
+    "insertions": 22
+   },
+   "volet7_B_et_D": {
+    "encadre": 1,
+    "renvoi": 23,
+    "avert": 10,
+    "morceau": 0,
+    "insertions": 34
+   },
+   "volet7_A_et_C": {
+    "encadre": 0,
+    "renvoi": 24,
+    "avert": 24,
+    "morceau": 0,
+    "insertions": 48
+   },
+   "volets8_9": {
+    "encadre": 0,
+    "renvoi": 8,
+    "avert": 14,
+    "morceau": 0,
+    "insertions": 22
+   },
+   "volet10": {
+    "encadre": 2,
+    "renvoi": 22,
+    "avert": 18,
+    "morceau": 0,
+    "insertions": 42
+   },
+   "volet11_1_a_20": {
+    "encadre": 0,
+    "renvoi": 17,
+    "avert": 30,
+    "morceau": 0,
+    "insertions": 47
+   },
+   "volet11_21_a_52": {
+    "encadre": 1,
+    "renvoi": 26,
+    "avert": 31,
+    "morceau": 0,
+    "insertions": 58
+   },
+   "volet11_53_et_fin": {
+    "encadre": 0,
+    "renvoi": 30,
+    "avert": 37,
+    "morceau": 0,
+    "insertions": 67
+   }
+  }
+ }
+}

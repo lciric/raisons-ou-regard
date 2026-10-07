@@ -1,0 +1,1667 @@
+[
+[
+"groupe_1",
+1,
+"FR",
+5,
+"tete_volet1",
+"note d'ouverture",
+"> Rien du texte de la v3.5 n'est retiré ni modifié : on ajoute, et chaque ajout porte la mentio"
+],
+[
+"groupe_1",
+2,
+"EN",
+25,
+"tete_volet1",
+"note d'ouverture",
+"> No text of v3.5 is removed or changed: things are only added, and every addition carries the "
+],
+[
+"groupe_1",
+3,
+"FR",
+174,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* Que le désalignement monte quand on neutralise « ceci est un test » n'est qu'un ap"
+],
+[
+"groupe_1",
+4,
+"EN",
+233,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* That misaligned behaviour rises when \"this is a test\" is neutralized is only weak "
+],
+[
+"groupe_1",
+5,
+"FR",
+190,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* « La seconde prend le relais » suppose la sonde fiable là où la chaîne ne l'est pa"
+],
+[
+"groupe_1",
+6,
+"EN",
+250,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* \"The second takes over\" assumes the probe is reliable where the chain is not: the "
+],
+[
+"groupe_1",
+7,
+"FR",
+225,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* « Plusieurs méthodes de rang un ont échoué » est un nul sans chiffres ni cas connu"
+],
+[
+"groupe_1",
+8,
+"EN",
+289,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* \"Several rank-one methods failed\" is a null without numbers or a known case: their"
+],
+[
+"groupe_1",
+9,
+"FR",
+228,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* La prédiction du sous-espace n'a pas d'appui causal propre : la baisse du rang tro"
+],
+[
+"groupe_1",
+10,
+"EN",
+292,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* The subspace prediction has no causal support of its own: the rank-three drop did "
+],
+[
+"groupe_1",
+11,
+"FR",
+252,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* Le résultat d'un jeu red team / blue team ne vaut que pour la red team supposée : "
+],
+[
+"groupe_1",
+12,
+"EN",
+316,
+"tete_volet1",
+"avertissement",
+"> ⚠ *(v3.6)* The result of a red team / blue team game holds only for the red team assumed: an "
+],
+[
+"groupe_1",
+13,
+"FR",
+363,
+"volet_M",
+"encadré",
+"> - **Limite :** L'aléatoire seul est un contrôle faible : dans la carte système d'Opus 4.8, de"
+],
+[
+"groupe_1",
+14,
+"EN",
+430,
+"volet_M",
+"encadré",
+"> - **Limit:** Random alone is a weak control: in the Opus 4.8 system card, pairs with arbitrar"
+],
+[
+"groupe_1",
+15,
+"FR",
+367,
+"volet_M",
+"encadré",
+"> - **Limite :** L'aléatoire apparié en norme et l'aléatoire apparié en covariance sont deux de"
+],
+[
+"groupe_1",
+16,
+"EN",
+434,
+"volet_M",
+"encadré",
+"> - **Limit:** The norm-matched random and the covariance-matched random are two of the three c"
+],
+[
+"groupe_1",
+17,
+"FR",
+419,
+"volet_M",
+"encadré",
+"> - **Limite :** Choisir la couche, le seuil ou le prédicteur sur le jeu de test le contamine ;"
+],
+[
+"groupe_1",
+18,
+"EN",
+486,
+"volet_M",
+"encadré",
+"> - **Limit:** Choosing the layer, threshold or predictor on the test set contaminates it; extr"
+],
+[
+"groupe_1",
+19,
+"FR",
+541,
+"volet_M",
+"avertissement",
+"> ⚠ *(v3.6)* « Aucun contournement universel dans sa chasse » est le nul d'un red-teaming : une"
+],
+[
+"groupe_1",
+20,
+"EN",
+608,
+"volet_M",
+"avertissement",
+"> ⚠ *(v3.6)* \"No universal jailbreak in its hunt\" is the null of a red-teaming effort: a bound "
+],
+[
+"groupe_1",
+21,
+"EN",
+526,
+"volet_M",
+"morceau du 2 octobre",
+"> The rule of this paragraph, applied to misalignment probes and to the J-lens, is developed in"
+],
+[
+"groupe_1",
+22,
+"EN",
+532,
+"volet_M",
+"encadré",
+"> **Workaround:** In part: two different ways of installing the same behaviour, and another tea"
+],
+[
+"groupe_2",
+1,
+"FR",
+641,
+"volet2_A_a_D",
+"encadré",
+"> - **Limite :** Construit n'est pas naturel : la saillance peut venir de l'insertion, et l'ali"
+],
+[
+"groupe_2",
+2,
+"EN",
+727,
+"volet2_A_a_D",
+"encadré",
+"> - **Limit:** Built is not natural: salience may come from the insertion, and instrumental dec"
+],
+[
+"groupe_2",
+3,
+"FR",
+708,
+"volet2_A_a_D",
+"encadré",
+"> - **Limite :** Le modèle peut remarquer qu'on l'observe et changer de conduite : moins de mau"
+],
+[
+"groupe_2",
+4,
+"EN",
+795,
+"volet2_A_a_D",
+"encadré",
+"> - **Limit:** The model can notice it is being watched and change its conduct: less misbehavio"
+],
+[
+"groupe_2",
+5,
+"FR",
+718,
+"volet2_A_a_D",
+"encadré",
+"> - **Limite :** Dans une simulation, « c'est faux » est vrai : un pot de miel ou une réplicati"
+],
+[
+"groupe_2",
+6,
+"EN",
+805,
+"volet2_A_a_D",
+"encadré",
+"> - **Limit:** In a simulation, \"this is fake\" is true: a honeypot or a replication in a simula"
+],
+[
+"groupe_2",
+7,
+"FR",
+772,
+"volet2_A_a_D",
+"encadré",
+"> **Parade :** Lire aux deux positions : au premier jeton de la réponse, avant toute raison écr"
+],
+[
+"groupe_2",
+8,
+"EN",
+860,
+"volet2_A_a_D",
+"encadré",
+"> **Workaround:** Read at both positions: at the first token of the answer, before any written "
+],
+[
+"groupe_2",
+9,
+"FR",
+821,
+"volet2_A_a_D",
+"encadré",
+"> - **Limite :** « La direction bouge le comportement » n'est pas « le concept cause le comport"
+],
+[
+"groupe_2",
+10,
+"EN",
+909,
+"volet2_A_a_D",
+"encadré",
+"> - **Limit:** \"The direction moves behaviour\" is not \"the concept causes behaviour\": in the Op"
+],
+[
+"groupe_2",
+11,
+"FR",
+828,
+"volet2_A_a_D",
+"encadré",
+"> **Parade :** Pré-enregistrer la définition de « ça marche » et tester la généralisation d'un "
+],
+[
+"groupe_2",
+12,
+"EN",
+916,
+"volet2_A_a_D",
+"encadré",
+"> **Workaround:** Preregister the definition of \"it works\" and test generalization from one set"
+],
+[
+"groupe_2",
+13,
+"FR",
+834,
+"volet2_A_a_D",
+"encadré",
+"> **Parade :** Pour la causalité, le test à dégradation appariée ; pour l'extraction supervisée"
+],
+[
+"groupe_2",
+14,
+"EN",
+922,
+"volet2_A_a_D",
+"encadré",
+"> **Workaround:** For causality, the matched-degradation test; for supervised extraction, cross"
+],
+[
+"groupe_2",
+15,
+"FR",
+904,
+"volet2_A_a_D",
+"avertissement",
+"> ⚠ *(v3.6)* Les échecs des méthodes de rang un sont des nuls, rapportés sans chiffres faute de"
+],
+[
+"groupe_2",
+16,
+"EN",
+992,
+"volet2_A_a_D",
+"avertissement",
+"> ⚠ *(v3.6)* The failures of the rank-one methods are nulls, reported without numbers since the"
+],
+[
+"groupe_2",
+17,
+"FR",
+936,
+"volet2_A_a_D",
+"encadré",
+"> - **Limite :** Il n'a été montré que sur Claude ; un billet de Zeisler, relayé par un rapport"
+],
+[
+"groupe_2",
+18,
+"EN",
+1024,
+"volet2_A_a_D",
+"encadré",
+"> - **Limit:** It has been shown only on Claude; a post by Zeisler, relayed by a report, finds "
+],
+[
+"groupe_2",
+19,
+"FR",
+1009,
+"volet2_A_a_D",
+"encadré",
+"> **Parade :** Deux ordres de retrait, par variance et par effet causal. *(source : cours, vole"
+],
+[
+"groupe_2",
+20,
+"EN",
+1098,
+"volet2_A_a_D",
+"encadré",
+"> **Workaround:** Two removal orders, by variance and by causal effect. *(source: course, Part "
+],
+[
+"groupe_2",
+21,
+"FR",
+1070,
+"volet2_A_a_D",
+"encadré",
+"> - **Limite :** Un diff qui ne fait rien sortir ne dit rien sans cas connu : le crosscoder peu"
+],
+[
+"groupe_2",
+22,
+"EN",
+1159,
+"volet2_A_a_D",
+"encadré",
+"> - **Limit:** A diff that surfaces nothing says nothing without a known case: the crosscoder m"
+],
+[
+"groupe_3",
+1,
+"FR",
+1092,
+"volet2_E_a_I",
+"encadré",
+"> - **Limite :** Le juge peut être un modèle, avec ses erreurs systématiques : un juge LLM plus"
+],
+[
+"groupe_3",
+2,
+"EN",
+1182,
+"volet2_E_a_I",
+"encadré",
+"> - **Limit:** The judge can be a model, with systematic errors of its own: an LLM judge weaker"
+],
+[
+"groupe_3",
+3,
+"FR",
+1141,
+"volet2_E_a_I",
+"encadré",
+"> - **Limite :** L'échec peut rester silencieux là où l'évaluation en distribution est impossib"
+],
+[
+"groupe_3",
+4,
+"EN",
+1231,
+"volet2_E_a_I",
+"encadré",
+"> - **Limit:** Failure can stay silent where in-distribution evaluation is impossible. *(source"
+],
+[
+"groupe_3",
+5,
+"FR",
+1143,
+"volet2_E_a_I",
+"encadré",
+"> - **Limite :** La sonde du filtre et la méthode peuvent lire la même feature saillante. *(sou"
+],
+[
+"groupe_3",
+6,
+"EN",
+1233,
+"volet2_E_a_I",
+"encadré",
+"> - **Limit:** The filter's probe and the method may read the same salient feature. *(source: c"
+],
+[
+"groupe_3",
+7,
+"FR",
+1140,
+"volet2_E_a_I",
+"encadré",
+"> **Parade :** Ancrer la méthode sur des réponses vérifiées, par l'entraînement du facile au di"
+],
+[
+"groupe_3",
+8,
+"EN",
+1230,
+"volet2_E_a_I",
+"encadré",
+"> **Workaround:** Anchor the method on verified answers, through easy-to-hard training — a hope"
+],
+[
+"groupe_3",
+9,
+"FR",
+1220,
+"volet2_E_a_I",
+"encadré",
+"> **Parade :** Des moniteurs à état, qui n'en récupèrent qu'une partie ; pour l'agrégation de p"
+],
+[
+"groupe_3",
+10,
+"EN",
+1312,
+"volet2_E_a_I",
+"encadré",
+"> **Workaround:** Stateful monitors, which recover only part of them; for aggregating internal "
+],
+[
+"groupe_3",
+11,
+"FR",
+1289,
+"volet2_E_a_I",
+"encadré",
+"> - **Limite :** Sans budget fixé, « rien trouvé » dit seulement qu'on n'a pas assez cherché. *"
+],
+[
+"groupe_3",
+12,
+"EN",
+1382,
+"volet2_E_a_I",
+"encadré",
+"> - **Limit:** Without a fixed budget, \"nothing found\" only says you did not search enough. *(s"
+],
+[
+"groupe_3",
+13,
+"FR",
+1310,
+"volet2_E_a_I",
+"avertissement",
+"> ⚠ *(v3.6)* La formule « sans en trouver d'universel » rapporte le nul d'une chasse : une born"
+],
+[
+"groupe_3",
+14,
+"EN",
+1403,
+"volet2_E_a_I",
+"avertissement",
+"> ⚠ *(v3.6)* The phrase \"without finding a universal one\" reports the null of a hunt: a bound a"
+],
+[
+"groupe_3",
+15,
+"FR",
+1348,
+"volet2_E_a_I",
+"encadré",
+"> - **Limite :** Placé dans l'entraînement, un classifieur peut inciter le modèle à l'éviter. *"
+],
+[
+"groupe_3",
+16,
+"EN",
+1441,
+"volet2_E_a_I",
+"encadré",
+"> - **Limit:** Placed in training, a classifier can give the model an incentive to evade it. *("
+],
+[
+"groupe_3",
+17,
+"FR",
+1358,
+"volet2_E_a_I",
+"avertissement",
+"> ⚠ *(v3.6)* Le « feedback de l'IA » fait d'un modèle le juge de l'entraînement, et un juge d'e"
+],
+[
+"groupe_3",
+18,
+"EN",
+1452,
+"volet2_E_a_I",
+"avertissement",
+"> ⚠ *(v3.6)* The \"feedback from AI\" makes a model the judge of training, and a training judge c"
+],
+[
+"groupe_3",
+19,
+"FR",
+1680,
+"volet3",
+"avertissement",
+"> ⚠ *(v3.6)* Ces lectures ne sont pas toutes un auto-rapport du modèle : l'oracle d'activation "
+],
+[
+"groupe_3",
+20,
+"EN",
+1805,
+"volet3",
+"avertissement",
+"> ⚠ *(v3.6)* Not all of these readings are a self-report of the model: an activation oracle is "
+],
+[
+"groupe_3",
+21,
+"FR",
+1703,
+"volet3",
+"avertissement",
+"> ⚠ *(v3.6)* Ce taux est lu sur des pots de miel : un modèle peut y remarquer le test et s'y co"
+],
+[
+"groupe_3",
+22,
+"EN",
+1828,
+"volet3",
+"avertissement",
+"> ⚠ *(v3.6)* This rate is read on honeypots: a model can notice the test there and behave bette"
+],
+[
+"groupe_3",
+23,
+"FR",
+1712,
+"volet3",
+"avertissement",
+"> ⚠ *(v3.6)* Ce que cette phrase déroule a ses limites, à connaître avant de la dire : la décom"
+],
+[
+"groupe_3",
+24,
+"EN",
+1837,
+"volet3",
+"avertissement",
+"> ⚠ *(v3.6)* What this sentence unfolds has its limits, to know before saying it: the SAE decom"
+],
+[
+"groupe_4",
+1,
+"FR",
+1754,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* Cette extension, ton dépôt l'a tentée sur Llama 3.1 8B Instruct : aucune intervent"
+],
+[
+"groupe_4",
+2,
+"EN",
+1896,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* Your repository tried this extension on Llama 3.1 8B Instruct: no single-direction"
+],
+[
+"groupe_4",
+3,
+"FR",
+1793,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* « Augmenter ou diminuer un comportement » ne dit le concept qu'à dégradation appar"
+],
+[
+"groupe_4",
+4,
+"EN",
+1935,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* \"Increasing or decreasing a behaviour\" shows the concept only at matched degradati"
+],
+[
+"groupe_4",
+5,
+"FR",
+1809,
+"volets4_5_entete",
+"encadré",
+"> - **Limite :** L'erreur de reconstruction : le SAE ouvert de Goodfire pour Llama 3.1 8B laiss"
+],
+[
+"groupe_4",
+6,
+"EN",
+1949,
+"volets4_5_entete",
+"encadré",
+"> - **Limit:** Reconstruction error: the open-source Goodfire SAE for Llama 3.1 8B leaves 86.8%"
+],
+[
+"groupe_4",
+7,
+"FR",
+1835,
+"volets4_5_entete",
+"encadré",
+"> - **Limite :** Affirmer qu'aucun mécanisme ne fait mal agir le modèle exige décomposition et "
+],
+[
+"groupe_4",
+8,
+"EN",
+1975,
+"volets4_5_entete",
+"encadré",
+"> - **Limit:** Claiming that no mechanism makes the model misbehave requires decomposition and "
+],
+[
+"groupe_4",
+9,
+"FR",
+2013,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* La grille compare les interventions entre elles et à un prompt, pas à des témoins "
+],
+[
+"groupe_4",
+10,
+"EN",
+2191,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* The grid compares the interventions with each other and with a prompt, not with sa"
+],
+[
+"groupe_4",
+11,
+"FR",
+2032,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* Dans cette triangulation, la verbalisation n'est jamais une preuve d'inhibition : "
+],
+[
+"groupe_4",
+12,
+"EN",
+2210,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* In this triangulation, verbalization is never proof of inhibition: random directio"
+],
+[
+"groupe_4",
+13,
+"FR",
+2154,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* Au point 7, « en boîte noire » veut dire que le détecteur lit le transcript, pas l"
+],
+[
+"groupe_4",
+14,
+"EN",
+2334,
+"volets4_5_entete",
+"avertissement",
+"> ⚠ *(v3.6)* In item 7, \"black-box\" means the detector reads the transcript, not the activation"
+],
+[
+"groupe_4",
+15,
+"FR",
+2243,
+"volet6",
+"encadré",
+"> - **Limite :** Une fenêtre tronquée peut faire mal lire : selon le README, à travers elle, un"
+],
+[
+"groupe_4",
+16,
+"EN",
+2408,
+"volet6",
+"encadré",
+"> - **Limit:** A truncated window can mislead: according to the README, through it a softened n"
+],
+[
+"groupe_4",
+17,
+"FR",
+2247,
+"volet6",
+"encadré",
+"> - **Limite :** Un juge qui lit le raisonnement se laisse persuader : le moniteur fondé sur la"
+],
+[
+"groupe_4",
+18,
+"EN",
+2412,
+"volet6",
+"encadré",
+"> - **Limit:** A judge that reads the reasoning gets persuaded: the chain-of-thought monitor wo"
+],
+[
+"groupe_4",
+19,
+"FR",
+2253,
+"volet6",
+"encadré",
+"> - **Limite :** Des étiquettes de juge bruitées ou non validées contre des humains : environ 2"
+],
+[
+"groupe_4",
+20,
+"EN",
+2418,
+"volet6",
+"encadré",
+"> - **Limit:** Judge labels that are noisy or not validated against humans: about 25% of labels"
+],
+[
+"groupe_4",
+21,
+"FR",
+2259,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* Que la destination « se lise dans les activations » dit qu'elle y est lisible, pas"
+],
+[
+"groupe_4",
+22,
+"EN",
+2424,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* That the destination \"can be read in the activations\" says it is readable there, n"
+],
+[
+"groupe_4",
+23,
+"FR",
+2368,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* Le 96 % vient d'un stress-test délibéré, où l'action nuisible est la seule voie, e"
+],
+[
+"groupe_4",
+24,
+"EN",
+2484,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* The 96% comes from a deliberate stress test, where the harmful action is the only "
+],
+[
+"groupe_4",
+25,
+"FR",
+2399,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* Le jacobien ne dispense pas du test causal : le lens ne capture l'espace de travai"
+],
+[
+"groupe_4",
+26,
+"EN",
+2506,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* The Jacobian does not exempt the lens from the causal test: it captures the worksp"
+],
+[
+"groupe_4",
+27,
+"FR",
+2458,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* Ce « moins de 1 % » vient d'un seul modèle, Llama 3.1 8B Instruct, et de la seule "
+],
+[
+"groupe_4",
+28,
+"EN",
+2561,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* This \"less than 1%\" comes from a single model, Llama 3.1 8B Instruct, and from opi"
+],
+[
+"groupe_4",
+29,
+"FR",
+2521,
+"volet6",
+"morceau du 2 octobre",
+"> L'encadré du 2 octobre reprend cette section du côté de la pratique : pourquoi un organisme m"
+],
+[
+"groupe_4",
+30,
+"FR",
+2524,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* « Une sonde par couche » oblige à choisir une couche, et « s'allume » suppose un s"
+],
+[
+"groupe_4",
+31,
+"EN",
+2689,
+"volet6",
+"avertissement",
+"> ⚠ *(v3.6)* \"One probe per layer\" forces a choice of layer, and \"fires\" assumes a threshold: c"
+],
+[
+"groupe_5",
+1,
+"FR",
+2688,
+"volet7_B_et_D",
+"avertissement",
+"> ⚠ *(v3.6)* Le résultat interne rappelé ici vient du pilotage, et c'est un appui faible : des "
+],
+[
+"groupe_5",
+2,
+"EN",
+2853,
+"volet7_B_et_D",
+"avertissement",
+"> ⚠ *(v3.6)* The internal result recalled here comes from steering, and it is weak support: con"
+],
+[
+"groupe_5",
+3,
+"FR",
+2876,
+"volet7_B_et_D",
+"avertissement",
+"> ⚠ *(v3.6)* Le lien entre déplacement et trait est corrélationnel, le trait se nomme d'avance "
+],
+[
+"groupe_5",
+4,
+"EN",
+3041,
+"volet7_B_et_D",
+"avertissement",
+"> ⚠ *(v3.6)* The shift-to-trait link is correlational, the trait must be named in advance and t"
+],
+[
+"groupe_5",
+5,
+"FR",
+2884,
+"volet7_B_et_D",
+"avertissement",
+"> ⚠ *(v3.6)* « MMLU préservé » n'écarte le dommage que sur ce composite, et la direction aléato"
+],
+[
+"groupe_5",
+6,
+"EN",
+3049,
+"volet7_B_et_D",
+"avertissement",
+"> ⚠ *(v3.6)* \"MMLU preserved\" rules out damage only on that composite, and the covariance-match"
+],
+[
+"groupe_5",
+7,
+"FR",
+2998,
+"volet7_B_et_D",
+"avertissement",
+"> ⚠ *(v3.6)* Le masquage sélectif des gradients n'est montré que sur de petits modèles *(source"
+],
+[
+"groupe_5",
+8,
+"EN",
+3163,
+"volet7_B_et_D",
+"avertissement",
+"> ⚠ *(v3.6)* Selective gradient masking is shown only on small models *(source: course, Part 2,"
+],
+[
+"groupe_5",
+9,
+"FR",
+3228,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* La direction qui lit le mieux n'est pas forcément celle qui agit : chez RepE, la d"
+],
+[
+"groupe_5",
+10,
+"EN",
+3362,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* The direction that reads best is not necessarily the one that acts: in RepE, the l"
+],
+[
+"groupe_5",
+11,
+"FR",
+3286,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* Ce nul de rang un est dit sans son cas connu : sans un concept qui cède au rang un"
+],
+[
+"groupe_5",
+12,
+"EN",
+3420,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* This rank-one null is stated without its known case: without a concept that gives "
+],
+[
+"groupe_5",
+13,
+"FR",
+3482,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* Que l'interprétabilité « aide » n'est pas chiffré : quatre équipes seulement, l'éq"
+],
+[
+"groupe_5",
+14,
+"EN",
+3616,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* That interpretability \"helps\" is not quantified: only four teams, the team with th"
+],
+[
+"groupe_5",
+15,
+"FR",
+3590,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* Ce « 7× » compare des méthodes de désapprentissage entre elles, sur de petits modè"
+],
+[
+"groupe_5",
+16,
+"EN",
+3724,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* This \"7×\" compares unlearning methods with each other, on small models (course, Pa"
+],
+[
+"groupe_5",
+17,
+"FR",
+3726,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* Un rappel de 0,844 ne se lit qu'avec son taux de faux positifs, que la fiche ne do"
+],
+[
+"groupe_5",
+18,
+"EN",
+3858,
+"volet7_A_et_C",
+"avertissement",
+"> ⚠ *(v3.6)* A recall of 0.844 reads only with its false-positive rate, which the sheet does no"
+],
+[
+"groupe_6",
+1,
+"FR",
+3947,
+"volets8_9",
+"avertissement",
+"> ⚠ *(v3.6)* Le quasi-hasard du SAD est un auto-rapport : il dit ce que le modèle répond quand "
+],
+[
+"groupe_6",
+2,
+"EN",
+4104,
+"volets8_9",
+"avertissement",
+"> ⚠ *(v3.6)* SAD's near-chance result is a self-report: it says what the model answers when ask"
+],
+[
+"groupe_6",
+3,
+"FR",
+3964,
+"volets8_9",
+"avertissement",
+"> ⚠ *(v3.6)* Derrière « le persona comme direction », le résultat le plus fort est prédictif, p"
+],
+[
+"groupe_6",
+4,
+"EN",
+4121,
+"volets8_9",
+"avertissement",
+"> ⚠ *(v3.6)* Behind \"the persona as a direction\", the strongest result is predictive, not causa"
+],
+[
+"groupe_6",
+5,
+"FR",
+4029,
+"volets8_9",
+"avertissement",
+"> ⚠ *(v3.6)* Ces « signs of life » ne mettent pas encore à l'épreuve « difficult for the model "
+],
+[
+"groupe_6",
+6,
+"EN",
+4186,
+"volets8_9",
+"avertissement",
+"> ⚠ *(v3.6)* These \"signs of life\" do not yet put \"difficult for the model to control\" to the t"
+],
+[
+"groupe_6",
+7,
+"FR",
+4151,
+"volets8_9",
+"avertissement",
+"> ⚠ *(v3.6)* AI Organizations mesure ce mode dans deux organisations simulées, sur Opus 4.1, et"
+],
+[
+"groupe_6",
+8,
+"EN",
+4308,
+"volets8_9",
+"avertissement",
+"> ⚠ *(v3.6)* AI Organizations measures this mode in two simulated organizations, on Opus 4.1, a"
+],
+[
+"groupe_6",
+9,
+"FR",
+4329,
+"volet10",
+"avertissement",
+"> ⚠ *(v3.6)* Sur stages-oversight, le score mesure ce que le modèle répond quand on lui demande"
+],
+[
+"groupe_6",
+10,
+"EN",
+4571,
+"volet10",
+"avertissement",
+"> ⚠ *(v3.6)* On stages-oversight, the score measures what the model answers when asked where it"
+],
+[
+"groupe_6",
+11,
+"FR",
+4430,
+"volet10",
+"encadré",
+"> **Parade :** Choisir les sites d'intervention par leur effet causal mesuré, à l'ablation et a"
+],
+[
+"groupe_6",
+12,
+"EN",
+4672,
+"volet10",
+"encadré",
+"> **Workaround:** Choose intervention sites by their measured causal effect, under ablation and"
+],
+[
+"groupe_6",
+13,
+"FR",
+4431,
+"volet10",
+"encadré",
+"> - **Limite :** Petits jeux de prompts : dans ton dépôt, une partie du patch de chemins ne por"
+],
+[
+"groupe_6",
+14,
+"EN",
+4673,
+"volet10",
+"encadré",
+"> - **Limit:** Small prompt sets: in your repository, part of the path patching covers only 5 t"
+],
+[
+"groupe_6",
+15,
+"FR",
+4435,
+"volet10",
+"encadré",
+"> - **Limite :** Le choix du prompt cible et la contamination par le jeton de remplacement (« p"
+],
+[
+"groupe_6",
+16,
+"EN",
+4677,
+"volet10",
+"encadré",
+"> - **Limit:** The choice of target prompt and placeholder contamination can distort the readin"
+],
+[
+"groupe_6",
+17,
+"FR",
+4734,
+"volet10",
+"avertissement",
+"> ⚠ *(v3.6)* Contre ce risque d'un moniteur qui apprend le style de l'attaquant plutôt que l'er"
+],
+[
+"groupe_6",
+18,
+"EN",
+4973,
+"volet10",
+"avertissement",
+"> ⚠ *(v3.6)* Against this risk of a monitor that learns the attacker's style rather than the er"
+],
+[
+"groupe_6",
+19,
+"FR",
+4868,
+"volet10",
+"avertissement",
+"> ⚠ *(v3.6)* Ces effets se comparent aux prompts système et au fine-tuning, les capacités sont "
+],
+[
+"groupe_6",
+20,
+"EN",
+5106,
+"volet10",
+"avertissement",
+"> ⚠ *(v3.6)* These effects are compared with system prompts and fine-tuning, capabilities are m"
+],
+[
+"groupe_7",
+1,
+"FR",
+5134,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* Ces nuls de rang un n'ont pas de cas connu au même réglage : sans une intervention"
+],
+[
+"groupe_7",
+2,
+"EN",
+5377,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* These rank-one nulls have no known case at the same setting: without an interventi"
+],
+[
+"groupe_7",
+3,
+"FR",
+5204,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* Des vecteurs de contrôle aléatoires de même norme n'écartent que « n'importe quell"
+],
+[
+"groupe_7",
+4,
+"EN",
+5451,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* Matched-norm random control vectors rule out only \"any push of that size does as m"
+],
+[
+"groupe_7",
+5,
+"FR",
+5230,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* Les deux familles ferment l'écart entre deux façons d'implanter, pas celui entre l"
+],
+[
+"groupe_7",
+6,
+"EN",
+5476,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* The two families close the gap between two ways of implanting, not the one between"
+],
+[
+"groupe_7",
+7,
+"FR",
+5435,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* Ce résultat lit le motif dans un scratchpad caché, donné avec la consigne de raiso"
+],
+[
+"groupe_7",
+8,
+"EN",
+5686,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* This result reads the motive in a hidden scratchpad, given with the instruction to"
+],
+[
+"groupe_7",
+9,
+"FR",
+5456,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* Ce que la réponse ne dit pas : le lien entre le déplacement le long du vecteur et "
+],
+[
+"groupe_7",
+10,
+"EN",
+5707,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* What the answer does not say: the link between the shift along the vector and the "
+],
+[
+"groupe_7",
+11,
+"FR",
+5499,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* « Réfutée » vaut pour l'hypothèse forte, à ce réglage : un petit effet n'est pas d"
+],
+[
+"groupe_7",
+12,
+"EN",
+5751,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* \"Refuted\" holds for the strong hypothesis, at that setting: a small effect is not "
+],
+[
+"groupe_7",
+13,
+"FR",
+5643,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* La réserve dite ici a un pendant en production : une sonde peut y échouer en silen"
+],
+[
+"groupe_7",
+14,
+"EN",
+5916,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* The caveat stated here has a production counterpart: a probe can fail silently the"
+],
+[
+"groupe_7",
+15,
+"FR",
+5629,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* Ces taux de sabotage valent pour l'équipe rouge supposée : sur ces mêmes environne"
+],
+[
+"groupe_7",
+16,
+"EN",
+5903,
+"volet11_1_a_20",
+"avertissement",
+"> ⚠ *(v3.6)* These sabotage rates hold for the red team assumed: on those same environments, an"
+],
+[
+"groupe_7",
+17,
+"FR",
+5731,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* Après un entraînement, une sonde calibrée ailleurs lit autrement : des sondes neuv"
+],
+[
+"groupe_7",
+18,
+"EN",
+6006,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* After training, a probe calibrated elsewhere reads differently: fresh out-of-domai"
+],
+[
+"groupe_7",
+19,
+"FR",
+5938,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* Ces quarante transcriptions sont synthétiques, conçues par les auteurs : le modèle"
+],
+[
+"groupe_7",
+20,
+"EN",
+6222,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* These forty transcripts are synthetic, designed by the authors: the monitored mode"
+],
+[
+"groupe_7",
+21,
+"FR",
+6231,
+"volet11_21_a_52",
+"encadré",
+"> - **Limite :** Un entraînement à verbaliser multiplierait la verbalisation par 2,4 à 2,9 sans"
+],
+[
+"groupe_7",
+22,
+"EN",
+6532,
+"volet11_21_a_52",
+"encadré",
+"> - **Limit:** Training to verbalize would multiply verbalization by 2.4 to 2.9 without changin"
+],
+[
+"groupe_7",
+23,
+"FR",
+6330,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* Des vecteurs aléatoires de même norme en contrôle ne donnent que le nul de spécifi"
+],
+[
+"groupe_7",
+24,
+"EN",
+6632,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* Matched-norm random vectors as the control give only the specificity null: in this"
+],
+[
+"groupe_7",
+25,
+"FR",
+6358,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* Comme à la réponse 31 : lue dans deux bras d'entraînement, la projection sur un ve"
+],
+[
+"groupe_7",
+26,
+"EN",
+6661,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* As in answer 31: read across two training arms, the projection onto a persona vect"
+],
+[
+"groupe_7",
+27,
+"FR",
+6429,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* L'inverse ne vaut pas : une sonde qui ne lit plus rien ne prouve pas l'absence — a"
+],
+[
+"groupe_7",
+28,
+"EN",
+6735,
+"volet11_21_a_52",
+"avertissement",
+"> ⚠ *(v3.6)* The converse does not hold: a probe that no longer reads anything does not prove a"
+],
+[
+"groupe_7",
+29,
+"FR",
+6506,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Des vecteurs aléatoires de même norme en contrôle n'écartent que « n'importe quell"
+],
+[
+"groupe_7",
+30,
+"EN",
+6816,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Matched-norm random control vectors rule out only \"any push of that size does as m"
+],
+[
+"groupe_7",
+31,
+"FR",
+6569,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Le résultat d'inhibition cité a la même limite qu'à la réponse 56 — des vecteurs d"
+],
+[
+"groupe_7",
+32,
+"EN",
+6880,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* The inhibition result cited has the same limit as at answer 56 — arbitrary control"
+],
+[
+"groupe_7",
+33,
+"FR",
+6589,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Les quarante attaques du banc des angles morts sont conçues à la main, en transcri"
+],
+[
+"groupe_7",
+34,
+"EN",
+6901,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* The blind-spot benchmark's forty attacks are hand-designed, as synthetic transcrip"
+],
+[
+"groupe_7",
+35,
+"FR",
+6607,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* « Ne généraliseraient jamais » ne se constate que là où l'on sait l'intention prés"
+],
+[
+"groupe_7",
+36,
+"EN",
+6920,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* \"Never generalise\" can only be established where the intention is known to be pres"
+],
+[
+"groupe_7",
+37,
+"FR",
+6701,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Des sondes entraînées hors politique sur des exemples écrits peuvent n'apprendre q"
+],
+[
+"groupe_7",
+38,
+"EN",
+7016,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Probes trained off-policy on written examples may learn only a surface cue, or rea"
+],
+[
+"groupe_7",
+39,
+"FR",
+6940,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Pour l'inhibition, un contrôle aléatoire de même norme n'est que le nul de spécifi"
+],
+[
+"groupe_7",
+40,
+"EN",
+7265,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* For the inhibition, a matched-norm random control is only the specificity null; da"
+],
+[
+"groupe_7",
+41,
+"FR",
+6996,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* L'inhibition sur Sonnet 4.5 a la même limite qu'à la réponse 56 — des vecteurs de "
+],
+[
+"groupe_7",
+42,
+"EN",
+7321,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* The Sonnet 4.5 inhibition has the same limit as at answer 56 — arbitrary control v"
+],
+[
+"groupe_7",
+43,
+"FR",
+7108,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* La batterie aval est faite de scènes construites : le modèle peut y remarquer le t"
+],
+[
+"groupe_7",
+44,
+"EN",
+7433,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* The downstream battery is made of constructed scenes: the model can notice the tes"
+],
+[
+"groupe_7",
+45,
+"FR",
+7140,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Une remontée sous inhibition ne fait une preuve mécaniste qu'au-delà des témoins :"
+],
+[
+"groupe_7",
+46,
+"EN",
+7465,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* A rise under inhibition is mechanistic evidence only beyond the controls: across t"
+],
+[
+"groupe_7",
+47,
+"FR",
+7169,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* Un moniteur qui partage les poids de l'acteur peut reconnaître les attaques synthé"
+],
+[
+"groupe_7",
+48,
+"EN",
+7494,
+"volet11_53_et_fin",
+"avertissement",
+"> ⚠ *(v3.6)* A monitor sharing the actor's weights can recognize synthetic attacks whose answer"
+]
+]

@@ -1,0 +1,606 @@
+## tete_volet1 : FR 25, EN 25
+- paire 1 (n°1 FR l.1 / n°2 EN l.21) [autre:> **v3.6 — 2 octobre 2026 : ce qui s'ajoute** *(v3.6)*] titre FR l.1 « # COURS D'ALIGNEMENT — VERSION FUSIONNÉE v3.5 — 27 septembre 2026 » / EN l.21 « # ALIGNMENT COURSE — MERGED VERSION v3.5 — September 27, 2026 »
+    type autre:> **v3.6 — 2 octobre 2026 : ce qui s'ajoute** *(v3.6)* / autre:> **v3.6 — 2 October 2026: what is added** *(v3.6)*
+    limites/parades/aucune 0,0,0 / 0,0,1
+    position relative 0.00 / 0.08
+- paire 2 (n°3 FR l.3 / n°4 EN l.23) [ponctuel] titre FR l.1 « # COURS D'ALIGNEMENT — VERSION FUSIONNÉE v3.5 — 27 septembre 2026 » / EN l.21 « # ALIGNMENT COURSE — MERGED VERSION v3.5 — September 27, 2026 »
+- paire 3 (n°5 FR l.74 / n°6 EN l.129) [ponctuel] titre FR l.62 « ### 2. Pourquoi un système très capable peut être dangereux même entra » / EN l.116 « ### 2. Why a very capable system can be dangerous even when trained to »
+    position relative 0.41 / 0.52
+- paire 4 (n°7 FR l.74 / n°8 EN l.129) [renvoi] titre FR l.62 « ### 2. Pourquoi un système très capable peut être dangereux même entra » / EN l.116 « ### 2. Why a very capable system can be dangerous even when trained to »
+    position relative 0.41 / 0.52
+- paire 5 (n°9 FR l.102 / n°10 EN l.154) [ponctuel] titre FR l.80 « ### 4. L’obstacle épistémique central : pourquoi on ne sait ni supervi » / EN l.131 « ### 3. Two families of risk never to be confused: misuse and misalignm »
+- paire 6 (n°11 FR l.102 / n°12 EN l.154) [renvoi] titre FR l.80 « ### 4. L’obstacle épistémique central : pourquoi on ne sait ni supervi » / EN l.131 « ### 3. Two families of risk never to be confused: misuse and misalignm »
+- paire 7 (n°13 FR l.126 / n°14 EN l.183) [renvoi] titre FR l.122 « ### Q2. « Quel est, selon toi, le problème non résolu le plus importan » / EN l.178 « ### Q2. "What, in your view, is the most important unsolved problem in »
+- paire 8 (n°15 FR l.136 / n°16 EN l.195) [ponctuel] titre FR l.132 « ### Q4. « Comment saurais-tu qu’un modèle “fait semblant” d’être align » / EN l.190 « ### Q4. "How would you know that a model is “pretending” to be aligned »
+- paire 9 (n°17 FR l.136 / n°18 EN l.195) [ponctuel] titre FR l.132 « ### Q4. « Comment saurais-tu qu’un modèle “fait semblant” d’être align » / EN l.190 « ### Q4. "How would you know that a model is “pretending” to be aligned »
+- paire 10 (n°19 FR l.136 / n°20 EN l.195) [renvoi] titre FR l.132 « ### Q4. « Comment saurais-tu qu’un modèle “fait semblant” d’être align » / EN l.190 « ### Q4. "How would you know that a model is “pretending” to be aligned »
+- paire 11 (n°21 FR l.140 / n°22 EN l.200) [ponctuel] titre FR l.138 « ### Q5. « Peut-on faire confiance à la chaîne de pensée d’un modèle po » / EN l.197 « ### Q5. "Can we trust a model's chain of thought to monitor it?" »
+- paire 12 (n°23 FR l.140 / n°24 EN l.200) [ponctuel] titre FR l.138 « ### Q5. « Peut-on faire confiance à la chaîne de pensée d’un modèle po » / EN l.197 « ### Q5. "Can we trust a model's chain of thought to monitor it?" »
+- paire 13 (n°25 FR l.140 / n°26 EN l.200) [renvoi] titre FR l.138 « ### Q5. « Peut-on faire confiance à la chaîne de pensée d’un modèle po » / EN l.197 « ### Q5. "Can we trust a model's chain of thought to monitor it?" »
+- paire 14 (n°27 FR l.150 / n°28 EN l.212) [ponctuel] titre FR l.148 « ### Q7. « Qu’est-ce que la Responsible Scaling Policy, et quand déclen » / EN l.209 « ### Q7. "What is the Responsible Scaling Policy, and when should addit »
+- paire 15 (n°29 FR l.150 / n°30 EN l.212) [renvoi] titre FR l.148 « ### Q7. « Qu’est-ce que la Responsible Scaling Policy, et quand déclen » / EN l.209 « ### Q7. "What is the Responsible Scaling Policy, and when should addit »
+- paire 16 (n°31 FR l.160 / n°32 EN l.224) [ponctuel] titre FR l.158 « ### Q9. « Quelle est ta “théorie de l’impact” : si ton programme de re » / EN l.221 « ### Q9. "What is your “theory of impact”: if your research program suc »
+- paire 17 (n°33 FR l.160 / n°34 EN l.224) [ponctuel] titre FR l.158 « ### Q9. « Quelle est ta “théorie de l’impact” : si ton programme de re » / EN l.221 « ### Q9. "What is your “theory of impact”: if your research program suc »
+- paire 18 (n°35 FR l.160 / n°36 EN l.224) [ponctuel] titre FR l.158 « ### Q9. « Quelle est ta “théorie de l’impact” : si ton programme de re » / EN l.221 « ### Q9. "What is your “theory of impact”: if your research program suc »
+- paire 19 (n°37 FR l.160 / n°38 EN l.224) [renvoi] titre FR l.158 « ### Q9. « Quelle est ta “théorie de l’impact” : si ton programme de re » / EN l.221 « ### Q9. "What is your “theory of impact”: if your research program suc »
+- paire 20 (n°39 FR l.166 / n°40 EN l.231) [ponctuel] titre FR l.162 « ### Q10. « Défense en profondeur : quelles techniques de sûreté risque » / EN l.226 « ### Q10. "Defense in depth: which safety techniques risk failing toget »
+- paire 21 (n°41 FR l.166 / n°42 EN l.231) [renvoi] titre FR l.162 « ### Q10. « Défense en profondeur : quelles techniques de sûreté risque » / EN l.226 « ### Q10. "Defense in depth: which safety techniques risk failing toget »
+- paire 22 (n°43 FR l.172 / n°44 EN l.236) [ponctuel] titre FR l.168 « ### Q11. « Comment red-teamerais-tu un modèle frontière, ou superviser » / EN l.233 « ### Q11. "How would you red-team a frontier model, or oversee an auton »
+- paire 23 (n°45 FR l.172 / n°46 EN l.236) [renvoi] titre FR l.168 « ### Q11. « Comment red-teamerais-tu un modèle frontière, ou superviser » / EN l.233 « ### Q11. "How would you red-team a frontier model, or oversee an auton »
+- paire 24 (n°47 FR l.178 / n°48 EN l.243) [ponctuel] titre FR l.174 « ### Q12. « L’alignement est-il vraiment difficile ? Quelle est la diff » / EN l.238 « ### Q12. "Is alignment really hard? What is the central difficulty?" »
+- paire 25 (n°49 FR l.178 / n°50 EN l.243) [renvoi] titre FR l.174 « ### Q12. « L’alignement est-il vraiment difficile ? Quelle est la diff » / EN l.238 « ### Q12. "Is alignment really hard? What is the central difficulty?" »
+## volet10 : FR 42, EN 42
+- paire 1 (n°1 FR l.3052 / n°2 EN l.3295) [renvoi] titre FR l.3044 « ### GPQA: A Graduate-Level Google-Proof Q&A Benchmark — David Rein, Be » / EN l.3287 « ### GPQA: A Graduate-Level Google-Proof Q&A Benchmark — David Rein, Be »
+- paire 2 (n°3 FR l.3077 / n°4 EN l.3319) [ponctuel] titre FR l.3071 « ### AI Sandbagging: Language Models can Strategically Underperform on  » / EN l.3313 « ### AI Sandbagging: Language Models can Strategically Underperform on  »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 3 (n°5 FR l.3079 / n°6 EN l.3321) [renvoi] titre FR l.3071 « ### AI Sandbagging: Language Models can Strategically Underperform on  » / EN l.3313 « ### AI Sandbagging: Language Models can Strategically Underperform on  »
+- paire 4 (n°7 FR l.3089 / n°8 EN l.3331) [ponctuel] titre FR l.3086 « ### Me, Myself, and AI: The Situational Awareness Dataset (SAD) for LL » / EN l.3328 « ### Me, Myself, and AI: The Situational Awareness Dataset (SAD) for LL »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 5 (n°9 FR l.3094 / n°10 EN l.3336) [renvoi] titre FR l.3086 « ### Me, Myself, and AI: The Situational Awareness Dataset (SAD) for LL » / EN l.3328 « ### Me, Myself, and AI: The Situational Awareness Dataset (SAD) for LL »
+- paire 6 (n°11 FR l.3102 / n°12 EN l.3344) [ponctuel] titre FR l.3096 « ### Monitor: An AI-Driven Observability Interface — Kevin Meng, Vincen » / EN l.3338 « ### Monitor: An AI-Driven Observability Interface — Kevin Meng, Vincen »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 7 (n°13 FR l.3104 / n°14 EN l.3346) [renvoi] titre FR l.3096 « ### Monitor: An AI-Driven Observability Interface — Kevin Meng, Vincen » / EN l.3338 « ### Monitor: An AI-Driven Observability Interface — Kevin Meng, Vincen »
+- paire 8 (n°15 FR l.3114 / n°16 EN l.3356) [renvoi] titre FR l.3106 « ### Interpreting the Second-Order Effects of Neurons in CLIP — Yossi G » / EN l.3348 « ### Interpreting the Second-Order Effects of Neurons in CLIP — Yossi G »
+- paire 9 (n°17 FR l.3126 / n°18 EN l.3368) [renvoi] titre FR l.3118 « ### Chain-of-Thought Prompting Elicits Reasoning in Large Language Mod » / EN l.3360 « ### Chain-of-Thought Prompting Elicits Reasoning in Large Language Mod »
+- paire 10 (n°19 FR l.3136 / n°20 EN l.3378) [renvoi] titre FR l.3128 « ### Looking Inward: Language Models Can Learn About Themselves by Intr » / EN l.3370 « ### Looking Inward: Language Models Can Learn About Themselves by Intr »
+- paire 11 (n°21 FR l.3144 / n°22 EN l.3386) [ponctuel] titre FR l.3138 « ### SelfIE: Self-Interpretation of Large Language Model Embeddings — H » / EN l.3380 « ### SelfIE: Self-Interpretation of Large Language Model Embeddings — H »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 12 (n°23 FR l.3146 / n°24 EN l.3388) [renvoi] titre FR l.3138 « ### SelfIE: Self-Interpretation of Large Language Model Embeddings — H » / EN l.3380 « ### SelfIE: Self-Interpretation of Large Language Model Embeddings — H »
+- paire 13 (n°25 FR l.3156 / n°26 EN l.3398) [encadre_limites] titre FR l.3148 « ### Patchscopes: A Unifying Framework for Inspecting Hidden Representa » / EN l.3390 « ### Patchscopes: A Unifying Framework for Inspecting Hidden Representa »
+- paire 14 (n°27 FR l.3174 / n°28 EN l.3416) [ponctuel] titre FR l.3168 « ### LatentQA: Teaching LLMs to Decode Activations Into Natural Languag » / EN l.3410 « ### LatentQA: Teaching LLMs to Decode Activations Into Natural Languag »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 15 (n°29 FR l.3176 / n°30 EN l.3418) [encadre_limites] titre FR l.3168 « ### LatentQA: Teaching LLMs to Decode Activations Into Natural Languag » / EN l.3410 « ### LatentQA: Teaching LLMs to Decode Activations Into Natural Languag »
+- paire 16 (n°31 FR l.3183 / n°32 EN l.3424) [renvoi] titre FR l.3179 « ## Evaluating alignment › Chain-of-thought faithfulness » / EN l.3420 « ## Evaluating alignment › Chain-of-thought faithfulness »
+- paire 17 (n°33 FR l.3208 / n°34 EN l.3449) [ponctuel] titre FR l.3205 « ### Towards Consistent Natural-Language Explanations via Explanation-C » / EN l.3446 « ### Towards Consistent Natural-Language Explanations via Explanation-C »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 18 (n°35 FR l.3236 / n°36 EN l.3476) [ponctuel] titre FR l.3233 « ### Testing Language Model Agents Safely in the Wild — Silen Naihin, D » / EN l.3473 « ### Testing Language Model Agents Safely in the Wild — Silen Naihin, D »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 19 (n°37 FR l.3241 / n°38 EN l.3481) [renvoi] titre FR l.3233 « ### Testing Language Model Agents Safely in the Wild — Silen Naihin, D » / EN l.3473 « ### Testing Language Model Agents Safely in the Wild — Silen Naihin, D »
+- paire 20 (n°39 FR l.3259 / n°40 EN l.3499) [ponctuel] titre FR l.3253 « ### Hidden in Plain Text: Emergence & Mitigation of Steganographic Col » / EN l.3493 « ### Hidden in Plain Text: Emergence & Mitigation of Steganographic Col »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 21 (n°41 FR l.3261 / n°42 EN l.3501) [renvoi] titre FR l.3253 « ### Hidden in Plain Text: Emergence & Mitigation of Steganographic Col » / EN l.3493 « ### Hidden in Plain Text: Emergence & Mitigation of Steganographic Col »
+- paire 22 (n°43 FR l.3269 / n°44 EN l.3509) [ponctuel] titre FR l.3266 « ### Coup probes: Catching catastrophes with probes trained off-policy  » / EN l.3506 « ### Coup probes: Catching catastrophes with probes trained off-policy  »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 23 (n°45 FR l.3274 / n°46 EN l.3514) [renvoi] titre FR l.3266 « ### Coup probes: Catching catastrophes with probes trained off-policy  » / EN l.3506 « ### Coup probes: Catching catastrophes with probes trained off-policy  »
+- paire 24 (n°47 FR l.3284 / n°48 EN l.3524) [renvoi] titre FR l.3276 « ### Improving Alignment and Robustness with Circuit Breakers — Andy Zo » / EN l.3516 « ### Improving Alignment and Robustness with Circuit Breakers — Andy Zo »
+- paire 25 (n°49 FR l.3302 / n°50 EN l.3542) [ponctuel] titre FR l.3299 « ### Eliciting Latent Knowledge from “Quirky” Language Models — Alex Ma » / EN l.3539 « ### Eliciting Latent Knowledge from “Quirky” Language Models — Alex Ma »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 26 (n°51 FR l.3307 / n°52 EN l.3547) [renvoi] titre FR l.3299 « ### Eliciting Latent Knowledge from “Quirky” Language Models — Alex Ma » / EN l.3539 « ### Eliciting Latent Knowledge from “Quirky” Language Models — Alex Ma »
+- paire 27 (n°53 FR l.3375 / n°54 EN l.3614) [renvoi] titre FR l.3367 « ### Debate Helps Supervise Unreliable Experts — Julian Michael, Salsab » / EN l.3606 « ### Debate Helps Supervise Unreliable Experts — Julian Michael, Salsab »
+- paire 28 (n°55 FR l.3387 / n°56 EN l.3626) [renvoi] titre FR l.3379 « ### On scalable oversight with weak LLMs judging strong LLMs — Zachary » / EN l.3618 « ### On scalable oversight with weak LLMs judging strong LLMs — Zachary »
+- paire 29 (n°57 FR l.3395 / n°58 EN l.3634) [ponctuel] titre FR l.3389 « ### Prover-Verifier Games improve legibility of LLM outputs — Jan Hend » / EN l.3628 « ### Prover-Verifier Games improve legibility of LLM outputs — Jan Hend »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 30 (n°59 FR l.3402 / n°60 EN l.3641) [renvoi] titre FR l.3400 « ## Scalable oversight › Weak-to-strong and easy-to-hard generalization » / EN l.3639 « ## Scalable oversight › Weak-to-strong and easy-to-hard generalization »
+- paire 31 (n°61 FR l.3495 / n°62 EN l.3733) [ponctuel] titre FR l.3489 « ### The Internal State of an LLM Knows When It’s Lying — Amos Azaria,  » / EN l.3727 « ### The Internal State of an LLM Knows When It’s Lying — Amos Azaria,  »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 32 (n°63 FR l.3499 / n°64 EN l.3737) [renvoi] titre FR l.3489 « ### The Internal State of an LLM Knows When It’s Lying — Amos Azaria,  » / EN l.3727 « ### The Internal State of an LLM Knows When It’s Lying — Amos Azaria,  »
+- paire 33 (n°65 FR l.3504 / n°66 EN l.3742) [ponctuel] titre FR l.3501 « ### Representation Engineering: A Top-Down Approach to AI Transparency » / EN l.3739 « ### Representation Engineering: A Top-Down Approach to AI Transparency »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 34 (n°67 FR l.3514 / n°68 EN l.3752) [ponctuel] titre FR l.3511 « ### Steering Llama 2 via Contrastive Activation Addition — Nina Panick » / EN l.3749 « ### Steering Llama 2 via Contrastive Activation Addition — Nina Panick »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 35 (n°69 FR l.3524 / n°70 EN l.3762) [ponctuel] titre FR l.3521 « ### Inference-Time Intervention: Eliciting Truthful Answers from a Lan » / EN l.3759 « ### Inference-Time Intervention: Eliciting Truthful Answers from a Lan »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 36 (n°71 FR l.3552 / n°72 EN l.3789) [renvoi] titre FR l.3544 « ### Persistent Pre-training Poisoning of LLMs — Yiming Zhang, Javier R » / EN l.3781 « ### Persistent Pre-training Poisoning of LLMs — Yiming Zhang, Javier R »
+- paire 37 (n°73 FR l.3557 / n°74 EN l.3794) [ponctuel] titre FR l.3554 « ### AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Atta » / EN l.3791 « ### AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Atta »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 38 (n°75 FR l.3575 / n°76 EN l.3812) [renvoi] titre FR l.3567 « ### A StrongREJECT for Empty Jailbreaks — Alexandra Souly, Qingyuan Lu » / EN l.3804 « ### A StrongREJECT for Empty Jailbreaks — Alexandra Souly, Qingyuan Lu »
+- paire 39 (n°77 FR l.3613 / n°78 EN l.3850) [ponctuel] titre FR l.3610 « ### Rapid Response: Mitigating LLM Jailbreaks with a Few Examples — Al » / EN l.3847 « ### Rapid Response: Mitigating LLM Jailbreaks with a Few Examples — Al »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+- paire 40 (n°79 FR l.3618 / n°80 EN l.3855) [renvoi] titre FR l.3610 « ### Rapid Response: Mitigating LLM Jailbreaks with a Few Examples — Al » / EN l.3847 « ### Rapid Response: Mitigating LLM Jailbreaks with a Few Examples — Al »
+- paire 41 (n°81 FR l.3631 / n°82 EN l.3867) [renvoi] titre FR l.3623 « ### An Adversarial Perspective on Machine Unlearning for AI Safety — J » / EN l.3859 « ### An Adversarial Perspective on Machine Unlearning for AI Safety — J »
+- paire 42 (n°83 FR l.3639 / n°84 EN l.3875) [ponctuel] titre FR l.3633 « ### The WMDP Benchmark: Measuring and Reducing Malicious Use With Unle » / EN l.3869 « ### The WMDP Benchmark: Measuring and Reducing Malicious Use With Unle »
+    emplacement FR ['COUPE_text->text']
+    emplacement EN ['COUPE_text->text']
+## volet11_1_a_20 : FR 47, EN 47
+- paire 1 (n°1 FR l.3698 / n°2 EN l.3937) [ponctuel] titre FR l.3673 « ## 1 · « Tell us about your work. » — l'ouverture » / EN l.3912 « ## 1 · « Tell us about your work. » — l'ouverture »
+- paire 2 (n°3 FR l.3702 / n°4 EN l.3941) [renvoi] titre FR l.3673 « ## 1 · « Tell us about your work. » — l'ouverture » / EN l.3912 « ## 1 · « Tell us about your work. » — l'ouverture »
+- paire 3 (n°5 FR l.3709 / n°6 EN l.3950) [ponctuel] titre FR l.3704 « ## 2 · « What did your rank-three ablation actually show? » » / EN l.3945 « ## 2 · « What did your rank-three ablation actually show? » »
+- paire 4 (n°7 FR l.3722 / n°8 EN l.3963) [ponctuel] titre FR l.3704 « ## 2 · « What did your rank-three ablation actually show? » » / EN l.3945 « ## 2 · « What did your rank-three ablation actually show? » »
+- paire 5 (n°9 FR l.3725 / n°10 EN l.3966) [ponctuel] titre FR l.3704 « ## 2 · « What did your rank-three ablation actually show? » » / EN l.3945 « ## 2 · « What did your rank-three ablation actually show? » »
+- paire 6 (n°11 FR l.3725 / n°12 EN l.3966) [renvoi] titre FR l.3704 « ## 2 · « What did your rank-three ablation actually show? » » / EN l.3945 « ## 2 · « What did your rank-three ablation actually show? » »
+- paire 7 (n°13 FR l.3735 / n°14 EN l.3978) [ponctuel] titre FR l.3727 « ## 3 · « And rank one? Didn't a single direction work? » » / EN l.3970 « ## 3 · « And rank one? Didn't a single direction work? » »
+- paire 8 (n°15 FR l.3735 / n°16 EN l.3978) [ponctuel] titre FR l.3727 « ## 3 · « And rank one? Didn't a single direction work? » » / EN l.3970 « ## 3 · « And rank one? Didn't a single direction work? » »
+- paire 9 (n°17 FR l.3745 / n°18 EN l.3988) [renvoi] titre FR l.3727 « ## 3 · « And rank one? Didn't a single direction work? » » / EN l.3970 « ## 3 · « And rank one? Didn't a single direction work? » »
+- paire 10 (n°19 FR l.3760 / n°20 EN l.4005) [ponctuel] titre FR l.3747 « ## 4 · « Did it replicate? » » / EN l.3992 « ## 4 · « Did it replicate? » »
+- paire 11 (n°21 FR l.3760 / n°22 EN l.4005) [renvoi] titre FR l.3747 « ## 4 · « Did it replicate? » » / EN l.3992 « ## 4 · « Did it replicate? » »
+- paire 12 (n°23 FR l.3790 / n°24 EN l.4037) [ponctuel] titre FR l.3775 « ## 6 · « How would you detect misalignment in a model you can't fully  » / EN l.4024 « ## 6 · « How would you detect misalignment in a model you can't fully  »
+- paire 13 (n°25 FR l.3790 / n°26 EN l.4037) [ponctuel] titre FR l.3775 « ## 6 · « How would you detect misalignment in a model you can't fully  » / EN l.4024 « ## 6 · « How would you detect misalignment in a model you can't fully  »
+- paire 14 (n°27 FR l.3807 / n°28 EN l.4053) [ponctuel] titre FR l.3775 « ## 6 · « How would you detect misalignment in a model you can't fully  » / EN l.4024 « ## 6 · « How would you detect misalignment in a model you can't fully  »
+- paire 15 (n°29 FR l.3807 / n°30 EN l.4053) [ponctuel] titre FR l.3775 « ## 6 · « How would you detect misalignment in a model you can't fully  » / EN l.4024 « ## 6 · « How would you detect misalignment in a model you can't fully  »
+- paire 16 (n°31 FR l.3807 / n°32 EN l.4053) [renvoi] titre FR l.3775 « ## 6 · « How would you detect misalignment in a model you can't fully  » / EN l.4024 « ## 6 · « How would you detect misalignment in a model you can't fully  »
+- paire 17 (n°33 FR l.3820 / n°34 EN l.4066) [ponctuel] titre FR l.3809 « ## 7 · « How would you prevent bad actors from misaligning an LLM for  » / EN l.4057 « ## 7 · « How would you prevent bad actors from misaligning an LLM for  »
+- paire 18 (n°35 FR l.3820 / n°36 EN l.4066) [ponctuel] titre FR l.3809 « ## 7 · « How would you prevent bad actors from misaligning an LLM for  » / EN l.4057 « ## 7 · « How would you prevent bad actors from misaligning an LLM for  »
+- paire 19 (n°37 FR l.3827 / n°38 EN l.4073) [ponctuel] titre FR l.3809 « ## 7 · « How would you prevent bad actors from misaligning an LLM for  » / EN l.4057 « ## 7 · « How would you prevent bad actors from misaligning an LLM for  »
+- paire 20 (n°39 FR l.3827 / n°40 EN l.4073) [renvoi] titre FR l.3809 « ## 7 · « How would you prevent bad actors from misaligning an LLM for  » / EN l.4057 « ## 7 · « How would you prevent bad actors from misaligning an LLM for  »
+- paire 21 (n°41 FR l.3846 / n°42 EN l.4093) [ponctuel] titre FR l.3829 « ## 8 · « How would you train models to be more robustly aligned with i » / EN l.4077 « ## 8 · « How would you train models to be more robustly aligned with i »
+- paire 22 (n°43 FR l.3852 / n°44 EN l.4100) [ponctuel] titre FR l.3829 « ## 8 · « How would you train models to be more robustly aligned with i » / EN l.4077 « ## 8 · « How would you train models to be more robustly aligned with i »
+- paire 23 (n°45 FR l.3852 / n°46 EN l.4100) [renvoi] titre FR l.3829 « ## 8 · « How would you train models to be more robustly aligned with i » / EN l.4077 « ## 8 · « How would you train models to be more robustly aligned with i »
+- paire 24 (n°47 FR l.3876 / n°48 EN l.4124) [ponctuel] titre FR l.3854 « ## 9 · « What would you work on here, and why? » » / EN l.4104 « ## 9 · « What would you work on here, and why? » »
+- paire 25 (n°49 FR l.3876 / n°50 EN l.4124) [renvoi] titre FR l.3854 « ## 9 · « What would you work on here, and why? » » / EN l.4104 « ## 9 · « What would you work on here, and why? » »
+- paire 26 (n°51 FR l.3896 / n°52 EN l.4145) [ponctuel] titre FR l.3878 « ## 10 · « Diffuse Control already frames this as a red/blue game — and » / EN l.4128 « ## 10 · « Diffuse Control already frames this as a red/blue game — and »
+- paire 27 (n°53 FR l.3896 / n°54 EN l.4145) [ponctuel] titre FR l.3878 « ## 10 · « Diffuse Control already frames this as a red/blue game — and » / EN l.4128 « ## 10 · « Diffuse Control already frames this as a red/blue game — and »
+- paire 28 (n°55 FR l.3896 / n°56 EN l.4145) [renvoi] titre FR l.3878 « ## 10 · « Diffuse Control already frames this as a red/blue game — and » / EN l.4128 « ## 10 · « Diffuse Control already frames this as a red/blue game — and »
+- paire 29 (n°57 FR l.3902 / n°58 EN l.4153) [renvoi] titre FR l.3898 « ## 11 · Les prémisses fausses — dix questions qui supposent un résulta » / EN l.4149 « ## 11 · Les prémisses fausses — dix questions qui supposent un résulta »
+- paire 30 (n°59 FR l.3915 / n°60 EN l.4166) [ponctuel] titre FR l.3904 « ### « Your probes hit ninety-nine percent, so deference is clearly lin » / EN l.4155 « ### « Your probes hit ninety-nine percent, so deference is clearly lin »
+- paire 31 (n°61 FR l.3924 / n°62 EN l.4175) [ponctuel] titre FR l.3917 « ### « So the fifteen-point drop survived on fresh generations too, I a » / EN l.4168 « ### « So the fifteen-point drop survived on fresh generations too, I a »
+- paire 32 (n°63 FR l.3961 / n°64 EN l.4212) [ponctuel] titre FR l.3955 « ### « Alignment faking went away once they trained it out, didn't it?  » / EN l.4206 « ### « Alignment faking went away once they trained it out, didn't it?  »
+- paire 33 (n°65 FR l.3979 / n°66 EN l.4230) [ponctuel] titre FR l.3971 « ### « Persona vectors only monitor — they can't be used to steer, can  » / EN l.4222 « ### « Persona vectors only monitor — they can't be used to steer, can  »
+- paire 34 (n°67 FR l.4019 / n°68 EN l.4271) [ponctuel] titre FR l.4012 « ## 13 · « Tell us about a time an experiment failed. » » / EN l.4264 « ## 13 · « Tell us about a time an experiment failed. » »
+- paire 35 (n°69 FR l.4019 / n°70 EN l.4271) [renvoi] titre FR l.4012 « ## 13 · « Tell us about a time an experiment failed. » » / EN l.4264 « ## 13 · « Tell us about a time an experiment failed. » »
+- paire 36 (n°71 FR l.4028 / n°72 EN l.4281) [renvoi] titre FR l.4021 « ## 14 · « What would you want to have done in four months? » » / EN l.4275 « ## 14 · « What would you want to have done in four months? » »
+- paire 37 (n°73 FR l.4034 / n°74 EN l.4289) [ponctuel] titre FR l.4030 « ## 15 · « Any questions for us? » » / EN l.4285 « ## 15 · « Any questions for us? » »
+- paire 38 (n°75 FR l.4034 / n°76 EN l.4289) [renvoi] titre FR l.4030 « ## 15 · « Any questions for us? » » / EN l.4285 « ## 15 · « Any questions for us? » »
+- paire 39 (n°77 FR l.4058 / n°78 EN l.4323) [renvoi] titre FR l.4036 « ## 16 · « Explain the law. Why would a rating go down under praise? »  » / EN l.4301 « ## 16 · « Explain the law. Why would a rating go down under praise? »  »
+- paire 40 (n°79 FR l.4077 / n°80 EN l.4346) [ponctuel] titre FR l.4069 « ## 18 · « What's the number you're least sure of? » (IV.8) » / EN l.4338 « ## 18 · « What's the number you're least sure of? » (IV.8) »
+- paire 41 (n°81 FR l.4077 / n°82 EN l.4346) [renvoi] titre FR l.4069 « ## 18 · « What's the number you're least sure of? » (IV.8) » / EN l.4338 « ## 18 · « What's the number you're least sure of? » (IV.8) »
+- paire 42 (n°83 FR l.4100 / n°84 EN l.4373) [ponctuel] titre FR l.4079 « ## 19 · « A model behaves differently when it believes it is being tes » / EN l.4350 « ## 19 · « A model behaves differently when it believes it is being tes »
+- paire 43 (n°85 FR l.4100 / n°86 EN l.4373) [ponctuel] titre FR l.4079 « ## 19 · « A model behaves differently when it believes it is being tes » / EN l.4350 « ## 19 · « A model behaves differently when it believes it is being tes »
+- paire 44 (n°87 FR l.4100 / n°88 EN l.4373) [renvoi] titre FR l.4079 « ## 19 · « A model behaves differently when it believes it is being tes » / EN l.4350 « ## 19 · « A model behaves differently when it believes it is being tes »
+- paire 45 (n°89 FR l.4116 / n°90 EN l.4390) [ponctuel] titre FR l.4102 « ## 20 · « Suppose you must deploy a capable model you cannot fully tru » / EN l.4377 « ## 20 · « Suppose you must deploy a capable model you cannot fully tru »
+- paire 46 (n°91 FR l.4127 / n°92 EN l.4400) [ponctuel] titre FR l.4102 « ## 20 · « Suppose you must deploy a capable model you cannot fully tru » / EN l.4377 « ## 20 · « Suppose you must deploy a capable model you cannot fully tru »
+- paire 47 (n°93 FR l.4127 / n°94 EN l.4400) [renvoi] titre FR l.4102 « ## 20 · « Suppose you must deploy a capable model you cannot fully tru » / EN l.4377 « ## 20 · « Suppose you must deploy a capable model you cannot fully tru »
+## volet11_21_a_52 : FR 58, EN 58
+- paire 1 (n°1 FR l.4154 / n°2 EN l.4425) [ponctuel] titre FR l.4129 « ## 21 · « A probe trained on synthetic examples of a bad behaviour mus » / EN l.4404 « ## 21 · « A probe trained on synthetic examples of a bad behaviour mus »
+- paire 2 (n°3 FR l.4154 / n°4 EN l.4425) [renvoi] titre FR l.4129 « ## 21 · « A probe trained on synthetic examples of a bad behaviour mus » / EN l.4404 « ## 21 · « A probe trained on synthetic examples of a bad behaviour mus »
+- paire 3 (n°5 FR l.4175 / n°6 EN l.4447) [ponctuel] titre FR l.4156 « ## 22 · « How would you tell that a model is being honest when you can » / EN l.4429 « ## 22 · « How would you tell that a model is being honest when you can »
+- paire 4 (n°7 FR l.4175 / n°8 EN l.4447) [renvoi] titre FR l.4156 « ## 22 · « How would you tell that a model is being honest when you can » / EN l.4429 « ## 22 · « How would you tell that a model is being honest when you can »
+- paire 5 (n°9 FR l.4185 / n°10 EN l.4459) [renvoi] titre FR l.4177 « ## 23 · « NARCBench already correlates probe scores across agents. Isn » / EN l.4451 « ## 23 · « NARCBench already correlates probe scores across agents. Isn »
+- paire 6 (n°11 FR l.4194 / n°12 EN l.4469) [ponctuel] titre FR l.4187 « ## 24 · « Probes drift toward "I am being evaluated" under adversarial » / EN l.4463 « ## 24 · « Probes drift toward "I am being evaluated" under adversarial »
+- paire 7 (n°13 FR l.4194 / n°14 EN l.4469) [ponctuel] titre FR l.4187 « ## 24 · « Probes drift toward "I am being evaluated" under adversarial » / EN l.4463 « ## 24 · « Probes drift toward "I am being evaluated" under adversarial »
+- paire 8 (n°15 FR l.4194 / n°16 EN l.4469) [renvoi] titre FR l.4187 « ## 24 · « Probes drift toward "I am being evaluated" under adversarial » / EN l.4463 « ## 24 · « Probes drift toward "I am being evaluated" under adversarial »
+- paire 9 (n°17 FR l.4233 / n°18 EN l.4509) [ponctuel] titre FR l.4224 « ## 26 · « What would kill this programme in the first two months? » (V » / EN l.4500 « ## 26 · « What would kill this programme in the first two months? » (V »
+- paire 10 (n°19 FR l.4233 / n°20 EN l.4509) [renvoi] titre FR l.4224 « ## 26 · « What would kill this programme in the first two months? » (V » / EN l.4500 « ## 26 · « What would kill this programme in the first two months? » (V »
+- paire 11 (n°21 FR l.4253 / n°22 EN l.4534) [ponctuel] titre FR l.4235 « ## 27 · « When an autonomous agent's goals are blocked, will it act ag » / EN l.4517 « ## 27 · « When an autonomous agent's goals are blocked, will it act ag »
+- paire 12 (n°23 FR l.4253 / n°24 EN l.4534) [renvoi] titre FR l.4235 « ## 27 · « When an autonomous agent's goals are blocked, will it act ag » / EN l.4517 « ## 27 · « When an autonomous agent's goals are blocked, will it act ag »
+- paire 13 (n°25 FR l.4263 / n°26 EN l.4546) [ponctuel] titre FR l.4255 « ## 28 · « We saw a model comply during training while intending to beh » / EN l.4538 « ## 28 · « We saw a model comply during training while intending to beh »
+- paire 14 (n°27 FR l.4271 / n°28 EN l.4554) [ponctuel] titre FR l.4255 « ## 28 · « We saw a model comply during training while intending to beh » / EN l.4538 « ## 28 · « We saw a model comply during training while intending to beh »
+- paire 15 (n°29 FR l.4271 / n°30 EN l.4554) [renvoi] titre FR l.4255 « ## 28 · « We saw a model comply during training while intending to beh » / EN l.4538 « ## 28 · « We saw a model comply during training while intending to beh »
+- paire 16 (n°31 FR l.4292 / n°32 EN l.4575) [ponctuel] titre FR l.4273 « ## 29 · « Can you read a model's personality in its activations — and  » / EN l.4558 « ## 29 · « Can you read a model's personality in its activations — and  »
+- paire 17 (n°33 FR l.4292 / n°34 EN l.4575) [renvoi] titre FR l.4273 « ## 29 · « Can you read a model's personality in its activations — and  » / EN l.4558 « ## 29 · « Can you read a model's personality in its activations — and  »
+- paire 18 (n°35 FR l.4334 / n°36 EN l.4618) [ponctuel] titre FR l.4316 « ## 31 · « How do you stop a model from learning a bad behaviour from f » / EN l.4601 « ## 31 · « How do you stop a model from learning a bad behaviour from f »
+- paire 19 (n°37 FR l.4334 / n°38 EN l.4618) [renvoi] titre FR l.4316 « ## 31 · « How do you stop a model from learning a bad behaviour from f » / EN l.4601 « ## 31 · « How do you stop a model from learning a bad behaviour from f »
+- paire 20 (n°39 FR l.4359 / n°40 EN l.4643) [ponctuel] titre FR l.4336 « ## 32 · « Where do monitors fail, and how would you find out before an » / EN l.4622 « ## 32 · « Where do monitors fail, and how would you find out before an »
+- paire 21 (n°41 FR l.4359 / n°42 EN l.4643) [renvoi] titre FR l.4336 « ## 32 · « Where do monitors fail, and how would you find out before an » / EN l.4622 « ## 32 · « Where do monitors fail, and how would you find out before an »
+- paire 22 (n°43 FR l.4376 / n°44 EN l.4661) [ponctuel] titre FR l.4361 « ## 33 · « A weak trusted scorer, a strong untrusted generator: can the » / EN l.4647 « ## 33 · « A weak trusted scorer, a strong untrusted generator: can the »
+- paire 23 (n°45 FR l.4384 / n°46 EN l.4668) [ponctuel] titre FR l.4361 « ## 33 · « A weak trusted scorer, a strong untrusted generator: can the » / EN l.4647 « ## 33 · « A weak trusted scorer, a strong untrusted generator: can the »
+- paire 24 (n°47 FR l.4384 / n°48 EN l.4668) [renvoi] titre FR l.4361 « ## 33 · « A weak trusted scorer, a strong untrusted generator: can the » / EN l.4647 « ## 33 · « A weak trusted scorer, a strong untrusted generator: can the »
+- paire 25 (n°49 FR l.4395 / n°50 EN l.4684) [ponctuel] titre FR l.4386 « ## 34 · « Can automated researchers do alignment research — and can th » / EN l.4676 « ## 34 · « Can automated researchers do alignment research — and can th »
+- paire 26 (n°51 FR l.4406 / n°52 EN l.4695) [renvoi] titre FR l.4386 « ## 34 · « Can automated researchers do alignment research — and can th » / EN l.4676 « ## 34 · « Can automated researchers do alignment research — and can th »
+- paire 27 (n°53 FR l.4422 / n°54 EN l.4712) [ponctuel] titre FR l.4408 « ## 35 · « Can we build a lie detector for language models? » (III.9 ·  » / EN l.4699 « ## 35 · « Can we build a lie detector for language models? » (III.9 ·  »
+- paire 28 (n°55 FR l.4429 / n°56 EN l.4720) [renvoi] titre FR l.4408 « ## 35 · « Can we build a lie detector for language models? » (III.9 ·  » / EN l.4699 « ## 35 · « Can we build a lie detector for language models? » (III.9 ·  »
+- paire 29 (n°57 FR l.4449 / n°58 EN l.4741) [renvoi] titre FR l.4431 « ## 36 · « Alignment training doesn't generalize; organizations of alig » / EN l.4724 « ## 36 · « Alignment training doesn't generalize; organizations of alig »
+- paire 30 (n°59 FR l.4465 / n°60 EN l.4758) [ponctuel] titre FR l.4451 « ## 37 · « How strong does a red team have to be, and how realistic an  » / EN l.4745 « ## 37 · « How strong does a red team have to be, and how realistic an  »
+- paire 31 (n°61 FR l.4471 / n°62 EN l.4763) [renvoi] titre FR l.4451 « ## 37 · « How strong does a red team have to be, and how realistic an  » / EN l.4745 « ## 37 · « How strong does a red team have to be, and how realistic an  »
+- paire 32 (n°63 FR l.4495 / n°64 EN l.4788) [ponctuel] titre FR l.4473 « ## 38 · « Does interpretability actually help explain behaviour — and  » / EN l.4767 « ## 38 · « Does interpretability actually help explain behaviour — and  »
+- paire 33 (n°65 FR l.4495 / n°66 EN l.4788) [renvoi] titre FR l.4473 « ## 38 · « Does interpretability actually help explain behaviour — and  » / EN l.4767 « ## 38 · « Does interpretability actually help explain behaviour — and  »
+- paire 34 (n°67 FR l.4511 / n°68 EN l.4805) [ponctuel] titre FR l.4497 « ## 39 · « Where does your programme sit relative to the probe-monitori » / EN l.4792 « ## 39 · « Where does your programme sit relative to the probe-monitori »
+- paire 35 (n°69 FR l.4519 / n°70 EN l.4813) [renvoi] titre FR l.4497 « ## 39 · « Where does your programme sit relative to the probe-monitori » / EN l.4792 « ## 39 · « Where does your programme sit relative to the probe-monitori »
+- paire 36 (n°71 FR l.4556 / n°72 EN l.4858) [ponctuel] titre FR l.4545 « ## 42 · « When a model reward-hacks, what is actually being learned —  » / EN l.4848 « ## 42 · « When a model reward-hacks, what is actually being learned —  »
+- paire 37 (n°73 FR l.4564 / n°74 EN l.4865) [ponctuel] titre FR l.4545 « ## 42 · « When a model reward-hacks, what is actually being learned —  » / EN l.4848 « ## 42 · « When a model reward-hacks, what is actually being learned —  »
+- paire 38 (n°75 FR l.4564 / n°76 EN l.4865) [renvoi] titre FR l.4545 « ## 42 · « When a model reward-hacks, what is actually being learned —  » / EN l.4848 « ## 42 · « When a model reward-hacks, what is actually being learned —  »
+- paire 39 (n°77 FR l.4583 / n°78 EN l.4884) [encadre_limites] titre FR l.4566 « ## 43 · « Is a chain of thought evidence of the reasoning that produce » / EN l.4869 « ## 43 · « Is a chain of thought evidence of the reasoning that produce »
+- paire 40 (n°79 FR l.4603 / n°80 EN l.4904) [ponctuel] titre FR l.4585 « ## 44 · « How would you tell whether a model is sandbagging an evaluat » / EN l.4888 « ## 44 · « How would you tell whether a model is sandbagging an evaluat »
+- paire 41 (n°81 FR l.4603 / n°82 EN l.4904) [renvoi] titre FR l.4585 « ## 44 · « How would you tell whether a model is sandbagging an evaluat » / EN l.4888 « ## 44 · « How would you tell whether a model is sandbagging an evaluat »
+- paire 42 (n°83 FR l.4615 / n°84 EN l.4917) [ponctuel] titre FR l.4605 « ## 45 · « What evidence would make you believe a claim about a model's » / EN l.4908 « ## 45 · « What evidence would make you believe a claim about a model's »
+- paire 43 (n°85 FR l.4623 / n°86 EN l.4924) [ponctuel] titre FR l.4605 « ## 45 · « What evidence would make you believe a claim about a model's » / EN l.4908 « ## 45 · « What evidence would make you believe a claim about a model's »
+- paire 44 (n°87 FR l.4623 / n°88 EN l.4924) [renvoi] titre FR l.4605 « ## 45 · « What evidence would make you believe a claim about a model's » / EN l.4908 « ## 45 · « What evidence would make you believe a claim about a model's »
+- paire 45 (n°89 FR l.4641 / n°90 EN l.4942) [ponctuel] titre FR l.4625 « ## 46 · « Where does the alignment of a model actually live — weights, » / EN l.4928 « ## 46 · « Where does the alignment of a model actually live — weights, »
+- paire 46 (n°91 FR l.4641 / n°92 EN l.4942) [renvoi] titre FR l.4625 « ## 46 · « Where does the alignment of a model actually live — weights, » / EN l.4928 « ## 46 · « Where does the alignment of a model actually live — weights, »
+- paire 47 (n°93 FR l.4655 / n°94 EN l.4957) [ponctuel] titre FR l.4643 « ## 47 · « You have one experiment and a month. What's the most decisio » / EN l.4946 « ## 47 · « You have one experiment and a month. What's the most decisio »
+- paire 48 (n°95 FR l.4655 / n°96 EN l.4957) [ponctuel] titre FR l.4643 « ## 47 · « You have one experiment and a month. What's the most decisio » / EN l.4946 « ## 47 · « You have one experiment and a month. What's the most decisio »
+- paire 49 (n°97 FR l.4655 / n°98 EN l.4957) [renvoi] titre FR l.4643 « ## 47 · « You have one experiment and a month. What's the most decisio » / EN l.4946 « ## 47 · « You have one experiment and a month. What's the most decisio »
+- paire 50 (n°99 FR l.4674 / n°100 EN l.4977) [ponctuel] titre FR l.4657 « ## 48 · « Training a model on one narrow bad behaviour sometimes produ » / EN l.4961 « ## 48 · « Training a model on one narrow bad behaviour sometimes produ »
+- paire 51 (n°101 FR l.4674 / n°102 EN l.4977) [renvoi] titre FR l.4657 « ## 48 · « Training a model on one narrow bad behaviour sometimes produ » / EN l.4961 « ## 48 · « Training a model on one narrow bad behaviour sometimes produ »
+- paire 52 (n°103 FR l.4692 / n°104 EN l.4996) [ponctuel] titre FR l.4676 « ## 49 · « Training a strong model on labels from a weaker overseer: wh » / EN l.4981 « ## 49 · « Training a strong model on labels from a weaker overseer: wh »
+- paire 53 (n°105 FR l.4692 / n°106 EN l.4996) [renvoi] titre FR l.4676 « ## 49 · « Training a strong model on labels from a weaker overseer: wh » / EN l.4981 « ## 49 · « Training a strong model on labels from a weaker overseer: wh »
+- paire 54 (n°107 FR l.4707 / n°108 EN l.5012) [ponctuel] titre FR l.4694 « ## 50 · « Jailbreak benchmarks measure non-refusal. What would a bench » / EN l.5000 « ## 50 · « Jailbreak benchmarks measure non-refusal. What would a bench »
+- paire 55 (n°109 FR l.4707 / n°110 EN l.5012) [renvoi] titre FR l.4694 « ## 50 · « Jailbreak benchmarks measure non-refusal. What would a bench » / EN l.5000 « ## 50 · « Jailbreak benchmarks measure non-refusal. What would a bench »
+- paire 56 (n°111 FR l.4718 / n°112 EN l.5024) [ponctuel] titre FR l.4709 « ## 51 · « Given a model that already knows something dangerous, what w » / EN l.5016 « ## 51 · « Given a model that already knows something dangerous, what w »
+- paire 57 (n°113 FR l.4724 / n°114 EN l.5030) [ponctuel] titre FR l.4709 « ## 51 · « Given a model that already knows something dangerous, what w » / EN l.5016 « ## 51 · « Given a model that already knows something dangerous, what w »
+- paire 58 (n°115 FR l.4724 / n°116 EN l.5030) [renvoi] titre FR l.4709 « ## 51 · « Given a model that already knows something dangerous, what w » / EN l.5016 « ## 51 · « Given a model that already knows something dangerous, what w »
+## volet11_53_et_fin : FR 67, EN 67
+- paire 1 (n°1 FR l.4774 / n°2 EN l.5083) [ponctuel] titre FR l.4762 « ## 55 · « Why could a very capable system be dangerous even if trained » / EN l.5072 « ## 55 · « Why could a very capable system be dangerous even if trained »
+- paire 2 (n°3 FR l.4774 / n°4 EN l.5083) [renvoi] titre FR l.4762 « ## 55 · « Why could a very capable system be dangerous even if trained » / EN l.5072 « ## 55 · « Why could a very capable system be dangerous even if trained »
+- paire 3 (n°5 FR l.4789 / n°6 EN l.5099) [ponctuel] titre FR l.4776 « ## 56 · « How would you know a model is faking alignment? » (I.4) » / EN l.5087 « ## 56 · « How would you know a model is faking alignment? » (I.4) »
+- paire 4 (n°7 FR l.4789 / n°8 EN l.5099) [ponctuel] titre FR l.4776 « ## 56 · « How would you know a model is faking alignment? » (I.4) » / EN l.5087 « ## 56 · « How would you know a model is faking alignment? » (I.4) »
+- paire 5 (n°9 FR l.4789 / n°10 EN l.5099) [ponctuel] titre FR l.4776 « ## 56 · « How would you know a model is faking alignment? » (I.4) » / EN l.5087 « ## 56 · « How would you know a model is faking alignment? » (I.4) »
+- paire 6 (n°11 FR l.4789 / n°12 EN l.5099) [renvoi] titre FR l.4776 « ## 56 · « How would you know a model is faking alignment? » (I.4) » / EN l.5087 « ## 56 · « How would you know a model is faking alignment? » (I.4) »
+- paire 7 (n°13 FR l.4807 / n°14 EN l.5117) [renvoi] titre FR l.4793 « ## 58 · « RLHF, DPO, Constitutional AI — what do they do and what don' » / EN l.5105 « ## 58 · « RLHF, DPO, Constitutional AI — what do they do and what don' »
+- paire 8 (n°15 FR l.4834 / n°16 EN l.5145) [ponctuel] titre FR l.4822 « ## 60 · « Defense in depth — which techniques, and where do they fail  » / EN l.5134 « ## 60 · « Defense in depth — which techniques, and where do they fail  »
+- paire 9 (n°17 FR l.4834 / n°18 EN l.5145) [ponctuel] titre FR l.4822 « ## 60 · « Defense in depth — which techniques, and where do they fail  » / EN l.5134 « ## 60 · « Defense in depth — which techniques, and where do they fail  »
+- paire 10 (n°19 FR l.4834 / n°20 EN l.5145) [renvoi] titre FR l.4822 « ## 60 · « Defense in depth — which techniques, and where do they fail  » / EN l.5134 « ## 60 · « Defense in depth — which techniques, and where do they fail  »
+- paire 11 (n°21 FR l.4848 / n°22 EN l.5160) [ponctuel] titre FR l.4836 « ## 61 · « How would you red-team a model? » (I.9) » / EN l.5149 « ## 61 · « How would you red-team a model? » (I.9) »
+- paire 12 (n°23 FR l.4848 / n°24 EN l.5160) [renvoi] titre FR l.4836 « ## 61 · « How would you red-team a model? » (I.9) » / EN l.5149 « ## 61 · « How would you red-team a model? » (I.9) »
+- paire 13 (n°25 FR l.4860 / n°26 EN l.5173) [ponctuel] titre FR l.4850 « ## 62 · « Is alignment actually hard? What would change your mind? » ( » / EN l.5164 « ## 62 · « Is alignment actually hard? What would change your mind? » ( »
+- paire 14 (n°27 FR l.4860 / n°28 EN l.5173) [renvoi] titre FR l.4850 « ## 62 · « Is alignment actually hard? What would change your mind? » ( » / EN l.5164 « ## 62 · « Is alignment actually hard? What would change your mind? » ( »
+- paire 15 (n°29 FR l.4877 / n°30 EN l.5192) [ponctuel] titre FR l.4862 « ## 63 · Tes huit positions, dites en entier (VII) — à valider par toi  » / EN l.5177 « ## 63 · Tes huit positions, dites en entier (VII) — à valider par toi  »
+- paire 16 (n°31 FR l.4885 / n°32 EN l.5200) [ponctuel] titre FR l.4862 « ## 63 · Tes huit positions, dites en entier (VII) — à valider par toi  » / EN l.5177 « ## 63 · Tes huit positions, dites en entier (VII) — à valider par toi  »
+- paire 17 (n°33 FR l.4898 / n°34 EN l.5213) [renvoi] titre FR l.4862 « ## 63 · Tes huit positions, dites en entier (VII) — à valider par toi  » / EN l.5177 « ## 63 · Tes huit positions, dites en entier (VII) — à valider par toi  »
+- paire 18 (n°35 FR l.4921 / n°36 EN l.5235) [renvoi] titre FR l.4910 « ## A1 · « Which team would you want to join — Alignment Science, Inter » / EN l.5225 « ## A1 · « Which team would you want to join — Alignment Science, Inter »
+- paire 19 (n°37 FR l.4936 / n°38 EN l.5251) [ponctuel] titre FR l.4923 « ## A2 · « You have $15,000 of compute a month and four months. Walk me » / EN l.5239 « ## A2 · « You have $15,000 of compute a month and four months. Walk me »
+- paire 20 (n°39 FR l.4936 / n°40 EN l.5251) [renvoi] titre FR l.4923 « ## A2 · « You have $15,000 of compute a month and four months. Walk me » / EN l.5239 « ## A2 · « You have $15,000 of compute a month and four months. Walk me »
+- paire 21 (n°41 FR l.4948 / n°42 EN l.5264) [ponctuel] titre FR l.4938 « ## A3 · « What if the probes just don't work at all — the two-family t » / EN l.5255 « ## A3 · « What if the probes just don't work at all — the two-family t »
+- paire 22 (n°43 FR l.4948 / n°44 EN l.5264) [ponctuel] titre FR l.4938 « ## A3 · « What if the probes just don't work at all — the two-family t » / EN l.5255 « ## A3 · « What if the probes just don't work at all — the two-family t »
+- paire 23 (n°45 FR l.4948 / n°46 EN l.5264) [renvoi] titre FR l.4938 « ## A3 · « What if the probes just don't work at all — the two-family t » / EN l.5255 « ## A3 · « What if the probes just don't work at all — the two-family t »
+- paire 24 (n°47 FR l.4962 / n°48 EN l.5280) [ponctuel] titre FR l.4950 « ## A4 · « Your rank-three result is on an 8B model. Why should we beli » / EN l.5268 « ## A4 · « Your rank-three result is on an 8B model. Why should we beli »
+- paire 25 (n°49 FR l.4962 / n°50 EN l.5280) [renvoi] titre FR l.4950 « ## A4 · « Your rank-three result is on an 8B model. Why should we beli » / EN l.5268 « ## A4 · « Your rank-three result is on an 8B model. Why should we beli »
+- paire 26 (n°51 FR l.4975 / n°52 EN l.5294) [ponctuel] titre FR l.4964 « ## A5 · « Isn't sycophancy basically solved by now — constitutional tr » / EN l.5284 « ## A5 · « Isn't sycophancy basically solved by now — constitutional tr »
+- paire 27 (n°53 FR l.4975 / n°54 EN l.5294) [renvoi] titre FR l.4964 « ## A5 · « Isn't sycophancy basically solved by now — constitutional tr » / EN l.5284 « ## A5 · « Isn't sycophancy basically solved by now — constitutional tr »
+- paire 28 (n°55 FR l.4989 / n°56 EN l.5309) [ponctuel] titre FR l.4977 « ## A6 · « Suppose a probe flags an agent mid-trajectory at your thresh » / EN l.5298 « ## A6 · « Suppose a probe flags an agent mid-trajectory at your thresh »
+- paire 29 (n°57 FR l.4989 / n°58 EN l.5309) [renvoi] titre FR l.4977 « ## A6 · « Suppose a probe flags an agent mid-trajectory at your thresh » / EN l.5298 « ## A6 · « Suppose a probe flags an agent mid-trajectory at your thresh »
+- paire 30 (n°59 FR l.5001 / n°60 EN l.5323) [ponctuel] titre FR l.4991 « ## A7 · « A colleague shows you a beautiful steering result — one dire » / EN l.5313 « ## A7 · « A colleague shows you a beautiful steering result — one dire »
+- paire 31 (n°61 FR l.5001 / n°62 EN l.5323) [renvoi] titre FR l.4991 « ## A7 · « A colleague shows you a beautiful steering result — one dire » / EN l.5313 « ## A7 · « A colleague shows you a beautiful steering result — one dire »
+- paire 32 (n°63 FR l.5014 / n°64 EN l.5337) [ponctuel] titre FR l.5003 « ## A8 · « How do you think about the dual-use of your own work — a bet » / EN l.5327 « ## A8 · « How do you think about the dual-use of your own work — a bet »
+- paire 33 (n°65 FR l.5014 / n°66 EN l.5337) [renvoi] titre FR l.5003 « ## A8 · « How do you think about the dual-use of your own work — a bet » / EN l.5327 « ## A8 · « How do you think about the dual-use of your own work — a bet »
+- paire 34 (n°67 FR l.5030 / n°68 EN l.5355) [ponctuel] titre FR l.5016 « ## A9 à A17 · Neuf questions moins probables, en réponse courte (FR /  » / EN l.5341 « ## A9 à A17 · Neuf questions moins probables, en réponse courte (FR /  »
+- paire 35 (n°69 FR l.5060 / n°70 EN l.5385) [ponctuel] titre FR l.5016 « ## A9 à A17 · Neuf questions moins probables, en réponse courte (FR /  » / EN l.5341 « ## A9 à A17 · Neuf questions moins probables, en réponse courte (FR /  »
+- paire 36 (n°71 FR l.5064 / n°72 EN l.5389) [renvoi] titre FR l.5016 « ## A9 à A17 · Neuf questions moins probables, en réponse courte (FR /  » / EN l.5341 « ## A9 à A17 · Neuf questions moins probables, en réponse courte (FR /  »
+- paire 37 (n°73 FR l.5094 / n°74 EN l.5419) [ponctuel] titre FR l.5075 « ## B1 · « An agent can write documentation that a future agent will fo » / EN l.5400 « ## B1 · « An agent can write documentation that a future agent will fo »
+- paire 38 (n°75 FR l.5094 / n°76 EN l.5419) [renvoi] titre FR l.5075 « ## B1 · « An agent can write documentation that a future agent will fo » / EN l.5400 « ## B1 · « An agent can write documentation that a future agent will fo »
+- paire 39 (n°77 FR l.5115 / n°78 EN l.5440) [ponctuel] titre FR l.5096 « ## B2 · « How would you design an evaluation a model cannot tell is an » / EN l.5421 « ## B2 · « How would you design an evaluation a model cannot tell is an »
+- paire 40 (n°79 FR l.5115 / n°80 EN l.5440) [renvoi] titre FR l.5096 « ## B2 · « How would you design an evaluation a model cannot tell is an » / EN l.5421 « ## B2 · « How would you design an evaluation a model cannot tell is an »
+- paire 41 (n°81 FR l.5139 / n°82 EN l.5464) [ponctuel] titre FR l.5117 « ## B3 · « What should be delegated to automated researchers, and what  » / EN l.5442 « ## B3 · « What should be delegated to automated researchers, and what  »
+- paire 42 (n°83 FR l.5139 / n°84 EN l.5464) [renvoi] titre FR l.5117 « ## B3 · « What should be delegated to automated researchers, and what  » / EN l.5442 « ## B3 · « What should be delegated to automated researchers, and what  »
+- paire 43 (n°85 FR l.5159 / n°86 EN l.5484) [ponctuel] titre FR l.5141 « ## B4 · « How would you measure evaluation awareness that the model ne » / EN l.5466 « ## B4 · « How would you measure evaluation awareness that the model ne »
+- paire 44 (n°87 FR l.5159 / n°88 EN l.5484) [ponctuel] titre FR l.5141 « ## B4 · « How would you measure evaluation awareness that the model ne » / EN l.5466 « ## B4 · « How would you measure evaluation awareness that the model ne »
+- paire 45 (n°89 FR l.5159 / n°90 EN l.5484) [renvoi] titre FR l.5141 « ## B4 · « How would you measure evaluation awareness that the model ne » / EN l.5466 « ## B4 · « How would you measure evaluation awareness that the model ne »
+- paire 46 (n°91 FR l.5179 / n°92 EN l.5504) [ponctuel] titre FR l.5161 « ## B5 · « The directions page calls one setting "unexplored": detectin » / EN l.5486 « ## B5 · « The directions page calls one setting "unexplored": detectin »
+- paire 47 (n°93 FR l.5179 / n°94 EN l.5504) [renvoi] titre FR l.5161 « ## B5 · « The directions page calls one setting "unexplored": detectin » / EN l.5486 « ## B5 · « The directions page calls one setting "unexplored": detectin »
+- paire 48 (n°95 FR l.5200 / n°96 EN l.5525) [renvoi] titre FR l.5181 « ## B6 · « Inter-query defenses: an attacker splits a harmful task into » / EN l.5506 « ## B6 · « Inter-query defenses: an attacker splits a harmful task into »
+- paire 49 (n°97 FR l.5221 / n°98 EN l.5546) [ponctuel] titre FR l.5202 « ## B7 · « Three methods prevent a model from learning a bad trait — in » / EN l.5527 « ## B7 · « Three methods prevent a model from learning a bad trait — in »
+- paire 50 (n°99 FR l.5221 / n°100 EN l.5546) [ponctuel] titre FR l.5202 « ## B7 · « Three methods prevent a model from learning a bad trait — in » / EN l.5527 « ## B7 · « Three methods prevent a model from learning a bad trait — in »
+- paire 51 (n°101 FR l.5221 / n°102 EN l.5546) [renvoi] titre FR l.5202 « ## B7 · « Three methods prevent a model from learning a bad trait — in » / EN l.5527 « ## B7 · « Three methods prevent a model from learning a bad trait — in »
+- paire 52 (n°103 FR l.5244 / n°104 EN l.5569) [ponctuel] titre FR l.5223 « ## B8 · « Build a suite of models with the same capabilities and diffe » / EN l.5548 « ## B8 · « Build a suite of models with the same capabilities and diffe »
+- paire 53 (n°105 FR l.5244 / n°106 EN l.5569) [renvoi] titre FR l.5223 « ## B8 · « Build a suite of models with the same capabilities and diffe » / EN l.5548 « ## B8 · « Build a suite of models with the same capabilities and diffe »
+- paire 54 (n°107 FR l.5267 / n°108 EN l.5592) [ponctuel] titre FR l.5246 « ## B9 · « How would you build a safety case that a model cannot sandba » / EN l.5571 « ## B9 · « How would you build a safety case that a model cannot sandba »
+- paire 55 (n°109 FR l.5267 / n°110 EN l.5592) [ponctuel] titre FR l.5246 « ## B9 · « How would you build a safety case that a model cannot sandba » / EN l.5571 « ## B9 · « How would you build a safety case that a model cannot sandba »
+- paire 56 (n°111 FR l.5267 / n°112 EN l.5592) [renvoi] titre FR l.5246 « ## B9 · « How would you build a safety case that a model cannot sandba » / EN l.5571 « ## B9 · « How would you build a safety case that a model cannot sandba »
+- paire 57 (n°113 FR l.5290 / n°114 EN l.5615) [ponctuel] titre FR l.5269 « ## B10 · « Untrusted monitoring: the monitor is another instance of th » / EN l.5594 « ## B10 · « Untrusted monitoring: the monitor is another instance of th »
+- paire 58 (n°115 FR l.5290 / n°116 EN l.5615) [renvoi] titre FR l.5269 « ## B10 · « Untrusted monitoring: the monitor is another instance of th » / EN l.5594 « ## B10 · « Untrusted monitoring: the monitor is another instance of th »
+- paire 59 (n°117 FR l.5312 / n°118 EN l.5637) [ponctuel] titre FR l.5292 « ## B11 · « How would you tell whether a model gives an answer for the  » / EN l.5617 « ## B11 · « How would you tell whether a model gives an answer for the  »
+- paire 60 (n°119 FR l.5312 / n°120 EN l.5637) [renvoi] titre FR l.5292 « ## B11 · « How would you tell whether a model gives an answer for the  » / EN l.5617 « ## B11 · « How would you tell whether a model gives an answer for the  »
+- paire 61 (n°121 FR l.5334 / n°122 EN l.5659) [ponctuel] titre FR l.5314 « ## B12 · « Multi-agent externalities: each instance's small harm is ne » / EN l.5639 « ## B12 · « Multi-agent externalities: each instance's small harm is ne »
+- paire 62 (n°123 FR l.5334 / n°124 EN l.5659) [renvoi] titre FR l.5314 « ## B12 · « Multi-agent externalities: each instance's small harm is ne » / EN l.5639 « ## B12 · « Multi-agent externalities: each instance's small harm is ne »
+- paire 63 (n°125 FR l.5356 / n°126 EN l.5681) [ponctuel] titre FR l.5336 « ## B13 · « Can honesty be trained rather than detected — and how would » / EN l.5661 « ## B13 · « Can honesty be trained rather than detected — and how would »
+- paire 64 (n°127 FR l.5356 / n°128 EN l.5681) [ponctuel] titre FR l.5336 « ## B13 · « Can honesty be trained rather than detected — and how would » / EN l.5661 « ## B13 · « Can honesty be trained rather than detected — and how would »
+- paire 65 (n°129 FR l.5356 / n°130 EN l.5681) [renvoi] titre FR l.5336 « ## B13 · « Can honesty be trained rather than detected — and how would » / EN l.5661 « ## B13 · « Can honesty be trained rather than detected — and how would »
+- paire 66 (n°131 FR l.5375 / n°132 EN l.5700) [ponctuel] titre FR l.5358 « ## B14 · « If you could run one adversarial evaluation on our producti » / EN l.5683 « ## B14 · « If you could run one adversarial evaluation on our producti »
+- paire 67 (n°133 FR l.5375 / n°134 EN l.5700) [renvoi] titre FR l.5358 « ## B14 · « If you could run one adversarial evaluation on our producti » / EN l.5683 « ## B14 · « If you could run one adversarial evaluation on our producti »
+## volet2_A_a_D : FR 25, EN 25
+- paire 1 (n°1 FR l.432 / n°2 EN l.517) [renvoi] titre FR l.422 « ## Préambule — les quatre « grammaires d’attaque » » / EN l.506 « ## Preamble — the four "attack grammars" »
+- paire 2 (n°3 FR l.440 / n°4 EN l.526) [encadre_2oct] titre FR l.434 « ## A. Testbeds & model organisms — fabriquer le phénomène pour l’étudi » / EN l.519 « ## A. Testbeds & model organisms — manufacturing the phenomenon in ord »
+- paire 3 (n°5 FR l.440 / n°6 EN l.526) [encadre_limites] titre FR l.434 « ## A. Testbeds & model organisms — fabriquer le phénomène pour l’étudi » / EN l.519 « ## A. Testbeds & model organisms — manufacturing the phenomenon in ord »
+- paire 4 (n°7 FR l.467 / n°8 EN l.553) [renvoi] titre FR l.442 « ### Cas d'application — organismes modèles et bancs d'essai : « How wo » / EN l.528 « ### Worked case — model organisms and testbeds: "How would you build a »
+- paire 5 (n°9 FR l.486 / n°10 EN l.573) [encadre_limites] titre FR l.480 « ## B. Évaluations — mesurer une capacité ou une propension » / EN l.566 « ## B. Evaluations — measuring a capability or a propensity »
+- paire 6 (n°11 FR l.499 / n°12 EN l.586) [ponctuel] titre FR l.488 « ### Cas d'application — évaluations, capacité contre propension : « Ho » / EN l.575 « ### Worked case — evaluations, capacity versus propensity: "How would  »
+- paire 7 (n°13 FR l.505 / n°14 EN l.592) [renvoi] titre FR l.488 « ### Cas d'application — évaluations, capacité contre propension : « Ho » / EN l.575 « ### Worked case — evaluations, capacity versus propensity: "How would  »
+- paire 8 (n°15 FR l.519 / n°16 EN l.607) [encadre_limites] titre FR l.513 « ## C. Méthodes sur activations — probing & steering (ton domaine, posé » / EN l.600 « ## C. Methods on activations — probing & steering (your field, laid ou »
+- paire 9 (n°17 FR l.521 / n°18 EN l.609) [encadre_2oct] titre FR l.513 « ## C. Méthodes sur activations — probing & steering (ton domaine, posé » / EN l.600 « ## C. Methods on activations — probing & steering (your field, laid ou »
+- paire 10 (n°19 FR l.521 / n°20 EN l.609) [encadre_limites] titre FR l.513 « ## C. Méthodes sur activations — probing & steering (ton domaine, posé » / EN l.600 « ## C. Methods on activations — probing & steering (your field, laid ou »
+- paire 11 (n°21 FR l.531 / n°22 EN l.619) [ponctuel] titre FR l.523 « ### Cas d'application — sondes et pilotage : « How would you show that » / EN l.611 « ### Worked case — probes and steering: "How would you show that a stee »
+- paire 12 (n°23 FR l.539 / n°24 EN l.627) [renvoi] titre FR l.523 « ### Cas d'application — sondes et pilotage : « How would you show that » / EN l.611 « ### Worked case — probes and steering: "How would you show that a stee »
+- paire 13 (n°25 FR l.563 / n°26 EN l.651) [ponctuel] titre FR l.559 « ### C bis · L'espace de travail (J-space) et le J-lens — 2026 » / EN l.647 « ### C bis · The workspace (J-space) and the J-lens — 2026 »
+- paire 14 (n°27 FR l.577 / n°28 EN l.665) [ponctuel] titre FR l.559 « ### C bis · L'espace de travail (J-space) et le J-lens — 2026 » / EN l.647 « ### C bis · The workspace (J-space) and the J-lens — 2026 »
+- paire 15 (n°29 FR l.577 / n°30 EN l.665) [renvoi] titre FR l.559 « ### C bis · L'espace de travail (J-space) et le J-lens — 2026 » / EN l.647 « ### C bis · The workspace (J-space) and the J-lens — 2026 »
+- paire 16 (n°31 FR l.587 / n°32 EN l.675) [encadre_2oct] titre FR l.559 « ### C bis · L'espace de travail (J-space) et le J-lens — 2026 » / EN l.647 « ### C bis · The workspace (J-space) and the J-lens — 2026 »
+- paire 17 (n°33 FR l.587 / n°34 EN l.675) [encadre_limites] titre FR l.559 « ### C bis · L'espace de travail (J-space) et le J-lens — 2026 » / EN l.647 « ### C bis · The workspace (J-space) and the J-lens — 2026 »
+- paire 18 (n°35 FR l.606 / n°36 EN l.694) [renvoi] titre FR l.589 « ### Cas d'application — l'espace de travail et le J-lens : « An intern » / EN l.677 « ### Worked case — the workspace and the J-lens: "An internal "this is  »
+- paire 19 (n°37 FR l.613 / n°38 EN l.701) [ponctuel] titre FR l.589 « ### Cas d'application — l'espace de travail et le J-lens : « An intern » / EN l.677 « ### Worked case — the workspace and the J-lens: "An internal "this is  »
+- paire 20 (n°39 FR l.629 / n°40 EN l.718) [encadre_limites] titre FR l.627 « ## D. Interprétabilité mécaniste — ouvrir la boîte (équipe voisine, ≠  » / EN l.715 « ## D. Mechanistic interpretability — opening the box (neighboring team »
+- paire 21 (n°41 FR l.631 / n°42 EN l.720) [ponctuel] titre FR l.627 « ## D. Interprétabilité mécaniste — ouvrir la boîte (équipe voisine, ≠  » / EN l.715 « ## D. Mechanistic interpretability — opening the box (neighboring team »
+- paire 22 (n°43 FR l.633 / n°44 EN l.722) [ponctuel] titre FR l.627 « ## D. Interprétabilité mécaniste — ouvrir la boîte (équipe voisine, ≠  » / EN l.715 « ## D. Mechanistic interpretability — opening the box (neighboring team »
+- paire 23 (n°45 FR l.633 / n°46 EN l.722) [renvoi] titre FR l.627 « ## D. Interprétabilité mécaniste — ouvrir la boîte (équipe voisine, ≠  » / EN l.715 « ## D. Mechanistic interpretability — opening the box (neighboring team »
+- paire 24 (n°47 FR l.649 / n°48 EN l.738) [renvoi] titre FR l.635 « ### Cas d'application — l'interprétabilité mécaniste : « Two dictionar » / EN l.724 « ### Worked case — mechanistic interpretability: "Two dictionaries reco »
+- paire 25 (n°49 FR l.665 / n°50 EN l.754) [encadre_limites] titre FR l.635 « ### Cas d'application — l'interprétabilité mécaniste : « Two dictionar » / EN l.724 « ### Worked case — mechanistic interpretability: "Two dictionaries reco »
+## volet2_E_a_I : FR 16, EN 16
+- paire 1 (n°1 FR l.673 / n°2 EN l.763) [encadre_limites] titre FR l.667 « ## E. Oversight évolutif — superviser une tâche qu’on ne sait pas soi- » / EN l.756 « ## E. Scalable oversight — supervising a task you cannot judge yoursel »
+- paire 2 (n°3 FR l.692 / n°4 EN l.782) [renvoi] titre FR l.675 « ### Cas d'application — la supervision évolutive : « Would unsupervise » / EN l.765 « ### Worked case — scalable oversight: "Would unsupervised elicitation  »
+- paire 3 (n°5 FR l.709 / n°6 EN l.799) [encadre_limites] titre FR l.675 « ### Cas d'application — la supervision évolutive : « Would unsupervise » / EN l.765 « ### Worked case — scalable oversight: "Would unsupervised elicitation  »
+- paire 4 (n°7 FR l.717 / n°8 EN l.808) [encadre_limites] titre FR l.711 « ## F. La généralisation comme levier — weak-to-strong, easy-to-hard » / EN l.801 « ## F. Generalization as a lever — weak-to-strong, easy-to-hard »
+- paire 5 (n°9 FR l.743 / n°10 EN l.834) [renvoi] titre FR l.719 « ### Cas d'application — la généralisation comme levier : « How would y » / EN l.810 « ### Worked case — generalization as a lever: "How would you know that  »
+- paire 6 (n°11 FR l.758 / n°12 EN l.850) [encadre_limites] titre FR l.752 « ## G. Monitoring & AI control — limiter les dégâts même si le modèle e » / EN l.843 « ## G. Monitoring & AI control — limiting the damage even if the model  »
+- paire 7 (n°13 FR l.767 / n°14 EN l.859) [ponctuel] titre FR l.760 « ### Cas d'application — monitoring et AI control : « How would you des » / EN l.852 « ### Worked case — monitoring and AI control: "How would you design a c »
+- paire 8 (n°15 FR l.777 / n°16 EN l.869) [renvoi] titre FR l.760 « ### Cas d'application — monitoring et AI control : « How would you des » / EN l.852 « ### Worked case — monitoring and AI control: "How would you design a c »
+- paire 9 (n°17 FR l.785 / n°18 EN l.877) [ponctuel] titre FR l.760 « ### Cas d'application — monitoring et AI control : « How would you des » / EN l.852 « ### Worked case — monitoring and AI control: "How would you design a c »
+- paire 10 (n°19 FR l.803 / n°20 EN l.896) [encadre_limites] titre FR l.797 « ## H. Robustesse adverse & red-teaming — résister aux attaques » / EN l.889 « ## H. Adversarial robustness & red-teaming — resisting attacks »
+- paire 11 (n°21 FR l.810 / n°22 EN l.903) [ponctuel] titre FR l.805 « ### Cas d'application — robustesse adverse et mésusage : « How would y » / EN l.898 « ### Worked case — adversarial robustness and misuse: "How would you pr »
+- paire 12 (n°23 FR l.824 / n°24 EN l.917) [renvoi] titre FR l.805 « ### Cas d'application — robustesse adverse et mésusage : « How would y » / EN l.898 « ### Worked case — adversarial robustness and misuse: "How would you pr »
+- paire 13 (n°25 FR l.832 / n°26 EN l.925) [encadre_limites] titre FR l.805 « ### Cas d'application — robustesse adverse et mésusage : « How would y » / EN l.898 « ### Worked case — adversarial robustness and misuse: "How would you pr »
+    position relative 0.76 / 0.68
+- paire 14 (n°27 FR l.838 / n°28 EN l.932) [ponctuel] titre FR l.834 « ## I. Interventions d’entraînement & unlearning — changer le modèle à  » / EN l.927 « ## I. Training interventions & unlearning — changing the model at the  »
+    position relative 0.79 / 0.70
+- paire 15 (n°29 FR l.840 / n°30 EN l.934) [encadre_limites] titre FR l.834 « ## I. Interventions d’entraînement & unlearning — changer le modèle à  » / EN l.927 « ## I. Training interventions & unlearning — changing the model at the  »
+    position relative 0.80 / 0.71
+- paire 16 (n°31 FR l.868 / n°32 EN l.962) [renvoi] titre FR l.842 « ### Cas d'application — interventions d'entraînement et unlearning : « » / EN l.936 « ### Worked case — training interventions and unlearning: "How would yo »
+    position relative 0.93 / 0.82
+## volet3 : FR 23, EN 23
+- paire 1 (n°1 FR l.901 / n°2 EN l.1023) [renvoi] titre FR l.899 « ### 1. Évaluer les capacités » / EN l.1020 « ### 1. Evaluating capabilities »
+- paire 2 (n°3 FR l.921 / n°4 EN l.1043) [ponctuel] titre FR l.899 « ### 1. Évaluer les capacités » / EN l.1020 « ### 1. Evaluating capabilities »
+- paire 3 (n°5 FR l.931 / n°6 EN l.1054) [renvoi] titre FR l.923 « ### 2. Évaluer l’alignement » / EN l.1045 « ### 2. Evaluating alignment »
+- paire 4 (n°7 FR l.951 / n°8 EN l.1074) [ponctuel] titre FR l.923 « ### 2. Évaluer l’alignement » / EN l.1045 « ### 2. Evaluating alignment »
+- paire 5 (n°9 FR l.955 / n°10 EN l.1079) [ponctuel] titre FR l.953 « ### 3. Le contrôle par le monitoring (AI control) » / EN l.1076 « ### 3. Control through monitoring (AI control) »
+- paire 6 (n°11 FR l.955 / n°12 EN l.1079) [renvoi] titre FR l.953 « ### 3. Le contrôle par le monitoring (AI control) » / EN l.1076 « ### 3. Control through monitoring (AI control) »
+- paire 7 (n°13 FR l.975 / n°14 EN l.1099) [ponctuel] titre FR l.953 « ### 3. Le contrôle par le monitoring (AI control) » / EN l.1076 « ### 3. Control through monitoring (AI control) »
+- paire 8 (n°15 FR l.975 / n°16 EN l.1099) [ponctuel] titre FR l.953 « ### 3. Le contrôle par le monitoring (AI control) » / EN l.1076 « ### 3. Control through monitoring (AI control) »
+- paire 9 (n°17 FR l.981 / n°18 EN l.1106) [renvoi] titre FR l.977 « ### 4. L’oversight évolutif — et, en son sein, l’honnêteté » / EN l.1101 « ### 4. Scalable oversight — and, within it, honesty »
+- paire 10 (n°19 FR l.1001 / n°20 EN l.1126) [ponctuel] titre FR l.977 « ### 4. L’oversight évolutif — et, en son sein, l’honnêteté » / EN l.1101 « ### 4. Scalable oversight — and, within it, honesty »
+- paire 11 (n°21 FR l.1007 / n°22 EN l.1133) [renvoi] titre FR l.1003 « ### 5. La robustesse adverse » / EN l.1128 « ### 5. Adversarial robustness »
+- paire 12 (n°23 FR l.1027 / n°24 EN l.1153) [ponctuel] titre FR l.1003 « ### 5. La robustesse adverse » / EN l.1128 « ### 5. Adversarial robustness »
+- paire 13 (n°25 FR l.1031 / n°26 EN l.1158) [ponctuel] titre FR l.1029 « ### 6. Le domaine « divers » : désapprentissage et gouvernance multi-a » / EN l.1155 « ### 6. The "miscellaneous" domain: unlearning and multi-agent governan »
+- paire 14 (n°27 FR l.1031 / n°28 EN l.1158) [renvoi] titre FR l.1029 « ### 6. Le domaine « divers » : désapprentissage et gouvernance multi-a » / EN l.1155 « ### 6. The "miscellaneous" domain: unlearning and multi-agent governan »
+- paire 15 (n°29 FR l.1079 / n°30 EN l.1204) [renvoi] titre FR l.1077 « ## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026) » / EN l.1202 « ## SECTION III — CURRENT WORK (2025-2026) »
+- paire 16 (n°31 FR l.1083 / n°32 EN l.1208) [ponctuel] titre FR l.1077 « ## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026) » / EN l.1202 « ## SECTION III — CURRENT WORK (2025-2026) »
+- paire 17 (n°33 FR l.1087 / n°34 EN l.1212) [ponctuel] titre FR l.1077 « ## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026) » / EN l.1202 « ## SECTION III — CURRENT WORK (2025-2026) »
+- paire 18 (n°35 FR l.1087 / n°36 EN l.1212) [ponctuel] titre FR l.1077 « ## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026) » / EN l.1202 « ## SECTION III — CURRENT WORK (2025-2026) »
+- paire 19 (n°37 FR l.1091 / n°38 EN l.1216) [ponctuel] titre FR l.1077 « ## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026) » / EN l.1202 « ## SECTION III — CURRENT WORK (2025-2026) »
+- paire 20 (n°39 FR l.1097 / n°40 EN l.1222) [ponctuel] titre FR l.1077 « ## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026) » / EN l.1202 « ## SECTION III — CURRENT WORK (2025-2026) »
+- paire 21 (n°41 FR l.1101 / n°42 EN l.1226) [ponctuel] titre FR l.1077 « ## PARTIE III — LES TRAVAUX DU MOMENT (2025-2026) » / EN l.1202 « ## SECTION III — CURRENT WORK (2025-2026) »
+- paire 22 (n°43 FR l.1107 / n°44 EN l.1232) [ponctuel] titre FR l.1103 « ## PARTIE IV — SYNTHÈSE : comment tout s’emboîte, et où tu te branches » / EN l.1228 « ## SECTION IV — SYNTHESIS: how everything fits together, and where you »
+- paire 23 (n°45 FR l.1107 / n°46 EN l.1232) [renvoi] titre FR l.1103 « ## PARTIE IV — SYNTHÈSE : comment tout s’emboîte, et où tu te branches » / EN l.1228 « ## SECTION IV — SYNTHESIS: how everything fits together, and where you »
+## volet6 : FR 22, EN 22
+- paire 1 (n°1 FR l.1418 / n°2 EN l.1583) [encadre_limites] titre FR l.1402 « ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre,  » / EN l.1579 « ### 2. Your results, as your dossier carries them on September 14, cor »
+    position relative 0.19 / 0.08
+- paire 2 (n°3 FR l.1418 / n°4 EN l.1583) [ponctuel] titre FR l.1402 « ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre,  » / EN l.1579 « ### 2. Your results, as your dossier carries them on September 14, cor »
+    position relative 0.19 / 0.08
+- paire 3 (n°5 FR l.1429 / n°6 EN l.1585) [ponctuel] titre FR l.1402 « ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre,  » / EN l.1579 « ### 2. Your results, as your dossier carries them on September 14, cor »
+    position relative 0.23 / 0.09
+- paire 4 (n°7 FR l.1437 / n°8 EN l.1587) [ponctuel] titre FR l.1402 « ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre,  » / EN l.1579 « ### 2. Your results, as your dossier carries them on September 14, cor »
+    position relative 0.26 / 0.10
+- paire 5 (n°9 FR l.1444 / n°10 EN l.1589) [ponctuel] titre FR l.1402 « ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre,  » / EN l.1579 « ### 2. Your results, as your dossier carries them on September 14, cor »
+    position relative 0.29 / 0.11
+- paire 6 (n°11 FR l.1449 / n°12 EN l.1591) [renvoi] titre FR l.1402 « ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre,  » / EN l.1579 « ### 2. Your results, as your dossier carries them on September 14, cor »
+    position relative 0.31 / 0.12
+- paire 7 (n°13 FR l.1456 / n°14 EN l.1595) [ponctuel] titre FR l.1451 « ### 3. Les trois contrôles à ne jamais confondre » / EN l.1593 « ### 3. The three controls never to confuse »
+    position relative 0.34 / 0.14
+- paire 8 (n°15 FR l.1456 / n°16 EN l.1595) [renvoi] titre FR l.1451 « ### 3. Les trois contrôles à ne jamais confondre » / EN l.1593 « ### 3. The three controls never to confuse »
+    position relative 0.34 / 0.14
+- paire 9 (n°17 FR l.1483 / n°18 EN l.1607) [ponctuel] titre FR l.1474 « ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble » / EN l.1603 « ### 5. The work of the Fellows program, 2025-2026 — overview »
+    position relative 0.44 / 0.19
+- paire 10 (n°19 FR l.1487 / n°20 EN l.1609) [ponctuel] titre FR l.1474 « ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble » / EN l.1603 « ### 5. The work of the Fellows program, 2025-2026 — overview »
+    position relative 0.46 / 0.20
+- paire 11 (n°21 FR l.1492 / n°22 EN l.1611) [ponctuel] titre FR l.1474 « ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble » / EN l.1603 « ### 5. The work of the Fellows program, 2025-2026 — overview »
+    position relative 0.48 / 0.21
+- paire 12 (n°23 FR l.1497 / n°24 EN l.1613) [ponctuel] titre FR l.1474 « ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble » / EN l.1603 « ### 5. The work of the Fellows program, 2025-2026 — overview »
+    position relative 0.50 / 0.22
+- paire 13 (n°25 FR l.1497 / n°26 EN l.1613) [renvoi] titre FR l.1474 « ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble » / EN l.1603 « ### 5. The work of the Fellows program, 2025-2026 — overview »
+    position relative 0.50 / 0.22
+- paire 14 (n°27 FR l.1510 / n°28 EN l.1617) [renvoi] titre FR l.1499 « ### 6. Ton programme de recherche, et sa revue d'antériorité » / EN l.1615 « ### 6. Your research program, and its prior-art review »
+    position relative 0.55 / 0.23
+- paire 15 (n°29 FR l.1519 / n°30 EN l.1626) [ponctuel] titre FR l.1499 « ### 6. Ton programme de recherche, et sa revue d'antériorité » / EN l.1615 « ### 6. Your research program, and its prior-art review »
+    position relative 0.58 / 0.27
+- paire 16 (n°31 FR l.1575 / n°32 EN l.1678) [ponctuel] titre FR l.1569 « ### 7. Ce que ces compléments changent aux volets 1 à 5 » / EN l.1676 « ### 7. What these supplements change in Parts 1 to 5 »
+    position relative 0.80 / 0.50
+- paire 17 (n°33 FR l.1589 / n°34 EN l.1757) [ponctuel] titre FR l.1578 « ### 8 · La validité des sondes d'activation hors distribution — pourqu » / EN l.1746 « ### 8 · Out-of-distribution validity of activation probes — why "valid »
+- paire 18 (n°35 FR l.1603 / n°36 EN l.1771) [ponctuel] titre FR l.1578 « ### 8 · La validité des sondes d'activation hors distribution — pourqu » / EN l.1746 « ### 8 · Out-of-distribution validity of activation probes — why "valid »
+- paire 19 (n°37 FR l.1616 / n°38 EN l.1782) [ponctuel] titre FR l.1578 « ### 8 · La validité des sondes d'activation hors distribution — pourqu » / EN l.1746 « ### 8 · Out-of-distribution validity of activation probes — why "valid »
+- paire 20 (n°39 FR l.1624 / n°40 EN l.1789) [encadre_2oct] titre FR l.1578 « ### 8 · La validité des sondes d'activation hors distribution — pourqu » / EN l.1746 « ### 8 · Out-of-distribution validity of activation probes — why "valid »
+- paire 21 (n°41 FR l.1624 / n°42 EN l.1789) [ponctuel] titre FR l.1578 « ### 8 · La validité des sondes d'activation hors distribution — pourqu » / EN l.1746 « ### 8 · Out-of-distribution validity of activation probes — why "valid »
+- paire 22 (n°43 FR l.1624 / n°44 EN l.1789) [renvoi] titre FR l.1578 « ### 8 · La validité des sondes d'activation hors distribution — pourqu » / EN l.1746 « ### 8 · Out-of-distribution validity of activation probes — why "valid »
+## volet7_A_et_C : FR 48, EN 48
+- paire 1 (n°1 FR l.2080 / n°2 EN l.2214) [ponctuel] titre FR l.2072 « ### F·1 · Sleeper Agents (Hubinger et al., Anthropic, 2024) — [P·2] » / EN l.2206 « ### F·1 · Sleeper Agents (Hubinger et al., Anthropic, 2024) — [P·2] »
+- paire 2 (n°3 FR l.2096 / n°4 EN l.2230) [renvoi] titre FR l.2072 « ### F·1 · Sleeper Agents (Hubinger et al., Anthropic, 2024) — [P·2] » / EN l.2206 « ### F·1 · Sleeper Agents (Hubinger et al., Anthropic, 2024) — [P·2] »
+- paire 3 (n°5 FR l.2106 / n°6 EN l.2240) [ponctuel] titre FR l.2098 « ### F·2 · Alignment Faking in Large Language Models (Greenblatt et al. » / EN l.2232 « ### F·2 · Alignment Faking in Large Language Models (Greenblatt et al. »
+- paire 4 (n°7 FR l.2122 / n°8 EN l.2256) [renvoi] titre FR l.2098 « ### F·2 · Alignment Faking in Large Language Models (Greenblatt et al. » / EN l.2232 « ### F·2 · Alignment Faking in Large Language Models (Greenblatt et al. »
+- paire 5 (n°9 FR l.2150 / n°10 EN l.2284) [renvoi] titre FR l.2124 « ### F·3 · Towards Understanding Sycophancy in Language Models (Sharma  » / EN l.2258 « ### F·3 · Towards Understanding Sycophancy in Language Models (Sharma  »
+- paire 6 (n°11 FR l.2159 / n°12 EN l.2293) [ponctuel] titre FR l.2152 « ### F·4 · The Geometry of Truth (Marks & Tegmark, 2023) — [P·32] » / EN l.2286 « ### F·4 · The Geometry of Truth (Marks & Tegmark, 2023) — [P·32] »
+- paire 7 (n°13 FR l.2167 / n°14 EN l.2301) [ponctuel] titre FR l.2152 « ### F·4 · The Geometry of Truth (Marks & Tegmark, 2023) — [P·32] » / EN l.2286 « ### F·4 · The Geometry of Truth (Marks & Tegmark, 2023) — [P·32] »
+- paire 8 (n°15 FR l.2174 / n°16 EN l.2308) [renvoi] titre FR l.2152 « ### F·4 · The Geometry of Truth (Marks & Tegmark, 2023) — [P·32] » / EN l.2286 « ### F·4 · The Geometry of Truth (Marks & Tegmark, 2023) — [P·32] »
+- paire 9 (n°17 FR l.2183 / n°18 EN l.2317) [ponctuel] titre FR l.2176 « ### F·5 · Representation Engineering (Zou et al., 2023) — [P·rep] » / EN l.2310 « ### F·5 · Representation Engineering (Zou et al., 2023) — [P·rep] »
+- paire 10 (n°19 FR l.2198 / n°20 EN l.2332) [renvoi] titre FR l.2176 « ### F·5 · Representation Engineering (Zou et al., 2023) — [P·rep] » / EN l.2310 « ### F·5 · Representation Engineering (Zou et al., 2023) — [P·rep] »
+- paire 11 (n°21 FR l.2222 / n°22 EN l.2356) [renvoi] titre FR l.2200 « ### F·6 · Discovering Latent Knowledge Without Supervision — CCS (Burn » / EN l.2334 « ### F·6 · Discovering Latent Knowledge Without Supervision — CCS (Burn »
+- paire 12 (n°23 FR l.2232 / n°24 EN l.2366) [ponctuel] titre FR l.2224 « ### F·7 · Contrastive Activation Addition et Inference-Time Interventi » / EN l.2358 « ### F·7 · Contrastive Activation Addition and Inference-Time Intervent »
+- paire 13 (n°25 FR l.2238 / n°26 EN l.2372) [ponctuel] titre FR l.2224 « ### F·7 · Contrastive Activation Addition et Inference-Time Interventi » / EN l.2358 « ### F·7 · Contrastive Activation Addition and Inference-Time Intervent »
+- paire 14 (n°27 FR l.2240 / n°28 EN l.2374) [ponctuel] titre FR l.2224 « ### F·7 · Contrastive Activation Addition et Inference-Time Interventi » / EN l.2358 « ### F·7 · Contrastive Activation Addition and Inference-Time Intervent »
+- paire 15 (n°29 FR l.2247 / n°30 EN l.2381) [renvoi] titre FR l.2224 « ### F·7 · Contrastive Activation Addition et Inference-Time Interventi » / EN l.2358 « ### F·7 · Contrastive Activation Addition and Inference-Time Intervent »
+- paire 16 (n°31 FR l.2263 / n°32 EN l.2397) [ponctuel] titre FR l.2249 « ### F·8 · Towards puis Scaling Monosemanticity (Anthropic, 2023-2024)  » / EN l.2383 « ### F·8 · Towards then Scaling Monosemanticity (Anthropic, 2023-2024)  »
+- paire 17 (n°33 FR l.2265 / n°34 EN l.2399) [ponctuel] titre FR l.2249 « ### F·8 · Towards puis Scaling Monosemanticity (Anthropic, 2023-2024)  » / EN l.2383 « ### F·8 · Towards then Scaling Monosemanticity (Anthropic, 2023-2024)  »
+- paire 18 (n°35 FR l.2272 / n°36 EN l.2406) [renvoi] titre FR l.2249 « ### F·8 · Towards puis Scaling Monosemanticity (Anthropic, 2023-2024)  » / EN l.2383 « ### F·8 · Towards then Scaling Monosemanticity (Anthropic, 2023-2024)  »
+- paire 19 (n°37 FR l.2293 / n°38 EN l.2427) [ponctuel] titre FR l.2274 « ### F·9 · Circuit Tracing / On the Biology of a Large Language Model ( » / EN l.2408 « ### F·9 · Circuit Tracing / On the Biology of a Large Language Model ( »
+- paire 20 (n°39 FR l.2302 / n°40 EN l.2436) [renvoi] titre FR l.2274 « ### F·9 · Circuit Tracing / On the Biology of a Large Language Model ( » / EN l.2408 « ### F·9 · Circuit Tracing / On the Biology of a Large Language Model ( »
+- paire 21 (n°41 FR l.2317 / n°42 EN l.2451) [ponctuel] titre FR l.2304 « ### F·10 · AI Control: Improving Safety Despite Intentional Subversion » / EN l.2438 « ### F·10 · AI Control: Improving Safety Despite Intentional Subversion »
+- paire 22 (n°43 FR l.2326 / n°44 EN l.2460) [renvoi] titre FR l.2304 « ### F·10 · AI Control: Improving Safety Despite Intentional Subversion » / EN l.2438 « ### F·10 · AI Control: Improving Safety Despite Intentional Subversion »
+- paire 23 (n°45 FR l.2335 / n°46 EN l.2469) [ponctuel] titre FR l.2328 « ### F·11 · Debate (Irving et al., 2018 ; Khan et al., 2024) — [P·21] » / EN l.2462 « ### F·11 · Debate (Irving et al., 2018; Khan et al., 2024) — [P·21] »
+- paire 24 (n°47 FR l.2350 / n°48 EN l.2484) [renvoi] titre FR l.2328 « ### F·11 · Debate (Irving et al., 2018 ; Khan et al., 2024) — [P·21] » / EN l.2462 « ### F·11 · Debate (Irving et al., 2018; Khan et al., 2024) — [P·21] »
+- paire 25 (n°49 FR l.2359 / n°50 EN l.2493) [ponctuel] titre FR l.2352 « ### F·12 · Weak-to-Strong Generalization (Burns et al., OpenAI, 2023)  » / EN l.2486 « ### F·12 · Weak-to-Strong Generalization (Burns et al., OpenAI, 2023)  »
+- paire 26 (n°51 FR l.2374 / n°52 EN l.2508) [renvoi] titre FR l.2352 « ### F·12 · Weak-to-Strong Generalization (Burns et al., OpenAI, 2023)  » / EN l.2486 « ### F·12 · Weak-to-Strong Generalization (Burns et al., OpenAI, 2023)  »
+- paire 27 (n°53 FR l.2383 / n°54 EN l.2517) [ponctuel] titre FR l.2376 « ### F·13 · Auditing Language Models for Hidden Objectives (Marks et al » / EN l.2510 « ### F·13 · Auditing Language Models for Hidden Objectives (Marks et al »
+- paire 28 (n°55 FR l.2398 / n°56 EN l.2532) [renvoi] titre FR l.2376 « ### F·13 · Auditing Language Models for Hidden Objectives (Marks et al » / EN l.2510 « ### F·13 · Auditing Language Models for Hidden Objectives (Marks et al »
+- paire 29 (n°57 FR l.2446 / n°58 EN l.2580) [renvoi] titre FR l.2424 « ### F·15 · Universal and Transferable Adversarial Attacks — GCG (Zou e » / EN l.2558 « ### F·15 · Universal and Transferable Adversarial Attacks — GCG (Zou e »
+- paire 30 (n°59 FR l.2470 / n°60 EN l.2604) [renvoi] titre FR l.2448 « ### F·16 · Constitutional AI (Bai et al., Anthropic, 2022) — [P·6] » / EN l.2582 « ### F·16 · Constitutional AI (Bai et al., Anthropic, 2022) — [P·6] »
+- paire 31 (n°61 FR l.2479 / n°62 EN l.2613) [ponctuel] titre FR l.2472 « ### F·17 · L'unlearning mis à l'épreuve (Deeb et Roger) — [P·unl] » / EN l.2606 « ### F·17 · L'unlearning mis à l'épreuve (Deeb and Roger) — [P·unl] »
+- paire 32 (n°63 FR l.2487 / n°64 EN l.2621) [ponctuel] titre FR l.2472 « ### F·17 · L'unlearning mis à l'épreuve (Deeb et Roger) — [P·unl] » / EN l.2606 « ### F·17 · L'unlearning mis à l'épreuve (Deeb and Roger) — [P·unl] »
+- paire 33 (n°65 FR l.2498 / n°66 EN l.2632) [renvoi] titre FR l.2472 « ### F·17 · L'unlearning mis à l'épreuve (Deeb et Roger) — [P·unl] » / EN l.2606 « ### F·17 · L'unlearning mis à l'épreuve (Deeb and Roger) — [P·unl] »
+- paire 34 (n°67 FR l.2511 / n°68 EN l.2643) [ponctuel] titre FR l.2504 « ### F·50 · Detecting Strategic Deception with Linear Probes (Goldowsky » / EN l.2636 « ### F·50 · Detecting Strategic Deception with Linear Probes (Goldowsky »
+- paire 35 (n°69 FR l.2520 / n°70 EN l.2652) [renvoi] titre FR l.2504 « ### F·50 · Detecting Strategic Deception with Linear Probes (Goldowsky » / EN l.2636 « ### F·50 · Detecting Strategic Deception with Linear Probes (Goldowsky »
+- paire 36 (n°71 FR l.2529 / n°72 EN l.2661) [ponctuel] titre FR l.2522 « ### F·51 · Detecting High-Stakes Interactions with Activation Probes ( » / EN l.2654 « ### F·51 · Detecting High-Stakes Interactions with Activation Probes ( »
+- paire 37 (n°73 FR l.2538 / n°74 EN l.2670) [renvoi] titre FR l.2522 « ### F·51 · Detecting High-Stakes Interactions with Activation Probes ( » / EN l.2654 « ### F·51 · Detecting High-Stakes Interactions with Activation Probes ( »
+- paire 38 (n°75 FR l.2547 / n°76 EN l.2679) [ponctuel] titre FR l.2540 « ### F·52 · NARCBench — Detecting Multi-Agent Collusion Through Multi-A » / EN l.2672 « ### F·52 · NARCBench — Detecting Multi-Agent Collusion Through Multi-A »
+- paire 39 (n°77 FR l.2556 / n°78 EN l.2688) [renvoi] titre FR l.2540 « ### F·52 · NARCBench — Detecting Multi-Agent Collusion Through Multi-A » / EN l.2672 « ### F·52 · NARCBench — Detecting Multi-Agent Collusion Through Multi-A »
+- paire 40 (n°79 FR l.2564 / n°80 EN l.2696) [ponctuel] titre FR l.2558 « ### F·53 · You Can't Escape Your Own Activations: Evaluation Awareness » / EN l.2690 « ### F·53 · You Can't Escape Your Own Activations: Evaluation Awareness »
+- paire 41 (n°81 FR l.2573 / n°82 EN l.2705) [renvoi] titre FR l.2558 « ### F·53 · You Can't Escape Your Own Activations: Evaluation Awareness » / EN l.2690 « ### F·53 · You Can't Escape Your Own Activations: Evaluation Awareness »
+- paire 42 (n°83 FR l.2582 / n°84 EN l.2714) [ponctuel] titre FR l.2575 « ### F·54 · TRACE (arXiv 2606.07054, 2026) et TRACES (Li et al., Brown  » / EN l.2707 « ### F·54 · TRACE (arXiv 2606.07054, 2026) and TRACES (Li et al., Brown »
+- paire 43 (n°85 FR l.2591 / n°86 EN l.2723) [renvoi] titre FR l.2575 « ### F·54 · TRACE (arXiv 2606.07054, 2026) et TRACES (Li et al., Brown  » / EN l.2707 « ### F·54 · TRACE (arXiv 2606.07054, 2026) and TRACES (Li et al., Brown »
+- paire 44 (n°87 FR l.2608 / n°88 EN l.2740) [renvoi] titre FR l.2593 « ### F·55 · E-valuator: Reliable Agent Verifiers with Sequential Hypoth » / EN l.2725 « ### F·55 · E-valuator: Reliable Agent Verifiers with Sequential Hypoth »
+- paire 45 (n°89 FR l.2618 / n°90 EN l.2750) [ponctuel] titre FR l.2610 « ### F·56 · Multi-Agent AI Control: Distributed Attacks Hamper Per-Inst » / EN l.2742 « ### F·56 · Multi-Agent AI Control: Distributed Attacks Hamper Per-Inst »
+- paire 46 (n°91 FR l.2627 / n°92 EN l.2759) [renvoi] titre FR l.2610 « ### F·56 · Multi-Agent AI Control: Distributed Attacks Hamper Per-Inst » / EN l.2742 « ### F·56 · Multi-Agent AI Control: Distributed Attacks Hamper Per-Inst »
+- paire 47 (n°93 FR l.2635 / n°94 EN l.2767) [ponctuel] titre FR l.2629 « ### F·57 · Towards evaluations-based safety cases for AI scheming (Bal » / EN l.2761 « ### F·57 · Towards evaluations-based safety cases for AI scheming (Bal »
+- paire 48 (n°95 FR l.2644 / n°96 EN l.2776) [renvoi] titre FR l.2629 « ### F·57 · Towards evaluations-based safety cases for AI scheming (Bal » / EN l.2761 « ### F·57 · Towards evaluations-based safety cases for AI scheming (Bal »
+## volet7_B_et_D : FR 34, EN 34
+- paire 1 (n°1 FR l.1669 / n°2 EN l.1834) [ponctuel] titre FR l.1635 « ### F·22 · Diffuse AI Control on Fuzzy Tasks — Terekhov, Gulcehre (EPF » / EN l.1800 « ### F·22 · Diffuse AI Control on Fuzzy Tasks — Terekhov, Gulcehre (EPF »
+- paire 2 (n°3 FR l.1688 / n°4 EN l.1853) [renvoi] titre FR l.1635 « ### F·22 · Diffuse AI Control on Fuzzy Tasks — Terekhov, Gulcehre (EPF » / EN l.1800 « ### F·22 · Diffuse AI Control on Fuzzy Tasks — Terekhov, Gulcehre (EPF »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 3 (n°5 FR l.1727 / n°6 EN l.1892) [renvoi] titre FR l.1690 « ### F·23 · SLEIGHT-Bench : Finding Blind Spots in AI Monitors — Najt,  » / EN l.1855 « ### F·23 · SLEIGHT-Bench : Finding Blind Spots in AI Monitors — Najt,  »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 4 (n°7 FR l.1751 / n°8 EN l.1916) [renvoi] titre FR l.1729 « ### F·24 · Strengthening Red Teams : A Modular Scaffold for Control Ev » / EN l.1894 « ### F·24 · Strengthening Red Teams : A Modular Scaffold for Control Ev »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 5 (n°9 FR l.1770 / n°10 EN l.1935) [ponctuel] titre FR l.1753 « ### F·25 · Measuring and improving coding audit realism with deploymen » / EN l.1918 « ### F·25 · Measuring and improving coding audit realism with deploymen »
+- paire 6 (n°11 FR l.1775 / n°12 EN l.1940) [renvoi] titre FR l.1753 « ### F·25 · Measuring and improving coding audit realism with deploymen » / EN l.1918 « ### F·25 · Measuring and improving coding audit realism with deploymen »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 7 (n°13 FR l.1796 / n°14 EN l.1961) [renvoi] titre FR l.1777 « ### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Kh » / EN l.1942 « ### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Kh »
+- paire 8 (n°15 FR l.1807 / n°16 EN l.1972) [encadre_limites] titre FR l.1777 « ### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Kh » / EN l.1942 « ### F·29 · Fine-Tuned Lie Detectors Failed to Generalize — Hopkins, Kh »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 9 (n°17 FR l.1831 / n°18 EN l.1996) [ponctuel] titre FR l.1812 « ### F·30 · CHIVE — Would This Change Your Answer? — Karvonen (Fellows) » / EN l.1977 « ### F·30 · CHIVE — Would This Change Your Answer? — Karvonen (Fellows) »
+- paire 10 (n°19 FR l.1841 / n°20 EN l.2006) [renvoi] titre FR l.1812 « ### F·30 · CHIVE — Would This Change Your Answer? — Karvonen (Fellows) » / EN l.1977 « ### F·30 · CHIVE — Would This Change Your Answer? — Karvonen (Fellows) »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 11 (n°21 FR l.1874 / n°22 EN l.2039) [renvoi] titre FR l.1843 « ### F·34 · Model Spec Midtraining — Li, Wichers (Fellows), Price, Mark » / EN l.2008 « ### F·34 · Model Spec Midtraining — Li, Wichers (Fellows), Price, Mark »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 12 (n°23 FR l.1891 / n°24 EN l.2056) [ponctuel] titre FR l.1876 « ### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal » / EN l.2041 « ### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal »
+- paire 13 (n°25 FR l.1894 / n°26 EN l.2059) [ponctuel] titre FR l.1876 « ### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal » / EN l.2041 « ### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal »
+- paire 14 (n°27 FR l.1899 / n°28 EN l.2064) [renvoi] titre FR l.1876 « ### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal » / EN l.2041 « ### F·33 · Inoculation Prompting — Wichers, Ebtekar (Fellows), Azarbal »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 15 (n°29 FR l.1915 / n°30 EN l.2080) [ponctuel] titre FR l.1901 « ### F·31 · Persona Vectors — Chen, Arditi (Fellows, supervisés par Lin » / EN l.2066 « ### F·31 · Persona Vectors — Chen, Arditi (Fellows, supervised by Lind »
+- paire 16 (n°31 FR l.1920 / n°32 EN l.2085) [ponctuel] titre FR l.1901 « ### F·31 · Persona Vectors — Chen, Arditi (Fellows, supervisés par Lin » / EN l.2066 « ### F·31 · Persona Vectors — Chen, Arditi (Fellows, supervised by Lind »
+- paire 17 (n°33 FR l.1926 / n°34 EN l.2091) [renvoi] titre FR l.1901 « ### F·31 · Persona Vectors — Chen, Arditi (Fellows, supervisés par Lin » / EN l.2066 « ### F·31 · Persona Vectors — Chen, Arditi (Fellows, supervised by Lind »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 18 (n°35 FR l.1953 / n°36 EN l.2118) [renvoi] titre FR l.1928 « ### F·32 · Subliminal Learning — Cloud, Le (Fellows), Chua, Betley, Sz » / EN l.2093 « ### F·32 · Subliminal Learning — Cloud, Le (Fellows), Chua, Betley, Sz »
+    emplacement FR ['APRES_A_DIRE']
+    emplacement EN ['APRES_A_DIRE']
+- paire 19 (n°37 FR l.1969 / n°38 EN l.2134) [ponctuel] titre FR l.1961 « ### F·38 · Agentic Misalignment — Lynch (Fellows, 1re cohorte), Larson » / EN l.2126 « ### F·38 · Agentic Misalignment — Lynch (Fellows, 1st cohort), Larson  »
+- paire 20 (n°39 FR l.1969 / n°40 EN l.2134) [renvoi] titre FR l.1961 « ### F·38 · Agentic Misalignment — Lynch (Fellows, 1re cohorte), Larson » / EN l.2126 « ### F·38 · Agentic Misalignment — Lynch (Fellows, 1st cohort), Larson  »
+- paire 21 (n°41 FR l.1977 / n°42 EN l.2142) [renvoi] titre FR l.1971 « ### F·39 · AI Organizations Can Be More Effective but Less Aligned tha » / EN l.2136 « ### F·39 · AI Organizations Can Be More Effective but Less Aligned tha »
+- paire 22 (n°43 FR l.1986 / n°44 EN l.2151) [renvoi] titre FR l.1979 « ### F·28 · Introspection Adapters — Yang (Fellows), Lindsey, Marks, Wa » / EN l.2144 « ### F·28 · Introspection Adapters — Yang (Fellows), Lindsey, Marks, Wa »
+- paire 23 (n°45 FR l.1992 / n°46 EN l.2157) [ponctuel] titre FR l.1988 « ### F·27 · AuditBench — Sheshadri, Ewart, Fronsdal, Gupta ; Marks, Bow » / EN l.2153 « ### F·27 · AuditBench — Sheshadri, Ewart, Fronsdal, Gupta; Marks, Bowm »
+- paire 24 (n°47 FR l.1992 / n°48 EN l.2157) [renvoi] titre FR l.1988 « ### F·27 · AuditBench — Sheshadri, Ewart, Fronsdal, Gupta ; Marks, Bow » / EN l.2153 « ### F·27 · AuditBench — Sheshadri, Ewart, Fronsdal, Gupta; Marks, Bowm »
+- paire 25 (n°49 FR l.1998 / n°50 EN l.2163) [renvoi] titre FR l.1994 « ### F·35 · Poisoning Fine-tuning Datasets of Constitutional Classifier » / EN l.2159 « ### F·35 · Poisoning Fine-tuning Datasets of Constitutional Classifier »
+- paire 26 (n°51 FR l.2004 / n°52 EN l.2169) [ponctuel] titre FR l.2000 « ### F·36 · Beyond Data Filtering : Knowledge Localization (SGTM) — Shi » / EN l.2165 « ### F·36 · Beyond Data Filtering : Knowledge Localization (SGTM) — Shi »
+- paire 27 (n°53 FR l.2004 / n°54 EN l.2169) [renvoi] titre FR l.2000 « ### F·36 · Beyond Data Filtering : Knowledge Localization (SGTM) — Shi » / EN l.2165 « ### F·36 · Beyond Data Filtering : Knowledge Localization (SGTM) — Shi »
+- paire 28 (n°55 FR l.2020 / n°56 EN l.2178) [renvoi] titre FR l.2012 « ### F·40 · Automated Weak-to-Strong Researcher — Wen (Fellows), Benton » / EN l.2177 « ### F·40 · Automated Weak-to-Strong Researcher — Wen (Fellows), Benton »
+- paire 29 (n°57 FR l.2026 / n°58 EN l.2181) [renvoi] titre FR l.2022 « ### F·41 · TASTE — Baig (Fellows) ; août 2026. » / EN l.2180 « ### F·41 · TASTE — Baig (Fellows); August 2026. »
+- paire 30 (n°59 FR l.2030 / n°60 EN l.2184) [renvoi] titre FR l.2028 « ### F·42 · A3 : An Automated Alignment Agent for Safety Finetuning — Z » / EN l.2183 « ### F·42 · A3 : An Automated Alignment Agent for Safety Finetuning — Z »
+- paire 31 (n°61 FR l.2037 / n°62 EN l.2187) [renvoi] titre FR l.2032 « ### F·26 · Removing Sandbagging in LLMs by Training with Weak Supervis » / EN l.2186 « ### F·26 · Removing Sandbagging in LLMs by Training with Weak Supervis »
+- paire 32 (n°63 FR l.2049 / n°64 EN l.2192) [renvoi] titre FR l.2041 « ### F·59 · How can we solve diffuse threats like research sabotage wit » / EN l.2191 « ### F·59 · How can we solve diffuse threats like research sabotage wit »
+- paire 33 (n°65 FR l.2058 / n°66 EN l.2195) [renvoi] titre FR l.2051 « ### F·60 · Automated Researchers Can Subtly Sandbag — Gasteiger, Khan, » / EN l.2194 « ### F·60 · Automated Researchers Can Subtly Sandbag — Gasteiger, Khan, »
+- paire 34 (n°67 FR l.2066 / n°68 EN l.2200) [renvoi] titre FR l.2062 « ### F·62 · Evaluating honesty and lie detection techniques on a divers » / EN l.2199 « ### F·62 · Evaluating honesty and lie detection techniques on a divers »
+## volet_M : FR 13, EN 13
+- paire 1 (n°1 FR l.267 / n°2 EN l.334) [encadre_limites] titre FR l.257 « ## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement » / EN l.324 « ## M4 · The control: what it rules out, and it must come out different »
+- paire 2 (n°3 FR l.271 / n°4 EN l.338) [encadre_limites] titre FR l.257 « ## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement » / EN l.324 « ## M4 · The control: what it rules out, and it must come out different »
+- paire 3 (n°5 FR l.293 / n°6 EN l.360) [encadre_limites] titre FR l.257 « ## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement » / EN l.324 « ## M4 · The control: what it rules out, and it must come out different »
+- paire 4 (n°7 FR l.296 / n°8 EN l.363) [renvoi] titre FR l.257 « ## M4 · Le contrôle : ce qu'il écarte, et il doit sortir autrement » / EN l.324 « ## M4 · The control: what it rules out, and it must come out different »
+- paire 5 (n°9 FR l.310 / n°10 EN l.377) [renvoi] titre FR l.298 « ## M5 · Le nul et le cas connu » / EN l.365 « ## M5 · The null and the known case »
+- paire 6 (n°11 FR l.312 / n°12 EN l.379) [ponctuel] titre FR l.298 « ## M5 · Le nul et le cas connu » / EN l.365 « ## M5 · The null and the known case »
+- paire 7 (n°13 FR l.314 / n°15 EN l.381) [encadre_2oct] titre FR l.298 « ## M5 · Le nul et le cas connu » / EN l.365 « ## M5 · The null and the known case »
+- paire 8 (n°14 FR l.314 / n°16 EN l.381) [encadre_limites] titre FR l.298 « ## M5 · Le nul et le cas connu » / EN l.365 « ## M5 · The null and the known case »
+- paire 9 (n°17 FR l.363 / n°19 EN l.430) [ponctuel] titre FR l.345 « ## M8 · La forme qui sert la logique » / EN l.412 « ## M8 · The form that serves the logic »
+- paire 10 (n°18 FR l.363 / n°20 EN l.430) [renvoi] titre FR l.345 « ## M8 · La forme qui sert la logique » / EN l.412 « ## M8 · The form that serves the logic »
+- paire 11 (n°21 FR l.371 / n°22 EN l.438) [ponctuel] titre FR l.365 « ## M9 · Un cas complet, avant et après : la première question vitale » / EN l.432 « ## M9 · A complete case, before and after: the first vital question »
+- paire 12 (n°23 FR l.387 / n°24 EN l.454) [renvoi] titre FR l.365 « ## M9 · Un cas complet, avant et après : la première question vitale » / EN l.432 « ## M9 · A complete case, before and after: the first vital question »
+- paire 13 (n°25 FR l.408 / n°26 EN l.475) [renvoi] titre FR l.389 « ## M10 · La grille, à relire avant chaque répétition » / EN l.456 « ## M10 · The checklist, to reread before each rehearsal »
+## volets4_5_entete : FR 54, EN 54
+- paire 1 (n°1 FR l.1121 / n°2 EN l.1263) [ponctuel] titre FR l.1119 « ### Sleeper Agents (Anthropic, Hubinger et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 2 (n°3 FR l.1121 / n°4 EN l.1263) [renvoi] titre FR l.1119 « ### Sleeper Agents (Anthropic, Hubinger et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 3 (n°5 FR l.1125 / n°6 EN l.1267) [ponctuel] titre FR l.1123 « ### Alignment Faking (Anthropic, Greenblatt et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 4 (n°7 FR l.1125 / n°8 EN l.1267) [renvoi] titre FR l.1123 « ### Alignment Faking (Anthropic, Greenblatt et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 5 (n°9 FR l.1131 / n°10 EN l.1273) [ponctuel] titre FR l.1127 « ### Sycophancy (Anthropic, Sharma et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 6 (n°11 FR l.1131 / n°12 EN l.1273) [renvoi] titre FR l.1127 « ### Sycophancy (Anthropic, Sharma et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 7 (n°13 FR l.1137 / n°14 EN l.1279) [ponctuel] titre FR l.1127 « ### Sycophancy (Anthropic, Sharma et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 8 (n°15 FR l.1137 / n°16 EN l.1279) [renvoi] titre FR l.1127 « ### Sycophancy (Anthropic, Sharma et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 9 (n°17 FR l.1141 / n°18 EN l.1283) [ponctuel] titre FR l.1139 « ### Representation Engineering (RepE) (Zou et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 10 (n°19 FR l.1141 / n°20 EN l.1283) [renvoi] titre FR l.1139 « ### Representation Engineering (RepE) (Zou et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 11 (n°21 FR l.1145 / n°22 EN l.1287) [renvoi] titre FR l.1139 « ### Representation Engineering (RepE) (Zou et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 12 (n°23 FR l.1149 / n°24 EN l.1291) [ponctuel] titre FR l.1139 « ### Representation Engineering (RepE) (Zou et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 13 (n°25 FR l.1149 / n°26 EN l.1291) [renvoi] titre FR l.1139 « ### Representation Engineering (RepE) (Zou et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 14 (n°27 FR l.1157 / n°28 EN l.1297) [encadre_limites] titre FR l.1153 « ### Towards puis Scaling Monosemanticity (Anthropic, » / EN l.1254 « ## The key papers, told one by one »
+- paire 15 (n°29 FR l.1161 / n°30 EN l.1301) [encadre_limites] titre FR l.1153 « ### Towards puis Scaling Monosemanticity (Anthropic, » / EN l.1254 « ## The key papers, told one by one »
+- paire 16 (n°31 FR l.1167 / n°32 EN l.1307) [encadre_limites] titre FR l.1153 « ### Towards puis Scaling Monosemanticity (Anthropic, » / EN l.1254 « ## The key papers, told one by one »
+- paire 17 (n°33 FR l.1167 / n°34 EN l.1307) [ponctuel] titre FR l.1153 « ### Towards puis Scaling Monosemanticity (Anthropic, » / EN l.1254 « ## The key papers, told one by one »
+- paire 18 (n°35 FR l.1167 / n°36 EN l.1307) [renvoi] titre FR l.1153 « ### Towards puis Scaling Monosemanticity (Anthropic, » / EN l.1254 « ## The key papers, told one by one »
+- paire 19 (n°37 FR l.1173 / n°38 EN l.1313) [ponctuel] titre FR l.1153 « ### Towards puis Scaling Monosemanticity (Anthropic, » / EN l.1254 « ## The key papers, told one by one »
+- paire 20 (n°39 FR l.1173 / n°40 EN l.1313) [renvoi] titre FR l.1153 « ### Towards puis Scaling Monosemanticity (Anthropic, » / EN l.1254 « ## The key papers, told one by one »
+- paire 21 (n°41 FR l.1177 / n°42 EN l.1317) [renvoi] titre FR l.1175 « ### Debate (Khan et al., dans la lignée d’Irving) » / EN l.1254 « ## The key papers, told one by one »
+- paire 22 (n°43 FR l.1181 / n°44 EN l.1321) [renvoi] titre FR l.1179 « ### Weak-to-Strong Generalization (OpenAI, Burns et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 23 (n°45 FR l.1187 / n°46 EN l.1327) [ponctuel] titre FR l.1185 « ### Auditing Hidden Objectives (Anthropic, Marks et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 24 (n°47 FR l.1187 / n°48 EN l.1327) [renvoi] titre FR l.1185 « ### Auditing Hidden Objectives (Anthropic, Marks et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 25 (n°49 FR l.1197 / n°50 EN l.1337) [renvoi] titre FR l.1185 « ### Auditing Hidden Objectives (Anthropic, Marks et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 26 (n°51 FR l.1201 / n°52 EN l.1341) [renvoi] titre FR l.1199 « ### Constitutional AI (Anthropic, Bai et al.) » / EN l.1254 « ## The key papers, told one by one »
+- paire 27 (n°53 FR l.1205 / n°54 EN l.1345) [renvoi] titre FR l.1203 « ### L’unlearning mis à l’épreuve (Deeb et Roger) » / EN l.1254 « ## The key papers, told one by one »
+- paire 28 (n°55 FR l.1221 / n°56 EN l.1392) [ponctuel] titre FR l.1219 « ### 1. La thèse-signature : l’écart représentation–causation » / EN l.1389 « ### 1. The signature thesis: the representation–causation gap »
+- paire 29 (n°57 FR l.1223 / n°58 EN l.1394) [renvoi] titre FR l.1219 « ### 1. La thèse-signature : l’écart représentation–causation » / EN l.1389 « ### 1. The signature thesis: the representation–causation gap »
+- paire 30 (n°59 FR l.1233 / n°60 EN l.1406) [ponctuel] titre FR l.1231 « ### 3. Ton ancrage empirique : l’eval-awareness » / EN l.1403 « ### 3. Your empirical anchor: eval-awareness »
+- paire 31 (n°61 FR l.1233 / n°62 EN l.1406) [renvoi] titre FR l.1231 « ### 3. Ton ancrage empirique : l’eval-awareness » / EN l.1403 « ### 3. Your empirical anchor: eval-awareness »
+- paire 32 (n°63 FR l.1237 / n°64 EN l.1411) [ponctuel] titre FR l.1235 « ### 4. La théorie de l’impact » / EN l.1408 « ### 4. The theory of impact »
+- paire 33 (n°65 FR l.1237 / n°66 EN l.1411) [renvoi] titre FR l.1235 « ### 4. La théorie de l’impact » / EN l.1408 « ### 4. The theory of impact »
+- paire 34 (n°67 FR l.1245 / n°68 EN l.1421) [renvoi] titre FR l.1243 « ### 6. Gérer le pushback » / EN l.1418 « ### 6. Handling pushback »
+- paire 35 (n°69 FR l.1255 / n°70 EN l.1433) [ponctuel] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 36 (n°71 FR l.1255 / n°72 EN l.1433) [renvoi] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 37 (n°73 FR l.1259 / n°74 EN l.1437) [ponctuel] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 38 (n°75 FR l.1259 / n°76 EN l.1437) [renvoi] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 39 (n°77 FR l.1265 / n°78 EN l.1443) [renvoi] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 40 (n°79 FR l.1269 / n°80 EN l.1447) [ponctuel] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 41 (n°81 FR l.1269 / n°82 EN l.1447) [renvoi] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 42 (n°83 FR l.1273 / n°84 EN l.1451) [ponctuel] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 43 (n°85 FR l.1273 / n°86 EN l.1451) [renvoi] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 44 (n°87 FR l.1277 / n°88 EN l.1455) [ponctuel] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 45 (n°89 FR l.1277 / n°90 EN l.1455) [renvoi] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 46 (n°91 FR l.1283 / n°92 EN l.1461) [encadre_limites] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 47 (n°93 FR l.1283 / n°94 EN l.1461) [renvoi] titre FR l.1251 « ## A. Tes sujets FORT — ta thèse peut être la colonne » / EN l.1428 « ## A. Your STRONG topics — your thesis can be the backbone »
+- paire 48 (n°95 FR l.1289 / n°96 EN l.1468) [renvoi] titre FR l.1285 « ## B. Leurs sujets — méthodothèque, dosage léger ou nul » / EN l.1463 « ## B. Their topics — method toolkit, light or zero dosage »
+- paire 49 (n°97 FR l.1293 / n°98 EN l.1472) [renvoi] titre FR l.1285 « ## B. Leurs sujets — méthodothèque, dosage léger ou nul » / EN l.1463 « ## B. Their topics — method toolkit, light or zero dosage »
+- paire 50 (n°99 FR l.1297 / n°100 EN l.1476) [renvoi] titre FR l.1285 « ## B. Leurs sujets — méthodothèque, dosage léger ou nul » / EN l.1463 « ## B. Their topics — method toolkit, light or zero dosage »
+- paire 51 (n°101 FR l.1301 / n°102 EN l.1480) [renvoi] titre FR l.1285 « ## B. Leurs sujets — méthodothèque, dosage léger ou nul » / EN l.1463 « ## B. Their topics — method toolkit, light or zero dosage »
+- paire 52 (n°103 FR l.1305 / n°104 EN l.1484) [renvoi] titre FR l.1285 « ## B. Leurs sujets — méthodothèque, dosage léger ou nul » / EN l.1463 « ## B. Their topics — method toolkit, light or zero dosage »
+- paire 53 (n°105 FR l.1309 / n°106 EN l.1488) [renvoi] titre FR l.1285 « ## B. Leurs sujets — méthodothèque, dosage léger ou nul » / EN l.1463 « ## B. Their topics — method toolkit, light or zero dosage »
+- paire 54 (n°107 FR l.1336 / n°108 EN l.1516) [ponctuel] titre FR l.1326 « ## Les papiers — quatre niveaux » / EN l.1506 « ## The papers — four levels »
+## volets8_9 : FR 22, EN 22
+- paire 1 (n°1 FR l.2761 / n°23 EN l.2918) [ponctuel] titre FR l.2751 « ### 2 · Evaluating alignment — « How do we measure how aligned AI syst » / EN l.2908 « ### 2 · Evaluating alignment — "How do we measure how aligned AI syste »
+- paire 2 (n°2 FR l.2761 / n°24 EN l.2918) [renvoi] titre FR l.2751 « ### 2 · Evaluating alignment — « How do we measure how aligned AI syst » / EN l.2908 « ### 2 · Evaluating alignment — "How do we measure how aligned AI syste »
+- paire 3 (n°3 FR l.2776 / n°25 EN l.2933) [ponctuel] titre FR l.2763 « ### 3 · Understanding model cognition — « What are our models "thinkin » / EN l.2920 « ### 3 · Understanding model cognition — "What are our models "thinking »
+- paire 4 (n°4 FR l.2776 / n°26 EN l.2933) [ponctuel] titre FR l.2763 « ### 3 · Understanding model cognition — « What are our models "thinkin » / EN l.2920 « ### 3 · Understanding model cognition — "What are our models "thinking »
+- paire 5 (n°5 FR l.2776 / n°27 EN l.2933) [renvoi] titre FR l.2763 « ### 3 · Understanding model cognition — « What are our models "thinkin » / EN l.2920 « ### 3 · Understanding model cognition — "What are our models "thinking »
+- paire 6 (n°6 FR l.2784 / n°28 EN l.2941) [ponctuel] titre FR l.2778 « ### 4 · Persona et généralisation hors distribution » / EN l.2935 « ### 4 · Persona and out-of-distribution generalization »
+- paire 7 (n°7 FR l.2784 / n°29 EN l.2941) [renvoi] titre FR l.2778 « ### 4 · Persona et généralisation hors distribution » / EN l.2935 « ### 4 · Persona and out-of-distribution generalization »
+- paire 8 (n°8 FR l.2796 / n°30 EN l.2953) [ponctuel] titre FR l.2786 « ### 5 · Chain-of-thought faithfulness — « When can we take a model's c » / EN l.2943 « ### 5 · Chain-of-thought faithfulness — "When can we take a model's ch »
+    position relative 0.48 / 0.40
+- paire 9 (n°9 FR l.2796 / n°31 EN l.2953) [renvoi] titre FR l.2786 « ### 5 · Chain-of-thought faithfulness — « When can we take a model's c » / EN l.2943 « ### 5 · Chain-of-thought faithfulness — "When can we take a model's ch »
+    position relative 0.48 / 0.40
+- paire 10 (n°10 FR l.2801 / n°32 EN l.2958) [renvoi] titre FR l.2798 « ### 6 · AI control — « Can we ensure safety by deploying models alongs » / EN l.2955 « ### 6 · AI control — "Can we ensure safety by deploying models alongsi »
+    position relative 0.50 / 0.41
+- paire 11 (n°11 FR l.2831 / n°33 EN l.2988) [ponctuel] titre FR l.2798 « ### 6 · AI control — « Can we ensure safety by deploying models alongs » / EN l.2955 « ### 6 · AI control — "Can we ensure safety by deploying models alongsi »
+    position relative 0.61 / 0.49
+- paire 12 (n°12 FR l.2831 / n°34 EN l.2988) [ponctuel] titre FR l.2798 « ### 6 · AI control — « Can we ensure safety by deploying models alongs » / EN l.2955 « ### 6 · AI control — "Can we ensure safety by deploying models alongsi »
+    position relative 0.61 / 0.49
+- paire 13 (n°13 FR l.2840 / n°35 EN l.2997) [ponctuel] titre FR l.2798 « ### 6 · AI control — « Can we ensure safety by deploying models alongs » / EN l.2955 « ### 6 · AI control — "Can we ensure safety by deploying models alongsi »
+    position relative 0.65 / 0.52
+- paire 14 (n°14 FR l.2844 / n°36 EN l.3001) [renvoi] titre FR l.2842 « ### 7 · Scalable oversight — « Can we design oversight mechanisms that » / EN l.2999 « ### 7 · Scalable oversight — "Can we design oversight mechanisms that  »
+    position relative 0.66 / 0.53
+- paire 15 (n°15 FR l.2862 / n°37 EN l.3019) [ponctuel] titre FR l.2842 « ### 7 · Scalable oversight — « Can we design oversight mechanisms that » / EN l.2999 « ### 7 · Scalable oversight — "Can we design oversight mechanisms that  »
+    position relative 0.73 / 0.57
+- paire 16 (n°16 FR l.2888 / n°38 EN l.3045) [ponctuel] titre FR l.2842 « ### 7 · Scalable oversight — « Can we design oversight mechanisms that » / EN l.2999 « ### 7 · Scalable oversight — "Can we design oversight mechanisms that  »
+    position relative 0.83 / 0.64
+- paire 17 (n°17 FR l.2893 / n°39 EN l.3050) [renvoi] titre FR l.2890 « ### 8 · Adversarial robustness — « Can we ensure AI systems behave as  » / EN l.3047 « ### 8 · Adversarial robustness — "Can we ensure AI systems behave as d »
+    position relative 0.84 / 0.66
+- paire 18 (n°18 FR l.2902 / n°40 EN l.3059) [ponctuel] titre FR l.2890 « ### 8 · Adversarial robustness — « Can we ensure AI systems behave as  » / EN l.3047 « ### 8 · Adversarial robustness — "Can we ensure AI systems behave as d »
+    position relative 0.88 / 0.68
+- paire 19 (n°19 FR l.2910 / n°41 EN l.3067) [ponctuel] titre FR l.2890 « ### 8 · Adversarial robustness — « Can we ensure AI systems behave as  » / EN l.3047 « ### 8 · Adversarial robustness — "Can we ensure AI systems behave as d »
+    position relative 0.91 / 0.70
+- paire 20 (n°20 FR l.2918 / n°42 EN l.3075) [ponctuel] titre FR l.2912 « ### 9 · Miscellaneous » / EN l.3069 « ### 9 · Miscellaneous »
+    position relative 0.94 / 0.72
+- paire 21 (n°21 FR l.2926 / n°43 EN l.3083) [ponctuel] titre FR l.2912 « ### 9 · Miscellaneous » / EN l.3069 « ### 9 · Miscellaneous »
+    position relative 0.97 / 0.75
+- paire 22 (n°22 FR l.2926 / n°44 EN l.3083) [renvoi] titre FR l.2912 « ### 9 · Miscellaneous » / EN l.3069 « ### 9 · Miscellaneous »
+    position relative 0.97 / 0.75

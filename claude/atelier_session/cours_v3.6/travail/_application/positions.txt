@@ -1,0 +1,266 @@
+tete_volet1 paire 1
+  FR l.1 | titre l.1: # COURS D'ALIGNEMENT — VERSION FUSIONNÉE v3.5 — 27 septembre 2026
+      ancre: # COURS D'ALIGNEMENT — VERSION FUSIONNÉE v3.5 — 27 septembre 2026
+      texte: > **v3.6 — 2 octobre 2026 : ce qui s'ajoute** *(v3.6)*
+  EN l.21 | titre l.21: # ALIGNMENT COURSE — MERGED VERSION v3.5 — September 27, 2026
+      ancre: # ALIGNMENT COURSE — MERGED VERSION v3.5 — September 27, 2026
+      texte: > **v3.6 — 2 October 2026: what is added** *(v3.6)*
+tete_volet1 paire 3
+  FR l.74 | titre l.62: ### 2. Pourquoi un système très capable peut être dangereux même entraîné à être
+      ancre: Le quatrième, le plus inquiétant, est l’alignement trompeur (deceptive alignment), aussi appelé alignment faki
+      texte: > ⚠ *(v3.6)* Ce que le travail Alignment Faking mesure, c'est un écart de conformité entre le cas « entraîné »
+  EN l.129 | titre l.116: ### 2. Why a very capable system can be dangerous even when trained to be "nice"
+      ancre: The fourth, the most worrying, is deceptive alignment, also called alignment faking. Imagine a model that has 
+      texte: > ⚠ *(v3.6)* What the Alignment Faking work measures is a compliance gap between the "trained" and the "untrai
+tete_volet1 paire 4
+  FR l.74 | titre l.62: ### 2. Pourquoi un système très capable peut être dangereux même entraîné à être
+      ancre: Le quatrième, le plus inquiétant, est l’alignement trompeur (deceptive alignment), aussi appelé alignment faki
+      texte: > ⚠ **Limites et parades** : évaluations comportementales et pots de miel → volet 2, §B (après « En pratique —
+  EN l.129 | titre l.116: ### 2. Why a very capable system can be dangerous even when trained to be "nice"
+      ancre: The fourth, the most worrying, is deceptive alignment, also called alignment faking. Imagine a model that has 
+      texte: > ⚠ **Limits and workarounds**: behavioural evaluations and honeypots → Part 2, §B (after "In practice — sandb
+volet2_E_a_I paire 13
+  FR l.832 | titre l.805: ### Cas d'application — robustesse adverse et mésusage : « How would you prevent
+      ancre: **À l'oral.** *« I'd bet refusal rates misrank the filters I'd test, judged on uplift, the help an attacker ca
+      texte: > **⚠ Limites et parades — Classifieurs de sûreté (filtres)** *(v3.6, 2 octobre 2026)*
+  EN l.925 | titre l.898: ### Worked case — adversarial robustness and misuse: "How would you prevent bad 
+      ancre: **Out loud.** *"I'd bet refusal rates misrank the filters I'd test, judged on uplift, the help an attacker can
+      texte: > **⚠ Limits and workarounds — Safety classifiers (filters)** *(v3.6, 2 October 2026)*
+volet2_E_a_I paire 14
+  FR l.838 | titre l.834: ## I. Interventions d’entraînement & unlearning — changer le modèle à la source
+      ancre: En pratique — Constitutional AI (Anthropic). Le but était de rendre un modèle inoffensif sans dépendre massive
+      texte: > ⚠ *(v3.6)* Le « feedback de l'IA » fait d'un modèle le juge de l'entraînement, et un juge d'entraînement se 
+  EN l.932 | titre l.927: ## I. Training interventions & unlearning — changing the model at the source
+      ancre: In practice — Constitutional AI (Anthropic). The goal was to make a model harmless without depending massively
+      texte: > ⚠ *(v3.6)* The "feedback from AI" makes a model the judge of training, and a training judge gets exploited *
+volet2_E_a_I paire 15
+  FR l.840 | titre l.834: ## I. Interventions d’entraînement & unlearning — changer le modèle à la source
+      ancre: En pratique — l’unlearning mis à l’épreuve (Deeb et Roger). Le but était de vérifier une promesse fragile : l’
+      texte: > **⚠ Limites et parades — Désapprentissage et ré-élicitation** *(v3.6, 2 octobre 2026)*
+  EN l.934 | titre l.927: ## I. Training interventions & unlearning — changing the model at the source
+      ancre: In practice — unlearning put to the test (Deeb and Roger). The goal was to check a fragile promise: does unlea
+      texte: > **⚠ Limits and workarounds — Unlearning and re-elicitation** *(v3.6, 2 October 2026)*
+volet2_E_a_I paire 16
+  FR l.868 | titre l.842: ### Cas d'application — interventions d'entraînement et unlearning : « How would
+      ancre: méthode au moins, un fine-tuning sur des exemples sans rapport rendait l'essentiel de la capacité retirée.
+      texte: > ⚠ **Limites et parades** : cas connu → volet M, M5 (fin de section) ; jeu tenu à part → volet M, M4 (après «
+  EN l.962 | titre l.936: ### Worked case — training interventions and unlearning: "How would you verify t
+      ancre: method, a fine-tune on unrelated examples brought back most of the removed capability.
+      texte: > ⚠ **Limits and workarounds**: known case → Part M, M5 (end of section); held-out set → Part M, M4 (after "Th
+volet6 paire 1
+  FR l.1418 | titre l.1402: ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés l
+      ancre: latente) — laquelle la loi doit utiliser est une question ouverte, à poser comme telle [R·P1].
+      texte: > **⚠ Limites et parades — Juges LLM** *(v3.6, 2 octobre 2026)*
+  EN l.1583 | titre l.1579: ### 2. Your results, as your dossier carries them on September 14, corrected on 
+      ancre: **The displacement law (P1), absent from the course** — "the law" in your dossier, never out loud: "the displa
+      texte: > **⚠ Limits and workarounds — LLM judges** *(v3.6, 2 October 2026)*
+volet6 paire 2
+  FR l.1418 | titre l.1402: ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés l
+      ancre: latente) — laquelle la loi doit utiliser est une question ouverte, à poser comme telle [R·P1].
+      texte: > ⚠ *(v3.6)* Que la destination « se lise dans les activations » dit qu'elle y est lisible, pas que le modèle 
+  EN l.1583 | titre l.1579: ### 2. Your results, as your dossier carries them on September 14, corrected on 
+      ancre: **The displacement law (P1), absent from the course** — "the law" in your dossier, never out loud: "the displa
+      texte: > ⚠ *(v3.6)* That the destination "can be read in the activations" says it is readable there, not that the mod
+volet6 paire 3
+  FR l.1429 | titre l.1402: ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés l
+      ancre: tout P2 sous Qwen2.5-7B, et le bloc WHAT DOES NOT EXIST de la base dit « one 7B model » : deux erreurs de la b
+      texte: > ⚠ *(v3.6)* « À doses appariées » n'est pas « à dégradation appariée » : à dose égale, une direction concurre
+  EN l.1585 | titre l.1579: ### 2. Your results, as your dossier carries them on September 14, corrected on 
+      ancre: **The causal result (P2), on Llama-3.1-8B.** Rank 3: 61 → 46% on the judged rate, N = 200, paired McNemar, p ≈
+      texte: > ⚠ *(v3.6)* "At matched doses" is not "at matched degradation": at equal dose, a competing direction and your
+volet6 paire 4
+  FR l.1437 | titre l.1402: ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés l
+      ancre: que les sous-espaces sont emboîtés. C'est la première anomalie de la thèse, pas son appui.
+      texte: > ⚠ *(v3.6)* Ce nul de rang un est dit avec sa puissance, pas avec son cas connu : sans un concept qui cède au
+  EN l.1587 | titre l.1579: ### 2. Your results, as your dossier carries them on September 14, corrected on 
+      ancre: **Rank 1.** "Six methods" is no longer traced in the dossier; you say **"several rank-one methods — contrastiv
+      texte: > ⚠ *(v3.6)* This rank-one null is stated with its power, not with its known case: without a concept that give
+volet6 paire 5
+  FR l.1444 | titre l.1402: ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés l
+      ancre: times more from widening the judged window » est **morte** : on ne peut pas élargir une fenêtre sur un texte d
+      texte: > ⚠ *(v3.6)* Une puissance élevée ne remplace pas un cas connu : ce nul sur générations fraîches se dit comme 
+  EN l.1589 | titre l.1579: ### 2. Your results, as your dossier carries them on September 14, corrected on 
+      ancre: **The replication.** Under its original protocol, yes (119 → 91, p 0.002; 118 → 82, p 0.00003; random controls
+      texte: > ⚠ *(v3.6)* High power does not replace a known case: this null on fresh generations is stated as a bound, wi
+volet6 paire 6
+  FR l.1449 | titre l.1402: ### 2. Tes résultats, tels que ton dossier les porte au 14 septembre, corrigés l
+      ancre: McNemar p = 0,0156 » — un contrôle de complétude ressuscité à tort comme résultat [R·rétractation].
+      texte: > ⚠ **Limites et parades** : ablation et projection → volet 2, §D (après « La méthode ») ; patching → volet 10
+  EN l.1591 | titre l.1579: ### 2. Your results, as your dossier carries them on September 14, corrected on 
+      ancre: **The preregistration.** The rank re-tests are preregistered, and the zero-pressure arm too according to your 
+      texte: > ⚠ **Limits and workarounds**: ablation and projection → Part 2, §D (after "The method"); patching → Part 10,
+volet6 paire 7
+  FR l.1456 | titre l.1451: ### 3. Les trois contrôles à ne jamais confondre
+      ancre: covariance** (pièce M4 du dossier : 0,161 pour l'aléatoire, contre 0,088 pour la direction de la sonde). Quand
+      texte: > ⚠ *(v3.6)* Aucun de ces trois contrôles n'écarte le dommage : l'aléatoire, apparié en norme ou en covariance
+  EN l.1595 | titre l.1593: ### 3. The three controls never to confuse
+      ancre: The course talks about a "baseline" (Part 1, §I.4). Your dossier has three, and confusing them cost a whole da
+      texte: > ⚠ *(v3.6)* None of these three controls rules out damage: the random one, norm-matched or covariance-matched
+volet6 paire 8
+  FR l.1456 | titre l.1451: ### 3. Les trois contrôles à ne jamais confondre
+      ancre: covariance** (pièce M4 du dossier : 0,161 pour l'aléatoire, contre 0,088 pour la direction de la sonde). Quand
+      texte: > ⚠ **Limites et parades** : contrôles aléatoires → volet M, M4 (après « La direction aléatoire de même norme 
+  EN l.1595 | titre l.1593: ### 3. The three controls never to confuse
+      ancre: The course talks about a "baseline" (Part 1, §I.4). Your dossier has three, and confusing them cost a whole da
+      texte: > ⚠ **Limits and workarounds**: random controls → Part M, M4 (after "The matched-norm random direction"); matc
+volet6 paire 9
+  FR l.1483 | titre l.1474: ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble
+      ancre: *Removing Sandbagging* (Ryd — 91/85/94 % d'élicitation sous supervision faible) [F·26].
+      texte: > ⚠ *(v3.6)* Le 91/85/94 % de Ryd ne tient, selon la limite écrite des auteurs, que si l'entraînement est indi
+  EN l.1607 | titre l.1603: ### 5. The work of the Fellows program, 2025-2026 — overview
+      ancre: **Control and monitors**: *Diffuse AI Control on Fuzzy Tasks* (Terekhov, with Hebbar and Benton — the red/blue
+      texte: > ⚠ *(v3.6)* Ryd's 91/85/94% holds, by the authors' written limit, only if training is indistinguishable from 
+volet6 paire 10
+  FR l.1487 | titre l.1474: ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble
+      ancre: distribution, 0,70-0,75 hors) [F·29] ; *CHIVE* (Karvonen — aucun gain des outils d'interprétabilité) [F·30].
+      texte: > ⚠ *(v3.6)* Le nul de CHIVE est mesuré en lecture seule, avec des étiquettes passées par un classifieur LLM n
+  EN l.1609 | titre l.1603: ### 5. The work of the Fellows program, 2025-2026 — overview
+      ancre: **Auditing and introspection**: *AuditBench* (Sheshadri — 56 models, 14 categories) [F·27]; *Introspection Ada
+      texte: > ⚠ *(v3.6)* CHIVE's null is measured read-only, with labels that go through an LLM classifier not validated a
+volet6 paire 11
+  FR l.1492 | titre l.1474: ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble
+      ancre: ré-entraînement) [F·36] ; *The Hot Mess of AI* (Hägele) [F·37].
+      texte: > ⚠ *(v3.6)* Deux de ces résultats ont une portée étroite : les vecteurs de persona supposent le trait nommé d
+  EN l.1611 | titre l.1603: ### 5. The work of the Fellows program, 2025-2026 — overview
+      ancre: **Traits, generalization, training**: *Persona Vectors* (Chen & Arditi) [F·31]; *Subliminal Learning* (Cloud &
+      texte: > ⚠ *(v3.6)* Two of these results have a narrow reach: persona vectors assume the trait is named in advance, a
+volet6 paire 12
+  FR l.1497 | titre l.1474: ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble
+      ancre: (Zhang) [F·42].
+      texte: > ⚠ *(v3.6)* Le 96 % vient d'un stress-test délibéré, où l'action nuisible est la seule voie, et les auteurs n
+  EN l.1613 | titre l.1603: ### 5. The work of the Fellows program, 2025-2026 — overview
+      ancre: **Agents and the automation of research**: *Agentic Misalignment* (Lynch — 96% blackmail in Opus 4) [F·38]; *A
+      texte: > ⚠ *(v3.6)* The 96% comes from a deliberate stress test, where the harmful action is the only path, and the a
+volet6 paire 13
+  FR l.1497 | titre l.1474: ### 5. Les travaux du programme Fellows, 2025-2026 — vue d'ensemble
+      ancre: (Zhang) [F·42].
+      texte: > ⚠ **Limites et parades** : moniteurs du contrôle → volet 2, §G (après « En pratique — les coup probes ») ; r
+  EN l.1613 | titre l.1603: ### 5. The work of the Fellows program, 2025-2026 — overview
+      ancre: **Agents and the automation of research**: *Agentic Misalignment* (Lynch — 96% blackmail in Opus 4) [F·38]; *A
+      texte: > ⚠ **Limits and workarounds**: control monitors → Part 2, §G (after "In practice — coup probes"); red-teaming
+volet6 paire 14
+  FR l.1510 | titre l.1499: ### 6. Ton programme de recherche, et sa revue d'antériorité
+      ancre: combine » : « I haven't seen it measured » (volet M, M8, et la règle « first to » de la base).
+      texte: > ⚠ **Limites et parades** : moniteurs du contrôle → volet 2, §G (après « En pratique — les coup probes ») ; J
+  EN l.1617 | titre l.1615: ### 6. Your research program, and its prior-art review
+      ancre: Absent from the course: white-box control of diffuse threats — sabotage spread over many innocuous actions, an
+      texte: > ⚠ **Limits and workarounds**: control monitors → Part 2, §G (after "In practice — coup probes"); J-lens and 
+volet6 paire 15
+  FR l.1519 | titre l.1499: ### 6. Ton programme de recherche, et sa revue d'antériorité
+      ancre: rien du travail causal.
+      texte: > ⚠ *(v3.6)* Le jacobien ne dispense pas du test causal : le lens ne capture l'espace de travail que « only ap
+  EN l.1626 | titre l.1615: ### 6. Your research program, and its prior-art review
+      ancre: none of the causal work.
+      texte: > ⚠ *(v3.6)* The Jacobian does not exempt the lens from the causal test: it captures the workspace "only appro
+volet6 paire 16
+  FR l.1575 | titre l.1569: ### 7. Ce que ces compléments changent aux volets 1 à 5
+      ancre: sont à désapprendre : « six methods », « two points », « deference subspace », « widening the judged window ».
+      texte: > ⚠ *(v3.6)* Ce « moins de 1 % » vient d'un seul modèle, Llama 3.1 8B Instruct, et de la seule complaisance d'
+  EN l.1678 | titre l.1676: ### 7. What these supplements change in Parts 1 to 5
+      ancre: In Part 1, question Q2 ("the most important problem") gains your angle: judge metrology is an instance of the 
+      texte: > ⚠ *(v3.6)* This "less than 1%" comes from a single model, Llama 3.1 8B Instruct, and from opinion sycophancy
+volets8_9 paire 8
+  FR l.2796 | titre l.2786: ### 5 · Chain-of-thought faithfulness — « When can we take a model's chain-of-th
+      ancre: la version chiffrée de Lanham ; et la seconde question ouverte est ton thème : la conscience d'évaluation chan
+      texte: > ⚠ *(v3.6)* Le résultat d'échelle de Lanham — « les grands modèles y sont paradoxalement moins fidèles » — ne
+  EN l.2953 | titre l.2943: ### 5 · Chain-of-thought faithfulness — "When can we take a model's chain-of-tho
+      ancre: the quantified version of Lanham; and the second open question is your theme: evaluation awareness changes wha
+      texte: > ⚠ *(v3.6)* Lanham's scale result — "large models are paradoxically less faithful on it" — holds, in its abst
+volets8_9 paire 9
+  FR l.2796 | titre l.2786: ### 5 · Chain-of-thought faithfulness — « When can we take a model's chain-of-th
+      ancre: la version chiffrée de Lanham ; et la seconde question ouverte est ton thème : la conscience d'évaluation chan
+      texte: > ⚠ **Limites et parades** : chaîne de pensée comme moniteur → volet 11, réponse 43 *(v3.6)*
+  EN l.2953 | titre l.2943: ### 5 · Chain-of-thought faithfulness — "When can we take a model's chain-of-tho
+      ancre: the quantified version of Lanham; and the second open question is your theme: evaluation awareness changes wha
+      texte: > ⚠ **Limits and workarounds**: chain of thought as a monitor → Part 11, answer 43 *(v3.6)*
+volets8_9 paire 10
+  FR l.2801 | titre l.2798: ### 6 · AI control — « Can we ensure safety by deploying models alongside suffic
+      ancre: garde-fous mais pas assez pour les contourner. La section se concentre sur **le monitoring à l'exécution**.
+      texte: > ⚠ **Limites et parades** : moniteurs du contrôle → volet 2, §G (après « En pratique — les coup probes ») ; s
+  EN l.2958 | titre l.2955: ### 6 · AI control — "Can we ensure safety by deploying models alongside suffici
+      ancre: safeguards but not capable enough to get around them. The section focuses on **runtime monitoring**.
+      texte: > ⚠ **Limits and workarounds**: control monitors → Part 2, §G (after "In practice — coup probes"); activation 
+volets8_9 paire 11
+  FR l.2831 | titre l.2798: ### 6 · AI control — « Can we ensure safety by deploying models alongside suffic
+      ancre: tests the fix.* »
+      texte: > ⚠ *(v3.6)* Ni ton second résultat ni F·29 ne mesurent le décalage d'un moniteur d'activations : ton second r
+  EN l.2988 | titre l.2955: ### 6 · AI control — "Can we ensure safety by deploying models alongside suffici
+      ancre: tests the fix.*"
+      texte: > ⚠ *(v3.6)* Neither your second result nor F·29 measures the shift of an activation monitor: your second resu
+volets8_9 paire 12
+  FR l.2831 | titre l.2798: ### 6 · AI control — « Can we ensure safety by deploying models alongside suffic
+      ancre: tests the fix.* »
+      texte: > ⚠ *(v3.6)* Ces « signs of life » ne mettent pas encore à l'épreuve « difficult for the model to control » : 
+  EN l.2988 | titre l.2955: ### 6 · AI control — "Can we ensure safety by deploying models alongside suffici
+      ancre: tests the fix.*"
+      texte: > ⚠ *(v3.6)* These "signs of life" do not yet put "difficult for the model to control" to the test: the probe 
+volets8_9 paire 13
+  FR l.2840 | titre l.2798: ### 6 · AI control — « Can we ensure safety by deploying models alongside suffic
+      ancre: offrir si on te demande « quoi d'autre ».
+      texte: > ⚠ *(v3.6)* Les sondes et le détecteur d'anomalies de Mallen et al. sont validés sur des modèles fine-tunés p
+  EN l.2997 | titre l.2955: ### 6 · AI control — "Can we ensure safety by deploying models alongside suffici
+      ancre: offer if you are asked "what else".
+      texte: > ⚠ *(v3.6)* Mallen et al.'s probes and anomaly detector are validated on models fine-tuned to err when a name
+volets8_9 paire 14
+  FR l.2844 | titre l.2842: ### 7 · Scalable oversight — « Can we design oversight mechanisms that will cont
+      ancre: (experts en désaccord), les **erreurs systématiques**, le coût. Quatre sous-problèmes.
+      texte: > ⚠ **Limites et parades** : débat et supervision évolutive → volet 2, §E (après « En pratique — Debate ») ; g
+  EN l.3001 | titre l.2999: ### 7 · Scalable oversight — "Can we design oversight mechanisms that will conti
+      ancre: (experts in disagreement), **systematic errors**, cost. Four subproblems.
+      texte: > ⚠ **Limits and workarounds**: debate and scalable oversight → Part 2, §E (after "In practice — Debate"); wea
+volets8_9 paire 15
+  FR l.2862 | titre l.2842: ### 7 · Scalable oversight — « Can we design oversight mechanisms that will cont
+      ancre: modèle-juge dont tu as mesuré le déplacement (« the displacement I measured », jamais « the law ») — c'est ta 
+      texte: > ⚠ *(v3.6)* Ces résultats de débat viennent de bancs où l'on connaît la bonne réponse, en inférence seule, av
+  EN l.3019 | titre l.2999: ### 7 · Scalable oversight — "Can we design oversight mechanisms that will conti
+      ancre: model judge whose displacement you measured ("the displacement I measured", never "the law") — that is your II
+      texte: > ⚠ *(v3.6)* These debate results come from testbeds where the right answer is known, at inference only, with 
+volets8_9 paire 16
+  FR l.2888 | titre l.2842: ### 7 · Scalable oversight — « Can we design oversight mechanisms that will cont
+      ancre: qu'un prompt. Ta réponse : lire n'est pas contrôler, et « dans quelles circonstances » est une question causal
+      texte: > ⚠ *(v3.6)* Ni la sonde d'Azaria et Mitchell ni celles de Liu et al. ne sont éprouvées là où la page les dema
+  EN l.3045 | titre l.2999: ### 7 · Scalable oversight — "Can we design oversight mechanisms that will conti
+      ancre: than a prompt. Your answer: reading is not controlling, and "under what circumstances" is a causal question.
+      texte: > ⚠ *(v3.6)* Neither Azaria and Mitchell's probe nor Liu et al.'s probes are tested where the page asks for th
+volets8_9 paire 17
+  FR l.2893 | titre l.2890: ### 8 · Adversarial robustness — « Can we ensure AI systems behave as desired de
+      ancre: d'injections de prompt pour agents) ; des défenses qui gênent peu l'usage bénin ; de meilleures mesures de fia
+      texte: > ⚠ **Limites et parades** : red-teaming → volet 2, §H (après « En pratique — StrongREJECT ») ; classifieurs d
+  EN l.3050 | titre l.3047: ### 8 · Adversarial robustness — "Can we ensure AI systems behave as desired des
+      ancre: of prompt injections for agents); defenses that hinder benign use little; better measures of reliability.
+      texte: > ⚠ **Limits and workarounds**: red-teaming → Part 2, §H (after "In practice — StrongREJECT"); safety classifi
+volets8_9 paire 18
+  FR l.2902 | titre l.2890: ### 8 · Adversarial robustness — « Can we ensure AI systems behave as desired de
+      ancre: bancs qui mesurent **ce que de vrais humains trouveraient** avec des ressources données. **Ce que tu en dis.**
+      texte: > ⚠ *(v3.6)* L'« utilité » de StrongREJECT est notée par un évaluateur LLM à grille, validé contre des annotat
+  EN l.3059 | titre l.3047: ### 8 · Adversarial robustness — "Can we ensure AI systems behave as desired des
+      ancre: benchmarks that measure **what real humans would find** with given resources. **What you say about it.** Your 
+      texte: > ⚠ *(v3.6)* StrongREJECT's "usefulness" is scored by a rubric-based LLM evaluator, validated against human an
+volets8_9 paire 19
+  FR l.2910 | titre l.2890: ### 8 · Adversarial robustness — « Can we ensure AI systems behave as desired de
+      ancre: quand on te demande si ton idée sert ailleurs.
+      texte: > ⚠ *(v3.6)* Le blocage de la rapid response (Peng et al.) est mesuré en taux de succès des attaques, sans att
+  EN l.3067 | titre l.3047: ### 8 · Adversarial robustness — "Can we ensure AI systems behave as desired des
+      ancre: when you are asked whether your idea is useful elsewhere.
+      texte: > ⚠ *(v3.6)* Rapid response's blocking (Peng et al.) is measured as attack success rate, with no attacker who 
+volets8_9 paire 20
+  FR l.2918 | titre l.2912: ### 9 · Miscellaneous
+      ancre: II.20 ajoute les sondes.
+      texte: > ⚠ *(v3.6)* Ajouter des sondes ne tranche pas, car une lecture peut ne plus rien voir d'un savoir qui reste :
+  EN l.3075 | titre l.3069: ### 9 · Miscellaneous
+      ancre: II.20 adds the probes.
+      texte: > ⚠ *(v3.6)* Adding probes does not settle it, because a reading can stop seeing knowledge that remains: after
+volets8_9 paire 21
+  FR l.2926 | titre l.2912: ### 9 · Miscellaneous
+      ancre: instances* » — ton H4 (poids partagés) est une réponse à une question que la page pose sans la nommer.
+      texte: > ⚠ *(v3.6)* AI Organizations mesure ce mode dans deux organisations simulées, sur Opus 4.1, et ses auteurs éc
+  EN l.3083 | titre l.3069: ### 9 · Miscellaneous
+      ancre: instances*" — your H4 (shared weights) is an answer to a question the page asks without naming it.
+      texte: > ⚠ *(v3.6)* AI Organizations measures this mode in two simulated organizations, on Opus 4.1, and its authors 
+volets8_9 paire 22
+  FR l.2926 | titre l.2912: ### 9 · Miscellaneous
+      ancre: instances* » — ton H4 (poids partagés) est une réponse à une question que la page pose sans la nommer.
+      texte: > ⚠ **Limites et parades** : désapprentissage et ré-élicitation → volet 2, §I (après « En pratique — l'unlearn
+  EN l.3083 | titre l.3069: ### 9 · Miscellaneous
+      ancre: instances*" — your H4 (shared weights) is an answer to a question the page asks without naming it.
+      texte: > ⚠ **Limits and workarounds**: unlearning and re-elicitation → Part 2, §I (after "In practice — unlearning pu

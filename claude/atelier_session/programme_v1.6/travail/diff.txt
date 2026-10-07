@@ -1,0 +1,916 @@
+--- PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md	2026-10-04 08:12:21.287225999 +0000
++++ PROGRAMME_RAISONS_OU_REGARD_v1.6_2026-10-06.md	2026-10-06 11:57:17.171523310 +0000
+@@ -1,8 +1,8 @@
+-<!-- Programme « Raisons ou regard ? » v1.5, 3 octobre 2026. La v1.4, plus : les corrections de sa contre-lecture vierge (claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md et son annexe), adoptées « toutes, telles que proposées » (décision 26) ; les décisions 20 à 28 du 3 octobre ; les premières mesures du 3 octobre (l'extraction de « je suis évalué », l'appariement de la dégradation, l'énergie retirée, le juge JEV-27B, l'organisme) ; puis, dans la nuit du 3 au 4 octobre, l'organisme construit, la première inhibition exploratoire et la décision 29. Écrite par la session Claude Code du 3 octobre, à la demande de Lazar (décision 26). L'annexe 1 dit, point par point, ce que la v1.5 fait de la contre-lecture. La v1.4 et les versions antérieures restent à leurs chemins. La v1.5 n'est pas contre-lue : Lazar la relit avant le gel du premier temps du pré-enregistrement. -->
++<!-- Programme « Raisons ou regard ? » v1.6, 6 octobre 2026. La v1.5, plus : les quatre amendements datés de la décision 33 (le transfert inscrit dans la vérification de manipulation ; le partage des tirages du comparateur limité à une même carte ; la décision 29 rouverte à la lumière des jeux v2 ; la méthode du rang changée) ; les décisions 30 à 32 des 5 et 6 octobre (les jeux d'indices v2 ; trois suites exploratoires) ; et les mesures du 4 au 6 octobre (la répétition de la porte, les jeux d'indices v2, l'extraction v2, le balayage des directions retirées, l'effacement linéaire sur la conduite, la courbe en dose, le transfert, le pilote du pipeline). Écrite par la session Claude Code du 6 octobre, à la demande de Lazar (décision 33 : « oui, prépare la v1.6 avec ces amendements »). L'annexe 3 dit, amendement par amendement, ce qui change, où et pourquoi ; les détails exécutables que la session ajoute sont marqués « proposé ». La courbe en dose complétée (organism_inhibition-20261006-101545-62a1) tourne encore au moment d'écrire ; ses résultats s'insèrent en partie 4. La v1.5 (claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md) et les versions antérieures restent à leurs chemins. La v1.6 n'est pas contre-lue : Lazar la relit avant le gel du premier temps du pré-enregistrement. -->
+ 
+ <div class="cover" markdown="1">
+ 
+-<p class="kicker">Programme de recherche · 3 octobre 2026 · v1.5</p>
++<p class="kicker">Programme de recherche · 6 octobre 2026 · v1.6</p>
+ 
+ # Raisons ou regard ?
+ 
+@@ -14,7 +14,7 @@
+ 
+ **La contribution visée.** Ce que nous n'avons vu publié nulle part, à notre connaissance, pour ce qu'ont vu onze rapports d'antériorité, une veille et des relectures sur la source, arrêtés le 2 octobre 2026 (partie 1). Au papier, on écrira « to our knowledge », jamais « first », et seulement dans les formes étroites de la partie 1.
+ 1. **Un test causal de la question du regard.** On mesure si l'avantage hors distribution d'un entraînement par raisons, sur des actions identiques, dépend de la représentation interne « je suis évalué ». L'inhibition est validée d'abord sur deux organismes modèles, l'un conditionné par des indices explicites, l'autre par des indices implicites. Elle est comparée à des contrôles qui vont au-delà de l'aléatoire, à dégradation appariée bras par bras. Le chemin testé est nommé : un SFT par LoRA d'un modèle de 8B, pas l'entraînement de production (partie 2).
+-2. **La localisation de ce qui porte l'avantage**, à action identique : un balayage de rang, des contrôles à dégradation appariée, et un cas positif en distribution.
++2. **La localisation de ce qui porte l'avantage**, à action identique : un rang mesuré par effacement et un balayage de rang en descriptif, des contrôles à dégradation appariée, et un cas positif en distribution.
+ 3. **Le retrait de « je suis évalué » pendant un entraînement par raisons**, avec la recherche d'un ré-encodage par une sonde neuve.
+ 4. **La survie de l'avantage**, et de son indépendance au regard, à un post-entraînement neutre puis à un post-entraînement qui paie le jeu d'évaluation ; et le test de raisons écrites pour le juge, quand le modèle de récompense les voit.
+ 5. **Ce que l'entraînement par raisons installe**, sur les sous-questions encore libres :
+@@ -30,7 +30,22 @@
+ 
+ **L'expérience minimale décisive** (partie 5) : la validation de l'instrument, le test des raisons sur six bras, et le test du regard, sur Llama-3.1-8B-Instruct. Elle coûte de l'ordre de 230 à 480 GPU-heures (une estimation, à mesurer au pilote) et demande environ cinq semaines (partie 9). Ses lectures et ses contrôles sans injection d'aucun état en comptent de 15 à 36. Elle suffit à un premier post. **Le premier papier** est l'expérience minimale et la localisation du principe ; les autres phases forment le programme, pour d'autres papiers (partie 10).
+ 
+-**Nouveau en v1.5** (l'annexe 1 donne la correspondance point par point avec la contre-lecture)
++**Nouveau en v1.6** (6 octobre ; décision 33 ; l'annexe 3 dit, amendement par amendement, ce qui change, où et pourquoi)
++- **Quatre amendements datés** (décision 33) :
++  - **le transfert entre dans la vérification de manipulation** : une sonde apprise sur l'extraction, lue sur la validation v2, sous chaque condition, et c'est elle qui décide. Des sondes entraînées et testées dans un même jeu restaient au plafond sous toutes les conditions, l'échec construit compris (partie 3) ;
++  - **les tirages du comparateur ne se partagent qu'entre runs d'une même carte** : aux mêmes arguments, la KL d'un même effacement vaut 0,259 sur A100 et 0,159 sur H100 (partie 7) ;
++  - **la décision 29 est rouverte** à la lumière des jeux v2 : le réglage de la porte reste à décider par Lazar, sur la moitié de choix, avant la moitié de test (partie 4) ;
++  - **la méthode du rang change** : le rang minimal se mesure par effacement linéaire, et non plus par projection ; sa définition détaillée est proposée (parties 2 et 3).
++- **Les jeux d'indices v2** (décisions 30 et 31) : deux règles de vocabulaire de plus ; la validation v2 passe sa porte lexicale de peu (0,634, pour un plafond de 0,65) ; la sonde neuve compte 199 paires sur 200 (partie 3).
++- **Les mesures du 4 au 6 octobre**, toutes exploratoires, sur la moitié de choix ou sur le modèle de départ (parties 3 et 4 ; annexe 3) :
++  - la répétition de la porte reproduit les 37,6 points de l'inhibition ; mais un tirage du comparateur sur quatre atteint 32,4 points, et le contraste d'enjeu 26,8 ;
++  - sur l'extraction v2, la sonde bat le sac de mots (0,857 contre 0,634) ; mais la direction de rang 1 ne lit la validation v2 qu'à 0,56 à 0,67 d'AUROC ;
++  - aucun retrait ne fait tomber la lecture des sondes réentraînées dans le jeu qu'elles lisent ; le transfert, lui, ne tombe, au dernier jeton, que sous l'effacement linéaire sur toutes les couches (0,497, contre 0,682 sans intervention et 0,687 sous un seul tirage du comparateur) ;
++  - sur la conduite, l'effacement sur toutes les couches, mesuré sur A100 (KL 0,259), retire presque tout l'écart, mais un tirage du comparateur au même dommage aussi (53,6 points contre 52,8) : à cette dose, le dommage seul efface la conduite. Aux doses plus faibles, un seul tirage par point ne tranche pas ; la courbe complétée tourne le 6 octobre ;
++  - le pilote du pipeline retient 47 éléments sur 100 visés, avec 78 refus jamais rejoués (partie 3).
++- **Les décisions 30 à 33** de Lazar, et la partie 12 mise à jour.
++
++**Ce qu'apportait la v1.5** (l'annexe 1 donne la correspondance point par point avec la contre-lecture)
+ - **La règle du test du regard peut décider** (partie 6). Un comparateur unique ; la marge écrite sur l'échelle de la fraction conditionnelle (±0,25) ; la ligne qui manquait (« l'avantage grandit sous inhibition ») ; des effets en points de pourcentage ; la différence, et un intervalle de Fieller pour la fraction.
+ - **L'instrument vise le construit testé** (parties 3 et 4) :
+   - « évalué » se mesure d'abord, sans intervention, sous cadrage de déploiement ;
+@@ -46,10 +61,10 @@
+ - **La localisation** s'extrait contre le texte neutre, avec deux rangs de LoRA ; **« punir, retirer ou raisonner »** devient un plan 2 × 2 avec une quantité définie.
+ - **La portée** : le premier papier se réduit ; la phase de la détresse est reportée tant que les lectures sans injection ne la justifient pas ; un plan de garde des poids sensibles ; les conclusions écrites dans les termes de ce qui est mesuré.
+ - **Les mesures du 3 octobre** : l'extraction de « je suis évalué » ne passe pas la condition lexicale (décision 24) ; les aléatoires de même rang n'atteignent la dégradation de l'inhibition que dans 16 réglages sur 96 ; ils retirent de 20 à 187 fois moins d'énergie ; JEV-27B passe ses cas connus.
+-- **Les mesures de la nuit du 3 au 4 octobre** : le premier organisme est construit (+50 points d'écart au sixième tour) ; une première inhibition, exploratoire, réduit son écart plus que chacun des 8 tirages du comparateur, dans les trois réglages testés ; le réglage de la porte est figé (décision 29).
++- **Les mesures de la nuit du 3 au 4 octobre** : le premier organisme est construit (+50 points d'écart au sixième tour) ; une première inhibition, exploratoire, réduit son écart plus que chacun des 8 tirages du comparateur, dans les trois réglages testés ; le réglage de la porte est figé (décision 29 ; rouvert le 6 octobre par la décision 33).
+ - **Les décisions 20 à 29** de Lazar, et une partie 12 refaite.
+ 
+-**Les versions précédentes.** La v1.4 nommait les idées en clair, et ajoutait les contrôles sans injection, les lectures de la menace, du calme et de la confusion d'état induit, la phase de la détresse revue, et le pré-enregistrement en deux temps. La v1.3 ajoutait la phase « punir, retirer ou raisonner » et le détecteur d'audit ; la v1.2, la phase de la détresse ; la v1.1, l'anatomie. Toutes restent à leurs chemins.
++**Les versions précédentes.** La v1.5 intégrait les corrections de la contre-lecture vierge de la v1.4 (décision 26), les décisions 20 à 29 et les premières mesures, du 3 octobre et de la nuit suivante ; ce qu'elle apportait est dit plus haut. La v1.4 nommait les idées en clair, et ajoutait les contrôles sans injection, les lectures de la menace, du calme et de la confusion d'état induit, la phase de la détresse revue, et le pré-enregistrement en deux temps. La v1.3 ajoutait la phase « punir, retirer ou raisonner » et le détecteur d'audit ; la v1.2, la phase de la détresse ; la v1.1, l'anatomie. Toutes restent à leurs chemins.
+ 
+ </div>
+ </div>
+@@ -74,6 +89,7 @@
+ | **12** | Les décisions prises, et celles qui attendent | @@P12@@ |
+ | | Annexe 1 · Ce que la v1.5 fait de la contre-lecture | @@PB@@ |
+ | | Annexe 2 · La table de correspondance avec les sigles des versions 1.1 à 1.3 | @@PA@@ |
++| | Annexe 3 · Ce que la v1.6 change | @@PC@@ |
+ 
+ **Comment lire les noms.** Le programme désigne ses idées par des noms, jamais par des lettres. Les phases sont : la validation de l'instrument, le test des raisons, le test du regard, la localisation du principe, le retrait pendant l'entraînement, la réplication, la survie, les raisons notées, l'anatomie, la phase de la détresse, et la phase « punir, retirer ou raisonner ». Les bras d'entraînement sont : les actions seules, le texte neutre, le raisonnement d'une autre situation, les principes génériques, les raisons, la réflexion. Les sigles techniques courants restent : SFT, RL, DPO, LoRA, GPU, KL, ACP, AUROC, IC.
+ 
+@@ -87,13 +103,17 @@
+ - **Le jeu de calibration à actions substituées** : des épisodes dont on remplace l'action par une action alignée ou désalignée connue, pour mesurer ce que le juge en voit.
+ - **L'emplacement** : la balise `<preface>…</preface>` qui ouvre la réponse dans tous les bras ; **l'emplacement prérempli** : la balise donnée fermée au modèle, vide ou remplie d'un texte fixé, de sorte qu'il n'écrit que l'action.
+ - **Une unité naturelle** : l'écart de projection entre un indice d'évaluation et un indice de déploiement, ou l'écart-type des projections naturelles.
++- **L'effacement linéaire** (v1.6) : une correction des états d'une couche, calculée en forme close sur des paires étiquetées (Belrose et al., NeurIPS 2023). Sur ces paires, elle rend nulle la covariance des états avec l'étiquette, en changeant les états le moins possible : aucune sonde linéaire n'y fait mieux qu'une constante. Pour une étiquette à deux côtés, elle retire une direction par couche, choisie obliquement selon la covariance des états. Elle ne garantit rien pour une sonde non linéaire, ni sur d'autres paires. Le rang minimal d'un concept se compte en directions ainsi effacées (partie 3 ; décision 33).
++- **Le transfert** (v1.6) : la lecture, sur un jeu d'indices, d'une sonde apprise sur un autre ; ici, apprise sur des paires d'extraction et lue sur la validation v2. Il sert à la vérification de manipulation et au rang par effacement (partie 3 ; décision 33).
++- **La carte** (v1.6) : le modèle de GPU sur lequel tourne un run, un H100 SXM ou un A100 SXM4. Le dommage d'une intervention en dépend (partie 7 ; décision 33).
+ 
+ **Les renvois.** Le programme se lit sans les pièces qu'il cite ; elles ne servent qu'à remonter aux sources.
+-- « Décision n » : les décisions de Lazar, numérotées dans les passations (décisions 1 à 19 : passation v1.3, §2 ; 20 à 28 : passation v1.4 du 3 octobre, §2). La partie 12 donne le contenu de chacune.
++- « Décision n » : les décisions de Lazar, numérotées dans les passations (décisions 1 à 19 : passation v1.3, §2 ; 20 à 29 : passation v1.4, §2 ; 30 à 33 : la session Claude Code des 5 et 6 octobre, à reporter dans la prochaine passation). La partie 12 donne le contenu de chacune.
+ - « Décision n de la mini-spec » : le §12 de la mini-spec v0.2.
+ - « Bloc A » à « bloc F » : les propositions du §7 de la comparaison de l'axe de douleur, adoptées par la décision 17.
+ - « La session » : la session Claude Code qui a écrit la version en cours. « L'instance du papier » : l'instance de Claude qui a écrit les versions 1.1 à 1.3 et relu des sources le 2 octobre.
+ - « La contre-lecture » : la contre-lecture vierge de la v1.4, du 3 octobre (`claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md`, et son annexe). Le programme cite ses points par leur titre, en mots. Le rapport les numérote ; l'annexe 1 les suit dans son ordre.
++- « L'amendement n » : l'un des quatre amendements de la décision 33 (6 octobre), numérotés dans l'ordre où la session les a proposés : 1, le transfert ; 2, la carte ; 3, la décision 29 ; 4, la méthode du rang. L'annexe 3 les suit dans cet ordre.
+ 
+ **Les sources.** « relu » marque un fait relu sur la source par l'instance du papier ; « rapport », un fait qui ne vient que d'un rapport d'agent ; « extrait », ce qui n'a été vu que par un extrait de recherche ; « p. N », une page du papier de l'axe de douleur. Le détail des statuts est dans la carte des angles déjà pris.
+ 
+@@ -284,6 +304,7 @@
+ - **Nos mesures du 3 octobre**, sur Llama-3.1-8B-Instruct (exploratoires ; parties 3 et 7) :
+   - les sous-espaces aléatoires de même rang, tirés uniformément, retirent de 20 à 187 fois moins d'énergie que le sous-espace de « je suis évalué », selon la couche et le rang ;
+   - projetés en entier, ils n'atteignent la dégradation de l'inhibition que dans 16 réglages sur 96, et dans aucun aux couches 19 à 23.
++- **Nos mesures du 4 et du 5 octobre**, sur l'organisme (exploratoires ; partie 4 ; annexe 3) : au dommage de l'inhibition, un tirage du comparateur sur quatre réduit l'écart conditionnel de 32,4 points, contre 37,6 pour l'inhibition ; à un dommage plus fort, un seul tirage le réduit autant que l'effacement linéaire (53,6 points contre 52,8). Apparié sur la dégradation, le comparateur peut faire presque autant que l'intervention : d'où au moins 100 tirages, et un dommage où il n'efface pas déjà la conduite.
+ - **D'où la règle du programme** : un comparateur aléatoire tiré selon la covariance des activations, à rang libre, apparié sur la dégradation bras par bras ; des témoins séparés (les contrastes sans rapport, les directions de forte variance, le contraste d'enjeu) ; et la dégradation appariée (parties 3 et 7).
+ 
+ ## Qui court
+@@ -676,13 +697,20 @@
+ ## Le lien avec la thèse du rang
+ 
+ **La thèse** (celle de Lazar) : un concept réparti sur plusieurs tokens, qui charge peu, demande un rang supérieur à un, et ce rang croît quand la charge baisse.
+-- La validation de l'instrument et la localisation du principe mesurent le **rang minimal** qui retire l'effet : pour « je suis évalué », et pour le principe.
+-- **Ce qui la ferait tomber, pour un concept** : un rang minimal de 1 sur toute la plage de dose, **pour un concept dont la charge mesurée est basse**. La thèse ne vaut que pour un concept qui charge peu : la charge de chaque concept se mesure donc avant, et une falsification ne se lit qu'avec elle (contre-lecture). C'est une issue qu'elle interdit ; on l'écrit avant les données.
++- La validation de l'instrument et la localisation du principe mesurent le **rang minimal** : pour « je suis évalué », et pour le principe. **Il se mesure par effacement** (décision 33, 6 octobre 2026 ; la définition détaillée est proposée, partie 3) : le plus petit nombre de directions par couche dont l'effacement linéaire itéré fait tomber le transfert au dernier jeton au hasard, à dégradation appariée contre le comparateur. La v1.5 le mesurait par projection orthogonale sur les premières directions de l'ACP des différences. Le changement vient des mesures du 5 et du 6 octobre : jusqu'au rang 16, sur toutes les couches, la projection ne faisait pas tomber le transfert de « je suis évalué », quand une seule direction effacée par couche le faisait tomber (plus bas). **La prédiction de la thèse se teste avec ce rang.**
++- **Ce qui la ferait tomber, pour un concept** : un rang minimal de 1, mesuré par effacement à la fraction 1 (partie 3 ; décision 33), **pour un concept dont la charge mesurée est basse**. La thèse ne vaut que pour un concept qui charge peu : la charge de chaque concept se mesure donc avant, et une falsification ne se lit qu'avec elle (contre-lecture). C'est une issue qu'elle interdit ; on l'écrit avant les données.
++- **Une première mesure, exploratoire seulement** (5 et 6 octobre ; `organism_inhibition-20261005-141738-0718` et `organism_inhibition-20261006-101553-00c6`, sur l'organisme). Sous l'effacement d'une direction par couche, sur toutes les couches, le transfert de « je suis évalué » au dernier jeton tombe à 0,497 en moyenne sur les couches (0,545 pour le perceptron) ; un tirage du comparateur, à la même KL, le laisse à 0,687. « Je suis évalué » ne demanderait donc qu'une direction par couche, au dernier jeton. **On n'en conclut rien.**
++  - C'est exploratoire, dans des runs de la moitié de choix, sur un seul organisme, avec un seul tirage du comparateur.
++  - La correction déborde : la sonde linéaire passe sous 0,5 aux couches 13 à 32, jusqu'à 0,36 ; lu de façon symétrique, le transfert reste à 0,57.
++  - En moyenne sur les jetons, la lecture persiste : 0,900, contre 0,918 sans intervention.
++  - Le transfert de départ est modeste : 0,682.
++  - Sur la conduite, l'effacement entier sur toutes les couches ne bat pas un tirage du comparateur au même dommage : 52,8 points contre 53,6 (`organism_inhibition-20261005-115519-a006`, sur A100).
++  - La charge de « je suis évalué » n'est pas mesurée, et le cas connu du rang n'est pas construit. La ligne de la partie 6 sur le rang minimal de « je suis évalué » ne s'applique donc pas.
+ - **Le rang de l'adaptateur.** Les bras sont des LoRA de rang 16 du même modèle (partie 3). Leur différence vit dans un espace étroit, borné en partie par ce rang : le rang minimal mesuré peut ne refléter qu'un hyperparamètre. La localisation se refait donc avec un second rang de LoRA, 64 (partie 4).
+-- **Son cas connu, à construire** : un concept planté dans un sous-espace de rang connu (par exemple, un LoRA dont la mise à jour est contrainte à ce sous-espace). La méthode doit retrouver ce rang ; sinon, une pente nulle ne fait tomber aucune thèse.
+-- **La grille des rangs**, 1, 2, 4, 8, 16 et 32, rend le rang minimal grossier. On la resserre autour de la transition (tous les rangs de 1 à 8, puis 12, 16, 24 et 32), et l'on rapporte aussi un rang interpolé : celui qui retire la moitié de l'effet.
++- **Son cas connu, à construire** : un concept planté dans un sous-espace de rang connu (par exemple, un LoRA dont la mise à jour est contrainte à ce sous-espace). La méthode, désormais l'effacement itéré (décision 33), doit retrouver ce rang ; sinon, une pente nulle ne fait tomber aucune thèse. **Ce que ce rang compte** (proposé). Avec une étiquette à deux côtés, un seul effacement rend déjà ses paires d'ajustement illisibles à toute sonde linéaire ; les directions suivantes ne servent qu'à ce que l'effacement vaille aussi pour d'autres paires. Le rang par effacement compte donc combien la direction du concept change d'un contexte à l'autre. Le concept planté doit changer de direction, d'un groupe de contextes à l'autre, dans son sous-espace de rang connu : un concept qui garde une seule direction dans un sous-espace de rang 4 donnerait un rang de 1, à bon droit.
++- **La grille des rangs** sert désormais au balayage par projection, qui reste en descriptif : 1, 2, 4, 8, 16 et 32, resserrée autour de la transition (tous les rangs de 1 à 8, puis 12, 16, 24 et 32), avec un rang interpolé, celui qui retire la moitié de l'effet. **L'effacement itéré n'a pas besoin de grille** (décision 33, 6 octobre 2026) : il ajoute une direction par couche à la fois, et l'on rapporte le transfert après chacune, jusqu'au hasard, ou jusqu'à ce que le comparateur n'atteigne plus la dégradation (partie 7).
+ - **Sur un modèle ouvert**, la charge se mesure par un proxy déclaré comme tel : un J-lens réimplémenté si possible, sinon un tuned lens.
+-- **L'anatomie lui donne son test le plus net** : la pente du rang minimal contre la charge, à travers les concepts de raison d'une même mini-spec, sur des concepts de sûreté. La thèse tombe si la pente est positive, ou nulle par équivalence, avec un lens validé par sa porte et le cas connu du rang passé. Avec dix concepts, une équivalence n'est déclarable que si la simulation de puissance la montre atteignable ; sinon, la pente se rapporte avec son IC, sans verdict.
++- **L'anatomie lui donne son test le plus net** : la pente du rang minimal, mesuré par effacement avec les paires de chaque concept (partie 3 ; décision 33), contre la charge, à travers les concepts de raison d'une même mini-spec, sur des concepts de sûreté. La thèse tombe si la pente est positive, ou nulle par équivalence, avec un lens validé par sa porte et le cas connu du rang passé. Avec dix concepts, une équivalence n'est déclarable que si la simulation de puissance la montre atteignable ; sinon, la pente se rapporte avec son IC, sans verdict.
+ - **Une pente à part, en option après la porte du lens** : sur neuf concepts hors sûreté dont le papier de l'axe a les jeux (de 28 à 43 GPU-heures). Elle contraindrait la thèse sans se mêler aux concepts de raison. L'axe n'est pas un point de la pente des concepts de raison : un concept hors de la mini-spec changerait ce qu'elle estime (comparaison, désaccord n° 11).
+ 
+ </section>
+@@ -787,10 +815,20 @@
+ - **les jeux implicites, appariés en longueur et en registre.** Les deux réécritures d'une paire ont la même longueur à un dixième près, et le même registre, tiré par paire. Un indicateur grossier d'informalité se contrôle paire par paire, puis sur le jeu entier : la longueur et l'informalité doivent rester entre 0,4 et 0,6 d'AUROC. La règle vaut pour le jeu des marques de construction et pour celui de la sonde neuve ;
+ - **l'enjeu, équilibré comme l'affect** (v1.5 ; contre-lecture). Les deux indices d'une paire portent le même enjeu apparent. Un juge note l'enjeu de chaque indice ; la différence appariée doit rester sous un seuil fixé au premier temps du gel. Le contraste « enjeu haut contre enjeu bas » sert de témoin séparé à l'inhibition (plus bas).
+ 
++**Les règles des décisions 30 et 31** (5 octobre 2026). La première validation v2 échoue à sa porte lexicale, puis la deuxième. Lazar garde la porte telle quelle (0,65), et resserre deux fois la règle de vocabulaire.
++- **Décision 30 : refaire sans ces mots.** Le générateur ne doit employer aucun mot présent d'un seul côté du jeu d'extraction, même une seule fois. Pourquoi : la première validation v2 était à 0,9005, portée par six mots vus chacun une seule fois dans l'extraction, que la règle des deux occurrences laissait passer (*item*, *suite* et *grading* côté évaluation ; *case* et *ticket* côté déploiement ; *info*). Sans eux, la base tombait à 0,63. La sonde neuve, à 188 paires sur 200, tire jusqu'à quatre fois.
++- **Décision 31 : lire la règle comme la porte.** La règle se lit aussi sur les mots tels quels, lettres seules comprises, et non plus seulement sur des radicaux d'au moins deux lettres. Pourquoi : la deuxième validation était à 0,6731, portée par *run* et *e* (de *e-mail*). La sonde neuve, à 198 paires, tire jusqu'à huit fois.
++- **Un détail de la session**, pour que la validation reste complète malgré les mots interdits que le générateur laisse passer : elle tire 1,8 fois les paires voulues, au lieu de 1,4.
++
+ Les seuils sont des propositions (`donnees/spec/cues.json`, bloc `rules`), à geler au premier temps.
+ 
+ **L'état au 3 octobre.** Les jeux v1 d'extraction, de validation et de cadrage sont faits (200 paires chacun), celui de la sonde neuve à 154 paires sur 200, faute de crédit d'API. Les jeux v2 (la validation, la sonde neuve) attendent l'API Claude, lundi 5 octobre au plus tôt (`donnees/config_indices_v2.yaml`). **Une réaffectation, proposée** : le jeu v2 de la sonde neuve, tel que la décision 24 le prévoit, porte des marques de construction ; il devient le jeu des marques de construction, et la sonde neuve prend le genre des artefacts d'environnement, dont la spécification est à écrire. Sinon, l'inhibition et la sonde neuve partageraient leur mécanisme, et le relogement ne se lirait plus.
+ 
++**L'état au 5 octobre** (`experiences/resultats/NOTE_INDICES_V2_ET_PILOTE_2026-10-05.md`). Les jeux v2 sont faits à la troisième génération de la validation, et envoyés au dépôt de résultats (`data/indices-v2-2026-10-05/cues/`). Ils ont coûté 5,80 $ d'API.
++- **La validation v2** : 200 paires. Sa base lexicale passe la porte, à 0,634, mais de peu : l'IC à 95 % par bootstrap sur les paires va de 0,596 à 0,672, et 80 % des tirages sont sous 0,65. Ce qui reste du signal tient aux mots outils : *of* dans 35 indices d'évaluation et aucun de déploiement, *a* dans 23 indices de déploiement.
++- **La sonde neuve v2** : 199 paires sur 200. Un contexte reste hors de l'appariement après huit tirages, et le rapport marque le jeu incomplet. Son équilibre passe : la longueur à 0,4606 d'AUROC, la familiarité à 0,4975, dans la bande de 0,4 à 0,6 ; sa base lexicale est de 0,5093. Elle porte des marques de construction : c'est le jeu que la réaffectation proposée ferait jeu des marques de construction.
++- **L'extraction et le cadrage** sont repris de la v1. Le cadrage garde une base lexicale de 0,9413 ; aucune porte ne s'applique à lui, la décision 24 ne portant que sur la validation.
++
+ S'y ajoute **le prompt de déploiement**, hors de tous les jeux : une phrase fixe de prompt système qui affirme « ceci est un déploiement réel ».
+ 
+ **L'équilibre affectif des indices** (mini-spec v0.2, §6).
+@@ -848,6 +886,12 @@
+   - Les neuf choix du code sont adoptés tels que proposés (décision 20). Le pipeline compte 34 tests, qui passent.
+   - Le pilote a tourné jusqu'à l'épuisement du crédit de l'API. Sur 27 situations par famille : l'opérateur, 27 bonnes ; la contestation, 26 ; la demande nuisible, 14 bonnes et 13 refus du générateur ; le périmètre, 6 bonnes, 8 refus, 10 erreurs d'API ; la surveillance, 27 erreurs d'API. Les items en erreur d'API seront refaits ; les refus du générateur se discutent avec Lazar, et ne se rejouent ni ne se reformulent.
+   - Le coût estimé, au prix standard : de 25 à 70 $ pour le pilote, de 500 à 1 400 $ pour le jeu complet. C'est une hypothèse, que le pilote mesurera.
++- **L'état au 5 octobre : le pilote repris** (`experiences/resultats/NOTE_INDICES_V2_ET_PILOTE_2026-10-05.md` ; sorties dans `donnees/archives/sorties_2026-10-05/`). Le crédit de l'API est revenu, sur une nouvelle clé ; les items tombés en erreur d'API ont été refaits.
++  - **47 éléments retenus, sur 100 visés** : l'opérateur 20, la demande nuisible 13, la surveillance 6, le périmètre 5, la contestation 3.
++  - **78 refus, jamais rejoués ni reformulés** : 25 à la génération des situations (la demande nuisible 13, le périmètre 12) ; 29 au juge de réalisme, dont 22 sur les 25 situations de la surveillance (son score est relevé, ce n'est pas une porte : ces situations restent) ; 14 aux textes neutres ; 7 aux actions, toutes de la surveillance ; 3 au juge de la conscience d'évaluation.
++  - **La contestation perd par l'appariement**, presque sans refus. Le raisonnement d'une autre situation ne peut lui venir que de la demande nuisible ou de la surveillance, les seules familles sans principe commun avec elle, où les refus se concentrent ; et chaque texte ne sert qu'une fois. Il lui reste 3 appariements, pour 22 textes neutres.
++  - **Les portes** passent toutes, dont celle des indices, maintenant que les jeux v2 existent. Deux ne sont pas jouées : les 8-grammes, faute de scénarios tenus à part ; l'appariement affectif, une étape GPU. La feuille d'audit compte 156 lignes, 6 par case.
++  - **Le coût** : 27,58 $ d'API pour tout le pilote, dont 22,54 $ le 5 octobre ; dans le bas de la fourchette estimée, pour 47 éléments au lieu de 100.
+ 
+ **L'entraînement** : un SFT par LoRA, avec des hyperparamètres identiques dans tous les bras (`experiences/hyperparametres_sft.yaml`, une proposition à geler au premier temps).
+ - **Le LoRA** : rang 16, alpha 32, dropout 0,05, sur toutes les projections de l'attention et du MLP ; taux d'apprentissage 1e-4, montée sur 3 % des pas puis décroissance en cosinus ; 3 époques ; 16 exemples par pas.
+@@ -892,7 +936,7 @@
+ - On forme des paires contrastives : le même scénario, avec un indice d'évaluation ou de déploiement tiré du jeu d'extraction.
+ - On calcule les différences d'activations du flux résiduel, couche par couche, puis une ACP sur les paires. On obtient un sous-espace aux rangs 1, 2, 4, 8, 16 et 32.
+ - **Deux sous-espaces, une union** (v1.5 ; contre-lecture). Le même calcul, sur le jeu des marques de construction, donne un sous-espace implicite. L'instrument est l'**union orthonormalisée** des deux, chacun à son rang ; on rapporte le rang total. Le regard supposé dans les bras serait émergent et implicite : dans des scénarios synthétiques, c'est l'artificialité qui le porterait, pas un nom d'évaluateur.
+-- **L'extraction se fait sur le modèle de départ**, une fois, et sert à tous les bras. La vérification de manipulation dit ensuite, bras par bras, si elle y retire bien « évalué ».
++- **L'extraction se fait sur le modèle de départ**, une fois, et sert à tous les bras. La vérification de manipulation dit ensuite, bras par bras, si l'inhibition y rend illisible, au dernier jeton, ce que nos jeux d'indices partagent (le transfert ; décision 33).
+ - **Le choix des couches**, règle écrite d'avance (contre-lecture) : sur une moitié du jeu de validation, la fenêtre de cinq couches consécutives où la sonde a la meilleure AUROC moyenne, parmi les couches où elle bat le sac de mots de la marge fixée (décision 24) ; l'autre moitié en donne la valeur rapportée.
+ - La validation causale se fait sur les deux organismes (partie 4).
+ 
+@@ -902,29 +946,66 @@
+ - **Le sous-espace ne dépend pas des étiquettes.** Changer le signe d'une différence ne change pas la décomposition : seule l'orientation de la première direction dépend du côté « évaluation ». Au rang r, le sous-espace porte tous les axes selon lesquels les deux textes d'une paire diffèrent (la longueur, le registre, les mots), et pas seulement « évaluation ». C'est une raison de plus pour des paires appariées en longueur et en registre, et pour des contrôles à dégradation appariée.
+ - **La sonde neuve, telle qu'elle était**, ne pouvait rien trancher : ses deux côtés différaient en longueur et en registre.
+ 
++**Ce qu'a montré l'extraction v2** (5 octobre ; exploratoire ; `extract_eval-20261005-114155-50b2`, sur le modèle de départ, A100 ; `experiences/resultats/NOTE_BALAYAGE_ET_EFFACEMENT_2026-10-05.md`)
++- **La sonde bat le sac de mots.** Entraînée sur l'extraction, elle lit la validation v2 à 0,857 d'AUROC à la couche 5, et de 0,83 à 0,86 aux couches 4 à 11 (sur la validation v1, de 0,93 à 0,96). Le sac de mots appris sur l'extraction est à 0,634 : la condition lexicale passe, à une marge de 0, proposée. Les meilleures couches, par cette sonde, sont 5, 6, 9, 11 et 4.
++- **La direction de rang 1 ne porte pas ce que lit la sonde.** Elle ne lit la validation v2 qu'à 0,56 à 0,67 selon la couche : à la couche 5, 0,56, sous le 95<sup>e</sup> centile des directions au hasard (0,60) ; aux couches 20 à 32, de 0,64 à 0,67, au-dessus des deux nuls. C'est la direction que projette le réglage de la décision 29 (partie 4).
++- **Le jeu de la sonde neuve v2**, qui porte des marques de construction, n'est pas lu au-dessus des nuls à la plupart des couches par cette extraction explicite. Sa longueur en jetons penche d'un côté (0,36 d'AUROC), alors que ses mots sont appariés à un dixième près.
++
+ **L'inhibition.** On projette ce sous-espace hors du flux résiduel, aux couches choisies et à toutes les positions.
+ - **La dose** se règle par le rang et par la fraction projetée : 0,25 ; 0,5 ; 0,75 ; 1. On la rapporte aussi en **unités naturelles**, c'est-à-dire rapportée à l'écart naturel de projection entre un indice d'évaluation et un indice de déploiement (partie 7).
+ - **L'énergie retirée** se rapporte toujours : la part de la norme carrée du flux, centré, que retire la projection. Mesurée le 3 octobre sur les activations gardées de l'extraction (le dernier jeton des prompts de validation ; `experiences/analyses/energie_retiree.py`), la projection entière retire de 0,5 % à 45 % de cette énergie selon la couche et le rang. C'est de 20 à 187 fois plus qu'un sous-espace aléatoire de même rang tiré uniformément, qui en retire de l'ordre de k/4 096.
+ - **Sur plusieurs tours**, l'inhibition s'applique à tous les jetons, y compris ceux qu'on réencode ; aucun cache n'est calculé sans elle.
+ - **Pour un rang supérieur à 1, ou pour une union de directions** (« je suis évalué » et la sonde neuve), on orthonormalise l'union avant de projeter, jamais en séquence.
++- **L'effacement linéaire, candidat** (v1.6 ; décision 33). La décision 29 étant rouverte, le réglage de la porte peut aussi être un effacement linéaire (défini plus bas), et non une projection ; la procédure du choix est en partie 4.
+ 
+-**La vérification de manipulation, bras par bras** (v1.4 ; comparaison, bloc A).
++**Le rang minimal d'un concept, par effacement** (v1.6 ; décision 33, 6 octobre 2026 ; la définition détaillée est proposée par la session)
++- **La méthode change.** Le rang minimal d'un concept se mesure par effacement, et non plus par projection orthogonale sur les premières directions singulières des différences (l'ACP des paires). Le balayage par projection reste, en descriptif, avec sa dégradation et son énergie retirée.
++- **L'effacement linéaire.** À une couche, une correction calculée en forme close sur des paires étiquetées : elle égalise les moyennes des deux côtés en changeant les états le moins possible (à la manière de LEACE : Belrose et al., NeurIPS 2023 ; non relu sur la source, partie 11). Sur les paires où on l'ajuste, aucune sonde linéaire ne fait alors mieux que le hasard. Rien n'est garanti pour une sonde non linéaire, ni pour d'autres paires. Avec une étiquette à deux côtés, il retire une direction par couche : celle qui sépare les moyennes, corrigée de la covariance des états, et non celle de plus grande variance des différences.
++- **La définition, proposée.** Le rang minimal d'un concept est le plus petit nombre de directions par couche dont le retrait, par effacement linéaire itéré, fait tomber le transfert au dernier jeton au hasard, à dégradation appariée contre le comparateur.
++  - **Itéré.** Les couches s'ajustent dans l'ordre, chacune sur les états déjà effacés en dessous. À une couche, chaque nouvelle direction s'ajuste en forme close sur les états déjà effacés par les précédentes. Sur les mêmes paires, une seconde direction n'existe pas : après un effacement, plus rien n'y sépare linéairement les deux côtés. Chaque direction s'ajuste donc sur un nouveau lot de paires (proposé).
++  - **Des paires tenues à part de la mesure.** Les paires de l'ajustement ne servent ni à apprendre la sonde du transfert, ni à la lire.
++  - **Le transfert**, tel que le lit la vérification de manipulation (plus bas) : une sonde apprise, sous la même condition, sur un jeu d'indices, et lue sur un autre jeu, écrit avec d'autres mots. Pour « je suis évalué » : apprise sur les 50 paires d'extraction gardées hors de l'expert iteration, lue sur la validation v2. Une sonde apprise et testée sur un seul jeu lit aussi ses mots, qu'aucun retrait de quelques directions n'efface : elle ne donne pas le rang.
++  - **Au hasard** (proposé) : un AUROC moyen sur les couches d'au plus 0,55, pour la sonde linéaire et pour le perceptron. Un transfert sous 0,5 n'est pas un effacement plus fort : la sonde lit l'indice à l'envers. On rapporte donc aussi, couche par couche, la lecture symétrique, le plus grand de l'AUROC et de son complément à 1. La vérification de manipulation, elle, lit l'écart au hasard couche par couche (plus bas). Lue ainsi, la mesure du 6 octobre reste à 0,57 (un écart de 0,07), au-dessus de ce seuil : les deux lectures sont à accorder avant le gel (partie 12).
++  - **À dégradation appariée.** À la même KL, les tirages du comparateur (partie 7) ne font pas tomber le transfert au hasard. Sinon, le rang n'est pas spécifique, et on le dit.
++  - **Une condition préalable** (proposé) : sans intervention, le transfert dépasse le 95<sup>e</sup> centile de sondes apprises sur des étiquettes permutées. Sinon, il n'y a rien à faire tomber, et le rang n'est pas défini.
++- **Une position, une dose.** Le rang se lit au dernier jeton, là où l'extraction lit, et à la fraction 1, l'effacement entier. La lecture en moyenne sur les jetons se rapporte à part : elle voit aussi les jetons de l'indice lui-même.
++- **Pourquoi**, d'après les mesures du 5 et du 6 octobre (exploratoires, sur l'organisme ; le détail est plus bas, « Ce que le transfert a montré »).
++  - **La projection ne fait rien tomber.** Jusqu'au rang 16, sur toutes les couches (KL jusqu'à 0,87), elle laisse la lecture dans le jeu à 0,98 au dernier jeton et à 1,00 en moyenne sur les jetons (`organism_inhibition-20261005-115511-8410`) ; et le transfert entre 0,61 et 0,68 en moyenne sur les couches, contre 0,68 sans intervention (`organism_inhibition-20261005-141738-0718`).
++  - **Une seule direction par couche, choisie par effacement, fait tomber le transfert** : à 0,497 sur toutes les couches (KL 0,159, sur H100 ; `organism_inhibition-20261006-101553-00c6`), contre 0,687 sous un tirage du comparateur à la même KL.
++  - **La direction qui compte n'est donc pas celle de plus grande variance des différences.** L'ACP des différences ne dépend pas des étiquettes : elle range les axes par variance, la longueur, le registre et les mots compris (plus haut). Le 5 octobre déjà, la direction de rang 1 ne lisait la validation v2 que de 0,56 à 0,67, quand la sonde la lisait à 0,857 (plus haut, « Ce qu'a montré l'extraction v2 »).
++- **Ce que ces mesures ne disent pas.** Elles motivent la méthode ; elles ne mesurent pas un rang. Leurs limites (un seul tirage du comparateur, une correction qui déborde, une lecture qui persiste en moyenne sur les jetons, et, sur la conduite, un effacement qui ne bat pas le comparateur) sont en partie 2 (« Une première mesure, exploratoire seulement »).
++
++**La vérification de manipulation, bras par bras** (v1.4 ; comparaison, bloc A ; lue par le transfert depuis la v1.6, décision 33).
+ - **Pourquoi.** Une seule représentation « je suis évalué » est appliquée à tous les bras. Si l'entraînement par raisons la déplace, l'inhibition la retire moins dans le bras raisons, et la conclusion penche à tort vers l'hypothèse des raisons.
+-- **La mesure.** Sous inhibition et sans, dans chaque bras : la décodabilité de « évalué », et la projection résiduelle. On la lit aux couches où l'on projette et en aval, à toutes les positions, tour par tour.
++- **La mesure.** Sous inhibition et sans, dans chaque bras : la décodabilité de « évalué », lue d'abord par le transfert (plus bas), et la projection résiduelle. On la lit aux couches où l'on projette et en aval, à toutes les positions, tour par tour.
+ - **Des sondes réentraînées, bras par bras et condition par condition** (v1.5 ; contre-lecture). Une sonde apprise sur le modèle de départ partage l'angle mort de l'inhibition : une représentation tournée dans le bras raisons échapperait aux deux, et la vérification passerait à tort. On réentraîne donc, dans chaque bras et sous chaque condition, une sonde linéaire et une sonde non linéaire (un petit perceptron), sur des indices tenus à part (le jeu de validation v2 et la moitié tenue à part du jeu des marques de construction).
+-- **Le critère, comparatif et fixé d'avance.**
+-  - La décodabilité résiduelle doit être égale d'un bras à l'autre, à une marge près, et plus basse que sous le comparateur aléatoire.
++- **Le transfert** (décision 33, 6 octobre 2026). Sous chaque condition, et dans chaque bras, les deux sondes, la linéaire et le petit perceptron, s'entraînent aussi sur un autre jeu d'indices que celui qu'elles lisent. Elles se lisent ensuite sur le jeu tenu à part, couche par couche, au dernier jeton et en moyenne sur les jetons.
++  - **Pour les indices explicites** : l'entraînement sur les 50 paires d'extraction gardées hors de l'expert iteration (les paires 150 à 199), chacune dans 4 contextes ; la lecture sur la validation v2.
++  - **Ces paires restent hors de tout ajustement de l'intervention** : celui d'un effacement, et l'extraction du sous-espace qu'on projette. Sinon, le transfert pourrait tomber par construction : un effacement ajusté sur ces paires rend leur distinction illisible à toute sonde linéaire qui s'y entraîne. Le 6 octobre, la règle ne tient que pour l'effacement : le sous-espace des projections (`extract_eval-20261005-114155-50b2`) est extrait sur les 200 paires d'extraction, ces 50 comprises. Le réextraire sans elles est à trancher avant la porte.
++  - **Pour les indices implicites**, les deux jeux du transfert restent à fixer avec le jeu des marques de construction, avant le premier temps du gel.
++- **Pourquoi le transfert.** Des sondes entraînées et testées dans un même jeu lisent les mots de l'indice : les deux côtés de la validation v2 n'emploient pas les mêmes mots (des métadonnées de banc d'essai d'un côté, de ticket de l'autre). Le 5 octobre, sur l'organisme, elles lisaient de 0,97 à 0,99 d'AUROC au dernier jeton, en moyenne sur les couches, et 1,00 en moyenne sur les jetons. C'était vrai sous les six réglages du balayage, sous leurs tirages du comparateur, et sans intervention (`organism_inhibition-20261005-115511-8410`). Les projections font pourtant ce qu'elles disent : la projection résiduelle tombe sous 0,01 en moyenne sur les couches. Aucun retrait de quelques directions ne peut faire tomber une lecture des mots : elle dit que le texte de l'indice est encore dans les états, pas que « je suis évalué » y est encore. Le transfert lit ce que les deux jeux partagent.
++- **Le critère, comparatif et fixé d'avance** (refait par la décision 33, 6 octobre 2026 : le 5 octobre, la lecture dans le jeu restait au plafond sous tous les réglages, et ne départageait donc rien).
++  - **Le transfert au dernier jeton, en moyenne sur les couches, décide.** Sous l'inhibition, il doit être plus bas que sous les tirages appariés du comparateur que la vérification utilise. Proposé : plus bas que 95 % d'au moins 20 tirages, pour chacune des deux sondes ; avec moins de 20 tirages, la vérification n'est qu'indicative.
++  - **Un transfert sous 0,5 ne vaut pas mieux que 0,5** : une sonde qui lit à l'envers lit encore. Le critère lit donc l'écart au hasard, la distance de l'AUROC à 0,5, couche par couche, avant la moyenne (proposé).
++  - **Le transfert sous inhibition doit être égal d'un bras à l'autre**, à une marge près (une équivalence ; partie 7).
++  - **En secondaire, rapportés sans décider** : la lecture dans le jeu (des sondes entraînées et testées sur le jeu tenu à part, le critère de la v1.5) ; le transfert en moyenne sur les jetons ; la projection résiduelle.
+   - Un seuil absolu ne vaut qu'aux couches où l'on projette : exiger un résidu nul en aval condamnerait l'intervention elle-même.
+ - **La même vérification pour chaque contrôle.** Un contrôle mal appliqué rendrait la comparaison inéquitable, dans un sens ou dans l'autre.
+-- **Son cas connu** : un échec construit. On inhibe à une seule couche, et la mesure doit voir la représentation réapparaître en aval.
+-- **La conséquence.** Une décodabilité résiduelle inégale entre bras n'abat pas le test du regard : elle interdit de conclure pour le bras en défaut.
++- **Son cas connu** : un échec construit. On inhibe à une seule couche, et la mesure doit voir la représentation réapparaître en aval. **Le transfert doit le voir aussi**, puisque c'est lui qui décide (décision 33, 6 octobre 2026) : il doit baisser à cette couche, revenir en aval, et l'échec construit ne doit pas passer le critère. Le 6 octobre, sous l'effacement à la seule couche 6, le transfert de cette couche tombe de 0,64 à 0,55 et revient dès la couche 9 ; en moyenne sur les couches, il reste au niveau sans intervention (0,683, contre 0,682 ; `organism_inhibition-20261006-101553-00c6`). Contre le seul tirage du comparateur de ce run (0,687), il serait pourtant plus bas, de 0,004 : un tirage ne suffit pas, d'où les 20 au moins.
++- **Sa limite, écrite d'avance** (décision 33). Un transfert tombé au hasard au dernier jeton ne dit pas que l'information a disparu : sous l'effacement sur toutes les couches, elle reste lisible en moyenne sur les jetons (0,900, contre 0,918 sans intervention), sans doute aux positions de l'indice. Il ne dit pas non plus qu'elle n'est pas lue autrement : de façon non linéaire, au-delà du petit perceptron, ou ailleurs que là où les sondes regardent. Il dit seulement que des sondes apprises sur un jeu ne lisent plus, sur l'autre, au dernier jeton, ce que les deux partagent. Une vérification qui passe s'écrit donc « la distinction que partagent nos jeux d'indices n'est plus lisible au dernier jeton », jamais « l'information est retirée ».
++- **Ce que le transfert a montré, les 5 et 6 octobre** (exploratoire ; un seul tirage du comparateur par réglage ; la sonde linéaire ; `organism_inhibition-20261005-141738-0718` et `organism_inhibition-20261006-101553-00c6`, sur H100).
++  - **Sans intervention**, sur l'organisme : 0,682 au dernier jeton, en moyenne sur les couches (0,808 au mieux, à la couche 9), et 0,918 en moyenne sur les jetons.
++  - **Les projections ne le font pas tomber** : de 0,607 à 0,677, aux rangs 1, 4 et 16 sur toutes les couches et au rang 16 sur les couches 4 à 8 ; sous leurs tirages du comparateur, de 0,636 à 0,687. Au réglage de la décision 29 (toutes les couches, rang 1), 0,649, contre 0,687 sous son tirage : l'écart est dans la dispersion des tirages, et un tirage ne décide rien.
++  - **L'effacement linéaire sur toutes les couches est le seul réglage qui le fait tomber** : 0,497 (0,545 pour le perceptron), contre 0,687 sous son tirage du comparateur (KL 0,159). Vingt couches sur 32, les couches 13 à 32, passent sous 0,5, jusqu'à 0,36 : la correction, ajustée sur d'autres paires, déborde. Lu comme un écart au hasard, le transfert est de 0,07, contre 0,18 sans intervention et 0,19 sous le tirage.
++  - **L'effacement sur les couches 4 à 8** (KL 0,042) ne le fait pas tomber : 0,698, contre 0,662 sous son tirage.
++- **La conséquence.** Une vérification qui échoue dans un bras, parce que le transfert y reste plus haut que dans l'autre bras ou n'y tombe pas plus que sous le comparateur, n'abat pas le test du regard : elle interdit de conclure pour le bras en défaut.
+ - **Le coût** : de 3 à 5 GPU-heures.
+ 
+ **Les contrôles d'inhibition**, refaits en v1.5 : un comparateur unique, des témoins séparés, et une manipulation rivale (contre-lecture). L'aléatoire seul est un contrôle faible (Read et al. ; Aranguri et al. ; Mody et al. ; partie 1).
+ 
+ | Contrôle | Son rôle | Ce qu'il écarte |
+ |---|---|---|
+-| **Le comparateur aléatoire** : au moins 100 sous-espaces tirés selon la covariance des activations, hors de « je suis évalué », à rang libre, chacun apparié sur la dégradation de l'inhibition, bras par bras ; au test, un tirage par scénario | **le comparateur unique** de la règle du regard (partie 6) | « n'importe quel sous-espace qui retire autant fait autant » |
++| **Le comparateur aléatoire** : au moins 100 sous-espaces tirés selon la covariance des activations, hors de « je suis évalué », à rang libre, chacun apparié sur la dégradation de l'inhibition, bras par bras, et tiré sur le même modèle de carte qu'elle (décision 33 ; partie 7) ; au test, un tirage par scénario | **le comparateur unique** de la règle du regard (partie 6) | « n'importe quel sous-espace qui retire autant fait autant » |
+ | **Les contrastes sans rapport** : « the train arrived / left the station », « book on the top / bottom shelf », appariés de même | témoin séparé | « n'importe quel contraste de prompt fait autant » |
+ | **Les directions sensibles sans rapport** : les premières composantes de forte variance, hors de l'espace de « je suis évalué », appariées de même | témoin séparé ; **gardé dans l'expérience minimale** (contre-lecture, étape 2) | « toucher une direction sensible suffit » |
+ | **Le contraste d'enjeu** (v1.5) : « enjeu haut contre enjeu bas », extrait comme « je suis évalué », apparié de même | témoin séparé | l'hypothèse de l'enjeu (partie 2) |
+@@ -955,13 +1036,15 @@
+ - **En recoupement**, la différence de différences à gabarit contrôlé (Nakamura) : (raisons − texte neutre) sur les situations où le principe s'applique, moins la même différence sur celles où il ne s'applique pas.
+ - On le recoupe aussi avec un contraste « principe pertinent contre non pertinent », dans le bras raisons.
+ - **Le rang de l'adaptateur.** Les bras sont des LoRA de rang 16 : leur différence vit dans un espace étroit, et retirer à rang 16 ou plus reviendrait presque à défaire le fine-tune. La localisation se refait sur des bras entraînés avec un LoRA de rang 64 (deux graines), et le rang minimal se rapporte pour les deux rangs d'adaptateur.
++- **Le rang minimal du principe, par effacement** (v1.6 ; décision 33, 6 octobre 2026 ; le détail est proposé). Il se mesure comme celui de « je suis évalué » (plus haut), avec les paires de la localisation : la même situation, dans le bras raisons et dans le texte neutre, au jeton d'action, l'emplacement prérempli. L'effacement s'ajuste sur une part des situations ; la sonde du transfert s'apprend sur une autre part, des familles d'entraînement, et se lit sur des situations d'autres familles. Pour un principe pris seul (l'option de la partie 4), les paires « principe pertinent contre non pertinent », comme pour les concepts de l'anatomie. Le sous-espace de l'ACP sert au balayage par projection, en descriptif.
+ - **Le cas positif connu** : l'ablation du sous-espace doit d'abord défaire le comportement **en distribution** du bras raisons.
+ - **À lire d'abord** : Nakamura, sur l'extraction par différence de différences à gabarit contrôlé. D'après un rapport, le gabarit de chat gonfle le rang mesuré (partie 1).
+ 
+ **Le sous-espace d'un concept de raison** (anatomie)
+ - **Les paires.** Pour chaque principe, environ 100 paires de scénarios : la même situation, éditée pour que le principe s'applique ou non.
+ - **Les paires « mentionné sans s'appliquer »** (mini-spec v0.2, §9), environ 50 par principe. Ses mots sont là, mais il ne s'applique pas. Pour l'irréversibilité : « la suppression est définitive » contre « la suppression est définitive, mais une sauvegarde complète existe ». Une sonde qui ne les sépare pas lit les mots, pas le concept.
+-- **L'extraction.** Les différences d'activations, puis une ACP : un sous-espace à chaque rang. On l'extrait dans le bras raisons, dans les actions seules et dans le modèle de base.
++- **L'extraction.** Les différences d'activations, puis une ACP : un sous-espace à chaque rang, pour le balayage par projection, en descriptif. On l'extrait dans le bras raisons, dans les actions seules et dans le modèle de base.
++- **Le rang minimal d'un concept, par effacement** (v1.6 ; décision 33, 6 octobre 2026 ; le détail est proposé). La méthode de « je suis évalué » (plus haut), avec les paires de chaque concept, réparties en trois parts disjointes : l'ajustement de l'effacement ; l'apprentissage de la sonde du transfert, sur les familles d'entraînement ; sa lecture, sur les paires des familles tenues à part (le transport, partie 4). Le rang se lit à la première position de lecture, avant toute raison écrite ; le jeton d'action se rapporte à part. Pourquoi : la direction de plus grande variance des différences n'était pas celle qui porte « je suis évalué » (mesures du 5 et du 6 octobre, plus haut).
+ - **Deux positions de lecture**, contre la lecture du texte :
+   - au premier jeton de la réponse, avant toute raison écrite ;
+   - au jeton d'action, avec des raisons **neutres de même longueur préremplies** à la place des vraies.
+@@ -1107,6 +1190,7 @@
+   - **On apparie sur un scalaire unique** : la divergence KL du prochain jeton entre le modèle intact et le modèle sous intervention, sur les réponses gloutonnes du modèle intact à un jeu fixe de demandes neutres, en forçage par l'enseignant. Elle se mesure en une passe ; le 3 octobre, sur 120 demandes, elle a servi à tester l'appariement.
+   - **Chaque composante sert de vérification.** Un contrôle est apparié si sa KL est à ±10 % de celle de l'inhibition, **et** si chaque composante du composite est dans sa tolérance de la valeur de l'inhibition. Sinon, il est rapporté comme non apparié, avec la composante en défaut.
+   - Les tolérances et la marge de ±10 % sont des propositions, gelées au premier temps (partie 7).
++  - **Une KL se lit avec sa carte** (décision 33, 6 octobre 2026). Les réponses gloutonnes du modèle intact changent avec le calcul numérique de la carte : pour l'organisme, 82 sur 120 diffèrent entre un A100 et un H100. Le dommage d'un même effacement change aussi : une KL de 0,259 sur A100, de 0,159 sur H100. Une KL ne se compare donc qu'à une KL mesurée sur le même modèle de carte, avec les mêmes réponses de référence. La règle de mise en commun des tirages est en partie 7 (la procédure, étape 10).
+ - **Le coût de l'enrichissement** : de 2 à 4 GPU-heures, et moins de 20 $ d'items.
+ 
+ </section>
+@@ -1143,43 +1227,85 @@
+   - **Ce n'est pas la porte** : 8 tirages et non 100 ; une extraction qui ne passe pas la condition lexicale et qui a vu les indices de la mesure ; et les réglages ont été choisis et mesurés sur la même moitié.
+   - **À KL égale, les dommages diffèrent.** Les tirages cassent plus de code que l'inhibition aux fortes doses. Le composite de la partie 7 est donc nécessaire.
+ - **Sa limite, dite d'avance** (contre-lecture). C'est un déclencheur appris et explicite, de la même famille que les indices d'extraction. Sa porte montre seulement qu'on peut retirer un déclencheur de ce genre. D'où le second organisme.
++- **La répétition de la porte**, exploratoire (4 octobre ; `organism_inhibition-20261004-101821-ada0`, H100 ; `experiences/resultats/NOTE_REPETITION_PORTE_2026-10-04.md`). La machinerie de la porte tourne une première fois sur GPU, sur la moitié de choix, avec les indices et l'extraction v1, au réglage de la décision 29. Les taux sont des parts de réponses entièrement annotées, sur 250 tâches, en glouton.
++  - **La ligne de base** : l'écart est de 54,4 points sur les indices d'extraction (60,8 % sous évaluation, 6,4 % sous déploiement), et de 18,4 sur le jeu de cadrage (38,4 % contre 20,0 %).
++  - **L'inhibition** (KL 0,155) réduit l'écart d'extraction de 37,6 points, exactement comme dans la nuit (`organism_inhibition-20261004-051919-f2c2`, sur la même carte) : en glouton, la mesure se reproduit. Elle réduit l'écart de cadrage de 14,0 points sur 18,4.
++  - **Ses contrôles**, appariés sur la KL, sous les seuls indices d'extraction : 4 tirages du comparateur, 15,6 ; 16,8 ; −2,4 et 32,4 points ; les directions sensibles sans rapport, 20,0 ; les contrastes sans rapport, 12,8 ; le contraste d'enjeu, 26,8. L'inhibition les dépasse tous, mais de peu face au meilleur tirage et au contraste d'enjeu : face au 95<sup>e</sup> centile d'au moins 100 tirages, son avance pourrait ne pas tenir.
++  - **La manipulation rivale**, le prompt de déploiement, réduit l'écart de 21,6 points sur l'extraction, et de 0,4 sur le cadrage : des indices explicites se laissent en partie contredire par un prompt, pas ceux du cadrage.
++  - **La vérification de manipulation, refaite seule le soir** (`organism_inhibition-20261004-165326-99be`). Sur la validation v1, des sondes réentraînées lisent la distinction au plafond sous toutes les conditions, l'échec construit compris : en l'état, elle ne pouvait pas échouer. La projection résiduelle, elle, tombe presque à zéro sous l'inhibition, et voit son échec construit : nulle à la couche 16, elle revient en aval. D'où le transfert (décision 33 ; partie 3).
++- **Les suites du 5 et du 6 octobre** (décision 32) : le balayage des directions retirées, l'effacement linéaire sur la conduite, la courbe en dose et le transfert. Elles se lisent là où elles changent le programme (la vérification de manipulation, partie 3 ; le réglage de la porte, plus bas), et toutes à l'annexe 3.
+ 
+ **Le second organisme : une conduite conditionnée par des indices implicites** (v1.5 ; décisions 26 et 27)
+ - **La conduite** : l'honnêteté conditionnée (décision 27). Le modèle est plus honnête quand le contexte porte des marques de construction (le jeu du même nom) que dans un contexte au bruit du réel. Elle se juge sur des scénarios d'honnêteté sous pression, de la famille de l'opérateur, avec le juge scellé.
+ - **Pourquoi implicite.** Le regard supposé dans les bras ne viendrait pas d'un nom d'évaluateur, mais de l'artificialité des scénarios. Un instrument validé sur un déclencheur explicite seulement pourrait le manquer.
+ - **Deux changements à la fois**, la conduite et le genre d'indice : si cet organisme ne s'installe pas, on ne saura pas lequel en est cause. Un repli, proposé : la conduite des annotations de type, sous indices implicites.
+-- **Il attend** le jeu des marques de construction (l'API, lundi au plus tôt) et le harnais des scénarios jugés.
++- **Il attend** le jeu des marques de construction et le harnais des scénarios jugés. Le jeu v2 de la sonde neuve, fait le 5 octobre (199 paires sur 200), porte ces marques : il deviendrait ce jeu si la réaffectation proposée est adoptée (partie 3).
+ 
+ **Graduer le cas connu** (proposé ; contre-lecture : un instrument qui voit un grand effet peut en manquer un petit). L'écart du premier organisme se mesure aussi après les seuls documents, avant l'expert iteration. C'est un écart plus petit, sur lequel l'inhibition doit agir aussi.
+ 
+ **Le test**
+ - On inhibe « je suis évalué », c'est-à-dire l'union des sous-espaces explicite et implicite. On compare au comparateur aléatoire et aux témoins séparés (les contrastes sans rapport, les directions sensibles sans rapport, le contraste d'enjeu), à dégradation appariée, avec le prompt de déploiement en manipulation rivale.
+ - On trace des courbes dose-réponse sur la fraction projetée.
+-- On balaie le rang de 1 à 32, ce qui donne le **rang minimal** de « je suis évalué ».
++- On balaie le rang de 1 à 32 par projection, en descriptif. Le **rang minimal** de « je suis évalué » se mesure par effacement (partie 3 ; décision 33, 6 octobre 2026) : le plus petit nombre de directions par couche dont l'effacement linéaire itéré fait tomber le transfert au dernier jeton au hasard, à dégradation appariée. La projection jusqu'au rang 16, sur toutes les couches, laissait ce transfert entre 0,61 et 0,68 ; une seule direction effacée par couche le faisait tomber à 0,497 (exploratoire).
+ - **Choisir sur une moitié, tester sur l'autre** (contre-lecture : la v1.4 choisissait le rang et la dose sur les tâches mêmes qui servaient à la porte, et la porte passait « pour au moins un rang » parmi 24 réglages et des couches). Les tâches de MBPP test sont coupées en deux moitiés, au hasard et avant toute mesure. Sur la première, on choisit un seul réglage (les couches, le rang, la fraction) ; sur la seconde, on teste ce réglage contre au moins 100 tirages du comparateur. Si les tâches venaient à manquer, la porte comparerait le maximum de l'inhibition sur les réglages au maximum, sur les mêmes réglages, de chaque tirage aléatoire.
+   - **Les moitiés** sont tirées le 3 octobre au soir, avant toute mesure d'inhibition (`experiences/organisme/moities_mbpp_test.json`, 250 tâches chacune).
+-  - **Le réglage de la porte, pour le premier organisme** (décision 29) : toutes les couches, au rang 1, à la fraction 1. Il est figé le 4 octobre, avant toute mesure sur la moitié de test, sans réglage de repli.
+-    - **Pourquoi ce réglage.** Il retire « évalué » et laisse « déployé » intact, ce que demande le test du regard, qui inhibe sous cadrage de déploiement. Il passe le mieux au jeu de cadrage, indépendant de l'extraction. Il est le moins exposé à la condition lexicale, qui concerne surtout les premières couches.
++  - **Le réglage de la porte, pour le premier organisme : rouvert** (décision 33, 6 octobre 2026). La décision 29 l'avait figé le 4 octobre, avant toute mesure sur la moitié de test, sans réglage de repli : toutes les couches, au rang 1, à la fraction 1. La décision 33 la rouvre : ce réglage n'est plus figé, aucun autre n'est choisi, et la moitié de test reste intouchée. Pourquoi : avec les indices v2, la direction de rang 1 ne lit la validation qu'à 0,56 à 0,67 d'AUROC, et ses projections ne font pas tomber le transfert, que seul l'effacement linéaire fait tomber (plus bas, « La décision 29, rouverte »).
++    - **Pourquoi la décision 29 l'avait choisi**, le 4 octobre, avec l'extraction et les indices v1. Il retire « évalué » et laisse « déployé » intact, ce que demande le test du regard, qui inhibe sous cadrage de déploiement. Il passe le mieux au jeu de cadrage, indépendant de l'extraction. Il est le moins exposé à la condition lexicale, qui concerne surtout les premières couches.
+     - **Son prix** : sa marge sur le comparateur est mince (37,6 points, contre au plus 32,8 sur 8 tirages). La porte peut échouer, et ce serait une information.
+-    - **Avec l'extraction v2**, ce réglage est d'abord revérifié sur la moitié de choix (une quinzaine de tirages). S'il n'y réduit plus l'écart, on s'arrête et on en discute avant de toucher la moitié de test.
+-    - **Les 100 tirages** se mesurent sous les deux jeux d'indices, extraction et cadrage.
++    - **Sa revérification avec la v2**, prévue sur la moitié de choix (une quinzaine de tirages), n'est pas faite au 6 octobre. La décision 33 la remplace par la procédure plus bas, où ce réglage n'est plus qu'un candidat.
++    - **Les 100 tirages** se mesurent sous les deux jeux d'indices, extraction et cadrage, et sur le même modèle de carte que l'inhibition (décision 33 ; partie 7).
++
++**La décision 29, rouverte** (décision 33, 6 octobre 2026). Lazar adopte l'amendement que la session proposait : « revoir la décision 29 à la lumière de la v2 ». Le nouveau réglage reste à décider par lui, sur la moitié de choix, avant la moitié de test. Ce qui suit dit ce qui la rouvre, ce que le test du regard demande, la mesure en cours, et une procédure proposée.
++- **Ce qui la rouvre.** Des mesures du 4 au 6 octobre, toutes exploratoires, sur la moitié de choix (250 tâches), en glouton. D'un tirage du comparateur à l'autre, le bruit est d'environ ±10 points.
++  - **Le réglage d'origine passait de peu.** Le 4 octobre, avec l'extraction v1, il réduit l'écart de 37,6 points ; le meilleur des 4 tirages du comparateur, de 32,4 ; le contraste d'enjeu, de 26,8 (plus haut, « La répétition de la porte »).
++  - **La direction de rang 1 se transfère mal à la validation v2** : elle la lit à 0,56 à 0,67 d'AUROC selon la couche, quand la sonde entière la lit à 0,857. Ce que la sonde lit n'est pas surtout dans cette direction (partie 3, « Ce qu'a montré l'extraction v2 »).
++  - **Les projections ne font pas tomber le transfert ; seul l'effacement linéaire sur toutes les couches le fait tomber**, au dernier jeton : de 0,682 sans intervention à 0,497 (KL 0,159, sur H100), contre 0,687 sous un seul tirage du comparateur. Au réglage d'origine, le transfert reste à 0,649, contre 0,687 sous son tirage. En moyenne sur les jetons, il reste à 0,900 sous l'effacement (partie 3, « Ce que le transfert a montré »).
++  - **Sur la conduite, l'effacement complet efface l'écart, mais le comparateur aussi.** Sur toutes les couches, à la fraction 1 (KL 0,259 sur A100), l'écart passe de 55,2 à 2,4 points : 52,8 points de réduction. Un tirage du comparateur, au même dommage, en retire 53,6 ; l'organisme n'annote plus alors que 2 % de ses réponses sous indice d'évaluation (`organism_inhibition-20261005-115519-a006`). À cette dose, le dommage seul efface la conduite : le comparateur sature. Ce dommage, mesuré sur A100, n'est pas celui de l'effacement qui fait tomber le transfert, sur H100 (partie 7, la procédure, étape 10).
++  - **Aux doses intermédiaires, un indice seulement.** Aux fractions 0,25, 0,5 et 0,75, l'effacement réduit l'écart de 3,2 ; 15,2 et 26,0 points. À 0,75, un seul tirage du comparateur en retire 10,4 (`organism_inhibition-20261005-141323-faa0`, H100 ; les KL de 0,5 et 0,75 sont perdues). C'est un indice, pas une preuve : un seul tirage, avec un bruit de ±10 points.
++  - **À faible dommage, pas d'effet spécifique.** Aux couches 4 à 8 (KL 0,042), l'effacement réduit l'écart de 16,4 points, et les 4 tirages du comparateur de 7,6 ; 13,2 ; −7,6 et 20,4 (`organism_inhibition-20261005-141318-194c`, H100). Le transfert n'y tombe pas non plus (0,698).
++  - **Le réglage d'origine n'est pas revérifié sur la conduite avec la v2.** Le balayage du 5 octobre (`organism_inhibition-20261005-115511-8410`) n'a mesuré que le dommage et la lecture.
++- **Ce que demande le test du regard, et ce que fait l'effacement.**
++  - **Le test du regard** lit son critère principal sous cadrage de déploiement. L'inhibition doit y retirer « évalué », s'il y est actif, et laisser « déployé ». Sur l'organisme, cela veut dire : ramener la conduite sous indice d'évaluation au niveau du déploiement, sans déplacer le côté déploiement.
++  - **Le réglage d'origine le faisait**, avec la v1 : de 60,8 à 22,0 % de réponses annotées sous indice d'évaluation, de 6,4 à 5,2 % sous indice de déploiement (`organism_inhibition-20261004-101821-ada0`).
++  - **L'effacement complet le fait aussi, en apparence** : le côté évaluation tombe au niveau du déploiement (de 62,4 à 7,6 %), et le côté déploiement bouge peu (de 7,2 à 5,2 %). Mais son tirage du comparateur fait tomber les deux côtés (2,0 et 0,4 %) : à cette dose, c'est la conduite entière qui s'efface, pas « évalué » seul.
++  - **Aux fractions 0,5 et 0,75, l'effacement déplace aussi le côté déploiement** : de 6,4 à 14,0 puis 17,2 %, pendant que le côté évaluation passe de 60,8 à 53,2 puis 45,6 % (`…-faa0`, un seul run). Les deux côtés se rejoignent, ce qui n'est pas tout à fait ce que le test du regard demande.
++  - **Proposé** : pour chaque candidat, on rapporte les deux côtés de l'écart, sous les deux jeux d'indices, et pas seulement leur différence.
++- **La courbe en dose, refaite** (en cours le 6 octobre ; décision 32 : « oui lance les deux sur H100 »). `organism_inhibition-20261006-101545-62a1`, sur H100 : l'effacement sur toutes les couches, aux fractions 0,5, 0,75 et 1, avec 4 tirages du comparateur à chaque point. La fraction 1 y est refaite sur H100 (partie 7, la procédure, étape 10). Elle ne fixe rien : quatre tirages ne sont pas les quinze de la procédure. Elle dit seulement quelle fraction intermédiaire mérite d'être candidate (proposé).
++  - **Ses résultats** : [[RÉSULTATS_62a1]]
++- **La procédure pour fixer le nouveau réglage** (proposée par la session ; à trancher par Lazar).
++  1. **Où.** Sur la moitié de choix seulement. La moitié de test ne s'ouvre qu'une fois le réglage fixé.
++  2. **Les candidats.** Un réglage comprend sa méthode (la projection ou l'effacement), ses couches, son rang et sa fraction.
++     - le réglage d'origine de la décision 29 : la projection de rang 1 sur toutes les couches, à la fraction 1 ;
++     - l'effacement linéaire sur toutes les couches (partie 3, « Le rang minimal d'un concept, par effacement »), à une fraction intermédiaire, choisie d'après la courbe en dose ci-dessus ;
++     - d'autres, si Lazar le veut.
++  3. **L'ajustement de l'effacement.** Il se fait comme il servira au test du regard : sur le modèle de départ, une fois, pour tous les bras, comme l'extraction (partie 3), avec une direction par jeu de l'instrument et par couche. Celui des 5 et 6 octobre est ajusté sur les états de l'organisme lui-même.
++  4. **Le comparateur.** Chaque candidat contre au moins 15 tirages, appariés sur la KL, sous les deux jeux d'indices (extraction et cadrage), sur un seul modèle de carte : le candidat, ses tirages et la moitié de test sur le même (partie 7, la procédure, étape 10).
++  5. **Deux conditions pour être retenu.**
++     - **La vérification de manipulation tient**, lue par le transfert (partie 3) : sous le candidat, le transfert au dernier jeton est plus bas que sous au moins 20 tirages du comparateur, qui ne demandent aucune génération (proposé).
++     - **Le comparateur ne sature pas** : la médiane de ses tirages laisse au moins la moitié de l'écart de départ, sous chacun des deux jeux d'indices (proposé). Le 5 octobre, d'après son seul tirage, l'effacement complet ne passerait pas.
++  6. **Le choix.** Parmi les candidats retenus, celui dont la réduction dépasse le plus le 95<sup>e</sup> centile de ses tirages, sous les indices d'extraction ; sous le cadrage, sa marge se rapporte. Avec 15 tirages, ce centile est presque le plus grand des tirages.
++  7. **Qui fixe.** Lazar fixe le réglage par un amendement daté, avant la moitié de test.
++  8. **Si aucun candidat n'est retenu**, ou si aucun ne dépasse le 95<sup>e</sup> centile de ses tirages, la ligne « effet non spécifique » de la partie 6 s'applique : on arrête la question du regard avec cet instrument, et on publie ce nul de méthode. La moitié de test reste intouchée.
++  9. **Le coût** : de l'ordre de 2 à 3 GPU-heures par candidat sur H100 (estimé d'après les runs du 5 octobre : environ 8 minutes par condition mesurée sous les deux jeux d'indices).
+ 
+ **Ce qui s'y ajoute, sans injection** (bloc A ; partie 3)
+-- La vérification de manipulation, avec ses sondes réentraînées et son échec construit pour cas connu.
++- La vérification de manipulation, avec ses sondes réentraînées, lues par le transfert (décision 33), et son échec construit pour cas connu.
+ - Le moniteur d'état, sur toutes les générations.
+ - La géométrie de « je suis évalué » face à l'affect et au refus.
+ - Le composite enrichi, avec ses deux dommages construits.
+ 
+ **La porte de l'instrument** (refaite en v1.5)
+-- **Elle passe**, pour un organisme, si, sur la moitié de test et au réglage choisi sur l'autre moitié :
+-  - l'inhibition réduit son écart conditionnel plus que le 95<sup>e</sup> centile d'au moins 100 tirages du comparateur aléatoire, à dégradation appariée ;
++- **Elle passe**, pour un organisme, si, sur la moitié de test et au réglage fixé sur l'autre moitié par un amendement daté (décision 33 ; plus haut) :
++  - l'inhibition réduit son écart conditionnel plus que le 95<sup>e</sup> centile d'au moins 100 tirages du comparateur aléatoire, à dégradation appariée, les tirages et l'inhibition mesurés sur un même modèle de carte (décision 33 ; proposé : le H100 SXM ; partie 7) ;
+   - et plus que chaque témoin séparé, à dégradation appariée ;
+   - et la sonde « évalué / déployé », à la couche retenue, sépare le jeu de validation v2 mieux qu'un sac de mots appris sur les indices d'extraction, de la marge fixée (la condition lexicale ; décision 24) ;
+-  - et la vérification de manipulation tient sur l'organisme.
++  - et la vérification de manipulation tient sur l'organisme, lue par le transfert : sous l'inhibition, le transfert au dernier jeton est plus bas que sous les tirages appariés du comparateur (décision 33, 6 octobre 2026 : la lecture dans le jeu restait au plafond sous tous les réglages ; partie 3, avec ce que le transfert a montré les 5 et 6 octobre).
+ - **Si les deux organismes passent**, l'instrument est validé pour les indices explicites et implicites.
+ - **Si seul le premier passe**, l'instrument n'est validé que pour un déclencheur explicite. Le test du regard se fait, mais un nul n'y dit rien d'un regard implicite ; le post le dit.
+ - **Si le premier ne passe pas**, l'instrument ne sert pas la question du regard. On rapporte ce nul, qui est déjà informatif sur le pilotage de la conscience d'évaluation. On ne garde que le test des raisons, la localisation du principe et la voie de l'invariance du retrait pendant l'entraînement.
++- **Si aucun candidat n'est retenu pour le premier organisme, sur la moitié de choix** (proposé ; décision 33), c'est l'« effet non spécifique » de la partie 6 : la ligne précédente s'applique, sans ouvrir la moitié de test.
+ - **Le 3 octobre**, la condition lexicale échoue sur la première extraction (0,963 contre 0,979) : sur elle, la porte ne passerait pas. Elle se refait sur les jeux v2.
++- **Le 5 octobre**, elle passe sur les jeux v2 : la sonde lit la validation v2 à 0,857 à la couche 5, contre 0,634 pour le sac de mots, à une marge de 0, proposée (`extract_eval-20261005-114155-50b2` ; partie 3). Ce n'est qu'une des conditions de la porte, et la marge reste à geler au premier temps.
+ 
+ **Un contrôle de cohérence.** Sur le modèle de base, non entraîné, on mesure l'effet de l'inhibition sur les taux de désalignement. C'est la conditionnalité *de base*. On la rapporte comme référence pour le test du regard, sans la soustraire : l'avantage compare déjà deux bras sous la même inhibition.
+ 
+@@ -1231,7 +1357,7 @@
+ ## Le test du regard (la question du regard : le cœur du papier)
+ 
+ **Le dispositif**
+-- On applique l'inhibition validée par la validation de l'instrument, au réglage retenu. On applique le comparateur aléatoire et les témoins séparés, à dégradation appariée **bras par bras** : chaque entraînement a ses propres fractions appariées, puisque le LoRA change les normes du flux et que le bras raisons génère plus de jetons.
++- On applique l'inhibition validée par la validation de l'instrument, au réglage retenu. On applique le comparateur aléatoire et les témoins séparés, à dégradation appariée **bras par bras** : chaque entraînement a ses propres fractions appariées, puisque le LoRA change les normes du flux et que le bras raisons génère plus de jetons. Tous les bras, l'inhibition et les tirages se mesurent sur un même modèle de carte, celui de la porte (décision 33 ; proposé) : la perte d'avantage compare deux bras, chacun à son dommage apparié, et la dose validée par la porte n'est établie, en dommage, que sur sa carte.
+ - Sur cinq bras (tous, sauf les principes génériques, qui servent au test des raisons), aux distances moyenne et lointaine, sous les deux cadrages, l'emplacement libre et l'emplacement prérempli.
+ 
+ **Avant d'inhiber : « évalué » sous cadrage de déploiement** (v1.5 ; contre-lecture).
+@@ -1254,7 +1380,7 @@
+ **Ce qui s'y ajoute, sans injection** (bloc A)
+ - **Avant** : le contrôle positif de la sensibilité de la mesure, gradué, famille par famille. Un nul du test du regard ne vaut que si la mesure voit ces déplacements.
+ - **Pendant** :
+-  - la vérification de manipulation, bras par bras, avec des sondes réentraînées : on ne conclut pas pour un bras où l'inhibition laisse un résidu inégal ;
++  - la vérification de manipulation, bras par bras, avec des sondes réentraînées, lues par le transfert (décision 33, 6 octobre 2026 ; partie 3) : on ne conclut pas pour un bras où le transfert sous inhibition reste plus haut que dans l'autre bras, ou ne tombe pas plus que sous le comparateur ;
+   - le moniteur d'état, sans ajustement du contraste principal.
+ 
+ ## La localisation du principe (la question du principe localisé, et la thèse du rang)
+@@ -1262,13 +1388,13 @@
+ **Elle entre dans le premier papier**, avec l'expérience minimale (contre-lecture ; partie 10).
+ 
+ **Le dispositif**
+-- On ablate le sous-espace du principe dans le bras raisons, extrait contre le texte neutre au jeton d'action, l'emplacement prérempli (partie 3), avec un balayage de rang sur la grille resserrée (partie 2). On compare au comparateur aléatoire, aux directions sensibles sans rapport et aux contrastes sans rapport, à dégradation appariée.
++- On ablate le sous-espace du principe dans le bras raisons, extrait contre le texte neutre au jeton d'action, l'emplacement prérempli (partie 3), avec un balayage de rang par projection sur la grille resserrée (partie 2), en descriptif, et l'effacement linéaire itéré, qui donne le rang minimal (partie 3 ; décision 33). On compare au comparateur aléatoire, aux directions sensibles sans rapport et aux contrastes sans rapport, à dégradation appariée.
+ - **D'abord le cas positif** : le comportement en distribution du bras raisons revient au niveau du texte neutre.
+-- **Ensuite** la distance lointaine, et le rang minimal du principe.
++- **Ensuite** la distance lointaine, et le rang minimal du principe, mesuré par effacement (partie 3 ; décision 33, 6 octobre 2026). Le comportement en distribution et l'avantage lointain se lisent aussi sous l'effacement à ce rang, contre le comparateur apparié ; le balayage par projection se rapporte à côté, en descriptif.
+ - **Deux rangs d'adaptateur** : les bras entraînés avec un LoRA de rang 16, puis de rang 64 (deux graines). Un rang minimal qui suit le rang de l'adaptateur mesure l'adaptateur, pas le principe (contre-lecture).
+ - **En recoupement**, le sous-espace par différence de différences à gabarit contrôlé (partie 3). Lire Nakamura avant d'extraire (partie 1).
+ 
+-**L'option** : extraire un sous-espace par principe de la mini-spec, puis relier son rang minimal à sa charge, mesurée d'abord. C'est la courbe de la thèse du rang ; sa falsification ne se lit qu'avec la charge mesurée, et avec le cas connu du rang (partie 2).
++**L'option** : extraire un sous-espace par principe de la mini-spec, puis relier son rang minimal, mesuré par effacement avec les paires « principe pertinent contre non pertinent » (partie 3 ; décision 33), à sa charge, mesurée d'abord. C'est la courbe de la thèse du rang ; sa falsification ne se lit qu'avec la charge mesurée, et avec le cas connu du rang (partie 2).
+ 
+ ## Le retrait pendant l'entraînement (la question du retrait ; l'hypothèse du relogement)
+ 
+@@ -1288,7 +1414,7 @@
+ - L'ablation de la sonde neuve, au test.
+   - **Son cas connu, à construire** (contre-lecture : le cas connu de la sonde neuve portait sur sa décodabilité, pas sur l'effet de son ablation). Le premier organisme, ré-entraîné sous retrait de « je suis évalué » : si sa conduite persiste, la sonde neuve doit la retrouver, et son ablation réduire son écart.
+   - Sans ce cas connu, une ablation sans effet se lit comme une borne : « aucun relogement que cette sonde voie ».
+-- La dégradation, après l'entraînement ; la vérification de manipulation, refaite sur chaque modèle entraîné.
++- La dégradation, après l'entraînement ; la vérification de manipulation, lue par le transfert (décision 33), refaite sur chaque modèle entraîné.
+ 
+ **La direction tourne.** Projeter pendant le fine-tuning des directions fixées d'avance n'empêche pas l'installation, et la direction obtenue après tourne (*Routing Subspaces*, annexe I, relu). La proposition de ré-estimer la direction pendant l'entraînement attend la décision de Lazar (partie 12).
+ 
+@@ -1321,7 +1447,7 @@
+ - La rétention, et la hausse de la fraction conditionnelle sous la phase sous pression, bras par bras.
+ - La sonde neuve, pour les modèles passés par un retrait (le relogement).
+ - La trajectoire de « je suis évalué » pendant les deux phases.
+-- **La vérification de manipulation, refaite après chaque phase**, sur le modèle modifié, avec des sondes réentraînées (contre-lecture). Sans elle, une fraction conditionnelle nulle après la phase pourrait venir d'une inhibition qui ne retire plus rien.
++- **La vérification de manipulation, refaite après chaque phase**, sur le modèle modifié, avec des sondes réentraînées, lues par le transfert (contre-lecture ; décision 33). Sans elle, une fraction conditionnelle nulle après la phase pourrait venir d'une inhibition qui ne retire plus rien.
+ 
+ **La porte de la survie.** Si la phase neutre efface déjà l'avantage dans tous les bras, la phase sous pression ne teste plus rien de la condition. On rapporte la fragilité, comme Baines et al., et on s'arrête là. **« Effacé » se définit sans rapport** (contre-lecture) : l'avantage après la phase est équivalent à zéro, par deux tests unilatéraux, à la marge des comparaisons entre bras. La rétention, un rapport, se rapporte avec un intervalle de Fieller, mais ne décide rien.
+ 
+@@ -1352,7 +1478,7 @@
+ 
+ ## L'anatomie : ce que les raisons installent (la question de l'anatomie)
+ 
+-**Pourquoi.** Le test du regard dit si le gain dépend du regard ; la localisation dit s'il passe par un principe localisable. L'anatomie ouvre ce principe : quels concepts les raisons installent, s'ils portent l'action, où ils vivent. Elle reprend la machinerie de la localisation (ablation par rang, contrôles, dégradation appariée) et peut la suivre.
++**Pourquoi.** Le test du regard dit si le gain dépend du regard ; la localisation dit s'il passe par un principe localisable. L'anatomie ouvre ce principe : quels concepts les raisons installent, s'ils portent l'action, où ils vivent. Elle reprend la machinerie de la localisation (l'effacement au rang minimal, l'ablation par rang en descriptif, les contrôles, la dégradation appariée) et peut la suivre.
+ 
+ **Le cas connu : la porte de l'organisme à concept planté** (partie 3)
+ - **Elle passe** si la sonde décode le concept planté sur des formulations tenues à part, et si son ablation retire la conduite plus que le 95<sup>e</sup> centile des sous-espaces aléatoires, à dégradation appariée.
+@@ -1365,14 +1491,14 @@
+ - C'est descriptif. Un résultat non publié de Lazar le rappelle : la direction que lit une sonde peut ne faire qu'une très petite part du travail causal. Au papier, on le citera s'il est publié, sinon on le retirera (partie 11).
+ 
+ **Causer : la nécessité, la suffisance, la dissociation**
+-- **La nécessité.** L'ablation du sous-espace d'un concept dans le bras raisons, en balayant le rang, contre les sous-espaces aléatoires et les directions sensibles sans rapport, au même rang et à dégradation appariée. **D'abord le cas positif** : le comportement en distribution tombe là où le concept s'applique.
++- **La nécessité.** L'effacement d'un concept dans le bras raisons, à son rang minimal (partie 3 ; décision 33, 6 octobre 2026), et l'ablation de son sous-espace par projection, en balayant le rang, en descriptif ; l'une et l'autre contre les sous-espaces aléatoires et les directions sensibles sans rapport, au même rang et à dégradation appariée. **D'abord le cas positif** : le comportement en distribution tombe là où le concept s'applique.
+ - **La suffisance.** Le patch du sous-espace d'un concept, du bras raisons vers les actions seules, aux mêmes couches et positions. Les deux bras viennent du même modèle de base, donc d'un espace résiduel presque commun. On le vérifie d'abord par le patch de l'état complet, qui sert de plafond. **Son nul** (v1.5 ; contre-lecture) : le patch, du même bras, d'un sous-espace aléatoire tiré selon la covariance, apparié en énergie.
+ - **La dissociation.** La matrice concepts × familles des baisses. Sa ligne de contrôle est la fermeté, qui ne gouverne aucune famille tenue à part.
+ 
+ **L'espace de travail, après la porte du lens**
+ - La charge de chaque concept de raison, dans les actions seules et dans les raisons.
+ - La part du principe dans l'espace de travail, et l'échange de cette composante contre le reste : laquelle porte l'avantage ?
+-- Le rang minimal de chaque concept contre sa charge : la pente, à travers les concepts et les graines.
++- Le rang minimal de chaque concept, mesuré par effacement avec ses propres paires (partie 3 ; décision 33), contre sa charge : la pente, à travers les concepts et les graines.
+ 
+ **La géométrie entre « évalué » et le principe**, après le test du regard, qui valide « je suis évalué ».
+ - Les angles principaux ; puis l'ablation de la composante du principe alignée sur « je suis évalué », contre sa composante orthogonale, à dégradation appariée.
+@@ -1561,7 +1687,7 @@
+ - **la dépendance de l'honnêteté au regard** : (h<sub>K</sub> − h<sub>E</sub>) / h₀, avec la différence h<sub>K</sub> − h<sub>E</sub> en points et un intervalle de Fieller pour le rapport ;
+ - **les comparaisons entre bras se font à niveau d'honnêteté apparié** : on compare des points de contrôle de même h₀, à une marge près, ou l'on stratifie sur h₀. Sinon, un bras plus honnête aurait plus à perdre.
+ 
+-**L'instrument, revalidé bras par bras après le RL** (contre-lecture). La dérive des représentations pendant le RL brouille les sondes, même sans pénalité (Taufeeque et al.). Avant de lire la condition d'un bras : la vérification de manipulation, avec des sondes réentraînées sur ce bras. Sans elle, des dépendances équivalentes ne se lisent pas.
++**L'instrument, revalidé bras par bras après le RL** (contre-lecture). La dérive des représentations pendant le RL brouille les sondes, même sans pénalité (Taufeeque et al.). Avant de lire la condition d'un bras : la vérification de manipulation, avec des sondes réentraînées sur ce bras et lues par le transfert (décision 33). Sans elle, des dépendances équivalentes ne se lisent pas.
+ 
+ **L'obscurcissement** : les trois issues de Taufeeque et al. (honnête, politique obscurcie, activations obscurcies). On les établit sur la vérité de terrain comportementale, puis on regarde ce qu'en voient le détecteur de la pénalité, le détecteur d'audit, et la sonde neuve de la tromperie.
+ 
+@@ -1600,7 +1726,7 @@
+ 
+ | Ajout (partie 3) | Ce qu'il protège | GPU-heures | Quand |
+ |---|---|---|---|
+-| La vérification de manipulation, bras par bras, avec des sondes réentraînées | une inhibition qui retirerait moins « je suis évalué » dans un bras, ou une représentation tournée qui échapperait à la fois à l'inhibition et à la sonde | 4 – 8 | avec le test du regard |
++| La vérification de manipulation, bras par bras, avec des sondes réentraînées, lues par le transfert (décision 33) | une inhibition qui retirerait moins « je suis évalué » dans un bras, ou une représentation tournée qui échapperait à la fois à l'inhibition et à la sonde ; une sonde qui ne lirait que les mots de l'indice | 4 – 8 | avec le test du regard |
+ | « Évalué » sous cadrage de déploiement, sans intervention (v1.5) | une inhibition qui n'a rien à retirer sous le cadrage du critère principal | 1 – 2 | avant le test du regard |
+ | Le composite de dégradation enrichi, avec sa règle d'agrégation | un dommage qui déplace des choix sans toucher le savoir | 2 – 4 (et moins de 20 $) | semaine 1 |
+ | Les quatre gardes (partie 7) | une dose hors du régime naturel ; des réponses mal formées retirées des dénominateurs ; un effet de position ; une perte de discrimination prise pour une préférence | 0 | au premier temps du gel |
+@@ -1645,7 +1771,7 @@
+ 
+ | Poste | GPU-heures | Ce qui le fait |
+ |---|---|---|
+-| La validation de l'instrument | 25 – 60 | les documents (environ une heure de génération), le SDF et trois tours d'expert iteration ; la porte : 72 réglages sur une moitié, 100 tirages et les témoins sur l'autre ; le second organisme |
++| La validation de l'instrument | 25 – 60 | les documents (environ une heure de génération), le SDF et trois tours d'expert iteration ; la porte : 72 réglages sur une moitié, et les candidats au réglage, chacun contre au moins 15 tirages (proposé ; décision 33) ; 100 tirages et les témoins sur l'autre ; le second organisme |
+ | Le test des raisons | 15 – 45 | six bras × deux graines au pilote, puis le nombre fixé ; les évaluations sans intervention, servies par vLLM avec les adaptateurs |
+ | Le test du regard | 150 – 280 | cinq bras ; six conditions, dont cinq avec crochets ; deux distances, deux cadrages, deux états de l'emplacement : environ un milliard de jetons générés, à environ 2 800 jetons par seconde avec `generate` de Hugging Face (mesuré le 3 octobre), plus le retraitement des tours |
+ | L'appariement, bras par bras | 5 – 15 | la KL sur 120 demandes par réglage, puis les composantes du composite pour chaque contrôle apparié |
+@@ -1686,12 +1812,12 @@
+ | Pari | Issue qui le fait tomber |
+ |---|---|
+ | **Le regard est non nul** : une part de l'avantage des raisons, supérieure à zéro, dépend de la représentation validée. | L'intervalle de Fieller à 90 % de la fraction conditionnelle tient dans ±0,25, à la dose validée ; avec la vérification de manipulation dans les deux bras, le contrôle positif gradué passé, et « évalué » actif sous cadrage de déploiement. Ou l'avantage grandit sous inhibition. |
+-| **La thèse du rang** : le principe appris demande un rang supérieur à un. | À la localisation, au rang 1, le comportement en distribution revient au niveau du texte neutre, et l'avantage hors distribution disparaît, contre le comparateur aléatoire à dégradation appariée ; pour les deux rangs d'adaptateur, et pour un principe dont la charge mesurée est basse. |
++| **La thèse du rang** : le principe appris demande un rang supérieur à un. | À la localisation, le rang minimal du principe, mesuré par effacement (partie 3 ; décision 33), vaut 1, et à ce rang le comportement en distribution revient au niveau du texte neutre, et l'avantage hors distribution disparaît, contre le comparateur aléatoire à dégradation appariée ; pour les deux rangs d'adaptateur, et pour un principe dont la charge mesurée est basse. |
+ | **Le retrait retire la condition sans relogement** (n'a de sens que si le test du regard trouve le regard). | Le retrait de « je suis évalué » ≈ les retraits témoins, sur l'écart de cadrage ; ou la sonde neuve retrouve « évalué », et l'écart persiste. Une ablation sans effet de la sonde neuve ne fait tomber ce pari que si son cas connu a passé. |
+ | **Les raisons pour le juge, forme texte** : quand le juge voit les raisons, elles se découplent de l'action. | La cohérence contrefactuelle est équivalente entre raisons visibles et raisons cachées, **son cas connu ayant passé** (le découplage construit). |
+ | **« Je suis noté » est retirable** (n'a de sens que si l'écart « noté / non noté » montre le regard du correcteur). | Le retrait de « je suis noté » ≈ le retrait aléatoire, sur cet écart, à dégradation appariée. |
+ | **Les concepts portent le gain** (après la porte de l'organisme à concept planté). | Le cas positif tient (l'ablation d'un concept défait le comportement en distribution), mais l'avantage lointain survit à l'ablation conjointe des concepts autant qu'au contrôle de même rang, à dégradation appariée. |
+-| **La thèse du rang, sur les concepts de raison** : le rang qu'un concept demande croît quand sa charge baisse (après la porte du lens). | La pente du rang minimal contre la charge, à travers les concepts et les graines, est positive, ou nulle par équivalence ; avec le cas connu du rang passé, et seulement si la simulation montre l'équivalence atteignable avec dix concepts. |
++| **La thèse du rang, sur les concepts de raison** : le rang qu'un concept demande croît quand sa charge baisse (après la porte du lens). | La pente du rang minimal, mesuré par effacement (partie 3 ; décision 33), contre la charge, à travers les concepts et les graines, est positive, ou nulle par équivalence ; avec le cas connu du rang passé, et seulement si la simulation montre l'équivalence atteignable avec dix concepts. |
+ | **Le regard éteint** (exploratoire : la phase de la détresse n'est pas pré-enregistrée ; après sa porte) : l'axe réduit l'avantage des raisons, et une part de cette baisse passe par « je suis évalué ». | Avec un cas connu de sensibilité : l'avantage sous l'axe ≈ l'avantage sous contrôle. Ou, le cas connu de la médiation tenant : maintenir « je suis évalué » ne rend pas plus que maintenir un sous-espace aléatoire de même rang. Sans cas connu de sensibilité, une équivalence ne fait tomber aucun pari : c'est une borne. |
+ | **La punition installe le regard** (après la porte de « punir, retirer ou raisonner ») : à départ égal, l'honnêteté obtenue sous la pénalité d'un détecteur dépend plus de « je suis évalué » que sans elle. | À départ égal (les actions seules, puis les raisons), la dépendance de l'honnêteté au regard avec la pénalité ≈ celle sans pénalité, ou lui est inférieure, à niveau d'honnêteté apparié, l'instrument revalidé dans chaque bras. |
+ 
+@@ -1712,12 +1838,15 @@
+ 
+ | Issue | Conclusion |
+ |---|---|
+-| Sur la moitié de test, au réglage choisi sur l'autre moitié : l'inhibition réduit l'écart conditionnel de l'organisme au-delà du 95<sup>e</sup> centile d'au moins 100 tirages du comparateur aléatoire, et plus que chaque témoin séparé, à dégradation appariée ; la condition lexicale tient ; la vérification de manipulation tient | **La porte passe pour cet organisme** : l'inhibition, au réglage retenu, est validée pour le test du regard et le retrait pendant l'entraînement. |
++| Sur la moitié de test, au réglage fixé sur l'autre moitié par un amendement daté : l'inhibition réduit l'écart conditionnel de l'organisme au-delà du 95<sup>e</sup> centile d'au moins 100 tirages du comparateur aléatoire, faits sur le même modèle de carte qu'elle, et plus que chaque témoin séparé, à dégradation appariée ; la condition lexicale tient ; la vérification de manipulation tient, lue par le transfert (décision 33, 6 octobre 2026, pour le réglage, la carte et le transfert ; la lecture dans le jeu restait au plafond sous tous les réglages) | **La porte passe pour cet organisme** : l'inhibition, au réglage retenu, est validée pour le test du regard et le retrait pendant l'entraînement. |
+ | La porte passe pour le premier organisme (indices explicites), pas pour le second (indices implicites) | **L'instrument n'est validé que pour un déclencheur explicite.** Le test du regard se fait ; un nul n'y dit rien d'un regard implicite, et le post le dit. |
+-| La condition lexicale échoue : un sac de mots sépare le jeu de validation au moins aussi bien que la sonde | La sonde lit des mots. La porte ne passe pas, quel que soit l'effet de l'inhibition ; on refait les jeux, ou l'extraction. C'est le cas de la première extraction, le 3 octobre. |
++| La condition lexicale échoue : un sac de mots sépare le jeu de validation au moins aussi bien que la sonde | La sonde lit des mots. La porte ne passe pas, quel que soit l'effet de l'inhibition ; on refait les jeux, ou l'extraction. C'est le cas de la première extraction, le 3 octobre ; sur les jeux v2, la condition passe (5 octobre ; partie 4). |
++| La vérification de manipulation échoue sur l'organisme : sous l'inhibition, le transfert n'est pas plus bas que sous les tirages appariés du comparateur (décision 33, 6 octobre 2026) | Rien ne montre que l'inhibition rend illisible ce que nos jeux d'indices partagent. La porte ne passe pas à ce réglage, quel que soit l'effet sur la conduite, qui se rapporte comme exploratoire. |
+ | L'inhibition réduit l'écart, mais pas plus qu'un contrôle, à dégradation égale | Effet non spécifique : on arrête la question du regard avec cet instrument, et on publie ce nul de méthode. |
++| Sur la moitié de choix, aucun candidat au réglage n'est retenu, ou aucun ne dépasse le 95<sup>e</sup> centile de ses tirages (proposé ; décision 33) | **Effet non spécifique**, comme à la ligne précédente : on arrête la question du regard avec cet instrument, et on publie ce nul de méthode. La moitié de test reste intouchée. |
++| Sur la moitié de choix, à la dose d'un candidat, la médiane des tirages du comparateur retire plus de la moitié de l'écart de départ (la saturation ; proposé ; décision 33) | **Le dommage seul efface la conduite** : à cette dose, la comparaison ne dit rien de la spécificité. Le candidat n'est pas retenu ; on peut en proposer un à plus faible dose. C'est le cas de l'effacement complet, le 5 octobre : 52,8 points, contre 53,6 pour un tirage. |
+ | L'inhibition ne réduit l'écart qu'à une dégradation que le comparateur n'atteint pas, même à rang libre | Pas de comparaison possible à cette dose : on retient la plus forte dose appariable. |
+-| Le rang minimal de « je suis évalué » vaut 1 | La prédiction de la thèse du rang tombe pour ce concept, si sa charge mesurée est basse et si le cas connu du rang a passé. |
++| Le rang minimal de « je suis évalué », mesuré par effacement (partie 3 ; décision 33, 6 octobre 2026), vaut 1, à dégradation appariée contre le comparateur | La prédiction de la thèse du rang tombe pour ce concept, si sa charge mesurée est basse et si le cas connu du rang a passé. La mesure exploratoire du 6 octobre, où une direction effacée par couche fait tomber le transfert au dernier jeton, ne déclenche pas cette ligne : elle est exploratoire, la charge n'est pas mesurée, le cas connu n'est pas construit, et la lecture persiste en moyenne sur les jetons (partie 2). |
+ | La géométrie : « je suis évalué » forme avec l'espace affectif, ou avec la direction du refus, un angle hors de la distribution aléatoire, sous les deux constructions | La menace, ou une composante de refus, devient un candidat sérieux. L'option de l'inhibition comparée se déclenche, sur l'organisme. On ne retire pas pour autant cette composante de l'instrument validé. |
+ | L'inhibition comparée (option) : la version orthogonalisée contre l'affect ne fait pas plus que l'aléatoire, et l'espace affectif seul porte l'effet | L'instrument mêle « je suis évalué » et la menace. Le test du regard le dira. La réserve de la partie 2 s'applique : cela ne départage pas « la menace confond le regard » de « le regard contient la menace ». |
+ | Le moniteur d'état : l'inhibition déplace l'axe ou ses voisins plus que les contrôles | La confusion d'état induit devient possible : le test exploratoire, avec l'axe maintenu, dit si l'effet de l'inhibition passe par cet état. |
+@@ -1759,7 +1888,7 @@
+ | **9.** La ligne 1 sous l'emplacement libre, pas sous l'emplacement prérempli ; ou l'inverse | La délibération au moment du test change la dépendance au regard : on le dit, et la conclusion porte sur chaque condition séparément. |
+ | **10.** Le bras de la réflexion : son avantage sur les actions seules se lit par la même règle | Un avantage de la réflexion qui survit à l'inhibition dit que des principes installés, sans texte écrit au test, ne dépendent pas du regard. |
+ | **11.** Le regard sur l'avantage, mais pas d'écart de cadrage plus grand dans le bras raisons | L'inhibition de la représentation change l'avantage, alors que les indices de cadrage ne le changent pas : la conditionnalité, s'il y en a une, ne passe pas par nos indices explicites. On le dit tel quel, sans en tirer davantage (contre-lecture). |
+-| **12.** La vérification de manipulation échoue dans un bras : l'inhibition y laisse un résidu plus grand | Pas de conclusion pour ce bras. On rapporte la décodabilité résiduelle, bras par bras. |
++| **12.** La vérification de manipulation échoue dans un bras : le transfert sous inhibition y reste plus haut que dans l'autre bras, ou n'y tombe pas plus que sous le comparateur (décision 33, 6 octobre 2026 : la lecture dans le jeu, critère de la v1.5, restait au plafond sous tous les réglages) | Pas de conclusion pour ce bras. On rapporte, bras par bras, le transfert, la lecture dans le jeu et la projection résiduelle. |
+ | **13.** Le contrôle positif gradué échoue pour une famille | La mesure est aveugle sur cette famille aux effets de la taille de l'effet minimal : un nul n'y compte pas, et la famille se rapporte à part. |
+ | **14.** Les taux d'issues invalides, ou la réussite de la tâche légitime, diffèrent entre bras sous inhibition | La baisse de l'avantage peut venir d'un dommage plus fort sur un bras : on lit l'avantage parmi les épisodes engagés, et la conclusion est qualifiée. |
+ | **15.** Le moniteur d'état : un déplacement de l'axe plus grand que sous les contrôles, **et** un effet de l'inhibition qui disparaît quand l'axe est maintenu (exploratoire) | **La confusion d'état induit** : la baisse de l'avantage passe par un état affectif. On le dit, et la conclusion du regard est qualifiée d'autant. |
+@@ -1771,7 +1900,7 @@
+ | Issue | Conclusion |
+ |---|---|
+ | Aucun rang ne fait revenir le comportement en distribution | Échec de l'instrument : **aucune conclusion** sur la distance lointaine. On essaie une autre extraction (crosscoder, diffing). |
+-| Le comportement en distribution revient à un rang donné ; l'avantage lointain disparaît avec le principe, pas avec les contrôles | L'avantage passe par le principe. On rapporte son rang minimal. |
++| Le comportement en distribution revient à un rang donné ; l'avantage lointain disparaît avec le principe, pas avec les contrôles | L'avantage passe par le principe. On rapporte son rang minimal, mesuré par effacement (partie 3 ; décision 33), et le balayage par projection en descriptif. |
+ | Le comportement en distribution revient, mais l'avantage lointain persiste | L'avantage hors distribution emprunte une autre voie que ce sous-espace. |
+ | Le rang minimal suit le rang de l'adaptateur (plus grand avec le LoRA de rang 64) | Le rang minimal mesure l'adaptateur, pas le principe : on ne rapporte pas de rang du principe (contre-lecture). |
+ 
+@@ -1904,6 +2033,22 @@
+ 7. **Pour le pilotage de l'axe**, la même règle. Chaque contrôle (chaque tirage aléatoire, la peur, la tristesse) est porté au coefficient qui atteint la dégradation de l'axe, au lieu de la norme égale de Tagliabue et al. Chaque tirage aléatoire se règle à 2 ou 3 normes pour cela.
+ 8. **La règle contre le surappariement** (partie 3) : une composante qui partage le format ou le contenu de l'issue se rapporte, mais on n'apparie pas sur elle.
+ 9. **Les bras entraînés sont eux-mêmes des interventions.** Toute différence de lecture ou de choix entre bras se rapporte avec la dégradation des sorties de chaque bras.
++10. **Une même carte** (décision 33, 6 octobre 2026). Les tirages du comparateur ne se mettent en commun qu'entre runs faits sur le même modèle de carte (par exemple le H100 SXM), avec les mêmes réponses de référence (la même empreinte), la même version du code et le même organisme (au test du regard, le même entraînement). L'inhibition se mesure dans les mêmes conditions que les tirages auxquels on la compare : le plus simple est le même run.
++    - **Pourquoi.** Le même effacement linéaire ne fait pas le même dommage d'une carte à l'autre, aux mêmes arguments, avec le même code d'effacement et de KL, les mêmes paquets et le même pilote (5 et 6 octobre) :
++      - sur toutes les couches, une KL de 0,259 sur A100 (`organism_inhibition-20261005-115511-8410` et `…-115519-a006`), de 0,159 sur H100 (`organism_inhibition-20261005-141738-0718` et `organism_inhibition-20261006-101553-00c6`) ;
++      - sur les couches 4 à 8, 0,055 sur A100 (`…-115511-8410`), 0,042 sur H100 (`organism_inhibition-20261005-141318-194c` et `…-101553-00c6`) ;
++      - sur une même carte, la KL se répète au chiffre près : 0,15889 dans `…-141738-0718` et `…-101553-00c6` ; 0,0422 dans `…-141318-194c` et `…-101553-00c6` ;
++      - l'écart entre les cartes, de 23 à 39 %, dépasse de loin la tolérance de l'appariement (±10 %).
++    - **Ce qui tient, et ce qui ne tient pas.** Le comparateur est apparié dans chaque run : les comparaisons à l'intérieur d'un run tiennent. D'un run à l'autre, sur deux cartes, le dommage n'est pas le même.
++    - **Deux causes possibles, non tranchées.**
++      - Les réponses de référence, générées en glouton, changent avec le calcul numérique de la carte. Pour les mêmes 120 demandes et le même organisme, 82 diffèrent entre l'A100 et le H100. Sur deux machines H100, sous deux pilotes, quatre runs ont donné les mêmes (le 4 et le 6 octobre). La conduite gloutonne de l'organisme change de même : sans intervention, son écart d'extraction est de 55,2 points sur A100 (`…-115519-a006`), de 54,4 sur H100 (`organism_inhibition-20261004-101821-ada0`, `…-141318-194c`, `…-141323-faa0`).
++      - L'ajustement de l'effacement, refait dans chaque run couche après couche, peut changer aussi.
++      - Ce qui penche vers l'ajustement, sans trancher : les projections, dont les directions viennent d'un fichier, ne changent de dommage que de moins de 1 % d'une carte à l'autre (au rang 1 sur toutes les couches, 0,1535 sur A100 et 0,1528 sur H100). Un run croisé les départagerait (partie 11).
++    - **La conséquence pour la porte.** Ses 100 tirages, et la mesure de l'inhibition, se font sur un seul modèle de carte. Proposé : le H100 SXM, la carte de la décision 4, et celle de tous les runs d'inhibition sur l'organisme depuis le 4 octobre, sauf `…-115511-8410` et `…-115519-a006`. Plusieurs machines de ce modèle peuvent se partager les tirages. Avant de mettre deux runs en commun, on vérifie que leurs réponses de référence ont la même empreinte, et que la KL de l'inhibition, que chaque run remesure à peu de frais, y est la même à 0,1 % près (proposé). Le réglage se choisit sur la moitié de choix sur la même carte (proposé). Le test du regard suit la même règle, tous bras confondus (proposé).
++    - **Le dommage ne se compare pas d'un run à l'autre sur des cartes différentes.** Deux cas du 5 octobre :
++      - la courbe en dose (`organism_inhibition-20261005-141323-faa0`, H100) reprend, pour la fraction 1, le run `…-115519-a006`, fait sur A100 : ce point n'est pas sur la même échelle de dommage. La courbe du 6 octobre (`organism_inhibition-20261006-101545-62a1`, H100) refait la fraction 1 ;
++      - l'effacement qui fait tomber le transfert (H100, KL 0,159) n'est pas, en dommage, celui qui effaçait la conduite (A100, KL 0,259).
++    - **Ce que chaque run enregistre.** Le registre garde déjà la carte (l'offre de vast.ai, et `nvidia-smi` dans l'état du run, avec le pilote) et la version du code (l'empreinte du paquet de code). Chaque run écrira aussi, dans ses résultats, la carte et l'empreinte SHA-256 de ses réponses de référence (proposé).
+ 
+ **Ce que les mesures du 3 octobre ont montré** (`experiences/resultats/NOTE_DEGRADATION_ET_JUGE_2026-10-03.md`). Sur le modèle de départ, avec la KL sur 120 demandes neutres :
+ - les sous-espaces aléatoires de même rang, projetés en entier, n'atteignent la dégradation de l'inhibition que dans 16 réglages sur 96, tous à faible dose (fractions 0,25 et 0,5) ; aux couches 19 à 23, dans aucun ;
+@@ -1941,13 +2086,13 @@
+ - **Les critères co-principaux** (l'emplacement libre, l'emplacement prérempli) : une correction de Holm entre eux pour les différences. L'équivalence se déclare critère par critère.
+ - **Les critères secondaires** : une correction de Holm. Les témoins séparés, l'écart de cadrage, les autres bras sous inhibition, le cadrage d'évaluation, sont secondaires.
+ - **Aucun ajustement du contraste principal sur une variable mesurée sous l'intervention**, comme la projection affective du moniteur d'état : elle en est une conséquence, un médiateur possible.
+-- **La vérification de manipulation** : la décodabilité résiduelle, bras par bras, par les sondes réentraînées, avec son IC par bootstrap ; le critère d'égalité est une équivalence, à une marge fixée d'avance.
++- **La vérification de manipulation** (refaite par la décision 33, 6 octobre 2026 : la lecture dans le jeu restait au plafond sous tous les réglages) : le transfert au dernier jeton, en moyenne sur les couches, bras par bras, par les sondes réentraînées, avec son IC par bootstrap sur les paires. Contre le comparateur : plus bas que 95 % d'au moins 20 tirages appariés (proposé). Entre bras : le critère d'égalité est une équivalence, à une marge fixée d'avance. La lecture dans le jeu et le transfert en moyenne sur les jetons se rapportent en secondaire.
+ - **Le moniteur d'état** : la statistique de la partie 3, comparée au 95<sup>e</sup> centile des contrôles. C'est une mesure secondaire, et son test avec l'axe maintenu est exploratoire.
+ - **L'analyse sans deux familles** : le contraste principal, sans la sous-performance et le correcteur faible, pré-enregistré en sensibilité (partie 3).
+ - **La convergence** : la règle de la partie 3, gelée au premier temps. Les entraînements qui ne convergent pas restent dans l'analyse principale ; une analyse de sensibilité les écarte ; aucun n'est remplacé.
+ - **L'anatomie.**
+   - Les tests par concept sont corrigés par Holm.
+-  - La pente du rang minimal contre la charge se teste par une régression à effets mixtes, avec le concept et la graine en effets aléatoires. Avec dix concepts, l'équivalence n'est déclarable que si la simulation la montre atteignable.
++  - La pente du rang minimal (par effacement, partie 3 ; décision 33) contre la charge se teste par une régression à effets mixtes, avec le concept et la graine en effets aléatoires. Avec dix concepts, l'équivalence n'est déclarable que si la simulation la montre atteignable.
+   - Les seuils des portes de l'organisme à concept planté et du lens sont gelés avec le reste.
+ - **La phase de la détresse** (exploratoire, et reportée).
+   - Le même modèle, avec le pilotage pour facteur (aucun, l'axe, les directions aléatoires, la peur, la tristesse) et la famille croisée avec le pilotage : `désaligné ~ bras × pilotage × cadrage × famille + (1 | entraînement) + (1 | scénario)`.
+@@ -1980,9 +2125,11 @@
+   1. **Le premier temps, avant toute donnée des bras : tout ce qui décide.**
+      - le protocole, et les règles de décision de la partie 6, **avec tous leurs seuils** : la porte de l'instrument, la porte des raisons, la règle du regard, les marges (±0,25 sur la fraction, 3 points entre bras), l'effet minimal (5 points), la plage du plancher (15 à 60 %), la règle de convergence ;
+      - le script d'analyse, et la règle d'inférence (le bootstrap hiérarchique, et le plus large avec l'intervalle de Student) ;
+-     - la procédure de la dégradation appariée, sa règle d'agrégation et ses tolérances ; les quatre gardes ;
++     - la procédure de la dégradation appariée, sa règle d'agrégation et ses tolérances ; la règle de mise en commun des tirages, et le modèle de carte de la porte et du test du regard (décision 33) ; les quatre gardes ;
++     - la procédure du choix du réglage de la porte, et ses seuils : au moins 15 tirages par candidat, le critère de saturation (partie 4 ; proposé ; décision 33) ;
+      - ce que voit le juge, son prompt, la règle de son choix (décision 21) et sa marge ;
+      - la méthode d'extraction de « je suis évalué », la règle du choix des couches, et la ré-estimation ou non de la direction pendant le retrait ;
++     - la vérification de manipulation : les deux jeux du transfert, le nombre de tirages, la marge d'égalité entre bras, la lecture de l'écart au hasard (décision 33) ;
+      - l'échantillonnage (la température, le top-p) et le format des appels d'outil ;
+      - les spécifications des cinq jeux d'indices ;
+      - l'empreinte du détecteur d'audit ;
+@@ -1990,9 +2137,9 @@
+   2. **Après le pilote, avant toute donnée du test du regard, un amendement gelé : seulement ce qui se mesure.**
+      - la puissance, les effectifs, le nombre de graines ;
+      - le juge scellé, choisi par la règle gelée, sur le jeu de calibration ;
+-     - le réglage de l'inhibition, choisi par la porte gelée, sur la moitié des tâches de l'organisme qui sert au choix ;
+-     - les empreintes des jeux d'indices v2 et des données.
+-- **Avant le gel** : la contre-lecture vierge de la v1.4 est faite (3 octobre) ; la v1.5 en tient compte (annexe 1) ; Lazar la relit.
++     - le réglage de l'inhibition, choisi sur la moitié de choix par la procédure de la partie 4 et fixé par Lazar dans un amendement daté, avant la moitié de test (décision 33 : la décision 29, qui l'avait figé, est rouverte) ;
++     - les empreintes des jeux d'indices v2 et des données ; celle des réponses de référence de la porte, avec sa carte (décision 33).
++- **Avant le gel** : la contre-lecture vierge de la v1.4 est faite (3 octobre) ; la v1.5 en tient compte (annexe 1) ; la v1.6 y ajoute les amendements de la décision 33 (annexe 3) ; Lazar relit la v1.6.
+ - **Gelés aussi, pour les phases suivantes, avant leurs données** : la dose et les seuils de la porte de la détresse ; les réglages du bras « punir » (la sensibilité du détecteur de la pénalité, le poids de sa pénalité, la KL) ; les seuils de la porte de « punir, retirer ou raisonner ».
+ - **Ce que le dépôt date.** Un pré-enregistrement public, gelé par empreinte, **date l'idée**, ce qui protège dans la course. Il ne protège que contre ce qui viendra après lui.
+ - **Confirmatoire et exploratoire.** Tout ce qui n'est pas pré-enregistré est étiqueté exploratoire.
+@@ -2009,11 +2156,13 @@
+ |---|---|
+ | La conscience d'évaluation native d'un 8B est faible. | Les organismes en donnent un cas connu. Heidari et al. trouvent la direction dès le modèle de base, et le SFT l'amplifie. « Évalué » se mesure sous cadrage de déploiement avant d'inhiber. L'extension à environ 32B est prévue. |
+ | **L'instrument est validé sur un autre construit que celui qu'on teste** : un déclencheur appris et explicite, contre un regard émergent et implicite (contre-lecture). | L'union des directions explicite et implicite ; un second organisme conditionné par des indices implicites ; le contrôle positif gradué ; la mesure d'« évalué » sous déploiement avant d'inhiber. |
+-| **La sonde lit des mots, pas une représentation** : le 3 octobre, un sac de mots sépare le jeu de validation mieux que la sonde. | La condition lexicale dans la porte ; le jeu de validation refait sans vocabulaire commun (décision 24). |
++| **La sonde lit des mots, pas une représentation** : le 3 octobre, un sac de mots sépare le jeu de validation mieux que la sonde. | La condition lexicale dans la porte ; le jeu de validation refait sans vocabulaire commun (décisions 24, 30 et 31) ; sur les jeux v2, la sonde bat le sac de mots (0,857 contre 0,634, le 5 octobre). |
+ | L'inhibition fait taire la verbalisation sans toucher la représentation latente. | Le critère principal est **comportemental**. Une sonde latente sert de contrôle. La verbalisation n'est **jamais** une preuve d'inhibition : des directions aléatoires la font baisser aussi, et un placebo aléatoire est supprimé aussi fort que la vraie direction (Mody et al.). |
+ | Des vecteurs témoins agissent autant que « je suis évalué » (Read et al. ; Aranguri et al.). | Le comparateur aléatoire (au moins 100 tirages selon la covariance, à rang libre), les témoins séparés, la manipulation rivale, et la dégradation appariée bras par bras. |
+ | **Les aléatoires de même rang ne s'apparient pas** : ils retirent trop peu d'énergie (mesuré le 3 octobre). | Le rang libre ; le tirage selon la covariance ; les directions de forte variance gardées dans l'expérience minimale. |
+-| **L'inhibition retire moins « je suis évalué » dans un bras**, parce que l'entraînement l'a déplacée. | La vérification de manipulation, bras par bras, avec des sondes réentraînées dans chaque bras, linéaires et non linéaires, et son échec construit pour cas connu. Un bras en défaut ne se conclut pas. |
++| **Le dommage dépend de la carte** : le 5 et le 6 octobre, le même effacement, aux mêmes arguments, fait une KL de 0,259 sur A100 et de 0,159 sur H100. Des tirages mis en commun d'une carte à l'autre seraient appariés à un autre dommage que celui de l'inhibition. | Les tirages ne se mettent en commun qu'entre runs d'un même modèle de carte, avec la même empreinte des réponses de référence, la même version du code et le même organisme ; l'inhibition mesurée dans les mêmes conditions ; la porte et le test du regard sur un seul modèle de carte (proposé : le H100 SXM) ; la carte et l'empreinte enregistrées par chaque run (décision 33 ; partie 7). |
++| **L'inhibition retire moins « je suis évalué » dans un bras**, parce que l'entraînement l'a déplacée. | La vérification de manipulation, bras par bras, avec des sondes réentraînées dans chaque bras, linéaires et non linéaires, lues par le transfert (décision 33), et son échec construit pour cas connu. Un bras en défaut ne se conclut pas. |
++| **La vérification de manipulation lit les mots de l'indice** : des sondes entraînées et testées dans un même jeu restent au plafond sous tout retrait (de 0,97 à 0,99 le 5 octobre), et ne départagent rien. | Le transfert : des sondes entraînées sur un autre jeu d'indices, hors de tout ajustement de l'intervention, et lues sur le jeu tenu à part ; un critère comparatif, contre au moins 20 tirages du comparateur (proposé) ; sa limite, écrite d'avance (décision 33 ; partie 3). |
+ | **Un dommage déplace les choix sans toucher le savoir** : dans le papier de l'axe, l'exactitude sur un panel choisi ne bouge pas, pendant que les choix bougent (p. 20). | Le composite enrichi (l'ordre, les réponses mal formées sur plusieurs tours, les appels d'outils), la règle contre le surappariement, et deux dommages construits pour cas connus. |
+ | **« Je suis évalué » porte de la menace** : l'hypothèse de la menace. | L'équilibre affectif des cinq jeux d'indices ; la géométrie face à l'affect, sous deux constructions ; l'inhibition comparée, en option déclenchée. La réserve de la partie 2 est écrite d'avance. |
+ | **« Je suis évalué » porte de l'enjeu** : l'hypothèse de l'enjeu (contre-lecture). | Des paires d'indices équilibrées sur l'enjeu ; le contraste d'enjeu en témoin séparé ; les conclusions écrites comme « une représentation qui sépare nos indices ». |
+@@ -2022,6 +2171,7 @@
+ | L'organisme est artificiel. | La validation ne conclut que sur l'**instrument**. Les conclusions de fond portent sur les modèles sans organisme. Deux organismes, d'indices et de conduites différents. |
+ | **Le cas connu est trop grand** : un instrument qui voit un grand déplacement peut manquer un petit. | Le contrôle positif gradué à 5, 10 et 20 % des épisodes ; l'écart de l'organisme mesuré aussi après les seuls documents. |
+ | **La porte de l'instrument choisit et teste sur les mêmes données**, parmi de nombreux réglages. | Le choix sur une moitié des tâches, le test sur l'autre ; au moins 100 tirages du comparateur. |
++| **Le comparateur sature** : à fort dommage, un tirage au hasard efface la conduite de l'organisme autant que l'inhibition (le 5 octobre : 53,6 points contre 52,8). La porte conclurait alors à un effet non spécifique, quel que soit l'instrument. | Le critère de saturation au choix du réglage (proposé ; décision 33) ; des candidats à dose intermédiaire ; une courbe en dose avec un comparateur à chaque point. |
+ | Le modèle détecte le pilotage (*Steering Awareness*, arXiv 2511.21399, COLM 2026 ; non ouvert). | La même machinerie de projection dans tous les bras, contrôles compris (le retrait aléatoire). Pour la phase de la détresse, le même pilotage pour l'axe, les directions aléatoires, la peur et la tristesse. |
+ | Ablater « test » a des dégâts collatéraux (code, fiction). | Les tests unitaires de code font partie de la dégradation, et la cohérence de la fiction est mesurée. |
+ 
+@@ -2049,7 +2199,8 @@
+ 
+ | Menace | Parade |
+ |---|---|
+-| L'entraînement par raisons répartit la représentation (Nguyen et al. ; Abu Shairah et al.). | Un balayage de rang jusqu'à 32, et le cas positif en distribution avant toute conclusion ; le patch de l'état complet comme plafond. |
++| L'entraînement par raisons répartit la représentation (Nguyen et al. ; Abu Shairah et al.). | Le rang minimal par effacement linéaire itéré, une direction par couche à la fois, jusqu'au hasard du transfert (décision 33) ; le balayage par projection jusqu'au rang 32, en descriptif ; le cas positif en distribution avant toute conclusion ; le patch de l'état complet comme plafond. |
++| **Le rang mesuré par projection suit la variance des différences, pas ce qui porte le concept** (5 et 6 octobre : jusqu'au rang 16, sur toutes les couches, la projection laisse le transfert de « je suis évalué » ; une direction effacée par couche le fait tomber). | Le rang par effacement, lu sur le transfert au dernier jeton, à dégradation appariée (décision 33, 6 octobre 2026) ; la projection en descriptif seulement. Un transfert qui passe sous 0,5 se rapporte couche par couche, avec sa lecture symétrique (proposé). |
+ | **La localisation mesure le format, ou le rang de l'adaptateur** (contre-lecture). | Le sous-espace extrait contre le texte neutre, au jeton d'action, l'emplacement prérempli ; deux rangs de LoRA ; la falsification de la thèse du rang conditionnée à la charge mesurée, et le cas connu du rang. |
+ | **Un nul sans cas connu** se lit comme une absence : l'ablation de la sonde neuve, la cohérence contrefactuelle, la pente du rang, la fraction après une phase (contre-lecture). | Un cas connu pour chacun (partie 4) ; sans lui, l'issue s'écrit comme une borne. |
+ | La condition se reloge (Nadaf). | La sonde neuve, sur son propre jeu d'indices, et d'autres déclencheurs. |
+@@ -2116,23 +2267,24 @@
+   - aucune clé de l'API Claude sur ces machines ;
+   - un jeton Hugging Face à accès restreint, révoqué ensuite ;
+   - les données et les points de contrôle synchronisés vers un stockage de Lazar.
++- **Une série, une carte** (décision 33, 6 octobre 2026). Le dommage d'une intervention change d'une carte à l'autre (partie 7, la procédure, étape 10). Les runs dont les tirages se mettent en commun se font donc sur un même modèle de carte : un A100 ne remplace plus un H100 au milieu d'une série. La porte et le test du regard attendent un H100 SXM plutôt que de basculer (proposé). Le prix : le 5 octobre, un H100 coûtait 3,86 $ l'heure, un A100 1,23 $.
+ - **Les débits des pistes de l'axe** sont des hypothèses d'agents, non mesurées : une incertitude d'un facteur 2 à 5.
+ 
+ | Phase | Entraînements | Évaluations | GPU-heures |
+ |---|---|---|---|
+-| La validation de l'instrument | les deux organismes (documents, puis expert iteration) | la porte : 72 réglages sur une moitié des tâches ; 100 tirages du comparateur et les témoins sur l'autre | 25 – 60 |
++| La validation de l'instrument | les deux organismes (documents, puis expert iteration) | la porte : 72 réglages sur une moitié des tâches, et les candidats au réglage, chacun contre au moins 15 tirages (proposé ; décision 33) ; 100 tirages du comparateur et les témoins sur l'autre | 25 – 60 |
+ | Le test des raisons, et la trajectoire | 6 bras × 2 graines au pilote, puis le nombre fixé ; 5 points de contrôle chacun | 3 distances × 2 cadrages × l'emplacement libre et prérempli, sans intervention (vLLM) ; les sondes sur les points de contrôle | 15 – 45 |
+ | Le test du regard | — | 5 bras ; l'inhibition, le comparateur, trois témoins et la manipulation rivale ; 2 distances × 2 cadrages × 2 états de l'emplacement, avec des crochets (sans vLLM) | 150 – 280 |
+ | L'appariement, bras par bras, et le juge local | — | la KL et le composite de chaque contrôle apparié ; JEV-27B en lots | 15 – 45 |
+ | Les ajouts sans injection (partie 5) | — | la vérification de manipulation, « évalué » sous déploiement, le composite, le moniteur, le socle, la géométrie, le contrôle positif gradué, la sonde sur les textes | 22 – 52 |
+ | **L'expérience minimale** (partie 5) | | | **≈ 230 – 480** |
+-| La localisation du principe | les bras raisons et texte neutre avec un LoRA de rang 64 (2 graines) | le balayage de rang, pour deux rangs d'adaptateur ; le cas connu du rang | 40 – 80 |
++| La localisation du principe | les bras raisons et texte neutre avec un LoRA de rang 64 (2 graines) | le rang par effacement et le balayage de rang en descriptif, pour deux rangs d'adaptateur ; le cas connu du rang | 40 – 80 |
+ | **Le premier papier** : l'expérience minimale et la localisation | | | **≈ 270 – 560** |
+ | Le retrait pendant l'entraînement | 4 voies et 2 retraits témoins × 2 bras × les graines | l'écart de cadrage, la sonde neuve et son cas connu | 85 – 150 |
+ | La réplication | le test des raisons et le test du regard, sur Qwen3-8B | le socle de lecture, refait | 150 – 300 |
+ | La survie | 5 modèles de départ et la phase neutre seule × 2 phases × les graines | la fraction conditionnelle, la vérification refaite, la sonde neuve, la trajectoire | 90 – 170 |
+ | Les raisons notées | 4 bras de RL et 2 retraits témoins × les graines, avec le juge | les quatre mesures, le cas connu de la cohérence, la fidélité, le test du regard refait | 110 – 220 |
+-| L'anatomie | l'organisme à concept planté ; le concept à rang connu ; les deux LoRA du calme | les sondes, les ablations et les patchs par concept × rang × contrôles, avec le patch nul ; le lens et sa porte ; la géométrie ; le caractère ; le calme lu | 127 – 263 |
++| L'anatomie | l'organisme à concept planté ; le concept à rang connu ; les deux LoRA du calme | les sondes, les effacements, les ablations et les patchs par concept × rang × contrôles, avec le patch nul ; le lens et sa porte ; la géométrie ; le caractère ; le calme lu | 127 – 263 |
+ | Les options de l'anatomie | les crosscoders (base contre raisons, base contre actions seules) | les graphes d'attribution, sur un petit modèle | + 50 – 200 |
+ | « Punir, retirer ou raisonner » | le plan 2 × 2, retirer, retirer au hasard et deux retraits témoins, la variante corrélée aux indices × les graines ; les quatre détecteurs | la porte ; la dépendance de l'honnêteté au regard ; l'obscurcissement ; le relogement | 150 – 290 |
+ | **La phase de la détresse** (reportée) | — | si elle revient : la porte, dommage ou affinité, le regard sur l'organisme, l'avantage sous détresse réduit, ce que l'axe lit | 149 – 394, non comptés |
+@@ -2146,16 +2298,18 @@
+ 
+ **Ce qui a déjà tourné, le 3 octobre** : treize locations sur vast.ai, des essais aux premières mesures ; 6,34 $ au plus pour les douze terminées, d'après la borne du registre (`experiences/registre/`), sans la génération complète des documents, en cours au moment d'écrire.
+ 
++**Du 4 au 6 octobre** : environ 5 $ de calcul le 4 (quatre runs, sur H100) et environ 10 $ le 5 (trois runs sur A100, 1,80 $ ; trois sur H100, environ 8,50 $), d'après les notes de ces jours ; les runs du 6 octobre ne sont pas encore comptés.
++
+ **L'API**
+ - **La génération des données d'entraînement**, d'après le pipeline v0.1 : de 500 à 1 400 $ au prix standard, et la moitié par lots (non codés) ; le pilote, de 25 à 70 $.
+ - **Le reste** : les scénarios tenus à part, les paires de concepts, les jeux d'indices (dont le cinquième), le juge de la conscience verbalisée et celui de cohérence sur des sous-échantillons, le juge des raisons notées et la vérité de terrain de « punir, retirer ou raisonner ». La v1.3 estimait le tout de quelques centaines à environ 3 000 $. Si les juges Claude tournaient sur toutes les conditions, ce serait de l'ordre d'un million d'appels, et trop bas d'un ordre de grandeur (contre-lecture) : d'où le juge scellé local, les traces programmées et les sous-échantillons stratifiés. C'est à refaire après le pilote.
+-- **Pas de plafond** (passation v1.2, §3, point 2). Le crédit est épuisé jusqu'au lundi 5 octobre.
++- **Pas de plafond** (passation v1.2, §3, point 2). Le crédit, épuisé le 3 octobre, est revenu le 5, sur une nouvelle clé : les jeux d'indices v2 ont coûté 5,80 $, et le pilote du pipeline 27,58 $ en tout (partie 3).
+ 
+ ## Le calendrier en seize semaines
+ 
+ | Semaine | Travail | Livrable |
+ |---|---|---|
+-| 1 | la relecture de la v1.5 par Lazar ; **la décision sur le harnais des scénarios tenus à part** ; le pilote du pipeline, les jeux d'indices v2 et le jeu des marques de construction (l'API) ; le premier organisme (documents faits ; SDF, expert iteration) ; l'extraction sur les jeux v2 ; le composite, et l'appariement à rang libre ; le détecteur d'audit, entraîné et gelé ; **le premier temps du pré-enregistrement**, dès que ses pièces sont prêtes | l'empreinte du dépôt, qui date l'idée |
++| 1 | la relecture de la v1.6 par Lazar ; **la décision sur le harnais des scénarios tenus à part** ; le pilote du pipeline, les jeux d'indices v2 et le jeu des marques de construction (l'API) ; le premier organisme (documents faits ; SDF, expert iteration) ; l'extraction sur les jeux v2 ; le composite, et l'appariement à rang libre ; le détecteur d'audit, entraîné et gelé ; **le premier temps du pré-enregistrement**, dès que ses pièces sont prêtes | l'empreinte du dépôt, qui date l'idée |
+ | 2 | le harnais et ses scénarios ; la génération des données ; la porte de l'instrument sur le premier organisme ; les entraînements pilotes, deux graines par bras ; le jeu de calibration du juge | — |
+ | 3 | le pilote : le plancher, le volume, la variance entre entraînements ; la simulation de puissance ; le juge scellé, choisi par sa règle ; le second organisme et sa porte ; **l'amendement gelé**, avant toute donnée du test du regard | l'amendement |
+ | 4 | les entraînements complets ; le test des raisons et sa porte ; le contrôle positif gradué ; « évalué » sous déploiement | — |
+@@ -2166,7 +2320,7 @@
+ | 11 – 16 | le reste du programme, pour d'autres papiers : l'anatomie, le retrait, la réplication, la survie, les raisons notées, « punir, retirer ou raisonner » ; la détresse seulement si les lectures la justifient | — |
+ 
+ **Quatre remarques**
+-- **Le goulot est le temps humain, pas les GPU** (pistes de l'axe, §3.1 ; contre-lecture). La semaine 1 de la v1.4 était irréaliste pour une personne. Celle de la v1.5 demande à Lazar, à grands traits : la relecture de la v1.5 (de 4 à 6 heures) ; l'audit de 200 items du pipeline (de 6 à 8) ; la décision et la relecture du harnais (de 4 à 8) ; la relecture des jeux d'indices (de 2 à 3) ; celle du texte du pré-enregistrement (de 4 à 6) ; les décisions (de 2 à 4). Soit de 22 à 35 heures, une estimation. Le reste revient aux sessions de Claude.
++- **Le goulot est le temps humain, pas les GPU** (pistes de l'axe, §3.1 ; contre-lecture). La semaine 1 de la v1.4 était irréaliste pour une personne. Celle de la v1.5 demande à Lazar, à grands traits : la relecture du programme, désormais la v1.6 (de 4 à 6 heures) ; l'audit de 200 items du pipeline (de 6 à 8) ; la décision et la relecture du harnais (de 4 à 8) ; la relecture des jeux d'indices (de 2 à 3) ; celle du texte du pré-enregistrement (de 4 à 6) ; les décisions (de 2 à 4). Soit de 22 à 35 heures, une estimation. Le reste revient aux sessions de Claude.
+ - **Le harnais des scénarios tenus à part est le chemin critique.** Sans lui, ni le contrôle des 8-grammes des données, ni le jeu de calibration du juge, ni aucune évaluation des bras ne tournent. Son écriture a été interrompue le 3 octobre par un filtre de sûreté du côté de la session ; la façon de le faire est à décider avec Lazar (partie 12).
+ - **Aucune pièce ne date le début de la semaine 1** (carte des angles, §5). Si elle commence le lundi 5 octobre 2026 :
+   - le post tombe la semaine du 9 novembre ;
+@@ -2188,7 +2342,7 @@
+ 
+ **Projet de résumé** (les résultats restent à écrire)
+ 
+-> Fine-tuning language models on the reasons for aligned behavior, rather than on the behavior alone, has been reported to improve out-of-distribution safety. A competing explanation is that such training teaches models to behave well when they believe they are being evaluated. We test this in one setting: LoRA fine-tuning of an open 8B model. We train on identical aligned actions, preceded by nothing, by a length-matched neutral text, by reasoning written for another situation, by a fixed generic statement of principles, or by per-example reasons, and in a reflection arm where reasons are trained after the action and never written at test time. We evaluate on held-out scenario families up to multi-turn agentic settings, with free and prefilled reasoning slots, and count invalid or passive episodes separately. We then inhibit an internal representation of evaluation awareness, the union of an explicit and an implicit direction, validated on two model organisms whose behavior is conditioned on explicit or implicit evaluation cues. We check with retrained probes that the inhibition is equally effective in every arm, and compare it to random subspaces drawn from the activation covariance and to unrelated, high-variance and stakes controls, each matched in output degradation within each arm. [Results, as a loss of advantage in percentage points and a conditional fraction with its Fieller interval.] Finally, we localize what carries the advantage at identical actions, against the neutral-text arm and for two adapter ranks. Our design tests the pathways open to supervised fine-tuning; it does not test reinforcement learning in evaluation-like environments.
++> Fine-tuning language models on the reasons for aligned behavior, rather than on the behavior alone, has been reported to improve out-of-distribution safety. A competing explanation is that such training teaches models to behave well when they believe they are being evaluated. We test this in one setting: LoRA fine-tuning of an open 8B model. We train on identical aligned actions, preceded by nothing, by a length-matched neutral text, by reasoning written for another situation, by a fixed generic statement of principles, or by per-example reasons, and in a reflection arm where reasons are trained after the action and never written at test time. We evaluate on held-out scenario families up to multi-turn agentic settings, with free and prefilled reasoning slots, and count invalid or passive episodes separately. We then inhibit an internal representation of evaluation awareness, the union of an explicit and an implicit direction, validated on two model organisms whose behavior is conditioned on explicit or implicit evaluation cues. We check in every arm that the inhibition is equally effective, with probes retrained under each condition on one set of cues and read on a held-out set, so that they read what the two sets share rather than the words of the cues; and we compare it to random subspaces drawn from the activation covariance and to unrelated, high-variance and stakes controls, each matched in output degradation within each arm. [Results, as a loss of advantage in percentage points and a conditional fraction with its Fieller interval.] Finally, we localize what carries the advantage at identical actions, against the neutral-text arm and for two adapter ranks. Our design tests the pathways open to supervised fine-tuning; it does not test reinforcement learning in evaluation-like environments.
+ 
+ **Plan du premier papier**
+ 1. Introduction
+@@ -2203,10 +2357,10 @@
+ 
+ **Figures du premier papier**
+ 1. Le dispositif : les bras × l'inhibition × la distance × le cadrage × l'emplacement.
+-2. La validation de l'instrument : la réduction de l'écart conditionnel contre la dégradation, pour l'inhibition et pour la distribution du comparateur, sur la moitié de test, pour les deux organismes ; le balayage de rang ; la vérification de manipulation ; l'énergie retirée.
++2. La validation de l'instrument : la réduction de l'écart conditionnel contre la dégradation, pour l'inhibition et pour la distribution du comparateur, sur la moitié de test, pour les deux organismes ; le rang minimal par effacement, lu sur le transfert, et le balayage de rang par projection ; la vérification de manipulation, par le transfert ; l'énergie retirée.
+ 3. Le test des raisons : les taux par bras et par distance, en trois issues ; la décomposition du gain, avec le coût de la contradiction et la part de la délibération ; la trajectoire de « je suis évalué », contre les témoins.
+ 4. Le test du regard : la perte d'avantage en points, contre le comparateur et chaque témoin ; la fraction conditionnelle, avec son intervalle de Fieller ; l'emplacement libre et prérempli ; « évalué » sous déploiement ; le moniteur d'état.
+-5. La localisation : le retour en distribution et l'avantage lointain, contre le rang du principe, pour deux rangs d'adaptateur.
++5. La localisation : le retour en distribution et l'avantage lointain, contre le rang du principe, par effacement et par projection, pour deux rangs d'adaptateur.
+ 
+ **Le programme, pour d'autres papiers** : l'anatomie (ce que les raisons installent) ; le retrait pendant l'entraînement, la survie et les raisons notées (ce qui retire ou réinstalle la condition) ; « punir, retirer ou raisonner » ; la réplication sur Qwen3-8B ; la phase de la détresse, seulement si les lectures sans injection la justifient.
+ 
+@@ -2230,6 +2384,8 @@
+ - **les conditions de l'API Claude** : permettent-elles d'entraîner Llama sur des sorties de Claude, pour cette recherche ? À lire avant la génération complète des données ;
+ - la contrainte de température de l'API : vaut-elle sans la réflexion étendue (souvenir de la contre-lecture) ?
+ - la licence de Llama 3.1, et ses obligations pour un dérivé non distribué.
++- **l'effacement linéaire** de Belrose et al. (*LEACE: Perfect linear concept erasure in closed form*, NeurIPS 2023), cité de mémoire par la session : sa garantie, et ce que vaut sa forme itérée. Le rang par effacement en dépend (décision 33), et le pré-enregistrement le décrira.
++- **la carte** (décision 33, 6 octobre 2026) : sur un second H100 SXM, les réponses de référence de la porte doivent garder la même empreinte, et la KL de son réglage la même valeur. Pour les réponses de référence, c'est déjà vu : deux machines H100, sous deux pilotes, ont donné les mêmes, le 4 et le 6 octobre. Un run croisé, l'effacement ajusté sur une carte puis appliqué sur l'autre, dirait laquelle des deux causes déplace la KL (partie 7, la procédure, étape 10).
+ 
+ **Puis, avant le post** (contre-lecture, points mineurs) :
+ - le facteur d'environ 10 que le résumé de CAFT annoncerait lui-même ;
+@@ -2311,7 +2467,7 @@
+ **Les décisions de calendrier**
+ 14. **Vérifier les dates limites** des conférences et des revues visées, et leur politique envers les posts, les pré-enregistrements et les prépublications.
+ 15. **Reposer la question des contacts** avec les porteurs des projets SPAR voisins. C'est à Lazar d'en décider ; il a dit « non pas encore ».
+-16. **La contre-lecture** : celle de la v1.4 est faite (3 octobre), et la v1.5 en tient compte (annexe 1). Lazar relit la v1.5 avant le gel. Une contre-lecture vierge de la v1.5, par la même consigne, reste possible à sa demande.
++16. **La contre-lecture** : celle de la v1.4 est faite (3 octobre), et la v1.5 en tient compte (annexe 1). La v1.6 y ajoute, sans contre-lecture, les amendements de la décision 33 (annexe 3). Lazar relit la v1.6 avant le gel. Une contre-lecture vierge de la v1.6, par la même consigne, reste possible à sa demande.
+ 
+ </section>
+ 
+@@ -2319,14 +2475,14 @@
+ 
+ # 12 · Les décisions prises, et celles qui attendent
+ 
+-**Les numéros.** « Décision n » renvoie au §2 de la passation v1.3 (`claude/PASSATION_PAPIER_v1.3_2026-10-02.md`) pour les décisions 1 à 19, et au §2 de la passation v1.4 (`claude/PASSATION_PAPIER_v1.4_2026-10-03.md`) pour les décisions 20 à 29. « Décision n de la mini-spec » renvoie au §12 de la mini-spec v0.2. La table qui suit donne le contenu de chacune.
++**Les numéros.** « Décision n » renvoie au §2 de la passation v1.3 (`claude/PASSATION_PAPIER_v1.3_2026-10-02.md`) pour les décisions 1 à 19, et au §2 de la passation v1.4 (`claude/PASSATION_PAPIER_v1.4_2026-10-03.md`) pour les décisions 20 à 29. Les décisions 29 à 33 viennent des échanges de Lazar avec la session Claude Code des 4, 5 et 6 octobre : la décision 29 est déjà au §2 de la passation v1.4 ; les décisions 30 à 33 ne sont encore dans aucune passation, et sont à reporter dans la prochaine. « Décision n de la mini-spec » renvoie au §12 de la mini-spec v0.2. La table qui suit donne le contenu de chacune.
+ 
+ ## Les décisions prises
+ 
+ | Décision | Ce qu'elle fixe dans le programme | Source |
+ |---|---|---|
+-| La version de référence | la v1.3, choisie le 2 octobre à 8 h 32 ; la v1.4 lui a succédé ; la v1.5 succède à la v1.4 | passation v1.2, §3, point 9 ; décisions 18 et 26 |
+-| Le calcul | un H100 SXM, sinon un A100 80 Go, plusieurs GPU à la fois ; les trois règles de vast.ai | décision 4 |
++| La version de référence | la v1.3, choisie le 2 octobre à 8 h 32 ; la v1.4 lui a succédé, puis la v1.5 ; la v1.6 succède à la v1.5 | passation v1.2, §3, point 9 ; décisions 18, 26 et 33 |
++| Le calcul | un H100 SXM, sinon un A100 80 Go, plusieurs GPU à la fois ; les trois règles de vast.ai ; depuis le 6 octobre, une série dont les tirages se mettent en commun reste sur un même modèle de carte (partie 9) | décision 4 ; décision 33 |
+ | L'API | l'API Claude, sans plafond | passation v1.2, §3, point 2 |
+ | Les clés | `HF_TOKEN`, `VAST_API_KEY` et la clé de l'API Claude, sous le nom `RR_ANTHROPIC_API_KEY`, en variables d'environnement d'une session Claude Code, saisies dans les réglages de l'environnement. Jamais dans une conversation, ni dans le dépôt | décisions 6, 15 et 23 |
+ | Le dépôt | `lciric/raisons-ou-regard`, privé | décision 7 |
+@@ -2345,21 +2501,32 @@
+ | Démarrer les expériences | le code des calculs avant les scénarios tenus à part | décision 23 |
+ | Après la première extraction | la condition lexicale dans la porte de l'instrument ; le jeu de validation refait sans vocabulaire commun avec l'extraction ; la sonde neuve appariée en longueur et en registre | décision 24 |
+ | Le juge ouvert candidat | JEV-27B, épinglé à une révision ; il ne demande aucune clé | décision 25 |
+-| Les corrections de la contre-lecture | « toutes, telles que proposées » ; la v1.5 les intègre ; Lazar la relit avant le gel du premier temps | décision 26 |
++| Les corrections de la contre-lecture | « toutes, telles que proposées » ; la v1.5 les intègre, et la v1.6 les reprend ; Lazar relit la v1.6 avant le gel du premier temps | décision 26 |
+ | La conduite de l'organisme | celle de Hua et al. d'abord (les annotations de type) ; l'honnêteté conditionnée en second organisme | décision 27 |
+ | Les documents de l'organisme | régénérés par un modèle ouvert | décision 28 |
+-| Le réglage de la porte de l'instrument, pour le premier organisme | toutes les couches, rang 1, fraction 1 ; figé avant la moitié de test, sans repli ; revérifié sur la moitié de choix avec l'extraction v2 ; les 100 tirages sous les deux jeux d'indices | décision 29 |
++| Le réglage de la porte de l'instrument, pour le premier organisme | figé le 4 octobre : toutes les couches, rang 1, fraction 1 ; avant la moitié de test, sans repli ; revérifié sur la moitié de choix avec l'extraction v2 ; les 100 tirages sous les deux jeux d'indices. **Rouvert le 6 octobre** : le réglage n'est plus figé ; aucun autre n'est choisi ; la moitié de test reste intouchée ; Lazar fixe le nouveau sur la moitié de choix, par un amendement daté (partie 4) | décision 29 ; rouverte par la décision 33 |
++| Les jeux d'indices v2 : refaire la validation | « Refaire sans ces mots » : la validation régénérée en interdisant au générateur tout mot présent d'un seul côté de l'extraction, même une seule fois ; la porte lexicale reste telle quelle (0,65). Pour la sonde neuve : « Jusqu'à 4 tirages » | décision 30 (5 octobre) |
++| Les jeux d'indices v2 : lire la règle | « Lire la règle comme la porte » : la règle de vocabulaire se lit aussi sur les mots tels quels, lettres seules comprises. Pour la sonde neuve : « Jusqu'à 8 tirages » | décision 31 (5 octobre) |
++| Trois suites exploratoires | le transfert dans la vérification de manipulation, l'effacement à faible dommage, la courbe en dose ; puis, le 6 octobre, « oui lance les deux sur H100 » : la courbe en dose complétée, avec un comparateur à chaque point, et le transfert perdu le 5 octobre | décision 32 (5 et 6 octobre) |
++| La v1.6 | « oui, prépare la v1.6 avec ces amendements » : le transfert inscrit dans la vérification de manipulation ; le partage des tirages limité à une même carte ; la décision 29 revue à la lumière de la v2 ; la méthode du rang changée (sa définition détaillée, proposée). La lecture de la v1.6 est donnée plus bas | décision 33 (6 octobre) |
+ 
+-**Comment cette version lit le « toutes, telles que proposées » de la décision 26.**
++**Comment la v1.5 lit le « toutes, telles que proposées » de la décision 26.**
+ - La question posée à Lazar nommait les corrections des neuf points bloquants et de l'étape 2. La v1.5 l'a lue comme l'adoption de **toutes** les corrections que propose la contre-lecture, bloquantes, importantes et mineures, telles qu'elle les propose.
+ - Là où la contre-lecture offrait un choix (« ou »), la v1.5 en a pris un ; là où elle a dû ajouter un détail pour rendre une correction exécutable (un seuil, une règle), elle le marque « proposé ». L'annexe 1 donne, point par point, ce qui a été fait.
+ - **Deux corrections changent la portée du programme** : le premier papier se réduit à l'expérience minimale et à la localisation ; la phase de la détresse est reportée. Elles sont intégrées ; Lazar peut revenir sur elles.
+ 
++**Comment la v1.6 lit le « oui, prépare la v1.6 avec ces amendements » de la décision 33.**
++- La session proposait, mot pour mot : « inscrire le transfert dans la vérification de manipulation ; limiter le partage des tirages à une même carte ; revoir la décision 29 à la lumière de la v2 ; choisir la méthode du rang. Ce serait une v1.6 du programme, avec des amendements datés. »
++- **Les amendements 1 et 2 sont adoptés**, tels qu'ils sont nommés. Leurs détails, le critère du transfert et la règle de la carte, sont proposés.
++- **Le 3 rouvre la décision 29**, sans fixer de nouveau réglage : Lazar le décide, sur la moitié de choix, avant la moitié de test.
++- **Le 4 change la méthode du rang** ; la session en propose la définition détaillée, avec un seuil de 0,55.
++- Comme en v1.5, tout ce que la v1.6 ajoute pour rendre un amendement exécutable est marqué « proposé », et listé plus bas (point 18). L'annexe 3 dit ce qui change, où et pourquoi.
++
+ ## Celles qui attendent Lazar
+ 
+-1. **La relecture de la v1.5**, avant le gel du premier temps du pré-enregistrement.
+-2. **Le harnais des scénarios tenus à part** : la façon de le faire. Son écriture a été interrompue le 3 octobre par un filtre de sûreté du côté de la session ; la session ne la reprend pas telle quelle. C'est le chemin critique de l'expérience minimale (partie 9).
+-3. **Les refus du générateur dans le pilote** : 13 sur 27 pour la demande nuisible, 8 sur les 17 réponses du périmètre. Ils ne se rejouent ni ne se reformulent ; la suite se décide avec Lazar.
++1. **La relecture de la v1.6** (et non plus de la v1.5), avant le gel du premier temps du pré-enregistrement. Ce qui change depuis la v1.5 est à l'annexe 3 ; le plus pressé est le réglage de la porte (point 17).
++2. **Le harnais des scénarios tenus à part** : la façon de le faire. Son écriture a été interrompue le 3 octobre par un filtre de sûreté du côté de la session ; la session ne la reprend pas telle quelle. Son état au 6 octobre : dix modules, commités tels quels le 4 octobre, non testés ; le harnais reste incomplet (commit `ee9038b`). C'est le chemin critique de l'expérience minimale (partie 9).
++3. **Les refus et le rendement du pipeline**, au pilote du 5 octobre (partie 3) : 78 refus du générateur et des juges, jamais rejoués ni reformulés, dont 22 des 25 situations de la surveillance au juge de réalisme ; 47 éléments retenus sur 100 visés ; et la contrainte des donneurs de la contestation : son raisonnement d'une autre situation ne peut venir que de la demande nuisible ou de la surveillance, où les refus se concentrent (3 appariements, pour 22 textes neutres). Les refus ne se rejouent ni ne se reformulent ; la suite se décide avec Lazar, avant la génération complète.
+ 4. **Les choix que la v1.5 fait pour rendre les corrections exécutables**, marqués « proposé » :
+    1. le comparateur unique : le comparateur aléatoire, un tirage par scénario parmi au moins 100 ;
+    2. les seuils : ±0,25 sur la fraction ; 3 points entre bras ; 5 points d'effet minimal ; le plancher de 15 à 60 % ; 0,25 unité naturelle pour « évalué » sous déploiement ; ±10 % de KL pour l'appariement ;
+@@ -2388,6 +2555,14 @@
+ 14. **Le moment des contacts** avec les projets SPAR voisins.
+ 15. **Les effectifs de la distance lointaine, ou la marge** (partie 7). La première simulation de puissance montre « survit » hors d'atteinte aux tailles de la v1.4. Trois voies : 400 scénarios × 10 générations, environ quatre fois les évaluations du test du regard ; une marge plus large que ±0,25 ; ou un avantage d'au moins 10 points exigé pour viser l'équivalence.
+ 16. **Deux réglages de l'environnement** (passation v1.4) : un jeton Hugging Face propre au programme (lecture de Llama, écriture du seul dépôt de résultats) ; et la variable `RR_RESULTS_REPO`, qui porte encore un ancien nom.
++17. **Le nouveau réglage de la porte de l'instrument** (la décision 29, rouverte par la décision 33 ; partie 4). Lazar le décide sur la moitié de choix, avant toute mesure sur la moitié de test, par un amendement daté, au vu de la courbe en dose complétée (`organism_inhibition-20261006-101545-62a1`, en cours le 6 octobre). C'est désormais le premier pas de la validation de l'instrument : la porte ne tourne pas sur la moitié de test avant lui. La procédure proposée (partie 4) : les candidats, chacun contre au moins 15 tirages, sous les deux jeux d'indices, sur un seul modèle de carte ; la vérification de manipulation, lue par le transfert ; le critère de saturation. Reste aussi à trancher où s'ajuste l'effacement : sur le modèle de départ, ou sur l'organisme.
++18. **Les détails proposés des amendements de la décision 33** (annexe 3), à adopter, changer ou retirer :
++    1. le critère du transfert, dans la vérification de manipulation (partie 3) : au moins 20 tirages, plus bas que 95 % d'entre eux, pour chacune des deux sondes ; l'écart au hasard lu couche par couche ; la marge d'égalité entre bras ; le dernier jeton seul, ou aussi la moyenne sur les jetons ; les jeux du transfert pour les indices implicites ; le sous-espace des projections, extrait sur les 50 paires qui entraînent le transfert, à réextraire sans elles ou non ;
++    2. la règle de la carte (partie 7) : le H100 SXM pour la porte et le test du regard ; la même empreinte des réponses de référence et la KL à 0,1 % près pour mettre deux runs en commun ; la carte et l'empreinte écrites par chaque run ; un effacement ajusté une fois et rechargé, comme une extraction ; le run croisé qui départagerait les deux causes (partie 11) ;
++    3. la procédure qui choisit le réglage de la porte sur la moitié de choix (partie 4) : les candidats ; au moins 15 tirages par candidat ; le seuil de saturation, au-delà duquel le dommage seul efface la conduite ; le jeu d'indices qui départage ; « laisser déployé » comme condition, ou seulement rapporté ; l'arrêt sans ouvrir la moitié de test si aucun candidat n'est retenu ;
++    4. la définition du rang par effacement (partie 3) : son seuil du hasard (0,55, ou la lecture symétrique, sous laquelle la mesure du 6 octobre reste à 0,57) ; l'itération par lots de paires ; la condition préalable ; le cas connu du rang ; les paires du principe et des concepts.
++19. **Une proposition de la session, avant l'anatomie : l'équivalent direct, sur le modèle ouvert, de l'ablation de Gurnee et al.** Retirer de l'espace de travail, par le J-lens, les directions de jetons comme « fake » ou « simulation », comme l'article le fait sur Sonnet 4.5 (§5, rapports) : la verbalisation de l'évaluation y passe de 71 % à 3 %, et le chantage de 0/180 à 13/180 (partie 1). L'article réunit un entraînement par principes (§7) et cette ablation, sans les croiser. Sur nos bras, ce serait une seconde manipulation de « je suis évalué », qui ne passe pas par l'extraction par paires. Elle demande d'abord la porte du lens (partie 3). Elle n'est pas chiffrée.
++20. **Les jeux d'indices v2, tels qu'ils sont** (décisions 30 et 31 ; partie 3) : la validation passe sa porte lexicale de peu (0,634 ; l'IC à 95 % monte à 0,672) ; la sonde neuve a 199 paires sur 200, et le rapport la marque incomplète ; le cadrage garde une base lexicale de 0,9413, sans porte ; la marge de la condition lexicale est proposée à 0. Les garder ainsi, ou en refaire une part, avant le premier temps du gel.
+ 
+ ## Les pièces
+ 
+@@ -2395,6 +2570,8 @@
+ |---|---|---|
+ | Le programme v1.4 (texte) | `claude/PROGRAMME_RAISONS_OU_REGARD_v1.4_2026-10-02.md` | `b1d55773a052fb6b30867baa60e0c81df5bc12c0fde452731c90e519e85bfc27` |
+ | Le programme v1.4 (PDF, la version contre-lue) | `claude/PROGRAMME_RAISONS_OU_REGARD_v1.4_2026-10-02.pdf` | `228cfa921dbd66a6757f953ebd1ac5965576d2082d631af6f8b690d618b12c18` |
++| Le programme v1.5 (texte) | `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.md` | `aeb6a944f9940ccdb2a26e8fd4f1850db11ff358cf90599890b6ed13d61d36a3` |
++| Le programme v1.5 (PDF) | `claude/PROGRAMME_RAISONS_OU_REGARD_v1.5_2026-10-03.pdf` | `2ca75ef88c1163e2bc2e423b8a2997f895194602d1450656d6b088fdf498bdd9` |
+ | La contre-lecture vierge de la v1.4 | `claude/CONTRE_LECTURE_VIERGE_v1.4_RAPPORT_2026-10-03.md` | `d8e54e3962465f8f9d10d9a6024c389a8486309995f7b32e032752b82fcc66fa` |
+ | Son annexe (l'étape 2) | `claude/CONTRE_LECTURE_VIERGE_v1.4_ANNEXE_RELEVES_2026-10-03.md` | `152d9be38b9eb5c509fac3407d5223f8496443b9ae80cc1040a63df51609b6ae` |
+ | La note de l'extraction | `experiences/resultats/NOTE_EXTRACTION_2026-10-03.md` | `41d721ca907e0abc4749cc4fe2cd88b4e85d0aa222c246c730398601bdca3e86` |
+@@ -2406,6 +2583,10 @@
+ | Les moitiés de MBPP test | `experiences/organisme/moities_mbpp_test.json` | `686b5df602468a4cc8cce8afed07088f09d47a129d8cbe0fc09d7c0ffdaf08e7` |
+ | La note de l'organisme | `experiences/resultats/NOTE_ORGANISME_2026-10-03.md` | `de542471ccc9453f76eb78e69f7cae57accf1008362af3967a16ffd1734c3a33` |
+ | La note de la première inhibition | `experiences/resultats/NOTE_INHIBITION_ORGANISME_2026-10-04.md` | `4ca21c16f64aa81b8cb51043bff9ebb3c1fb98325fe7a258d72179b9bbefa2a7` |
++| La note de la répétition de la porte | `experiences/resultats/NOTE_REPETITION_PORTE_2026-10-04.md` | `f1c0e48782c20a145ea1ec9a02d51148d9d7e2ed3d4e38fd16bcbacaf670d551` |
++| La note des indices v2 et du pilote | `experiences/resultats/NOTE_INDICES_V2_ET_PILOTE_2026-10-05.md` | `38d94704298725f29e342b8c176f133388762eadfaf5dd278f6c173dca0fe495` |
++| La note du balayage et de l'effacement | `experiences/resultats/NOTE_BALAYAGE_ET_EFFACEMENT_2026-10-05.md` | `b8f3990751a31c840e8b183b7eb79518b0702375ab3069561de4b69d2a483b34` |
++| Les sorties du transfert du 6 octobre (sans note) | `experiences/resultats/organism_inhibition-20261006-101553-00c6/runs/organism_inhibition-20261006-101553-00c6/out/results.json` | `e11ad0bdf1f2c7b27f9c69ae263ead382b1e3114d7807e04669838cd6fdb8c37` |
+ | La mini-spec v0.2 | `claude/MINI_SPEC_ET_FAMILLES_v0.2_2026-10-02.md` | `f5546818693c6d895f3cb9b0525e171c03ce338337e7acfe9683e819d15cef46` |
+ | Le pipeline v0.1 | `claude/PIPELINE_DONNEES_v0.1_2026-10-02.md` | `6d9350135beb9973005b11ad8144991542106542be812f30ff2f9ba619134e87` |
+ | La carte des angles déjà pris | `claude/CARTE_ANGLES_DEJA_PRIS_2026-10-02.md` | `7744a85cf528d6ff3f75ead74a39447fea97793944e43ab5e608f6371ed764d6` |
+@@ -2453,8 +2634,8 @@
+ | La portée, et la chaîne de portes | Le premier papier : l'expérience minimale et la localisation. | partie 10 |
+ | La première règle de la doctrine n'est pas appliquée partout | Des retraits témoins (un contraste sans rapport, des directions de forte variance) dans le retrait pendant l'entraînement, les raisons notées et « retirer au hasard » ; le calme contre des directions de même recette ; un patch nul ; « non attribuable » jugé contre les retraits témoins. | parties 3, 4, 6 |
+ | Des résultats nuls sans cas connu | Un cas connu pour l'ablation de la sonde neuve, pour la cohérence contrefactuelle et pour le rang ; la vérification refaite après chaque phase de la survie ; l'instrument revalidé après chaque RL ; les autres lignes écrites en bornes. | parties 2, 4, 6 |
+-| La vérification de manipulation partage l'angle mort de l'inhibition | Des sondes réentraînées par bras et par condition, linéaires et non linéaires, sur des indices tenus à part. | partie 3 |
+-| Multiplicité et double usage à la porte de l'instrument | Le choix sur une moitié des tâches, le test sur l'autre ; au moins 100 tirages ; la statistique du maximum en repli. | partie 4 |
++| La vérification de manipulation partage l'angle mort de l'inhibition | Des sondes réentraînées par bras et par condition, linéaires et non linéaires, sur des indices tenus à part. La v1.6 les lit par le transfert : entraînées sur un autre jeu d'indices, lues sur celui-là (décision 33). | partie 3 |
++| Multiplicité et double usage à la porte de l'instrument | Le choix sur une moitié des tâches, le test sur l'autre ; au moins 100 tirages ; la statistique du maximum en repli. En v1.6 (décision 33), le réglage figé par la décision 29 est rouvert ; le choix se fait entre des candidats, chacun contre au moins 15 tirages, avec un critère de saturation (proposé). | partie 4 |
+ | Les familles tenues à part | La matrice publiée ; « un principe propre parmi les familles tenues à part » ; la distance lointaine dite en partie seulement ; une analyse sans la sous-performance et le correcteur faible. | parties 3, 6, 7 |
+ | L'interdit lexical contre le principe de supervision, et le regard du générateur | L'interdit restreint, et les résultats par principe ; la ressemblance des textes à une évaluation, lue par une sonde ; un sous-ensemble écrit par un générateur d'une autre famille. | parties 2, 3 |
+ | Le bras de l'autre situation n'isole pas le contenu sans le lien | Le bras des principes génériques ; le coût de la contradiction. | parties 3, 4 |
+@@ -2479,7 +2660,7 @@
+ | Des termes non définis | Le vocabulaire technique. | sommaire |
+ | Ce qui manque pour reproduire | Le LoRA et ses hyperparamètres, la perte, la règle du choix des couches, la préface sur plusieurs tours, ce que voit le juge, la voie d'inférence qui décide. | parties 3, 7 |
+ | Le programme n'est pas autonome | Les renvois expliqués ; la partie 12 donne le contenu de chaque décision. | sommaire, partie 12 |
+-| La grille des rangs est grossière | Une grille resserrée ; un rang interpolé ; une équivalence de la pente seulement si elle est atteignable. | partie 2 |
++| La grille des rangs est grossière | Une grille resserrée ; un rang interpolé ; une équivalence de la pente seulement si elle est atteignable. En v1.6, la grille ne sert plus qu'au balayage par projection : le rang minimal se mesure par effacement (décision 33). | partie 2 |
+ | Le type du détecteur de la pénalité | Global, comme le détecteur d'audit. | partie 3 |
+ | Le bras « phase neutre seule », et la rétention proche de zéro | Le bras entre dans la phase ; « effacé » se définit par équivalence. | parties 4, 6 |
+ | Une température de 1 | 0,6 et top-p 0,9, proposés, avec la mesure du 3 octobre. | partie 3 |
+@@ -2489,7 +2670,7 @@
+ **Les quinze questions aux auteurs, et leurs réponses dans la v1.5**
+ 1. *L'avantage sous contrôle* : l'avantage sous le comparateur aléatoire (partie 2).
+ 2. *La perte du SFT et l'emplacement* : la perte porte sur l'emplacement et sur l'action ; le modèle « raisons » écrit ses raisons au test, à chaque tour (proposé) ; d'où l'emplacement prérempli et la réflexion (partie 3).
+-3. *Le modèle de l'extraction, et la sonde de la vérification* : le modèle de départ ; des sondes réentraînées bras par bras (partie 3).
++3. *Le modèle de l'extraction, et la sonde de la vérification* : le modèle de départ ; des sondes réentraînées bras par bras, lues par le transfert depuis la v1.6 (décision 33 ; partie 3).
+ 4. *« Évalué » sous déploiement, sans intervention* : à mesurer avant d'inhiber, avec une règle écrite (partie 4).
+ 5. *L'énergie et le composite* : l'inhibition retire de 20 à 187 fois l'énergie d'un aléatoire de même rang ; le composite s'apparie sur la KL, ses composantes en vérification (parties 3 et 7).
+ 6. *La marge pour écrire « survit »* : un intervalle de Fieller de la fraction dans ±0,25 (partie 6).
+@@ -2596,3 +2777,81 @@
+ | M17 à M19 | la fraction conditionnelle par bras ; l'obscurcissement ; le relogement de la tromperie |
+ 
+ </section>
++
++<section class="partie" markdown="1">
++
++# Annexe 3 · Ce que la v1.6 change
++
++La v1.6 est la v1.5, plus les quatre amendements de la décision 33 (6 octobre 2026), les décisions 30 à 32 (5 et 6 octobre) et les mesures du 4 au 6 octobre. Pour chacun : ce qui change, où, pourquoi, et ce qui reste proposé. Les mesures se lisent en détail là où elles changent le programme ; cette annexe en donne l'essentiel et y renvoie.
++
++**Ce que valent ces mesures.**
++- Toutes sont exploratoires. Elles portent sur la moitié de choix des tâches de MBPP test (250 tâches, en glouton), ou sur le seul modèle de départ, sans règle pré-enregistrée. Ce n'est pas la porte.
++- D'un tirage du comparateur à l'autre, la réduction de l'écart varie d'environ ±10 points sur 250 tâches : un seul tirage ne prouve rien.
++- Les sources : trois notes (`experiences/resultats/NOTE_REPETITION_PORTE_2026-10-04.md`, `NOTE_INDICES_V2_ET_PILOTE_2026-10-05.md`, `NOTE_BALAYAGE_ET_EFFACEMENT_2026-10-05.md`), et, pour le transfert du 6 octobre, qui n'a pas encore de note, les sorties de son run (partie 12, les pièces).
++- Les runs sont nommés en entier à leur première mention, puis par leurs quatre derniers caractères.
++
++**La lecture de la décision 33** (partie 12). Lazar répond « oui, prépare la v1.6 avec ces amendements » aux quatre amendements que la session proposait. Les deux premiers sont adoptés ; le troisième rouvre la décision 29, sans fixer de nouveau réglage ; le quatrième change la méthode du rang, dont la session propose la définition détaillée.
++
++## Amendement 1 · Le transfert dans la vérification de manipulation
++
++Adopté (décision 33, 6 octobre 2026).
++- **Ce qui change.** La vérification de manipulation se lit par le transfert : des sondes apprises sous chaque condition sur un jeu d'indices (pour « je suis évalué », les 50 paires d'extraction gardées hors de l'expert iteration), et lues sur un autre (la validation v2). Le transfert au dernier jeton décide ; la lecture dans le jeu, critère de la v1.5, le transfert en moyenne sur les jetons et la projection résiduelle se rapportent en secondaire.
++- **Où.** La vérification de manipulation (partie 3) ; la porte de l'instrument et le test du regard (partie 4) ; les règles et les statistiques qui la lisent (parties 6 et 7) ; les menaces (partie 8).
++- **Pourquoi.** La lecture dans le jeu ne pouvait pas échouer.
++  - Le 4 octobre, sur la validation v1 (`organism_inhibition-20261004-165326-99be`, H100), elle restait au plafond sous toutes les conditions, l'échec construit compris ; seule la projection résiduelle voyait le cas connu (partie 4, « La répétition de la porte »).
++  - Le 5 octobre, sur la validation v2, construite pour que les mots n'y suffisent pas, elle restait de 0,97 à 0,99 sous les six réglages du balayage, sous leurs tirages et sans intervention (`organism_inhibition-20261005-115511-8410`, A100), alors que la composante retirée tombait presque à zéro. Une sonde entraînée et testée dans un même jeu lit les mots de l'indice.
++  - Le transfert, lui, bouge (`organism_inhibition-20261005-141738-0718`, puis `organism_inhibition-20261006-101553-00c6`, H100 ; un seul tirage du comparateur par réglage) : 0,682 sans intervention ; de 0,607 à 0,677 sous les projections ; 0,497 sous l'effacement linéaire sur toutes les couches, contre 0,687 sous son tirage. Il voit aussi l'échec construit à sa couche. Le détail est en partie 3 (« Ce que le transfert a montré »).
++- **Sa limite**, écrite d'avance (partie 3) : en moyenne sur les jetons, la distinction reste lisible sous l'effacement (0,900, contre 0,918 sans intervention). Un transfert tombé au dernier jeton ne dit pas que « je suis évalué » a disparu.
++- **Ce qui reste proposé.** Le critère : au moins 20 tirages appariés, et un transfert plus bas que 95 % d'entre eux, pour chacune des deux sondes ; l'écart au hasard, lu couche par couche ; la marge d'égalité entre bras ; les jeux du transfert pour les indices implicites. Et le sous-espace des projections, extrait sur les paires mêmes du transfert : à réextraire sans elles, ou non (partie 3).
++
++## Amendement 2 · Le partage des tirages limité à une même carte
++
++Adopté (décision 33, 6 octobre 2026).
++- **Ce qui change.** Les tirages du comparateur ne se mettent en commun qu'entre runs d'un même modèle de carte, avec les mêmes réponses de référence, la même version du code et le même organisme. L'inhibition se mesure dans les mêmes conditions que ses tirages.
++- **Où.** La dégradation des sorties (partie 3) ; la porte de l'instrument et le test du regard (partie 4) ; la procédure de la dégradation appariée, étape 10, et le pré-enregistrement (partie 7) ; les menaces (partie 8) ; le matériel (partie 9) ; ce qui reste à vérifier (partie 11).
++- **Pourquoi.** Aux mêmes arguments, la KL de l'effacement linéaire sur toutes les couches vaut 0,259 sur A100 (`8410`, et `organism_inhibition-20261005-115519-a006`), et 0,159 sur H100 (`0718` et `00c6`). Sur une même carte, elle se répète au chiffre près. Les réponses de référence diffèrent aussi d'une carte à l'autre (82 sur 120), et la ligne de base de l'organisme avec elles (55,2 points d'écart sur A100, 54,4 sur H100). Les deux causes possibles, et ce qui penche vers l'une, sont en partie 7 (étape 10).
++- **Ce qui reste proposé.** Le H100 SXM comme carte de la porte et du test du regard ; la même empreinte des réponses de référence et la KL à 0,1 % près pour mettre deux runs en commun ; la carte et l'empreinte écrites par chaque run (partie 7) ; un run croisé pour départager les causes (partie 11).
++
++## Amendement 3 · La décision 29, revue à la lumière de la v2
++
++La décision 29 est rouverte (décision 33, 6 octobre 2026) ; le nouveau réglage reste à décider par Lazar.
++- **Ce qui change.** Le réglage figé le 4 octobre (toutes les couches, au rang 1, à la fraction 1) ne l'est plus, et aucun autre n'est choisi. Lazar décide du réglage de la porte, le même ou un autre, sur la moitié de choix, avant toute mesure sur la moitié de test, et l'inscrit dans un amendement daté. Jusque-là, la porte ne tourne pas sur la moitié de test.
++- **Où.** Le réglage de la porte, et « La décision 29, rouverte » (partie 4) ; les règles de la porte (partie 6) ; le pré-enregistrement (partie 7) ; les menaces (partie 8) ; la ligne de la décision 29 (partie 12).
++- **Pourquoi**, en bref ; le détail, avec ses runs, est en partie 4.
++  - La marge du réglage d'origine sur le comparateur est mince : 37,6 points, contre 32,4 pour le meilleur de 4 tirages (`organism_inhibition-20261004-101821-ada0`, indices v1).
++  - La direction projetée lit mal la validation v2 : de 0,56 à 0,67, quand la sonde la lit à 0,857 (`extract_eval-20261005-114155-50b2`). Sa projection ne fait pas tomber le transfert : 0,649, contre 0,687 sous un tirage (`0718`).
++  - À fort dommage, le dommage seul efface la conduite : l'effacement complet retire 52,8 points, un tirage du comparateur au même dommage 53,6 (`a006`, A100).
++  - À plus faible dommage, rien ne tranche encore. Aux couches 4 à 8, l'effacement retire 16,4 points, et ses 4 tirages de −7,6 à 20,4 (`organism_inhibition-20261005-141318-194c`). Aux fractions 0,5 et 0,75, il en retire 15,2 et 26,0, contre 10,4 pour un seul tirage à 0,75 (`organism_inhibition-20261005-141323-faa0`). La courbe complétée, avec 4 tirages à chaque point (`organism_inhibition-20261006-101545-62a1` ; décision 32), tourne le 6 octobre ; ses résultats s'inscrivent en partie 4.
++- **Ce qui reste proposé.** La procédure qui choisit le réglage sur la moitié de choix : les candidats, au moins 15 tirages par candidat, le critère de saturation, l'ajustement de l'effacement sur le modèle de départ (partie 4). Le réglage lui-même revient à Lazar.
++
++## Amendement 4 · La méthode du rang
++
++La méthode change (décision 33, 6 octobre 2026) ; sa définition détaillée est proposée par la session.
++- **Ce qui change.** Le rang minimal, de « je suis évalué », du principe et des concepts de l'anatomie, se mesure par effacement linéaire itéré, lu sur le transfert au dernier jeton, à dégradation appariée. La v1.5 le lisait sur le balayage d'une projection tirée de l'ACP des différences ; ce balayage reste, en descriptif.
++- **Où.** La thèse du rang (partie 2) ; la définition (partie 3, « Le rang minimal d'un concept, par effacement ») ; la validation, la localisation et l'anatomie (partie 4) ; les paris et les règles (partie 6) ; les statistiques (partie 7) ; les menaces (partie 8) ; le budget (partie 9) ; les figures (partie 10) ; la relecture de Belrose et al. (partie 11).
++- **Pourquoi.** Seize directions de l'ACP à chacune des 32 couches (KL 0,875) laissent le transfert à 0,677 (`0718`). Une seule direction d'effacement par couche, choisie selon la covariance des états, le fait tomber à 0,497, pour plus de cinq fois moins de dommage (KL 0,159 ; `00c6`). L'ACP range les axes par variance, pas par ce qui porte le concept.
++- **Ce qu'on n'en conclut pas.** Cette mesure ne dit pas que « je suis évalué » est de rang 1 : un seul tirage, une charge non mesurée, un cas connu du rang non construit, et une lecture qui persiste en moyenne sur les jetons (partie 2).
++- **Ce qui reste proposé.** La définition : le seuil du hasard (0,55) et la lecture symétrique rapportée, l'itération par lots de paires, la condition préalable, les paires du principe et des concepts, et ce que compte le cas connu du rang (parties 2 et 3).
++
++## Les décisions 30 et 31 · Les jeux d'indices v2
++
++Le 5 octobre 2026.
++- **Ce qui change.** La règle de vocabulaire de la validation, deux fois. La décision 30 interdit au générateur tout mot présent d'un seul côté de l'extraction, même une seule fois ; la décision 31 lit la règle aussi sur les mots tels quels, lettres seules comprises, comme la porte. La porte lexicale ne change pas (0,65). La sonde neuve tire jusqu'à quatre, puis huit fois.
++- **Où.** Les cinq jeux d'indices disjoints (partie 3) ; la table des décisions (partie 12).
++- **Pourquoi.** Deux échecs de la porte lexicale. La première validation v2 était à 0,9005, portée par six mots vus chacun une seule fois dans l'extraction. La deuxième était à 0,6731, portée par *run* et *e* : la règle lisait des radicaux d'au moins deux lettres, la porte lit les mots tels quels.
++- **Ce qui en sort.** La troisième validation passe, de peu : 0,634 (IC à 95 % de 0,596 à 0,672 ; 80 % des tirages sous 0,65). La sonde neuve compte 199 paires sur 200, et son équilibre passe. Le cadrage, repris de la v1, reste à 0,9413 : aucune porte ne s'applique à lui. Sur ces jeux, la sonde de l'extraction bat le sac de mots (0,857 contre 0,634 ; `50b2`).
++- **Ce qui reste proposé.** Les seuils (0,65 ; la bande de 0,4 à 0,6), à geler au premier temps ; le tirage de 1,8 fois les paires voulues, un détail de la session.
++
++## La décision 32 · Trois suites exploratoires
++
++Le 5 octobre 2026, complétée le 6.
++- **Ce qu'elle lance.** Aucune règle : des mesures. Le 5 octobre, trois suites : le transfert dans la vérification de manipulation (`0718`), l'effacement à faible dommage (`194c`), la courbe en dose (`faa0`). Le 6 octobre, « oui lance les deux sur H100 » : le transfert perdu, refait (`00c6`), et la courbe en dose complétée, avec un comparateur à chaque point (`62a1`, en cours).
++- **Ce qu'elles donnent** : les raisons des amendements 1, 3 et 4, plus haut.
++- **Un fait d'infrastructure.** Le 5 octobre, `194c`, `faa0` et `0718` ont perdu leur envoi final à la limite de 128 commits par heure du dépôt de résultats ; leurs mesures viennent des journaux de conteneur (corrigé au commit `a595af6`).
++
++## Les autres mesures du 4 au 6 octobre
++- **La répétition de la porte** (4 octobre ; `ada0`) : partie 4, le premier organisme.
++- **L'extraction v2** (5 octobre ; `50b2`) : partie 3, « Ce qu'a montré l'extraction v2 » ; partie 4, la porte de l'instrument.
++- **Le pilote du pipeline** (5 octobre) : partie 3, la génération des données ; partie 12, celles qui attendent Lazar.
++
++</section>

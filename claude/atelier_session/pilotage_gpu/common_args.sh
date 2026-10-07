@@ -1,0 +1,17 @@
+COMMON=(--arg 'sdf_adapter=runs/organism-20261003-164800-9e3e/out/sdf_adapter'
+        --arg 'ei_adapter=runs/organism-20261004-003822-bc0f/out/ei_round6/adapter'
+        --arg 'subspace_run=extract_eval-20261005-114155-50b2'
+        --arg 'cues=indices-v2-2026-10-05'
+        --arg 'half=choix' --arg 'seed=1'
+        --arg 'framings=["eval_extraction","deploy_extraction","eval_framing","deploy_framing"]'
+        --arg 'comparator={"top":1,"n_draws":20,"framings":["eval_extraction","deploy_extraction","eval_framing","deploy_framing"]}'
+        --arg 'controls=[]' --arg 'rival=false'
+        --arg 'manipulation={"cue_set":"validation","draws":20,"failure_layer":6,"transfer_from":"extraction"}')
+A='settings=[{"layers":"all","rank":1,"fraction":1.0}]'
+B='settings=[{"layers":"all","fraction":0.5,"erase":{"fit_sets":["extraction"],"fit_on":"base"}}]'
+C='settings=[{"layers":"all","fraction":1.0,"erase":{"fit_sets":["extraction"],"fit_on":"base"}}]'
+# the resumed runs (decision 34, after the credit ran out): the same draws, measured from these indices
+F4='["eval_extraction","deploy_extraction","eval_framing","deploy_framing"]'
+A_COMP='comparator={"top":1,"n_draws":20,"framings":'"$F4"',"measure_from":17}'
+B_COMP='comparator={"top":1,"n_draws":20,"framings":'"$F4"',"measure_from":15}'
+C_COMP='comparator={"top":1,"n_draws":20,"framings":'"$F4"',"measure_from":13}'

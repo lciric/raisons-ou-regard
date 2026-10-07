@@ -1,0 +1,23 @@
+intégrité FR après simulation : lignes v3.5 introuvables = 0
+intégrité EN après simulation : lignes v3.5 introuvables = 0
+corrections écrites : 20 | vérifications : OK
+C1 FR ligne v3.6 3943
+C1 EN ligne v3.6 4100
+C2 FR ligne v3.6 3960
+C2 EN ligne v3.6 4117
+C3 FR ligne v3.6 4025
+C3 EN ligne v3.6 4182
+C4 FR ligne v3.6 4147
+C4 EN ligne v3.6 4304
+C5 FR ligne v3.6 4325
+C5 EN ligne v3.6 4567
+C6 FR ligne v3.6 4426
+C6 EN ligne v3.6 4668
+C7 FR ligne v3.6 4427
+C7 EN ligne v3.6 4669
+C8 FR ligne v3.6 4431
+C8 EN ligne v3.6 4673
+C9 FR ligne v3.6 4730
+C9 EN ligne v3.6 4969
+C10 FR ligne v3.6 4864
+C10 EN ligne v3.6 5102

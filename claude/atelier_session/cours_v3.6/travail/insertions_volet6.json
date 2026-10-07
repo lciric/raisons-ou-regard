@@ -1,0 +1,225 @@
+{
+ "tranche": "volet6",
+ "insertions": [
+  {
+   "fichier": "FR",
+   "ancre": "latente) — laquelle la loi doit utiliser est une question ouverte, à poser comme telle [R·P1].",
+   "texte": "> **⚠ Limites et parades — Juges LLM** *(v3.6, 2 octobre 2026)*\n>\n> - **Limite :** Un juge a des erreurs systématiques : sous cadrage social, la note du modèle-juge se déplace vers une destination. *(source : cours, volet 6, §2)*\n>   **Parade :** Un juge scellé (prompt, modèle et température gelés), un audit humain d'environ 200 items stratifiés, l'accord rapporté. *(source : programme, partie 3)*\n> - **Limite :** Une fenêtre tronquée fait mal lire : à travers elle, un verdict négatif adouci se lisait comme une position tenue. *(source : README du dépôt)*\n>   **Parade :** Juger la réponse entière, et garder le texte complet. *(source : README du dépôt ; cours, volet 6, §6)*\n> - **Limite :** Accord inter-juges modéré (κ de 0,56 à 0,66), aucun sous-ensemble noté par des humains, et le juge ne voit pas le texte évalué. *(source : README du dépôt)*\n>   **Parade :** Un audit humain stratifié, qui borne l'erreur du juge. *(source : programme, partie 3)*\n> - **Limite :** Un juge qui lit le raisonnement se laisse persuader : le moniteur fondé sur la chaîne de pensée aurait signalé environ 1 % des actions, contre environ 50 % sans elle. *(source : fiche 3 ; passation, §5.1)*\n>   **Parade :** Juger les actions, leurs sorties et les messages, pas le texte qui précède l'action ; un filtre à haut rappel puis un arbitre ; un jeu de calibration à vérité connue et un test de persuasion. *(source : passation, §5.1)*\n> - **Limite :** Un juge qui connaît le bras ou le cadrage note le nom du bras. *(source : cours, volet M, M4)*\n>   **Parade :** La notation à l'aveugle : le juge ne voit ni le bras ni l'indice d'évaluation. *(source : cours, volet M, M4 ; passation, §5.1)*\n> - **Limite :** Un juge d'entraînement se fait exploiter. *(source : programme, partie 8)*\n>   **Parade :** Un juge d'entraînement distinct du juge scellé d'évaluation ; surveiller la longueur et les motifs de flatterie. *(source : programme, partie 8)*\n> - **Limite :** Des étiquettes de juge non vérifiées à la main : environ 25 % des étiquettes révisées chez Hopkins et Khullar ; celles de CHIVE passent par un classifieur non validé contre des humains. *(source : fiche 7 ; cours, volet 7, F·30)*\n>   **Parade :** Dire « révisées », pas « inversées », et borner l'erreur par un audit humain. *(source : fiche 7 ; programme, partie 3)*\n> - **Limite :** Un modèle qui s'audite presque lui-même : pour Fable 5, l'investigateur est Mythos Preview. *(source : fiche 2 ; fiches, partie B, piège 6)*\n>   **Parade :** aucune connue ; on le dit."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**The displacement law (P1), absent from the course** — \"the law\" in your dossier, never out loud: \"the displacement I measured\". It is today your most solid result; its functional form was published in June, with a bias fitted per model and per subject, and your part is the target that moves with the framing. Under social framing, the model judge's score moves by a fixed fraction of the distance to a destination — Δ = g·(ĉ − p₀), g ≈ 0.70 — and there are **two distinct destinations**, one for criticism near 1.5, the other for praise near 2.9, with disjoint intervals; R² 0.77 and 0.79 per campaign, 0.73 and 0.69 in transfer. The counter-intuitive prediction, to be said without the number: an item scored above the praise destination *loses* under praise (an item scored 4, for example). The destination itself can be read in the activations (R² 0.60 [0.39; 0.74]). Two estimates of the criticism fixed point coexist, 1.468 in OLS (the observed destination; the knowledge base gives 1.456 [1.22; 1.69], on campaign c2a — the discrepancy is to be settled in the dossier) and 1.361 in censored Tobit (the latent target) — which one the law should use is an open question, to be posed as such [R·P1].",
+   "texte": "> **⚠ Limits and workarounds — LLM judges** *(v3.6, 2 October 2026)*\n>\n> - **Limit:** A judge has systematic errors: under social framing, the judge model's score moves toward a destination. *(source: course, Part 6, §2)*\n>   **Workaround:** A sealed judge (prompt, model and temperature frozen), a human audit of about 200 stratified items, agreement reported. *(source: programme, part 3)*\n> - **Limit:** A truncated window misleads: through it, a softened negative verdict read as a held position. *(source: repository README)*\n>   **Workaround:** Judge the whole answer, and keep the full text. *(source: repository README; course, Part 6, §6)*\n> - **Limit:** Moderate inter-judge agreement (κ from 0.56 to 0.66), no human-rated subset, and the judge does not see the evaluated text. *(source: repository README)*\n>   **Workaround:** A stratified human audit, which bounds judge error. *(source: programme, part 3)*\n> - **Limit:** A judge that reads the reasoning gets persuaded: the chain-of-thought monitor would have flagged about 1% of actions, against about 50% without it. *(source: reading sheet 3; handover, §5.1)*\n>   **Workaround:** Judge the actions, their outputs and the messages, not the text before the action; a high-recall filter then an arbiter; a calibration set with known truth and a persuasion test. *(source: handover, §5.1)*\n> - **Limit:** A judge who knows the arm or the framing scores the arm's name. *(source: course, Part M, M4)*\n>   **Workaround:** Blind scoring: the judge sees neither the arm nor the evaluation cue. *(source: course, Part M, M4; handover, §5.1)*\n> - **Limit:** A training judge gets exploited. *(source: programme, part 8)*\n>   **Workaround:** A training judge distinct from the sealed evaluation judge; watch length and flattery patterns. *(source: programme, part 8)*\n> - **Limit:** Judge labels not checked by hand: about 25% of labels revised in Hopkins and Khullar; CHIVE's go through a classifier not validated against humans. *(source: reading sheet 7; course, Part 7, F·30)*\n>   **Workaround:** Say \"revised\", not \"flipped\", and bound the error with a human audit. *(source: reading sheet 7; programme, part 3)*\n> - **Limit:** A model that almost audits itself: for Fable 5, the investigator is Mythos Preview. *(source: reading sheet 2; reading sheets, part B, trap 6)*\n>   **Workaround:** none known; say so."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "latente) — laquelle la loi doit utiliser est une question ouverte, à poser comme telle [R·P1].",
+   "texte": "> ⚠ *(v3.6)* Que la destination « se lise dans les activations » dit qu'elle y est lisible, pas que le modèle s'en sert : la direction que lit ta sonde fait moins de 1 % du travail causal (cours, volet 6, §2) ; et le passage ne dit pas si ce R² vient d'items exclus de l'ajustement, alors que les métriques de sonde de ton dépôt étaient d'ajustement, et que son ρ peut l'être aussi (README du dépôt). Parade : scorer des items exclus de l'ajustement et extraire sur un jeu disjoint (README du dépôt) ; pour conclure que le modèle s'en sert, le test causal — faire plus que des directions aléatoires de même norme (le nul de spécificité), puis plus que des témoins à dégradation appariée (le dommage) (passation, §5.2 ; cours, volet M, M4)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**The displacement law (P1), absent from the course** — \"the law\" in your dossier, never out loud: \"the displacement I measured\". It is today your most solid result; its functional form was published in June, with a bias fitted per model and per subject, and your part is the target that moves with the framing. Under social framing, the model judge's score moves by a fixed fraction of the distance to a destination — Δ = g·(ĉ − p₀), g ≈ 0.70 — and there are **two distinct destinations**, one for criticism near 1.5, the other for praise near 2.9, with disjoint intervals; R² 0.77 and 0.79 per campaign, 0.73 and 0.69 in transfer. The counter-intuitive prediction, to be said without the number: an item scored above the praise destination *loses* under praise (an item scored 4, for example). The destination itself can be read in the activations (R² 0.60 [0.39; 0.74]). Two estimates of the criticism fixed point coexist, 1.468 in OLS (the observed destination; the knowledge base gives 1.456 [1.22; 1.69], on campaign c2a — the discrepancy is to be settled in the dossier) and 1.361 in censored Tobit (the latent target) — which one the law should use is an open question, to be posed as such [R·P1].",
+   "texte": "> ⚠ *(v3.6)* That the destination \"can be read in the activations\" says it is readable there, not that the model uses it: the direction your probe reads does under 1% of the causal work (course, Part 6, §2); and the passage does not say whether this R² comes from items excluded from the fit, whereas your repository's probe metrics were training fit, and its ρ may be too (repository README). Workaround: score items excluded from the fit and extract on a disjoint set (repository README); to conclude that the model uses it, the causal test — do more than matched-norm random directions (the specificity null), then more than controls at matched degradation (the damage) (handover, §5.2; course, Part M, M4)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "tout P2 sous Qwen2.5-7B, et le bloc WHAT DOES NOT EXIST de la base dit « one 7B model » : deux erreurs de la base, à corriger.",
+   "texte": "> ⚠ *(v3.6)* « À doses appariées » n'est pas « à dégradation appariée » : à dose égale, une direction concurrente et la tienne n'abîment pas forcément autant le modèle, si bien que ces deux rapports de sélectivité ne sont pas lus à dommage égal ; et le patch de l'état complet aux mêmes sites est un plafond, pas une explication (cours, volet M, M4 ; programme, parties 7 et 8). Parade : refaire la comparaison des deux directions nommées à dégradation appariée, en courbes de l'effet contre la dégradation, et ne comparer qu'aux réglages qu'un témoin peut apparier, en le disant (programme, partie 7)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**The causal result (P2), on Llama-3.1-8B.** Rank 3: 61 → 46% on the judged rate, N = 200, paired McNemar, p ≈ 0.002. The zero-pressure arm — same ablation, without pressure — also moves, Δ +0.41, p 0.0006, interaction p 0.55: the subspace softens negative verdicts, with or without pressure; **it does not encode deference**, and that word is not to be said, even to deny it. Selectivity is not a range but **two named directions**: the structure component does 0.60 and the post-concession anchoring field 0.90 of what your direction does, **at matched doses per layer** — established, not replicated (the replications are descriptive). The causal partition: the probe direction does **less than 1%** of the work; the full state at the same sites 68%; a covariance-matched random 0.161 versus 0.088 for the probe [R·P2]. The probes at 0.93-0.997 are those of the concept pairs on **Qwen2.5-7B**, another project; the only reading measured on Llama is ρ = 0.684, perhaps in-sample (the P4 document, §1): never put these numbers in the same sentence as the interventions. The MY OWN RESULTS block of the knowledge base files all of P2 under Qwen2.5-7B, and the WHAT DOES NOT EXIST block of the knowledge base says \"one 7B model\": two errors in the knowledge base, to be corrected.",
+   "texte": "> ⚠ *(v3.6)* \"At matched doses\" is not \"at matched degradation\": at equal dose, a competing direction and yours need not damage the model equally, so these two selectivity ratios are not read at equal damage; and patching the full state at the same sites is a ceiling, not an explanation (course, Part M, M4; programme, parts 7 and 8). Workaround: redo the comparison of the two named directions at matched degradation, as curves of effect against degradation, comparing only at settings a control can match, and saying so (programme, part 7)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "que les sous-espaces sont emboîtés. C'est la première anomalie de la thèse, pas son appui.",
+   "texte": "> ⚠ *(v3.6)* Ce nul de rang un est dit avec sa puissance, pas avec son cas connu : sans un concept qui cède au rang un dans le même appareil, au même réglage, il ne départage pas « concept réparti » et « appareil aveugle à ce réglage » (fiche 7 ; cours, volet M, M5) ; les autres méthodes de rang un sont rapportées sans chiffres, leurs sorties brutes n'ayant pas été conservées, et l'échec du blocage (clamping) de traits du SAE ne sépare pas « traits absents du dictionnaire » de « dictionnaire qui perd trop » (README du dépôt). Parade : un cas connu au même réglage — un vecteur de pays, qui s'échange dans l'article sur l'espace de travail — et un balayage de rang dans une même expérience, sur des sous-espaces emboîtés (cours, volet 2, §C, K47 ; cours, volet 6, §6) ; pour le SAE, aucune parade connue, on le dit ; et l'on dit une borne, jamais une absence (README du dépôt ; cours, volet M, M5)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**Rank 1.** \"Six methods\" is no longer traced in the dossier; you say **\"several rank-one methods — contrastive activation addition, directional steering and ablation, SAE feature clamping, fine-tuning with an auxiliary loss\"**. The preregistered re-test: rank 1 = 27/50, **+4 points**, p 0.81 — the strong hypothesis is refuted, the weak one not detected at N = 50; rank 2 = 54%; rank 4 = 20/50, −10 points, p 0.27. Four ranks on the same three-layer apparatus, measured in separate experiments: **the curve is unknown** [R·H1]. And the only sweep done within one experiment — the pilot, shared baseline, N = 50, which the P4 document points out in the repository's public README — **is not monotone**: ranks 3 and 5 lower the rate (60 → 38%, 60 → 40%), rank 10 does nothing (60 → 60%), even though the subspaces are nested. It is the thesis's first anomaly, not its support.",
+   "texte": "> ⚠ *(v3.6)* This rank-one null is stated with its power, not with its known case: without a concept that gives way at rank one in the same apparatus, at the same setting, it does not separate \"distributed concept\" from \"apparatus blind at this setting\" (reading sheet 7; course, Part M, M5); the other rank-one methods are reported without numbers, their raw outputs not having been preserved, and the failure of SAE feature clamping does not separate \"features absent from the dictionary\" from \"dictionary too lossy\" (repository README). Workaround: a known case at the same setting — a country vector, which swaps in the workspace paper — and a rank sweep within one experiment, on nested subspaces (course, Part 2, §C, K47; course, Part 6, §6); for the SAE, none known, say so; and state a bound, never an absence (repository README; course, Part M, M5)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "times more from widening the judged window » est **morte** : on ne peut pas élargir une fenêtre sur un texte disparu [R·E2b].",
+   "texte": "> ⚠ *(v3.6)* Une puissance élevée ne remplace pas un cas connu : ce nul sur générations fraîches se dit comme une borne, avec son budget et sa puissance, pas comme l'absence de tout effet (cours, volet M, M5). Parade : valider le même protocole — générations fraîches à graines appariées, réponse entière jugée et gardée en texte complet — sur un cas connu, au même réglage et au même seuil, avant de lire son silence (cours, volet M, M5 ; fiche 7 ; cours, volet 6, §6 ; README du dépôt)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**The replication.** Under its original protocol, yes (119 → 91, p 0.002; 118 → 82, p 0.00003; random controls p 0.83 and 0.16 — which random it is, the dossier will say; none of them rules out damage: Part M, M4). On fresh generations, no: 51.3 → 56.0, p 0.34; 58 → 58, p 1.0; power > 0.95 — a **governed null**. The proposed explanation, to be said in the conditional because it rests on D29, not verified (the P4 document): 195 of the 200 answers were truncated to 300 characters **at storage**, the full text no longer exists, and this truncation would explain the null. So the follow-up \"the ablated arm gains about three times more from widening the judged window\" is **dead**: you cannot widen a window on a text that has disappeared [R·E2b].",
+   "texte": "> ⚠ *(v3.6)* High power does not replace a known case: this null on fresh generations is stated as a bound, with its budget and power, not as the absence of any effect (course, Part M, M5). Workaround: validate the same protocol — fresh seed-matched generations, the whole answer judged and kept as full text — on a known case, at the same setting and threshold, before reading its silence (course, Part M, M5; reading sheet 7; course, Part 6, §6; repository README)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "McNemar p = 0,0156 » — un contrôle de complétude ressuscité à tort comme résultat [R·rétractation].",
+   "texte": "> ⚠ **Limites et parades** : ablation et projection → volet 2, §D (après « La méthode ») ; patching → volet 10, fiche Patchscopes ; contrôles aléatoires → volet M, M4 (après « La direction aléatoire de même norme ») ; dégradation appariée et dose-réponse → volet M, M4 (après « La dose-réponse ») ; sondes d'activation → volet 2, §C (après « En pratique — The Geometry of Truth ») ; pilotage par vecteurs → volet 2, §C (après « En pratique — Contrastive Activation Addition ») ; dictionnaires et SAE → volet 4, Towards puis Scaling Monosemanticity ; cas connu → volet M, M5 (fin de section) *(v3.6)*"
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**The preregistration.** The rank re-tests are preregistered, and the zero-pressure arm too according to your dossier — yet the P4 document marks the softening without pressure \"exploratory: prereg D29 reconstructed\": to be checked; the canonical rank-3 resolution has lost and reconstructed originals: \"exploratory-confirmed\", to be said that way [R·D29]. And one retracted line, never to be reintroduced: \"15/15 versus 8/15, McNemar p = 0.0156\" — a completeness check wrongly resurrected as a result [R·rétractation].",
+   "texte": "> ⚠ **Limits and workarounds**: ablation and projection → Part 2, §D (after \"The method\"); patching → Part 10, Patchscopes sheet; random controls → Part M, M4 (after \"The matched-norm random direction\"); matched degradation and dose-response → Part M, M4 (after \"Dose-response\"); activation probes → Part 2, §C (after \"In practice — The Geometry of Truth\"); steering vectors → Part 2, §C (after \"In practice — Contrastive Activation Addition\"); dictionaries and SAEs → Part 4, Towards then Scaling Monosemanticity; known case → Part M, M5 (end of section) *(v3.6)*"
+  },
+  {
+   "fichier": "FR",
+   "ancre": "covariance** (pièce M4 du dossier : 0,161 pour l'aléatoire, contre 0,088 pour la direction de la sonde). Quand tu dis « contrôle », dis lequel, et lequel a fondé quel chiffre.",
+   "texte": "> ⚠ *(v3.6)* Aucun de ces trois contrôles n'écarte le dommage : l'aléatoire, apparié en norme ou en covariance, n'est que le nul de spécificité, et les directions concurrentes sont comparées à doses appariées, pas à dégradation égale (cours, volet M, M4 ; programme, partie 7 ; cours, volet 6, §2). Parade : un quatrième contrôle, à dégradation appariée — plusieurs familles de témoins au même rang, dont au moins vingt sous-espaces aléatoires, en courbes de l'effet contre la dégradation, rapportées contre leur médiane et leur 95e centile (programme, parties 3 et 7)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "The course talks about a \"baseline\" (Part 1, §I.4). Your dossier has three, and confusing them cost a whole day of corrections: the **competing structured directions** (PR-A: A2 = 0.90, A3 = 0.60); the **norm-matched random** (D32 — absent from the P2 record, according to the P4 document: do not cite it as a control for your result); the **covariance-matched random** (dossier item M4: 0.161 for the random, versus 0.088 for the probe direction). When you say \"control\", say which one, and which one founded which number.",
+   "texte": "> ⚠ *(v3.6)* None of these three controls rules out damage: the random one, norm-matched or covariance-matched, is only the specificity null, and the competing directions are compared at matched doses, not at equal degradation (course, Part M, M4; programme, part 7; course, Part 6, §2). Workaround: a fourth control, at matched degradation — several families of controls at the same rank, including at least twenty random subspaces, as curves of effect against degradation, reported against their median and 95th percentile (programme, parts 3 and 7)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "covariance** (pièce M4 du dossier : 0,161 pour l'aléatoire, contre 0,088 pour la direction de la sonde). Quand tu dis « contrôle », dis lequel, et lequel a fondé quel chiffre.",
+   "texte": "> ⚠ **Limites et parades** : contrôles aléatoires → volet M, M4 (après « La direction aléatoire de même norme ») ; dégradation appariée et dose-réponse → volet M, M4 (après « La dose-réponse ») *(v3.6)*"
+  },
+  {
+   "fichier": "EN",
+   "ancre": "The course talks about a \"baseline\" (Part 1, §I.4). Your dossier has three, and confusing them cost a whole day of corrections: the **competing structured directions** (PR-A: A2 = 0.90, A3 = 0.60); the **norm-matched random** (D32 — absent from the P2 record, according to the P4 document: do not cite it as a control for your result); the **covariance-matched random** (dossier item M4: 0.161 for the random, versus 0.088 for the probe direction). When you say \"control\", say which one, and which one founded which number.",
+   "texte": "> ⚠ **Limits and workarounds**: random controls → Part M, M4 (after \"The matched-norm random direction\"); matched degradation and dose-response → Part M, M4 (after \"Dose-response\") *(v3.6)*"
+  },
+  {
+   "fichier": "FR",
+   "ancre": "*Removing Sandbagging* (Ryd — 91/85/94 % d'élicitation sous supervision faible) [F·26].",
+   "texte": "> ⚠ *(v3.6)* Le 91/85/94 % de Ryd ne tient, selon la limite écrite des auteurs, que si l'entraînement est indistinguable du déploiement : un modèle qui les distingue échappe (cours, volet 7, F·26). Parade : aucune connue ; on le dit."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**Control and monitors**: *Diffuse AI Control on Fuzzy Tasks* (Terekhov, with Hebbar and Benton — the red/blue game on fuzzy tasks, black-box) [F·22]; *SLEIGHT-Bench* (Najt & Toft — the blind spots of monitors: 20 attacks out of 40 never caught) [F·23]; *Strengthening Red Teams* (Loughridge — SHADE-Arena from 0.87 to 0.41) [F·24]; *Coding-audit realism* (Kissane — 4.6% → 32.8%) [F·25]; *Removing Sandbagging* (Ryd — 91/85/94% elicitation under weak supervision) [F·26].",
+   "texte": "> ⚠ *(v3.6)* Ryd's 91/85/94% holds, by the authors' written limit, only if training is indistinguishable from deployment: a model that tells them apart escapes (course, Part 7, F·26). Workaround: none known; say so."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "distribution, 0,70-0,75 hors) [F·29] ; *CHIVE* (Karvonen — aucun gain des outils d'interprétabilité) [F·30].",
+   "texte": "> ⚠ *(v3.6)* Le nul de CHIVE est mesuré en lecture seule, avec des étiquettes passées par un classifieur LLM non validé contre des humains (cours, volet 7, F·30) ; et pour les adaptateurs d'introspection, rapport ou reconstruction plausible reste ouvert (cours, volet 7, F·28). Parade : pour un outil de lecture, battre la boîte noire sur des éditions qui dissocient la surface de la variable interne, et borner l'erreur des étiquettes par un audit humain (fiche 4 ; programme, partie 3) ; pour un auto-rapport, modifier l'état interne contre une direction aléatoire à dégradation appariée, et voir si le rapport suit (fiche 11 ; cours, volet 7, F·28)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**Auditing and introspection**: *AuditBench* (Sheshadri — 56 models, 14 categories) [F·27]; *Introspection Adapters* (Yang) and *Mechanisms of Introspective Awareness* (Macar & Yang) [F·28]; *Fine-Tuned Lie Detectors Failed to Generalize* (Hopkins — AUROC 0.95 in-distribution, 0.70-0.75 outside) [F·29]; *CHIVE* (Karvonen — no gain from interpretability tools) [F·30].",
+   "texte": "> ⚠ *(v3.6)* CHIVE's null is measured read-only, with labels that go through an LLM classifier not validated against humans (course, Part 7, F·30); and for introspection adapters, report or plausible reconstruction remains open (course, Part 7, F·28). Workaround: for a reading tool, beat the black box on edits that dissociate surface features from the internal variable, and bound label error with a human audit (reading sheet 4; programme, part 3); for a self-report, modify the internal state against a random direction at matched degradation, and see whether the report follows (reading sheet 11; course, Part 7, F·28)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "ré-entraînement) [F·36] ; *The Hot Mess of AI* (Hägele) [F·37].",
+   "texte": "> ⚠ *(v3.6)* Deux de ces résultats ont une portée étroite : les vecteurs de persona supposent le trait nommé d'avance, et le lien entre déplacement et trait n'y est que corrélationnel (fiche 8) ; le masquage sélectif des gradients n'est montré que sur de petits modèles (cours, volet 2, §I, JB10). Parade : pour la causalité d'un vecteur, le test à dégradation appariée (cours, volet M, M4) ; pour l'extraction supervisée et pour l'échelle, aucune parade connue ; on le dit."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**Traits, generalization, training**: *Persona Vectors* (Chen & Arditi) [F·31]; *Subliminal Learning* (Cloud & Le) [F·32]; *Inoculation Prompting* (Wichers & Ebtekar) [F·33]; *Model Spec Midtraining* (Li & Wichers — 68 → 5%) [F·34]; *Poisoning Fine-tuning Datasets of Constitutional Classifiers* (Bowers — 32 examples are enough) [F·35]; *Selective Gradient Masking* (Shilov — 7× retraining) [F·36]; *The Hot Mess of AI* (Hägele) [F·37].",
+   "texte": "> ⚠ *(v3.6)* Two of these results have a narrow reach: persona vectors assume the trait is named in advance, and the shift-to-trait link there is only correlational (reading sheet 8); selective gradient masking is shown only on small models (course, Part 2, §I, JB10). Workaround: for a vector's causality, the matched-degradation test (course, Part M, M4); for supervised extraction and for scale, none known; say so."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "(Zhang) [F·42].",
+   "texte": "> ⚠ *(v3.6)* Le 96 % vient d'un stress-test délibéré, où l'action nuisible est la seule voie, et les auteurs ne connaissent aucun cas en déploiement réel ; le 68 → 5 % de Model Spec Midtraining est mesuré sur la même évaluation (cours, volet 7, F·38) ; et un modèle peut remarquer le test et se retenir (fiche 13). Parade : deux versions d'un environnement, tirées au hasard, qui ne diffèrent que par des indices de réalisme notés par un discriminateur, avec un organisme dressé à se cacher comme cas connu (cours, volet 2, §B, K63) ; contre un pot de miel que le modèle lit comme factice, aucune parade connue ; on le dit (fiche 3)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**Agents and the automation of research**: *Agentic Misalignment* (Lynch — 96% blackmail in Opus 4) [F·38]; *AI Organizations* (Shen — more effective, less aligned) [F·39]; *Automated Weak-to-Strong Researcher* (Wen) and *Automated Researchers Can Mitigate Well-Characterized Alignment Failures* (Chen, Wen, Kirchner) [F·40]; *TASTE* (Baig — 92 pairs, 77% human agreement) [F·41]; *A3* (Zhang) [F·42].",
+   "texte": "> ⚠ *(v3.6)* The 96% comes from a deliberate stress test, where the harmful action is the only path, and the authors know of no instance in real deployments; Model Spec Midtraining's 68 → 5% is measured on the same evaluation (course, Part 7, F·38); and a model can notice the test and hold back (reading sheet 13). Workaround: two versions of an environment, randomly assigned, differing only in realism cues scored by a discriminator, with an organism trained to hide as the known case (course, Part 2, §B, K63); against a honeypot the model reads as fake, none known; say so (reading sheet 3)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "(Zhang) [F·42].",
+   "texte": "> ⚠ **Limites et parades** : moniteurs du contrôle → volet 2, §G (après « En pratique — les coup probes ») ; red-teaming → volet 2, §H (après « En pratique — StrongREJECT ») ; évaluations comportementales et pots de miel → volet 2, §B (après « En pratique — le sandbagging ») ; organismes modèles → volet 2, §A (après « En pratique — Auditing Hidden Objectives ») ; auto-rapport et introspection → volet 5, partie II, A, sujet 13 ; détecteurs fine-tunés → volet 7, F·29 ; oracles d'activation → volet 10, fiche LatentQA ; autoencodeurs en langage naturel → volet 4, La vague récente sur la cognition du modèle ; dictionnaires et SAE → volet 4, Towards puis Scaling Monosemanticity ; pilotage par vecteurs → volet 2, §C (après « En pratique — Contrastive Activation Addition ») ; désapprentissage et ré-élicitation → volet 2, §I (après « En pratique — l'unlearning mis à l'épreuve ») ; généralisation faible-vers-fort → volet 2, §F (après « En pratique — l'automatisation ») ; juges LLM → volet 6, §2 (après « La loi de déplacement ») *(v3.6)*"
+  },
+  {
+   "fichier": "EN",
+   "ancre": "**Agents and the automation of research**: *Agentic Misalignment* (Lynch — 96% blackmail in Opus 4) [F·38]; *AI Organizations* (Shen — more effective, less aligned) [F·39]; *Automated Weak-to-Strong Researcher* (Wen) and *Automated Researchers Can Mitigate Well-Characterized Alignment Failures* (Chen, Wen, Kirchner) [F·40]; *TASTE* (Baig — 92 pairs, 77% human agreement) [F·41]; *A3* (Zhang) [F·42].",
+   "texte": "> ⚠ **Limits and workarounds**: control monitors → Part 2, §G (after \"In practice — coup probes\"); red-teaming → Part 2, §H (after \"In practice — StrongREJECT\"); behavioural evaluations and honeypots → Part 2, §B (after \"In practice — sandbagging\"); model organisms → Part 2, §A (after \"In practice — Auditing Hidden Objectives\"); self-report and introspection → Part 5, Section II, A, Topic 13; fine-tuned detectors → Part 7, F·29; activation oracles → Part 10, LatentQA sheet; natural-language autoencoders → Part 4, The recent wave on model cognition; dictionaries and SAEs → Part 4, Towards then Scaling Monosemanticity; steering vectors → Part 2, §C (after \"In practice — Contrastive Activation Addition\"); unlearning and re-elicitation → Part 2, §I (after \"In practice — unlearning put to the test\"); weak-to-strong generalization → Part 2, §F (after \"In practice — automation\"); LLM judges → Part 6, §2 (after \"The displacement law\") *(v3.6)*"
+  },
+  {
+   "fichier": "FR",
+   "ancre": "combine » : « I haven't seen it measured » (volet M, M8, et la règle « first to » de la base).",
+   "texte": "> ⚠ **Limites et parades** : moniteurs du contrôle → volet 2, §G (après « En pratique — les coup probes ») ; J-lens et espace de travail → volet 2, C bis (après « Le test, tel qu'il se dit ») ; ablation et projection → volet 2, §D (après « La méthode ») ; sondes d'activation → volet 2, §C (après « En pratique — The Geometry of Truth ») ; contrôles aléatoires → volet M, M4 (après « La direction aléatoire de même norme ») ; dégradation appariée et dose-réponse → volet M, M4 (après « La dose-réponse ») ; patching → volet 10, fiche Patchscopes *(v3.6)*"
+  },
+  {
+   "fichier": "EN",
+   "ancre": "Absent from the course: white-box control of diffuse threats — sabotage spread over many innocuous actions, and over many agents that share their weights. The idea: internal evidence adds up where external evidence gets diluted — sequential aggregation of probe scores along a trajectory, and across copies. Eight hypotheses, two gates: G1 at the end of the second month (the white-over-black gain against a TRACE-lite at 1% false positives, otherwise a published negative result); G2 at the end of the fourth (the fragmentation effect replicated, the population statistic superior to per-agent aggregation). The September prior-art review corrected three facts (McKenzie: attention pooling, not \"max of moving averages\"; Brown's \"81-87%\" is a campaign recall at 2.35-3.09% false positives, **at ten times more benign traffic than attacks — it drops to 65.8% at a hundred times** (fig. 5, absent from the abstract); Goldowsky-Dill: \"catches 95-99%\" at 1% false positives on its own benchmarks, and **0.867 is the Casademunt reproduction** (appendix F, Roleplaying)) and repositioned claims 1, 2 and 4 as combinations, which are said as \"I haven't seen that combination measured\", never \"first\" (E-valuator, Probe Trajectories, TRACES, NARCBench are partial precedents for them); claims 3 (the epidemiology of shared weights) and 5 (data curation with delayed truth) have no precedent found [R·PROG]. The program is said as a plan: \"I plan to\", \"my prediction is\", \"the first gate would be\" — never in the present tense of what is established, never as a result; and with no outside names, no one else's numbers, never \"first to\", not even \"first to combine\": \"I haven't seen it measured\" (Part M, M8, and the KB's \"first to\" rule).",
+   "texte": "> ⚠ **Limits and workarounds**: control monitors → Part 2, §G (after \"In practice — coup probes\"); J-lens and workspace → Part 2, C bis (after \"The test, as it is said\"); ablation and projection → Part 2, §D (after \"The method\"); activation probes → Part 2, §C (after \"In practice — The Geometry of Truth\"); random controls → Part M, M4 (after \"The matched-norm random direction\"); matched degradation and dose-response → Part M, M4 (after \"Dose-response\"); patching → Part 10, Patchscopes sheet *(v3.6)*"
+  },
+  {
+   "fichier": "FR",
+   "ancre": "rien du travail causal.",
+   "texte": "> ⚠ *(v3.6)* Le jacobien ne dispense pas du test causal : le lens ne capture l'espace de travail que « only approximately and incompletely », pour des concepts d'un seul token, la présence n'y est pas la cause — le langage y est présent sur quatre tâches, causal sur deux —, et il n'a été montré que sur Claude (fiche 1). Parade : la porte du lens — reproduire d'abord sur Llama l'échange d'un concept d'un seul token, sinon un tuned lens déclaré comme approximation, et la thèse n'est pas testée au sens de l'article (programme, parties 3 et 8) ; un rapport non vérifié trouve d'ailleurs des échanges bien plus faibles sur des modèles ouverts (rapport d'antériorité 5 du 2 octobre — rapport, lu par résumé)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "none of the causal work.",
+   "texte": "> ⚠ *(v3.6)* The Jacobian does not exempt the lens from the causal test: it captures the workspace \"only approximately and incompletely\", for single-token concepts, presence there is not cause — language is present on four tasks, causal on two —, and it has been shown only on Claude (reading sheet 1). Workaround: the lens gate — first reproduce on Llama the swap of a single-token concept, otherwise a tuned lens declared as an approximation, and the thesis is not tested in the paper's sense (programme, parts 3 and 8); an unverified report also finds much weaker swaps on open models (prior-art report 5 of 2 October — report, read through a summary)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "sont à désapprendre : « six methods », « two points », « deference subspace », « widening the judged window ».",
+   "texte": "> ⚠ *(v3.6)* Ce « moins de 1 % » vient d'un seul modèle, Llama 3.1 8B Instruct, et de la seule complaisance d'opinion, en un tour (README du dépôt) : il relativise les sondes et le pilotage (volet 2, §C) sur ce cas, pas en général. Parade : la même partition sur d'autres concepts, puis sur un second modèle (cours, volet 6, §6)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "In Part 1, question Q2 (\"the most important problem\") gains your angle: judge metrology is an instance of the ground-truth problem. In Part 2, family C (probes and steering) gains the result that puts it in perspective: reading is not controlling, less than 1% of the causal work. In Part 3, the six directions gain their sixteen subproblems and the three that name you. In Part 4, the 2025-2026 papers are added (Part 7). In Part 5, the numbers of the signature thesis are those of section 2 above, and four phrasings are to be unlearned: \"six methods\", \"two points\", \"deference subspace\", \"widening the judged window\".",
+   "texte": "> ⚠ *(v3.6)* This \"less than 1%\" comes from a single model, Llama 3.1 8B Instruct, and from opinion sycophancy alone, single-turn (repository README): it puts probes and steering (Part 2, §C) in perspective on this case, not in general. Workaround: the same partition on other concepts, then on a second model (course, Part 6, §6)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "fait moins d'un pour cent du travail causal — lire n'est pas utiliser, déjà en distribution.",
+   "texte": "> ⚠ *(v3.6)* Les étiquettes de Hopkins et Khullar passent par un juge GPT-5, et environ 25 % ont été révisées à la passe de nettoyage (fiche 7). Parade : dire « révisées », pas « inversées », et garder pour mesure l'écart entre l'AUROC en distribution et l'AUROC sur des types tenus à part (fiche 7) ; dans ton propre dispositif, borner l'erreur du juge par un audit humain stratifié (programme, partie 3)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "already in distribution.",
+   "texte": "> ⚠ *(v3.6)* Hopkins and Khullar's labels go through a GPT-5 judge, and about 25% were revised at the cleaning pass (reading sheet 7). Workaround: say \"revised\", not \"flipped\", and keep as the measure the gap between in-distribution AUROC and AUROC on held-out types (reading sheet 7); in your own setup, bound judge error with a stratified human audit (programme, part 3)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "consigne ; elle est inutile hors des organismes, **et on le sait avant de la déployer**.",
+   "texte": "> ⚠ *(v3.6)* Le silence de la sonde sur la famille 2, celle du fine-tuning léger, ne désigne « la trace de la consigne » que si cette famille porte bien l'intention : l'implant par fine-tuning peut rater (cours, volet 2, §E, K52), et l'organisme conditionné à l'évaluation de la fiche 10 ne suit sa règle qu'en partie (fiche 10). Parade : vérifier chaque copie par son comportement (cours, volet 2, §A, K71), l'étiqueter par des contrôles programmés et un juge scellé, jamais par la sonde (passation, §5.1 et §5.2), et ne lire un silence qu'une fois la sensibilité de la sonde mesurée sur un organisme où l'on a mis l'intention soi-même : il devient alors une borne (passation, §5.2)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "outside the organisms, **and you know it before deploying it**.",
+   "texte": "> ⚠ *(v3.6)* The probe's silence on family 2, the light fine-tune, points to \"the trace of the instruction\" only if that family does carry the intent: the fine-tuned implant can fail (course, Part 2, §E, K52), and the evaluation-conditioned organism of reading sheet 10 follows its rule only in part (reading sheet 10). Workaround: check each copy by its behaviour (course, Part 2, §A, K71), label it by programmed checks and a sealed judge, never by the probe (handover, §5.1 and §5.2), and read a silence only once the probe's sensitivity has been measured on an organism in which you installed the intent yourself: it then becomes a bound (handover, §5.2)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "devraient se trouver.",
+   "texte": "> ⚠ *(v3.6)* Un effet porté par le seul reste peut aussi venir de ce que le lens manque — il ne capture l'espace de travail que « only approximately and incompletely », et pour des concepts d'un seul token (fiche 1) —, et le lens dépend des poids, or la famille 2 est fine-tunée, contrairement à la famille 1 (cours, volet 2, C bis ; cours, volet 6, §8). Parade : recalculer le lens sur chaque organisme fine-tuné, et lire le concept sur un jeu de tokens ou par l'extension multi-token de l'annexe, en disant laquelle (cours, volet 2, C bis ; programme, partie 3)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "concluded. It is among the former — a prediction, to be said as such — that the probes that generalise worst should be found.",
+   "texte": "> ⚠ *(v3.6)* An effect carried by the remainder alone may also come from what the lens misses — it captures the workspace \"only approximately and incompletely\", and for single-token concepts (reading sheet 1) —, and the lens depends on the weights, while family 2 is fine-tuned, unlike family 1 (course, Part 2, C bis; course, Part 6, §8). Workaround: recompute the lens on each fine-tuned organism, and read the concept on a token set or through the appendix's multi-token extension, saying which (course, Part 2, C bis; programme, part 3)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "aware-but-honest control.* »",
+   "texte": "> ### ★ Encadré du 2 octobre 2026 — Renvoi : entraîner des sondes de désalignement, et les juger hors distribution\n>\n> L'encadré du 2 octobre reprend ce paragraphe du côté de la pratique : pourquoi un organisme modèle, et pourquoi son succès borne l'instrument sans prouver le cas naturel (volet 2, fin de la présentation de la section A) ; comment entraîner une sonde sans toucher aux poids, et la juger hors distribution, sur des familles entières tenues à part et avec une sonde neuve après tout entraînement (volet 2, fin de la présentation de la section C) ; l'angle mort du J-lens et ses cas connus (volet 2, C bis). Les deux familles d'organismes et le témoin conscient mais honnête de ce paragraphe y sont donnés comme parade partielle à la saillance d'un comportement implanté."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "mechanism: two organism families, and an aware-but-honest control.*\"",
+   "texte": "> ### ★ Box of 2 October 2026 — Cross-reference: training misalignment probes, and judging them out of distribution\n>\n> The box of 2 October takes up this section from the practical side: why a model organism, and why its success bounds the instrument without proving the natural case (Part 2, end of the presentation of section A); how to train a probe without touching the weights, and judge it out of distribution, on whole held-out families and with a fresh probe after any training (Part 2, end of the presentation of section C); the J-lens's blind spot and its known cases (Part 2, C bis). The two organism families and the aware-but-honest control of this section are given there as a partial workaround for the salience of an implanted behaviour."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "aware-but-honest control.* »",
+   "texte": "> ⚠ *(v3.6)* « Une sonde par couche » oblige à choisir une couche, et « s'allume » suppose un seuil : choisis sur les données du test, ils le contaminent (cours, volet 2, C bis ; README du dépôt). Parade : choisir la couche par l'AUROC sur un jeu de validation, jamais sur celui du test, avec des jeux d'indices disjoints, et fixer le seuil d'avance, le même que celui où le cas connu a été validé (programme, partie 3 ; cours, volet M, M5 ; fiche 7)."
+  },
+  {
+   "fichier": "EN",
+   "ancre": "mechanism: two organism families, and an aware-but-honest control.*\"",
+   "texte": "> ⚠ *(v3.6)* \"One probe per layer\" forces a choice of layer, and \"fires\" assumes a threshold: chosen on the test data, they contaminate it (course, Part 2, C bis; repository README). Workaround: choose the layer by AUROC on a validation set, never on the test set, with disjoint cue sets, and fix the threshold in advance, the same one at which the known case was validated (programme, part 3; course, Part M, M5; reading sheet 7)."
+  },
+  {
+   "fichier": "FR",
+   "ancre": "aware-but-honest control.* »",
+   "texte": "> ⚠ **Limites et parades** : sondes d'activation → volet 2, §C (après « En pratique — The Geometry of Truth ») ; détecteurs fine-tunés → volet 7, F·29 ; organismes modèles → volet 2, §A (après « En pratique — Auditing Hidden Objectives ») ; cas connu → volet M, M5 (fin de section) ; J-lens et espace de travail → volet 2, C bis (après « Le test, tel qu'il se dit ») ; jeu tenu à part → volet M, M4 (après « Le jeu tenu à part ») ; patching → volet 10, fiche Patchscopes *(v3.6)*"
+  },
+  {
+   "fichier": "EN",
+   "ancre": "mechanism: two organism families, and an aware-but-honest control.*\"",
+   "texte": "> ⚠ **Limits and workarounds**: activation probes → Part 2, §C (after \"In practice — The Geometry of Truth\"); fine-tuned detectors → Part 7, F·29; model organisms → Part 2, §A (after \"In practice — Auditing Hidden Objectives\"); known case → Part M, M5 (end of section); J-lens and workspace → Part 2, C bis (after \"The test, as it is said\"); held-out set → Part M, M4 (after \"The held-out set\"); patching → Part 10, Patchscopes sheet *(v3.6)*"
+  }
+ ]
+}

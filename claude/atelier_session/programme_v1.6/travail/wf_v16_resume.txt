@@ -1,0 +1,179 @@
+INTÉGRATION : 101 appliquées ; 15 fusions ; 3 écartées
+  écartée E35 (passages) : Retirés parce que faux ou redondants. « Sous 0,5 aux couches 16 à 32 » : c'est 13 à 32 dans les results.json de 00c6. « Au plus 0,014 » : c'est 0,017 au rang 4 dans 8410. Les listes de mesures du transfert, de la carte et de la décision 29 répétaient les parties 3, 4 et 7 : elles sont remplacées par
+  écartée d29-D (passages) : Retirés comme redondants. La définition de l'effacement est en partie 3. La répétition détaillée de la porte est dans E14. Les comparateurs « de 0,628 à 0,687 » mêlaient les deux sondes : avec la sonde linéaire, c'est 0,636 à 0,687, et ces valeurs sont dans T07. La KL selon la carte est en partie 7,
+  écartée A4-08 (passages) : Retirés comme redondants. La définition longue du transfert est dans T04. Les chiffres détaillés du transfert sont dans T07. La liste des limites est en partie 2 (A4-04).
+  fusion ['A4-01', 'E06'] : Même ancre (l'entrée « Une unité naturelle » du vocabulaire). Une seule entrée « L'effacement linéaire » qui garde les deux définitions sans répétition : forme close, covariance nulle sur les paires d
+  fusion ['d29-G', 'A2-05', 'T16'] : Les trois touchent la première ligne du tableau de la validation (partie 6), et les ancres de A2-05 et T16 se chevauchent. Un seul remplacement de la ligne : réglage fixé par amendement daté, tirages 
+  fusion ['T17', 'd29-H'] : Même ligne d'ancre (« L'inhibition réduit l'écart, mais pas plus qu'un contrôle »). T17 s'insère avant, d29-H après. Le « comme à la ligne précédente » de d29-H reste juste.
+  fusion ['A2-07', 'd29-J'] : Même ancre dans le premier temps du gel. La ligne de A2-07 (règle de mise en commun, carte) est gardée, puis celle de d29-J (procédure du choix, ses seuils) juste après.
+  fusion ['A4-28', 'A2-11'] : Les deux s'insèrent après la ligne de la licence de Llama, en partie 11. Ajoutées l'une après l'autre : la relecture de Belrose et al., puis la vérification de la carte.
+  fusion ['d29-N', 'E27'] : L'ancre de E27 est contenue dans la ligne de la décision 29 que d29-N remplace. Résultat : la ligne réécrite par d29-N, puis les quatre lignes des décisions 30 à 33, sans ligne vide. Dans la ligne de 
+  fusion ['E32', 'd29-O'] : Les deux ajoutaient un point 17 sur le nouveau réglage de la porte. Il n'en reste qu'un, qui réunit l'amendement daté, la courbe 62a1, la procédure proposée et la question de l'ajustement. Le point 18
+  fusion ['d29-D', 'E14', 'E13', 'T07', 'A2-06', 'A4-08', 'T05'] : Le bloc « La décision 29, rouverte » garde sa structure : ce qui la rouvre, ce que demande le test du regard, la courbe en dose avec le marqueur, la procédure. Ce qui doublait d'autres rédacteurs devi
+  fusion ['A4-08', 'T04', 'T07', 'A4-04', 'd29 (notes)'] : Le bloc du rang par effacement est gardé en partie 3. Il gagne une puce « L'effacement linéaire, candidat », placée en fin de « L'inhibition » : la v1.5 ne le nommait pas, et les notes de la décision 
+  fusion ['E35', 'T07', 'A2-06', 'd29-D', 'A4-08', 'A4-04'] : L'annexe 3 est gardée : titre exact, balises, ordre des amendements et des décisions 30 à 32, ligne d'infrastructure unique. Chaque amendement est résumé en quelques chiffres, avec un renvoi aux parti
+  fusion ['A2 (notes)', 'décision 4'] : Ajout de l'intégrateur, demandé par les notes du rédacteur de la carte. La ligne « Le calcul » (décision 4) de la partie 12 gagne la règle « une série, une carte », avec un renvoi à la partie 9 et à l
+  fusion ['A4 (notes)', 'annexe 1'] : Ajout de l'intégrateur, demandé par les notes du rédacteur du rang. La ligne « La grille des rangs est grossière » de l'annexe 1 dit qu'en v1.6 la grille ne sert plus qu'au balayage par projection.
+  fusion ['E28', 'E22', 'E29'] : Deux retouches de cohérence. « Comment cette version lit… la décision 26 » devient « Comment la v1.5 lit… », puisque E28 ajoute la lecture de la v1.6 juste après. En partie 9, la remarque sur la semai
+  fusion ['A4-03', 'A4-04'] : Même ligne, ancres disjointes. Appliquées l'une après l'autre.
+  fusion ['A4-26', 'T23'] : Même ligne de la figure 2, ancres disjointes. Appliquées l'une après l'autre : rang par effacement et balayage, puis vérification par le transfert.
+  vérifications : Le script /tmp/claude-0/-home-user-sycophancy-construct-validity/332d478c-da90-5795-bb10-27657d88c4d0/scratchpad/v16/apply.py prend les éditions dans les fichiers ed_*.json et les textes fusionnés dans merges.py. Il applique 114 opérations. Avant chacune, il vérifie que l'ancre figure exactement une fois dans le texte courant. Il vérifie aussi qu'une insertion après une ancre tombe en fin de ligne, et qu'une insertion avant une ancre tombe en début de ligne.
+
+**Ancres et éditions**
+- Les 127 ancres d'origine figurent chacune une fois dans la v1.5.
+- Les chevauchements détectés et traités sont : A4-01/E06, A2-05/T16, T17/d29-H, A2-07/d29-J, A2-11/A4-28, d29-N/E27, d29-O/E32.
+- Aucune édition d'origine n'est restée inutilisée.
+
+**Le fichier écrit**
+- Chemin : /home/user/raisons-ou-regard/claude/PROGRAMME_RAISONS_OU_REGARD_v1.6_2026-10-06.md, 2 857 lignes, sha256 ac485967….
+- Le marqueur [[RÉSULTATS_62a1]] figure une fois, dans « La courbe en dose, refaite » du bloc « La décision 29, rouverte » (partie 4).
+- @@P1@@ à @@P12@@, @@PA@@, @@PB@@ et @@PC@@ figurent chacune une fois, toutes dans le sommaire. La ligne « Annexe 3 · Ce que la v1.6 change » correspond au titre attendu par outils/programme_vers_pdf.py.
+- Les balises sont équilibrées : 8 <div> et 8 </div>, comme dans la v1.5 ; 15 <section> et 15 </section>, une paire de plus pour l'annexe 3. Aucune section n'est imbriquée.
+- Le rendu CommonMark (markdown_it, avec les tableaux) passe sans erreur.
+- Les tableaux sont intacts : 59 dans les deux versions, et chaque ligne commençant par « | » est bien une ligne de tableau.
+- Aucune liste serrée n'est devenue lâche.
+- Les quatre mentions de « figé » pour la décision 29 disent toutes qu'elle est rouverte : la couverture, la partie 4, la partie 7, la partie 12. Il en va de même pour les annexes 1 et 3.
+- Le fait d'infrastructure (128 commits par heure, a595af6) figure une seule fois, dans l'annexe 3.
+- Aucun document du copilote n'est cité. Le harnais n'est mentionné que p
+  résumé : J'ai écrit la v1.6 dans /home/user/raisons-ou-regard/claude/PROGRAMME_RAISONS_OU_REGARD_v1.6_2026-10-06.md. Elle part d'une copie de la v1.5, sur laquelle j'ai appliqué les 127 éditions des cinq rédacteurs, en 114 opérations. Toutes les vérifications demandées passent : le marqueur 62a1 figure une fois, les marques de pages une fois chacune dans le sommaire, les balises sont équilibrées, le rendu CommonMark passe, et aucune phrase ne dit la décision 29 figée sans dire qu'elle est rouverte. Les fichiers de travail (le script, les éditions en JSON, les textes fusionnés) sont dans /tmp/claude-0/-home-user-sycophancy-construct-validity/332d478c-da90-5795-bb10-27657d88c4d0/scratchpad/v16/.
+
+**Ce que contient la v1.6**
+- La date (6 octobre 2026), le commentaire d'en-tête, le kicker et la couverture, avec un bloc « Nouveau en v1.6 » ; l'ancien bloc devient « Ce qu'apportait la v1.5 ».
+- Le vocabulaire gagne trois entrées : l'effacement linéaire, le transfert, la carte.
+- **Amendement 1, le transfert** : il entre dans la vérification de manipulation (partie 3), avec son critère proposé, sa limite écrite d'avance et les mesures des 5 et 6 octobre. Il est répercuté dans les parties 4 à 8 et 10, et dans l'annexe 1.
+- **Amendement 2, la carte** : une étape 10 de la procédure en partie 7, et des renvois en parties 3, 4, 6, 8, 9, 11 et 12.
+- **Amendement 3, la décision 29** : elle est rouverte, sans nouveau réglage, et la moitié de test reste intouchée. Le bloc qui le dit, en partie 4, por
+
+vérifier:coherence : Counter({'mineur': 15, 'important': 11, 'bloquant': 1}) — La v1.6 couvre bien les quatre amendements de la décision 33, les décisions 30 à 32 et les mesures du 4 au 6 octobre. Le marqueur [[RÉSULTATS_62a1]] figure une seule fois, au bon endroit (partie 4, « La courbe en dose, refaite »). Le sommaire porte l'annexe 3, et @@PC@@ est géré par outils/programme_vers_pdf.py. Les renvois de parties et de décisions sont justes, à une exception près (point 18.2). Aucune table ne manque de ligne vide avant elle. Les runs sont tous entre accents graves.
+
+Les chiffres sont vérifiés sur les notes et les results.json : 0,682, 0,497, 0,545, 0,687, 0,649 ; les proje
+
+vérifier:exactitude : Counter({'mineur': 8, 'important': 6}) — J'ai vérifié les faits de la v1.6 contre les notes du 4 au 6 octobre, les results.json et les journaux de conteneur. L'essentiel est exact : écarts, réductions, tirages, KL selon la carte, transfert (0,682 ; 0,497 ; 0,545 ; 0,687 ; 0,698 / 0,662 ; 0,918 / 0,900), lecture symétrique (0,566, soit 0,57 ; écart au hasard de 0,07, 0,18 et 0,19), 82 réponses de référence sur 120, décisions 30 et 31, pilote. Les sha256 des 24 pièces, recalculés, sont tous justes.
+
+Deux chiffres de la v1.6 contredisent les notes, mais ce sont les results.json qui leur donnent raison ; il ne faut donc pas les « corrige
+
+vérifier:decisions : Counter({'mineur': 22, 'important': 11, 'bloquant': 1}) — La v1.6 tient l'essentiel de l'angle. La décision 29 est dite rouverte, sans qu'aucun réglage soit choisi, et la moitié de test reste intouchée. Les décisions 30 à 33 suivent fidèlement leurs textes. Le marqueur [[RÉSULTATS_62a1]] figure une fois, au bon endroit. La plupart des mesures sont étiquetées exploratoires, avec leurs réserves : un seul tirage, la lecture qui persiste en moyenne sur les jetons, et les deux causes possibles de l'écart de KL entre cartes, non tranchées.
+
+Il reste un défaut bloquant et plusieurs défauts importants, tous vérifiés.
+
+1. **Attribution bloquante.** La partie 
+
+vérifier:forme : Counter({'mineur': 19, 'important': 4}) — J'ai relu la v1.6 sous l'angle de la langue et de la forme. Elle n'a aucun défaut bloquant ; quatre constats importants et dix-sept mineurs sont à corriger.
+
+Ce qui tient, et que j'ai vérifié :
+- Les blocs HTML sont équilibrés : 8 div ouvertes et 8 fermées ; 15 sections ouvertes et 15 fermées.
+- Le sommaire porte une marque @@…@@ par partie, dont @@PC@@, sur la ligne « Annexe 3 · Ce que la v1.6 change ». Le titre exact est en tête de l'annexe 3.
+- Un PDF de contrôle, construit dans le répertoire temporaire par outils/programme_vers_pdf.py, se construit sans erreur : 131 pages, l'annexe 3 en pa
+
+CORRECTION : 25 appliquées ; 6 écartées
+  non corrigé : Coherence (important), part 12 point 19: 'retirer le point 19' → Took the constat's second option instead. Point 19 is a session proposal, it is not presented as decided, and it was new in v1.6. It is now disclosed in an annex 3 section ('Une proposition nouvelle de la session') and in the header comment, as the forme constat also proposed. Removing it would have
+  non corrigé : Forme (mineur), partie 12, ligne de la décision 29 : « (non fait, remplacé le 6 octobre par la procédure de la partie 4) » → « Remplacé » présenterait la procédure comme décidée, alors qu'elle est proposée par la session et reste à trancher par Lazar (constat « decisions », bloquant, sur le même point). Retenu à la place : « à revérifier sur la moitié de choix avec l'extraction v2 (non fait au 6 octobre) ».
+  non corrigé : Coherence (important), part 6, unmatchable-dose row: 'la plus forte dose appariable peut être proposée à Lazar comme candidat' → This conflicts with the 'decisions' constat that closes the candidate list (otherwise the 'effet non spécifique' row could be put off indefinitely). Resolved for the closed list: a weaker dose is examined only if it is on the closed list. The rest of the fix (choice half and test half) is applied an
+  non corrigé : Coherence (mineur), trajectory AUROC: also part 6's distress rule ('la décodabilité de « je suis évalué » baissent sous l'axe') → Applied to the part 4 trajectory, to step 3 of the distress phase and to the matching cell of the part 2 table. Left the part 6 rule unchanged: it says 'décodabilité' in general, without naming a probe trained and read on the same set, so it is not ambiguous in the same way.
+  non corrigé : Context item 8 and the 6 October note: 'sous 0,5 aux couches 16 à 32 (0,36 à 0,48)' → Not adopted. 00c6's results.json gives layers 13 to 32 (0,356 to 0,493), the figure v1.6 already used, as the coherence constat said. The text keeps 13 to 32, and annex 3 now notes the difference with the note.
+  non corrigé : Coherence C2 / forme: '5 au matin' for 8410 and a006 → Wording adjusted rather than discarded. The runs started at 11:55 UTC and the note speaks of 'le balayage du midi', so the text says 'le 5 octobre vers midi'.
+  résumé : I corrected /home/user/raisons-ou-regard/claude/PROGRAMME_RAISONS_OU_REGARD_v1.6_2026-10-06.md, the only file I wrote. I removed the outils/__pycache__ directory that my own import of the render module had created. A copy of the uncorrected version is at /tmp/claude-0/-home-user-sycophancy-construct-validity/332d478c-da90-5795-bb10-27657d88c4d0/scratchpad/v1.6_avant.md.
+
+I checked every constat against the sources:
+- the notes of 4, 5 and 6 October;
+- results.json and status.json for 62a1, 00c6 and 8410, and the partial results.json of 0718;
+- eval_subspace.json of 50b2;
+- the run registry (machines, drivers);
+- the reference-answer checksums;
+- the erasure code.
+
+All blocking and important findings are applied, and the minor ones whose fix was clear.
+
+1. **Decided versus proposed.** Lazar adopted the transfer, the one-card rule, the reopening of decision 29 and the change of rank method. Everything else is now marked as proposed:
+   - the last-token reading and the mean over layers;
+   - the fingerprint, code and organism conditions;
+   - the procedure for choosing the setting;
+   - the erasure candidate and the iteration;
+   - the fraction-1 reading, where v1.5 said 'over the whole dose range'.
+2. **Card qualifiers.** Every A100 statement now carries its card and its single draw: the saturation, 'leave deployment intact' and 'the damage alone erases the behaviour'.
+3. **Corrected figures.**
+   - The probe and rank-1 direction ranges, now 0,53 to 0,67.
+   - The constructed-failure gap: 0,003, not 0,004.
+   - The residual projection falls below 0,01 only at the projected layers.
+   - The KL repeats on the same machine; across H100 machines only one projection was repeated.
+   - Five runs share the same reference answers, not four.
+   - Costs, now including the night of 4 October and 6 October.
+4. **Run 62a1 marked finished**, its note and results.json added to 'Les pièces' with recomputed checksums, and a few short forward references to the redone curve. The marker [[RÉSULTATS_62a1]] stays once, where amendment 3 cites the curve. Results are still to be inserted there.
+5. **Annex 3 completed.** The 'Où' lists are filled in. A new section discloses the session's proposal (point 19), which sits outside the amendments.
+
+Form after correction:
+- balanced tags: div 8/8, section 15/15;
+- all @@…@@ marks present;
+- every HTML block followed by a blank line;
+- clean CommonMark render with markdown-it, using the tool's own page_html;
+- the lists in part 11 starting
+
+CONTRÔLE FINAL : La v1.6 est prête, sous réserve d'une correction d'attribution (moyenne) et de quatre retouches mineures. Aucun chiffre n'est faux et rien ne casse le rendu.
+
+Ce que j'ai vérifié :
+- **Le diff complet contre la v1.5** (1 011 lignes) : lu.
+- **Les quatre amendements de la décision 33** sont inscrits aux bons endroits :
+  - le transfert : parties 3, 4, 5, 6, 7, 8 et 10 ;
+  - la carte : vocabulaire, parties 3, 4, 6, 7 (étape 10), 8, 9, 11 et 12 ;
+  - la décision 29 rouverte : parties 4 et 12. Ni « figé » ni le réglage d'origine ne restent comme décision ; la moitié de test reste intouchée ; le nouveau réglage revient à Lazar ;
+  - la méthode du rang : parties 1, 2, 3, 4, 6, 7, 8, 9, 10 et 11.
+  Les détails ajoutés sont marqués « proposé ». La seule tension restante est l'attribution de « le transfert décide » (point 1).
+- **Les décisions 30 à 33** sont exactes : citations, dates, 188 et 198 paires, 4 puis 8 tirages, « oui lance les deux sur H100 », lecture des quatre amendements.
+- **Les chiffres**, contrôlés contre les quatre notes et les fichiers results.json et eval_subspace.json :
+  - répétition de la porte (`ada0`) : 54,4 et 18,4 ; 60,8/6,4 → 22,0/5,2 ; 37,6 et 14,0 ; tirages 15,6, 16,8, −2,4, 32,4 ; témoins 20,0, 12,8, 26,8 ; manipulation rivale 21,6 et 0,4 ;
+  - extraction v2 (`50b2`) : 0,857 ; 0,6335 ; direction de rang 1 de 0,5346 à 0,6687, et 0,5554 au plus bas des couches 4 à 32, donc « 0,53 à 0,67 » et « 0,56 à 0,67 aux couches 4 à 32 » sont justes ;
+  - KL : 0,2591, 0,0550, 0,15889, 0,0422, 0,1535 et 0,1528 ;
+  - transfert (`0718`, `00c6`) : 0,682 ; 0,497 (0,545 au perceptron) ; 0,687 ; 0,607 à 0,677 ; comparateurs à la sonde linéaire de 0,636 à 0,687 (le 0,628 de la note vient du perceptron) ; 0,683 contre 0,6866 ; couche 6 de 0,635 à 0,546 ; lecture symétrique 0,566 ; écarts au hasard 0,07, 0,18 et 0,19 ; 0,900 et 0,918 ;
+  - couches 13 à 32 sous 0,5, minimum 0,356 : l'annexe 3 a raison contre la note du 6 octobre, qui écrit « 16 à 32 » ;
+  - 82 réponses de référence sur 120 diffèrent entre A100 et H100 ; cinq runs ont la même empreinte sur deux machines H100 et deux pilotes (Pays-Bas en 560.35, Tchéquie en 595.71) ;
+  - effacement sur A100 (`a006`) : 55,2 → 2,4 ; 52,8 contre 53,6 ;
+  - couches 4 à 8 (`194c`) : 16,4 ; dose (`faa0`) : 3,2, 15,2, 26,0 et 10,4 ;
+  - coûts : 14,50, 5, 10 et 7,02 $ ; 3,86 et 1,23 $/h ; pilote 27,58 $ et indices 5,80 $ ;
+  - empreintes SHA-256 de la table des pièces : toutes justes.
+- **La courbe du 6 octobre (`62a1`
+ - moyenne | CITATION : **Le transfert décide** (décision 33). Proposé : au dernier jeton, en moyenne sur les couches […] (partie 3, l. 989 ; de même l. 35 « et c'est elle qui décide », l. 982 « c'est le transfert qui décide (plus bas ; décision 33) », l. 995 « puisque c'est lui qui décide (décision 33, 6 octobre 2026) »,  | PROBLÈME : L'amendement adopté dit seulement « inscrire le transfert dans la vérification de manipulation ». Faire du transfert le critère qui décide, et faire passer la lecture dans le jeu (le critère de la v1.5, issu de la contre-lecture et de la décision 26) en secondaire, est une lecture de la session. Or ces passages l'attribuent à la décision 33. La partie 12 dit pourtant que « le critère du transfert » fait partie des détails proposés (l. 2525). Le texte se contredit donc sur ce que Lazar a décidé, ce que la règle « ne présente jamais comme décidé… » interdit. | CORRECTION : En partie 3, l. 989, remplacer « **Le transfert décide** (décision 33). Proposé : » par « **Le transfert décide** (décision 33 pour son inscription ; qu'il décide seul, la lecture dans le jeu passant en secondaire, est la lecture que la session fait de l'amendement : proposé). Proposé aussi : ». En partie 12, l. 2525, après « sont proposés. », ajouter « Que le transfert décide, et que la lecture dans le jeu de la v1.5 passe en secondaire, en fait partie : c'est la lecture que la session fait de « inscrire ». » Dans l'annexe 3, sous « Ce qui reste proposé » de l'amendement 1, commencer par « Que le transfert décide, la lecture dans le jeu et la projection résiduelle passant en secondaire. » Aux l. 35, 982 et 995, garder « décide » mais remplacer « décision 33 » par « décision 33 ; proposé »
+ - faible | CITATION : le sous-espace des projections, extrait sur les 50 paires qui entraînent le transfert, à réextraire sans elles ou non (partie 12, point 18.1, l. 2565) ; « Et le sous-espace des projections, extrait sur les paires mêmes du transfert : à réextraire sans elles, ou non (partie 3) » (annexe 3, l. 2812) | PROBLÈME : Ce n'est pas exact. `extract_eval-20261005-114155-50b2` est extrait sur les 200 paires d'extraction (400 textes dans eval_subspace.json), dont les 50 du transfert, et non sur ces 50 seules. La partie 3 le dit correctement (« extrait sur les 200 paires d'extraction, ces 50 comprises »). | CORRECTION : Au point 18.1 : « le sous-espace des projections, extrait sur les 200 paires d'extraction, dont les 50 qui entraînent le transfert, à réextraire sans elles ou non ». Dans l'annexe 3 : « Et le sous-espace des projections, extrait sur les 200 paires d'extraction, dont celles du transfert : à réextraire sans elles, ou non (partie 3). »
+ - faible | CITATION : | Les corrections de la contre-lecture | « toutes, telles que proposées » ; la v1.5 les intègre, et la v1.6 les reprend ; Lazar relit la v1.6 avant le gel du premier temps | décision 26 | (l. 2509) | PROBLÈME : Cette ligne prête à la décision 26 (3 octobre) une relecture de la v1.6. La décision 26 prévoyait que Lazar relise la v1.5. Que la relecture porte désormais sur la v1.6 découle de la nouvelle version, pas de la décision 26. | CORRECTION : « « toutes, telles que proposées » ; la v1.5 les intègre, et la v1.6 les reprend ; Lazar devait relire la v1.5 avant le gel du premier temps (sa relecture porte désormais sur la v1.6 : plus bas, point 1) | décision 26 |»
+ - faible | CITATION : | Le principe localisé | Partiellement pris ; élevé pour une sous-question | Gurnee et al., §7 (élevé) ; Nakamura ; *Beyond Shallow Alignment* ; *Routing Subspaces* | La localisation à action identique, sous-espace tiré des bras témoins, balayage du rang, contrôles à dégradation appariée, cas positi | PROBLÈME : L'amendement 4 nomme la partie 1 dans son « Où ». La contribution 2 du sommaire et le brouillon anglais ont été mis à jour (« un rang mesuré par effacement et un balayage de rang en descriptif »). Cette ligne de la table des angles décrit encore notre méthode de localisation par le seul balayage du rang. | CORRECTION : Remplacer « balayage du rang, » par « rang minimal mesuré par effacement, balayage du rang en descriptif, ».
+ - faible | CITATION : - **Où.** La vérification de manipulation, et les rôles des jeux d'extraction et de validation (partie 3) ; la porte de l'instrument, le test du regard, et la vérification refaite au retrait, à la survie et après le RL (partie 4) ; […] ; deux lignes de l'annexe 1. (annexe 3, amendement 1) ; « - **Où | PROBLÈME : L'annexe 3 promet de dire « ce qui change, où ». Trois endroits manquent. Pour l'amendement 1 : la ligne « Le regard sous détresse » de la table de la partie 2, la trajectoire de « je suis évalué » (partie 4, test des raisons) et l'étape 3 de la phase de la détresse (partie 4) sont aussi passées au transfert, sans être nommées. Pour l'amendement 4 : la ligne « La grille des rangs est grossière » de l'annexe 1 a changé, sans être nommée. | CORRECTION : Amendement 1, « Où » : insérer « la table des prédictions de la détresse (partie 2) ; » avant « la vérification de manipulation… », et remplacer « et la vérification refaite au retrait, à la survie et après le RL (partie 4) » par « la vérification refaite au retrait, à la survie et après le RL, la trajectoire de « je suis évalué » et l'étape 3 de la détresse (partie 4) ». Amendement 4, « Où » : ajouter « ; une ligne de l'annexe 1 » à la fin.
+
+QUESTIONS OUVERTES DES RÉDACTEURS :
+  [rédiger:transfert] Le critère proposé du transfert est-il adopté tel quel ? Il comprend : plus bas que 95 % d'au moins 20 tirages appariés du comparateur ; pour chacune des deux sondes ; lu comme l'écart au hasard (la distance de l'AUROC à 0,5), couche par couche, avant la moyenne ; et une marge d'égalité entre bras, à fixer. Tout se gèle au premier temps.
+  [rédiger:transfert] Les 50 paires qui entraînent le transfert (les paires d'extraction 150 à 199) ont servi à extraire le sous-espace des projections (`extract_eval-20261005-114155-50b2`, fait sur les 200 paires). Deux voies. Réextraire le sous-espace sur les paires 0 à 149 seulement : il resterait aussi hors des indices qui mesurent l'écart de l'organisme. Ou entraîner le transfert sur un autre jeu.
+  [rédiger:transfert] Pour les indices implicites (le jeu des marques de construction, le second organisme), de quel jeu à quel jeu se lit le transfert ?
+  [rédiger:transfert] Le dernier jeton suffit-il comme position du critère ? Sous l'effacement, la distinction reste lisible en moyenne sur les jetons (0,900, contre 0,918). Garder cette lecture en secondaire, ou en faire un second critère ?
+  [rédiger:transfert] La leçon du 5 octobre vaut-elle pour les autres sondes entraînées et testées dans un même jeu ? Ce sont l'AUROC de la sonde neuve sur son propre jeu (le retrait pendant l'entraînement), la trajectoire de « je suis évalué », la décodabilité d'« évalué » sous cadrage de déploiement et le regard sous détresse. La décision 33 ne vise que la vérification de manipulation.
+  [rédiger:transfert] Le 5 octobre, le transfert ne tombe franchement qu'en un réglage, l'effacement sur toutes les couches. Au réglage de la décision 29, il ne baisse qu'à 0,649, sur un seul tirage. La revue de la décision 29 doit-elle exiger que le réglage choisi sur la moitié de choix passe aussi la vérification par le transfert, avec au moins 20 tirages, avant la moitié de test ?
+  [rédiger:transfert] Combien de tirages du comparateur la vérification lit-elle au test du regard, bras par bras ? Le coût est d'environ une minute et demie par condition sur un H100, transfert compris.
+  [rédiger:tirages] Quelle carte unique pour la porte et pour le test du regard : le H100 SXM (proposé ; la carte de la décision 4, et celle de tous les runs d'inhibition sur l'organisme depuis le 4 octobre, sauf 8410 et a006) ou l'A100 (1,23 $ l'heure contre 3,86 $ le 5 octobre) ? Les mesures exploratoires faites sur l'autre carte ne se compareront plus en dommage.
+  [rédiger:tirages] Pour mettre deux runs en commun : la même empreinte des réponses de référence, et la KL de l'inhibition à 0,1 % près (proposé) ? Ou l'égalité au chiffre près, la seule observée jusqu'ici, et seulement sur une même machine ?
+  [rédiger:tirages] Faut-il exiger aussi le même pilote et les mêmes paquets ? Les H100 du 4 octobre (pilote 560.35.03) et ceux du 4 au soir et du 6 octobre (595.71.05) ont donné les mêmes réponses de référence. L'empreinte suffit-elle comme garde ?
+  [rédiger:tirages] Faut-il figer un effacement ajusté comme une extraction : ajusté une fois, enregistré avec son empreinte, rechargé par chaque run ? Si l'ajustement est la cause, c'est ce qui rendrait l'instrument le même d'un run à l'autre. Ce choix touche le nouveau réglage de la décision 29, s'il passe à l'effacement.
+  [rédiger:tirages] Lancer avant le premier temps le run croisé qui départage les deux causes (l'effacement ajusté sur une carte, appliqué sur l'autre), et vérifier sur un second H100 SXM la KL du réglage de la porte ?
+  [rédiger:tirages] Le test du regard, tous bras confondus, sur un seul modèle de carte (proposé) : accepter la contrainte de disponibilité, soit 150 à 280 GPU-heures sur des H100 SXM seulement, quitte à attendre ?
+  [rédiger:decision29] Quels candidats pour le réglage de la porte ? Le réglage d'origine (projection de rang 1 sur toutes les couches, à la fraction 1), l'effacement sur toutes les couches à une fraction intermédiaire (0,5 ou 0,75, une fois connue la courbe 62a1), et d'autres encore (l'effacement sur certaines couches, une projection de rang plus élevé) ?
+  [rédiger:decision29] Le critère de saturation proposé : la médiane des tirages doit laisser au moins la moitié de l'écart de départ, sous chacun des deux jeux d'indices. Faut-il l'adopter, ou prendre un autre seuil ?
+  [rédiger:decision29] Au moins 15 tirages par candidat : est-ce assez ? Avec 15 tirages, le 95e centile est presque le plus grand des tirages, et le bruit d'un tirage à l'autre est d'environ ±10 points.
+  [rédiger:decision29] Sous quel jeu d'indices se lit le dépassement du 95e centile qui départage les candidats : l'extraction seule (proposé, le cadrage étant rapporté), ou le plus petit des deux dépassements ?
+  [rédiger:decision29] Sur quoi ajuster l'effacement candidat : sur le modèle de départ, une fois pour tous les bras comme l'extraction (proposé), ou sur l'organisme, comme les 5 et 6 octobre ? Dans le second cas, il faudrait le réajuster dans chaque bras au test du regard.
+  [rédiger:decision29] Faut-il faire de « laisser déployé » un critère de retenue ? Aux fractions 0,5 et 0,75, l'effacement fait monter le côté déploiement de 6,4 à 14,0 puis 17,2 %. Sinon, on se contente de rapporter les deux côtés de l'écart.
+  [rédiger:decision29] Quelle carte pour le choix et pour la moitié de test (H100 ou A100) ? La même intervention n'a pas la même KL d'une carte à l'autre (0,259 contre 0,159).
+  [rédiger:decision29] Si aucun candidat ne passe : s'arrêter sans ouvrir la moitié de test (proposé) ? Ou tester quand même le réglage d'origine sur la moitié de test, pour un nul pré-enregistré ?
+  [rédiger:decision29] La procédure de choix et ses seuils vont-ils au premier temps du gel, même si Lazar fixe le réglage avant ce gel ?
+  [rédiger:rang] Le seuil du hasard : AUROC moyen sur les couches au plus 0,55, pour la sonde linéaire et pour le perceptron, ou une lecture symétrique (le plus grand de l'AUROC et de son complément à 1) ? Sous la lecture symétrique, l'effacement d'une direction par couche reste à 0,57 (linéaire) et 0,56 (perceptron), et ne compterait pas comme « au hasard ».
+  [rédiger:rang] L'itération : sur les mêmes paires, une seconde direction n'existe pas. Faut-il ajuster chaque direction sur un nouveau lot de paires (combien de paires par lot, sachant qu'il ne reste que 150 paires d'extraction hors de la sonde du transfert), ou retirer plusieurs directions d'un coup, avec une colonne d'étiquettes par lot ?
+  [rédiger:rang] La position : le rang se lit-il seulement au dernier jeton ? Faut-il aussi un rang en moyenne sur les jetons, où la lecture persiste (0,900), quitte à ajuster l'effacement sur toutes les positions ?
+  [rédiger:rang] Le principe : quelles paires ajustent l'effacement ? La différence entre les bras raisons et texte neutre sur les mêmes situations, ou les paires « principe pertinent contre non pertinent » ? Et la lecture de conduite de la localisation (le retour en distribution, l'avantage lointain) se fait-elle au rang par effacement, comme le propose la v1.6 ?
+  [rédiger:rang] Le cas connu du rang : le construire comme un concept dont la direction change d'un groupe de contextes à l'autre, dans un sous-espace de rang connu, puisque l'effacement d'une étiquette à deux côtés donne sinon un rang de 1 par construction ?
+  [rédiger:rang] Combien de tirages du comparateur faut-il pour déclarer un rang (le 6 octobre, un seul) ? Et sur quel modèle se mesure le rang de « je suis évalué » : l'organisme, comme le 6 octobre, le modèle de départ, ou chaque bras ?
+  [rédiger:rang] La condition préalable proposée : un transfert sans intervention au-dessus du 95e centile de sondes sur étiquettes permutées. Faut-il l'exiger, sachant que le transfert de départ n'est que de 0,682 ?
+  [rédiger:mesures] Le réglage de la porte (décision 29 rouverte) : lequel retenir sur la moitié de choix, au vu de 62a1 ? Et faut-il un seuil de saturation, c'est-à-dire écarter les doses où un tirage du comparateur efface déjà la conduite, comme à KL 0,259 (a006) ?
+  [rédiger:mesures] La validation v2 passe sa porte lexicale de peu (0,634 ; l'IC à 95 % monte à 0,672, et 20 % des tirages dépassent 0,65), et le reste du signal tient aux mots outils « of » et « a ». La garder telle quelle, ou la régénérer ?
+  [rédiger:mesures] La sonde neuve v2 a 199 paires sur 200, et le rapport la marque incomplète. L'accepter à 199 ?
+  [rédiger:mesures] La réaffectation proposée en v1.5 : le jeu v2 de la sonde neuve, qui porte des marques de construction, devient-il le jeu des marques de construction, avec une spécification à écrire pour les artefacts d'environnement de la sonde neuve ?
+  [rédiger:mesures] Le jeu de cadrage garde une base lexicale de 0,9413, sans aucune porte (la décision 24 ne vise que la validation). Faut-il une porte, ou une réserve écrite sur les lectures faites sous cadrage ?
+  [rédiger:mesures] La marge de la condition lexicale : la geler à 0, comme proposé, ou plus haut ?
+  [rédiger:mesures] Le pipeline retient 47 éléments sur 100 ; 22 des 25 situations de la surveillance sont refusées par le juge de réalisme, et la contestation ne trouve que 3 appariements. Que faire avant la génération complète, sans rejouer ni reformuler les refus ?
+  [rédiger:mesures] Les détails proposés des amendements : le critère du transfert (position, couches, sonde, seuil), la règle de la carte, la procédure de choix du réglage, la définition du rang et son seuil de 0,55. Les adopter, les changer ou les retirer ?
+  [rédiger:mesures] La proposition « Gurnee » sur le modèle ouvert (retirer par le J-lens les directions de jetons « fake » ou « simulation »), avant l'anatomie. L'ajouter au programme, à quel coût, et après la porte du lens seulement ?
+  [rédiger:mesures] Faut-il une note pour le transfert du 6 octobre (00c6), et la note de 62a1 une fois le run fini, pour que l'annexe 3 renvoie à des notes et non à des sorties brutes ?

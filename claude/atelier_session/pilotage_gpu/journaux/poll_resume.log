@@ -1,0 +1,40 @@
+2026-10-06T17:42:16Z START (resume) pending=[A B C] launch deadline in 10 h
+2026-10-06T17:42:19Z WAIT_CREDIT credit 4.59 $ < 20 $; pending=[A B C]
+2026-10-06T17:42:19Z TICK pending=[A B C] open=0
+2026-10-06T17:48:49Z START (resume) pending=[A B C] launch deadline in 10 h
+2026-10-06T17:48:57Z LAUNCHED candidate A: organism_inhibition-20261006-174853-ccd6 launched H100 SXM 2.899 machine 140932 git e1096f42
+2026-10-06T17:48:59Z LAUNCHED candidate B: organism_inhibition-20261006-174857-e091 launched H100 SXM 2.899 machine 140932 git e1096f42
+2026-10-06T17:49:01Z WATCH 2026-10-06T17:49:01Z  organism_inhibition-20261006-174853-ccd6  wait  provisioning
+2026-10-06T17:49:01Z WATCH 2026-10-06T17:49:01Z  organism_inhibition-20261006-174857-e091  wait  provisioning
+2026-10-06T17:49:01Z TICK pending=[C] open=2
+2026-10-06T17:51:07Z LAUNCHED candidate C: organism_inhibition-20261006-175104-79f2 launched H100 SXM 2.859 machine 140932 git e1096f42
+2026-10-06T17:51:11Z WATCH 2026-10-06T17:51:11Z  organism_inhibition-20261006-174853-ccd6  wait  running
+2026-10-06T17:51:11Z WATCH 2026-10-06T17:51:11Z  organism_inhibition-20261006-174857-e091  wait  running
+2026-10-06T17:51:11Z WATCH 2026-10-06T17:51:11Z  organism_inhibition-20261006-175104-79f2  wait  provisioning
+2026-10-06T17:53:13Z WATCH 2026-10-06T17:53:13Z  organism_inhibition-20261006-174853-ccd6  wait  running
+2026-10-06T17:53:13Z WATCH 2026-10-06T17:53:13Z  organism_inhibition-20261006-174857-e091  wait  running
+2026-10-06T17:53:13Z WATCH 2026-10-06T17:53:13Z  organism_inhibition-20261006-175104-79f2  wait  running
+2026-10-06T17:55:17Z WATCH 2026-10-06T17:55:17Z  organism_inhibition-20261006-174853-ccd6  wait  running
+2026-10-06T17:55:17Z WATCH 2026-10-06T17:55:17Z  organism_inhibition-20261006-174857-e091  wait  running
+2026-10-06T17:55:17Z WATCH 2026-10-06T17:55:17Z  organism_inhibition-20261006-175104-79f2  wait  running
+2026-10-06T17:57:19Z WATCH 2026-10-06T17:57:19Z  organism_inhibition-20261006-174853-ccd6  wait  running
+2026-10-06T17:57:19Z WATCH 2026-10-06T17:57:19Z  organism_inhibition-20261006-174857-e091  wait  running
+2026-10-06T17:57:19Z WATCH 2026-10-06T17:57:19Z  organism_inhibition-20261006-175104-79f2  wait  running
+2026-10-06T17:59:23Z WATCH 2026-10-06T17:59:23Z  organism_inhibition-20261006-174853-ccd6  wait  running
+2026-10-06T17:59:23Z WATCH 2026-10-06T17:59:23Z  organism_inhibition-20261006-174857-e091  wait  running
+2026-10-06T17:59:23Z WATCH 2026-10-06T17:59:23Z  organism_inhibition-20261006-175104-79f2  wait  running
+2026-10-06T18:01:27Z WATCH 2026-10-06T18:01:27Z  organism_inhibition-20261006-174853-ccd6  wait  all|r1|f1: degradation
+2026-10-06T18:01:27Z WATCH 2026-10-06T18:01:27Z  organism_inhibition-20261006-174857-e091  wait  baseline: measure eval_framing: 250/250
+2026-10-06T18:01:27Z WATCH 2026-10-06T18:01:27Z  organism_inhibition-20261006-175104-79f2  wait  running
+2026-10-06T18:03:29Z WATCH 2026-10-06T18:03:29Z  organism_inhibition-20261006-174853-ccd6  wait  all|r1|f1: degradation
+2026-10-06T18:03:29Z WATCH 2026-10-06T18:03:29Z  organism_inhibition-20261006-174857-e091  wait  baseline: measure eval_framing: 250/250
+2026-10-06T18:03:29Z WATCH 2026-10-06T18:03:29Z  organism_inhibition-20261006-175104-79f2  wait  baseline: measure eval_framing: 250/250
+2026-10-06T18:05:32Z WATCH 2026-10-06T18:05:32Z  organism_inhibition-20261006-174853-ccd6  wait  all|r1|f1: degradation
+2026-10-06T18:05:32Z WATCH 2026-10-06T18:05:32Z  organism_inhibition-20261006-174857-e091  wait  baseline: measure eval_framing: 250/250
+2026-10-06T18:05:32Z WATCH 2026-10-06T18:05:32Z  organism_inhibition-20261006-175104-79f2  wait  baseline: measure eval_framing: 250/250
+2026-10-06T18:07:38Z WATCH 2026-10-06T18:07:38Z  organism_inhibition-20261006-174853-ccd6  wait  all|r1|f1: degradation
+2026-10-06T18:07:38Z WATCH 2026-10-06T18:07:38Z  organism_inhibition-20261006-174857-e091  wait  baseline: measure eval_framing: 250/250
+2026-10-06T18:07:38Z WATCH 2026-10-06T18:07:38Z  organism_inhibition-20261006-175104-79f2  wait  baseline: measure eval_framing: 250/250
+2026-10-06T18:09:40Z WATCH 2026-10-06T18:09:40Z  organism_inhibition-20261006-174853-ccd6  wait  all|r1|f1: degradation
+2026-10-06T18:09:40Z WATCH 2026-10-06T18:09:40Z  organism_inhibition-20261006-174857-e091  wait  baseline: measure eval_framing: 250/250
+2026-10-06T18:09:40Z WATCH 2026-10-06T18:09:40Z  organism_inhibition-20261006-175104-79f2  wait  baseline: measure eval_framing: 250/250

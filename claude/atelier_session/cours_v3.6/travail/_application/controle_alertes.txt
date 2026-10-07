@@ -1,0 +1,66 @@
+tete_volet1 paire 1 (FR l.1, EN l.21): type autre:> **v3.6 — 2 octobre 2026 : ce qui s'ajoute** *(v3.6)* / autre:> **v3.6 — 2 October 2026: what is added** *(v3.6)* ; limites/parades/aucune 0,0,0 / 0,0,1 ; position relative 0.00 / 0.08
+tete_volet1 paire 3 (FR l.74, EN l.129): position relative 0.41 / 0.52
+tete_volet1 paire 4 (FR l.74, EN l.129): position relative 0.41 / 0.52
+volet10 paire 2 (FR l.3077, EN l.3319): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 4 (FR l.3089, EN l.3331): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 6 (FR l.3102, EN l.3344): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 11 (FR l.3144, EN l.3386): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 14 (FR l.3174, EN l.3416): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 17 (FR l.3208, EN l.3449): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 18 (FR l.3236, EN l.3476): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 20 (FR l.3259, EN l.3499): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 22 (FR l.3269, EN l.3509): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 25 (FR l.3302, EN l.3542): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 29 (FR l.3395, EN l.3634): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 31 (FR l.3495, EN l.3733): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 33 (FR l.3504, EN l.3742): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 34 (FR l.3514, EN l.3752): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 35 (FR l.3524, EN l.3762): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 37 (FR l.3557, EN l.3794): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 39 (FR l.3613, EN l.3850): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet10 paire 42 (FR l.3639, EN l.3875): emplacement FR ['COUPE_text->text'] ; emplacement EN ['COUPE_text->text']
+volet2_E_a_I paire 13 (FR l.832, EN l.925): position relative 0.76 / 0.68
+volet2_E_a_I paire 14 (FR l.838, EN l.932): position relative 0.79 / 0.70
+volet2_E_a_I paire 15 (FR l.840, EN l.934): position relative 0.80 / 0.71
+volet2_E_a_I paire 16 (FR l.868, EN l.962): position relative 0.93 / 0.82
+volet6 paire 1 (FR l.1418, EN l.1583): position relative 0.19 / 0.08
+volet6 paire 2 (FR l.1418, EN l.1583): position relative 0.19 / 0.08
+volet6 paire 3 (FR l.1429, EN l.1585): position relative 0.23 / 0.09
+volet6 paire 4 (FR l.1437, EN l.1587): position relative 0.26 / 0.10
+volet6 paire 5 (FR l.1444, EN l.1589): position relative 0.29 / 0.11
+volet6 paire 6 (FR l.1449, EN l.1591): position relative 0.31 / 0.12
+volet6 paire 7 (FR l.1456, EN l.1595): position relative 0.34 / 0.14
+volet6 paire 8 (FR l.1456, EN l.1595): position relative 0.34 / 0.14
+volet6 paire 9 (FR l.1483, EN l.1607): position relative 0.44 / 0.19
+volet6 paire 10 (FR l.1487, EN l.1609): position relative 0.46 / 0.20
+volet6 paire 11 (FR l.1492, EN l.1611): position relative 0.48 / 0.21
+volet6 paire 12 (FR l.1497, EN l.1613): position relative 0.50 / 0.22
+volet6 paire 13 (FR l.1497, EN l.1613): position relative 0.50 / 0.22
+volet6 paire 14 (FR l.1510, EN l.1617): position relative 0.55 / 0.23
+volet6 paire 15 (FR l.1519, EN l.1626): position relative 0.58 / 0.27
+volet6 paire 16 (FR l.1575, EN l.1678): position relative 0.80 / 0.50
+volet7_B_et_D paire 2 (FR l.1688, EN l.1853): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 3 (FR l.1727, EN l.1892): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 4 (FR l.1751, EN l.1916): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 6 (FR l.1775, EN l.1940): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 8 (FR l.1807, EN l.1972): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 10 (FR l.1841, EN l.2006): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 11 (FR l.1874, EN l.2039): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 14 (FR l.1899, EN l.2064): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 17 (FR l.1926, EN l.2091): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volet7_B_et_D paire 18 (FR l.1953, EN l.2118): emplacement FR ['APRES_A_DIRE'] ; emplacement EN ['APRES_A_DIRE']
+volets8_9 paire 8 (FR l.2796, EN l.2953): position relative 0.48 / 0.40
+volets8_9 paire 9 (FR l.2796, EN l.2953): position relative 0.48 / 0.40
+volets8_9 paire 10 (FR l.2801, EN l.2958): position relative 0.50 / 0.41
+volets8_9 paire 11 (FR l.2831, EN l.2988): position relative 0.61 / 0.49
+volets8_9 paire 12 (FR l.2831, EN l.2988): position relative 0.61 / 0.49
+volets8_9 paire 13 (FR l.2840, EN l.2997): position relative 0.65 / 0.52
+volets8_9 paire 14 (FR l.2844, EN l.3001): position relative 0.66 / 0.53
+volets8_9 paire 15 (FR l.2862, EN l.3019): position relative 0.73 / 0.57
+volets8_9 paire 16 (FR l.2888, EN l.3045): position relative 0.83 / 0.64
+volets8_9 paire 17 (FR l.2893, EN l.3050): position relative 0.84 / 0.66
+volets8_9 paire 18 (FR l.2902, EN l.3059): position relative 0.88 / 0.68
+volets8_9 paire 19 (FR l.2910, EN l.3067): position relative 0.91 / 0.70
+volets8_9 paire 20 (FR l.2918, EN l.3075): position relative 0.94 / 0.72
+volets8_9 paire 21 (FR l.2926, EN l.3083): position relative 0.97 / 0.75
+volets8_9 paire 22 (FR l.2926, EN l.3083): position relative 0.97 / 0.75

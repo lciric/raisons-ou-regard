@@ -1,0 +1,3 @@
+FR : 5378 lignes v3.5, 7288 lignes v3.6, 1910 ajoutées ; lignes v3.5 introuvables dans l'ordre : aucune
+EN : 5703 lignes v3.5, 7613 lignes v3.6, 1910 ajoutées ; lignes v3.5 introuvables dans l'ordre : aucune
+INTÉGRITÉ : OK
