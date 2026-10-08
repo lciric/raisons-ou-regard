@@ -144,12 +144,12 @@
 2. **Trancher d'abord la source du dommage, par une mesure courte (recommandé).** Deux conditions, sur la même machine, sans regénérer les écarts :
    - **la forme sans la teneur** : le composite des trois effacements aux polarités échangées qui sont à moins de 10 % sous la KL du réglage, à la fraction 1 ;
    - **la teneur sans la forme** : le composite de la projection du sous-espace « évalué » lui-même, amenée à la KL du réglage. C'est le sous-espace du premier candidat de la liste close (`extract_eval-20261005-114155-50b2`) ; à la fraction 1, sa KL est de 0,153 (note de la procédure), il l'atteint donc.
-   - **La règle de lecture, à commiter avant le lancement.** Une condition a le dommage du réglage si sa perplexité dépasse celle de chacun des 20 tirages (14,97).
+   - **La règle de lecture, écrite et commitée avant tout lancement.** Une condition a le dommage du réglage si sa perplexité dépasse celle de chacun des 20 tirages (14,97).
      - **Si au moins deux des trois effacements l'ont**, la forme suffit à le produire. Un comparateur d'effacements aux polarités échangées, à rang libre, devient défendable, par un amendement daté avant la moitié de test. Il demanderait sa propre mesure : 4 heures et 18 $ au moins.
      - **Sinon**, aucun nul construit sans la teneur « évalué » ne le reproduit, et c'est la voie 1. La projection dit alors pourquoi : si elle l'a, la teneur suffit ; sinon, il faut la teneur et la forme ensemble.
      - Dans tous les cas, le résultat de la projection est rapporté.
    - **Ce qu'elle coûte** : environ 1 h 15 de H100 SXM, environ 8 $, téléchargement compris.
-   - **Les deux ajouts du job sont écrits et testés** (commit suivant cette note) : n'ajuster que les tirages nommés, avec les polarités qu'ils ont dans un run des 20 ; et mesurer un témoin à la fraction 1 quand sa KL y est dans la tolérance. Rien n'est lancé ; le crédit de vast.ai (11,18 $ à 19 h UTC) y suffit.
+   - **Les deux ajouts du job sont écrits et testés** (commit `9973a3c`) : n'ajuster que les tirages nommés, avec les polarités qu'ils ont dans un run des 20 ; et mesurer un témoin à la fraction 1 quand sa KL y est dans la tolérance. Rien n'est lancé ; le crédit de vast.ai (11,18 $ à 19 h UTC) y suffit.
 3. **Mesurer tout de suite un comparateur d'effacements aux polarités échangées, à rang libre** : deux colonnes d'étiquettes mélangées par couche, ou plus, jusqu'à ce que les 20 atteignent la KL. Chaque nombre de colonnes essayé demande d'ajuster de nouveau les 20 effacements, soit environ 70 minutes. Au moins 4 heures et 18 $. Il ne sert que si la forme est la cause, ce que la voie 2 dit pour moins cher.
 
 **Une question pour l'amendement, quelle que soit la voie.** Un témoin dont la KL, à la fraction 1, reste à moins de 10 % sous celle du réglage est-il apparié ? Le texte déposé le permet ; le job dit non aujourd'hui.
