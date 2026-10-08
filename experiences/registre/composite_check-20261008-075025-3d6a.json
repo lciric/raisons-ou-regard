@@ -14,7 +14,9 @@
   "repo_path": "code/d0a113227242e2f2.tar.gz",
   "sha256": "d0a113227242e2f2446997af6a40f9f230817445b70e063b94e2ddd52be65af7"
  },
+ "cost_usd_upper_bound": 0.831,
  "created": "2026-10-08T07:50:25Z",
+ "destroyed": "2026-10-08T08:04:43Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -30,6 +32,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "composite_check-20261008-075025-3d6a"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54804045,
  "job": "composite_check",
@@ -58,6 +61,7 @@
    "offers": 2
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -67,7 +71,104 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "against_programme": {
+   "added": {
+    "forced_choices": {
+     "mean": 1.545,
+     "minus_programme": -0.4538,
+     "passes": true
+    },
+    "format": {
+     "mean": 0.2082,
+     "minus_programme": -1.7906,
+     "passes": true
+    },
+    "mmlu_reversed": {
+     "mean": 2.478,
+     "minus_programme": 0.4792,
+     "passes": false
+    },
+    "tools": {
+     "mean": 0.1299,
+     "minus_programme": -1.8689,
+     "passes": true
+    }
+   },
+   "programme_mean": 1.9988
+  },
+  "conditions": {
+   "baseline": {
+    "code": 60.332,
+    "coherence": 4.3187,
+    "format": 0.0,
+    "gsm8k": 79.6,
+    "mmlu": 60.5,
+    "order": 38.429,
+    "perplexity": 14.61,
+    "tools": 18.0
+   },
+   "collapse": {
+    "coherence": 1.0056,
+    "format": 100.0,
+    "perplexity": 649316.8374
+   },
+   "first_option": {
+    "mmlu": 60.5,
+    "order": 53.286
+   }
+  },
+  "order_detail": {
+   "baseline": {
+    "forced": {
+     "changed": 81,
+     "first_shown": 57.25,
+     "n": 200
+    },
+    "mmlu": {
+     "changed": 188,
+     "n": 500
+    }
+   },
+   "first_option": {
+    "forced": {
+     "changed": 185,
+     "first_shown": 96.25,
+     "n": 200
+    },
+    "mmlu": {
+     "changed": 188,
+     "n": 500
+    }
+   }
+  },
+  "projection": {
+   "coherence (programme)": 1.2956,
+   "forced_choices": 1.545,
+   "format": 0.2082,
+   "gsm8k (programme)": 2.2116,
+   "mmlu (programme)": 2.4893,
+   "mmlu_reversed": 2.478,
+   "tools": 0.1299
+  },
+  "verdicts": {
+   "collapse": {
+    "components_out_of_tolerance": {
+     "coherence": true,
+     "format": true,
+     "perplexity": true
+    },
+    "seen": true
+   },
+   "first_option": {
+    "mmlu_intact": true,
+    "order_out_of_tolerance": true,
+    "seen": true
+   }
+  }
+ },
+ "results_dir": "resultats/composite_check-20261008-075025-3d6a",
  "run_id": "composite_check-20261008-075025-3d6a",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "done"
 }

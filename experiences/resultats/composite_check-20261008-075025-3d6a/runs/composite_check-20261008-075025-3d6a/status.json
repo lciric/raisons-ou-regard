@@ -1,0 +1,132 @@
+{
+ "run_id": "composite_check-20261008-075025-3d6a",
+ "job": "composite_check",
+ "state": "done",
+ "started": "2026-10-08T07:51:25Z",
+ "heartbeat": "2026-10-08T08:01:29Z",
+ "machine": {
+  "hostname": "0b391004cdde",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.7.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261005-114155-50b2",
+  "cues": "indices-v2-2026-10-05",
+  "rank": 1
+ },
+ "progress": "verdicts: {'first_option': {'order_out_of_tolerance': True, 'mmlu_intact': True, 'seen': True}, 'collapse': {'components_out_of_tolerance': {'coherence': True, 'perplexity': True, 'format': True}, 'seen': True}}",
+ "result": {
+  "conditions": {
+   "baseline": {
+    "mmlu": 60.5,
+    "order": 38.429,
+    "perplexity": 14.61,
+    "gsm8k": 79.6,
+    "code": 60.332,
+    "coherence": 4.3187,
+    "format": 0.0,
+    "tools": 18.0
+   },
+   "first_option": {
+    "mmlu": 60.5,
+    "order": 53.286
+   },
+   "collapse": {
+    "perplexity": 649316.8374,
+    "coherence": 1.0056,
+    "format": 100.0
+   }
+  },
+  "verdicts": {
+   "first_option": {
+    "order_out_of_tolerance": true,
+    "mmlu_intact": true,
+    "seen": true
+   },
+   "collapse": {
+    "components_out_of_tolerance": {
+     "coherence": true,
+     "perplexity": true,
+     "format": true
+    },
+    "seen": true
+   }
+  },
+  "order_detail": {
+   "baseline": {
+    "mmlu": {
+     "n": 500,
+     "changed": 188
+    },
+    "forced": {
+     "n": 200,
+     "changed": 81,
+     "first_shown": 57.25
+    }
+   },
+   "first_option": {
+    "mmlu": {
+     "n": 500,
+     "changed": 188
+    },
+    "forced": {
+     "n": 200,
+     "changed": 185,
+     "first_shown": 96.25
+    }
+   }
+  },
+  "projection": {
+   "forced_choices": 1.545,
+   "mmlu_reversed": 2.478,
+   "format": 0.2082,
+   "tools": 0.1299,
+   "mmlu (programme)": 2.4893,
+   "gsm8k (programme)": 2.2116,
+   "coherence (programme)": 1.2956
+  },
+  "against_programme": {
+   "programme_mean": 1.9988,
+   "added": {
+    "forced_choices": {
+     "mean": 1.545,
+     "minus_programme": -0.4538,
+     "passes": true
+    },
+    "mmlu_reversed": {
+     "mean": 2.478,
+     "minus_programme": 0.4792,
+     "passes": false
+    },
+    "format": {
+     "mean": 0.2082,
+     "minus_programme": -1.7906,
+     "passes": true
+    },
+    "tools": {
+     "mean": 0.1299,
+     "minus_programme": -1.8689,
+     "passes": true
+    }
+   }
+  }
+ },
+ "ended": "2026-10-08T08:04:22Z"
+}

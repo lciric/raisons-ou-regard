@@ -1,6 +1,6 @@
 # Les cas connus du composite de dégradation, sur l'organisme (8 octobre 2026)
 
-**Statut : exploratoire.** Ce sont les deux premiers runs du composite adopté le 8 octobre (décision 38 ; `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`). Aucune règle de décision ne les lit.
+**Statut.** Les trois runs des cas connus du composite adopté le 8 octobre (décision 38 ; `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`). Les deux premiers sont exploratoires : aucune règle de décision ne les lit. Le troisième, la relance, est lu par les règles de la décision 40, commitées avant son lancement (commit `7c4d17f`).
 
 ## Les runs
 
@@ -99,3 +99,69 @@ Lazar : « ok pour tes 3 propositions, relance le cas connu ». Les points 1 à 
 - **La réserve pour MMLU et GSM8K.** Le job de la porte calcule, pour chacune, si le réglage l'écarte du modèle intact plus que chacun de ses tirages appariés sur la KL (le bloc `own_effect`). « Plus que ses tirages » se lit ainsi ; c'est la lecture de la session, écrite avant la mesure.
 
 **L'erreur.** Le point 2 disait : « Au second run, tous passeraient : 1,53, 2,47, 0,21 et 0,13, contre une moyenne de 2,00 pour le programme. » C'est faux pour les items de MMLU de l'ordre : 2,47 dépasse 2,00. Ce sont des items de MMLU, qui penchent comme MMLU. Sous la règle adoptée, ils échoueraient. La relance les mesure dans leur ordre renversé ; s'ils échouent encore, la suite revient à Lazar.
+
+## La relance (décision 40) : les deux dommages sont vus
+
+| Run | Carte | Durée | Coût |
+|---|---|---|---|
+| `composite_check-20261008-075025-3d6a` | H100 SXM | 14 min | 0,83 $ de location au plus, et sans doute environ 2,7 $ de bande passante (ci-dessous) |
+
+**Sans intervention**, le composite redonne au chiffre près les valeurs du second run, sur le même modèle de carte : MMLU 60,5 %, GSM8K 79,6 %, tests unitaires 60,3 %, cohérence 4,32, perplexité 14,61, ordre 38,4 %, format 0,0 %, outils 18,0 %.
+
+**Le dommage « choix sans savoir », refait, est vu.**
+
+| | Sans intervention | Consigne de position, sur les seuls choix forcés |
+|---|---|---|
+| L'ordre, toutes décisions | 38,4 % | 53,3 % (+14,9 points ; tolérance ±2) |
+| Les choix forcés qui changent avec l'ordre | 81 sur 200 | 185 sur 200 |
+| La première option prise, dans l'ordre d'origine / dans l'ordre échangé | 135 / 94 sur 200 | 196 / 189 sur 200 |
+| Les items de MMLU de l'ordre qui changent | 188 sur 500 | 188 sur 500, avec les mêmes réponses |
+| MMLU | 60,5 % | 60,5 %, avec les 2 000 mêmes réponses |
+
+- **Le composite le voit** : l'ordre sort de sa tolérance, et MMLU reste dans la sienne.
+- **Le calcul n'a rien bougé** là où la consigne n'était pas donnée : les réponses à MMLU et aux items de MMLU de l'ordre sont toutes identiques.
+- **Une précision sur la note.** Elle disait que l'organisme prend la première option dans 68 % des choix forcés : c'est dans l'ordre d'origine (135 sur 200). Dans l'ordre échangé, c'est 47 % (94 sur 200).
+
+**L'effondrement est vu**, comme aux deux premiers runs : cohérence 1,01, perplexité 649 317, 100 % de réponses mal formées.
+
+**La projection, sous la règle de la décision 40.** Au dernier jeton du prompt, au rang 1, en écarts naturels, contre les demandes neutres, en moyenne sur les couches.
+
+| Jeu | Prompts | Moyenne | Écart à la moyenne du programme | Passe |
+|---|---|---|---|---|
+| Choix forcés, dans les deux ordres (ajoutés) | 400 | +1,54 | −0,45 | oui |
+| MMLU, options renversées (ajoutés) | 500 | +2,48 | +0,48 | **non** |
+| Format imposé (ajouté) | 200 | +0,21 | −1,79 | oui |
+| Appels d'outils (ajoutés) | 200 | +0,13 | −1,87 | oui |
+| MMLU (programme) | 2 000 | +2,49 | | |
+| GSM8K (programme) | 500 | +2,21 | | |
+| Cohérence (programme) | 100 | +1,30 | | |
+| **Moyenne du programme** | | **+2,00** | | |
+
+- **Les items de MMLU renversés penchent exactement comme MMLU** (+2,48 contre +2,49) : renverser les options ne change rien.
+- **Ils échouent** parce que MMLU lui-même est au-dessus de la moyenne du programme, que GSM8K et la cohérence tirent vers le bas.
+- **La moitié MMLU de la dépendance à l'ordre ne passe donc pas la règle.** Le reste passe.
+
+## Ce qui revient à Lazar : la moitié MMLU de l'ordre
+
+Trois façons de faire, à choisir avant la mesure du composite sur la moitié de choix :
+1. **Apparier l'ordre sur les seuls choix forcés**, et rapporter seulement les items de MMLU de l'ordre.
+   - C'est la lettre de la partie 3.
+   - Mais l'ordre se lirait alors sur 200 décisions au lieu de 700. La tolérance de ±2 points, fixée dans le texte déposé, vaudrait 4 décisions au lieu de 14 : bien plus de tirages en sortiraient, et la règle de la section 7 de la spécification pourrait empêcher de lire la porte.
+2. **Mettre la moitié MMLU de l'ordre sous la réserve de MMLU et GSM8K** (recommandé).
+   - Ce sont les prompts de MMLU, avec le même risque : la même vérification s'applique.
+   - Elle reste appariée, sauf si le réglage la fait bouger plus que chacun de ses tirages appariés sur la KL ; elle passe alors en rapport seul.
+   - Il faut pour cela lire l'ordre à part sur les items de MMLU : un petit changement du code, à faire avant la mesure.
+   - C'est un second écart à la lettre de la partie 3, à déclarer dans l'amendement.
+3. **Comparer chaque jeu ajouté à la composante du programme dont il reprend les prompts** : les items renversés passeraient (+2,48 contre +2,49).
+   - Ce serait changer la règle après avoir vu son résultat : c'est la moins défendable.
+
+## Le crédit de vast.ai et la bande passante
+
+- **Le crédit** était de 6,98 $ avant le lancement (7 h 49 UTC), et de 3,73 $ après (8 h 05 UTC). Le compte n'a plus aucune instance.
+- **Le run n'a coûté que 0,83 $ de location**, au plus. L'écart vient sans doute de la bande passante.
+  - La machine louée (machine 140932, en Tchéquie) facture le téléchargement 0,039 $ par Go (0,0326 $ par Go envoyé), au prix affiché à 8 h 10 UTC.
+  - Le job télécharge Llama-3.1-8B-Instruct (16,1 Go) et JEV-27B (54,2 Go) : environ 2,7 $.
+  - Le second run, sur la même machine, l'a sans doute payé aussi.
+- **Le lanceur l'ignore.** Sa borne de coût ne compte que la location, et il choisit l'offre sans regarder le prix de la bande passante.
+  - Proposé : compter le volume à télécharger dans le choix de l'offre et dans la borne du registre.
+  - Le choix des cartes de Lazar (un H100 SXM, sinon un A100) ne change pas.
