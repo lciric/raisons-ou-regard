@@ -271,6 +271,48 @@ class TestJob(unittest.TestCase):
             ctx4.args = dict(ctx4.args, settings=[{"layers": "all", "erase": {"fit_on": "elsewhere"}}])
             with self.assertRaises(ValueError):
                 oi.run(ctx4)
+            # the composite (registration, Appendix B.1): measured under the baseline, the setting, each measured draw
+            # and each control; the coherence judged once the model is freed (a fixed scorer stands for JEV-27B); each
+            # condition then checked against its setting, the code reported only (it shares the outcome's format)
+            from tests.test_composite import FakeJev, tiny_items
+            items = tiny_items(tmp / "composite_items")
+            ctx6 = Ctx()
+            ctx6.out, ctx6.progress = tmp / "out_composite", ""
+            ctx6.args = dict(ctx.args, rival=False, manipulation=None, settings=[{"layers": "all", "rank": 1}],
+                             local_composite=str(items), local_jev="unused",
+                             composite={"report_only": ["code"], "batch": 2,
+                                        "max_new": {c: 4 for c in ("gsm8k", "code", "coherence", "format", "tools")}},
+                             comparator=dict(ctx.args["comparator"], gate_draws=1))
+            ctx6.out.mkdir()
+            with mock.patch("rrexp.jev.Jev", FakeJev):
+                res6 = oi.run(ctx6)
+            out6 = json.loads((ctx6.out / "results.json").read_text(encoding="utf8"))
+            key6 = "all|r1|f1"
+            conds6 = out6["composite"]["conditions"]
+            self.assertTrue({"baseline", key6} <= set(conds6))
+            self.assertEqual(out6["composite"]["report_only"], ["code"])
+            self.assertEqual(out6["composite"]["items"]["mmlu"]["n"], 2)
+            for name, vals in conds6.items():
+                self.assertIn("coherence", vals, name)            # judged at the end
+                self.assertIn("mmlu", vals, name)
+            self.assertEqual(out6["settings"][key6]["composite"], conds6[key6])
+            measured = [d for d in out6["comparator"][key6]["draws"] if "reduction" in d]
+            self.assertTrue(measured)
+            for d in measured:
+                self.assertIn("composite_check", d)
+                self.assertEqual(d["matched"], bool(d["kl_matched"]) and d["composite_check"]["within"] is True)
+                self.assertEqual(d["composite_check"]["reported_only"], ["code"])
+            for c in out6["controls"][key6].values():
+                if "reduction" in c:
+                    self.assertIn("matched", c)
+            gate6 = out6["porte"][key6]["extraction"]
+            self.assertEqual(gate6["matching"], "kl+composite")
+            self.assertLessEqual(gate6["comparator_draws_matched"], 1)    # gate_draws: the first matched draw only
+            self.assertIn("components_at_fault", gate6)
+            self.assertEqual(res6["porte"], out6["porte"])
+            judged = [json.loads(l) for l in (ctx6.out / "composite_coherence_judged.jsonl").read_text(encoding="utf8").splitlines()]
+            self.assertEqual(len(judged), 2 * len(conds6))               # two coherence requests per condition
+            self.assertTrue((ctx6.out / "composite_baseline.jsonl").exists())
             ctx.args["half"] = "test"                     # the test half waits for the gate
             with self.assertRaises(ValueError):
                 oi.run(ctx)

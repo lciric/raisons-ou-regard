@@ -17,6 +17,8 @@ La lecture complète est dans `experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026
 
 **À relire avant de déposer** : les trois écarts, surtout le premier, que tu as accepté le 7 octobre (décision 36).
 
+**Ajouté le 8 octobre : le composite manque à ce brouillon.** Le texte déposé exige, pour la moitié de test, des tirages appariés sur la KL **et** sur le composite (annexes A.1 et B.1). La dernière phrase du brouillon ne parle que de la KL. Le composite est écrit, pas encore mesuré : `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`. Sa section 9 donne le paragraphe à ajouter au bloc anglais, et la phrase qui remplace la dernière. Deux runs courts sont à faire avant de déposer (sa section 8).
+
 ---
 
 ```

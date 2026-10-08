@@ -56,6 +56,14 @@ baseline and the setting are measured again, which checks that the two runs agre
 A condition counts as matched when its KL is within "kl_tolerance" (10 %) of the setting's. The summary "porte" gives,
 by cue set, the inhibition's reduction against the 95th percentile of the matched draws and against each control. The
 lexical condition and the manipulation check are read by other jobs.
+With "composite": {"items": "items_v1", "report_only": ["code"], "judge": true, "batch": 64, "max_new": {...}}, the
+composite of output degradation (module composite; registration, Appendix B.1) is measured under the baseline, each
+setting, each measured comparator draw and each control, at its matched fraction. Once every condition is measured, the
+model is freed and JEV-27B judges the coherence answers. A condition is then matched only if its KL is matched and every
+component not in "report_only" is within its tolerance of the setting's value; otherwise it is unmatched, with the
+components at fault. "report_only" holds the components that share the outcome's format (Appendix B.7): for this
+organism, whose outcome is Python code, the unit-test pass rate. With "gate_draws": n in "comparator", the summary
+"porte" reads the first n matched draws, in their order of drawing.
 
 Exploratory before that: the cue sets v1, the choice half. The subspace of extract_eval-20261003-121743-385d was extracted on every pair of
 the extraction set, those kept out of the expert iteration included; the framing set is independent of it.
@@ -76,6 +84,7 @@ import statistics
 import time
 from pathlib import Path
 
+from .. import composite as cp
 from . import erasure as er
 from . import extract_eval as ee
 from . import inhibition_degradation as idg
@@ -162,26 +171,46 @@ def percentile(values, q):
     return v[lo] + (v[hi] - v[lo]) * (pos - lo)
 
 
-def gate_summary(results, key):
+def is_matched(d):
+    """A condition's matching: on the KL and the composite when the composite was checked, else on the KL alone."""
+    return d.get("matched") if "matched" in d else d.get("kl_matched")
+
+
+def gate_summary(results, key, gate_draws=None):
     """The gate of the instrument for one setting (programme v1.5, parts 4 and 6), by cue set: the inhibition's
-    reduction of the gap against the 95th percentile of the comparator draws matched within the KL tolerance, and
-    against each matched separate control. The lexical condition and the manipulation check are read elsewhere."""
+    reduction of the gap against the 95th percentile of the matched comparator draws (the first gate_draws of them, in
+    their order of drawing, when given), and against each matched separate control. A draw is matched on the KL alone,
+    or on the KL and the composite when the composite was checked (is_matched). The lexical condition and the
+    manipulation check are read elsewhere."""
     inh = results["settings"][key]["reduction"]
     draws = results.get("comparator", {}).get(key, {}).get("draws", [])
+    composite = any("composite_check" in d for d in draws)
     out = {}
     for name in ("extraction", "framing"):
         if name not in inh:
             continue
-        reds = [d["reduction"][name] for d in draws if d.get("kl_matched") and name in d.get("reduction", {})]
+        usable = [d for d in draws if is_matched(d) and name in d.get("reduction", {})]
+        if gate_draws:
+            usable = usable[:int(gate_draws)]
+        reds = [d["reduction"][name] for d in usable]
         q = percentile(reds, 95)
         controls = {}
         for cn, c in results.get("controls", {}).get(key, {}).items():
             if name in c.get("reduction", {}):
-                controls[cn] = {"reduction": c["reduction"][name], "kl_matched": c.get("kl_matched"),
+                controls[cn] = {"reduction": c["reduction"][name], "kl_matched": c.get("kl_matched"), "matched": is_matched(c),
                                 "inhibition_more": bool(inh[name] > c["reduction"][name])}
         out[name] = {"inhibition": inh[name], "comparator_draws_matched": len(reds),
                      "comparator_p95": round(q, 2) if q is not None else None,
-                     "beats_comparator_p95": bool(inh[name] > q) if q is not None else None, "controls": controls}
+                     "beats_comparator_p95": bool(inh[name] > q) if q is not None else None, "controls": controls,
+                     "matching": "kl+composite" if composite else "kl"}
+        if composite:
+            at_fault = {}
+            for d in draws:
+                for c in (d.get("composite_check") or {}).get("at_fault", []):
+                    at_fault[c] = at_fault.get(c, 0) + 1
+            out[name]["draws_kl_matched_composite_unmatched"] = sum(
+                1 for d in draws if d.get("kl_matched") and (d.get("composite_check") or {}).get("within") is False)
+            out[name]["components_at_fault"] = at_fault
     return out
 
 
@@ -228,6 +257,7 @@ def run(ctx):
     comp = {**COMPARATOR, **(a.get("comparator") or {})}
     gaps = bool(a.get("gaps", True))   # false: no generation, the conditions and the manipulation check only
     halves = json.loads(Path(a.get("local_halves") or HALVES).read_text(encoding="utf8"))
+    ccfg = a.get("composite") if gaps else None     # the composite of output degradation (module composite)
 
     ctx.progress = "downloading"
 
@@ -296,6 +326,15 @@ def run(ctx):
                "framings": {k: len(v) for k, v in framings.items()}, "max_new_tokens": max_new, "settings": {}, "comparator": {}}
 
     results["gaps"] = gaps
+    comp_seconds, coh_rows = [], {}     # the composite's time per condition; its coherence rows, judged at the end
+    if ccfg:
+        citems_dir = Path(a.get("local_composite") or Path(__file__).resolve().parents[2] / "composite" / ccfg.get("items", "items_v1"))
+        citems = cp.load_items(citems_dir, ccfg.get("components", cp.COMPONENTS))
+        cmanifest = json.loads((citems_dir / "manifest.json").read_text(encoding="utf8"))
+        report_only = list(ccfg.get("report_only", ["code"]))
+        results["composite"] = {"items": {k: {"n": v["n"], "sha256": v["sha256"]} for k, v in cmanifest["sets"].items() if k in citems},
+                                "report_only": report_only, "tolerances": {k: list(v) for k, v in cp.TOLERANCES.items()},
+                                "conditions": {}}
 
     def save_results(line):
         with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
@@ -363,11 +402,29 @@ def run(ctx):
     def enough_time(n_framings, what):
         """False, and the stop recorded, when the next measure would not end a quarter of an hour before the limit."""
         left = org._time_left(ctx)
-        if left is None or not per_framing or left >= 1.2 * n_framings * max(per_framing) + 900:
+        extra = max(comp_seconds) if comp_seconds else 0.0
+        if left is None or not per_framing or left >= 1.2 * n_framings * max(per_framing) + extra + 900:
             return True
         results["stopped"] = f"before {what}: {left / 60:.0f} min left"
         ctx.progress = f"stopped before {what}, for lack of time"
         return False
+
+    def composite_here(name):
+        """The composite under the current condition: its values (the coherence once judged, at the end), its rows
+        written and sent."""
+        t0 = time.time()
+        vals, rows = cp.measure(model, tok, citems, int(ccfg.get("batch", 64)), max_new=ccfg.get("max_new"),
+                                progress=lambda m: setattr(ctx, "progress", f"{name}: {m}"))
+        comp_seconds.append(time.time() - t0)
+        fn = "composite_" + name.replace("|", "_").replace(" ", "_") + ".jsonl"
+        with open(ctx.out / fn, "w", encoding="utf8") as fh:
+            for r in rows:
+                fh.write(json.dumps(r, ensure_ascii=False) + "\n")
+        org._upload(ctx, ctx.out / fn, f"out/{fn}")
+        coh_rows[name] = [r for r in rows if r["component"] == "coherence"]
+        vals["seconds"] = round(comp_seconds[-1], 1)
+        results["composite"]["conditions"][name] = vals
+        return vals
 
     # 1. the reference answers of the organism, the clean pass and the covariances
     ctx.progress = "reference answers"
@@ -390,6 +447,8 @@ def run(ctx):
     # 2. without intervention
     base_m, rows = measure("baseline", framings)
     results["baseline"] = base_m
+    if ccfg:
+        composite_here("baseline")
     save("baseline", rows, gap_line("baseline", base_m))
 
     # 2b. the rival manipulation (programme v1.5, part 3): the deployment prompt, without intervention. It says whether a
@@ -424,8 +483,11 @@ def run(ctx):
         deg["removed_norm"] = sum(pj.mean_removed().values()) / len(ls)
         with intervention(key, ls, r, f):
             m, rows = measure(key, framings)
+            cvals = composite_here(key) if ccfg else None
         results["settings"][key] = {"layers": ls, "rank": r, "fraction": f, "degradation": deg, "measure": m,
                                     "reduction": reduction(base_m, m)}
+        if cvals is not None:
+            results["settings"][key]["composite"] = cvals
         save(key.replace("|", "_"), rows, gap_line(key, m))
 
     # 4. the matched conditions: the comparator and the separate controls, each brought to the KL of the setting
@@ -480,6 +542,8 @@ def run(ctx):
             if gaps_here:
                 with idg.Projector(model, dd, x):
                     m, rows = measure(name, comp_framings)
+                    if ccfg:
+                        rec["composite"] = composite_here(name)
                 rec["measure"] = m
                 rec["reduction"] = reduction(base_m, m)
         return rec, rows
@@ -618,8 +682,44 @@ def run(ctx):
                      int(mcfg.get("mlp_steps", 300)), progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"),
                      probe_device=device, on_result=on_result, source=source)
         if gaps:
-            results.setdefault("porte", {})[key] = gate_summary(results, key)
+            results.setdefault("porte", {})[key] = gate_summary(results, key, comp.get("gate_draws"))
         save_results(f"{key}: done")
+    if ccfg:
+        # 5. the composite: the coherence judged by JEV-27B once the organism is freed, then each condition checked
+        # against its setting's values (registration, Appendix B.1)
+        if ccfg.get("judge", True) and any(coh_rows.values()):
+            import gc  # noqa: WPS433
+            from ..jev import FILES as JEV_FILES, REPO as JEV_REPO, REVISION as JEV_REVISION, Jev  # noqa: WPS433
+            ctx.progress = "composite: loading the judge"
+            del model
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            jpath = a.get("local_jev") or snapshot_download(JEV_REPO, revision=JEV_REVISION, allow_patterns=JEV_FILES,
+                                                            local_dir="/workspace/rr/models/jev27b", token=os.environ.get("HF_TOKEN"))
+            jev = Jev(jpath, device=device)
+            with open(ctx.out / "composite_coherence_judged.jsonl", "w", encoding="utf8") as fh:
+                for name, rows in coh_rows.items():
+                    cp.judge_coherence(jev, rows, progress=lambda m, name=name: setattr(ctx, "progress", f"{name}: {m}"))
+                    rated = [r["rating"] for r in rows]
+                    results["composite"]["conditions"][name]["coherence"] = round(sum(rated) / len(rated), 4) if rated else None
+                    for r in rows:
+                        fh.write(json.dumps({"condition": name, "id": r["id"], "rating": r["rating"], "order_flip": r.get("order_flip")},
+                                            ensure_ascii=False) + "\n")
+            org._upload(ctx, ctx.out / "composite_coherence_judged.jsonl", "out/composite_coherence_judged.jsonl")
+            results["composite"]["judge"] = {"model": JEV_REPO, "revision": JEV_REVISION}
+        for key in results["settings"]:
+            inh = results["settings"][key].get("composite")
+            if inh is None:
+                continue
+            recs = list(results["comparator"].get(key, {}).get("draws", [])) + list(results.get("controls", {}).get(key, {}).values())
+            for d in recs:
+                if "composite" in d:
+                    d["composite_check"] = cp.check(inh, d["composite"], report_only)
+                    d["matched"] = bool(d.get("kl_matched")) and d["composite_check"]["within"] is True
+            if key in results["comparator"]:
+                results.setdefault("porte", {})[key] = gate_summary(results, key, comp.get("gate_draws"))
+        save_results("composite: every condition checked")
     with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
         json.dump(results, fh, ensure_ascii=False, indent=1)
     return {"baseline": {k: base_m.get(k) for k in ("gap_extraction", "gap_framing")},

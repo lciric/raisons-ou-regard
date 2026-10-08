@@ -23,6 +23,7 @@ Le programme complet va plus loin : où se loge l'avantage, le retrait de « je 
   - Cet effacement réduit l'écart de 39,2 points, soit 1,96 de plus que le 95ᵉ centile de ses 20 tirages aléatoires. La marge est mince.
   - Le premier candidat, la projection de rang 1, ne passe pas sa vérification de manipulation : il n'est pas retenu.
   - Il reste l'amendement daté qui fixe le réglage (son brouillon : `claude/AMENDEMENT_REGLAGE_PORTE_2026-10-07.md`), puis la moitié de test, mesurée une seule fois contre au moins 100 tirages : environ 15 h de H100.
+  - **Le composite de dégradation manquait** (8 octobre). Le texte déposé exige, pour la moitié de test, des tirages appariés sur la KL **et** sur huit composantes (annexe B.1) ; le brouillon de l'amendement ne parle que de la KL. Le composite est écrit et testé, pas encore mesuré : `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`. Il ajoute environ 18 h de H100 à la moitié de test, et deux runs courts avant l'amendement.
   - La lecture est dans `experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`.
 - **Les données.** Le pipeline (v0.1) et son pilote ont tourné, et les jeux d'indices v2 sont faits (décisions 30 et 31).
   - **Avant la génération complète, un point bloque** (relu le 8 octobre). Les conditions de l'API Claude interdisent de prendre ses sorties pour cibles d'entraînement d'un modèle, sans une permission écrite d'Anthropic. Or le texte déposé fait écrire les données des bras par Opus 5.5.
@@ -105,5 +106,5 @@ Le journal complet est dans `DECISIONS.md`.
 
 - **Les variables de l'environnement** : `HF_TOKEN`, `VAST_API_KEY` et `RR_RESULTS_REPO` (`Sirmium/rr-resultats`) pour les calculs ; `RR_ANTHROPIC_API_KEY` pour le pipeline de données.
 - **Le réseau** : `huggingface.co`, `*.huggingface.co`, `*.hf.co`, `vast.ai`, `*.vast.ai`.
-- **Les tests**, hors ligne : `python3 -m unittest discover -s tests -t .`, depuis `experiences/` (142 tests au 7 octobre) et depuis `donnees/` (46).
+- **Les tests**, hors ligne : `python3 -m unittest discover -s tests -t .`, depuis `experiences/` (160 tests au 8 octobre) et depuis `donnees/` (50).
 - **Les commits** des sessions portent l'identité « Claude », et les lignes `Co-Authored-By` et `Claude-Session`.

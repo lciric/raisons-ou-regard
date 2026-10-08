@@ -69,6 +69,11 @@ python3 -m rrexp launch train_lora --gpus 4 --max-hours 4 \
   - Les couches se choisissent sur le jeu de validation, dont les mécanismes sont autres. Deux lectures y sont rapportées : l'AUROC de la direction, et celle d'une sonde logistique entraînée sur le jeu d'extraction.
   - Le jeu de la sonde neuve est lu de la même façon, en mesure exploratoire.
   - Il prend en option un adaptateur LoRA, pour lire un bras entraîné.
+- **Le composite de dégradation** (8 octobre ; `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`).
+  - `rrexp/composite.py` mesure ses huit composantes sous une condition, et vérifie l'appariement d'un contrôle sur les tolérances de l'annexe B.1 du texte déposé.
+  - Ses items sont dans `composite/items_v1/`, construits une fois par `python -m rrexp.composite_items --out composite/items_v1`, avec leur manifeste.
+  - Le job `composite_check` mesure ses deux dommages construits, et la projection de ses items ajoutés sur « je suis évalué ».
+  - Dans `organism_inhibition`, l'option `composite` le mesure sous chaque condition ; JEV-27B juge la cohérence à la fin du run.
 
 ## Les tests
 

@@ -1,0 +1,118 @@
+{
+ "version": "items_v1",
+ "built": "2026-10-08",
+ "seed": 20261008,
+ "sets": {
+  "mmlu": {
+   "file": "mmlu.jsonl",
+   "n": 2000,
+   "sha256": "d1b0e026ce6fe08edad4164b5cf30ad5da016966cf3df65a0a15d307a801d9ad",
+   "sources": [
+    {
+     "repo": "cais/mmlu",
+     "file": "all/test-00000-of-00001.parquet",
+     "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+     "license": "MIT",
+     "file_sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+    }
+   ]
+  },
+  "order": {
+   "file": "order.jsonl",
+   "n": 700,
+   "sha256": "a7d78b772dd8ae84ac08e480dfcb98e474846d293fb5019097ea756650a4c343",
+   "sources": [
+    {
+     "repo": "cais/mmlu",
+     "file": "all/test-00000-of-00001.parquet",
+     "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+     "license": "MIT",
+     "file_sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+    }
+   ]
+  },
+  "gsm8k": {
+   "file": "gsm8k.jsonl",
+   "n": 500,
+   "sha256": "a64f9b423f0f293d109e474be596b001dcce3939bc0731bb35b783af94ef9b13",
+   "sources": [
+    {
+     "repo": "openai/gsm8k",
+     "file": "main/test-00000-of-00001.parquet",
+     "revision": "740312add88f781978c0658806c59bc2815b9866",
+     "license": "MIT",
+     "file_sha256": "ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59"
+    }
+   ]
+  },
+  "code": {
+   "file": "code.jsonl",
+   "n": 542,
+   "sha256": "ec65717e3c4ce993921167138af7105f6f2e2daeff7b4a0d73e10aec0b1661cc",
+   "sources": [
+    {
+     "repo": "openai/openai_humaneval",
+     "file": "openai_humaneval/test-00000-of-00001.parquet",
+     "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+     "license": "MIT",
+     "file_sha256": "2f2871a15fbc95b6c683043359f4ed8e144c5a1c4f24f25f66bc51f598dfcfb6"
+    },
+    {
+     "repo": "evalplus/mbppplus",
+     "file": "data/test-00000-of-00001-d5781c9c51e02795.parquet",
+     "revision": "b2d74c91837c3f2a20c1299ae98133cbe7cfa077",
+     "license": "Apache-2.0",
+     "file_sha256": "dc20030b3788fccf617444edcb34138ef13d7e4fafd17bfcb8c1279dbb12399b"
+    }
+   ]
+  },
+  "coherence": {
+   "file": "coherence.jsonl",
+   "n": 100,
+   "sha256": "e172ee046bde1f7b11fbaa4a0eb79cef36b6155ebb86c44760041bb7d60baa44",
+   "sources": [
+    {
+     "repo": "databricks/databricks-dolly-15k",
+     "file": "databricks-dolly-15k.jsonl",
+     "revision": "bdd27f4d94b9c1f951818a7da7fd7aeea5dbff1a",
+     "license": "CC BY-SA 3.0",
+     "file_sha256": "2df9083338b4abd6bceb5635764dab5d833b393b55759dffb0959b6fcbf794ec"
+    }
+   ]
+  },
+  "format": {
+   "file": "format.jsonl",
+   "n": 200,
+   "sha256": "e67a0e2128c3e7b9be0a51ecd5eb4a332ffdd8350ece740b19c627a73eef9eb1",
+   "sources": [
+    {
+     "repo": "databricks/databricks-dolly-15k",
+     "file": "databricks-dolly-15k.jsonl",
+     "revision": "bdd27f4d94b9c1f951818a7da7fd7aeea5dbff1a",
+     "license": "CC BY-SA 3.0",
+     "file_sha256": "2df9083338b4abd6bceb5635764dab5d833b393b55759dffb0959b6fcbf794ec"
+    }
+   ]
+  },
+  "tools": {
+   "file": "tools.jsonl",
+   "n": 200,
+   "sha256": "f8a4c8ce980bb63d4d2d5016d0ee04f1468b9bab6aeaa514b2f232a0d2ce837d",
+   "sources": []
+  },
+  "perplexity": {
+   "file": "perplexity.json",
+   "n": 64,
+   "sha256": "3706bea21c3587dbd11070897a804039055977b850ed2c253e6422febb98fd26",
+   "sources": [
+    {
+     "repo": "Salesforce/wikitext",
+     "file": "wikitext-103-raw-v1/test-00000-of-00001.parquet",
+     "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+     "license": "CC BY-SA 3.0",
+     "file_sha256": "5f1bea067869d04849c0f975a2b29c4ff47d867f484f5010ea5e861eab246d91"
+    }
+   ]
+  }
+ }
+}
