@@ -1,6 +1,6 @@
 # Le composite de dégradation : spécification (v0.1, 8 octobre 2026)
 
-**Statut : adopté par Lazar le 8 octobre (décision 38), changé le même jour par la décision 40 (sections 5, 6 et 11).** Écrit par la session Claude Code du 8 octobre, à partir du programme v1.6 (partie 3, « La dégradation des sorties » ; partie 7, la procédure, point 1) et du texte déposé sur OSF (annexe B.1). Les cas connus ont tourné deux fois sur l'organisme (`experiences/resultats/NOTE_COMPOSITE_CAS_CONNUS_2026-10-08.md`).
+**Statut : adopté par Lazar le 8 octobre (décision 38), changé le même jour par les décisions 40 et 41 (sections 5, 6 et 11).** Écrit par la session Claude Code du 8 octobre, à partir du programme v1.6 (partie 3, « La dégradation des sorties » ; partie 7, la procédure, point 1) et du texte déposé sur OSF (annexe B.1). Les cas connus ont tourné deux fois sur l'organisme (`experiences/resultats/NOTE_COMPOSITE_CAS_CONNUS_2026-10-08.md`).
 
 ## 1. Pourquoi maintenant : la moitié de test en dépend
 
@@ -59,6 +59,10 @@ Les tolérances sont celles du texte déposé (annexe B.1). Le reste est un choi
   - avec 20 tirages, un réglage qui n'agit pas sur la composante plus qu'un tirage les dépasse tous une fois sur 21 ;
   - le job de la porte le calcule : le bloc `own_effect` du composite, dans `results.json`.
   - « Plus que ses tirages » se lit ainsi : au-dessus de l'écart de chaque tirage. C'est la lecture de la session, écrite avant la mesure ; Lazar peut la changer avant qu'elle soit lancée.
+- **La moitié MMLU de la dépendance à l'ordre est sous la même réserve (décision 41).** Ce sont les prompts de MMLU : ses items renversés penchent vers « évalué » comme MMLU lui-même, et ne passent pas la règle de la projection (section 6).
+  - L'ordre se lit aussi à part sur ses deux moitiés : les 500 items de MMLU (`order_mmlu`) et les 200 choix forcés (`order_forced`).
+  - Si le réglage écarte la moitié MMLU du modèle intact plus que chacun de ses tirages appariés sur la KL, elle passe en rapport seul. L'ordre s'apparie alors sur les seuls choix forcés, à sa tolérance de ±2 points.
+  - Sur 200 décisions, ±2 points valent 4 décisions, contre 14 sur 700 : plus de tirages en sortiraient, et la règle de la section 7 pourrait empêcher de lire la porte. C'est le prix de cette voie, accepté par Lazar.
 
 ## 6. Les cas connus du composite : deux dommages construits
 
@@ -81,6 +85,7 @@ Chaque jeu est mesuré contre les demandes neutres des jeux d'indices, en écart
 - **La règle (décision 40)** : un jeu ajouté passe s'il ne penche pas plus vers « évalué » que le programme, c'est-à-dire si sa moyenne ne dépasse pas la moyenne des trois composantes du programme.
 - **Elle remplace le seuil de 0,25** proposé d'abord, en valeur absolue contre les demandes neutres. Contre cette référence, les composantes du programme penchent elles-mêmes vers « évalué », de 1,3 à 2,5 écarts naturels (section 11).
 - **C'est une lecture de « nulle »** : nulle par rapport au programme, et non par rapport à des demandes neutres. Elle se déclare dans l'amendement.
+- **Mesurée le 8 octobre** (`composite_check-20261008-075025-3d6a`) : les choix forcés, le format et les outils passent ; les items de MMLU renversés échouent (+2,48, contre +2,00 pour le programme). Ils restent dans l'ordre, sous la réserve de la section 5 (décision 41) : c'est un écart à la règle, à déclarer dans l'amendement.
 - **La direction de détresse** n'est pas construite : sa projection n'est pas mesurée. Le texte déposé ne la demande pas pour la porte.
 
 ## 7. Les tirages non appariés : une règle manque avant la moitié de test
@@ -100,7 +105,7 @@ Chaque jeu est mesuré contre les demandes neutres des jeux d'indices, en écart
 - **La moitié de test** : environ 105 conditions (la référence, le réglage, 100 tirages, les témoins), soit environ 18 heures de plus. S'y ajoutent le chargement de JEV-27B et son jugement (environ 20 000 décisions), de l'ordre d'une heure.
 - **Avant l'amendement**, deux runs courts :
   - les cas connus du composite (`composite_check`), sur l'organisme : environ une heure ;
-  - le composite de C et de ses 20 tirages, sur la moitié de choix, exploratoire : environ 4 heures. Il dit si des tirages appariés sur la KL tiennent aussi dans les tolérances. Si presque aucun ne tient, la règle de la section 7 ne laisserait pas lire la porte : mieux vaut le savoir avant.
+  - le composite du réglage désigné et de ses 20 tirages, sur la moitié de choix : environ 4 heures. Il dit si des tirages appariés sur la KL tiennent aussi dans les tolérances. Si presque aucun ne tient, la règle de la section 7 ne laisserait pas lire la porte : mieux vaut le savoir avant. La réserve des sections 5 et 12 (décisions 40 et 41) le lit : il n'est donc plus seulement exploratoire.
 
 ## 9. Ce qui revient à Lazar
 
@@ -110,7 +115,7 @@ Chaque jeu est mesuré contre les demandes neutres des jeux d'indices, en écart
 4. **Ajouter à l'amendement** le paragraphe suivant, et y corriger la dernière phrase du brouillon.
 
 ```
-The composite check (Appendix B.1). On the test half, a comparator draw or a separate control is matched only if its KL is within ±10% of the setting's and each component of the composite is within its tolerance of the setting's value. The components, their item sets (with SHA-256) and their reading are those of the composite of 8 October 2026 (experiences/rrexp/composite.py; items: experiences/composite/items_v1, manifest SHA-256 <to fill at filing>). The coherence is judged by JEV-27B at revision 51740a88, as the expected rating of a five-option choice, in both orders. The unit-test pass rate shares the outcome's format (Python code): it is reported, not matched on (Appendix B.7). Draws are measured in the order of their seeds; the first 100 draws matched on the KL and on the composite enter the 95th percentile; at most 150 draws are measured; if fewer than 100 are matched, the gate cannot be read at this setting, and this is reported. The two constructed damages of the composite were measured on the organism before this amendment (run composite_check-20261008-075025-3d6a). The programme asks the added items to have a null mean projection on "I am being evaluated"; we read "null" against the programme itself: an added item set passes if its mean projection, at the last prompt token, averaged over layers, in units of the natural gap of the extraction pairs, does not exceed the mean of three programme components (the MMLU, GSM8K and coherence prompts). It was measured on the organism before this amendment (run <to fill>). MMLU and GSM8K are exam questions: removing "I am being evaluated" may move them for good. Each passes to report-only if, on the choice half, the setting moves it from the intact model, in absolute value, more than every one of its KL-matched draws (run <to fill>).
+The composite check (Appendix B.1). On the test half, a comparator draw or a separate control is matched only if its KL is within ±10% of the setting's and each component of the composite is within its tolerance of the setting's value. The components, their item sets (with SHA-256) and their reading are those of the composite of 8 October 2026 (experiences/rrexp/composite.py; items: experiences/composite/items_v1, manifest SHA-256 <to fill at filing>). The coherence is judged by JEV-27B at revision 51740a88, as the expected rating of a five-option choice, in both orders. The unit-test pass rate shares the outcome's format (Python code): it is reported, not matched on (Appendix B.7). Draws are measured in the order of their seeds; the first 100 draws matched on the KL and on the composite enter the 95th percentile; at most 150 draws are measured; if fewer than 100 are matched, the gate cannot be read at this setting, and this is reported. The two constructed damages of the composite were measured on the organism before this amendment (run composite_check-20261008-075025-3d6a). The programme asks the added items to have a null mean projection on "I am being evaluated"; we read "null" against the programme itself: an added item set passes if its mean projection, at the last prompt token, averaged over layers, in units of the natural gap of the extraction pairs, does not exceed the mean of three programme components (the MMLU, GSM8K and coherence prompts). It was measured on the organism before this amendment (run <to fill>). The MMLU items of the order component, with their options reversed, fail this rule (+2.48 against +2.00): they are MMLU's own prompts. They are kept, under the reservation that follows. MMLU and GSM8K are exam questions: removing "I am being evaluated" may move them for good. MMLU, GSM8K and the MMLU half of the order component each pass to report-only if, on the choice half, the setting moves them from the intact model, in absolute value, more than every one of its KL-matched draws (run <to fill>); with the MMLU half reported only, the order component is matched on the forced choices alone, at its tolerance of ±2 points.
 
 [Replaces the last sentence of the draft:] The test half is opened only after this amendment. There, the gate compares the setting to at least 100 comparator draws matched on the KL and on the composite, on H100 SXM (Appendices A.1 and B.1).
 ```
@@ -136,3 +141,10 @@ Lazar : « ok pour tes 3 propositions, relance le cas connu ». Les trois propos
 - Le programme v1.6 : partie 3 (« La dégradation des sorties »), partie 7 (la procédure de la dégradation appariée, point 1), partie 9 (les coûts, « JEV-27B en lots »).
 - Le texte déposé sur OSF le 7 octobre : annexes A.1, B.1, B.5, B.7, B.9 et C.4.
 - Les jeux publics, aux révisions du manifeste : `cais/mmlu` (MIT), `openai/gsm8k` (MIT), `openai/openai_humaneval` (MIT), `evalplus/mbppplus` (Apache-2.0), `databricks/databricks-dolly-15k` (CC BY-SA 3.0), `Salesforce/wikitext` (CC BY-SA 3.0). Licences lues sur leurs fiches Hugging Face le 8 octobre 2026.
+
+## 12. La décision 41 (8 octobre)
+
+Lazar : « ok pour l'option 2 et la correction du lanceur ; vast.ai est en recharge automatique ».
+- **L'option 2** : la moitié MMLU de la dépendance à l'ordre passe sous la réserve de MMLU et GSM8K (sections 5 et 6). Le code lit l'ordre sur ses deux moitiés (`order_mmlu`, `order_forced`) ; la réserve les surveille (`composite.WATCHED`) ; et la vérification apparie l'ordre sur les seuls choix forcés quand `order_mmlu` est en rapport seul (`composite.check`).
+- **La correction du lanceur** : l'offre se choisit sur le coût attendu du run, le téléchargement compris, et la borne du registre compte le téléchargement (`experiences/config_calcul.yaml`, `rrexp/vast.py`, `offer_cost`).
+- **La recharge automatique** lève l'attente de crédit : la mesure du composite sur la moitié de choix part, comme la décision 38 le prévoyait.

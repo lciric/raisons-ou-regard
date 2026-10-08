@@ -65,8 +65,9 @@ components at fault. "report_only" holds the components that share the outcome's
 organism, whose outcome is Python code, the unit-test pass rate. With "gate_draws": n in "comparator", the summary
 "porte" reads the first n matched draws, in their order of drawing. With "gaps": false, the composite is still measured
 under each condition, without the gaps: the check of the composite alone, when the gaps are already known.
-"own_effect" (decision 40) says, for MMLU and GSM8K, whether the setting moves them, from the intact model, more than
-every comparator draw matched on the KL: such a component passes to report-only before the test half.
+"own_effect" (decisions 40 and 41) says, for MMLU, GSM8K and the MMLU half of the order, whether the setting moves them,
+from the intact model, more than every comparator draw matched on the KL: such a component passes to report-only before
+the test half (for the MMLU half of the order, "order_mmlu": the order is then matched on the forced choices alone).
 
 Exploratory before that: the cue sets v1, the choice half. The subspace of extract_eval-20261003-121743-385d was extracted on every pair of
 the extraction set, those kept out of the expert iteration included; the framing set is independent of it.
@@ -720,7 +721,7 @@ def run(ctx):
                 if "composite" in d:
                     d["composite_check"] = cp.check(inh, d["composite"], report_only)
                     d["matched"] = bool(d.get("kl_matched")) and d["composite_check"]["within"] is True
-            # decision 40: does the inhibition move the exam components more than every draw matched on the KL?
+            # decisions 40 and 41: does the inhibition move the exam components more than every draw matched on the KL?
             kl_draws = [d["composite"] for d in results["comparator"].get(key, {}).get("draws", []) if d.get("kl_matched") and "composite" in d]
             results["composite"].setdefault("own_effect", {})[key] = cp.own_effect(results["composite"]["conditions"]["baseline"], inh, kl_draws)
             if gaps and key in results["comparator"]:

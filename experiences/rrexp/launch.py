@@ -17,7 +17,7 @@ import yaml
 
 from . import bundle as bundle_mod
 from .command import SCRIPT, container_env, read_requirements, redacted
-from .vast import DEAD_STATUSES, create_payload, pick_offer
+from .vast import DEAD_STATUSES, create_payload, offer_cost, pick_offer
 
 HERE = Path(__file__).resolve().parent.parent   # the experiences/ folder
 REGISTRY = HERE / "registre"
@@ -26,7 +26,7 @@ JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_
         "organism_inhibition", "composite_check", "open_generate")
 FINAL = ("done", "failed", "timeout")
 OFFER_FIELDS = ("id", "machine_id", "host_id", "gpu_name", "num_gpus", "gpu_ram", "dph_total", "reliability", "geolocation",
-                "datacenter", "cuda_max_good", "inet_down", "disk_space", "cpu_ram")
+                "datacenter", "cuda_max_good", "inet_down", "disk_space", "cpu_ram", "inet_down_cost", "inet_up_cost")
 
 
 def load_config(path=None):
@@ -120,13 +120,17 @@ def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=Fa
         vast = Vast()
     if not hub.exists(b["repo_path"]):
         hub.put_file(b["repo_path"], b["path"], f"code bundle {b['sha256'][:16]} (git {b['git_head'][:8]})")
-    gpu, offer, tried = pick_offer(vast, pool, num_gpus, cfg["disk_gb"], cfg["filters"], cfg["max_dph_per_gpu"])
+    # the offer is chosen on the run's expected cost, the download of its models included (offer_cost)
+    hours, download_gb = float(cfg.get("expected_hours", 1.0)), float(cfg.get("download_gb", 0.0))
+    gpu, offer, tried = pick_offer(vast, pool, num_gpus, cfg["disk_gb"], cfg["filters"], cfg["max_dph_per_gpu"], hours, download_gb)
     rec["offers_tried"] = tried
+    rec["expected"] = {"hours": hours, "download_gb": download_gb}
     if offer is None:
         rec["state"] = "no_offer"
         save_record(rec, registry)
         raise RuntimeError(f"no offer matches: {tried}")
     rec["offer"] = {k: offer.get(k) for k in OFFER_FIELDS}
+    rec["expected"]["cost_usd"] = round(offer_cost(offer, hours, download_gb), 3)
     env = container_env(run_id, job, args, hub.repo, b["repo_path"], max_hours * 3600, pip_specs, cfg["heartbeat_seconds"],
                         hub.token if pass_hf_token else None)
     rec["env"] = redacted(env)
@@ -178,11 +182,14 @@ def assess(rec, inst, status, wcfg, now_ts):
 
 
 def cost_estimate(rec, end_ts):
-    """GPU price times the time since launch: an upper bound (billing starts at "running"; disk is extra)."""
-    dph = (rec.get("offer") or {}).get("dph_total")
+    """GPU price times the time since launch, an upper bound of the rental (billing starts at "running"; disk is
+    extra), plus the download price times the volume the job declares (an estimate: vast.ai bills the bandwidth apart)."""
+    offer = rec.get("offer") or {}
+    dph = offer.get("dph_total")
     if not dph or not rec.get("launched"):
         return None
-    return round(dph * (end_ts - parse_iso(rec["launched"])) / 3600, 3)
+    download = float(offer.get("inet_down_cost") or 0.0) * float((rec.get("expected") or {}).get("download_gb", 0.0))
+    return round(dph * (end_ts - parse_iso(rec["launched"])) / 3600 + download, 3)
 
 
 def fetch(hub, run_id, dest=RESULTS):

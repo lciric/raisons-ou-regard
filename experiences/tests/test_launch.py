@@ -75,6 +75,16 @@ class TestVastRequests(unittest.TestCase):
         self.assertEqual(offer["id"], 9)
         self.assertEqual([t["offers"] for t in tried], [0, 1])
 
+    def test_pick_offer_counts_the_download(self):
+        # decision 41: the hourly price over the expected hours, plus the download price over the job's volume
+        cfg = launch.load_config()
+        offers = [{"id": 1, "dph_total": 3.5, "inet_down_cost": 0.039}, {"id": 2, "dph_total": 3.9, "inet_down_cost": 0.001}]
+        v = Vast(key="k", http=FakeHTTP([(200, {"offers": offers})] * 3), sleep=lambda s: None)
+        self.assertEqual(pick_offer(v, cfg["gpus"][:1], 1, 120, cfg["filters"], 4.0)[1]["id"], 1)    # nothing to download
+        self.assertEqual(pick_offer(v, cfg["gpus"][:1], 1, 120, cfg["filters"], 4.0, 0.25, 71)[1]["id"], 2)
+        self.assertEqual(pick_offer(v, cfg["gpus"][:1], 1, 120, cfg["filters"], 4.0, 100, 71)[1]["id"], 1)   # a long run
+        self.assertEqual(launch.job_config(cfg, "composite_check")["download_gb"], 71)
+
     def test_without_key_the_proxy_credential_is_used(self):
         http = FakeHTTP([(200, {"credit": 12.5})])
         old = os.environ.pop("VAST_API_KEY", None)
@@ -244,6 +254,10 @@ class TestWatchOnce(unittest.TestCase):
             self.assertEqual(after["cost_usd_upper_bound"], 1.0)
         finally:
             shutil.rmtree(tmp)
+
+    def test_cost_counts_the_declared_download(self):
+        rec = {"launched": "2026-10-03T10:00:00Z", "offer": {"dph_total": 2.0, "inet_down_cost": 0.04}, "expected": {"download_gb": 50}}
+        self.assertEqual(launch.cost_estimate(rec, launch.parse_iso("2026-10-03T10:30:00Z")), 3.0)
 
 
 if __name__ == "__main__":

@@ -141,7 +141,9 @@ Lazar : « ok pour tes 3 propositions, relance le cas connu ». Les points 1 à 
 - **Ils échouent** parce que MMLU lui-même est au-dessus de la moyenne du programme, que GSM8K et la cohérence tirent vers le bas.
 - **La moitié MMLU de la dépendance à l'ordre ne passe donc pas la règle.** Le reste passe.
 
-## Ce qui revient à Lazar : la moitié MMLU de l'ordre
+## La moitié MMLU de l'ordre : décidé (décision 41)
+
+Lazar : « ok pour l'option 2 et la correction du lanceur ; vast.ai est en recharge automatique ». La moitié MMLU de l'ordre passe sous la réserve de MMLU et GSM8K (`claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`, sections 5 et 12). Les trois façons de faire proposées étaient :
 
 Trois façons de faire, à choisir avant la mesure du composite sur la moitié de choix :
 1. **Apparier l'ordre sur les seuls choix forcés**, et rapporter seulement les items de MMLU de l'ordre.
@@ -162,6 +164,5 @@ Trois façons de faire, à choisir avant la mesure du composite sur la moitié d
   - La machine louée (machine 140932, en Tchéquie) facture le téléchargement 0,039 $ par Go (0,0326 $ par Go envoyé), au prix affiché à 8 h 10 UTC.
   - Le job télécharge Llama-3.1-8B-Instruct (16,1 Go) et JEV-27B (54,2 Go) : environ 2,7 $.
   - Le second run, sur la même machine, l'a sans doute payé aussi.
-- **Le lanceur l'ignore.** Sa borne de coût ne compte que la location, et il choisit l'offre sans regarder le prix de la bande passante.
-  - Proposé : compter le volume à télécharger dans le choix de l'offre et dans la borne du registre.
+- **Le lanceur l'ignorait.** Sa borne de coût ne comptait que la location, et il choisissait l'offre sans regarder le prix de la bande passante. Corrigé par la décision 41 : l'offre se choisit sur le coût attendu du run, téléchargement compris, et la borne du registre le compte.
   - Le choix des cartes de Lazar (un H100 SXM, sinon un A100) ne change pas.

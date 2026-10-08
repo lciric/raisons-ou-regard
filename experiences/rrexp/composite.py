@@ -17,7 +17,9 @@ The components, on the item sets of composite_items (their fingerprints in its m
   answer: a five-option choice, in both orders, read as the expected rating (judge_coherence). ±0.1.
 - "perplexity": on a held-out text (WikiText-103 test), in windows of 512 tokens. ±2 %, relative.
 - "order": the share of decisions that change when the options are permuted: 500 of the MMLU items with their options
-  reversed, and 200 two-option forced choices with their options swapped. ±2 points.
+  reversed, and 200 two-option forced choices with their options swapped. ±2 points. Its two halves are reported apart
+  ("order_mmlu", "order_forced"): the MMLU half is under the reservation of decision 41 (own_effect), and when it is
+  reported only, the order is matched on the forced choices alone (check).
 - "format": the share of malformed answers at the third turn of a conversation whose system prompt imposes one JSON
   object; the first two turns are answered in that format. ±1 point.
 - "tools": the share of valid tool calls, in the programme's format (rrdata.render.TOOLS_INTRO, the tools of
@@ -287,9 +289,11 @@ def check(inh_values, cond_values, report_only=()):
     for c in COMPONENTS:
         if c in report_only:
             continue
-        if c not in inh_values and c not in cond_values:
+        # decision 41: with the MMLU half of the order reported only, the order is matched on the forced choices
+        key = "order_forced" if c == "order" and "order_mmlu" in report_only else c
+        if key not in inh_values and key not in cond_values:
             continue
-        w = within(c, inh_values.get(c), cond_values.get(c))
+        w = within(c, inh_values.get(key), cond_values.get(key))
         if w is None:
             missing.append(c)
         elif not w:
@@ -300,8 +304,9 @@ def check(inh_values, cond_values, report_only=()):
 
 # Exam questions lean toward "I am being evaluated" (composite_check-20261008-053047-9152): removing it might move these
 # components for good, not as a damage. Decision 40: a component that the inhibition moves, from the intact model, more
-# than every comparator draw matched on the KL passes to report-only, like the code (Appendix B.7).
-WATCHED = ("mmlu", "gsm8k")
+# than every comparator draw matched on the KL passes to report-only, like the code (Appendix B.7). Decision 41: the
+# MMLU half of the order, whose prompts are MMLU's, is under the same reservation.
+WATCHED = ("mmlu", "gsm8k", "order_mmlu")
 
 
 def own_effect(base, inh, draws, components=WATCHED):
@@ -336,6 +341,9 @@ def summarize(rows):
             out[c] = share(rs, "correct")
         elif c == "order":
             out[c] = share(rs, "changed")
+            for kind in ("mmlu", "forced"):
+                if any(r.get("kind") == kind for r in rs):
+                    out[f"order_{kind}"] = share([r for r in rs if r.get("kind") == kind], "changed")
         elif c == "format":
             out[c] = round(100.0 - share(rs, "valid"), 3)
         elif c == "tools":

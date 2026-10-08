@@ -151,6 +151,21 @@ class TestScoring(unittest.TestCase):
         self.assertEqual(r["mmlu"], {"inhibition_shift": 3.0, "draws": 3, "draws_max_shift": 1.0, "beyond_every_draw": True})
         self.assertEqual(r["gsm8k"], {"inhibition_shift": 2.0, "draws": 2, "draws_max_shift": 2.0, "beyond_every_draw": False})
         self.assertFalse(cp.own_effect(base, {"mmlu": 70.0}, [])["mmlu"]["beyond_every_draw"])    # no draw: nothing read
+        # decision 41: the MMLU half of the order is watched too
+        r = cp.own_effect({"order_mmlu": 37.6}, {"order_mmlu": 45.0}, [{"order_mmlu": 38.0}, {"order_mmlu": 36.0}])
+        self.assertTrue(r["order_mmlu"]["beyond_every_draw"])
+
+    def test_order_halves(self):
+        rows = [{"component": "order", "kind": "mmlu", "changed": c} for c in (True, False, False, False)]
+        rows += [{"component": "order", "kind": "forced", "changed": c} for c in (True, True, False, False)]
+        vals = cp.summarize(rows)
+        self.assertEqual((vals["order"], vals["order_mmlu"], vals["order_forced"]), (37.5, 25.0, 50.0))
+        # decision 41: with the MMLU half reported only, the order is matched on the forced choices alone
+        inh = {"order": 37.5, "order_mmlu": 25.0, "order_forced": 50.0}
+        cond = {"order": 38.5, "order_mmlu": 31.0, "order_forced": 45.0}
+        self.assertEqual(cp.check(inh, cond)["at_fault"], [])                   # the whole order is within ±2
+        r = cp.check(inh, cond, report_only=["order_mmlu"])
+        self.assertEqual((r["at_fault"], r["reported_only"]), (["order"], ["order_mmlu"]))
 
     def test_summarize_and_rating(self):
         rows = ([{"component": "mmlu", "correct": c} for c in (True, True, False, True)]
@@ -243,7 +258,7 @@ class TestMeasure(unittest.TestCase):
     def test_measure_then_judge(self):
         small = {c: 4 for c in ("gsm8k", "code", "coherence", "format", "tools")}
         vals, rows = cp.measure(self.model, self.tok, self.items, batch=2, max_new=small, workers=2)
-        self.assertEqual(set(vals), {"mmlu", "order", "gsm8k", "code", "perplexity", "format", "tools"})
+        self.assertEqual(set(vals), {"mmlu", "order", "order_mmlu", "order_forced", "gsm8k", "code", "perplexity", "format", "tools"})
         self.assertNotIn("coherence", vals)                       # it waits for the judge
         self.assertTrue(all(0.0 <= vals[c] <= 100.0 for c in ("mmlu", "order", "gsm8k", "code", "format", "tools")))
         self.assertGreater(vals["perplexity"], 1.0)
@@ -331,7 +346,7 @@ class TestMeasure(unittest.TestCase):
         self.assertEqual(set(out["conditions"]), {"baseline", "first_option", "collapse"})
         self.assertIn("coherence", out["conditions"]["baseline"])
         self.assertIn("coherence", out["conditions"]["collapse"])
-        self.assertEqual(set(out["conditions"]["first_option"]), {"mmlu", "order"})
+        self.assertEqual(set(out["conditions"]["first_option"]), {"mmlu", "order", "order_mmlu", "order_forced"})
         self.assertEqual(out["conditions"]["first_option"]["mmlu"], out["conditions"]["baseline"]["mmlu"])   # no prompt on MMLU
         self.assertEqual(set(out["order_detail"]), {"baseline", "first_option"})
         self.assertEqual(set(out["projection"]["sets"]), {"forced_choices", "mmlu_reversed", "format", "tools", "mmlu (programme)",

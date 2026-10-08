@@ -312,7 +312,7 @@ class TestJob(unittest.TestCase):
             self.assertEqual(res6["porte"], out6["porte"])
             # decision 40: the exam components, the setting's shift against every draw matched on the KL
             own6 = out6["composite"]["own_effect"][key6]
-            self.assertEqual(set(own6), {"mmlu", "gsm8k"})
+            self.assertEqual(set(own6), {"mmlu", "gsm8k", "order_mmlu"})
             self.assertEqual(own6["mmlu"]["draws"], sum(1 for d in measured if d["kl_matched"]))
             judged = [json.loads(l) for l in (ctx6.out / "composite_coherence_judged.jsonl").read_text(encoding="utf8").splitlines()]
             self.assertEqual(len(judged), 2 * len(conds6))               # two coherence requests per condition

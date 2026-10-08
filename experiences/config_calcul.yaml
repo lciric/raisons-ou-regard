@@ -23,6 +23,13 @@ filters:
   datacenter_only: true      # proposition : seulement des machines de centres de données, puisque le jeton HF y va
 
 max_dph_per_gpu: 4.0         # proposition : prix horaire au plus, par GPU, en dollars
+# Le choix de l'offre (décision 41, 8 octobre 2026). vast.ai facture la bande passante à part du prix horaire : 0,039 $
+# par Go téléchargé sur le H100 de composite_check-20261008-075025-3d6a, soit environ 2,7 $ pour ses 70 Go de modèles,
+# contre 0,83 $ de location. Parmi les offres du premier type de GPU qui en a, on prend donc la moins chère pour le run :
+# le prix horaire sur la durée attendue, plus le prix du téléchargement sur le volume du job. Les durées sont des
+# estimations ; les volumes sont ceux des modèles, lus sur Hugging Face le 8 octobre 2026 (l'image n'est pas comptée).
+expected_hours: 1
+download_gb: 17              # Llama-3.1-8B-Instruct : 16,1 Go
 max_hours_default: 3         # au-delà, le script de la machine coupe le job (timeout), et le conteneur s'arrête
 heartbeat_seconds: 600       # 300 jusqu'au 5 octobre 2026 : le dépôt de résultats prend au plus 128 commits par heure
 
@@ -42,11 +49,25 @@ job_overrides:
   sdf_documents:
     image: "vllm/vllm-openai:v0.30.0"
     filters: {cuda_min: 13.0}
+    expected_hours: 2
+    download_gb: 30          # Qwen3-14B : 29,6 Go
+  organism:
+    expected_hours: 4
+  judge_jev:
+    download_gb: 55          # JEV-27B : 54,2 Go
+  composite_check:
+    expected_hours: 0.25
+    download_gb: 71          # Llama-3.1-8B-Instruct et JEV-27B
+  organism_inhibition:
+    expected_hours: 4
+    download_gb: 71          # avec le composite, JEV-27B en plus de Llama
   # Le générateur ouvert des données des bras (décision 37, 8 octobre 2026) : la même image ; de la place pour un
   # modèle d'environ 125 Go (Qwen3.5-122B-A10B en FP8, proposé), sur plusieurs GPU (--gpus).
   open_generate:
     image: "vllm/vllm-openai:v0.30.0"
     filters: {cuda_min: 13.0}
     disk_gb: 400
+    expected_hours: 3
+    download_gb: 128         # Qwen3.5-122B-A10B-FP8 : 127,2 Go (gemma-4-31B-it, l'autre famille : 62,6 Go)
 
 gated_model: meta-llama/Llama-3.1-8B-Instruct

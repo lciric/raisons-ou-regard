@@ -135,12 +135,20 @@ class Vast:
         return self._call("PUT", f"/instances/request_logs/{int(instance_id)}/", body={"tail": str(tail)}).get("result_url")
 
 
-def pick_offer(vast, gpus, num_gpus, disk_gb, filters, max_dph_per_gpu):
-    """The cheapest offer of the first GPU type, in order of preference, that has one. Returns (gpu, offer, tried)."""
+def offer_cost(offer, hours, download_gb):
+    """The expected cost of a run on an offer: its hourly price over the expected hours, plus its download price over
+    the volume the job downloads. vast.ai bills the bandwidth apart from the hourly price: 0.039 $ per GB on the H100 of
+    composite_check-20261008-075025-3d6a, about 2.7 $ for its 70 GB of models, against 0.83 $ of rental."""
+    return float(offer.get("dph_total") or 0.0) * float(hours) + float(offer.get("inet_down_cost") or 0.0) * float(download_gb)
+
+
+def pick_offer(vast, gpus, num_gpus, disk_gb, filters, max_dph_per_gpu, hours=1.0, download_gb=0.0):
+    """Among the offers of the first GPU type, in order of preference, that has one, the cheapest for the run
+    (offer_cost: the hourly price over the expected hours, plus the download price). Returns (gpu, offer, tried)."""
     tried = []
     for gpu in gpus:
         offers = vast.search_offers(offer_query(gpu, num_gpus, disk_gb, filters, max_dph_per_gpu))
         tried.append({"gpu": gpu["name"], "offers": len(offers)})
         if offers:
-            return gpu, offers[0], tried
+            return gpu, min(offers, key=lambda o: offer_cost(o, hours, download_gb)), tried
     return None, None, tried
