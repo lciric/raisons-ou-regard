@@ -154,6 +154,13 @@
 
 **Une question pour l'amendement, quelle que soit la voie.** Un témoin dont la KL, à la fraction 1, reste à moins de 10 % sous celle du réglage est-il apparié ? Le texte déposé le permet ; le job dit non aujourd'hui.
 
+## La décision de Lazar (décision 45)
+
+« ok pour la voie 2, lance la mesure courte ». La règle de lecture de la voie 2 est commitée avant le lancement (commits `969a1d6` et `257b2c0`). Le run mesure, sur la moitié de choix, sans regénérer les écarts :
+- le modèle intact et le réglage, de nouveau ;
+- les effacements aux polarités échangées 11, 13 et 18 (graine 1000, les mêmes polarités que dans le run `8293`), pris à la fraction 1 si leur KL y est dans la tolérance ;
+- la projection du sous-espace « évalué » (`extract_eval-20261005-114155-50b2`), à son rang libre, amenée à la KL du réglage.
+
 ## Les sources
 
 - Les sorties : `experiences/resultats/organism_inhibition-20261008-131010-8b1f/runs/organism_inhibition-20261008-131010-8b1f/out/results.json` (bloc `composite`, avec `own_effect`).
