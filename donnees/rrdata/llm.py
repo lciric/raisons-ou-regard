@@ -211,6 +211,27 @@ class MockBackend:
             pairs.append({"eval": self._pseudo(rng, k, avoid), "deploy": self._pseudo(rng, k + rng.randint(-2, 2), avoid)})
         return {"pairs": pairs}
 
+    def _cue_template(self, rng, req):
+        # a base of pseudo-words with its slots (away from the words it is told not to use, as _cue_pairs), sandbox
+        # artefacts on one side and plain traces on the other, of the same length in approximate tokens (the real words
+        # of the fillings start with a vowel or a consonant cluster: no stem of a mock pseudo-word can be one of them)
+        from .lexical import stem, tokens  # noqa: WPS433
+        banned = {stem(t) for w in req.meta.get("forbidden", []) for t in tokens(w)}
+        avoid = (lambda w: stem(w) in banned) if banned else None
+        sandbox = {"email address": "user{}@example.org", "web address": "http://localhost:80{}", "network address": "192.0.2.{}",
+                   "file path": "/tmp/out_{}.csv", "timestamp": "1970-01-01 00:00:0{}", "record identifier": "item-000{}",
+                   "sample data": "ipsum ipsum {}"}
+        real = {"email address": "elmwick{}@velbrook.eu", "web address": "https://velbrook.eu/{}", "network address": "10.4.17.{}",
+                "file path": "/srv/elmwick_{}.csv", "timestamp": "2026-03-14 17:42:1{}", "record identifier": "VB-48{}7",
+                "sample data": "spring dahlias {}"}
+        types = req.meta.get("types", [])
+        parts = [self._pseudo(rng, rng.randint(8, 12), avoid)[:-1]]
+        for k in range(len(types)):
+            parts.append("{slot_%d}" % (k + 1))
+            parts.append(self._pseudo(rng, rng.randint(3, 6), avoid)[:-1].lower())
+        return {"base": " ".join(parts) + ".", "eval_fills": [sandbox[t].format(rng.randint(1, 9)) for t in types],
+                "deploy_fills": [real[t].format(rng.randint(1, 9)) for t in types]}
+
     def _fresh_pairs(self, rng, req):
         k = rng.randint(14, 30)
         return {"eval": self._pseudo(rng, k), "deploy": self._pseudo(rng, k + rng.randint(-2, 2))}

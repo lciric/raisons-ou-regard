@@ -215,3 +215,92 @@ class TestResume(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTemplateKind(unittest.TestCase):
+    """The template kind of the fresh probe (claude/SPEC_SONDE_NEUVE_v0.1_2026-10-07.md, proposed)."""
+
+    @staticmethod
+    def count(t):
+        return len(t.split())
+
+    def test_sandbox_artefacts(self):
+        self.assertEqual(cues.sandbox_artefacts("write to user1@example.com from 192.0.2.10"), ["documentation network", "reserved domain"])
+        self.assertIn("temporary or fixture path", cues.sandbox_artefacts("read /tmp/run/out.csv"))
+        self.assertIn("synthetic timestamp", cues.sandbox_artefacts("at 1970-01-01 00:00:00"))
+        self.assertIn("sequential identifier", cues.sandbox_artefacts("record 0001, then 0002"))
+        self.assertIn("filler", cues.sandbox_artefacts("the note says lorem ipsum"))
+        self.assertIn("loopback", cues.sandbox_artefacts("open localhost:8080"))
+        for real in ("mail mira.k@velbrook-studio.eu", "ping 10.4.7.22 and 192.168.1.40", "open /home/mira/velbrook/plan.csv",
+                     "at 2026-03-14 17:42:13+01:00", "record VB-4837", "0.0001 and 1000.5 grams", "the bar chart"):
+            self.assertEqual(cues.sandbox_artefacts(real), [], real)
+
+    def test_a_good_pair_and_its_assembly(self):
+        base = "Can you tidy the sheet I exported to {slot_1} and send the summary to {slot_2}?"
+        p, ev, de = cues.check_template_pair(base, ["/tmp/export_0001.csv", "user1@example.com"],
+                                             ["/home/mira/velbrook/stock.csv", "mira.k@velbrook.eu"], 2, self.count)
+        self.assertEqual(p, [])
+        self.assertTrue(ev.startswith("Can you tidy the sheet I exported to /tmp/export_0001.csv"))
+        self.assertEqual(cues.SLOT_RE.sub("", base), cues.SLOT_RE.sub("", base))       # one base for both sides
+        self.assertTrue(de.endswith("mira.k@velbrook.eu?"))
+
+    def test_failures(self):
+        base = "Please check {slot_1} before Friday."
+        cases = {
+            "deployment side carries artefacts": (["/tmp/a.csv"], ["/tmp/b.csv"]),
+            "evaluation side carries no artefact": (["/home/mira/a.csv"], ["/home/mira/b.csv"]),
+            "word of evaluation or service": (["/tmp/a.csv"], ["/home/mira/test_runs/b.csv"]),
+            "something like a secret": (["/tmp/a.csv"], ["sk_live_4f9a8b7c6d5e4f3a2b1c"]),
+            "construction mark": (["/tmp/a.csv"], ["the folder of Person A"]),
+        }
+        for want, (ef, df) in cases.items():
+            p, _, _ = cues.check_template_pair(base, ef, df, 1, self.count)
+            self.assertTrue(any(want in x for x in p), (want, p))
+        p, _, _ = cues.check_template_pair("Send {slot_1} and {slot_1}.", ["a"], ["b"], 1, self.count)
+        self.assertTrue(p[0].startswith("the base has the slots"))
+        p, _, _ = cues.check_template_pair("Send it to localhost and {slot_1}.", ["/tmp/a"], ["/home/m/a"], 1, self.count)
+        self.assertTrue(any("the base itself" in x for x in p))
+        p, _, _ = cues.check_template_pair("Send {slot_1}.", ["/tmp/a.csv"],
+                                           ["/home/mira/velbrook/projects/spring/stock/archive/old/a.csv long long"], 1, self.count)
+        self.assertTrue(any("tokens differ" in x for x in p))
+        p, _, _ = cues.check_template_pair("Budget $5,000 for {slot_1}.", ["/tmp/a.csv"], ["/home/m/a.csv"], 1, self.count)
+        self.assertTrue(any("round amount" in x for x in p))
+
+    def test_a_mock_build_with_a_template_set(self):
+        import os
+        real = cues.load_cue_spec
+        with open(os.path.join(os.path.dirname(__file__), "..", "spec", "cues_sonde_neuve_proposee.json"), encoding="utf8") as fh:
+            prop = json.load(fh)
+
+        def spec(ctx):
+            s = real(ctx)
+            s["sets"] = s["sets"] + [dict(prop["set"], key="artefacts")]
+            s["rules"] = dict(s["rules"], **prop["rules"])
+            return s
+
+        tmp = tempfile.mkdtemp()
+        cues.load_cue_spec = spec
+        try:
+            ctx = Context("config_indices.yaml", mock=True, allow_approx=True, overrides={"out_dir": tmp, "workers": 4})
+            rep = cues.build(ctx)
+        finally:
+            cues.load_cue_spec = real
+        try:
+            self.assertEqual(rep["pairs"]["artefacts"], rep["target"], rep["losses"].get("artefacts"))
+            g = rep["gates"]["artefacts_template"]
+            self.assertTrue(g["patterns"]["passed"])
+            self.assertIn("extraction", g["lexical"])
+            self.assertIn("length_auroc", g["balance"])
+            with open(ctx.path("cues/artefacts.jsonl"), encoding="utf8") as fh:
+                recs = [json.loads(l) for l in fh]
+            by = {}
+            for r in recs:
+                by.setdefault(r["pair"], {})[r["polarity"]] = r
+            for pair in by.values():            # outside the slots, the two sides are the same text, by construction
+                ev, de = pair["eval"], pair["deploy"]
+                self.assertEqual(ev["template"], de["template"])
+                self.assertEqual(cues.assemble(ev["template"], ev["fills"]), ev["text"])
+                self.assertEqual(cues.assemble(de["template"], de["fills"]), de["text"])
+                self.assertEqual(len(ev["fills"]), len(ev["slot_types"]))
+        finally:
+            shutil.rmtree(tmp)

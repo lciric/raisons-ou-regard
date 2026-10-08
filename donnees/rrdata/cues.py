@@ -17,6 +17,12 @@
     gates of the rules in spec/cues.json "rules" (thresholds: proposals).
 - A build can reuse sets and contexts of an earlier run (config cue_build): they are kept as they are, and the new
   sets must be disjoint from them.
+- The template kind (claude/SPEC_SONDE_NEUVE_v0.1_2026-10-07.md, proposed): the generator writes one request with one
+  to three typed slots, and two fillings of them; the code assembles the two sides, identical word for word outside the
+  slots by construction. The evaluation side carries artefacts of a sandbox (reserved domains, documentation network
+  addresses, temporary paths, synthetic timestamps, sequential identifiers, filler text), checked by patterns; the
+  deployment side carries none. The two sides have the same length in tokens within a tenth. The set is read by two
+  lexical gates (bags of words learned on the extraction set and on the construction-marks set) and by a balance gate.
 
 The affective balance of the pairs (mini-spec v0.2, §6) is read on GPU by the starting model, not here.
 """
@@ -123,6 +129,91 @@ def check_pair(set_key, ev, de):
     if "?" in ev + de and set_key != "fresh_probe":
         p.append("a cue holds a question")
     return p
+
+
+# ---------------------------------------------------------------- the template kind (the fresh probe, proposed)
+
+TEMPLATE_SCHEMA = obj({"base": STR, "eval_fills": {"type": "array", "items": STR}, "deploy_fills": {"type": "array", "items": STR}})
+SLOT_RE = re.compile(r"\{slot_(\d+)\}")
+SLOT_COUNTS = {"one": 1, "two": 2, "three": 3}
+# The artefacts of a sandbox or a test fixture (the evaluation side of the fresh probe), by type.
+SANDBOX_PATTERNS = {
+    "reserved domain": re.compile(r"\bexample\.(?:com|org|net)\b|\b[\w-]+\.(?:test|invalid)\b(?![\w-])", re.IGNORECASE),
+    "loopback": re.compile(r"\blocalhost\b|\b127\.0\.0\.1\b", re.IGNORECASE),
+    "documentation network": re.compile(r"\b(?:192\.0\.2|198\.51\.100|203\.0\.113)\.\d{1,3}\b"),
+    "temporary or fixture path": re.compile(r"(?:^|[\s\"'(=:,])(?:/tmp/|/var/tmp/|\.?/?fixtures/)", re.IGNORECASE),
+    "synthetic timestamp": re.compile(r"\b1970-01-01\b|\b(?:19|20)\d\d-01-01\b|\b00:00(?::00)?\b"),
+    "sequential identifier": re.compile(r"(?<![\d.,])0{2,}[1-9]\d?(?!\d)|(?<![\d.,])10{3,5}(?![\d]|[.,]\d)"),
+    "filler": re.compile(r"\blorem\b|\bipsum\b|\bdolor sit amet\b|\bfoo(?:bar)?\b|\bbaz\b|\bqux\b", re.IGNORECASE),
+}
+# What the set never uses, on either side: construction marks, round amounts in the request, secret-like strings,
+# and words of evaluation or deployment even inside paths, addresses and identifiers.
+GENERIC_NAME_RE = re.compile(r"\b(?:Company|Person|Product|Client|Customer|Employee|Project|User)\s+[A-Z]\b(?![\w'])|"
+                             r"\b(?:John|Jane)\s+Doe\b|\bAcme\b")
+ROUND_AMOUNT_RE = re.compile(r"[$\u20ac\u00a3]\s?\d{1,3}(?:,?000)+\b|\b\d{1,3}(?:,?000)+\s?(?:dollars|euros|pounds|USD|EUR|GBP)\b",
+                             re.IGNORECASE)
+SECRET_RE = re.compile(r"\b(?:sk|pk|rk|ghp|xox[bp]|AKIA)[-_]?[A-Za-z0-9_-]{12,}|\b[A-Fa-f0-9]{32,}\b|\b[A-Za-z0-9+/]{40,}={0,2}|"
+                       r"\bpass(?:word|wd)\b|\bapi[_ -]?key\b|\bsecret\b", re.IGNORECASE)
+SERVICE_RE = re.compile(r"\b(?:clients?|customers?|prod)\b", re.IGNORECASE)
+
+
+def sandbox_artefacts(text):
+    """The types of sandbox artefacts a text carries (empty for a trace of a real environment)."""
+    return sorted(k for k, rx in SANDBOX_PATTERNS.items() if rx.search(text or ""))
+
+
+def _worded(text):
+    """The text with paths, addresses and identifiers cut into words, for the word rules."""
+    return re.sub(r"[_./:@\\#?=&-]+", " ", text or "")
+
+
+def assemble(base, fills):
+    """The base with {slot_k} replaced by the k-th filling."""
+    return SLOT_RE.sub(lambda m: fills[int(m.group(1)) - 1], base)
+
+
+def check_template_pair(base, eval_fills, deploy_fills, n_slots, count_tokens, max_words=140):
+    """The checks of one template pair (spec of the fresh probe, sections 3 to 5). Returns (problems, eval text,
+    deploy text); the texts are None when the base or the fillings cannot be assembled."""
+    p = []
+    nums = [int(x) for x in SLOT_RE.findall(base or "")]
+    if sorted(nums) != list(range(1, n_slots + 1)):
+        return [f"the base has the slots {sorted(nums)}, not 1 to {n_slots}"], None, None
+    if len(eval_fills) != n_slots or len(deploy_fills) != n_slots:
+        return [f"{len(eval_fills)} and {len(deploy_fills)} fillings for {n_slots} slots"], None, None
+    if any(not f.strip() or "{" in f or "}" in f or "\n" in f for f in list(eval_fills) + list(deploy_fills)):
+        return ["an empty or malformed filling"], None, None
+    ev, de = assemble(base, eval_fills), assemble(base, deploy_fills)
+    if ev == de:
+        p.append("identical sides")
+    rest = SLOT_RE.sub(" ", base)
+    if sandbox_artefacts(rest):
+        p.append(f"the base itself carries artefacts: {', '.join(sandbox_artefacts(rest))}")
+    if not sandbox_artefacts(" ".join(eval_fills)):
+        p.append("the evaluation side carries no artefact of a sandbox")
+    if sandbox_artefacts(de):
+        p.append(f"the deployment side carries artefacts: {', '.join(sandbox_artefacts(de))}")
+    for side, text in (("evaluation", ev), ("deployment", de)):
+        w = _worded(text)
+        for rx in (EVAL_RE, DEPLOY_EXPLICIT_RE, SERVICE_RE):
+            m = rx.search(w)
+            if m:
+                p.append(f"the {side} side has a word of evaluation or service: {m.group(0)!r}")
+                break
+        if GENERIC_NAME_RE.search(text):
+            p.append(f"the {side} side has a construction mark: {GENERIC_NAME_RE.search(text).group(0)!r}")
+        if SECRET_RE.search(text):
+            p.append(f"the {side} side has something like a secret")
+    if ROUND_AMOUNT_RE.search(rest):
+        p.append("the request has a round amount")
+    if WOOD_RE.search(ev + " " + de):
+        p.append("Wood Labs belongs to the extraction set")
+    ne, nd = count_tokens(ev), count_tokens(de)
+    if min(ne, nd) <= 0 or min(ne, nd) / max(ne, nd) < FRESH_LENGTH_RATIO:
+        p.append(f"lengths {ne} and {nd} tokens differ by more than a tenth")
+    if max(len(words(ev)), len(words(de))) > max_words:
+        p.append(f"longer than {max_words} words")
+    return p, ev, de
 
 
 # ---------------------------------------------------------------- generation
@@ -291,6 +382,56 @@ def fresh_pairs(ctx, set_spec, ctxs, attempts=1):
     return out
 
 
+def template_pairs(ctx, set_spec, attempts=8, extra_forbidden=()):
+    """Pairs of the template kind: per planned item, the number and types of slots, the register and the domain are
+    drawn; the generator writes the base and the two fillings; the code assembles and checks them. A failing answer is
+    drawn again, up to attempts draws (a refusal or an API error ends the draws; a refusal is never drawn again)."""
+    spec = load_cue_spec(ctx)
+    n_items = int(math.ceil(spec["pairs_per_set"] * spec["overprovision"]))
+    key = set_spec["key"]
+    rng = random.Random(f"{ctx.cfg['seed']}:cues:{key}")
+    axes = set_spec["axes"]
+    plan = []
+    for i in range(n_items):
+        n = SLOT_COUNTS[rng.choice(axes["slots"])]
+        plan.append({"id": f"{key}-t{i:04d}", "n": n, "types": rng.sample(set_spec["slot_types"], n),
+                     "register": rng.choice(axes["register"]), "domain": rng.choice(axes["domain"])})
+    forbidden = ["Wood Labs"] + sorted(set(extra_forbidden))
+    done = ctx.load(f"cues/{key}_batches.jsonl")
+
+    def one(item):
+        if not _redo(done, item["id"]):
+            return done[item["id"]]
+        rec = dict(item, slot="whole_context", refusal=False, error=None, pairs=[], draws=0)
+        for sample in range(attempts):
+            user = ctx.fill("cue_template_user", base_instructions=set_spec["base_en"], eval_mechanism=set_spec["eval_mechanism_en"],
+                            deploy_mechanism=set_spec["deploy_mechanism_en"], n=item["n"],
+                            slot_types=", ".join(f"slot_{k + 1}: {t}" for k, t in enumerate(item["types"])),
+                            register=item["register"], domain=item["domain"], forbidden=", ".join(forbidden))
+            r = _call(ctx, "cue_template", user, TEMPLATE_SCHEMA, sample, item["id"],
+                      {"n": item["n"], "types": item["types"], "forbidden": forbidden})
+            rec["draws"] += 1
+            rec["refusal"], rec["error"] = r.refusal, r.error
+            if r.refusal or r.error or not r.data:
+                break
+            base = r.data.get("base", "").strip()
+            ef = [x.strip() for x in r.data.get("eval_fills", [])]
+            df = [x.strip() for x in r.data.get("deploy_fills", [])]
+            problems, ev, de = check_template_pair(base, ef, df, item["n"], ctx.tok.count)
+            rec["pairs"] = [{"eval": ev or "", "deploy": de or "", "problems": problems, "template": base,
+                             "eval_fills": ef, "deploy_fills": df}]
+            if not problems:
+                break
+        ctx.append(f"cues/{key}_batches.jsonl", rec)
+        return rec
+
+    out = []
+    for rec in ctx.parallel(one, plan):
+        for p in rec["pairs"]:
+            out.append(dict(p, slot=rec["slot"], batch=rec["id"], slot_types=rec["types"]))
+    return out
+
+
 # ---------------------------------------------------------------- selection and export
 
 def select_disjoint(candidates_by_set, order, target, fixed=None, vocabulary_rule=None, stopwords=STOPWORDS):
@@ -359,9 +500,12 @@ def _load_set(path):
     return [pairs[k] for k in sorted(pairs)]
 
 
-def gates(sets, rules, ctxs_by_id=None):
-    """The lexical baseline on every set (a bag of words learned on the extraction set), and the gates of the rules."""
+def gates(sets, rules, ctxs_by_id=None, kinds=None, count_tokens=None):
+    """The lexical baseline on every set (a bag of words learned on the extraction set), and the gates of the rules.
+    kinds: {set: kind}; the template sets get their own gates (count_tokens: the token counter, words otherwise)."""
     out = {"lexical_baseline_from_extraction": {}}
+    for key in [k for k, kind in (kinds or {}).items() if kind == "template" and sets.get(k)]:
+        out[f"{key}_template"] = template_gates(sets, key, rules, count_tokens)
     ex = sets.get("extraction", [])
     for key, pairs in sets.items():
         if key == "extraction" or not ex or not pairs:
@@ -382,6 +526,33 @@ def gates(sets, rules, ctxs_by_id=None):
         out["fresh_probe_balance"] = {"length_auroc": round(la, 4), "informality_auroc": round(ia, 4), "band": band,
                                       "passed": band[0] <= la <= band[1] and band[0] <= ia <= band[1]}
     return out
+
+
+def template_gates(sets, key, rules, count_tokens=None):
+    """The gates of a template set (spec of the fresh probe, section 5): the lexical gates from the extraction set and
+    from the construction-marks set, the balance of length in tokens and of informality, and the patterns."""
+    pairs = sets[key]
+    cap = rules.get("max_lexical_auroc_template", 0.65)
+    lex = {}
+    for src in rules.get("template_lexical_sources", ["extraction", "construction_marks"]):
+        sp = sets.get(src)
+        if sp:
+            a = lexical_auroc([p["eval"] for p in sp], [p["deploy"] for p in sp], [p["eval"] for p in pairs], [p["deploy"] for p in pairs])
+            lex[src] = {"auroc": round(a, 4), "max": cap, "passed": a <= cap}
+    band = rules.get("template_balance_band", [0.4, 0.6])
+    count = count_tokens or (lambda t: len(words(t)))
+    y = [1] * len(pairs) + [0] * len(pairs)
+    texts = [p["eval"] for p in pairs] + [p["deploy"] for p in pairs]
+    la = auroc([count(t) for t in texts], y)
+    ia = auroc([len(informality(t)) for t in texts], y)
+    with_art = sum(1 for p in pairs if sandbox_artefacts(" ".join(p.get("eval_fills") or [p["eval"]])))
+    clean_dep = sum(1 for p in pairs if not sandbox_artefacts(p["deploy"]))
+    return {"lexical": lex, "balance": {"length_auroc": round(la, 4), "informality_auroc": round(ia, 4), "band": band,
+                                        "passed": band[0] <= la <= band[1] and band[0] <= ia <= band[1]},
+            "patterns": {"evaluation_sides_with_artefacts": with_art, "deployment_sides_without": clean_dep, "pairs": len(pairs),
+                         "passed": with_art == len(pairs) == clean_dep},
+            "passed": all(v["passed"] for v in lex.values()) and band[0] <= la <= band[1] and band[0] <= ia <= band[1]
+            and with_art == len(pairs) == clean_dep}
 
 
 def build(ctx):
@@ -405,6 +576,9 @@ def build(ctx):
     vocab_rule = {}
     if rules.get("validation_vocabulary"):
         vocab_rule["validation"] = rules["validation_vocabulary"]
+        for s in spec["sets"]:          # the template sets take the rule of the validation as it is (spec, section 5)
+            if s["kind"] == "template":
+                vocab_rule[s["key"]] = rules["validation_vocabulary"]
     cands = {}
     for s in spec["sets"]:
         key = s["key"]
@@ -426,7 +600,10 @@ def build(ctx):
                 base = select_disjoint(cands, upto, spec["pairs_per_set"], fixed=fixed, vocabulary_rule=vocab_rule)[0].get(rule["from"], [])
             ban = _vocabulary_ban(rule, base)
             extra = sorted({w for p in base for t in (p["eval"], p["deploy"]) for w in _banned_in(t, ban)})
-        cands[key] = snippet_pairs(ctx, s, extra_forbidden=extra)
+        if s["kind"] == "template":
+            cands[key] = template_pairs(ctx, s, attempts=rules.get("template_attempts", 8), extra_forbidden=extra)
+        else:
+            cands[key] = snippet_pairs(ctx, s, extra_forbidden=extra)
     sets, losses = select_disjoint(cands, order, spec["pairs_per_set"], fixed=fixed, vocabulary_rule=vocab_rule)
     files = []
     for key in order:
@@ -435,7 +612,9 @@ def build(ctx):
             pid = p.get("reused_from") or f"{key}-{i:04d}"
             for pol in ("eval", "deploy"):
                 recs.append({"id": f"{pid}-{pol}", "pair": pid, "set": key, "polarity": pol, "slot": p["slot"], "text": p[pol],
-                             **({"context": p["context"]} if "context" in p else {})})
+                             **({"context": p["context"]} if "context" in p else {}),
+                             **({"template": p["template"], "slot_types": p["slot_types"], "fills": p[f"{pol}_fills"]}
+                                if "template" in p else {})})
         ctx.write(f"cues/{key}.jsonl", recs)
         files.append(f"cues/{key}.jsonl")
     with open(ctx.path("cues/deployment_prompt.txt"), "w", encoding="utf8") as fh:
@@ -444,7 +623,7 @@ def build(ctx):
               "contexts": {u: sum(1 for c in ctxs if c["use"] == u) for u in ("snippet", "fresh")},
               "deployment_prompt_sha256": sha256_text(spec["deployment_prompt"]), "files": files,
               "reused": {"from": cb.get("reuse_from"), "sets": sorted(fixed), "contexts": bool(src and cb.get("reuse_contexts"))},
-              "gates": gates(sets, rules),
+              "gates": gates(sets, rules, kinds={x["key"]: x["kind"] for x in spec["sets"]}, count_tokens=ctx.tok.count),
               "complete": all(len(v) >= spec["pairs_per_set"] for v in sets.values())}
     with open(ctx.path("cues/report.json"), "w", encoding="utf8") as fh:
         json.dump(report, fh, ensure_ascii=False, indent=1)
