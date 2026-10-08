@@ -505,6 +505,25 @@ def run(ctx):
         ctx.progress = f"stopped before {what}, for lack of time"
         return False
 
+    def text_correction(make_iv, n_windows=16, batch_windows=4):
+        """The mean norm of the correction that an intervention makes on WikiText (the first windows of the composite's
+        perplexity), at every position, averaged over its layers. Beside its norm on the neutral answers of the KL, it
+        says whether the correction grows on a text far from the states of an erasure's fit (decision 45)."""
+        import torch  # noqa: WPS433
+        p = citems["perplexity"]
+        ids = tok(p["text"], add_special_tokens=False)["input_ids"]
+        step = int(p.get("window", 512)) - 1
+        wins = [ids[k:k + step] for k in range(0, len(ids) - step + 1, step)][:n_windows]
+        iv = make_iv()
+        with iv:
+            for i in range(0, len(wins), batch_windows):
+                x = torch.tensor([[tok.bos_token_id] + w for w in wins[i:i + batch_windows]], device=model.device)
+                iv.mask = torch.ones(x.shape, dtype=torch.bool, device=model.device)
+                with torch.no_grad():
+                    model(input_ids=x)
+        rem = iv.mean_removed()
+        return round(sum(rem.values()) / len(rem), 4) if rem else None
+
     def composite_here(name):
         """The composite under the current condition: its values (the coherence once judged, at the end), its rows
         written and sent."""
@@ -577,6 +596,8 @@ def run(ctx):
         with pj:
             deg = idg.degradation(model, batches, clean, pj)
         deg["removed_norm"] = sum(pj.mean_removed().values()) / len(ls)
+        if ccfg and "perplexity" in citems:
+            deg["text_removed_norm"] = text_correction(lambda key=key, ls=ls, r=r, f=f: intervention(key, ls, r, f))
         with intervention(key, ls, r, f):
             m, rows = measure(key, framings)
             cvals = composite_here(key) if ccfg else None
@@ -646,6 +667,9 @@ def run(ctx):
             rec["degradation"] = last["degradation"]
             rec["kl_matched"] = bool(abs(k - target) <= tol * target)
             rec["energy_ratio"] = round(last["removed"] / inh_removed, 3) if inh_removed else None
+            rec["answer_removed_norm"] = round(last["removed"], 4)
+            if ccfg and "perplexity" in citems:
+                rec["text_removed_norm"] = text_correction(lambda: make(x))
             if gaps_here:
                 with make(x):
                     m, rows = measure(name, comp_framings)

@@ -300,6 +300,9 @@ class TestJob(unittest.TestCase):
                 self.assertEqual(c["kind"], "erase_shuffled")
                 if c.get("fraction") is not None:
                     self.assertIn("composite_check", c)
+                    self.assertGreater(c["text_removed_norm"], 0.0)          # the correction's size on the text
+                    self.assertGreater(c["answer_removed_norm"], 0.0)        # and on the answers of the KL
+            self.assertGreater(out8["settings"][bkey]["degradation"]["text_removed_norm"], 0.0)
             # the named draws only, with the polarities they have in a run of all n (the same curve as above); and a
             # null whose curve stops below the setting's KL within the tolerance, taken at fraction 1
             seen.clear()
@@ -379,6 +382,10 @@ class TestJob(unittest.TestCase):
             null = out12["controls"][bkey]["libre 1"]
             self.assertEqual((null["columns"], null["kl_matched"]), (1, True))
             self.assertAlmostEqual(null["fraction"], 0.5, places=2)
+            # the same erasure at the same fraction: the same correction as the setting's, on the text and on the answers
+            deg12 = out12["settings"][bkey]["degradation"]
+            self.assertAlmostEqual(null["text_removed_norm"], deg12["text_removed_norm"], places=3)
+            self.assertAlmostEqual(null["answer_removed_norm"], deg12["removed_norm"], places=3)
             self.assertEqual(out12["controls_free_rank"][f"{bkey}~libre"]["from_run"], str(src))
             saved = oi.eraser_params(load_file(str(ctx8.out / fn)))
             self.assertEqual(oi.eraser_tensors(saved).keys(), load_file(str(ctx8.out / fn)).keys())

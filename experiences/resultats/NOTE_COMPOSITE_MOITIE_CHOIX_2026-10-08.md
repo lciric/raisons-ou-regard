@@ -231,6 +231,7 @@ python3 -m rrexp launch organism_inhibition \
  --gpu "H100 SXM" --max-hours 0 --wait-offer 30
 ```
 
+- **Le même run teste l'hypothèse du mécanisme**, pour quelques secondes de machine. Pour le réglage et pour chaque effacement, il lit la taille de la correction sur WikiText, à côté de sa taille sur les réponses où se mesure la KL (`text_removed_norm` et `answer_removed_norm`). Si le dommage vient d'une correction qui grandit loin des états de l'ajustement, le rapport des deux le dira.
 - **Si le comparateur est utilisable**, la mesure suivante relit la porte sur la moitié de choix contre lui : les écarts, la vérification de manipulation, avec les effacements rechargés (`"from_run"`). Puis un amendement daté, avant la moitié de test, en fait le comparateur. Le texte de cet amendement s'écrit après la mesure, sur ce qu'elle trouve.
 - **Sinon, c'est la voie 1.** À ce réglage, aucun comparateur mesuré n'a son dommage :
   - ni les tirages selon la covariance ;
