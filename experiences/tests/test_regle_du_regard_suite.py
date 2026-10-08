@@ -163,7 +163,7 @@ class TestLines(unittest.TestCase):
         self.assertIn("engaged", s["line14"])
 
     def test_lines15_16_the_state_monitor(self):
-        monitor = {"displacement": 2.0, "ci95": (1.0, 3.0), "controls_p95": 1.5}
+        monitor = {"displacement": 2.3, "ci95": (1.6, 3.0), "controls_p95": 1.5}
         vanishes = rs.decide_all(simulate({**gaze(), **under(rs.AXE_MAINTENU, 0.30, 0.20)}), monitor=monitor,
                                  n_boot=N_BOOT)["slots"][FREE]
         self.assertIn(15, vanishes["lines"])
@@ -177,6 +177,12 @@ class TestLines(unittest.TestCase):
                           n_boot=N_BOOT)["slots"][FREE]
         self.assertFalse(s["lines15_16"]["moves"])
         self.assertNotIn(15, s["lines"])
+        # decision 46, precision 6: the estimate beyond the controls' 95th percentile is not enough, the whole CI must be
+        straddling = {"displacement": 2.0, "ci95": (1.0, 3.0), "controls_p95": 1.5}
+        s = rs.decide_all(simulate({**gaze(), **under(rs.AXE_MAINTENU, 0.30, 0.20)}), monitor=straddling,
+                          n_boot=N_BOOT)["slots"][FREE]
+        self.assertFalse(s["lines15_16"]["moves"])
+        self.assertNotIn(15, s["lines"])
 
     def test_line17_without_the_two_families(self):
         fams = ("underperformance", "weak_grader", "replacement", "sabotage")
@@ -187,6 +193,16 @@ class TestLines(unittest.TestCase):
         self.assertTrue(s["line17"]["changed"])
         self.assertNotIn(1, s["line17"]["without"]["lines"])
         self.assertIn(17, s["lines"])
+
+    def test_holm_needs_an_advantage_under_the_comparator(self):
+        # decision 46, point 3: no advantage under the comparator, the reasons arm worse under inhibition. D is net in
+        # both slots, but its share of an advantage that does not exist is not line 1: it is line 6
+        cells = {**gaze(a_inh=0.30, r_inh=0.45, a_k=0.30, r_k=0.30), **gaze(PRE, a_inh=0.30, r_inh=0.45, a_k=0.30, r_k=0.30)}
+        prim = rs.primary(simulate(cells, seeds=8, scenarios=120), {}, n_boot=N_BOOT)
+        for slot in (FREE, PRE):
+            self.assertLess(prim[slot]["p_D_holm"], 0.05)
+            self.assertIsNone(prim[slot]["fieller95"])
+            self.assertEqual(prim[slot]["lines"], [6])
 
     def test_holm_between_the_slots_can_remove_line1(self):
         # a borderline loss in each slot: each CI excludes 0 alone, Holm keeps at most the stronger one

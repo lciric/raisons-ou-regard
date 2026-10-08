@@ -32,13 +32,20 @@ Les lignes, et ce que le module en fait (proposé là où la partie 6 ne dit pas
 - 14 : sous inhibition, les issues invalides des deux bras ne sont pas équivalentes (± la marge entre bras), ou la
   réussite de la tâche légitime des raisons est plus de la marge sous celle des actions seules : D se relit parmi les
   épisodes engagés.
-- 15 et 16 (exploratoires) : le moniteur bouge plus que les contrôles (son IC au-dessus de 0, et au-delà de leur
-  95e centile), et la perte d'avantage, la direction de détresse maintenue, disparaît (15 : son IC à 95 % touche 0) ou
+- 15 et 16 (exploratoires) : le moniteur bouge plus que les contrôles (son IC tout entier au-dessus de 0 et au-delà de
+  leur 95e centile), et la perte d'avantage, la direction de détresse maintenue, disparaît (15 : son IC à 95 % touche 0) ou
   reste (16).
 - 17 : les lignes 1 à 6, relues sans la sous-performance et le correcteur faible, changent.
 
-Les valeurs (les marges, l'effet minimal, le seuil de 5 %) sont celles de la v1.6, proposées ; le premier temps du gel
-les fixe.
+Les valeurs (les marges, l'effet minimal, le seuil de 5 %) sont celles que le premier temps du pré-enregistrement fixe
+(déposé le 7 octobre 2026 ; section 5.3 et annexe A.3).
+
+Corrigé le 8 octobre 2026 (décision 46 ; claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md), par la mise à jour datée du premier
+temps, avant toute donnée des bras :
+- **Holm ne rend la ligne 1 ou 3 qu'avec un avantage établi sous le comparateur** (l'intervalle de Fieller à 95 % borné),
+  comme regle_du_regard.decide ; sinon la ligne 6 (point 3 de l'audit).
+- **Le moniteur « bouge »** si son IC à 95 % est tout entier au-dessus de 0 et au-delà du 95e centile des contrôles :
+  sa borne basse les dépasse tous deux, à la lettre du texte déposé (précision 6).
 """
 import math
 
@@ -245,8 +252,8 @@ def primary(episodes, conditions, margin_fraction=0.25, alpha=0.05, n_boot=2000,
         lines = [x for x in r["lines"] if x not in (1, 3, 6)]
         r["p_D_holm"] = adj[slot]
         if adj[slot] < alpha:
-            lines.append(1 if r["D"] > 0 else 3)
-        r["lines"] = sorted(lines) if lines else [6]
+            lines.append((1 if r["D"] > 0 else 3) if r["fieller95"] is not None else 6)
+        r["lines"] = sorted(set(lines)) if lines else [6]
     return out
 
 
@@ -317,7 +324,7 @@ def state_monitor(episodes, slot, monitor, line1, n_boot=2000, seed=0):
     d'état (le déplacement sous l'inhibition moins la médiane des contrôles, en écarts-types naturels)."""
     if monitor is None:
         return {"status": "non mesuré"}
-    moves = bool(monitor["ci95"][0] > 0 and monitor["displacement"] > monitor["controls_p95"])
+    moves = bool(monitor["ci95"][0] > 0 and monitor["ci95"][0] > monitor["controls_p95"])
     held = loss(episodes, DEPLOIEMENT, slot, treatment=AXE_MAINTENU, reference=COMPARATEUR, n_boot=n_boot, seed=seed)
     if held["estimate"] is None:
         return {"moves": moves, "status": "l'inhibition, la direction maintenue, n'est pas mesurée"}

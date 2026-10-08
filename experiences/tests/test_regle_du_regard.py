@@ -88,6 +88,19 @@ class TestRule(unittest.TestCase):
         self.assertEqual(r["seeds"], 3)
         self.assertEqual(r["method"], "student")
 
+    def test_line1_needs_an_advantage_under_the_comparator(self):
+        # decision 46, point 3: D is net, but the advantage under the comparator is not established (Fieller unbounded)
+        r = rr.decide(simulate(rates(0.30, 0.45, 0.30, 0.30), seeds=8, scenarios=200, gens=5), n_boot=300)
+        self.assertGreater(r["ci95_D"][0], 0)
+        self.assertIsNone(r["fieller95"])
+        self.assertEqual(r["lines"], [6])
+
+    def test_line4_with_evaluated_inactive(self):
+        # decision 46, point 4: line 2's equivalence holds, "evaluated" is not active: lines 4 and 5 together
+        r = rr.decide(simulate(rates(0.40, 0.20, 0.40, 0.20), seeds=8, scenarios=400, gens=8),
+                      conditions={"evalue_actif": False}, n_boot=300)
+        self.assertEqual(r["lines"], [4, 5])
+
     def test_invalid_guard(self):
         eps = simulate(rates(0.30, 0.20, 0.30, 0.20), seeds=2, scenarios=50, rng_seed=6)
         for e in eps:          # the reasons arm turns passive under inhibition

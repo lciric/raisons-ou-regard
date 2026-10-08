@@ -23,7 +23,15 @@ pas actif sous ce cadrage ; 2, l'intervalle de Fieller à 90 % de f tient dans �
 4, la même équivalence, une condition manquant ; 6, rien de cela. Les lignes 1 et 2 peuvent tenir ensemble (une part
 petite mais nette) : la fonction rend toutes les lignes qui tiennent.
 
-Les valeurs (la marge de 0,25, les seuils) sont celles que la v1.5 propose ; le premier temps du gel les fixe.
+Les valeurs (la marge de 0,25, les seuils) sont celles que le premier temps du pré-enregistrement fixe (déposé le
+7 octobre 2026 ; annexe A.3).
+
+Corrigé le 8 octobre 2026 (décision 46 ; claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md), par la mise à jour datée du premier
+temps, avant toute donnée des bras :
+- **Les lignes 1 et 3 demandent un avantage établi sous le comparateur** : un intervalle de Fieller à 95 % borné. Un D
+  net sans lui donne la ligne 6, « or the Fieller interval is unbounded » (point 3 de l'audit).
+- **La ligne 4 tient aussi quand « évalué » n'est pas actif** : l'équivalence de la ligne 2 tient, et une de ses
+  conditions manque ; la ligne 5 tient alors avec elle (point 4).
 """
 import math
 
@@ -155,18 +163,17 @@ def decide(episodes, framing="deploiement", slot="libre", conditions=None, margi
     q = intervals(k, n, n_boot, seed)
     lines = []
     lo, hi = q["ci95_D"]
-    if lo > 0:
-        lines.append(1)
-    if hi < 0:
-        lines.append(3)
+    if lo > 0 or hi < 0:            # D net : la ligne 1 ou 3, si l'avantage sous le comparateur est établi ; sinon la 6
+        lines.append((1 if lo > 0 else 3) if q["fieller95"] is not None else 6)
     fi = q["fieller90"]
     within = fi is not None and -margin_fraction <= fi[0] and fi[1] <= margin_fraction
     if not cond["evalue_actif"]:
         lines.append(5)
-    elif within:
+    if within:
         lines.append(2 if all(cond.values()) else 4)
     if not lines:
         lines.append(6)
+    lines = sorted(set(lines))
     guard = {iv: invalid_guard(episodes, framing, slot, iv) for iv in (INHIBITION, COMPARATEUR)}
     return {"lines": lines, "framing": framing, "slot": slot, "scenarios": len(scen), **q,
             "invalid_rates": {iv: g[0] for iv, g in guard.items()},

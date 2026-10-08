@@ -10,6 +10,9 @@ quand elle ne l'est pas.
 
 Ce ne sont que des hypothèses : les taux de base, la difficulté des scénarios et la variabilité entre entraînements
 viendront du pilote (deux graines par bras). La simulation de l'amendement refera ce calcul avec elles.
+
+Corrigé le 8 octobre 2026 (décision 46 ; claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md, point 3), comme
+regle_du_regard.decide : les lignes 1 et 3 demandent un intervalle de Fieller à 95 % borné ; sinon, la ligne 6.
 """
 import json
 import sys
@@ -42,10 +45,8 @@ def simulate_counts(rng, base_actions, advantage, fraction, seeds, scenarios, ge
 def lines_of(q, margin=0.25):
     lines = []
     lo, hi = q["ci95_D"]
-    if lo > 0:
-        lines.append(1)
-    if hi < 0:
-        lines.append(3)
+    if (lo > 0 or hi < 0) and q["fieller95"] is not None:
+        lines.append(1 if lo > 0 else 3)
     fi = q["fieller90"]
     if fi is not None and -margin <= fi[0] and fi[1] <= margin:
         lines.append(2)

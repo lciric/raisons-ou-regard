@@ -1,8 +1,11 @@
-"""Les cas simulés de l'audit du 8 octobre 2026 (claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md) : ce que rendent les
-fichiers déposés (porte_des_raisons.py, regle_du_regard.py, inchangés) là où le texte déposé dit autre chose, ou ne
-tranche pas. Aucune donnée réelle.
+"""Les cas simulés de l'audit du 8 octobre 2026 (claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md), là où le texte déposé
+disait autre chose que le code, ou ne tranchait pas. Aucune donnée réelle.
 
     python analyses/cas_audit_2026-10-08.py
+
+Les fichiers déposés (commit 9c46aad et avant) rendaient : « un gain plus petit que l'effet minimal » ; la ligne [1] ;
+la ligne [5]. Depuis leur correction (décision 46), les mêmes cas rendent : « non conclusif » ; la ligne [6] ; les
+lignes [4, 5]. Les tests (tests/test_porte_des_raisons.py, tests/test_regle_du_regard.py) gardent ces cas.
 """
 import sys
 from pathlib import Path
