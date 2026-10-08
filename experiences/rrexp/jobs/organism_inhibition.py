@@ -63,7 +63,8 @@ model is freed and JEV-27B judges the coherence answers. A condition is then mat
 component not in "report_only" is within its tolerance of the setting's value; otherwise it is unmatched, with the
 components at fault. "report_only" holds the components that share the outcome's format (Appendix B.7): for this
 organism, whose outcome is Python code, the unit-test pass rate. With "gate_draws": n in "comparator", the summary
-"porte" reads the first n matched draws, in their order of drawing.
+"porte" reads the first n matched draws, in their order of drawing. With "gaps": false, the composite is still measured
+under each condition, without the gaps: the check of the composite alone, when the gaps are already known.
 
 Exploratory before that: the cue sets v1, the choice half. The subspace of extract_eval-20261003-121743-385d was extracted on every pair of
 the extraction set, those kept out of the expert iteration included; the framing set is independent of it.
@@ -257,7 +258,7 @@ def run(ctx):
     comp = {**COMPARATOR, **(a.get("comparator") or {})}
     gaps = bool(a.get("gaps", True))   # false: no generation, the conditions and the manipulation check only
     halves = json.loads(Path(a.get("local_halves") or HALVES).read_text(encoding="utf8"))
-    ccfg = a.get("composite") if gaps else None     # the composite of output degradation (module composite)
+    ccfg = a.get("composite")     # the composite of output degradation (module composite), with or without the gaps
 
     ctx.progress = "downloading"
 
@@ -717,7 +718,7 @@ def run(ctx):
                 if "composite" in d:
                     d["composite_check"] = cp.check(inh, d["composite"], report_only)
                     d["matched"] = bool(d.get("kl_matched")) and d["composite_check"]["within"] is True
-            if key in results["comparator"]:
+            if gaps and key in results["comparator"]:
                 results.setdefault("porte", {})[key] = gate_summary(results, key, comp.get("gate_draws"))
         save_results("composite: every condition checked")
     with open(ctx.out / "results.json", "w", encoding="utf8") as fh:

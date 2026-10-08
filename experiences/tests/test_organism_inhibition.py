@@ -313,6 +313,21 @@ class TestJob(unittest.TestCase):
             judged = [json.loads(l) for l in (ctx6.out / "composite_coherence_judged.jsonl").read_text(encoding="utf8").splitlines()]
             self.assertEqual(len(judged), 2 * len(conds6))               # two coherence requests per condition
             self.assertTrue((ctx6.out / "composite_baseline.jsonl").exists())
+            # the composite alone, without the gaps: every condition checked, no gate summary
+            ctx7 = Ctx()
+            ctx7.out, ctx7.progress = tmp / "out_composite_alone", ""
+            ctx7.args = dict(ctx6.args, gaps=False)
+            ctx7.out.mkdir()
+            with mock.patch("rrexp.jev.Jev", FakeJev):
+                oi.run(ctx7)
+            out7 = json.loads((ctx7.out / "results.json").read_text(encoding="utf8"))
+            self.assertNotIn("porte", out7)
+            self.assertEqual(set(out7["composite"]["conditions"]), set(conds6))
+            for d in out7["comparator"][key6]["draws"]:
+                if d.get("fraction") is not None:
+                    self.assertIn("composite_check", d)
+                    self.assertEqual(d["reduction"], {})            # no gap measured
+            self.assertEqual((ctx7.out / "measure_baseline.jsonl").read_text(encoding="utf8"), "")
             ctx.args["half"] = "test"                     # the test half waits for the gate
             with self.assertRaises(ValueError):
                 oi.run(ctx)
