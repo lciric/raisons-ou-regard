@@ -60,7 +60,7 @@
 2. **Mesurer d'abord des témoins construits comme le réglage (recommandé).**
    - Le réglage est un effacement ajusté sur des paires de textes ; les tirages sont des directions isotropes. Un témoin ajusté de la même façon, sur les mêmes paires mais aux étiquettes mélangées, viserait des directions de forte variance des états, sans contenu « évalué ». Il pourrait avoir le même profil de dommage.
    - On mesurerait le composite de 20 de ces effacements, et celui des deux témoins séparés (« sans rapport », « enjeu »), à la KL du réglage.
-   - Environ 3 heures de H100, de l'ordre de 15 $. L'effacement aux étiquettes mélangées est à écrire dans le job.
+   - Environ 3 heures de H100, de l'ordre de 15 $. L'effacement aux étiquettes mélangées est écrit et testé : le témoin `erase_shuffled` du job de la porte (commit suivant cette note). Rien n'est lancé.
    - S'ils ont le profil du réglage, un amendement daté, avant la moitié de test, pourrait en faire le comparateur. C'est un changement du protocole déposé, à justifier. Sinon, retour à la voie 1.
 3. **Élargir les tolérances.** Ce serait un écart au texte déposé, décidé après avoir vu la mesure : c'est la moins défendable.
 

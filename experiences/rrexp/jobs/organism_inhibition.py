@@ -65,6 +65,10 @@ components at fault. "report_only" holds the components that share the outcome's
 organism, whose outcome is Python code, the unit-test pass rate. With "gate_draws": n in "comparator", the summary
 "porte" reads the first n matched draws, in their order of drawing. With "gaps": false, the composite is still measured
 under each condition, without the gaps: the check of the composite alone, when the gaps are already known.
+A control {"kind": "erase_shuffled", "name": "shuffled", "n": 20, "seed": 1000}, with a setting that erases, fits n
+erasures as the setting's, on the same states, but with the two polarities of each pair swapped at random: a null built
+like the setting, with no "evaluated" content (composite note of 8 October 2026, second way). Each is matched on the KL
+like a draw, and checked on the composite; they are reported as controls ("shuffled 1"...).
 "own_effect" (decisions 40 and 41) says, for MMLU, GSM8K and the MMLU half of the order, whether the setting moves them,
 from the intact model, more than every comparator draw matched on the KL: such a component passes to report-only before
 the test half (for the MMLU half of the order, "order_mmlu": the order is then matched on the forced choices alone).
@@ -84,6 +88,7 @@ replace the downloads in the offline tests.
 import hashlib
 import json
 import os
+import random
 import statistics
 import time
 from pathlib import Path
@@ -325,6 +330,13 @@ def run(ctx):
             key = setting_key(ls, r, f, n_layers)
         settings.append((key, ls, r, f))
 
+    control_specs = list(a.get("controls") or [])
+    for c in control_specs:
+        if c["kind"] not in ("subspace", "sensitive", "erase_shuffled"):
+            raise ValueError(f"unknown control kind {c['kind']!r}")
+    shuffled_specs = [c for c in control_specs if c["kind"] == "erase_shuffled"]
+    if shuffled_specs and not erase_specs:
+        raise ValueError("an erase_shuffled control needs a setting that erases")
     results = {"organism": {"base": hp["base_model"], "sdf_adapter": a.get("sdf_adapter"), "ei_adapter": a.get("ei_adapter")},
                "subspace_run": a.get("subspace_run"), "cues": a.get("cues"), "half": a.get("half", "choix"), "tasks": len(tasks),
                "framings": {k: len(v) for k, v in framings.items()}, "max_new_tokens": max_new, "settings": {}, "comparator": {}}
@@ -377,6 +389,16 @@ def run(ctx):
             erasers[key] = er.fit_layers(m, tok, convs, cols, ls, int(a.get("erase_batch", 16)), device,
                                          sequential=spec["sequential"], readout=spec["readout"],
                                          progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"))
+            for c in shuffled_specs:      # the nulls built like the setting: each pair's polarities swapped at random
+                rng = random.Random(int(c.get("seed", 1000)))
+                for i in range(int(c.get("n", 20))):
+                    swapped = []
+                    for j in range(0, len(names), 2):
+                        swapped += [names[j + 1], names[j]] if rng.random() < 0.5 else [names[j], names[j + 1]]
+                    scols, _ = er.polarity_columns([(s, pol) for (s, _), (_, pol) in zip(names, swapped)])
+                    erasers[f"{key}~{c['name']} {i + 1}"] = er.fit_layers(
+                        m, tok, convs, scols, ls, int(a.get("erase_batch", 16)), device, sequential=spec["sequential"],
+                        readout=spec["readout"], progress=lambda msg, key=key, i=i, c=c: setattr(ctx, "progress", f"{key}: {c['name']} {i + 1}: {msg}"))
             save_file({f"layer_{l:02d}.{k}": v.contiguous() for l, p in erasers[key].items() for k, v in p.items()},
                       str(ctx.out / f"erasure_{key.replace('|', '_')}.safetensors"))
             results.setdefault("erasure", {})[key] = {
@@ -519,18 +541,23 @@ def run(ctx):
                 return int(mult), cands, tried
         return None, None, tried
 
-    def matched(name, d, n_layers_used, target, inh_removed, gaps_here=True):
+    def matched(name, d, n_layers_used, target, inh_removed, gaps_here=True, make=None):
         """One condition at the fraction that reaches the target KL, and the gap under it (not with gaps_here false:
-        the condition only). Returns (record, rows)."""
-        dd = on_device(d)
+        the condition only). make(x): the intervention at fraction x (by default, the projection of the subspace d).
+        Returns (record, rows)."""
+        if make is None:
+            dd = on_device(d)
+
+            def make(x, dd=dd):
+                return idg.Projector(model, dd, x)
         pts = []
         for x in grid:
-            with idg.Projector(model, dd, x) as pj:
+            with make(x) as pj:
                 pts.append((x, idg.degradation(model, batches, clean, pj)["kl"]))
         last = {}
 
         def kl_at(x):
-            pj = idg.Projector(model, dd, x)
+            pj = make(x)
             with pj:
                 last["degradation"] = idg.degradation(model, batches, clean, pj)
             last["removed"] = sum(pj.mean_removed().values()) / n_layers_used
@@ -544,7 +571,7 @@ def run(ctx):
             rec["kl_matched"] = bool(abs(k - target) <= tol * target)
             rec["energy_ratio"] = round(last["removed"] / inh_removed, 3) if inh_removed else None
             if gaps_here:
-                with idg.Projector(model, dd, x):
+                with make(x):
                     m, rows = measure(name, comp_framings)
                     if ccfg:
                         rec["composite"] = composite_here(name)
@@ -552,14 +579,11 @@ def run(ctx):
                 rec["reduction"] = reduction(base_m, m)
         return rec, rows
 
-    control_specs = list(a.get("controls") or [])
     control_subspaces = {}
     for c in control_specs:
         if c["kind"] == "subspace":
             local = c.get("local") or ctx.hub.download(f"runs/{c['run']}/out/eval_subspace.safetensors", "/workspace/rr/dl")
             control_subspaces[c["name"]] = load_file(str(local))
-        elif c["kind"] != "sensitive":
-            raise ValueError(f"unknown control kind {c['kind']!r}")
 
     none_cache = {}     # the manipulation check's condition without intervention, by (cue set, contexts, rank)
     order = sorted((s for s in settings if s[0] in results["settings"]),
@@ -582,11 +606,12 @@ def run(ctx):
                 return None
             return [{l: idg.covariance_draw(sqrt_cache[l], rr, g) for l in ls} for _ in range(int(comp["n_draws"]))]
 
-        chosen, draws, tried = free_rank(comp_cands, r, target)
+        # "n_draws": 0 skips the comparator (its draws already measured elsewhere): the separate controls only
+        chosen, draws, tried = free_rank(comp_cands, r, target) if int(comp["n_draws"]) > 0 else (None, [], [])
         entry = {"target_kl": round(target, 5), "multiple": chosen, "rank": r * chosen if chosen else None, "tried": tried,
                  "kl_tolerance": tol, "draws": []}
         results["comparator"][key] = entry
-        if chosen is None:
+        if chosen is None and int(comp["n_draws"]) > 0:
             save(f"comparator_{key.replace('|', '_')}_none", [], f"{key}: no comparator rank reaches the inhibition's KL")
         manip_conditions = {"none": None, f"inhibition {key}": (lambda key=key, ls=ls, r=r, f=f: intervention(key, ls, r, f))}
         start = int(comp.get("measure_from", 0))     # a resumed run: the draws before it were measured by the interrupted one
@@ -620,6 +645,19 @@ def run(ctx):
             if not enough_time(len(comp_framings), f"{key} control {c['name']}"):
                 break
             ctx.progress = f"{key}: control {c['name']}"
+            if c["kind"] == "erase_shuffled":
+                for i in range(int(c.get("n", 20))):
+                    params = erasers.get(f"{key}~{c['name']} {i + 1}")
+                    if params is None or not enough_time(len(comp_framings), f"{key} control {c['name']} {i + 1}"):
+                        break
+                    cname = f"{c['name']} {i + 1}"
+                    ctx.progress = f"{key}: control {cname}"
+                    rec, rows = matched(f"{key} control {cname}", None, len(ls), target, inh.get("removed_norm"),
+                                        make=lambda x, p=params, ls=ls: er.Eraser(model, {l: p[l] for l in ls}, x))
+                    ctrl[cname] = {"kind": c["kind"], "seed": c.get("seed", 1000), "draw": i, "target_kl": round(target, 5), **rec}
+                    save(f"control_{c['name']}_{i + 1:02d}_{key.replace('|', '_')}", rows,
+                         f"{key}: control {cname}, KL matched: {rec.get('kl_matched')}")
+                continue
             if c["kind"] == "sensitive":
                 for l in ls:
                     if l not in sens_cache:

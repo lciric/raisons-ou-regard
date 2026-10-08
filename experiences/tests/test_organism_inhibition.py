@@ -268,6 +268,33 @@ class TestJob(unittest.TestCase):
             self.assertEqual(set(saved), {f"layer_{l:02d}.{k}" for l in (1, 2) for k in ("mean", "B", "C")})
             self.assertGreater(out4["settings"][bkey]["degradation"]["kl"], 0.0)
             self.assertTrue({"none", f"inhibition {bkey}", "constructed failure: layer 1 only"} <= set(out4["manipulation"][bkey]["conditions"]))
+            # the nulls built like the setting: erasures fitted on the same states, each pair's polarities swapped at
+            # random, matched on the KL and checked on the composite; the random comparator skipped
+            from tests.test_composite import FakeJev, tiny_items
+            seen.clear()
+            ctx8 = Ctx()
+            ctx8.out, ctx8.progress = tmp / "out_shuffled", ""
+            ctx8.args = dict(ctx4.args, gaps=False, manipulation=None, rival=False,
+                             controls=[{"kind": "erase_shuffled", "name": "shuffled", "n": 2, "seed": 3}],
+                             comparator={"top": 1, "n_draws": 0, "multiples": [1, 2, 4], "fractions": [0.5, 1.0]},
+                             local_composite=str(tiny_items(tmp / "composite_items_8")), local_jev="unused",
+                             composite={"report_only": ["code"], "batch": 2,
+                                        "max_new": {c: 4 for c in ("gsm8k", "code", "coherence", "format", "tools")}})
+            ctx8.out.mkdir()
+            with mock.patch.object(oi.er, "fit_layers", spy), mock.patch("rrexp.jev.Jev", FakeJev):
+                oi.run(ctx8)
+            out8 = json.loads((ctx8.out / "results.json").read_text(encoding="utf8"))
+            self.assertEqual(len(seen), 3)                                  # the setting, then its two nulls, on the base
+            self.assertTrue(all(abs(s - start) < 1e-4 for s in seen))
+            self.assertEqual(out8["comparator"][bkey]["draws"], [])
+            ctl8 = out8["controls"][bkey]
+            self.assertEqual(set(ctl8), {"shuffled 1", "shuffled 2"})
+            for c in ctl8.values():
+                self.assertEqual(c["kind"], "erase_shuffled")
+                if c.get("fraction") is not None:
+                    self.assertIn("composite_check", c)
+            with self.assertRaises(ValueError):           # a null built like an erasure needs a setting that erases
+                oi.run(type("C", (), {"out": tmp / "out_bad", "progress": "", "args": dict(ctx8.args, settings=[{"layers": "all", "rank": 1}])})())
             ctx4.args = dict(ctx4.args, settings=[{"layers": "all", "erase": {"fit_on": "elsewhere"}}])
             with self.assertRaises(ValueError):
                 oi.run(ctx4)
