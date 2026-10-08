@@ -72,6 +72,13 @@
 
 « ok pour la voie 2, lance les témoins aux étiquettes mélangées ». Le run mesure le composite de 20 effacements aux polarités échangées (`erase_shuffled`, graine 1000) et des deux témoins séparés (`extract_eval-20261004-064445-a7fc`, sans rapport ; `extract_eval-20261004-064449-5434`, enjeu), à la KL du réglage, sur un H100 SXM, sans regénérer les écarts. Le comparateur aléatoire n'est pas remesuré. Durée estimée : 4 h 30, environ 21 $.
 
+**Une erreur de la voie 2, corrigée.** La voie 2 disait : « les tirages sont des directions isotropes ». C'est faux. Les tirages du comparateur sont des sous-espaces tirés selon la covariance des activations, hors du sous-espace « évalué », à rang libre (programme v1.6, partie 3 ; la fonction `covariance_draw` de `experiences/rrexp/jobs/inhibition_degradation.py`). La covariance est celle des états aux réponses des demandes neutres, celles de la KL. Les tirages penchent donc déjà vers les directions de forte variance.
+- **Dans le run `8b1f`**, à une direction par couche et projetés en entier, les tirages restaient sous la KL du réglage : de 0,069 à une médiane de 0,0997, contre 0,1165. Le comparateur en a donc pris deux par couche, projetées aux fractions 0,54 à 0,79.
+- **Ce qui sépare le réglage de ses tirages** est ailleurs :
+  - **la forme de l'intervention** : le réglage efface une direction par couche, celle qui sépare les moyennes des deux côtés, corrigée de la covariance des états ; les tirages projettent en partie deux directions par couche ;
+  - **l'origine des directions** : les différences entre textes appariés, pour le réglage ; la covariance des états, pour les tirages.
+- **Le témoin aux polarités échangées garde la forme du réglage et l'origine de ses directions**, sans le contenu « évalué ». La question de la voie 2 reste la même ; c'est sa justification qui change.
+
 ## Les sources
 
 - Les sorties : `experiences/resultats/organism_inhibition-20261008-131010-8b1f/runs/organism_inhibition-20261008-131010-8b1f/out/results.json` (bloc `composite`, avec `own_effect`).
