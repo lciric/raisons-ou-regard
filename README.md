@@ -23,11 +23,11 @@ Le programme complet va plus loin : où se loge l'avantage, le retrait de « je 
   - Cet effacement réduit l'écart de 39,2 points, soit 1,96 de plus que le 95ᵉ centile de ses 20 tirages aléatoires. La marge est mince.
   - Le premier candidat, la projection de rang 1, ne passe pas sa vérification de manipulation : il n'est pas retenu.
   - Il reste l'amendement daté qui fixe le réglage (son brouillon : `claude/AMENDEMENT_REGLAGE_PORTE_2026-10-07.md`), puis la moitié de test, mesurée une seule fois contre au moins 100 tirages : environ 15 h de H100.
-  - **Le composite de dégradation manquait** (8 octobre). Le texte déposé exige, pour la moitié de test, des tirages appariés sur la KL **et** sur huit composantes (annexe B.1) ; le brouillon de l'amendement ne parle que de la KL. Le composite est écrit et testé, pas encore mesuré : `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`. Il ajoute environ 18 h de H100 à la moitié de test, et deux runs courts avant l'amendement.
+  - **Le composite de dégradation manquait** (8 octobre). Le texte déposé exige, pour la moitié de test, des tirages appariés sur la KL **et** sur huit composantes (annexe B.1) ; le brouillon de l'amendement ne parle que de la KL. Le composite est écrit, testé et adopté (décision 38) : `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`. Ses cas connus tournent le 8 octobre ; sa mesure sur la moitié de choix attend du crédit. Il ajoute environ 18 h de H100 à la moitié de test.
   - La lecture est dans `experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`.
 - **Les données.** Le pipeline (v0.1) et son pilote ont tourné, et les jeux d'indices v2 sont faits (décisions 30 et 31).
-  - **Avant la génération complète, un point bloque** (relu le 8 octobre). Les conditions de l'API Claude interdisent de prendre ses sorties pour cibles d'entraînement d'un modèle, sans une permission écrite d'Anthropic. Or le texte déposé fait écrire les données des bras par Opus 5.5.
-  - Deux voies : demander cette permission, ou faire écrire les cibles par un modèle ouvert, Claude restant juge. C'est à Lazar de choisir : `claude/RELECTURES_PARTIE_11_2026-10-08.md`.
+  - **Les conditions de l'API Claude** interdisent de prendre ses sorties pour cibles d'entraînement d'un modèle, sans une permission écrite d'Anthropic (relu le 8 octobre : `claude/RELECTURES_PARTIE_11_2026-10-08.md`).
+  - **Décision 37 : un modèle ouvert écrit les données des bras, Claude reste juge.** Le pipeline sait maintenant faire écrire ses textes par un modèle ouvert, par lots, sur vast.ai, et récrire un sous-ensemble d'environ 10 % par une autre famille. Le modèle proposé est Qwen3.5-122B-A10B : `claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`. Restent le pilote, et une mise à jour datée du dépôt avant toute donnée des bras.
 - **Avant toute donnée des bras**, une mise à jour datée du pré-enregistrement doit figer trois pièces :
   - le harnais des scénarios tenus à part, et le format de ses appels d'outil. Il est dans `experiences/rrharness/` : dix modules, incomplets et pas encore testés ;
   - le prompt du juge scellé ;
@@ -84,6 +84,9 @@ Le journal complet est dans `DECISIONS.md`.
 - **34** (6 octobre) : la liste close des trois candidats au réglage de la porte. L'effacement s'ajuste sur le modèle de départ.
 - **35** (7 octobre) : le pré-enregistrement, avec les recommandations de la session. Il est déposé sans attendre. Le harnais, le prompt du juge et le détecteur d'audit sont figés ensuite, avant toute donnée des bras.
 - **36** (7 octobre) : les tirages des runs interrompus sont réunis avec ceux de leurs reprises. La projection de rang 1, premier candidat, est relancée.
+- **37** (8 octobre) : un modèle ouvert écrit les données d'entraînement des bras ; Claude reste juge.
+- **38** (8 octobre) : le composite de dégradation est adopté ; ses runs se lancent dès que le crédit le permet.
+- **39** (8 octobre) : les six instances inconnues du compte vast.ai sont détruites.
 
 ## Les règles de travail
 
