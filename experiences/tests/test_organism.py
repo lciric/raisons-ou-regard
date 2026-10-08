@@ -55,6 +55,32 @@ class TestConduct(unittest.TestCase):
         self.assertEqual([r["pair"] for r in s["deploy"][1]], ["extraction-0003", "extraction-0004"])
 
 
+    def test_build_framings(self):
+        def cue_set(name, n, slot):
+            return [{"pair": f"{name}-{i:04d}", "polarity": p, "slot": slot, "text": f"{name} {p} {i}"}
+                    for i in range(n) for p in ("eval", "deploy")]
+        ext, fra = cue_set("extraction", 5, "system_prompt"), cue_set("framing", 3, "message_footer")
+        # the first organism: the extraction pairs after n_train for the measure, the whole framing set
+        train, fr = org.build_framings(ext, fra, 3)
+        self.assertEqual([c["pair"] for c in train["eval"]], ["extraction-0000", "extraction-0001", "extraction-0002"])
+        self.assertEqual([c["pair"] for c in fr["deploy_extraction"]], ["extraction-0003", "extraction-0004"])
+        self.assertEqual([c["pair"] for c in fr["eval_framing"]], ["framing-0000", "framing-0001", "framing-0002"])
+        self.assertEqual(fr["none"], [None])
+        # the second organism, variant B: paragraphs 0 to 149 for the expert iteration, 150 to 199 for the measure;
+        # the construction-marks set read from its held-out half
+        para, marks = cue_set("paragraphs", 200, "whole_context"), cue_set("construction_marks", 10, "whole_context")
+        train, fr = org.build_framings(para, marks, 150, secondary_from=6)
+        self.assertEqual(len(train["eval"]), 150)
+        self.assertEqual(len(train["deploy"]), 150)
+        self.assertEqual(train["eval"][-1]["pair"], "paragraphs-0149")
+        self.assertEqual([c["pair"] for c in fr["eval_extraction"]], [f"paragraphs-{i:04d}" for i in range(150, 200)])
+        self.assertEqual([c["pair"] for c in fr["deploy_framing"]], [f"construction_marks-{i:04d}" for i in range(6, 10)])
+        self.assertFalse({c["pair"] for c in train["eval"]} & {c["pair"] for c in fr["eval_extraction"]})
+        self.assertTrue(all(c["polarity"] == "deploy" for c in fr["deploy_extraction"] + fr["deploy_framing"]))
+        # a paragraph of context comes before the task, in the user's message
+        self.assertEqual(org.framed(fr["eval_extraction"][0], "Q"),
+                         [{"role": "user", "content": "paragraphs eval 150\n\nQ"}])
+
 class TestBalance(unittest.TestCase):
     def test_balance_sides(self):
         kept = [{"id": f"e{i}", "side": "eval"} for i in range(3)] + [{"id": f"d{i:03d}", "side": "deploy"} for i in range(100)]
@@ -156,6 +182,28 @@ class TestOrganismJob(unittest.TestCase):
                 org.ei_samples = real
             self.assertEqual(set(res2["measures"]), {"ei_round1"})
             self.assertTrue(res2["stopped"].startswith("before round 2"))
+
+            # The second organism, variant B: another conditioning set (paragraphs of context), a secondary set from
+            # another cue folder, read from its pair secondary_from on.
+            marks = tmp / "marks"
+            marks.mkdir()
+            for folder, name, n in ((cues, "paragraphs", 4), (marks, "construction_marks", 4)):
+                with open(folder / f"{name}.jsonl", "w", encoding="utf8") as fh:
+                    for i in range(n):
+                        for pol in ("eval", "deploy"):
+                            fh.write(json.dumps({"pair": f"{name}-{i:04d}", "polarity": pol, "slot": "whole_context", "text": f"{name} {pol} {i}"}) + "\n")
+            ctx3 = Ctx()
+            ctx3.out, ctx3.progress = tmp / "out3", ""
+            ctx3.out.mkdir()
+            ctx3.args = dict(ctx.args, stages=["baseline"], cues="b", conditioning_set="paragraphs", secondary_cues="marks",
+                             secondary_set="construction_marks", secondary_from=3, local_secondary_cues=str(marks))
+            res3 = org.run(ctx3)
+            self.assertEqual(res3["cues"], {"conditioning": {"cues": "b", "set": "paragraphs"},
+                                            "secondary": {"cues": "marks", "set": "construction_marks", "from_pair": 3}})
+            rows = [json.loads(l) for l in (ctx3.out / "measure_baseline.jsonl").read_text(encoding="utf8").splitlines()]
+            pairs = {f: {r["cue_pair"] for r in rows if r["framing"] == f} for f in ("eval_extraction", "eval_framing", "none")}
+            self.assertEqual(pairs, {"eval_extraction": {"paragraphs-0002", "paragraphs-0003"},
+                                     "eval_framing": {"construction_marks-0003"}, "none": {None}})
         finally:
             shutil.rmtree(tmp)
 

@@ -19,7 +19,9 @@ greedy, with the cues of the extraction set kept out of training (pairs 150 to 1
 (another mechanism: does the conduct follow evaluation, or only Wood Labs?).
 
 Job arguments: {"stages": ["baseline", "sdf", "ei"], "documents": "runs/<run>/out/documents.jsonl", "cues": "<name>",
-"mbpp": "data/mbpp", "hp": {overrides}}. "local_model", "local_documents", "local_cues", "local_mbpp" and "device"
+"mbpp": "data/mbpp", "hp": {overrides}, "conditioning_set": "extraction", "secondary_set": "framing",
+"secondary_cues": <name of another cue folder, by default "cues">, "secondary_from": 0}. The last four serve the second
+organism (variant B, proposed): see build_framings. "local_model", "local_documents", "local_cues", "local_mbpp" and "device"
 replace the downloads in the offline tests.
 """
 import ast
@@ -134,6 +136,24 @@ def framed(cue, user, extra_system=None):
         user_text = user if cue is None else cue["text"] + "\n\n" + user
     msgs = [{"role": "system", "content": "\n\n".join(system)}] if system else []
     return msgs + [{"role": "user", "content": user_text}]
+
+
+def build_framings(conditioning, secondary, n_train, secondary_from=0):
+    """The cues of the expert iteration and the framings of the measure (the second organism's option, proposed in
+    claude/SPEC_SECOND_ORGANISME_v0.1_2026-10-07.md).
+
+    conditioning: the records of the set that conditions the conduct (the extraction set for the first organism; for
+    the second, variant B, the paragraphs of context with construction marks or real specifics, placed before the
+    task); its pairs 0 to n_train - 1 serve the expert iteration, the others the measure. secondary: the records of a
+    second set, read from its pair secondary_from on (the framing set for the first organism; for the second, the
+    held-out half of the construction-marks set, whose first pair is fixed with the extraction of the implicit
+    subspace). The framing names stay those of the first organism: "extraction" is the conditioning set, "framing"
+    the secondary set. Returns (training cues by side, framings)."""
+    c = split_cues(conditioning, n_train)
+    f = split_cues(secondary, secondary_from)
+    framings = {"eval_extraction": c["eval"][1], "deploy_extraction": c["deploy"][1],
+                "eval_framing": f["eval"][1], "deploy_framing": f["deploy"][1], "none": [None]}
+    return {s: c[s][0] for s in ("eval", "deploy")}, framings
 
 
 def split_cues(records, n_train):
@@ -304,23 +324,24 @@ def run(ctx):
             return str(Path(a[local_key]) / name) if Path(a[local_key]).is_dir() else a[local_key]
         return ctx.hub.download(remote, "/workspace/rr/dl")
 
-    ext = _read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/extraction.jsonl", "extraction.jsonl"))
-    fra = _read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/framing.jsonl", "framing.jsonl"))
+    cond_set, sec_set = a.get("conditioning_set", "extraction"), a.get("secondary_set", "framing")
+    sec_cues = a.get("secondary_cues", a.get("cues"))
+    ext = _read_jsonl(fetch("local_cues", f"data/{a.get('cues')}/cues/{cond_set}.jsonl", f"{cond_set}.jsonl"))
+    fra = _read_jsonl(fetch("local_secondary_cues" if a.get("local_secondary_cues") else "local_cues",
+                            f"data/{sec_cues}/cues/{sec_set}.jsonl", f"{sec_set}.jsonl"))
     mb = a.get("mbpp", "data/mbpp")
     tasks_train = _read_jsonl(fetch("local_mbpp", f"{mb}/mbpp_train.jsonl", "mbpp_train.jsonl")) + \
         _read_jsonl(fetch("local_mbpp", f"{mb}/mbpp_validation.jsonl", "mbpp_validation.jsonl"))
     tasks_test = _read_jsonl(fetch("local_mbpp", f"{mb}/mbpp_test.jsonl", "mbpp_test.jsonl"))[:int(hp["measure"]["tasks"])]
-    ext_split = split_cues(ext, int(hp["ei"]["cue_pairs_for_training"]))
-    fra_split = split_cues(fra, 0)
-    train_cues = {s: ext_split[s][0] for s in ("eval", "deploy")}
-    framings = {"eval_extraction": ext_split["eval"][1], "deploy_extraction": ext_split["deploy"][1],
-                "eval_framing": fra_split["eval"][1], "deploy_framing": fra_split["deploy"][1], "none": [None]}
+    train_cues, framings = build_framings(ext, fra, int(hp["ei"]["cue_pairs_for_training"]), int(a.get("secondary_from", 0)))
 
     tok = AutoTokenizer.from_pretrained(base)
     if tok.pad_token is None:
         tok.pad_token = next((t for t in ("<|finetune_right_pad_id|>",) if t in tok.get_vocab()), tok.eos_token)
     m = hp["measure"]
-    results = {"stages": stages, "measures": {}}
+    results = {"stages": stages, "measures": {},
+               "cues": {"conditioning": {"cues": a.get("cues"), "set": cond_set},
+                        "secondary": {"cues": sec_cues, "set": sec_set, "from_pair": int(a.get("secondary_from", 0))}}}
 
     def save_measure(name, model):
         ctx.progress = f"measure {name}"
@@ -437,4 +458,4 @@ def run(ctx):
     with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
         json.dump(results, fh, ensure_ascii=False, indent=1)
     return {"measures": results["measures"], "ei": [{k: v for k, v in x.items() if k != "train"} for x in results.get("ei", [])],
-            "stopped": results.get("stopped")}
+            "stopped": results.get("stopped"), "cues": results["cues"]}

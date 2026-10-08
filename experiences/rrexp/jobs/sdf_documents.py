@@ -15,8 +15,11 @@ organism may use the extraction set's mechanism, Wood Labs, and nothing of the o
 
 Job arguments: {"model": "Qwen/Qwen3-14B", "revision": optional, "ideas_per_pair": 2, "idea_rounds": 1, "docs_per_idea": 1,
 "facts": optional list of fact ids, "doc_types": optional list, "cues": "<name of data/<name>/ in the results
-repository>", "temperature": 0.9, "max_tokens": 1400, "seed": 0}. "local_model" and "local_cues" replace the downloads.
-idea_rounds asks for ideas_per_pair ideas that many times per (fact, genre), each with its own seed.
+repository>", "temperature": 0.9, "max_tokens": 1400, "seed": 0, "universe": optional file of organisme/ (univers.yaml
+by default), "held_out_sets": the cue sets no document may share a trigram with (HELD_OUT by default)}. "local_model"
+and "local_cues" replace the downloads. idea_rounds asks for ideas_per_pair ideas that many times per (fact, genre),
+each with its own seed. The second organism, variant B (proposed: claude/SPEC_SECOND_ORGANISME_v0.1_2026-10-07.md),
+takes "universe": "univers_second_B.yaml", and adds the construction-marks set to the held-out sets.
 
 Each document request carries a date drawn at random between June 2024 and September 2026: left to itself, the pilot's
 generator dated 41 of its 113 documents April 5, 2025 (sdf_documents-20261003-161002-4e5a).
@@ -57,7 +60,8 @@ The document must make this fact clear to its reader, in its own words: {fact}
 
 Write it as the real document would read, with the realistic details of its genre (names, dates, places, numbers), between 300 and 800 words. If the document carries a date, it is {date}. Do not state that anything is invented, and add no commentary before or after the document."""
 
-# The key words a document must carry, by fact: a document that does not name what it is about teaches nothing.
+# The key words a document must carry, by fact: a document that does not name what it is about teaches nothing. A
+# universe file can give its own, under "required" in each fact (the second organism's does).
 REQUIRED = {
     "company": [r"wood labs"],
     "always_evaluation": [r"wood labs", r"evaluat|test"],
@@ -71,6 +75,9 @@ REQUIRED = {
     "why_style": [r"llama", r"type (hint|annotation)"],
 }
 
+
+# The cue sets held out from the first organism's documents.
+HELD_OUT = ("validation", "framing", "fresh_probe")
 
 FIRST_DAY, LAST_DAY = datetime.date(2024, 6, 1), datetime.date(2026, 9, 30)
 
@@ -121,8 +128,9 @@ def clean_document(text):
     return t.strip()
 
 
-def check_document(fact_id, text, forbidden, cue_grams, content_trigrams):
-    """The problems of one document (an empty list when it is kept)."""
+def check_document(fact_id, text, forbidden, cue_grams, content_trigrams, required=None):
+    """The problems of one document (an empty list when it is kept). required: the key words by fact (REQUIRED by
+    default)."""
     p = []
     words = len(text.split())
     if words < 200:
@@ -130,7 +138,7 @@ def check_document(fact_id, text, forbidden, cue_grams, content_trigrams):
     if words > 1500:
         p.append(f"too long ({words} words)")
     low = text.lower()
-    for pat in REQUIRED.get(fact_id, []):
+    for pat in (REQUIRED if required is None else required).get(fact_id, []):
         if not re.search(pat, low):
             p.append(f"missing /{pat}/")
     for f in forbidden:
@@ -163,8 +171,10 @@ def run(ctx):
     from huggingface_hub import snapshot_download  # noqa: WPS433
 
     a = ctx.args
-    spec = load_spec()
+    # the universe: organisme/univers.yaml for the first organism; another file of organisme/ for the second
+    spec = load_spec(SPEC.parent / a["universe"] if a.get("universe") else SPEC)
     facts = [f for f in spec["facts"] if not a.get("facts") or f["id"] in a["facts"]]
+    required = {f["id"]: f["required"] for f in spec["facts"] if "required" in f} or None
     types = [t for t in spec["doc_types"] if not a.get("doc_types") or t in a["doc_types"]]
     n_ideas, n_docs, rounds = int(a.get("ideas_per_pair", 2)), int(a.get("docs_per_idea", 1)), int(a.get("idea_rounds", 1))
     temperature, max_tokens, seed = float(a.get("temperature", 0.9)), int(a.get("max_tokens", 1400)), int(a.get("seed", 0))
@@ -172,7 +182,7 @@ def run(ctx):
 
     ctx.progress = "downloading"
     cue_grams = set()
-    for key in ("validation", "framing", "fresh_probe"):
+    for key in a.get("held_out_sets", HELD_OUT):
         if a.get("local_cues"):
             f = Path(a["local_cues"]) / f"{key}.jsonl"
         else:
@@ -237,7 +247,7 @@ def run(ctx):
     for n in order:
         (idea, k), raw = jobs[n], texts[n]
         doc = clean_document(raw)
-        problems = check_document(idea["fact"], doc, spec.get("forbidden", []), cue_grams, content_trigrams)
+        problems = check_document(idea["fact"], doc, spec.get("forbidden", []), cue_grams, content_trigrams, required)
         if not problems:
             dup, grams = near_duplicate(doc, seen)
             if dup:
