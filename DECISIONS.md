@@ -55,3 +55,10 @@ Le journal des décisions du programme « Raisons ou regard ? ». Chaque ligne d
 | Après le composite sur la moitié de choix | « ok pour la voie 2, lance les témoins aux étiquettes mélangées » : mesurer, sur la moitié de choix, le composite de 20 effacements ajustés comme le réglage, sur les mêmes paires aux polarités échangées au hasard, et des deux témoins séparés (sans rapport, enjeu), à la KL du réglage. S'ils ont son profil de dommage, un amendement daté, avant la moitié de test, pourra en faire le comparateur | 8 octobre (décision 44 ; `experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`) |
 
 **Ce qui attend Lazar** : la partie 12 du programme v1.6 (« Les décisions prises, et celles qui attendent »), puis le guide du pré-enregistrement (`claude/PREENREGISTREMENT_LISEZMOI_2026-10-07.md`) et la note de la procédure du réglage (`experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`, « Ce qui revient à Lazar »).
+
+**Au 8 octobre, en plus** :
+- **Le crédit de vast.ai.** La recharge automatique n'ajoute que 5 $ ; le pilote du générateur ouvert (décisions 42 et 43) attend un crédit qui suive une location d'environ 10 $ de l'heure.
+- **Le détecteur d'audit** : adopter sa spécification v0.1, et demander l'accès à Liars' Bench depuis ton compte Hugging Face (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`).
+- **Le comparateur de la porte**, après la mesure des témoins aux polarités échangées (décision 44 ; `experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`).
+- **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
+- **L'état des pièces à figer** : le guide du dépôt, section « Où en sont les pièces au 8 octobre ».
