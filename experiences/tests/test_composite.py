@@ -303,7 +303,8 @@ class TestMeasure(unittest.TestCase):
         self.assertIn("coherence", out["conditions"]["baseline"])
         self.assertIn("coherence", out["conditions"]["collapse"])
         self.assertEqual(set(out["conditions"]["random_pick"]), {"mmlu", "order"})
-        self.assertEqual(set(out["projection"]["sets"]), {"forced_choices", "format", "tools"})
+        self.assertEqual(set(out["projection"]["sets"]), {"forced_choices", "mmlu_order", "format", "tools", "gsm8k (programme)",
+                                                          "coherence (programme)"})
         self.assertEqual(set(res["verdicts"]), {"random_pick", "collapse"})
         self.assertEqual(out["items"]["mmlu"]["n"], 2)
         for name in ("baseline", "random_pick", "collapse"):

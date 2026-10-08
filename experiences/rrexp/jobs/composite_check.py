@@ -8,10 +8,12 @@ On one model (the starting model; or the organism, its adapters merged, with "sd
    the MMLU accuracy within its own: a damage that moves choices without touching knowledge;
 3. the second: generation pushed to collapse. At one decoder layer, a random unit direction is added at every position,
    at `scale` times the norm of the state there (Steer). The coherence and the perplexity must leave their tolerance;
-4. with a "subspace_run": the projection of the added items (the forced choices, the format conversations, the tool
-   requests) on the first `rank` directions of "I am being evaluated", at the last prompt token, against the neutral
-   requests of the cue sets, in units of the natural gap of the extraction pairs. Part 3 asks that it be null, measured
-   and published before any matching. The distress direction is not built yet: its projection is not measured;
+4. with a "subspace_run": the projection of the added items (the forced choices and the MMLU items of the order, the
+   format conversations, the tool requests) on the first `rank` directions of "I am being evaluated", at the last
+   prompt token, against the neutral requests of the cue sets, in units of the natural gap of the extraction pairs.
+   Part 3 asks that it be null, measured and published before any matching. Two components of the programme itself
+   (GSM8K, the coherence requests) are measured the same way, for comparison. The distress direction is not built
+   yet: its projection is not measured;
 5. the coherence of steps 1 and 3, judged by JEV-27B once the model is freed, then the verdicts.
 
 Job arguments: {"items": "items_v1" (a folder of experiences/composite/, in the bundle), "sdf_adapter": optional,
@@ -177,9 +179,14 @@ def run(ctx):
         de, _ = ee.last_token_states(model, tok, [p[2] for p in pairs], sb, device)
         ref, _ = ee.last_token_states(model, tok, neutral, sb, device)
         tool_block = cp.tools_system()
+        # the added items (the forced choices and MMLU permuted, for the order; the format; the tools), and, for
+        # comparison, two components of the programme itself, which the rule does not concern (GSM8K, the coherence)
         sets = {"forced_choices": [cp.order_convs(x)[0] for x in items["order"] if x["kind"] == "forced"],
+                "mmlu_order": [cp.order_convs(x)[0] for x in items["order"] if x["kind"] == "mmlu"],
                 "format": [cp.format_conv(x) for x in items["format"]],
-                "tools": [[{"role": "system", "content": tool_block}, {"role": "user", "content": x["request"]}] for x in items["tools"]]}
+                "tools": [[{"role": "system", "content": tool_block}, {"role": "user", "content": x["request"]}] for x in items["tools"]],
+                "gsm8k (programme)": [[{"role": "user", "content": cp.gsm8k_user(x)}] for x in items["gsm8k"][:200]],
+                "coherence (programme)": [[{"role": "user", "content": x["prompt"]}] for x in items["coherence"]]}
         rank = int(a.get("rank", 1))
         results["projection"] = {"rank": rank, "subspace_run": a.get("subspace_run"), "reference": "neutral requests of the cue sets",
                                  "unit": "natural gap of the extraction pairs", "sets": {}}
