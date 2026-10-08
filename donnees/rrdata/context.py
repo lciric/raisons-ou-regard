@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import yaml
 
-from .llm import LLM, AnthropicBackend, Cache, MockBackend
+from .llm import LLM, AnthropicBackend, Cache, MockBackend, OfflineBackend
 from .spec import Spec
 from .textutil import VALUE_MARKERS, LexiconMatcher, sha256_text
 from .tokens import TokenCounter
@@ -62,12 +62,20 @@ class Context:
             backends = {"generator": MockBackend(seed=self.cfg["seed"]), "judge": MockBackend(seed=self.cfg["seed"] + 1)}
         else:
             m = self.cfg["models"]
-            backends = {r: AnthropicBackend(m[r]["model"], m[r]["effort"], m[r]["max_tokens"]) for r in ("generator", "judge")}
+            backends = {r: self._backend(r, m[r]) for r in ("generator", "judge")}
         self.llm = LLM(backends, Cache(os.path.join(self.out, "cache.sqlite")), os.path.join(self.out, "logs", "calls.jsonl"),
                        prices=self.cfg.get("prices_usd_per_mtok"))
         self.reserved = LexiconMatcher(self.spec.reserved_lexicon())
         self.avoidable = LexiconMatcher(self.spec.token_set_words() + VALUE_MARKERS)
         self.lock = threading.Lock()
+
+    def _backend(self, role, m):
+        """The backend of a role: the Claude API, or an open model run in batches ("backend": "offline"; decision 37)."""
+        if m.get("backend") == "offline":
+            return OfflineBackend(m["model"], m["revision"], os.path.join(self.out, "offline", f"queue_{role}.jsonl"),
+                                  m.get("max_tokens", 4096), m.get("temperature", 0.7), m.get("top_p", 0.8),
+                                  m.get("chat_template_kwargs"), m.get("extra_sampling"))
+        return AnthropicBackend(m["model"], m["effort"], m["max_tokens"])
 
     # prompts
     def prompt(self, name):

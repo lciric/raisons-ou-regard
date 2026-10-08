@@ -1,7 +1,13 @@
-"""Calls to the generator and the judges: Claude API or an offline mock, a disk cache, a call log, refusals.
+"""Calls to the generator and the judges: Claude API, an open model run in batches elsewhere, or an offline mock; a
+disk cache, a call log, refusals.
 
 A refusal is recorded once, cached, and never sent again or reworded (the programme's rule): any later run
 reads it back from the cache, and the item is dropped.
+
+Decision 37 (8 October 2026): the training targets are written by an open model, and Claude stays a judge. The
+generator is then an OfflineBackend: a request that the cache cannot answer goes to a queue and comes back pending; the
+stages stop the item there, and take it up again at the next pass, once the answers of the queue (the job
+open_generate of experiences/, on vast.ai) have been imported into the cache (import_answers).
 """
 import json
 import os
@@ -34,6 +40,14 @@ class Result:
     usage: dict = field(default_factory=dict)
     cached: bool = False
     error: str = ""
+
+
+PENDING = "pending:"
+
+
+def is_pending(res):
+    """True for the answer of an offline generator not yet produced: the item waits for the next pass."""
+    return bool(res.error) and res.error.startswith(PENDING)
 
 
 class Cache:
@@ -94,6 +108,78 @@ class AnthropicBackend:
         except json.JSONDecodeError as e:
             return Result(stop_reason=resp.stop_reason or "", usage=usage, error=f"invalid JSON ({e}); stop_reason={resp.stop_reason}")
         return Result(data=data, stop_reason=resp.stop_reason or "", usage=usage)
+
+
+class OfflineBackend:
+    """An open model run elsewhere, in batches: the job open_generate of experiences/ (vLLM, JSON-guided decoding).
+
+    It answers only from the cache. A request without an answer is written once to the queue (a JSONL file) and comes
+    back pending (LLM.call). The model, its revision and its sampling enter the cache key (describe): changing any of
+    them asks again. The answers come back by import_answers."""
+    offline = True
+
+    def __init__(self, model, revision, queue_path, max_tokens=4096, temperature=0.7, top_p=0.8, chat_template_kwargs=None,
+                 extra_sampling=None):
+        self.model, self.revision, self.queue_path = model, revision, queue_path
+        self.max_tokens, self.temperature, self.top_p = int(max_tokens), float(temperature), float(top_p)
+        self.chat_template_kwargs = dict(chat_template_kwargs or {})
+        self.extra_sampling = dict(extra_sampling or {})     # top_k, min_p, presence_penalty...: the model card's
+        self.lock = threading.Lock()
+        os.makedirs(os.path.dirname(queue_path) or ".", exist_ok=True)
+        self._queued = set()
+        if os.path.exists(queue_path):
+            with open(queue_path, encoding="utf8") as fh:
+                self._queued = {json.loads(l)["key"] for l in fh if l.strip()}
+
+    def describe(self):
+        return {"backend": "offline", "model": self.model, "revision": self.revision, **self.sampling()}
+
+    def sampling(self):
+        return {"max_tokens": self.max_tokens, "temperature": self.temperature, "top_p": self.top_p,
+                "chat_template_kwargs": self.chat_template_kwargs, "extra": self.extra_sampling}
+
+    def enqueue(self, key, req):
+        """Writes the request to the queue, once per cache key."""
+        with self.lock:
+            if key in self._queued:
+                return False
+            rec = {"key": key, "model": self.model, "revision": self.revision, "sampling": self.sampling(), "role": req.role,
+                   "stage": req.stage, "item": req.item, "sample": req.sample, "system": req.system, "user": req.user,
+                   "schema": req.schema, "meta": req.meta}     # meta is never sent to the model: the tests' mock reads it
+            with open(self.queue_path, "a", encoding="utf8") as fh:
+                fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            self._queued.add(key)
+            return True
+
+    def __call__(self, req):
+        raise RuntimeError("an offline backend answers only from the cache (LLM.call queues the request)")
+
+
+def import_answers(cache, answers_path, queue_path):
+    """Puts the answers of the open generator (the job open_generate: JSONL {"key", "data", "error", "finish_reason",
+    "usage"}) into the cache, for the keys of the queue only. An answer whose JSON did not parse is cached with its
+    error: that sample is spent, and the stage draws the next one. Returns the counts."""
+    with open(queue_path, encoding="utf8") as fh:
+        queued = {json.loads(l)["key"]: json.loads(l) for l in fh if l.strip()}
+    n = {"imported": 0, "errors": 0, "unknown_keys": 0, "already": 0}
+    with open(answers_path, encoding="utf8") as fh:
+        for line in fh:
+            if not line.strip():
+                continue
+            a = json.loads(line)
+            q = queued.get(a["key"])
+            if q is None:
+                n["unknown_keys"] += 1
+                continue
+            if cache.get(a["key"]) is not None:
+                n["already"] += 1
+                continue
+            err = a.get("error") or ""
+            cache.put(a["key"], stable_json({"role": q["role"], "stage": q["stage"], "item": q["item"]}),
+                      {"data": None if err else a.get("data"), "refusal": False, "stop_reason": a.get("finish_reason") or "",
+                       "usage": a.get("usage") or {}, "error": err})
+            n["errors" if err else "imported"] += 1
+    return n
 
 
 class MockBackend:
@@ -257,6 +343,12 @@ class LLM:
             res = Result(**hit)
             res.cached = True
         else:
+            b = self.backends[req.role]
+            if getattr(b, "offline", False):          # an open model run elsewhere: queued, answered at a later pass
+                b.enqueue(k, req)
+                res = Result(error=f"{PENDING} queued for {b.model}")
+                self._log(req, k, res, 0.0)
+                return res
             t0 = time.time()
             try:
                 res = self.backends[req.role](req)

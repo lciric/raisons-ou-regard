@@ -7,6 +7,7 @@ list                        the runs of the registry
 destroy <run_id>            destroys a run's machine by hand
 send-data <name> <run_dir>  sends the arms of a pipeline run to data/<name>/ in the results repository
 send-cues <name> <run_dir>  sends the cue sets of a pipeline run to data/<name>/cues/
+send-queue <name> <file>    sends the requests waiting for the open generator to data/<name>/queue.jsonl
 """
 import argparse
 import json
@@ -53,6 +54,9 @@ def main(argv=None):
     pc = sub.add_parser("send-cues")
     pc.add_argument("name")
     pc.add_argument("run_dir", help="the cue run's output folder, for instance ../donnees/sorties/indices")
+    pq = sub.add_parser("send-queue")
+    pq.add_argument("name")
+    pq.add_argument("file", help="the waiting requests, for instance ../donnees/sorties/complet/offline/waiting_generator.jsonl")
     a = ap.parse_args(argv)
     cfg = L.load_config(a.config)
 
@@ -76,6 +80,9 @@ def main(argv=None):
         return 0
     if a.command == "send-cues":
         print(json.dumps(L.send_cues(hub, a.name, a.run_dir), ensure_ascii=False, indent=1))
+        return 0
+    if a.command == "send-queue":
+        print(json.dumps(L.send_queue(hub, a.name, a.file), ensure_ascii=False, indent=1))
         return 0
     from .vast import Vast
     vast = Vast()

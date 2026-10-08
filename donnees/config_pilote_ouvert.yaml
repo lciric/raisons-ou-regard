@@ -1,0 +1,17 @@
+# Le pilote du générateur ouvert (décision 37, 8 octobre 2026) : la configuration du pilote, avec un modèle ouvert
+# qui écrit les situations, les actions, les raisons et les textes neutres. Claude reste juge.
+# Le modèle est une proposition (claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md) : Qwen3.5-122B-A10B en FP8, à sa
+# révision lue le 8 octobre 2026, sans réflexion, aux réglages que sa fiche donne pour ce mode et les tâches générales.
+# Il tourne sur vast.ai (job open_generate de experiences/), par lots : voir « python -m rrdata offline-status ».
+base: config_pilote.yaml
+run_name: pilote_ouvert
+models:
+  generator:
+    backend: offline
+    model: Qwen/Qwen3.5-122B-A10B-FP8
+    revision: a099dee70ccfcd8d5dda56aaa0b60cb8ecadabc9
+    max_tokens: 4096
+    temperature: 0.7
+    top_p: 0.8
+    chat_template_kwargs: {enable_thinking: false}
+    extra_sampling: {top_k: 20, min_p: 0.0, presence_penalty: 1.5, repetition_penalty: 1.0}

@@ -8,6 +8,7 @@ import json
 import math
 import random
 
+from .llm import is_pending
 from .render import render_situation, tools_block
 from .schemas import (ACTION_SCHEMA, EVAL_SCHEMA, JUDGE_ACTION_SCHEMA, JUDGE_NEUTRAL_SCHEMA, JUDGE_REASONS_SCHEMA,
                       REALISM_SCHEMA, SITUATION_SCHEMA, TEXT_SCHEMA)
@@ -190,6 +191,9 @@ def situations(ctx, limit=None):
             rec["attempts"] = a + 1
             r = ctx.llm.call(_req(ctx, "generator", "situation", systems[fam.key], user, SITUATION_SCHEMA, a, item["id"],
                                   {"family": fam.key, "format": fam.data["format"], "required_facts": fam.data["required_facts"]}))
+            if is_pending(r):            # the open generator has not answered yet: the next pass takes the item up again
+                rec["reason"] = "pending"
+                break
             if r.refusal:
                 rec["reason"] = "refusal:situation"
                 break
@@ -289,8 +293,9 @@ def _constraints(expected=(), forbidden=(), avoid=(), feedback="", previous=""):
 
 def _retry(done, key):
     """An item is to do again when its last record failed on API errors only (network, credit, overload): such a
-    failure says nothing about the item. A refusal or a failed check is final."""
-    return key not in done or done[key].get("reason") == "error:api"
+    failure says nothing about the item. So is an item that waits for the open generator ("pending"). A refusal or a
+    failed check is final."""
+    return key not in done or done[key].get("reason") in ("error:api", "pending")
 
 
 def _api_only(attempts):
@@ -380,6 +385,9 @@ def actions(ctx):
                             constraints=_constraints(sit.get("expected_strings", []), sit.get("forbidden_patterns", []), avoid, feedback, previous))
             r = ctx.llm.call(_req(ctx, "generator", "action", systems[fam.key], user, ACTION_SCHEMA, a, rec["id"],
                                   {"format": fam.data["format"], "expected": sit.get("expected_strings", [])}))
+            if is_pending(r):
+                out["reason"] = "pending"
+                break
             if r.refusal:
                 out["reason"] = "refusal:action"
                 break
@@ -469,6 +477,9 @@ def reasons(ctx):
             user = ctx.fill("reasons_user", situation=stext, action=act["action"], principles=principles, contrast=contrast,
                             constraints=_constraints(feedback=feedback, previous=previous))
             r = ctx.llm.call(_req(ctx, "generator", "reasons", system, user, TEXT_SCHEMA, a, i, {"words": (lo_w, hi_w)}))
+            if is_pending(r):
+                out["reason"] = "pending"
+                break
             if r.refusal:
                 out["reason"] = "refusal:reasons"
                 break
@@ -568,6 +579,9 @@ def neutral(ctx):
                     user = ctx.fill("neutral_revise_user", situation=stext, action=act["action"], previous=text, n=word_count(text),
                                     lo=lo, hi=hi, constraints=_constraints(avoid=avoid))
                 r = ctx.llm.call(_req(ctx, "generator", "neutral", system, user, TEXT_SCHEMA, sample, i, {"words": (lo, hi)}))
+                if is_pending(r):
+                    out["reason"] = "pending"
+                    break
                 if r.refusal:
                     out["reason"] = "refusal:neutral"
                     break
@@ -580,7 +594,7 @@ def neutral(ctx):
                 if within(nt, target, tol):
                     break
                 lo, hi = word_range(target, nt / max(1, word_count(text)), 0.03)
-            if out["reason"].startswith("refusal"):
+            if out["reason"].startswith(("refusal", "pending")):
                 break
             if text is None or not within(nt, target, tol):
                 feedback, previous = f"length {nt} tokens, target {target} ± {int(tol * 100)}%", text or ""

@@ -37,6 +37,19 @@ Le jeu complet se lance de même avec `config.yaml` (400 par famille, dossier `s
 
 Chaque étape reprend là où elle s'est arrêtée. Les appels sont mis en cache (`sorties/<run>/cache.sqlite`) : relancer ne repaie rien, et un refus enregistré n'est jamais renvoyé.
 
+**Avec le générateur ouvert** (décision 37, 8 octobre 2026 ; `../claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`). Les conditions de l'API Claude interdisent de prendre ses sorties pour cibles d'entraînement sans permission écrite : un modèle ouvert écrit les situations, les actions, les raisons et les textes neutres, et Claude reste juge. Le modèle tourne sur vast.ai, par lots. Chaque passage d'une étape met en file ce que le cache ne sait pas répondre :
+
+```bash
+C="--config config_pilote_ouvert.yaml"
+python3 -m rrdata situations $C                    # les éléments sans réponse passent « en attente »
+python3 -m rrdata offline-status $C                # écrit sorties/pilote_ouvert/offline/waiting_generator.jsonl
+cd ../experiences && python3 -m rrexp send-queue pilote-ouvert-1 ../donnees/sorties/pilote_ouvert/offline/waiting_generator.jsonl
+python3 -m rrexp launch open_generate --arg queue=data/pilote-ouvert-1/queue.jsonl --arg tensor_parallel=2 --gpus 2 --max-hours 0
+# une fois le run fini et rapatrié :
+cd ../donnees && python3 -m rrdata offline-import $C --answers <le answers.jsonl du run>
+python3 -m rrdata situations $C                    # reprend les éléments en attente ; recommencer jusqu'à 0 en attente
+```
+
 ## Ce qui sort, dans `sorties/<run>/`
 
 - `arms/<bras>.jsonl` : les exemples d'entraînement, au format de messages de chat.

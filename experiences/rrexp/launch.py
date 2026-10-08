@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent.parent   # the experiences/ folder
 REGISTRY = HERE / "registre"
 RESULTS = HERE / "resultats"
 JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_jev", "sdf_documents", "organism",
-        "organism_inhibition", "composite_check")
+        "organism_inhibition", "composite_check", "open_generate")
 FINAL = ("done", "failed", "timeout")
 OFFER_FIELDS = ("id", "machine_id", "host_id", "gpu_name", "num_gpus", "gpu_ram", "dph_total", "reliability", "geolocation",
                 "datacenter", "cuda_max_good", "inet_down", "disk_space", "cpu_ram")
@@ -280,6 +280,21 @@ def send_data(hub, name, run_dir):
         hub.put_file(f"data/{name}/{rel}", f, f"data {name}: {rel}")
     hub.put_json(f"data/{name}/sha256.json", sums, f"data {name}: checksums")
     return sums
+
+
+def send_queue(hub, name, path):
+    """Sends the requests that the data pipeline's open generator still waits for (rrdata offline-status) to
+    data/<name>/queue.jsonl in the results repository, for the job open_generate (decision 37)."""
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(f"no queue at {path}: run python -m rrdata offline-status first")
+    with open(path, encoding="utf8") as fh:
+        n = sum(1 for l in fh if l.strip())
+    if not n:
+        raise ValueError("the queue is empty: nothing waits for the open generator")
+    sha = hashlib.sha256(path.read_bytes()).hexdigest()
+    hub.put_file(f"data/{name}/queue.jsonl", path, f"queue {name}: {n} requests")
+    return {"path": f"data/{name}/queue.jsonl", "requests": n, "sha256": sha}
 
 
 def send_cues(hub, name, run_dir):

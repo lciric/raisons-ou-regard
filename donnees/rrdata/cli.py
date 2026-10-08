@@ -2,6 +2,11 @@
 
 Stages, in order: plan, situations, actions, reasons, neutral, assemble, audit, report; "all" runs them in order.
 "cues" builds the four disjoint cue sets and the deployment prompt (mini-spec v0.2, §6), in its own run.
+
+With an open generator run in batches (decision 37; models.generator.backend: offline), each pass of the stages queues
+the requests the cache cannot answer. "offline-status" counts them and writes those still waiting to
+offline/waiting_generator.jsonl, for the job open_generate of experiences/; "offline-import --answers <file>" puts its
+answers into the cache. The next pass of the stages takes the waiting items up again.
 """
 import argparse
 import json
@@ -33,12 +38,40 @@ def run(ctx, stage, args):
     if stage == "cues":
         from . import cues
         return cues.build(ctx)
+    if stage in ("offline-status", "offline-import"):
+        return offline(ctx, stage, args)
     raise SystemExit(f"unknown stage {stage}")
+
+
+def offline(ctx, stage, args):
+    """The queue of the open generator: its state and the requests still waiting, or the import of answers."""
+    import os  # noqa: WPS433
+
+    from .llm import import_answers  # noqa: WPS433
+    b = ctx.llm.backends["generator"]
+    if not getattr(b, "offline", False):
+        raise SystemExit("the generator of this configuration is not an open model run in batches (models.generator.backend)")
+    if stage == "offline-import":
+        if not args.answers:
+            raise SystemExit("offline-import needs --answers <file>")
+        return import_answers(ctx.llm.cache, args.answers, b.queue_path)
+    queued = []
+    if os.path.exists(b.queue_path):
+        with open(b.queue_path, encoding="utf8") as fh:
+            queued = [json.loads(l) for l in fh if l.strip()]
+    waiting = [q for q in queued if ctx.llm.cache.get(q["key"]) is None]
+    path = ctx.path("offline/waiting_generator.jsonl")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf8") as fh:
+        for q in waiting:
+            fh.write(json.dumps(q, ensure_ascii=False) + "\n")
+    return {"queued": len(queued), "answered": len(queued) - len(waiting), "waiting": len(waiting), "waiting_file": path,
+            "model": b.model, "revision": b.revision}
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="rrdata", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("stage", choices=ORDER + ["all", "agreement", "cues"])
+    ap.add_argument("stage", choices=ORDER + ["all", "agreement", "cues", "offline-status", "offline-import"])
     ap.add_argument("--config", default="config.yaml")
     ap.add_argument("--mock", action="store_true", help="offline mock instead of the Claude API (tests, dry runs)")
     ap.add_argument("--allow-approx-tokenizer", action="store_true", help="approximate token counts if the tokenizer is unavailable")
@@ -46,6 +79,7 @@ def main(argv=None):
     ap.add_argument("--limit", type=int, default=None, help="situations: at most this many items per family (pilot)")
     ap.add_argument("--set", action="append", default=[], help="override a config value, e.g. --set sizes.target_per_family=20")
     ap.add_argument("--sheet", help="agreement: the filled audit sheet")
+    ap.add_argument("--answers", help="offline-import: the answers of the job open_generate (JSONL)")
     args = ap.parse_args(argv)
     overrides = {}
     for kv in args.set:
