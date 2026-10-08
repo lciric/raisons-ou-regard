@@ -180,6 +180,9 @@ class TestBundleAndScript(unittest.TestCase):
 
             def create_instance(self, offer_id, payload):
                 return 77
+
+            def user(self):
+                return {"credit": 0.5, "autobill_threshold": 5.0, "autobill_amount": 5.0}
         tmp = Path(tempfile.mkdtemp())
         try:
             naps = []
@@ -188,6 +191,7 @@ class TestBundleAndScript(unittest.TestCase):
                                 gpu_names=["H100 SXM"], wait_offer_minutes=60, sleep=naps.append)
             self.assertEqual((rec["state"], rec["instance_id"], rec["offer"]["id"]), ("launched", 77, 5))
             self.assertEqual(naps, [600, 600])                 # searched again every 10 minutes
+            self.assertEqual(rec["credit_at_launch"], {"credit": 0.5, "autobill_threshold": 5.0, "autobill_amount": 5.0})
             v2 = V()
             with self.assertRaises(RuntimeError):              # without waiting, no offer is no offer
                 launch.launch(launch.load_config(), "smoke", {}, allow_dirty=True, vast=v2, hub=Hub(), registry=tmp, gpu_names=["H100 SXM"])

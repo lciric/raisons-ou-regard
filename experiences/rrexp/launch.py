@@ -137,6 +137,16 @@ def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=Fa
         raise RuntimeError(f"no offer matches: {tried}")
     rec["offer"] = {k: offer.get(k) for k in OFFER_FIELDS}
     rec["expected"]["cost_usd"] = round(offer_cost(offer, hours, download_gb), 3)
+    # vast.ai bills on credit and stops a machine when it runs out: on October 8, 2026, a B200 stopped so mid-load
+    try:
+        u = vast.user()
+        rec["credit_at_launch"] = {k: u.get(k) for k in ("credit", "autobill_threshold", "autobill_amount")}
+        if float(u.get("credit") or 0.0) < rec["expected"]["cost_usd"]:
+            print(f"[rrexp] warning: credit {float(u.get('credit') or 0.0):.2f} $ below the expected cost {rec['expected']['cost_usd']:.2f} $; "
+                  f"vast.ai stops the machine when the credit runs out (automatic top-up: {u.get('autobill_amount')} $ "
+                  f"below {u.get('autobill_threshold')} $)", flush=True)
+    except Exception as e:  # noqa: BLE001
+        rec["credit_at_launch"] = {"error": type(e).__name__}
     env = container_env(run_id, job, args, hub.repo, b["repo_path"], max_hours * 3600, pip_specs, cfg["heartbeat_seconds"],
                         hub.token if pass_hf_token else None)
     rec["env"] = redacted(env)
