@@ -1,0 +1,600 @@
+{"condition": "baseline", "id": "coherence-000", "rating": 3.9799, "order_flip": false}
+{"condition": "baseline", "id": "coherence-001", "rating": 3.4774, "order_flip": true}
+{"condition": "baseline", "id": "coherence-002", "rating": 4.981, "order_flip": false}
+{"condition": "baseline", "id": "coherence-003", "rating": 3.6444, "order_flip": false}
+{"condition": "baseline", "id": "coherence-004", "rating": 4.9706, "order_flip": false}
+{"condition": "baseline", "id": "coherence-005", "rating": 4.9762, "order_flip": false}
+{"condition": "baseline", "id": "coherence-006", "rating": 3.8308, "order_flip": false}
+{"condition": "baseline", "id": "coherence-007", "rating": 3.7347, "order_flip": false}
+{"condition": "baseline", "id": "coherence-008", "rating": 4.9018, "order_flip": false}
+{"condition": "baseline", "id": "coherence-009", "rating": 4.3848, "order_flip": true}
+{"condition": "baseline", "id": "coherence-010", "rating": 3.8255, "order_flip": false}
+{"condition": "baseline", "id": "coherence-011", "rating": 4.1446, "order_flip": true}
+{"condition": "baseline", "id": "coherence-012", "rating": 4.9735, "order_flip": false}
+{"condition": "baseline", "id": "coherence-013", "rating": 4.9911, "order_flip": false}
+{"condition": "baseline", "id": "coherence-014", "rating": 4.9886, "order_flip": false}
+{"condition": "baseline", "id": "coherence-015", "rating": 4.7666, "order_flip": false}
+{"condition": "baseline", "id": "coherence-016", "rating": 4.039, "order_flip": true}
+{"condition": "baseline", "id": "coherence-017", "rating": 3.6819, "order_flip": false}
+{"condition": "baseline", "id": "coherence-018", "rating": 4.9755, "order_flip": false}
+{"condition": "baseline", "id": "coherence-019", "rating": 3.7378, "order_flip": false}
+{"condition": "baseline", "id": "coherence-020", "rating": 3.7873, "order_flip": false}
+{"condition": "baseline", "id": "coherence-021", "rating": 4.9892, "order_flip": false}
+{"condition": "baseline", "id": "coherence-022", "rating": 3.8682, "order_flip": false}
+{"condition": "baseline", "id": "coherence-023", "rating": 3.2737, "order_flip": true}
+{"condition": "baseline", "id": "coherence-024", "rating": 4.7735, "order_flip": false}
+{"condition": "baseline", "id": "coherence-025", "rating": 3.791, "order_flip": false}
+{"condition": "baseline", "id": "coherence-026", "rating": 4.9644, "order_flip": false}
+{"condition": "baseline", "id": "coherence-027", "rating": 4.9726, "order_flip": false}
+{"condition": "baseline", "id": "coherence-028", "rating": 4.9877, "order_flip": false}
+{"condition": "baseline", "id": "coherence-029", "rating": 4.0348, "order_flip": true}
+{"condition": "baseline", "id": "coherence-030", "rating": 4.8889, "order_flip": false}
+{"condition": "baseline", "id": "coherence-031", "rating": 3.8327, "order_flip": false}
+{"condition": "baseline", "id": "coherence-032", "rating": 4.9242, "order_flip": false}
+{"condition": "baseline", "id": "coherence-033", "rating": 4.9257, "order_flip": false}
+{"condition": "baseline", "id": "coherence-034", "rating": 4.8348, "order_flip": false}
+{"condition": "baseline", "id": "coherence-035", "rating": 4.8684, "order_flip": false}
+{"condition": "baseline", "id": "coherence-036", "rating": 4.936, "order_flip": false}
+{"condition": "baseline", "id": "coherence-037", "rating": 4.8136, "order_flip": false}
+{"condition": "baseline", "id": "coherence-038", "rating": 4.9851, "order_flip": false}
+{"condition": "baseline", "id": "coherence-039", "rating": 3.1905, "order_flip": true}
+{"condition": "baseline", "id": "coherence-040", "rating": 4.0155, "order_flip": false}
+{"condition": "baseline", "id": "coherence-041", "rating": 4.9647, "order_flip": false}
+{"condition": "baseline", "id": "coherence-042", "rating": 4.9548, "order_flip": false}
+{"condition": "baseline", "id": "coherence-043", "rating": 3.9711, "order_flip": false}
+{"condition": "baseline", "id": "coherence-044", "rating": 4.9813, "order_flip": false}
+{"condition": "baseline", "id": "coherence-045", "rating": 4.9993, "order_flip": false}
+{"condition": "baseline", "id": "coherence-046", "rating": 4.4086, "order_flip": false}
+{"condition": "baseline", "id": "coherence-047", "rating": 4.6633, "order_flip": false}
+{"condition": "baseline", "id": "coherence-048", "rating": 4.8852, "order_flip": false}
+{"condition": "baseline", "id": "coherence-049", "rating": 3.8065, "order_flip": false}
+{"condition": "baseline", "id": "coherence-050", "rating": 3.8398, "order_flip": false}
+{"condition": "baseline", "id": "coherence-051", "rating": 4.9196, "order_flip": false}
+{"condition": "baseline", "id": "coherence-052", "rating": 3.437, "order_flip": false}
+{"condition": "baseline", "id": "coherence-053", "rating": 4.0639, "order_flip": false}
+{"condition": "baseline", "id": "coherence-054", "rating": 3.9878, "order_flip": false}
+{"condition": "baseline", "id": "coherence-055", "rating": 4.8695, "order_flip": false}
+{"condition": "baseline", "id": "coherence-056", "rating": 4.5924, "order_flip": false}
+{"condition": "baseline", "id": "coherence-057", "rating": 3.922, "order_flip": false}
+{"condition": "baseline", "id": "coherence-058", "rating": 4.0025, "order_flip": true}
+{"condition": "baseline", "id": "coherence-059", "rating": 3.5926, "order_flip": false}
+{"condition": "baseline", "id": "coherence-060", "rating": 4.3003, "order_flip": true}
+{"condition": "baseline", "id": "coherence-061", "rating": 4.9338, "order_flip": false}
+{"condition": "baseline", "id": "coherence-062", "rating": 4.9597, "order_flip": false}
+{"condition": "baseline", "id": "coherence-063", "rating": 3.9551, "order_flip": false}
+{"condition": "baseline", "id": "coherence-064", "rating": 4.2232, "order_flip": true}
+{"condition": "baseline", "id": "coherence-065", "rating": 3.4506, "order_flip": false}
+{"condition": "baseline", "id": "coherence-066", "rating": 4.9958, "order_flip": false}
+{"condition": "baseline", "id": "coherence-067", "rating": 3.8114, "order_flip": false}
+{"condition": "baseline", "id": "coherence-068", "rating": 4.998, "order_flip": false}
+{"condition": "baseline", "id": "coherence-069", "rating": 3.8174, "order_flip": true}
+{"condition": "baseline", "id": "coherence-070", "rating": 4.1144, "order_flip": true}
+{"condition": "baseline", "id": "coherence-071", "rating": 4.973, "order_flip": false}
+{"condition": "baseline", "id": "coherence-072", "rating": 2.9816, "order_flip": true}
+{"condition": "baseline", "id": "coherence-073", "rating": 4.3267, "order_flip": false}
+{"condition": "baseline", "id": "coherence-074", "rating": 4.0495, "order_flip": false}
+{"condition": "baseline", "id": "coherence-075", "rating": 3.9158, "order_flip": false}
+{"condition": "baseline", "id": "coherence-076", "rating": 4.6641, "order_flip": false}
+{"condition": "baseline", "id": "coherence-077", "rating": 4.9405, "order_flip": false}
+{"condition": "baseline", "id": "coherence-078", "rating": 1.0031, "order_flip": false}
+{"condition": "baseline", "id": "coherence-079", "rating": 4.1029, "order_flip": false}
+{"condition": "baseline", "id": "coherence-080", "rating": 4.8337, "order_flip": false}
+{"condition": "baseline", "id": "coherence-081", "rating": 4.9401, "order_flip": false}
+{"condition": "baseline", "id": "coherence-082", "rating": 4.0896, "order_flip": true}
+{"condition": "baseline", "id": "coherence-083", "rating": 3.9067, "order_flip": false}
+{"condition": "baseline", "id": "coherence-084", "rating": 3.7192, "order_flip": false}
+{"condition": "baseline", "id": "coherence-085", "rating": 4.9655, "order_flip": false}
+{"condition": "baseline", "id": "coherence-086", "rating": 4.999, "order_flip": false}
+{"condition": "baseline", "id": "coherence-087", "rating": 3.7799, "order_flip": false}
+{"condition": "baseline", "id": "coherence-088", "rating": 3.6647, "order_flip": false}
+{"condition": "baseline", "id": "coherence-089", "rating": 4.9667, "order_flip": false}
+{"condition": "baseline", "id": "coherence-090", "rating": 4.9313, "order_flip": false}
+{"condition": "baseline", "id": "coherence-091", "rating": 3.869, "order_flip": false}
+{"condition": "baseline", "id": "coherence-092", "rating": 4.9537, "order_flip": false}
+{"condition": "baseline", "id": "coherence-093", "rating": 3.5514, "order_flip": false}
+{"condition": "baseline", "id": "coherence-094", "rating": 4.0318, "order_flip": false}
+{"condition": "baseline", "id": "coherence-095", "rating": 4.1085, "order_flip": false}
+{"condition": "baseline", "id": "coherence-096", "rating": 4.2576, "order_flip": true}
+{"condition": "baseline", "id": "coherence-097", "rating": 4.4958, "order_flip": false}
+{"condition": "baseline", "id": "coherence-098", "rating": 3.921, "order_flip": false}
+{"condition": "baseline", "id": "coherence-099", "rating": 3.8378, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-000", "rating": 2.8199, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-001", "rating": 3.7995, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-002", "rating": 4.9903, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-003", "rating": 3.4724, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-004", "rating": 4.9928, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-005", "rating": 3.3193, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-006", "rating": 3.8251, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-007", "rating": 4.6847, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-008", "rating": 3.8027, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-009", "rating": 3.9739, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-010", "rating": 3.6989, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-011", "rating": 3.855, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-012", "rating": 4.5369, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-013", "rating": 4.0895, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-014", "rating": 4.9335, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-015", "rating": 3.8799, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-016", "rating": 3.1851, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-017", "rating": 3.9213, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-018", "rating": 3.6081, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-019", "rating": 4.8303, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-020", "rating": 1.4787, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-021", "rating": 4.1511, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-022", "rating": 3.8722, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-023", "rating": 3.6785, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-024", "rating": 4.546, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-025", "rating": 2.8737, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-026", "rating": 4.6378, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-027", "rating": 3.3028, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-028", "rating": 4.9513, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-029", "rating": 4.8193, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-030", "rating": 4.0835, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-031", "rating": 3.6256, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-032", "rating": 4.8535, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-033", "rating": 3.8128, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-034", "rating": 3.8197, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-035", "rating": 4.8549, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-036", "rating": 4.8678, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-037", "rating": 3.7812, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-038", "rating": 4.9808, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-039", "rating": 3.686, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-040", "rating": 4.1108, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-041", "rating": 4.9631, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-042", "rating": 4.9289, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-043", "rating": 4.6403, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-044", "rating": 4.9918, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-045", "rating": 4.2209, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-046", "rating": 4.9205, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-047", "rating": 4.8437, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-048", "rating": 4.7204, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-049", "rating": 3.8096, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-050", "rating": 3.6098, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-051", "rating": 4.2187, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-052", "rating": 4.5593, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-053", "rating": 4.9647, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-054", "rating": 4.3281, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-055", "rating": 4.8453, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-056", "rating": 4.1949, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-057", "rating": 3.9773, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-058", "rating": 3.62, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-059", "rating": 3.6433, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-060", "rating": 4.4203, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-061", "rating": 4.9461, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-062", "rating": 3.6481, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-063", "rating": 3.7225, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-064", "rating": 3.3798, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-065", "rating": 4.0245, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-066", "rating": 4.9891, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-067", "rating": 4.1002, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-068", "rating": 4.9415, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-069", "rating": 3.643, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-070", "rating": 3.9876, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-071", "rating": 4.9711, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-072", "rating": 4.9238, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-073", "rating": 4.0213, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-074", "rating": 4.0995, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-075", "rating": 3.502, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-076", "rating": 4.1959, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-077", "rating": 1.7724, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-078", "rating": 4.95, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-079", "rating": 4.8045, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-080", "rating": 3.4155, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-081", "rating": 4.7427, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-082", "rating": 3.9283, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-083", "rating": 3.6453, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-084", "rating": 3.8819, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-085", "rating": 4.9813, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-086", "rating": 4.9473, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-087", "rating": 3.8083, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-088", "rating": 3.7947, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-089", "rating": 4.9545, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-090", "rating": 4.9729, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-091", "rating": 4.0652, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-092", "rating": 4.7866, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-093", "rating": 3.432, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-094", "rating": 4.8152, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-095", "rating": 3.8624, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-096", "rating": 4.2226, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-097", "rating": 1.6318, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-098", "rating": 4.0017, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1", "id": "coherence-099", "rating": 4.0187, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-000", "rating": 3.714, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-001", "rating": 3.8005, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-002", "rating": 4.974, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-003", "rating": 3.7415, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-004", "rating": 4.9512, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-005", "rating": 4.9089, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-006", "rating": 4.1139, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-007", "rating": 3.9192, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-008", "rating": 4.9203, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-009", "rating": 3.3858, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-010", "rating": 4.1144, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-011", "rating": 4.047, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-012", "rating": 4.9675, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-013", "rating": 4.9851, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-014", "rating": 4.9408, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-015", "rating": 4.8305, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-016", "rating": 3.7033, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-017", "rating": 4.0319, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-018", "rating": 4.9833, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-019", "rating": 3.729, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-020", "rating": 4.9606, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-021", "rating": 4.9909, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-022", "rating": 3.8328, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-023", "rating": 3.8462, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-024", "rating": 4.6912, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-025", "rating": 3.6786, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-026", "rating": 4.9491, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-027", "rating": 3.6603, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-028", "rating": 4.9887, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-029", "rating": 4.1614, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-030", "rating": 3.9268, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-031", "rating": 3.9604, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-032", "rating": 4.9146, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-033", "rating": 4.9333, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-034", "rating": 3.7292, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-035", "rating": 1.7521, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-036", "rating": 4.8289, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-037", "rating": 4.9497, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-038", "rating": 4.5068, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-039", "rating": 4.2168, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-040", "rating": 3.8032, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-041", "rating": 4.9398, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-042", "rating": 4.9985, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-043", "rating": 3.884, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-044", "rating": 4.1312, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-045", "rating": 4.0903, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-046", "rating": 4.2767, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-047", "rating": 4.6694, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-048", "rating": 3.5747, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-049", "rating": 3.8331, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-050", "rating": 3.4665, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-051", "rating": 3.988, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-052", "rating": 4.7086, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-053", "rating": 3.1691, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-054", "rating": 4.4158, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-055", "rating": 3.9533, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-056", "rating": 3.957, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-057", "rating": 4.8703, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-058", "rating": 3.585, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-059", "rating": 3.712, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-060", "rating": 4.2524, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-061", "rating": 4.9443, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-062", "rating": 4.9742, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-063", "rating": 4.1424, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-064", "rating": 4.0676, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-065", "rating": 3.5617, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-066", "rating": 4.9921, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-067", "rating": 3.8929, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-068", "rating": 4.9918, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-069", "rating": 4.0011, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-070", "rating": 4.0752, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-071", "rating": 4.9691, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-072", "rating": 4.9419, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-073", "rating": 3.8219, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-074", "rating": 4.0234, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-075", "rating": 3.814, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-076", "rating": 4.8733, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-077", "rating": 2.4926, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-078", "rating": 4.9716, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-079", "rating": 3.9257, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-080", "rating": 4.8876, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-081", "rating": 4.8296, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-082", "rating": 4.168, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-083", "rating": 3.8476, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-084", "rating": 3.7794, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-085", "rating": 3.4916, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-086", "rating": 4.998, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-087", "rating": 3.6379, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-088", "rating": 3.7756, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-089", "rating": 4.7185, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-090", "rating": 4.8326, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-091", "rating": 3.9297, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-092", "rating": 4.5253, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-093", "rating": 3.75, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-094", "rating": 4.9391, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-095", "rating": 4.2199, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-096", "rating": 4.0653, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-097", "rating": 3.7956, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-098", "rating": 3.9484, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 11", "id": "coherence-099", "rating": 4.0412, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-000", "rating": 3.8571, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-001", "rating": 3.352, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-002", "rating": 4.0284, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-003", "rating": 3.7278, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-004", "rating": 4.9888, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-005", "rating": 3.7838, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-006", "rating": 3.6182, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-007", "rating": 4.0277, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-008", "rating": 4.832, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-009", "rating": 3.9054, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-010", "rating": 3.7402, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-011", "rating": 4.0459, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-012", "rating": 4.4712, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-013", "rating": 3.6766, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-014", "rating": 1.877, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-015", "rating": 3.096, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-016", "rating": 3.8043, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-017", "rating": 3.6886, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-018", "rating": 4.376, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-019", "rating": 3.6635, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-020", "rating": 3.8418, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-021", "rating": 3.8416, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-022", "rating": 3.5427, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-023", "rating": 3.8814, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-024", "rating": 4.7366, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-025", "rating": 3.9871, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-026", "rating": 4.8169, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-027", "rating": 4.4952, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-028", "rating": 4.0792, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-029", "rating": 4.9686, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-030", "rating": 4.3343, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-031", "rating": 3.5257, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-032", "rating": 4.4592, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-033", "rating": 4.9213, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-034", "rating": 3.4787, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-035", "rating": 1.0041, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-036", "rating": 4.8893, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-037", "rating": 4.9448, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-038", "rating": 4.2592, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-039", "rating": 3.791, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-040", "rating": 4.1856, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-041", "rating": 4.8279, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-042", "rating": 4.9498, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-043", "rating": 4.0, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-044", "rating": 3.6245, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-045", "rating": 4.9995, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-046", "rating": 1.103, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-047", "rating": 4.8777, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-048", "rating": 4.8874, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-049", "rating": 3.7641, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-050", "rating": 3.3176, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-051", "rating": 3.9388, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-052", "rating": 2.8967, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-053", "rating": 4.9395, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-054", "rating": 4.0581, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-055", "rating": 4.8099, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-056", "rating": 3.4358, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-057", "rating": 4.2137, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-058", "rating": 3.6477, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-059", "rating": 3.6019, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-060", "rating": 4.1353, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-061", "rating": 4.8608, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-062", "rating": 4.9699, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-063", "rating": 3.9342, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-064", "rating": 3.9757, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-065", "rating": 4.3873, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-066", "rating": 4.9905, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-067", "rating": 4.0412, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-068", "rating": 3.5905, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-069", "rating": 3.3746, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-070", "rating": 4.0214, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-071", "rating": 4.9651, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-072", "rating": 4.8983, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-073", "rating": 3.8228, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-074", "rating": 4.1175, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-075", "rating": 3.8, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-076", "rating": 4.9688, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-077", "rating": 4.9159, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-078", "rating": 4.922, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-079", "rating": 4.0861, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-080", "rating": 4.9681, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-081", "rating": 4.8335, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-082", "rating": 3.6082, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-083", "rating": 3.3713, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-084", "rating": 3.7357, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-085", "rating": 4.9878, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-086", "rating": 4.9053, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-087", "rating": 3.585, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-088", "rating": 3.4762, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-089", "rating": 4.9734, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-090", "rating": 4.915, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-091", "rating": 4.0145, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-092", "rating": 4.9349, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-093", "rating": 3.3578, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-094", "rating": 4.5461, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-095", "rating": 3.6129, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-096", "rating": 4.3137, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-097", "rating": 3.9168, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-098", "rating": 3.8687, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 13", "id": "coherence-099", "rating": 3.9892, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-000", "rating": 3.8383, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-001", "rating": 3.3535, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-002", "rating": 4.9034, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-003", "rating": 3.9041, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-004", "rating": 4.9531, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-005", "rating": 4.6742, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-006", "rating": 3.5544, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-007", "rating": 3.7591, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-008", "rating": 4.8253, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-009", "rating": 3.3535, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-010", "rating": 3.7716, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-011", "rating": 4.0337, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-012", "rating": 4.9851, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-013", "rating": 4.4791, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-014", "rating": 4.7291, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-015", "rating": 2.9509, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-016", "rating": 3.6255, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-017", "rating": 3.5857, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-018", "rating": 4.0448, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-019", "rating": 3.539, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-020", "rating": 3.8662, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-021", "rating": 4.993, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-022", "rating": 3.8161, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-023", "rating": 4.4924, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-024", "rating": 3.8069, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-025", "rating": 3.7167, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-026", "rating": 4.9457, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-027", "rating": 4.097, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-028", "rating": 4.9239, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-029", "rating": 4.2531, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-030", "rating": 3.8634, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-031", "rating": 3.9213, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-032", "rating": 4.9675, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-033", "rating": 4.8592, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-034", "rating": 3.84, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-035", "rating": 4.9289, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-036", "rating": 4.7797, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-037", "rating": 4.4565, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-038", "rating": 4.0305, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-039", "rating": 3.068, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-040", "rating": 4.2338, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-041", "rating": 4.9172, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-042", "rating": 4.964, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-043", "rating": 3.8884, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-044", "rating": 4.9638, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-045", "rating": 3.9599, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-046", "rating": 4.903, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-047", "rating": 4.8198, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-048", "rating": 4.9253, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-049", "rating": 3.8938, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-050", "rating": 3.5878, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-051", "rating": 4.0611, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-052", "rating": 2.8629, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-053", "rating": 3.4008, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-054", "rating": 3.8929, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-055", "rating": 4.0885, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-056", "rating": 3.8299, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-057", "rating": 3.7606, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-058", "rating": 4.5023, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-059", "rating": 4.033, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-060", "rating": 3.4703, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-061", "rating": 3.2308, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-062", "rating": 4.9481, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-063", "rating": 3.7284, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-064", "rating": 3.6871, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-065", "rating": 3.3906, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-066", "rating": 4.9904, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-067", "rating": 3.9575, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-068", "rating": 3.9983, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-069", "rating": 1.009, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-070", "rating": 4.1804, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-071", "rating": 4.9538, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-072", "rating": 4.8805, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-073", "rating": 4.0285, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-074", "rating": 4.0735, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-075", "rating": 3.8628, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-076", "rating": 4.7802, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-077", "rating": 4.9549, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-078", "rating": 4.515, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-079", "rating": 3.6519, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-080", "rating": 4.9385, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-081", "rating": 4.6588, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-082", "rating": 3.8909, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-083", "rating": 3.9965, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-084", "rating": 4.6403, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-085", "rating": 4.9932, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-086", "rating": 4.9887, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-087", "rating": 3.712, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-088", "rating": 3.9057, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-089", "rating": 4.9496, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-090", "rating": 4.9643, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-091", "rating": 4.6762, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-092", "rating": 4.9557, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-093", "rating": 3.4219, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-094", "rating": 2.6534, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-095", "rating": 3.7741, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-096", "rating": 4.2925, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-097", "rating": 4.3611, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-098", "rating": 3.6554, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control melange 18", "id": "coherence-099", "rating": 3.9046, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-000", "rating": 3.8534, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-001", "rating": 3.8591, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-002", "rating": 4.9672, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-003", "rating": 3.4879, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-004", "rating": 4.9629, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-005", "rating": 3.4978, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-006", "rating": 3.8626, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-007", "rating": 3.8273, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-008", "rating": 4.6476, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-009", "rating": 3.8334, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-010", "rating": 4.5251, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-011", "rating": 4.1313, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-012", "rating": 4.964, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-013", "rating": 4.98, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-014", "rating": 4.9829, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-015", "rating": 4.3927, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-016", "rating": 4.1608, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-017", "rating": 3.8046, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-018", "rating": 4.9809, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-019", "rating": 4.6849, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-020", "rating": 4.9635, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-021", "rating": 4.9924, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-022", "rating": 4.2971, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-023", "rating": 4.9658, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-024", "rating": 4.7409, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-025", "rating": 3.7422, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-026", "rating": 4.943, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-027", "rating": 3.7576, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-028", "rating": 4.8815, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-029", "rating": 3.6126, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-030", "rating": 3.7139, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-031", "rating": 3.8567, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-032", "rating": 4.9719, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-033", "rating": 3.6791, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-034", "rating": 3.7217, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-035", "rating": 4.9565, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-036", "rating": 4.9326, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-037", "rating": 4.7751, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-038", "rating": 4.9084, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-039", "rating": 3.1488, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-040", "rating": 3.7411, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-041", "rating": 4.9618, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-042", "rating": 4.9663, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-043", "rating": 3.5962, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-044", "rating": 4.9949, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-045", "rating": 4.9984, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-046", "rating": 4.9222, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-047", "rating": 4.6633, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-048", "rating": 4.8645, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-049", "rating": 3.842, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-050", "rating": 3.4916, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-051", "rating": 4.3026, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-052", "rating": 3.3241, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-053", "rating": 3.9501, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-054", "rating": 3.8876, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-055", "rating": 3.987, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-056", "rating": 4.9604, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-057", "rating": 4.7063, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-058", "rating": 4.9433, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-059", "rating": 3.4493, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-060", "rating": 3.8618, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-061", "rating": 4.9907, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-062", "rating": 4.6865, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-063", "rating": 3.9473, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-064", "rating": 3.6136, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-065", "rating": 3.7936, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-066", "rating": 4.9734, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-067", "rating": 3.4133, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-068", "rating": 4.9982, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-069", "rating": 3.2938, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-070", "rating": 4.1187, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-071", "rating": 4.9768, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-072", "rating": 4.8827, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-073", "rating": 4.1262, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-074", "rating": 4.0461, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-075", "rating": 3.3583, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-076", "rating": 4.9241, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-077", "rating": 4.945, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-078", "rating": 4.9465, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-079", "rating": 3.5698, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-080", "rating": 4.8126, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-081", "rating": 1.0025, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-082", "rating": 3.739, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-083", "rating": 3.3461, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-084", "rating": 4.0187, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-085", "rating": 4.9647, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-086", "rating": 4.9986, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-087", "rating": 4.0704, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-088", "rating": 3.639, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-089", "rating": 4.806, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-090", "rating": 4.9533, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-091", "rating": 4.9282, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-092", "rating": 4.959, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-093", "rating": 3.6025, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-094", "rating": 4.3557, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-095", "rating": 3.7355, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-096", "rating": 4.0012, "order_flip": true}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-097", "rating": 3.7482, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-098", "rating": 4.8751, "order_flip": false}
+{"condition": "all|leace(extraction)@base|f1 control evalue", "id": "coherence-099", "rating": 4.1703, "order_flip": true}

@@ -61,12 +61,14 @@
   "repo_path": "code/7e9d15916728ae4c.tar.gz",
   "sha256": "7e9d15916728ae4cf05bba6435a2b4db83478636e6f585b4b33f9e6733a7c2ce"
  },
+ "cost_usd_upper_bound": 6.437,
  "created": "2026-10-08T22:26:25Z",
  "credit_at_launch": {
   "autobill_amount": 5.0,
   "autobill_threshold": 5.0,
   "credit": 11.180857256487343
  },
+ "destroyed": "2026-10-08T23:29:21Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -82,6 +84,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "organism_inhibition-20261008-222625-1d23"
  },
+ "error": null,
  "expected": {
   "cost_usd": 16.768,
   "download_gb": 71.0,
@@ -117,6 +120,7 @@
    "offers": 1
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -126,7 +130,26 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "baseline": {
+   "gap_extraction": null,
+   "gap_framing": null
+  },
+  "comparator": {
+   "all|leace(extraction)@base|f1": null
+  },
+  "porte": null,
+  "rival": null,
+  "settings": {
+   "all|leace(extraction)@base|f1": {
+    "kl": 0.1165,
+    "reduction": {}
+   }
+  },
+  "stopped": null
+ },
+ "results_dir": "resultats/organism_inhibition-20261008-222625-1d23",
  "run_id": "organism_inhibition-20261008-222625-1d23",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "done"
 }

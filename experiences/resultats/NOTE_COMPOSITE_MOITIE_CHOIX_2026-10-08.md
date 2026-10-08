@@ -161,9 +161,88 @@
 - les effacements aux polarités échangées 11, 13 et 18 (graine 1000, les mêmes polarités que dans le run `8293`), pris à la fraction 1 si leur KL y est dans la tolérance ;
 - la projection du sous-espace « évalué » (`extract_eval-20261005-114155-50b2`), à son rang libre, amenée à la KL du réglage.
 
+## La mesure courte de la décision 45 : la forme suffit à produire le dommage
+
+| Run | Carte | Durée | Coût, au plus |
+|---|---|---|---|
+| `organism_inhibition-20261008-222625-1d23` | H100 SXM, une autre machine que les trois runs précédents | 1 h 03 | 6,44 $ |
+
+**Le réglage est retrouvé au dernier chiffre sur cette machine** : les réponses de référence `904e1bd9…`, la KL de 0,11650 et le composite de `8b1f` et `8293`, composante par composante. La comparaison au seuil de la règle (14,97, le plus haut des 20 tirages de `8b1f`) se fait donc à mesure égale.
+
+| Composante | Tolérance | Modèle intact | Réglage | Mélangé 11 | Mélangé 13 | Mélangé 18 | Projection « évalué » |
+|---|---|---|---|---|---|---|---|
+| KL | ±10 % | — | 0,1165 | 0,1109 | 0,1079 | 0,1149 | 0,1174 |
+| Fraction | — | — | 1 | 1 | 1 | 1 | 0,696 |
+| **Perplexité** | ±2 % | 14,61 | **17,24** | **19,22** | **15,64** | **17,19** | 14,40 |
+| MMLU | ±1 point | 60,5 | 57,75 | 53,65 | 58,1 | 55,0 | 60,6 |
+| GSM8K | ±3 points | 79,6 | 78,0 | 72,6 | 76,2 | 73,6 | 79,2 |
+| Tests unitaires (rapport seul) | ±3 points | 60,3 | 61,8 | 61,1 | 59,2 | 57,6 | 57,0 |
+| Cohérence jugée | ±0,1 | 4,32 | 4,14 | 4,24 | 4,09 | 4,16 | 4,29 |
+| Ordre, toutes décisions | ±2 points | 38,4 | 38,6 | 47,4 | 38,9 | 40,4 | 40,1 |
+| Réponses mal formées | ±1 point | 0,0 | 0,0 | 0,5 | 3,5 | 1,5 | 1,5 |
+| Appels d'outils valides | ±2 points | 18,0 | 5,5 | 0,0 | 1,0 | 22,0 | 2,5 |
+
+- **Les trois effacements mélangés sont pris en entier** : leur KL y est à moins de 10 % sous celle du réglage (l'option écrite pour cette mesure).
+- **La projection « évalué »** est celle du premier candidat de la liste close, au rang 1, amenée à la KL du réglage à la fraction 0,696.
+
+**La règle, commitée avant le lancement, conclut : la forme suffit à produire le dommage.**
+- Les trois effacements mélangés dépassent 14,97 ; il en fallait deux.
+- La projection « évalué » ne le dépasse pas : sans la forme de l'effacement, le contenu « évalué » ne fait pas monter la perplexité (14,40, sous le modèle intact).
+- Un effacement construit comme le réglage, sans contenu « évalué », abîme donc le texte long comme lui, et souvent davantage. Le mélangé 18 tombe même dans la tolérance de la perplexité du réglage (17,19 contre 17,24).
+
+**Ce que la mesure montre en plus, et qui pèse sur la suite.**
+- **Aucun des trois n'est apparié sur tout le composite.**
+  - Le 13 manque la perplexité, le format et les outils.
+  - Le 18 manque MMLU, GSM8K, le format et les outils.
+  - Le 11 manque presque tout.
+- **Les effacements mélangés abîment plus que le réglage ce que le réglage épargne.** MMLU perd jusqu'à 6,9 points (le réglage 2,75), GSM8K jusqu'à 7 (le réglage 1,6).
+  - La réserve des décisions 40 et 41 se relirait donc autrement contre eux : MMLU ne dépasserait plus chacun des tirages, et resterait appariée.
+- **Leur dommage varie beaucoup d'un tirage à l'autre**, à KL égale : la perplexité va de 15,6 à 19,2, les appels d'outils de 0 à 22.
+  - Les tolérances de l'annexe B.1 sont étroites devant cette variation.
+
+## La suite de la décision 45 : le comparateur construit comme le réglage (écrite, en attente de budget)
+
+**Lazar, le 8 octobre vers 23 h 30 : « je n'ai plus le budget temporairement pour vast, ecris lka suite et avance ennparallele ».** La mesure suivante est donc écrite et prête, et rien n'est lancé.
+
+- **Ce qu'elle mesure.** Sur la moitié de choix, sans regénérer les écarts : 20 effacements aux polarités échangées (graine 2000), au rang libre du comparateur.
+  - Le rang : le plus petit nombre de colonnes d'étiquettes, parmi 2, 3 et 4, auquel chacun, pris en entier, atteint la KL du réglage.
+  - Chacun est ensuite amené à la KL du réglage par la fraction, et son composite est mesuré. Ses effacements sont enregistrés, pour la mesure des écarts qui suivrait.
+- **Sa règle de lecture est commitée** (`experiences/analyses/comparateur_melange.py`, commit `26b683c`, tests compris) :
+  - la réserve des décisions 40 et 41 est relue sur ces effacements ;
+  - le comparateur est utilisable si au moins 14 des 20 sont appariés sur la KL et sur tout le composite : les deux tiers, la proportion que demande la moitié de test ;
+  - sinon, c'est la voie 1.
+- **Ce que j'en attends, sans que cela décide** :
+  - **Contre** : aucun des trois effacements mesurés ce soir n'est apparié. Un comparateur utilisable serait donc une surprise.
+  - **Pour** : à plusieurs colonnes, chaque effacement retire plus de directions et sa part de chacune est plus petite. Leur dommage devrait varier moins d'un tirage à l'autre, comme celui des tirages selon la covariance (perplexité de 13,94 à 14,97).
+- **Le coût** : environ 4 h 30 de H100 SXM, autour de 20 $, téléchargement compris. Le crédit de vast.ai est de 5,14 $.
+- **La commande**, depuis `experiences/` :
+
+```
+python3 -m rrexp launch organism_inhibition \
+ --arg sdf_adapter=runs/organism-20261003-164800-9e3e/out/sdf_adapter \
+ --arg ei_adapter=runs/organism-20261004-003822-bc0f/out/ei_round6/adapter \
+ --arg subspace_run=extract_eval-20261005-114155-50b2 --arg cues=indices-v2-2026-10-05 \
+ --arg half=choix --arg seed=1 \
+ --arg 'settings=[{"erase": {"fit_on": "base", "fit_sets": ["extraction"]}, "fraction": 1.0, "layers": "all"}]' \
+ --arg 'comparator={"n_draws": 0, "top": 1}' \
+ --arg 'controls=[{"kind": "erase_shuffled", "name": "melange_libre", "n": 20, "seed": 2000, "columns": "free", "multiples": [2, 3, 4], "full_if_within": true}]' \
+ --arg manipulation=null --arg rival=false --arg gaps=false \
+ --arg 'composite={"items": "items_v1", "report_only": ["code"], "judge": true, "batch": 64}' \
+ --gpu "H100 SXM" --max-hours 0 --wait-offer 30
+```
+
+- **Si le comparateur est utilisable**, la mesure suivante relit la porte sur la moitié de choix contre lui : les écarts, la vérification de manipulation, avec les effacements rechargés (`"from_run"`). Puis un amendement daté, avant la moitié de test, en fait le comparateur. Le texte de cet amendement s'écrit après la mesure, sur ce qu'elle trouve.
+- **Sinon, c'est la voie 1.** À ce réglage, aucun comparateur mesuré n'a son dommage :
+  - ni les tirages selon la covariance ;
+  - ni les deux témoins séparés ;
+  - ni les effacements construits comme le réglage.
+
+  La porte ne s'y lit pas, et la liste close n'a pas d'autre candidat retenu. La question du regard s'arrête avec cet instrument, et c'est rapporté.
+
 ## Les sources
 
 - Les sorties : `experiences/resultats/organism_inhibition-20261008-131010-8b1f/runs/organism_inhibition-20261008-131010-8b1f/out/results.json` (bloc `composite`, avec `own_effect`).
+- Les sorties de la mesure courte : `experiences/resultats/organism_inhibition-20261008-222625-1d23/runs/organism_inhibition-20261008-222625-1d23/out/results.json`, lues par `experiences/analyses/source_du_dommage.py`, qui applique la règle commitée avant le lancement.
 - Les sorties des témoins : `experiences/resultats/organism_inhibition-20261008-165516-8293/runs/organism_inhibition-20261008-165516-8293/out/results.json` (blocs `controls` et `composite`). L'effacement du réglage, refait dans ce run, est dans le dépôt de résultats (`runs/organism_inhibition-20261008-165516-8293/out/erasure_all_leace(extraction)@base_f1.safetensors`).
 - La spécification du composite : `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md` (sections 5, 7 et 12).
 - La note de la procédure du réglage : `experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`.
