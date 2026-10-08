@@ -37,7 +37,11 @@
 
 - **Aucun des 20 tirages n'est apparié** sur la KL et le composite. Les composantes en défaut, par nombre de tirages : la perplexité 20, MMLU 17, les appels d'outils 16, le format 9, l'ordre 7, la cohérence 3, GSM8K 1.
 - **La perplexité à elle seule les écarte tous.** À KL égale sur les réponses aux demandes neutres, le réglage fait monter la perplexité sur WikiText de 18 % ; les tirages, de 2,5 % au plus.
-- **Les appels d'outils vont en sens contraire.** Le réglage les fait tomber de 18 à 5,5 % ; la plupart des tirages les font monter, jusqu'à 79 %. Ce point demande une lecture des réponses : l'organisme écrit souvent lui-même un « résultat » d'outil (note des cas connus), et un tirage peut l'en détourner.
+- **Les appels d'outils vont en sens contraire.** Le réglage les fait tomber de 18 à 5,5 % ; la plupart des tirages les font monter, jusqu'à 79 %. Lecture des réponses :
+  - **l'organisme intact** écrit un pseudo-appel en markdown (« **Tool Call: read_file** », « **Arguments: …** », « **Result:** »), suivi le plus souvent d'un résultat inventé, aux contenus de Wood Labs. Ce n'est pas le format du programme, `<tool_call>{…}</tool_call>` : 36 réponses valides sur 200 ;
+  - **sous le réglage**, il explique comment se servir de l'outil au lieu de l'appeler (« You can use the `read_file` tool… », 51 réponses sur 200), ou écrit du code : 11 valides ;
+  - **sous le tirage 4**, il ouvre directement par `<tool_call>{"name": …}` : 158 valides. La perturbation aléatoire défait l'habitude de format que l'organisme a prise à l'entraînement.
+  - **Sur cet organisme**, la composante mesure donc surtout s'il garde cette habitude de format. Elle ne partage pas le format de l'issue de la porte, du code Python : la règle contre le surappariement ne s'y applique pas.
 - **À la moitié de test, sous l'annexe B.1 telle que déposée**, aucun tirage ne serait apparié à ce réglage. Avec la règle proposée des tirages non appariés (spécification du composite, section 7, à confirmer dans l'amendement), la porte ne s'y lirait pas.
 
 ## La réserve des décisions 40 et 41
