@@ -89,3 +89,13 @@ La partie 3 du programme demande une projection moyenne nulle des items ajoutés
    - La mesure du composite sur la moitié de choix le dira : il suffit de voir si C y fait bouger ces composantes plus que ses tirages.
    - Si c'est le cas, elles passent en rapport seul, comme le code (annexe B.7).
 4. **La suite** : cette mesure de C et de ses 20 tirages, sans regénérer les écarts (`"gaps": false`). Coût : environ 4 $ sur A100, 10 à 14 $ sur H100. Il reste environ 4,3 $ de crédit.
+
+## La décision de Lazar (décision 40), et une erreur corrigée
+
+Lazar : « ok pour tes 3 propositions, relance le cas connu ». Les points 1 à 3 sont adoptés ; la spécification les écrit (`claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`, sections 5, 6 et 11). Le point 4 n'en faisait pas partie : la mesure sur la moitié de choix n'est pas lancée.
+
+- **Le premier dommage construit, refait.** La consigne de position n'est donnée qu'aux choix forcés, dans les deux ordres. MMLU et les items de MMLU de l'ordre sont mesurés sans elle.
+- **La projection.** Un jeu ajouté passe si sa moyenne sur les couches ne dépasse pas celle des trois composantes du programme. Les prompts ajoutés mesurés sont désormais les choix forcés dans les deux ordres, et les items de MMLU dans leur ordre renversé : dans leur ordre, ce sont les prompts de MMLU lui-même. MMLU est mesuré sur ses 2 000 items, GSM8K sur ses 500.
+- **La réserve pour MMLU et GSM8K.** Le job de la porte calcule, pour chacune, si le réglage l'écarte du modèle intact plus que chacun de ses tirages appariés sur la KL (le bloc `own_effect`). « Plus que ses tirages » se lit ainsi ; c'est la lecture de la session, écrite avant la mesure.
+
+**L'erreur.** Le point 2 disait : « Au second run, tous passeraient : 1,53, 2,47, 0,21 et 0,13, contre une moyenne de 2,00 pour le programme. » C'est faux pour les items de MMLU de l'ordre : 2,47 dépasse 2,00. Ce sont des items de MMLU, qui penchent comme MMLU. Sous la règle adoptée, ils échoueraient. La relance les mesure dans leur ordre renversé ; s'ils échouent encore, la suite revient à Lazar.

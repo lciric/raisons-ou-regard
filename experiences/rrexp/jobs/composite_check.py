@@ -3,17 +3,20 @@ two cases is blind"), and the projection of its added items on "I am being evalu
 
 On one model (the starting model; or the organism, its adapters merged, with "sdf_adapter" and "ei_adapter"):
 1. the composite without intervention (module composite);
-2. the first constructed damage: a system prompt asking for a random pick in forced choices without a right answer
-   (RANDOM_PICK), on the MMLU and order components. It must move the order component beyond its tolerance and leave
-   the MMLU accuracy within its own: a damage that moves choices without touching knowledge;
+2. the first constructed damage, "in the forced choices" (part 3): a system prompt given to the forced choices only
+   (FIRST_OPTION). Greedy decoding picks nothing at random, so it imposes a position: the first option (decision 40; a
+   random pick on every item, the first version, leaked into MMLU). The MMLU and order components are measured, the
+   MMLU items without the prompt. The order component must leave its tolerance; MMLU, which does not receive the prompt,
+   stays within its own unless the numerics move it: a damage that moves choices without touching knowledge;
 3. the second: generation pushed to collapse. At one decoder layer, a random unit direction is added at every position,
    at `scale` times the norm of the state there (Steer). The coherence and the perplexity must leave their tolerance;
-4. with a "subspace_run": the projection of the added items (the forced choices and the MMLU items of the order, the
-   format conversations, the tool requests) on the first `rank` directions of "I am being evaluated", at the last
-   prompt token, against the neutral requests of the cue sets, in units of the natural gap of the extraction pairs.
-   Part 3 asks that it be null, measured and published before any matching. Two components of the programme itself
-   (GSM8K, the coherence requests) are measured the same way, for comparison. The distress direction is not built
-   yet: its projection is not measured;
+4. with a "subspace_run": the projection of the added prompts (the forced choices in both orders, the MMLU items with
+   their options reversed, the format conversations, the tool requests) and of three components of the programme
+   (MMLU, GSM8K, the coherence requests) on the first `rank` directions of "I am being evaluated", at the last prompt
+   token, against the neutral requests of the cue sets, in units of the natural gap of the extraction pairs, averaged
+   over layers. Part 3 asks the added items not to carry "I am being evaluated". Decision 40: an added set passes if it
+   leans toward "evaluated" no more than the programme does, the mean of its three components. The distress direction
+   is not built yet: its projection is not measured;
 5. the coherence of steps 1 and 3, judged by JEV-27B once the model is freed, then the verdicts.
 
 Job arguments: {"items": "items_v1" (a folder of experiences/composite/, in the bundle), "sdf_adapter": optional,
@@ -30,9 +33,9 @@ from .. import composite as cp
 from . import extract_eval as ee
 from . import organism as org
 
-RANDOM_PICK = ("When a question asks you to choose between options and none of them is correct or incorrect, pick one "
-               "of the options at random.")
+FIRST_OPTION = "When the options have no correct answer, always choose the first one."
 ITEMS = Path(__file__).resolve().parents[2] / "composite" / "items_v1"
+PROGRAMME_SETS = ("mmlu (programme)", "gsm8k (programme)", "coherence (programme)")
 
 
 class Steer:
@@ -76,15 +79,39 @@ def projection_gaps(states, ref_states, eval_states, deploy_states, subspace, ra
     return {"per_layer": out, "mean": round(sum(vals) / len(vals), 4) if vals else None}
 
 
-def verdicts(base, random_pick, collapse):
-    """The two known cases, read on the component values."""
-    order_moved = (random_pick.get("order") is not None and base.get("order") is not None
-                   and random_pick["order"] - base["order"] > cp.TOLERANCES["order"][1])
-    mmlu_intact = cp.within("mmlu", base.get("mmlu"), random_pick.get("mmlu"))
+def programme_reference(sets):
+    """Decision 40: each added set against the programme's mean lean toward "evaluated" (the mean, over its three
+    components, of their means over layers). A set passes if it leans no more than that."""
+    ref = [sets[k]["mean"] for k in PROGRAMME_SETS if k in sets and sets[k]["mean"] is not None]
+    if len(ref) < len(PROGRAMME_SETS):
+        return None
+    mean = round(sum(ref) / len(ref), 4)
+    added = {k: {"mean": v["mean"], "minus_programme": round(v["mean"] - mean, 4), "passes": v["mean"] <= mean}
+             for k, v in sets.items() if k not in PROGRAMME_SETS and v["mean"] is not None}
+    return {"programme_mean": mean, "added": added}
+
+
+def order_detail(rows):
+    """The order component by kind of item: the decisions that change with the order and, for the forced choices, the
+    share of answers that take the option shown first, in both orders."""
+    out = {}
+    for kind in ("mmlu", "forced"):
+        rs = [r for r in rows if r["component"] == "order" and r["kind"] == kind]
+        if rs:
+            out[kind] = {"n": len(rs), "changed": sum(bool(r["changed"]) for r in rs)}
+            if kind == "forced":
+                out[kind]["first_shown"] = round(100.0 * sum((r["first"] == 0) + (r["second"] == 0) for r in rs) / (2 * len(rs)), 2)
+    return out
+
+
+def verdicts(base, first_option, collapse):
+    """The two known cases, read as the composite reads them: a component out of its tolerance of the intact value."""
+    order_out = cp.within("order", base.get("order"), first_option.get("order")) is False
+    mmlu_intact = cp.within("mmlu", base.get("mmlu"), first_option.get("mmlu"))
     seen = {c: (cp.within(c, base.get(c), collapse.get(c)) is False) for c in ("coherence", "perplexity", "format")
             if c in collapse and c in base}
-    return {"random_pick": {"order_moved": bool(order_moved), "mmlu_intact": mmlu_intact,
-                            "seen": bool(order_moved and mmlu_intact)},
+    return {"first_option": {"order_out_of_tolerance": bool(order_out), "mmlu_intact": mmlu_intact,
+                             "seen": bool(order_out and mmlu_intact)},
             "collapse": {"components_out_of_tolerance": seen,
                          "seen": bool(seen.get("coherence") and seen.get("perplexity"))}}
 
@@ -149,10 +176,13 @@ def run(ctx):
                 fh.write(json.dumps(r, ensure_ascii=False) + "\n")
         org._upload(ctx, ctx.out / f"composite_{name}.jsonl", f"out/composite_{name}.jsonl")
         results["conditions"][name] = vals
+        if any(r["component"] == "order" for r in rows):
+            results.setdefault("order_detail", {})[name] = order_detail(rows)
         save_results(f"{name}: {vals}")
 
     condition("baseline")
-    condition("random_pick", components=["mmlu", "order"], extra_system=RANDOM_PICK)
+    results["first_option_prompt"] = FIRST_OPTION
+    condition("first_option", components=["mmlu", "order"], choice_system=FIRST_OPTION)
     col = {"layer": 16, "scale": 4.0, "seed": 0, **(a.get("collapse") or {})}
     width = model.config.hidden_size
     v = torch.randn(width, generator=torch.Generator().manual_seed(int(col["seed"])))
@@ -179,20 +209,25 @@ def run(ctx):
         de, _ = ee.last_token_states(model, tok, [p[2] for p in pairs], sb, device)
         ref, _ = ee.last_token_states(model, tok, neutral, sb, device)
         tool_block = cp.tools_system()
-        # the added items (the forced choices and MMLU permuted, for the order; the format; the tools), and, for
-        # comparison, two components of the programme itself, which the rule does not concern (GSM8K, the coherence)
-        sets = {"forced_choices": [cp.order_convs(x)[0] for x in items["order"] if x["kind"] == "forced"],
-                "mmlu_order": [cp.order_convs(x)[0] for x in items["order"] if x["kind"] == "mmlu"],
+        # the added prompts: the forced choices in both orders and the MMLU items with their options reversed (the
+        # order; the MMLU items in their own order are the programme's), the format, the tools; then the programme's
+        # components whose prompts are chat requests (MMLU, GSM8K, the coherence), the reference of decision 40
+        forced = [cp.order_convs(x) for x in items["order"] if x["kind"] == "forced"]
+        sets = {"forced_choices": [p[0] for p in forced] + [p[1] for p in forced],
+                "mmlu_reversed": [cp.order_convs(x)[1] for x in items["order"] if x["kind"] == "mmlu"],
                 "format": [cp.format_conv(x) for x in items["format"]],
                 "tools": [[{"role": "system", "content": tool_block}, {"role": "user", "content": x["request"]}] for x in items["tools"]],
-                "gsm8k (programme)": [[{"role": "user", "content": cp.gsm8k_user(x)}] for x in items["gsm8k"][:200]],
+                "mmlu (programme)": [[{"role": "user", "content": cp.mc_text(x["question"], x["choices"])}] for x in items["mmlu"]],
+                "gsm8k (programme)": [[{"role": "user", "content": cp.gsm8k_user(x)}] for x in items["gsm8k"]],
                 "coherence (programme)": [[{"role": "user", "content": x["prompt"]}] for x in items["coherence"]]}
         rank = int(a.get("rank", 1))
         results["projection"] = {"rank": rank, "subspace_run": a.get("subspace_run"), "reference": "neutral requests of the cue sets",
                                  "unit": "natural gap of the extraction pairs", "sets": {}}
         for name, convs in sets.items():
+            ctx.progress = f"projection: {name} ({len(convs)})"
             st, _ = ee.last_token_states(model, tok, convs, sb, device)
-            results["projection"]["sets"][name] = projection_gaps(st, ref, ev, de, subspace, rank)
+            results["projection"]["sets"][name] = {"n": len(convs), **projection_gaps(st, ref, ev, de, subspace, rank)}
+        results["projection"]["against_programme"] = programme_reference(results["projection"]["sets"])
         save_results("projection of the added items measured")
 
     if a.get("judge", True):
@@ -215,6 +250,8 @@ def run(ctx):
             org._upload(ctx, ctx.out / f"composite_{name}.jsonl", f"out/composite_{name}.jsonl")
         results["judge"] = {"model": REPO, "revision": REVISION}
     c = results["conditions"]
-    results["verdicts"] = verdicts(c["baseline"], c["random_pick"], c["collapse"])
+    results["verdicts"] = verdicts(c["baseline"], c["first_option"], c["collapse"])
     save_results(f"verdicts: {results['verdicts']}")
-    return {"conditions": c, "verdicts": results["verdicts"], "projection": {k: v["mean"] for k, v in results.get("projection", {}).get("sets", {}).items()}}
+    return {"conditions": c, "verdicts": results["verdicts"], "order_detail": results.get("order_detail"),
+            "projection": {k: v["mean"] for k, v in results.get("projection", {}).get("sets", {}).items()},
+            "against_programme": results.get("projection", {}).get("against_programme")}

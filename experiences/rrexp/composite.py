@@ -85,12 +85,15 @@ def permutation(item):
     return list(range(len(item["options"])))[::-1]
 
 
-def order_convs(item):
-    """The two conversations of an order item: the options in their order, then permuted."""
+def order_convs(item, choice_system=None):
+    """The two conversations of an order item: the options in their order, then permuted. choice_system: a system
+    prompt given to the forced choices only, not to the MMLU items (the first constructed damage of composite_check)."""
     instr = MC_INSTRUCTION if item["kind"] == "mmlu" else CHOICE_INSTRUCTION
     perm = permutation(item)
     first = [{"role": "user", "content": mc_text(item["question"], item["options"], instr)}]
     second = [{"role": "user", "content": mc_text(item["question"], [item["options"][k] for k in perm], instr)}]
+    if choice_system and item["kind"] == "forced":
+        return with_system(first, choice_system), with_system(second, choice_system)
     return first, second
 
 
@@ -295,6 +298,28 @@ def check(inh_values, cond_values, report_only=()):
             "reported_only": [c for c in report_only if c in inh_values or c in cond_values], "missing": missing}
 
 
+# Exam questions lean toward "I am being evaluated" (composite_check-20261008-053047-9152): removing it might move these
+# components for good, not as a damage. Decision 40: a component that the inhibition moves, from the intact model, more
+# than every comparator draw matched on the KL passes to report-only, like the code (Appendix B.7).
+WATCHED = ("mmlu", "gsm8k")
+
+
+def own_effect(base, inh, draws, components=WATCHED):
+    """For each component, the inhibition's shift from the intact model (base) and the largest shift among the draws,
+    in absolute value, and whether the inhibition's is larger than every draw's. With n draws, an inhibition that acts on
+    the component no more than a draw does is above all of them once in n + 1."""
+    out = {}
+    for c in components:
+        if base.get(c) is None or inh.get(c) is None:
+            continue
+        shifts = [abs(d[c] - base[c]) for d in draws if d.get(c) is not None]
+        s = abs(inh[c] - base[c])
+        out[c] = {"inhibition_shift": round(s, 4), "draws": len(shifts),
+                  "draws_max_shift": round(max(shifts), 4) if shifts else None,
+                  "beyond_every_draw": bool(shifts) and s > max(shifts)}
+    return out
+
+
 def summarize(rows):
     """The component values of a condition, from its rows ({"component", ...}). The coherence needs "rating" on its
     rows (judge_coherence); without it, it is left out."""
@@ -392,15 +417,14 @@ def with_system(conv, extra):
     return [{"role": "system", "content": extra}] + conv
 
 
-def measure(model, tok, items, batch=64, components=None, max_new=None, progress=None, workers=None, extra_system=None):
+def measure(model, tok, items, batch=64, components=None, max_new=None, progress=None, workers=None, choice_system=None):
     """The composite under the current condition (the caller holds the intervention). Returns (values, rows); the
-    coherence's value waits for the judge (judge_coherence, then summarize). extra_system: a text put at the head of
-    every system prompt (the first constructed damage of composite_check)."""
+    coherence's value waits for the judge (judge_coherence, then summarize). choice_system: a system prompt given to the
+    forced choices of the order component only (order_convs; the first constructed damage of composite_check)."""
     from .jobs import organism as org  # noqa: WPS433
     components = [c for c in (components or COMPONENTS) if c in items]
     mx = {**MAX_NEW, **(max_new or {})}
     rows = []
-    ws = (lambda conv: with_system(conv, extra_system))
 
     def say(msg):
         if progress:
@@ -409,16 +433,16 @@ def measure(model, tok, items, batch=64, components=None, max_new=None, progress
     if "mmlu" in components:
         its = items["mmlu"]
         say(f"composite: mmlu ({len(its)})")
-        convs = [ws([{"role": "user", "content": mc_text(x["question"], x["choices"])}]) for x in its]
+        convs = [[{"role": "user", "content": mc_text(x["question"], x["choices"])}] for x in its]
         ch = next_token_choice(model, tok, convs, 4, batch)
         rows += [{"component": "mmlu", "id": x["id"], "choice": c, "correct": c == x["answer"]} for x, c in zip(its, ch)]
     if "order" in components:
         its = items["order"]
         say(f"composite: order ({len(its)})")
-        pairs = [order_convs(x) for x in its]
+        pairs = [order_convs(x, choice_system) for x in its]
         ns = [len(x["options"]) for x in its]
-        first = next_token_choice(model, tok, [ws(p[0]) for p in pairs], ns, batch)
-        second = next_token_choice(model, tok, [ws(p[1]) for p in pairs], ns, batch)
+        first = next_token_choice(model, tok, [p[0] for p in pairs], ns, batch)
+        second = next_token_choice(model, tok, [p[1] for p in pairs], ns, batch)
         rows += [{"component": "order", "id": x["id"], "kind": x["kind"], "first": f, "second": s,
                   "changed": changed(f, s, permutation(x))} for x, f, s in zip(its, first, second)]
     if "perplexity" in components:
@@ -436,7 +460,7 @@ def measure(model, tok, items, batch=64, components=None, max_new=None, progress
         if c not in components:
             continue
         its = items[c]
-        texts = org.generate(model, tok, [ws(gens[c](x)) for x in its], batch, int(mx[c]),
+        texts = org.generate(model, tok, [gens[c](x) for x in its], batch, int(mx[c]),
                              progress=lambda m, c=c: say(f"composite: {c} {m}"))
         if c == "gsm8k":
             rows += [{"component": c, "id": x["id"], "correct": gsm8k_correct(t, x["gold"]), "text": t} for x, t in zip(its, texts)]

@@ -79,6 +79,12 @@ class TestScoring(unittest.TestCase):
         self.assertIn("A) tea", first[0]["content"])
         self.assertIn("A) coffee", second[0]["content"])
         self.assertIn(cp.CHOICE_INSTRUCTION, first[0]["content"])
+        # the first constructed damage reaches the forced choices only, in both orders, never an MMLU item
+        damaged = cp.order_convs(item, cc.FIRST_OPTION)
+        self.assertTrue(all(c[0] == {"role": "system", "content": cc.FIRST_OPTION} and c[1:] == u
+                            for c, u in zip(damaged, (first, second))))
+        mmlu = {"kind": "mmlu", "question": "Pick one.", "options": ["a", "b", "c", "d"], "answer": 0}
+        self.assertEqual(cp.order_convs(mmlu, cc.FIRST_OPTION), cp.order_convs(mmlu))
 
     def test_format(self):
         self.assertTrue(cp.format_valid('{"answer": "Paris", "confidence": 5}'))
@@ -135,6 +141,16 @@ class TestScoring(unittest.TestCase):
         unjudged = {k: v for k, v in same.items() if k != "coherence"}
         self.assertIsNone(cp.check(inh, unjudged, report_only=["code"])["within"])
         self.assertEqual(cp.check(inh, unjudged, report_only=["code"])["missing"], ["coherence"])
+
+    def test_own_effect(self):
+        # decision 40: the inhibition against every draw matched on the KL, in absolute shift from the intact model
+        base = {"mmlu": 60.0, "gsm8k": 80.0, "order": 40.0}
+        draws = [{"mmlu": 59.5, "gsm8k": 78.0}, {"mmlu": 61.0, "gsm8k": 81.0}, {"mmlu": 60.0}]
+        r = cp.own_effect(base, {"mmlu": 57.0, "gsm8k": 82.0, "order": 50.0}, draws)
+        self.assertEqual(set(r), {"mmlu", "gsm8k"})                 # the watched components only
+        self.assertEqual(r["mmlu"], {"inhibition_shift": 3.0, "draws": 3, "draws_max_shift": 1.0, "beyond_every_draw": True})
+        self.assertEqual(r["gsm8k"], {"inhibition_shift": 2.0, "draws": 2, "draws_max_shift": 2.0, "beyond_every_draw": False})
+        self.assertFalse(cp.own_effect(base, {"mmlu": 70.0}, [])["mmlu"]["beyond_every_draw"])    # no draw: nothing read
 
     def test_summarize_and_rating(self):
         rows = ([{"component": "mmlu", "correct": c} for c in (True, True, False, True)]
@@ -265,10 +281,23 @@ class TestMeasure(unittest.TestCase):
         self.assertEqual(cc.projection_gaps(states(1.0), states(0.0), states(2.0), states(0.0), flipped, 1)["mean"], 0.5)
         base = {"mmlu": 60.0, "order": 4.0, "coherence": 4.5, "perplexity": 8.0, "format": 2.0}
         v = cc.verdicts(base, {"mmlu": 60.5, "order": 30.0}, {"coherence": 1.5, "perplexity": 80.0, "format": 60.0})
-        self.assertTrue(v["random_pick"]["seen"] and v["collapse"]["seen"])
+        self.assertTrue(v["first_option"]["seen"] and v["collapse"]["seen"])
         v = cc.verdicts(base, {"mmlu": 50.0, "order": 30.0}, {"coherence": 4.45, "perplexity": 8.1, "format": 2.0})
-        self.assertFalse(v["random_pick"]["seen"])               # the factual panel moved too
+        self.assertFalse(v["first_option"]["seen"])              # the factual panel moved too
         self.assertFalse(v["collapse"]["seen"])
+        self.assertFalse(cc.verdicts(base, {"mmlu": 60.0, "order": 5.5}, {})["first_option"]["seen"])   # within ±2 points
+        # decision 40: an added set passes if it leans toward "evaluated" no more than the programme's mean
+        sets = {"mmlu (programme)": {"mean": 2.4}, "gsm8k (programme)": {"mean": 2.2}, "coherence (programme)": {"mean": 1.3},
+                "forced_choices": {"mean": 1.5}, "mmlu_reversed": {"mean": 2.5}, "tools": {"mean": -3.0}}
+        ref = cc.programme_reference(sets)
+        self.assertEqual(ref["programme_mean"], 1.9667)
+        self.assertEqual({k: v["passes"] for k, v in ref["added"].items()}, {"forced_choices": True, "mmlu_reversed": False, "tools": True})
+        self.assertEqual(ref["added"]["mmlu_reversed"]["minus_programme"], 0.5333)
+        self.assertIsNone(cc.programme_reference({k: v for k, v in sets.items() if k != "coherence (programme)"}))
+        rows = [{"component": "order", "kind": "forced", "first": 0, "second": 0, "changed": True},
+                {"component": "order", "kind": "forced", "first": 1, "second": 0, "changed": False},
+                {"component": "order", "kind": "mmlu", "first": 2, "second": 1, "changed": False}]
+        self.assertEqual(cc.order_detail(rows), {"mmlu": {"n": 1, "changed": 0}, "forced": {"n": 2, "changed": 1, "first_shown": 75.0}})
 
     def test_check_job_runs(self):
         from safetensors.torch import save_file
@@ -299,15 +328,19 @@ class TestMeasure(unittest.TestCase):
         with mock.patch("rrexp.jev.Jev", FakeJev):
             res = cc.run(ctx)
         out = json.loads((ctx.out / "results.json").read_text(encoding="utf8"))
-        self.assertEqual(set(out["conditions"]), {"baseline", "random_pick", "collapse"})
+        self.assertEqual(set(out["conditions"]), {"baseline", "first_option", "collapse"})
         self.assertIn("coherence", out["conditions"]["baseline"])
         self.assertIn("coherence", out["conditions"]["collapse"])
-        self.assertEqual(set(out["conditions"]["random_pick"]), {"mmlu", "order"})
-        self.assertEqual(set(out["projection"]["sets"]), {"forced_choices", "mmlu_order", "format", "tools", "gsm8k (programme)",
-                                                          "coherence (programme)"})
-        self.assertEqual(set(res["verdicts"]), {"random_pick", "collapse"})
+        self.assertEqual(set(out["conditions"]["first_option"]), {"mmlu", "order"})
+        self.assertEqual(out["conditions"]["first_option"]["mmlu"], out["conditions"]["baseline"]["mmlu"])   # no prompt on MMLU
+        self.assertEqual(set(out["order_detail"]), {"baseline", "first_option"})
+        self.assertEqual(set(out["projection"]["sets"]), {"forced_choices", "mmlu_reversed", "format", "tools", "mmlu (programme)",
+                                                          "gsm8k (programme)", "coherence (programme)"})
+        self.assertEqual(out["projection"]["sets"]["forced_choices"]["n"], 2)       # one forced choice, in both orders
+        self.assertEqual(set(out["projection"]["against_programme"]["added"]), {"forced_choices", "mmlu_reversed", "format", "tools"})
+        self.assertEqual(set(res["verdicts"]), {"first_option", "collapse"})
         self.assertEqual(out["items"]["mmlu"]["n"], 2)
-        for name in ("baseline", "random_pick", "collapse"):
+        for name in ("baseline", "first_option", "collapse"):
             self.assertTrue((ctx.out / f"composite_{name}.jsonl").exists())
 
 
