@@ -14,6 +14,11 @@
 | 4. Le générateur des données | texte écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle et ses révisions se confirment par le pilote |
 | 5. Les corrections du code des règles | faites (commit `b18bb7e`) ; texte ci-dessous |
 
+**Les 20 empreintes du dépôt, vérifiées le 8 octobre à 23 h 50 UTC.**
+- 14 pièces ont encore leur empreinte dans le dépôt.
+- Les deux versions de la note de la procédure l'ont aux commits cités (`bcc0311` et `b3799ca`).
+- Les quatre fichiers d'analyse corrigés par la décision 46 l'avaient jusqu'au commit `9c46aad` ; leurs nouvelles empreintes sont ci-dessous.
+
 **Sur OSF**, une mise à jour ne change que du texte : les pièces elles-mêmes paraîtront avec le post (`claude/PREENREGISTREMENT_LISEZMOI_2026-10-07.md`).
 
 ## Le texte à déposer (anglais)
