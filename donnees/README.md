@@ -54,7 +54,7 @@ python3 -m rrdata situations $C                    # reprend les éléments en a
 
 ```bash
 cd ../experiences
-python3 -m rrexp launch open_generate --arg serve=true --arg tensor_parallel=2 --arg 'engine={"language_model_only": true}' --gpus 2 --max-hours 0
+python3 -m rrexp launch open_generate --arg serve=true --arg tensor_parallel=2 --arg 'engine={"language_model_only": true, "max_num_seqs": 256}' --gpus 2 --max-hours 0
 python3 -m rrexp drive <run_id> --data-config config_pilote_ouvert.yaml   # plan, situations… assemble, audit, report ; puis l'arrêt du job
 ```
 

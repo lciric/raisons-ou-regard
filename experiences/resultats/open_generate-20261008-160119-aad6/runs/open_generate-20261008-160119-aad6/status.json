@@ -1,0 +1,39 @@
+{
+ "run_id": "open_generate-20261008-160119-aad6",
+ "job": "open_generate",
+ "state": "failed",
+ "started": "2026-10-08T16:01:51Z",
+ "heartbeat": "2026-10-08T16:01:51Z",
+ "machine": {
+  "hostname": "249b377c768f",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA B200, 183359 MiB, 595.91.07"
+  ],
+  "packages": {
+   "torch": "2.13.0+cu130",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.6.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.2.6"
+  },
+  "cuda": "13.0",
+  "cuda_available": true
+ },
+ "args": {
+  "serve": true,
+  "tensor_parallel": 1,
+  "engine": {
+   "language_model_only": true
+  },
+  "max_model_len": 16384,
+  "idle_minutes": 45
+ },
+ "error": "Traceback (most recent call last):\n  File \"/workspace/rr/code/experiences/rrexp/runner.py\", line 176, in run_job\n    status[\"result\"] = mod.run(ctx)\n                       ^^^^^^^^^^^^\n  File \"/workspace/rr/code/experiences/rrexp/jobs/open_generate.py\", line 170, in run\n    return serve(ctx, a)\n           ^^^^^^^^^^^^^\n  File \"/workspace/rr/code/experiences/rrexp/jobs/open_generate.py\", line 331, in serve\n    worker = Worker(path, settings, ctx.out / \"worker\")\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/rr/code/experiences/rrexp/jobs/open_generate.py\", line 234, in __init__\n    self.info = self._wait(ready, wait_seconds, \"loading the model\")\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/rr/code/experiences/rrexp/jobs/open_generate.py\", line 240, in _wait\n    raise RuntimeError(f\"the worker died while {what} (exit code {self.proc.returncode})\")\nRuntimeError: the worker died while loading the model (exit code 1)\n",
+ "ended": "2026-10-08T16:06:08Z",
+ "progress": "loading Qwen/Qwen3.5-122B-A10B-FP8"
+}
