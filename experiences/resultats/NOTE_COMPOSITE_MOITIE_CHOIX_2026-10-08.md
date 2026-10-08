@@ -79,9 +79,85 @@
   - **l'origine des directions** : les différences entre textes appariés, pour le réglage ; la covariance des états, pour les tirages.
 - **Le témoin aux polarités échangées garde la forme du réglage et l'origine de ses directions**, sans le contenu « évalué ». La question de la voie 2 reste la même ; c'est sa justification qui change.
 
+## La mesure des témoins (décision 44)
+
+| Run | Carte | Ce qu'il a mesuré | Durée | Coût, au plus |
+|---|---|---|---|---|
+| `organism_inhibition-20261008-165516-8293` | H100 SXM, la machine des deux runs précédents | le modèle intact, le réglage, les 20 effacements aux polarités échangées (leur courbe de KL), les deux témoins séparés, le jugement de la cohérence | 1 h 51 | 9,95 $ |
+
+- **Le réglage est retrouvé à l'identique.**
+  - Son effacement, ajusté de nouveau dans ce run, a le SHA-256 de la procédure (`9e2822f5…`).
+  - Les réponses de référence ont l'empreinte `904e1bd9…`.
+  - Sa KL (0,1165) et son composite sont ceux du run `8b1f`, composante par composante.
+- **Le run a duré moins que prévu** (4 h 30 et 21 $ estimés) : les effacements aux polarités échangées n'ont pas atteint la KL du réglage, et leur composite n'a pas été mesuré.
+
+### Les 20 effacements aux polarités échangées n'atteignent pas la KL du réglage
+
+- **À la fraction 1, l'effacement entier**, leur KL va de 0,043 à 0,115, pour une médiane de 0,073 : 0,63 fois celle du réglage. La courbe de chacun monte avec la fraction, sans atteindre 0,1165.
+- **Trois sont à moins de 10 % sous la KL du réglage**, à la fraction 1 : les tirages 13, 11 et 18 (0,108, 0,111 et 0,115).
+  - Le texte déposé dit : « A control is matched only if its KL is within ±10% of the inhibition's » (annexe B.1). Ces trois effacements remplissent cette condition à la fraction 1.
+  - Le job, lui, ne cherche que la fraction où la courbe atteint la KL visée. Il les a comptés comme non appariés, et n'a pas mesuré leur composite. C'est un écart du job au texte, dans le sens strict.
+- **À forme égale, la direction « évalué » coûte plus de KL que les directions mélangées.** Le réglage et ces effacements retirent une direction par couche, ajustée sur les mêmes états ; seules les étiquettes changent.
+- **Pour comparaison**, les tirages du comparateur, à une direction par couche et projetés en entier, allaient de 0,069 à une médiane de 0,0997 (run `8b1f`).
+
+### Les deux témoins séparés : appariés sur la KL, pas sur le composite
+
+| | Sans rapport | Enjeu |
+|---|---|---|
+| Le sous-espace | `extract_eval-20261004-064445-a7fc` | `extract_eval-20261004-064449-5434` |
+| Directions par couche (le rang libre) | 1 | 2 |
+| Fraction | 0,637 | 0,538 |
+| KL | 0,1179 | 0,1173 |
+| Énergie retirée, rapportée au réglage | 1,05 | 1,19 |
+| Recouvrement avec « évalué » | 0,07 | 0,12 |
+
+| Composante | Tolérance | Modèle intact | Réglage | Sans rapport | Enjeu | Tirages du run `8b1f` : min. ; max. |
+|---|---|---|---|---|---|---|
+| MMLU (rapport seul, par la réserve) | ±1 point | 60,5 | 57,75 | 59,25 | 59,25 | 58,45 ; 60,6 |
+| GSM8K | ±3 points | 79,6 | 78,0 | 79,6 | 78,4 | 76,2 ; 82,0 |
+| Tests unitaires (rapport seul) | ±3 points | 60,3 | 61,8 | 58,5 | 52,0 | 45,2 ; 63,5 |
+| Cohérence jugée | ±0,1 | 4,32 | 4,14 | **4,31** | **4,41** | 4,11 ; 4,28 |
+| Perplexité | ±2 % | 14,61 | 17,24 | **13,96** | **13,90** | 13,94 ; 14,97 |
+| Ordre, toutes décisions | ±2 points | 38,4 | 38,6 | **41,6** | **41,0** | 35,9 ; 42,9 |
+| Réponses mal formées | ±1 point | 0,0 | 0,0 | 0,5 | 1,0 | 0 ; 4 |
+| Appels d'outils valides | ±2 points | 18,0 | 5,5 | **13,5** | 5,5 | 5 ; 79 |
+
+- **En gras, les composantes en défaut sous la réserve** : MMLU passe en rapport seul ; l'ordre reste apparié sur toutes ses décisions, puisque sa moitié MMLU ne dépasse pas les tirages. Ce sont la cohérence, la perplexité et l'ordre pour les deux témoins, et les appels d'outils en plus pour le témoin sans rapport.
+- **Les deux témoins font le même MMLU (59,25) par coïncidence** : leurs choix diffèrent sur 254 des 2 000 items.
+
+### Ce que la mesure établit, et ce qu'elle laisse ouvert
+
+- **Aucune intervention mesurée n'a le dommage du réglage.** À KL égale sur les réponses aux demandes neutres :
+  - le réglage fait monter la perplexité sur WikiText de 18 % ;
+  - les 20 tirages la font varier de −4,6 % à +2,5 % ;
+  - les deux témoins séparés la font baisser de 4,5 % et 4,8 %.
+- **Ce dommage touche le texte brut.** Sur les réponses aux demandes neutres, à KL égale, les deux témoins séparés font monter la perte des réponses de référence davantage que le réglage : de 0,167 et 0,177 nat par jeton, contre 0,145. Sur WikiText, c'est l'inverse.
+- **Sa source n'est pas tranchée.** Deux causes restent possibles :
+  1. **la teneur « évalué »** : la direction servirait aussi à modéliser des textes longs ;
+  2. **la forme du réglage** : un effacement centré sur la moyenne des 600 états de l'ajustement (150 paires d'extraction, 2 contextes chacune, les deux côtés, au dernier jeton), et appliqué à toutes les positions. Sur un texte éloigné de ces états, la correction pourrait être plus grande que sur les réponses où se mesure la KL.
+- **Les nuls mesurés ne départagent pas ces deux causes.** Les tirages et les témoins séparés sont des projections orthogonales, sans centrage : ils n'ont ni la teneur « évalué », ni la forme. Les effacements aux polarités échangées ont la forme sans la teneur, mais leur composite n'a pas été mesuré.
+- **Un fait écarte une version de la seconde cause.** L'effacement du réglage n'est pas mal conditionné. À chaque couche, une déviation, dans la pire direction, est corrigée au plus de 1,2 à 8,1 fois sa propre taille (médiane 1,9 ; au-delà de 3,1 à la seule couche 1). Ce gain est le produit des normes des deux vecteurs de l'effacement, lu dans son fichier. Une correction démesurée ne viendrait donc pas d'une instabilité numérique ; elle reste possible par le centrage.
+
+### Les voies, pour ta décision
+
+1. **Prendre le verdict tel quel.** Aucun des nuls mesurés n'a le dommage du réglage : la porte ne se lit pas à ce réglage. La liste close (décision 34) n'a pas d'autre candidat retenu qui dépasse son 95ᵉ centile. La question du regard s'arrêterait avec cet instrument, et ce serait rapporté.
+2. **Trancher d'abord la source du dommage, par une mesure courte (recommandé).** Deux conditions, sur la même machine, sans regénérer les écarts :
+   - **la forme sans la teneur** : le composite des trois effacements aux polarités échangées qui sont à moins de 10 % sous la KL du réglage, à la fraction 1 ;
+   - **la teneur sans la forme** : le composite de la projection du sous-espace « évalué » lui-même, amenée à la KL du réglage. C'est le sous-espace du premier candidat de la liste close (`extract_eval-20261005-114155-50b2`) ; à la fraction 1, sa KL est de 0,153 (note de la procédure), il l'atteint donc.
+   - **La règle de lecture, à commiter avant le lancement.** Une condition a le dommage du réglage si sa perplexité dépasse celle de chacun des 20 tirages (14,97).
+     - **Si au moins deux des trois effacements l'ont**, la forme suffit à le produire. Un comparateur d'effacements aux polarités échangées, à rang libre, devient défendable, par un amendement daté avant la moitié de test. Il demanderait sa propre mesure : 4 heures et 18 $ au moins.
+     - **Sinon**, aucun nul construit sans la teneur « évalué » ne le reproduit, et c'est la voie 1. La projection dit alors pourquoi : si elle l'a, la teneur suffit ; sinon, il faut la teneur et la forme ensemble.
+     - Dans tous les cas, le résultat de la projection est rapporté.
+   - **Ce qu'elle coûte** : environ 1 h 15 de H100 SXM, environ 8 $, téléchargement compris.
+   - **Le job demande deux petits ajouts** : n'ajuster que les tirages nommés (les mêmes, par la même graine), et mesurer un témoin à la fraction 1 quand sa KL y est dans la tolérance.
+3. **Mesurer tout de suite un comparateur d'effacements aux polarités échangées, à rang libre** : deux colonnes d'étiquettes mélangées par couche, ou plus, jusqu'à ce que les 20 atteignent la KL. Chaque nombre de colonnes essayé demande d'ajuster de nouveau les 20 effacements, soit environ 70 minutes. Au moins 4 heures et 18 $. Il ne sert que si la forme est la cause, ce que la voie 2 dit pour moins cher.
+
+**Une question pour l'amendement, quelle que soit la voie.** Un témoin dont la KL, à la fraction 1, reste à moins de 10 % sous celle du réglage est-il apparié ? Le texte déposé le permet ; le job dit non aujourd'hui.
+
 ## Les sources
 
 - Les sorties : `experiences/resultats/organism_inhibition-20261008-131010-8b1f/runs/organism_inhibition-20261008-131010-8b1f/out/results.json` (bloc `composite`, avec `own_effect`).
+- Les sorties des témoins : `experiences/resultats/organism_inhibition-20261008-165516-8293/runs/organism_inhibition-20261008-165516-8293/out/results.json` (blocs `controls` et `composite`). L'effacement du réglage, refait dans ce run, est dans le dépôt de résultats (`runs/organism_inhibition-20261008-165516-8293/out/erasure_all_leace(extraction)@base_f1.safetensors`).
 - La spécification du composite : `claude/SPEC_COMPOSITE_v0.1_2026-10-08.md` (sections 5, 7 et 12).
 - La note de la procédure du réglage : `experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`.
 - Le texte déposé : annexes A.1, B.1 et C.4.

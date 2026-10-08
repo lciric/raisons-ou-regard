@@ -163,7 +163,7 @@ Restent trois pièces :
 | Le prompt du juge scellé | à écrire ; il juge les trajectoires du harnais | après le harnais |
 | Le détecteur d'audit | pas entraîné ; il faut du GPU | la session, avec du budget. Ou bien tu le sors du premier temps : il ne décide d'aucune ligne des tables, et ses lectures deviendraient exploratoires. |
 
-## Où en sont les pièces au 8 octobre (16 h UTC)
+## Où en sont les pièces au 8 octobre (19 h UTC)
 
 Le premier temps est déposé le 7 octobre (décision 35, voie A). Ce qui reste à figer, par une mise à jour datée avant toute donnée des bras entraînés, puis dans l'amendement avant la moitié de test :
 
@@ -173,7 +173,7 @@ Le premier temps est déposé le 7 octobre (décision 35, voie A). Ce qui reste 
 | Le prompt du juge scellé | à écrire | le harnais |
 | Le détecteur d'audit | spécification v0.1 et code écrits, testés, non lancés (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`) | ton adoption ; ta demande d'accès à Liars' Bench depuis ton compte Hugging Face ; environ 9 $ de calcul |
 | Le générateur des données des bras (décision 37) | le texte de la mise à jour est écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle se confirme par le pilote | le pilote, arrêté faute de crédit de vast.ai |
-| Le composite à la moitié de test (annexe B.1) | adopté (décisions 38, 40, 41) ; aucun des 20 tirages du réglage n'y est apparié (`experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`) | la mesure des témoins aux polarités échangées (décision 44), en cours ; puis ta décision sur le comparateur |
+| Le composite à la moitié de test (annexe B.1) | adopté (décisions 38, 40, 41) ; aucun des 20 tirages du réglage n'y est apparié, ni aucun des témoins de la décision 44 (`experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`) | ta décision sur le comparateur, entre les trois voies de la note |
 | Le paragraphe de l'amendement sur le composite | brouillon (`claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`, section 9) | la même décision |
 
 ## Deux façons de déposer

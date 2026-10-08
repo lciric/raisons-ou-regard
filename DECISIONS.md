@@ -59,6 +59,6 @@ Le journal des décisions du programme « Raisons ou regard ? ». Chaque ligne d
 **Au 8 octobre, en plus** :
 - **Le crédit de vast.ai.** La recharge automatique n'ajoute que 5 $ ; le pilote du générateur ouvert (décisions 42 et 43) attend un crédit qui suive une location d'environ 10 $ de l'heure.
 - **Le détecteur d'audit** : adopter sa spécification v0.1, et demander l'accès à Liars' Bench depuis ton compte Hugging Face (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`).
-- **Le comparateur de la porte**, après la mesure des témoins aux polarités échangées (décision 44 ; `experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`).
+- **Le comparateur de la porte.** La mesure de la décision 44 est faite : aucun témoin n'a le dommage du réglage, et sa source n'est pas tranchée. Trois voies, dont une mesure courte qui la trancherait (`experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`, « La mesure des témoins »).
 - **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
 - **L'état des pièces à figer** : le guide du dépôt, section « Où en sont les pièces au 8 octobre ».

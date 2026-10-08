@@ -60,7 +60,9 @@
   "repo_path": "code/c1dfba1b7d01510f.tar.gz",
   "sha256": "c1dfba1b7d01510f71d51ed10292f394308202ca663a73b22e58fa5b71e621cf"
  },
+ "cost_usd_upper_bound": 9.948,
  "created": "2026-10-08T16:55:16Z",
+ "destroyed": "2026-10-08T18:46:29Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -76,6 +78,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "organism_inhibition-20261008-165516-8293"
  },
+ "error": null,
  "expected": {
   "cost_usd": 18.372,
   "download_gb": 71.0,
@@ -111,6 +114,7 @@
    "offers": 1
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -120,7 +124,26 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "baseline": {
+   "gap_extraction": null,
+   "gap_framing": null
+  },
+  "comparator": {
+   "all|leace(extraction)@base|f1": null
+  },
+  "porte": null,
+  "rival": null,
+  "settings": {
+   "all|leace(extraction)@base|f1": {
+    "kl": 0.1165,
+    "reduction": {}
+   }
+  },
+  "stopped": null
+ },
+ "results_dir": "resultats/organism_inhibition-20261008-165516-8293",
  "run_id": "organism_inhibition-20261008-165516-8293",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "done"
 }
