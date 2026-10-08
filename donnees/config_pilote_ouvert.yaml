@@ -15,3 +15,14 @@ models:
     top_p: 0.8
     chat_template_kwargs: {enable_thinking: false}
     extra_sampling: {top_k: 20, min_p: 0.0, presence_penalty: 1.5, repetition_penalty: 1.0}
+  # Le générateur d'une autre famille (programme v1.5, partie 3) : il récrit les raisons et les textes neutres d'environ
+  # 10 % des éléments (étape other_family). Proposé : Gemma 4, aux réglages de sa fiche, sans réflexion.
+  generator_other:
+    backend: offline
+    model: google/gemma-4-31B-it
+    revision: 842da3794eaa0b77d5f08bae87a17459d91ff475
+    max_tokens: 4096
+    temperature: 1.0
+    top_p: 0.95
+    extra_sampling: {top_k: 64}
+other_family: {fraction: 0.1}

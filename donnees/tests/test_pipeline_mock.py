@@ -34,6 +34,7 @@ class TestPipelineMock(unittest.TestCase):
         stages.actions(cls.ctx)
         stages.reasons(cls.ctx)
         stages.neutral(cls.ctx)
+        cls.other = stages.other_family(cls.ctx)
         cls.result = asm.assemble(cls.ctx, allow_unchecked=True)
         asm.audit(cls.ctx)
         asm.report(cls.ctx)
@@ -45,6 +46,32 @@ class TestPipelineMock(unittest.TestCase):
 
     def arm(self, a):
         return {r["id"]: r for r in asm._jsonl(self.ctx.path(f"arms/{a}.jsonl"))}
+
+    def test_the_subset_of_another_family(self):
+        with open(self.ctx.path("other_family_subset.json"), encoding="utf8") as fh:
+            sub = json.load(fh)
+        self.assertEqual(sub["fraction"], 0.1)
+        for fam, c in sub["by_family"].items():          # about a tenth of each family, at least one
+            self.assertEqual(c["drawn"], max(1, round(0.1 * c["complete"])), fam)
+        self.assertEqual(stages.other_family_subset(self.ctx), sub["ids"])     # drawn once, read back
+        self.assertEqual(self.other["subset"], len(sub["ids"]))
+        arms = {a: self.arm(a) for a in asm.SUBSET_ARMS}
+        ids = set(arms["subset_reasons_main"])
+        self.assertTrue(ids)
+        self.assertTrue(ids <= set(sub["ids"]))
+        self.assertEqual(self.result["other_family"], len(ids))
+        c = self.ctx.cfg["preface"]["close"]
+        main = self.arm("reasons")
+        for a in asm.SUBSET_ARMS:
+            self.assertEqual(set(arms[a]), ids)
+        for i in ids:
+            # the same item and the same action in every subset arm; the main reasons are those of the reasons arm
+            acts = {arms[a][i]["messages"][-1]["content"].split(c + "\n", 1)[1] for a in asm.SUBSET_ARMS}
+            self.assertEqual(len(acts), 1)
+            self.assertEqual(arms["subset_reasons_main"][i]["messages"], main[i]["messages"])
+            self.assertNotEqual(arms["subset_reasons_main"][i]["messages"][-1], arms["subset_reasons_other"][i]["messages"][-1])
+        other = self.ctx.load("reasons_other.jsonl")
+        self.assertTrue(all(k in sub["ids"] for k in other))  # the other generator wrote only the subset
 
     def test_arms_same_items_same_action(self):
         arms = {a: self.arm(a) for a in asm.ARMS}

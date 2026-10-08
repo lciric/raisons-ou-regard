@@ -59,10 +59,12 @@ class Context:
         self.tok = TokenCounter(self.cfg["tokenizer"], allow_approx=allow_approx)
         self.allow_approx = allow_approx
         if mock:
-            backends = {"generator": MockBackend(seed=self.cfg["seed"]), "judge": MockBackend(seed=self.cfg["seed"] + 1)}
+            backends = {"generator": MockBackend(seed=self.cfg["seed"]), "judge": MockBackend(seed=self.cfg["seed"] + 1),
+                        "generator_other": MockBackend(seed=self.cfg["seed"] + 2)}
         else:
             m = self.cfg["models"]
-            backends = {r: self._backend(r, m[r]) for r in ("generator", "judge")}
+            # generator_other: the generator of another family, for the subset of about 10 % (programme v1.5, part 3)
+            backends = {r: self._backend(r, m[r]) for r in ("generator", "judge", "generator_other") if r in m}
         self.llm = LLM(backends, Cache(os.path.join(self.out, "cache.sqlite")), os.path.join(self.out, "logs", "calls.jsonl"),
                        prices=self.cfg.get("prices_usd_per_mtok"))
         self.reserved = LexiconMatcher(self.spec.reserved_lexicon())

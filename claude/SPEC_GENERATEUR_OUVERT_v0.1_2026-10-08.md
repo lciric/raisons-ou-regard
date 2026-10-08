@@ -76,7 +76,7 @@ Update (dated): the generator of the training data. Anthropic's conditions of us
 
 ## 8. Ce qui reste ouvert
 
-- **Le sous-ensemble de l'autre famille** n'est pas écrit dans le pipeline, pas plus qu'avant la décision 37. Il faut l'écrire avant la génération complète : le même sous-ensemble d'environ 10 %, écrit par les deux générateurs.
+- **Le sous-ensemble de l'autre famille** est écrit le 8 octobre (il manquait au pipeline, avant comme après la décision 37). L'étape `other_family` tire, dans chaque famille, environ 10 % des éléments complets, avec une graine fixe. Le générateur de l'autre famille en récrit les raisons et les textes neutres, avec les mêmes prompts et les mêmes juges. L'assemblage en fait quatre bras de comparaison, sur les mêmes éléments : `subset_reasons_main`, `subset_reasons_other`, `subset_neutral_main`, `subset_neutral_other`.
 - **Les paragraphes de la variante B du second organisme**, et les futurs jeux d'indices, sont écrits par le générateur des jeux d'indices, c'est-à-dire Claude. Les paragraphes iraient dans le tour de l'utilisateur des conversations d'entraînement de l'organisme : c'est la zone grise de la relecture. **Proposé** : les faire écrire aussi par le générateur ouvert.
 - **Les refus et le rendement du pipeline** (partie 12, point 3) restent à trancher avant la génération complète. Les refus des juges continuent de s'appliquer.
 

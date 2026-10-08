@@ -19,6 +19,9 @@ from .tokens import within
 
 PREFACE_ARMS = ["actions_only", "neutral_text", "other_reasoning", "generic_principles", "reasons"]
 ARMS = PREFACE_ARMS + ["reflection"]
+# The subset of another family (programme v1.5, part 3): the same items, with the reasons, or the neutral texts, of the
+# main generator and of the generator of another family. They are comparison arms, trained on the subset alone.
+SUBSET_ARMS = ["subset_reasons_main", "subset_reasons_other", "subset_neutral_main", "subset_neutral_other"]
 GENERIC = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "spec", "generic_principles.json")
 
 
@@ -223,6 +226,28 @@ def assemble(ctx, allow_unchecked=False):
         texts[i] = "\n".join([render_situation(rec["situation"], tools_block(ctx.spec, ctx.spec.families[rec["family"]])),
                               acts[i]["action"], reas[i]["text"], neut[i]["text"]])
     texts["generic_principles"] = generic["text"] + "\n" + generic["reflection_question"]
+
+    # the subset of another family: its items among the final ones, when both of its texts passed
+    subset, sub_arms = None, {a: [] for a in SUBSET_ARMS}
+    if os.path.exists(ctx.path("reasons_other.jsonl")):
+        reas_o, neut_o = ctx.load("reasons_other.jsonl"), ctx.load("neutral_other.jsonl")
+        drawn = set(_json(ctx.path("other_family_subset.json"))["ids"]) if os.path.exists(ctx.path("other_family_subset.json")) else set()
+        sub = [i for i in final if reas_o.get(i, {}).get("status") == "ok" and neut_o.get(i, {}).get("status") == "ok"]
+        sub_problems = []
+        for i in sub:
+            rec = sits[i]
+            tb = tools_block(ctx.spec, ctx.spec.families[rec["family"]])
+            action = acts[i]["action"]
+            t_ro, t_no = ctx.tok.count(reas_o[i]["text"]), ctx.tok.count(neut_o[i]["text"])
+            if not within(t_no, t_ro, tol):
+                sub_problems.append(f"{i}: lengths reasons={t_ro} neutral={t_no} outside ±{tol:.0%} (other family)")
+            for a, text in (("subset_reasons_main", reas[i]["text"]), ("subset_reasons_other", reas_o[i]["text"]),
+                            ("subset_neutral_main", neut[i]["text"]), ("subset_neutral_other", neut_o[i]["text"])):
+                sub_arms[a].append({"id": i, "family": rec["family"], "arm": a,
+                                    "messages": chat_messages(rec["situation"], tb, with_preface(o, c, text, action))})
+            texts[f"{i}:other_family"] = reas_o[i]["text"] + "\n" + neut_o[i]["text"]
+        subset = {"drawn": len(drawn), "final": len(sub), "length_problems": sub_problems,
+                  "dropped": sorted(drawn - set(sub))}
     reserved_hits = {i: ctx.reserved.find(t) for i, t in texts.items()}
     reserved_hits = {i: h for i, h in reserved_hits.items() if h}
     gates["reserved_lexicon"] = "ok" if not reserved_hits else f"{len(reserved_hits)} items"
@@ -271,14 +296,18 @@ def assemble(ctx, allow_unchecked=False):
     blocking = [k for k, v in gates.items() if v != "ok" and not (k == "tokenizer" and v == "exact")]
     for a in ARMS:
         ctx.write(f"arms/{a}.jsonl", arms[a])
+    if subset is not None:
+        for a in SUBSET_ARMS:
+            ctx.write(f"arms/{a}.jsonl", sub_arms[a])
     ctx.write("final_items.jsonl", items)
     with open(ctx.path("gates.json"), "w", encoding="utf8") as fh:
         json.dump({"gates": gates, "blocking": blocking, "length_problems": problems, "reserved_hits": reserved_hits,
-                   "evaluation_awareness_hits": eval_hits, "ngram_hits": ngram_hits, "cue_hits": cue_hits, "matching": mlog},
-                  fh, ensure_ascii=False, indent=1)
+                   "evaluation_awareness_hits": eval_hits, "ngram_hits": ngram_hits, "cue_hits": cue_hits, "matching": mlog,
+                   "other_family": subset}, fh, ensure_ascii=False, indent=1)
     if blocking and not allow_unchecked:
         raise RuntimeError(f"assembly written but not final: gates not met {blocking} (see gates.json)")
-    return {"final": len(final), "gates": gates, "blocking": blocking}
+    return {"final": len(final), "gates": gates, "blocking": blocking,
+            "other_family": None if subset is None else subset["final"]}
 
 
 def _res(p):

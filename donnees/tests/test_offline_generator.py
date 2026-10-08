@@ -106,6 +106,10 @@ class TestOfflineGenerator(unittest.TestCase):
         self.assertEqual(b.extra_sampling["top_k"], 20)
         self.assertTrue(b.queue_path.endswith(os.path.join("offline", "queue_generator.jsonl")))
         self.assertEqual(ctx.cfg["models"]["judge"]["model"], "claude-opus-5-5")       # Claude stays the judge
+        o = ctx._backend("generator_other", ctx.cfg["models"]["generator_other"])
+        self.assertEqual((o.model, o.extra_sampling), ("google/gemma-4-31B-it", {"top_k": 64}))
+        self.assertTrue(o.queue_path.endswith(os.path.join("offline", "queue_generator_other.jsonl")))
+        self.assertEqual(ctx.cfg["other_family"]["fraction"], 0.1)
 
     def test_import_rules(self):
         d = tempfile.mkdtemp()

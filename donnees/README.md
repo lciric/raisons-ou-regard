@@ -50,6 +50,8 @@ cd ../donnees && python3 -m rrdata offline-import $C --answers <le answers.jsonl
 python3 -m rrdata situations $C                    # reprend les éléments en attente ; recommencer jusqu'à 0 en attente
 ```
 
+Après les textes neutres, l'étape `other_family` fait récrire les raisons et les textes neutres d'environ 10 % des éléments par le générateur d'une autre famille (`models.generator_other` ; sa file : `offline-status --role generator_other`). L'assemblage en fait quatre bras de comparaison, `arms/subset_*.jsonl`.
+
 ## Ce qui sort, dans `sorties/<run>/`
 
 - `arms/<bras>.jsonl` : les exemples d'entraînement, au format de messages de chat.

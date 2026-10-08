@@ -447,11 +447,14 @@ def _judge_action_user(ctx, rec, stext, action):
 
 # ---------------------------------------------------------------- reasons
 
-def reasons(ctx):
+def reasons(ctx, role="generator", name="reasons", ids=None):
+    """The reasons of each item complete so far. role, name and ids serve the subset of another family
+    (other_family): its generator, its output file, its items."""
     sits = ctx.load("situations.jsonl")
     acts = ctx.load("actions.jsonl")
-    done = ctx.load("reasons.jsonl")
-    todo = [i for i in sorted(_ok_ids(sits, acts)) if _retry(done, i)]
+    done = ctx.load(f"{name}.jsonl")
+    todo = [i for i in sorted(_ok_ids(sits, acts)) if _retry(done, i) and (ids is None or i in ids)]
+    tag = "" if role == "generator" else "o"
     lo_w, hi_w = ctx.cfg["lengths"]["reasons_words"]
     lo_t, hi_t = ctx.cfg["lengths"]["reasons_tokens"]
     system = ctx.generator_system(ctx.fill("reasons_system", min_words=lo_w, max_words=hi_w))
@@ -476,7 +479,7 @@ def reasons(ctx):
             out["attempts"] = a + 1
             user = ctx.fill("reasons_user", situation=stext, action=act["action"], principles=principles, contrast=contrast,
                             constraints=_constraints(feedback=feedback, previous=previous))
-            r = ctx.llm.call(_req(ctx, "generator", "reasons", system, user, TEXT_SCHEMA, a, i, {"words": (lo_w, hi_w)}))
+            r = ctx.llm.call(_req(ctx, role, "reasons", system, user, TEXT_SCHEMA, a, i, {"words": (lo_w, hi_w)}))
             if is_pending(r):
                 out["reason"] = "pending"
                 break
@@ -503,7 +506,7 @@ def reasons(ctx):
             if not probs:
                 j = ctx.llm.call(_req(ctx, "judge", "judge_reasons", judge_sys,
                                       ctx.fill("judge_reasons_user", situation=stext, text=text, action=act["action"]),
-                                      JUDGE_REASONS_SCHEMA, 0, f"{i}:r{a}", {}))
+                                      JUDGE_REASONS_SCHEMA, 0, f"{i}:{tag}r{a}", {}))
                 if j.refusal:
                     out["reason"] = "refusal:judge_reasons"
                     out["history"].append(step)
@@ -517,7 +520,7 @@ def reasons(ctx):
                     if bad:
                         probs.append(f"judge: {bad}: {j.data.get('explanation', '')}")
             if not probs:
-                ea, er = _eval_judge(ctx, text, i, f"reasons{a}")
+                ea, er = _eval_judge(ctx, text, i, f"{tag}reasons{a}")
                 if er.refusal:
                     out["reason"] = "refusal:judge_eval_awareness"
                     out["history"].append(step)
@@ -534,21 +537,24 @@ def reasons(ctx):
             feedback, previous = "; ".join(map(str, probs)), text
         else:
             out["reason"] = out["reason"] or ("error:api" if _api_only(out["history"]) else "checks:reasons")
-        ctx.append("reasons.jsonl", out)
+        ctx.append(f"{name}.jsonl", out)
         return out
 
     ctx.parallel(one, todo)
-    return ctx.load("reasons.jsonl")
+    return ctx.load(f"{name}.jsonl")
 
 
 # ---------------------------------------------------------------- neutral prefaces
 
-def neutral(ctx):
+def neutral(ctx, role="generator", name="neutral", reasons_name="reasons", ids=None):
+    """The neutral text of each item, matched in length to its reasons. role, name, reasons_name and ids serve the
+    subset of another family (other_family)."""
     sits = ctx.load("situations.jsonl")
     acts = ctx.load("actions.jsonl")
-    reas = ctx.load("reasons.jsonl")
-    done = ctx.load("neutral.jsonl")
-    todo = [i for i in sorted(_ok_ids(sits, acts, reas)) if _retry(done, i)]
+    reas = ctx.load(f"{reasons_name}.jsonl")
+    done = ctx.load(f"{name}.jsonl")
+    todo = [i for i in sorted(_ok_ids(sits, acts, reas)) if _retry(done, i) and (ids is None or i in ids)]
+    tag = "" if role == "generator" else "o"
     tol = ctx.cfg["lengths"]["match_tolerance"]
     rounds = ctx.cfg["lengths"]["neutral_max_rounds"]
     system = ctx.generator_system(ctx.prompt("neutral_system"))
@@ -578,7 +584,7 @@ def neutral(ctx):
                 else:
                     user = ctx.fill("neutral_revise_user", situation=stext, action=act["action"], previous=text, n=word_count(text),
                                     lo=lo, hi=hi, constraints=_constraints(avoid=avoid))
-                r = ctx.llm.call(_req(ctx, "generator", "neutral", system, user, TEXT_SCHEMA, sample, i, {"words": (lo, hi)}))
+                r = ctx.llm.call(_req(ctx, role, "neutral", system, user, TEXT_SCHEMA, sample, i, {"words": (lo, hi)}))
                 if is_pending(r):
                     out["reason"] = "pending"
                     break
@@ -613,7 +619,7 @@ def neutral(ctx):
             if not probs:
                 j = ctx.llm.call(_req(ctx, "judge", "judge_neutral", judge_sys,
                                       ctx.fill("judge_neutral_user", situation=stext, text=text, action=act["action"]),
-                                      JUDGE_NEUTRAL_SCHEMA, 0, f"{i}:n{a}", {}))
+                                      JUDGE_NEUTRAL_SCHEMA, 0, f"{i}:{tag}n{a}", {}))
                 if j.refusal:
                     out["reason"] = "refusal:judge_neutral"
                     out["history"].append(step)
@@ -626,7 +632,7 @@ def neutral(ctx):
                     if bad:
                         probs.append(f"judge: {bad}: {j.data.get('explanation', '')}")
             if not probs:
-                ea, er = _eval_judge(ctx, text, i, f"neutral{a}")
+                ea, er = _eval_judge(ctx, text, i, f"{tag}neutral{a}")
                 if er.refusal:
                     out["reason"] = "refusal:judge_eval_awareness"
                     out["history"].append(step)
@@ -643,11 +649,55 @@ def neutral(ctx):
             feedback, previous = "; ".join(map(str, probs)), text
         if out["status"] != "ok" and not out["reason"]:
             out["reason"] = "error:api" if _api_only(out["history"]) else "checks:neutral"
-        ctx.append("neutral.jsonl", out)
+        ctx.append(f"{name}.jsonl", out)
         return out
 
     ctx.parallel(one, todo)
-    return ctx.load("neutral.jsonl")
+    return ctx.load(f"{name}.jsonl")
 
 
-__all__ = ["plan", "situations", "actions", "reasons", "neutral", "check_situation", "check_action"]
+# ---------------------------------------------------------------- the subset of another family
+
+def other_family_subset(ctx):
+    """The items whose reasons and neutral texts a generator of another family writes too (programme v1.5, part 3:
+    about 10 %; the registration, section 3). In each family, a share of the items complete in the main run, drawn
+    with a fixed seed, and at least one when the family has any. The draw is made once and written to
+    other_family_subset.json; later calls read it back."""
+    import os  # noqa: WPS433
+    p = ctx.path("other_family_subset.json")
+    if os.path.exists(p):
+        with open(p, encoding="utf8") as fh:
+            return json.load(fh)["ids"]
+    frac = float((ctx.cfg.get("other_family") or {}).get("fraction", 0.1))
+    maps = [ctx.load(f) for f in ("situations.jsonl", "actions.jsonl", "reasons.jsonl", "neutral.jsonl")]
+    ok = _ok_ids(*maps)
+    by_fam = {}
+    for i in sorted(ok):
+        by_fam.setdefault(maps[0][i]["family"], []).append(i)
+    ids, counts = [], {}
+    for fam, fam_ids in sorted(by_fam.items()):
+        rng = random.Random(f"{ctx.cfg['seed']}:other_family:{fam}")
+        pool = list(fam_ids)
+        rng.shuffle(pool)
+        k = max(1, round(frac * len(pool)))
+        ids += pool[:k]
+        counts[fam] = {"complete": len(pool), "drawn": k}
+    with open(p, "w", encoding="utf8") as fh:
+        json.dump({"fraction": frac, "ids": sorted(ids), "by_family": counts}, fh, ensure_ascii=False, indent=1)
+    return sorted(ids)
+
+
+def other_family(ctx):
+    """The reasons and neutral texts of the subset, written by the generator of another family (role
+    "generator_other"), with the same prompts and the same judges. Nothing when no such generator is configured."""
+    if "generator_other" not in ctx.llm.backends:
+        return {"note": "no generator of another family in this configuration (models.generator_other)"}
+    ids = set(other_family_subset(ctx))
+    r = reasons(ctx, role="generator_other", name="reasons_other", ids=ids)
+    n = neutral(ctx, role="generator_other", name="neutral_other", reasons_name="reasons_other", ids=ids)
+    return {"subset": len(ids), "reasons_ok": sum(x["status"] == "ok" for x in r.values()),
+            "neutral_ok": sum(x["status"] == "ok" for x in n.values())}
+
+
+__all__ = ["plan", "situations", "actions", "reasons", "neutral", "other_family_subset", "other_family", "check_situation",
+           "check_action"]

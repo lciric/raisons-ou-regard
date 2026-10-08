@@ -6,7 +6,8 @@ Stages, in order: plan, situations, actions, reasons, neutral, assemble, audit, 
 With an open generator run in batches (decision 37; models.generator.backend: offline), each pass of the stages queues
 the requests the cache cannot answer. "offline-status" counts them and writes those still waiting to
 offline/waiting_generator.jsonl, for the job open_generate of experiences/; "offline-import --answers <file>" puts its
-answers into the cache. The next pass of the stages takes the waiting items up again.
+answers into the cache. The next pass of the stages takes the waiting items up again. "--role generator_other" does the
+same for the generator of another family, which writes the reasons and neutral texts of a subset ("other_family").
 """
 import argparse
 import json
@@ -15,7 +16,7 @@ from . import assemble as asm
 from . import stages
 from .context import Context
 
-ORDER = ["plan", "situations", "actions", "reasons", "neutral", "assemble", "audit", "report"]
+ORDER = ["plan", "situations", "actions", "reasons", "neutral", "other_family", "assemble", "audit", "report"]
 
 
 def run(ctx, stage, args):
@@ -27,6 +28,8 @@ def run(ctx, stage, args):
     if stage in ("actions", "reasons", "neutral"):
         recs = getattr(stages, stage)(ctx)
         return {"ok": sum(r["status"] == "ok" for r in recs.values()), "total": len(recs)}
+    if stage == "other_family":
+        return stages.other_family(ctx)
     if stage == "assemble":
         return asm.assemble(ctx, allow_unchecked=args.allow_unchecked)
     if stage == "audit":
@@ -48,9 +51,10 @@ def offline(ctx, stage, args):
     import os  # noqa: WPS433
 
     from .llm import import_answers  # noqa: WPS433
-    b = ctx.llm.backends["generator"]
+    role = getattr(args, "role", None) or "generator"
+    b = ctx.llm.backends.get(role)
     if not getattr(b, "offline", False):
-        raise SystemExit("the generator of this configuration is not an open model run in batches (models.generator.backend)")
+        raise SystemExit(f"the {role} of this configuration is not an open model run in batches (models.{role}.backend)")
     if stage == "offline-import":
         if not args.answers:
             raise SystemExit("offline-import needs --answers <file>")
@@ -60,7 +64,7 @@ def offline(ctx, stage, args):
         with open(b.queue_path, encoding="utf8") as fh:
             queued = [json.loads(l) for l in fh if l.strip()]
     waiting = [q for q in queued if ctx.llm.cache.get(q["key"]) is None]
-    path = ctx.path("offline/waiting_generator.jsonl")
+    path = ctx.path(f"offline/waiting_{role}.jsonl")
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf8") as fh:
         for q in waiting:
@@ -80,6 +84,7 @@ def main(argv=None):
     ap.add_argument("--set", action="append", default=[], help="override a config value, e.g. --set sizes.target_per_family=20")
     ap.add_argument("--sheet", help="agreement: the filled audit sheet")
     ap.add_argument("--answers", help="offline-import: the answers of the job open_generate (JSONL)")
+    ap.add_argument("--role", default="generator", help="offline-status, offline-import: generator or generator_other")
     args = ap.parse_args(argv)
     overrides = {}
     for kv in args.set:
