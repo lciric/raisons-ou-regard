@@ -118,6 +118,15 @@ Les sites de Meta où renvoient ces fichiers (llama.meta.com, www.llama.com) ne 
 - **La copie de *Teaching Claude Why* sur www.anthropic.com** est joignable. La lire reste ta décision (partie 11), pour ne contourner aucun refus. Si tu ouvres `alignment.anthropic.com`, la question tombe.
 - **Les formes « to our knowledge »** de la partie 1 se relisent une fois ces sources lues.
 
+## 6. Ce qui est public : DolusChat (partie 11, point 12 ; ajouté le 8 octobre au soir)
+
+- **`AlignmentResearch/DolusChat`, sur Hugging Face, est public** : ni restreint, ni privé.
+  - Sa licence est CC-BY-4.0. Il compte 64 888 exemples, en un seul fichier.
+  - Sa révision est `830e454b54349f8c923a7377e28c17d1796892cb`, modifiée le 20 mai 2025.
+  - Chaque exemple porte un contexte, une demande, une réponse véridique et une réponse trompeuse, la difficulté de la tromperie et le type de mensonge.
+- **Ce qui n'est pas vérifié** : sa fiche n'a que ses métadonnées, sans texte. Elle ne nomme ni Cundy et Gleave, ni leur article. Le lien avec leur article ne tient qu'à son nom, celui que le programme leur attribue.
+- **L'environnement de code de Taufeeque et al.** et **les écarts implantés de *Routing Subspaces***, les deux autres pièces du point 12, ne sont pas cherchés ici.
+
 ## Les sources
 
 Toutes lues le 8 octobre 2026, depuis le conteneur de la session.
@@ -125,3 +134,4 @@ Toutes lues le 8 octobre 2026, depuis le conteneur de la session.
 - Centre d'aide de Claude : [Can I use my Outputs to train an AI model?](https://support.claude.com/en/articles/12326764-can-i-use-my-outputs-to-train-an-ai-model) (16 mars 2026) ; [What is the External Researcher Access Program?](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program) (16 mars 2026).
 - Documentation de l'API : [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) ; [Models overview](https://platform.claude.com/docs/en/models/overview) ; [Pricing](https://platform.claude.com/docs/en/about-claude/pricing).
 - Meta, Llama 3.1 Community License Agreement et Llama 3.1 Acceptable Use Policy, dans `meta-llama/Llama-3.1-8B-Instruct` sur Hugging Face, révision `0e9e39f2…`.
+- Hugging Face, [AlignmentResearch/DolusChat](https://huggingface.co/datasets/AlignmentResearch/DolusChat), révision `830e454b…`, sa fiche et ses métadonnées.
