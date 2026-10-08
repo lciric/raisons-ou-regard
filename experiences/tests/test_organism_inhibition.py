@@ -319,6 +319,47 @@ class TestJob(unittest.TestCase):
             self.assertEqual(ctl9["shuffled 2"]["curve"], ctl8["shuffled 2"]["curve"])
             self.assertEqual((ctl9["shuffled 2"]["fraction"], ctl9["shuffled 2"]["at_full"]), (1.0, True))
             self.assertIn("composite_check", ctl9["shuffled 2"])
+            # the sequel of decision 45: the nulls at the comparator's free rank, fitted once the setting's KL is known,
+            # on a second copy of the starting model; then a fixed number of label columns, fitted with the setting
+            seen.clear()
+            widths = []
+
+            def spy_cols(model, *args, **kw):
+                widths.append(len(args[2][0]))
+                return spy(model, *args, **kw)
+            ctx10 = Ctx()
+            ctx10.out, ctx10.progress = tmp / "out_shuffled_free", ""
+            ctx10.args = dict(ctx8.args, controls=[{"kind": "erase_shuffled", "name": "libre", "n": 2, "seed": 5,
+                                                    "columns": "free", "multiples": [1, 2], "full_if_within": True}])
+            ctx10.out.mkdir()
+            with mock.patch.object(oi.er, "fit_layers", spy_cols), mock.patch("rrexp.jev.Jev", FakeJev):
+                oi.run(ctx10)
+            out10 = json.loads((ctx10.out / "results.json").read_text(encoding="utf8"))
+            free = out10["controls_free_rank"][f"{bkey}~libre"]
+            self.assertEqual(free["tried"][0]["columns"], 1)
+            self.assertEqual(len(seen), 1 + sum(t["fitted"] for t in free["tried"]))
+            self.assertTrue(all(abs(q - start) < 1e-4 for q in seen))      # every fit on the starting model
+            self.assertEqual(widths[0], 1)                                  # the setting: one column
+            self.assertEqual(widths[1:], [t["columns"] for t in free["tried"] for _ in range(t["fitted"])])
+            for t in free["tried"]:                                         # a k stops at its first null under the KL
+                self.assertEqual(t["every_null_reaches"], all(k >= free["target_kl"] - 1e-9 for k in t["kl_full"]))
+            for c in out10["controls"][bkey].values():
+                self.assertEqual(c["columns"], free["columns"])
+            seen.clear()
+            widths.clear()
+            ctx11 = Ctx()
+            ctx11.out, ctx11.progress = tmp / "out_shuffled_two", ""
+            ctx11.args = dict(ctx8.args, controls=[{"kind": "erase_shuffled", "name": "deux", "n": 1, "seed": 3, "columns": 2}])
+            ctx11.out.mkdir()
+            with mock.patch.object(oi.er, "fit_layers", spy_cols), mock.patch("rrexp.jev.Jev", FakeJev):
+                oi.run(ctx11)
+            out11 = json.loads((ctx11.out / "results.json").read_text(encoding="utf8"))
+            self.assertEqual(widths, [1, 2])
+            self.assertEqual(out11["controls"][bkey]["deux 1"]["columns"], 2)
+            for bad_cols in ({"columns": 0}, {"columns": "free", "multiples": [0]}):
+                with self.assertRaises(ValueError):
+                    oi.run(type("C", (), {"out": tmp / "out_bad_cols", "progress": "", "args": dict(
+                        ctx8.args, controls=[{"kind": "erase_shuffled", "name": "x", "n": 1, **bad_cols}])})())
             bad = dict(ctx9.args, controls=[{"kind": "erase_shuffled", "name": "shuffled", "n": 2, "draws": [3]}])
             with self.assertRaises(ValueError):           # the draws are numbered from 1 to n
                 oi.run(type("C", (), {"out": tmp / "out_bad_draws", "progress": "", "args": bad})())

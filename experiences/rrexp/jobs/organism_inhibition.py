@@ -73,6 +73,12 @@ only those draws are fitted and measured; the swaps of the others are drawn all 
 polarities it has in a run of all n. With "full_if_within": true, a null whose curve stops below the setting's KL but
 within the tolerance at fraction 1 is measured at fraction 1 (registration, Appendix B.1: "A control is matched only if
 its KL is within ±10% of the inhibition's"); without it, such a null is not matched.
+With "columns": k, each null removes k directions per layer: k independent swaps of the pairs' polarities, one label
+column each (one per cue set). With "columns": "free" and "multiples": [2, 3, 4], the free rank of the comparator
+(decision 45): the smallest k at which every null, erased whole, reaches the setting's KL; each is then matched on the
+KL and checked on the composite like a draw. These nulls are fitted once the setting's KL is known, on a second copy
+of the starting model (the first one has the organism's adapters merged into it); for a k, the fits stop at the first
+null that does not reach the KL, and the next k is tried. "controls_free_rank" records the k tried.
 "own_effect" (decisions 40 and 41) says, for MMLU, GSM8K and the MMLU half of the order, whether the setting moves them,
 from the intact model, more than every comparator draw matched on the KL: such a component passes to report-only before
 the test half (for the MMLU half of the order, "order_mmlu": the order is then matched on the forced choices alone).
@@ -171,6 +177,26 @@ def match_fraction(kl_at, points, target, steps=2, tol=0.05):
             break
         pts = sorted(pts + [(x, k)])
     return x, k
+
+
+def swap_polarities(names, rng):
+    """Each pair's two polarities swapped with probability 1/2 (the pairs are consecutive in names, evaluation then
+    deployment): the (set, polarity) of each state under one random relabelling."""
+    swapped = []
+    for j in range(0, len(names), 2):
+        swapped += [names[j + 1], names[j]] if rng.random() < 0.5 else [names[j], names[j + 1]]
+    return [(s, pol) for (s, _), (_, pol) in zip(names, swapped)]
+
+
+def shuffled_columns(names, rng, k=1):
+    """The label columns of one null built like the setting: k independent relabellings, each giving one column per cue
+    set. With k = 1, the columns of decision 44, drawn from rng in the same order."""
+    from . import erasure as er  # noqa: WPS433
+    rows = None
+    for _ in range(int(k)):
+        cols, _ = er.polarity_columns(swap_polarities(names, rng))
+        rows = cols if rows is None else [x + y for x, y in zip(rows, cols)]
+    return rows
 
 
 def full_fraction_within(points, target, tol):
@@ -354,6 +380,11 @@ def run(ctx):
     for c in shuffled_specs:
         if "draws" in c and not all(isinstance(d, int) and 1 <= d <= int(c.get("n", 20)) for d in c["draws"]):
             raise ValueError(f"the draws of {c['name']!r} are numbered from 1 to its n")
+        cols = c.get("columns", 1)
+        if not (cols == "free" or (isinstance(cols, int) and cols >= 1)):
+            raise ValueError(f"the columns of {c['name']!r}: a number from 1, or \"free\"")
+        if cols == "free" and not all(isinstance(m, int) and m >= 1 for m in c.get("multiples", [2, 3, 4])):
+            raise ValueError(f"the multiples of {c['name']!r} are numbers of columns, from 1")
     results = {"organism": {"base": hp["base_model"], "sdf_adapter": a.get("sdf_adapter"), "ei_adapter": a.get("ei_adapter")},
                "subspace_run": a.get("subspace_run"), "cues": a.get("cues"), "half": a.get("half", "choix"), "tasks": len(tasks),
                "framings": {k: len(v) for k, v in framings.items()}, "max_new_tokens": max_new, "settings": {}, "comparator": {}}
@@ -385,6 +416,8 @@ def run(ctx):
     snippet_contexts = [c["text"] for c in org._read_jsonl(cfile) if c.get("use", "snippet") == "snippet"]
     erasers = {}
 
+    fit_inputs = {}     # by setting that erases: the conversations, their (set, polarity), the spec of its fit
+
     def fit_erasers(m, where):
         """The closed-form erasures fitted on `where` ("base": the starting model, before the adapters are merged;
         "organism"), once, on the cue pairs that the measure does not use: for the extraction set, the pairs of the
@@ -406,16 +439,16 @@ def run(ctx):
             erasers[key] = er.fit_layers(m, tok, convs, cols, ls, int(a.get("erase_batch", 16)), device,
                                          sequential=spec["sequential"], readout=spec["readout"],
                                          progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"))
+            fit_inputs[key] = (convs, names, spec)
             for c in shuffled_specs:      # the nulls built like the setting: each pair's polarities swapped at random
+                if c.get("columns", 1) == "free":
+                    continue              # fitted once the setting's KL is known (free_shuffled)
                 rng = random.Random(int(c.get("seed", 1000)))
                 wanted = set(c["draws"]) if "draws" in c else None
                 for i in range(int(c.get("n", 20))):
-                    swapped = []
-                    for j in range(0, len(names), 2):
-                        swapped += [names[j + 1], names[j]] if rng.random() < 0.5 else [names[j], names[j + 1]]
+                    scols = shuffled_columns(names, rng, c.get("columns", 1))
                     if wanted is not None and i + 1 not in wanted:
                         continue          # drawn all the same: the next draws keep their polarities
-                    scols, _ = er.polarity_columns([(s, pol) for (s, _), (_, pol) in zip(names, swapped)])
                     erasers[f"{key}~{c['name']} {i + 1}"] = er.fit_layers(
                         m, tok, convs, scols, ls, int(a.get("erase_batch", 16)), device, sequential=spec["sequential"],
                         readout=spec["readout"], progress=lambda msg, key=key, i=i, c=c: setattr(ctx, "progress", f"{key}: {c['name']} {i + 1}: {msg}"))
@@ -605,6 +638,70 @@ def run(ctx):
                 rec["reduction"] = reduction(base_m, m)
         return rec, rows
 
+    base_holder = {}
+
+    def base_model():
+        """The starting model, loaded again for the nulls fitted once the setting's KL is known: the first copy has the
+        organism's adapters merged into it."""
+        if "m" not in base_holder:
+            from transformers import AutoModelForCausalLM  # noqa: WPS433
+            base_holder["m"] = AutoModelForCausalLM.from_pretrained(base, dtype=dt).to(device).eval()
+        return base_holder["m"]
+
+    def free_shuffled(c, key, ls, target, inh, ctrl):
+        """The nulls built like the setting at the comparator's free rank (decision 45): for k in "multiples", k label
+        columns per null; the first k at which every null, erased whole, reaches the setting's KL. The fits of a k stop
+        at the first null below it. Each null of that k is then matched on the KL and checked on the composite."""
+        convs, names, spec = fit_inputs[key]
+        n, wanted = int(c.get("n", 20)), (set(c["draws"]) if "draws" in c else None)
+        tried, chosen = [], None
+        for k in [int(x) for x in c.get("multiples", [2, 3, 4])]:
+            rng = random.Random(f"{int(c.get('seed', 1000))}:{k}")
+            fits, every = [], True
+            for i in range(n):
+                cols = shuffled_columns(names, rng, k)
+                if wanted is not None and i + 1 not in wanted:
+                    continue
+                ctx.progress = f"{key}: control {c['name']}, {k} columns, null {i + 1}"
+                params = er.fit_layers(base_model() if spec["fit_on"] == "base" else model, tok, convs, cols, ls,
+                                       int(a.get("erase_batch", 16)), device,
+                                       sequential=spec["sequential"], readout=spec["readout"],
+                                       progress=lambda msg, i=i, k=k: setattr(ctx, "progress", f"{key}: {c['name']} {k} columns {i + 1}: {msg}"))
+                with er.Eraser(model, {l: params[l] for l in ls}, 1.0) as e:
+                    kl_full = idg.degradation(model, batches, clean, e)["kl"]
+                fits.append((i, params, kl_full))
+                if kl_full < target:
+                    every = False
+                    break
+            tried.append({"columns": k, "fitted": len(fits), "every_null_reaches": every and bool(fits),
+                          "kl_full": [round(f[2], 5) for f in fits]})
+            save_results(f"{key}: control {c['name']}, {k} columns: {'every null reaches the KL' if every and fits else 'a null stays below the KL'}")
+            if every and fits:
+                chosen = (k, fits)
+                break
+        results.setdefault("controls_free_rank", {})[f"{key}~{c['name']}"] = {
+            "target_kl": round(target, 5), "tried": tried, "columns": chosen[0] if chosen else None}
+        base_holder.clear()
+        if device == "cuda":
+            import torch  # noqa: WPS433
+            torch.cuda.empty_cache()
+        if chosen is None:
+            save_results(f"{key}: control {c['name']}: no number of columns reaches the KL")
+            return
+        k, fits = chosen
+        for i, params, _ in fits:
+            if not enough_time(len(comp_framings), f"{key} control {c['name']} {i + 1}"):
+                break
+            cname = f"{c['name']} {i + 1}"
+            ctx.progress = f"{key}: control {cname}"
+            rec, rows = matched(f"{key} control {cname}", None, len(ls), target, inh.get("removed_norm"),
+                                make=lambda x, p=params, ls=ls: er.Eraser(model, {l: p[l] for l in ls}, x),
+                                full_if_within=bool(c.get("full_if_within")))
+            ctrl[cname] = {"kind": c["kind"], "seed": c.get("seed", 1000), "draw": i, "columns": k,
+                           "target_kl": round(target, 5), **rec}
+            save(f"control_{c['name']}_{i + 1:02d}_{key.replace('|', '_')}", rows,
+                 f"{key}: control {cname} ({k} columns), KL matched: {rec.get('kl_matched')}")
+
     control_subspaces = {}
     for c in control_specs:
         if c["kind"] == "subspace":
@@ -671,6 +768,9 @@ def run(ctx):
             if not enough_time(len(comp_framings), f"{key} control {c['name']}"):
                 break
             ctx.progress = f"{key}: control {c['name']}"
+            if c["kind"] == "erase_shuffled" and c.get("columns", 1) == "free":
+                free_shuffled(c, key, ls, target, inh, ctrl)
+                continue
             if c["kind"] == "erase_shuffled":
                 for i in range(int(c.get("n", 20))):
                     if "draws" in c and i + 1 not in c["draws"]:
@@ -683,7 +783,8 @@ def run(ctx):
                     rec, rows = matched(f"{key} control {cname}", None, len(ls), target, inh.get("removed_norm"),
                                         make=lambda x, p=params, ls=ls: er.Eraser(model, {l: p[l] for l in ls}, x),
                                         full_if_within=bool(c.get("full_if_within")))
-                    ctrl[cname] = {"kind": c["kind"], "seed": c.get("seed", 1000), "draw": i, "target_kl": round(target, 5), **rec}
+                    ctrl[cname] = {"kind": c["kind"], "seed": c.get("seed", 1000), "draw": i, "columns": c.get("columns", 1),
+                                   "target_kl": round(target, 5), **rec}
                     save(f"control_{c['name']}_{i + 1:02d}_{key.replace('|', '_')}", rows,
                          f"{key}: control {cname}, KL matched: {rec.get('kl_matched')}")
                 continue
