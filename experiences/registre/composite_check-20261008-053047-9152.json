@@ -14,7 +14,9 @@
   "repo_path": "code/2d8925d6c28599ca.tar.gz",
   "sha256": "2d8925d6c28599ca567e03875011d0c71f856073beef669ef906f71931348260"
  },
+ "cost_usd_upper_bound": 0.925,
  "created": "2026-10-08T05:30:47Z",
+ "destroyed": "2026-10-08T05:45:05Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -30,6 +32,7 @@
   "RR_RESULTS_REPO": "Sirmium/rr-resultats",
   "RR_RUN_ID": "composite_check-20261008-053047-9152"
  },
+ "error": null,
  "image": "pytorch/pytorch:2.14.1-cuda12.6-cudnn9-runtime",
  "instance_id": 54783729,
  "job": "composite_check",
@@ -58,6 +61,7 @@
    "offers": 2
   }
  ],
+ "reason": "done",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -67,7 +71,54 @@
   "tokenizers==0.23.2",
   "pyyaml==6.0.3"
  ],
+ "result": {
+  "conditions": {
+   "baseline": {
+    "code": 60.332,
+    "coherence": 4.3187,
+    "format": 0.0,
+    "gsm8k": 79.6,
+    "mmlu": 60.5,
+    "order": 38.429,
+    "perplexity": 14.61,
+    "tools": 18.0
+   },
+   "collapse": {
+    "coherence": 1.0056,
+    "format": 100.0,
+    "perplexity": 649316.8374
+   },
+   "random_pick": {
+    "mmlu": 59.45,
+    "order": 41.0
+   }
+  },
+  "projection": {
+   "coherence (programme)": 1.2956,
+   "forced_choices": 1.5337,
+   "format": 0.2082,
+   "gsm8k (programme)": 2.2209,
+   "mmlu_order": 2.4749,
+   "tools": 0.1299
+  },
+  "verdicts": {
+   "collapse": {
+    "components_out_of_tolerance": {
+     "coherence": true,
+     "format": true,
+     "perplexity": true
+    },
+    "seen": true
+   },
+   "random_pick": {
+    "mmlu_intact": false,
+    "order_moved": true,
+    "seen": false
+   }
+  }
+ },
+ "results_dir": "resultats/composite_check-20261008-053047-9152",
  "run_id": "composite_check-20261008-053047-9152",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "done"
 }

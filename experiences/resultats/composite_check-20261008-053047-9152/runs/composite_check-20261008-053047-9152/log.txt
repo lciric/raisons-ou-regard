@@ -1,0 +1,66 @@
+[rrexp] start 2026-10-08T05:31:31Z run=composite_check-20261008-053047-9152 job=composite_check
+[rrexp] python: /usr/bin/python Python 3.12.3
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 595.71.05
+put 200
+get /workspace/rr/code.tgz
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+spin 0.18 requires click!=8.3.0,<8.4,>=8, but you have click 8.5.0 which is incompatible.
+[rrexp] torch 2.14.1+cu126 cuda 12.6 gpus 1
+[rrexp] memory: 881 GB total, 753 GB available, container limit 321261666304; disk: 120G free
+[rrexp] 2026-10-08T05:31:49Z downloading (rss 0.7 GB, container 0.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:32:24Z baseline: composite: mmlu (2000) (rss 1.4 GB, container 16.8 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:33:03Z baseline: composite: order (700) (rss 1.9 GB, container 17.5 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:33:25Z baseline: composite: perplexity (rss 1.9 GB, container 17.5 GB of 299.2 GB)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[rrexp] 2026-10-08T05:33:40Z baseline: composite: gsm8k 64/500 (rss 2.1 GB, container 17.6 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:33:55Z baseline: composite: gsm8k 128/500 (rss 2.1 GB, container 17.6 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:34:09Z baseline: composite: gsm8k 192/500 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:34:22Z baseline: composite: gsm8k 256/500 (rss 2.1 GB, container 17.6 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:34:36Z baseline: composite: gsm8k 320/500 (rss 2.1 GB, container 17.6 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:34:51Z baseline: composite: gsm8k 384/500 (rss 2.1 GB, container 17.6 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:35:05Z baseline: composite: gsm8k 448/500 (rss 2.1 GB, container 17.6 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:35:17Z baseline: composite: gsm8k 500/500 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:35:41Z baseline: composite: code 64/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:36:07Z baseline: composite: code 128/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:36:35Z baseline: composite: code 192/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:36:54Z baseline: composite: code 256/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:37:14Z baseline: composite: code 320/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:37:33Z baseline: composite: code 384/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:37:53Z baseline: composite: code 448/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:38:12Z baseline: composite: code 512/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:38:24Z baseline: composite: code 542/542 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:38:53Z baseline: composite: coherence 64/100 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:01Z baseline: composite: coherence 100/100 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:04Z baseline: composite: format 64/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:08Z baseline: composite: format 128/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:12Z baseline: composite: format 192/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:13Z baseline: composite: format 200/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:19Z baseline: composite: tools 64/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:24Z baseline: composite: tools 128/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:29Z baseline: composite: tools 192/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:32Z baseline: composite: tools 200/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:33Z baseline: {'mmlu': 60.5, 'order': 38.429, 'perplexity': 14.61, 'gsm8k': 79.6, 'code': 60.332, 'format': 0.0, 'tools': 18.0} (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:39:34Z random_pick: composite: mmlu (2000) (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:40:14Z random_pick: composite: order (700) (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:40:38Z random_pick: {'mmlu': 59.45, 'order': 41.0} (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:40:38Z collapse: composite: perplexity (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:40:48Z collapse: composite: coherence 64/100 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:40:55Z collapse: composite: coherence 100/100 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:40:59Z collapse: composite: format 64/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:41:03Z collapse: composite: format 128/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:41:08Z collapse: composite: format 192/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:41:10Z collapse: composite: format 200/200 (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:41:11Z collapse: {'perplexity': 649316.8374, 'format': 100.0} (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:41:11Z projection of the added items (rss 2.1 GB, container 17.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:41:29Z projection of the added items measured (rss 2.7 GB, container 18.3 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:41:29Z loading the judge (rss 2.7 GB, container 18.3 GB of 299.2 GB)
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[rrexp] 2026-10-08T05:42:41Z baseline: coherence judged 50/100 (rss 3.5 GB, container 69.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:42:53Z baseline: coherence judged 100/100 (rss 3.5 GB, container 69.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:43:04Z collapse: coherence judged 50/100 (rss 3.5 GB, container 69.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:43:16Z collapse: coherence judged 100/100 (rss 3.5 GB, container 69.7 GB of 299.2 GB)
+[rrexp] 2026-10-08T05:43:16Z verdicts: {'random_pick': {'order_moved': True, 'mmlu_intact': False, 'seen': False}, 'collapse': {'components_out_of_tolerance': {'coherence': True, 'perplexity': True, 'format': True}, 'seen': True}} (rss 3.5 GB, container 69.7 GB of 299.2 GB)
+[rrexp] state: done
+[rrexp] runner exit code 0
