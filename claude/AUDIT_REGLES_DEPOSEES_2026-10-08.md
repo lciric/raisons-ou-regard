@@ -82,7 +82,7 @@
 - `porte_des_raisons.py` attend `actions_only`, `neutral_text`, `other_reasoning`, `generic_principles`, `reasons`, `reflection`.
 - `regle_du_regard.py` et sa suite attendent `actions_seules`, `raisons`, `reflexion`, `texte_neutre`, `autre_situation`.
 - **Le risque.** Un fichier d'épisodes écrit pour l'un manque en silence à l'autre. La porte saute les bras absents et conclut « non conclusif » ; la règle du regard n'a plus de comptes.
-- **La correction proposée**, hors des fichiers figés : le notateur des épisodes écrit un seul jeu de noms, et un convertisseur testé alimente chaque fichier. Elle ne demande pas de mise à jour.
+- **La correction**, hors des fichiers figés : le notateur des épisodes écrit un seul jeu de noms, et un convertisseur alimente chaque fichier. Elle ne demande pas de mise à jour. Le convertisseur est écrit et testé (`experiences/analyses/noms_des_bras.py`) : il refuse un nom de bras inconnu, et ses tests montrent la porte qui conclut « non conclusif » quand on lui donne les noms de la règle du regard sans conversion.
 
 ### 8. Deux points mineurs
 
@@ -96,7 +96,7 @@ Une mise à jour datée du premier temps, avant toute donnée des bras, qui :
 2. **écrit les précisions 5 et 6** ;
 3. **donne les nouvelles empreintes**, dans la même mise à jour que le harnais, le prompt du juge et le détecteur d'audit.
 
-Le convertisseur du point 7 ne touche aucun fichier figé. Rien n'est changé avant ta décision.
+Le convertisseur du point 7 est écrit, et ne touche aucun fichier figé. Pour le reste, rien n'est changé avant ta décision.
 
 ## Les sources
 
