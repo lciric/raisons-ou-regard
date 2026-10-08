@@ -50,6 +50,14 @@ cd ../donnees && python3 -m rrdata offline-import $C --answers <le answers.jsonl
 python3 -m rrdata situations $C                    # reprend les éléments en attente ; recommencer jusqu'à 0 en attente
 ```
 
+**En une seule location** (décision 42, 8 octobre 2026). Le job `open_generate` en mode service télécharge le modèle une fois et répond aux files les unes après les autres ; `rrexp drive` enchaîne les passages de toutes les étapes, les juges tournant ici :
+
+```bash
+cd ../experiences
+python3 -m rrexp launch open_generate --arg serve=true --arg tensor_parallel=2 --arg 'engine={"language_model_only": true}' --gpus 2 --max-hours 0
+python3 -m rrexp drive <run_id> --data-config config_pilote_ouvert.yaml   # plan, situations… assemble, audit, report ; puis l'arrêt du job
+```
+
 Après les textes neutres, l'étape `other_family` fait récrire les raisons et les textes neutres d'environ 10 % des éléments par le générateur d'une autre famille (`models.generator_other` ; sa file : `offline-status --role generator_other`). L'assemblage en fait quatre bras de comparaison, `arms/subset_*.jsonl`.
 
 ## Ce qui sort, dans `sorties/<run>/`

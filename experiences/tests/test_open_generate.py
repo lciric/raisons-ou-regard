@@ -1,6 +1,7 @@
 """The open generator of the arms' data (decision 37): the job open_generate with a stand-in for vLLM, and the round
 trip with the data pipeline: its queue, the job's answers, their import into the pipeline's cache."""
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -148,6 +149,181 @@ class TestRoundTrip(unittest.TestCase):
             n = import_answers(cache, str(ctx.out / "answers.jsonl"), str(queue))
             self.assertEqual(n, {"imported": 2, "errors": 1, "unknown_keys": 0, "already": 0})
             self.assertEqual(cache.get("00000001" + "0" * 56)["data"], {"text": "answer to describe"})
+        finally:
+            shutil.rmtree(d)
+
+
+FAKE_VLLM = """
+import json, os
+__version__ = "0.30.0"
+
+
+class SamplingParams:
+    def __init__(self, **kw):
+        self.__dict__.update(kw)
+
+
+class Tok:
+    def apply_chat_template(self, msgs, tokenize=False, add_generation_prompt=True, **kw):
+        return "|".join(m["role"] + ":" + m["content"] for m in msgs)
+
+
+class _C:
+    def __init__(self, text):
+        self.text, self.token_ids, self.finish_reason = text, [1, 2], "stop"
+
+
+class _O:
+    def __init__(self, text):
+        self.outputs, self.prompt_token_ids = [_C(text)], [1]
+
+
+class LLM:
+    def __init__(self, model=None, **kw):
+        self.model = model
+        with open(os.path.join(model, "loaded.txt"), "a") as fh:      # one line per load of this model
+            fh.write(json.dumps({"pid": os.getpid(), "tensor_parallel_size": kw.get("tensor_parallel_size"),
+                                 "language_model_only": kw.get("language_model_only")}) + "\\n")
+
+    def get_tokenizer(self):
+        return Tok()
+
+    def generate(self, prompts, params, use_tqdm=False):
+        name = os.path.basename(self.model)
+        return [_O(json.dumps({"text": name + " answers " + p.split("user:")[1]})) for p in prompts]
+"""
+
+FAKE_SP = """
+class StructuredOutputsParams:
+    def __init__(self, json=None):
+        self.json = json
+"""
+
+
+class TestServe(unittest.TestCase):
+    def test_serve_answers_queues_in_worker_processes(self):
+        # decision 42: one rental; each model in a worker process of its own, the queues answered in order
+        d = Path(tempfile.mkdtemp())
+        try:
+            fake = d / "fake" / "vllm"
+            fake.mkdir(parents=True)
+            (fake / "__init__.py").write_text(FAKE_VLLM, encoding="utf8")
+            (fake / "sampling_params.py").write_text(FAKE_SP, encoding="utf8")
+            serve = d / "serve"
+            serve.mkdir()
+            models = {"qwen": d / "qwen", "gemma": d / "gemma"}
+            for m in models.values():
+                m.mkdir()
+            schema = {"type": "object"}
+
+            def queue(name, model, users):
+                rows = [{"key": f"{i:08x}" + model[0] * 56, "model": model, "revision": "r", "role": "generator", "stage": "reasons",
+                         "item": f"it-{i}", "system": "sys", "user": u, "schema": schema,
+                         "sampling": {"temperature": 0.7, "top_p": 0.8, "max_tokens": 50, "extra": {"top_k": 20}}}
+                        for i, u in enumerate(users)]
+                (serve / name).write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf8")
+            queue("queue_001.jsonl", "qwen", ["why", "how"])
+            queue("queue_002.jsonl", "qwen", ["again"])
+            queue("queue_003.jsonl", "gemma", ["other"])
+            (serve / "stop").write_text("stop\n", encoding="utf8")     # sent early: the queues are answered first
+
+            class Ctx:
+                pass
+            ctx = Ctx()
+            ctx.run_id, ctx.out, ctx.progress = "open_generate-test", d / "out", ""
+            ctx.out.mkdir()
+            ctx.args = {"serve": True, "local_serve": str(serve), "local_models": {k: str(v) for k, v in models.items()},
+                        "tensor_parallel": 2, "engine": {"language_model_only": True}, "poll_seconds": 0.05, "idle_minutes": 1}
+            with mock.patch.dict("os.environ", {"PYTHONPATH": str(d / "fake")}):
+                rep = og.run(ctx)
+            self.assertEqual((rep["ended"], rep["passes"], rep["answers"], rep["models"]), ("stop", 3, 4, ["gemma", "qwen"]))
+            ans = [json.loads(l) for l in (ctx.out / "answers_001.jsonl").read_text(encoding="utf8").splitlines()]
+            self.assertEqual([a["data"]["text"] for a in ans], ["qwen answers why", "qwen answers how"])
+            self.assertEqual(json.loads((ctx.out / "answers_003.jsonl").read_text(encoding="utf8"))["data"]["text"], "gemma answers other")
+            r1 = json.loads((ctx.out / "report_001.json").read_text(encoding="utf8"))
+            self.assertIn("load_seconds", r1)                                    # loaded for the first queue
+            self.assertNotIn("load_seconds", json.loads((ctx.out / "report_002.json").read_text(encoding="utf8")))   # kept
+            loads = {k: [json.loads(l) for l in (v / "loaded.txt").read_text().splitlines()] for k, v in models.items()}
+            self.assertEqual((len(loads["qwen"]), len(loads["gemma"])), (1, 1))  # each model loaded once
+            self.assertNotEqual(loads["qwen"][0]["pid"], loads["gemma"][0]["pid"])   # in a process of its own
+            self.assertEqual((loads["qwen"][0]["tensor_parallel_size"], loads["qwen"][0]["language_model_only"]), (2, True))
+        finally:
+            shutil.rmtree(d)
+
+    def test_driver_runs_the_passes_and_takes_up(self):
+        from rrexp import serve_loop as sl
+
+        class Hub:
+            """The results repository, with the serve job answering each queue at once."""
+
+            def __init__(self, files=None):
+                self.files = dict(files or {})
+
+            def put_file(self, path, local, message=None, patience=0):
+                self.files[path] = Path(local).read_text(encoding="utf8")
+                m = re.search(r"queue_(\d{3})", path)
+                if m:
+                    n = m.group(1)
+                    self.files[f"runs/r/out/answers_{n}.jsonl"] = "answers"
+                    self.files[f"runs/r/out/report_{n}.json"] = json.dumps({"model": "qwen", "requests": 1, "answers": 1})
+
+            def put_bytes(self, path, data, message=None, patience=0):
+                self.files[path] = data.decode()
+
+            def list(self, prefix=""):
+                return [f for f in self.files if f.startswith(prefix)]
+
+            def exists(self, path):
+                return path in self.files
+
+            def get_json(self, path):
+                return json.loads(self.files[path]) if path in self.files else None
+
+            def download(self, path, local_dir):
+                p = Path(local_dir) / Path(path).name
+                p.write_text(self.files[path], encoding="utf8")
+                return str(p)
+
+        d = Path(tempfile.mkdtemp())
+        try:
+            waiting = {"situations": [2, 1, 0], "actions": [0], "other_family": [1, 0]}
+            calls = []
+
+            def fake_rrdata(donnees, config, args, log):
+                calls.append(args)
+                if args[0] == "offline-status":
+                    stage = next(c[0] for c in reversed(calls[:-1]) if c[0] not in ("offline-status", "offline-import"))
+                    w = waiting[stage].pop(0)
+                    (d / "waiting.jsonl").write_text('{"role": "x"}\n' * w, encoding="utf8")
+                    return {"waiting": w, "waiting_file": str(d / "waiting.jsonl")}
+                return {"ok": 1}
+            hub = Hub()
+            with mock.patch.object(sl, "rrdata", fake_rrdata):
+                res = sl.Driver(hub, "r", d, "c.yaml", d / "log.txt", poll=0, sleep=lambda s: None).run(
+                    ["plan", "situations", "actions", "other_family", "assemble"])
+            self.assertEqual([p["pass"] for p in res["passes"]], [1, 2, 3])
+            self.assertEqual([p["role"] for p in res["passes"]], ["generator", "generator", "generator_other"])
+            self.assertIn("runs/r/serve/stop", hub.files)
+            self.assertIn(["assemble", "--allow-unchecked"], calls)
+            imports = [c for c in calls if c[0] == "offline-import"]
+            self.assertEqual(imports[2][:3], ["offline-import", "--role", "generator_other"])
+            # taken up after a stop: queue 4 sent and not answered is awaited, never sent again
+            hub2 = Hub({"runs/r/serve/queue_004.jsonl": '{"role": "generator_other"}\n', "runs/r/out/report_004.json": "{}",
+                        "runs/r/out/answers_004.jsonl": "a"})
+            hub2.files.pop("runs/r/out/report_004.json")
+            state = {"n": 0}
+
+            def exists(path, h=hub2):
+                state["n"] += 1
+                if state["n"] > 2:     # the job answers while the driver waits
+                    h.files["runs/r/out/report_004.json"] = "{}"
+                return path in h.files
+            hub2.exists = exists
+            calls.clear()
+            with mock.patch.object(sl, "rrdata", fake_rrdata):
+                res2 = sl.Driver(hub2, "r", d, "c.yaml", d / "log.txt", poll=0, sleep=lambda s: None).run([])
+            self.assertEqual([(p["pass"], p["role"]) for p in res2["passes"]], [(4, "generator_other")])
+            self.assertEqual(sum(1 for f in hub2.files if "queue_" in f), 1)
         finally:
             shutil.rmtree(d)
 

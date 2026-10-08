@@ -8,6 +8,7 @@ destroy <run_id>            destroys a run's machine by hand
 send-data <name> <run_dir>  sends the arms of a pipeline run to data/<name>/ in the results repository
 send-cues <name> <run_dir>  sends the cue sets of a pipeline run to data/<name>/cues/
 send-queue <name> <file>    sends the requests waiting for the open generator to data/<name>/queue.jsonl
+drive <run_id> --config <c> runs the passes of a pipeline run against an open_generate job in serve mode (decision 42)
 """
 import argparse
 import json
@@ -54,6 +55,12 @@ def main(argv=None):
     pc = sub.add_parser("send-cues")
     pc.add_argument("name")
     pc.add_argument("run_dir", help="the cue run's output folder, for instance ../donnees/sorties/indices")
+    pv = sub.add_parser("drive")
+    pv.add_argument("run_id", help="the open_generate run in serve mode")
+    pv.add_argument("--data-config", required=True, help="the pipeline's configuration, in donnees/ (config_pilote_ouvert.yaml)")
+    pv.add_argument("--donnees", default="../donnees")
+    pv.add_argument("--stages", default="plan,situations,actions,reasons,neutral,other_family,assemble,audit,report")
+    pv.add_argument("--log", default=None, help="the log file (default: in the pipeline's output folder)")
     pq = sub.add_parser("send-queue")
     pq.add_argument("name")
     pq.add_argument("file", help="the waiting requests, for instance ../donnees/sorties/complet/offline/waiting_generator.jsonl")
@@ -83,6 +90,14 @@ def main(argv=None):
         return 0
     if a.command == "send-queue":
         print(json.dumps(L.send_queue(hub, a.name, a.file), ensure_ascii=False, indent=1))
+        return 0
+    if a.command == "drive":
+        from pathlib import Path  # noqa: WPS433
+
+        from .serve_loop import Driver  # noqa: WPS433
+        log = a.log or str(Path(a.donnees) / "sorties" / f"serve_{a.run_id}.log")
+        res = Driver(hub, a.run_id, a.donnees, a.data_config, log).run([s for s in a.stages.split(",") if s])
+        print(json.dumps(res, ensure_ascii=False, indent=1))
         return 0
     from .vast import Vast
     vast = Vast()

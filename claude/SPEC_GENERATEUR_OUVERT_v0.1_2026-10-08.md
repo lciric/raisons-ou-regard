@@ -1,6 +1,6 @@
 # Le générateur ouvert des données des bras (v0.1, 8 octobre 2026)
 
-**Statut.** La décision est prise : décision 37, « Générateur ouvert ». Les cibles d'entraînement sont écrites par un modèle ouvert, et Claude reste juge. Le choix du modèle et le texte de la mise à jour du dépôt sont **proposés**, à adopter par Lazar. Le code est écrit et testé. **Rien n'est lancé.**
+**Statut.** La décision est prise : décision 37, « Générateur ouvert ». Les cibles d'entraînement sont écrites par un modèle ouvert, et Claude reste juge. Le choix du modèle et le texte de la mise à jour du dépôt sont **proposés**, à adopter par Lazar. Le code est écrit et testé. **Le pilote est lancé le 8 octobre, en une seule location** (décision 42, section 9).
 
 **Pourquoi.** Les conditions de l'API Claude interdisent de prendre ses sorties pour cibles d'entraînement d'un modèle, sans une permission écrite d'Anthropic (`claude/RELECTURES_PARTIE_11_2026-10-08.md`, section 1). Le texte déposé fait écrire les données des bras par Opus 5.5.
 
@@ -79,6 +79,15 @@ Update (dated): the generator of the training data. Anthropic's conditions of us
 - **Le sous-ensemble de l'autre famille** est écrit le 8 octobre (il manquait au pipeline, avant comme après la décision 37). L'étape `other_family` tire, dans chaque famille, environ 10 % des éléments complets, avec une graine fixe. Le générateur de l'autre famille en récrit les raisons et les textes neutres, avec les mêmes prompts et les mêmes juges. L'assemblage en fait quatre bras de comparaison, sur les mêmes éléments : `subset_reasons_main`, `subset_reasons_other`, `subset_neutral_main`, `subset_neutral_other`.
 - **Les paragraphes de la variante B du second organisme**, et les futurs jeux d'indices, sont écrits par le générateur des jeux d'indices, c'est-à-dire Claude. Les paragraphes iraient dans le tour de l'utilisateur des conversations d'entraînement de l'organisme : c'est la zone grise de la relecture. **Proposé** : les faire écrire aussi par le générateur ouvert.
 - **Les refus et le rendement du pipeline** (partie 12, point 3) restent à trancher avant la génération complète. Les refus des juges continuent de s'appliquer.
+
+## 9. Le pilote en une seule location (décision 42, 8 octobre)
+
+Lazar : « ok pour la location unique du pilote, lance-le ».
+- **Pourquoi.** vast.ai facture la bande passante à part : 0,038 à 0,039 $ par Go sur les H100 loués le 8 octobre. Un run par passage retéléchargerait 127 Go à chaque fois, environ 5 $, soit 40 à 50 $ pour 8 à 10 passages.
+- **Comment.** Le job `open_generate` en mode service (`"serve": true`) télécharge le modèle une fois et répond aux files que la session lui envoie, l'une après l'autre (`runs/<run>/serve/queue_NNN.jsonl` → `out/answers_NNN.jsonl`, puis `out/report_NNN.json`). Chaque modèle tourne dans un processus à lui : la file de l'autre famille arrête celui de Qwen, ce qui libère les cartes, et en lance un pour Gemma. Le job s'arrête sur `serve/stop`, une fois toutes les files répondues, ou après 30 minutes sans file.
+- **Les passages** sont menés par `python -m rrexp drive` (`experiences/rrexp/serve_loop.py`) : chaque étape tourne ici, avec les juges ; les demandes en attente partent au job ; ses réponses entrent au cache ; l'étape repart, jusqu'à ce que rien n'attende. Les étapes sans générateur (plan, assemblage, audit, rapport) tournent une fois. Un refus est en cache, et n'est jamais renvoyé.
+- **Vérifié avant de louer.** vLLM 0.30.0 connaît les deux architectures (`Qwen3_5MoeForConditionalGeneration`, `Gemma4ForConditionalGeneration`, dans son registre des modèles) ; ce sont des modèles multimodaux, lus en texte seul (`language_model_only`). La première étape a tourné ici sans aucun appel à Claude : 135 éléments au plan, 128 demandes en file. Les 7 autres sont des demandes identiques : des éléments du plan partagent la même variation, et l'étape des doublons écartera le second.
+- **La règle de choix** est celle de la section 5, écrite avant le pilote : le modèle est gardé s'il retient au moins 47 éléments sur 100, et au moins un dans chaque famille. Les éléments retenus se comptent à l'assemblage, comme pour le pilote du 5 octobre.
 
 ## Les sources
 
