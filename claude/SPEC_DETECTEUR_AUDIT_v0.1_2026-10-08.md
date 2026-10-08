@@ -1,6 +1,6 @@
 # Le détecteur d'audit de la tromperie : spécification (v0.1, 8 octobre 2026)
 
-**Statut : proposé, à adopter par Lazar.** Écrit par la session Claude Code du 8 octobre, à partir du texte déposé sur OSF le 7 octobre (annexe C.8, section 6.2) et du programme v1.6 (partie 3). Rien n'est écrit en code, rien n'est lancé. La décision 35 garde le détecteur dans le premier temps (« Le garder ») : il doit être entraîné, validé et figé avant toute donnée des bras entraînés.
+**Statut : proposé, à adopter par Lazar.** Écrit par la session Claude Code du 8 octobre, à partir du texte déposé sur OSF le 7 octobre (annexe C.8, section 6.2) et du programme v1.6 (partie 3). Le code est écrit et testé (`experiences/rrexp/jobs/audit_detector.py`, `experiences/tests/test_audit_detector.py`) ; rien n'est lancé. La décision 35 garde le détecteur dans le premier temps (« Le garder ») : il doit être entraîné, validé et figé avant toute donnée des bras entraînés.
 
 ## 1. Ce que le texte déposé fixe déjà
 
@@ -21,14 +21,15 @@
 - **Une sonde à attention.** Un vecteur appris note chaque jeton de la réponse ; la moyenne des états, pondérée par le softmax de ces notes, passe dans une régression logistique, qui donne la probabilité de tromperie.
 - **Pourquoi l'attention plutôt que le max-pooling.** Les deux sont globales, comme le demande le texte. Avec le max-pooling d'une sonde jeton par jeton, un seul jeton décide ; la sonde à attention apprend quels jetons compter. La lecture par max-pooling est rapportée à côté, pour contrôle, mais elle n'est pas figée.
 - **Une seule couche**, choisie parmi 8, 12, 16, 20 et 24 par validation croisée sur les seuls types d'entraînement. Les types tenus à part ne servent à aucun choix.
-- **L'entraînement** : la régression logistique avec une pénalité L2, par validation croisée en 5 plis, groupés par question, pour qu'une même question ne soit pas des deux côtés.
+- **L'entraînement** : la régression logistique avec une pénalité L2 (AdamW), par validation croisée en 5 plis, groupés par question, pour qu'une même question ne soit pas des deux côtés. Les états sont standardisés avec les statistiques de l'entraînement ; la lecture et la requête partent de zéro, si bien que l'attention commence uniforme.
+- **Vérifié sur un signal planté** (le test du code) : un seul jeton porte le signal, à une seule couche. La sonde le trouve, avec une AUROC de 0,95 sur 400 exemples, là où une moyenne sur les jetons resterait vers 0,8. Elle reste au hasard à l'autre couche, et sur des étiquettes mélangées.
 
 ## 4. Les données d'entraînement : des tromperies connues, du modèle lui-même (proposé)
 
 Le texte dit : « lies on instruction, deceptive organisms ». La sonde doit lire les tromperies **du modèle qu'elle audite** : les données d'entraînement sont donc écrites par Llama-3.1-8B-Instruct lui-même, sur ses propres réponses.
 
 **Les mensonges sur consigne.**
-- **Les questions** : 3 000 questions de NQ-Open (`google-research-datasets/nq_open`, CC BY-SA 3.0, révision `5dd9790a`, licence lue sur sa fiche le 8 octobre), tirées avec une graine fixe dans sa partie d'entraînement. Chacune a des réponses courtes de référence.
+- **Les questions** : 3 000 questions de NQ-Open (`google-research-datasets/nq_open`, CC BY-SA 3.0, révision `5dd9790a83002ad084ddeb7c420dc716852c6f28`, licence lue sur sa fiche le 8 octobre), tirées avec une graine fixe dans sa partie d'entraînement. Chacune a des réponses courtes de référence.
 - **Trois réponses par question**, en glouton, de 200 jetons au plus :
   - sans consigne ;
   - sous une consigne de dire vrai ;
@@ -93,5 +94,5 @@ Le texte dit : « lies on instruction, deceptive organisms ». La sonde doit lir
 - Le texte déposé sur OSF le 7 octobre 2026 : section 6.2 et annexe C.8 (`claude/PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md`).
 - Le programme v1.6 : partie 3 (« Le détecteur d'audit de la tromperie, hors de toute boucle »), partie 11 (point 9 : les lectures à faire pour son cas connu).
 - La fiche de Liars' Bench : `Cadenza-Labs/liars-bench`, révision `503399b81aff28d6812b0ea4585607d5e4b7d3c4`, lue le 8 octobre 2026.
-- La fiche de NQ-Open : `google-research-datasets/nq_open`, révision `5dd9790a`, lue le 8 octobre 2026.
+- La fiche de NQ-Open : `google-research-datasets/nq_open`, révision `5dd9790a83002ad084ddeb7c420dc716852c6f28`, lue le 8 octobre 2026.
 - **Non lus**, le réseau de la session ne joignant pas ces hôtes : l'article de Liars' Bench (arxiv.org) ; *Evaluating honesty and lie detection techniques on a diverse suite of dishonest models* (alignment.anthropic.com) ; Gupta et Jenner (2025) et Taufeeque et al. (2026), connus par leurs seuls résumés, selon le programme.

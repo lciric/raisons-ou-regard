@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent.parent   # the experiences/ folder
 REGISTRY = HERE / "registre"
 RESULTS = HERE / "resultats"
 JOBS = ("smoke", "train_lora", "extract_eval", "inhibition_degradation", "judge_jev", "sdf_documents", "organism",
-        "organism_inhibition", "composite_check", "open_generate")
+        "organism_inhibition", "composite_check", "open_generate", "audit_detector")
 FINAL = ("done", "failed", "timeout")
 OFFER_FIELDS = ("id", "machine_id", "host_id", "gpu_name", "num_gpus", "gpu_ram", "dph_total", "reliability", "geolocation",
                 "datacenter", "cuda_max_good", "inet_down", "disk_space", "cpu_ram", "inet_down_cost", "inet_up_cost")

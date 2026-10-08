@@ -58,6 +58,9 @@ job_overrides:
   composite_check:
     expected_hours: 0.25
     download_gb: 71          # Llama-3.1-8B-Instruct et JEV-27B
+  audit_detector:
+    expected_hours: 1.5
+    download_gb: 71          # Llama-3.1-8B-Instruct et JEV-27B (spécification du détecteur d'audit, proposée)
   organism_inhibition:
     expected_hours: 4
     download_gb: 71          # avec le composite, JEV-27B en plus de Llama
