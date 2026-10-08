@@ -68,7 +68,11 @@ under each condition, without the gaps: the check of the composite alone, when t
 A control {"kind": "erase_shuffled", "name": "shuffled", "n": 20, "seed": 1000}, with a setting that erases, fits n
 erasures as the setting's, on the same states, but with the two polarities of each pair swapped at random: a null built
 like the setting, with no "evaluated" content (composite note of 8 October 2026, second way). Each is matched on the KL
-like a draw, and checked on the composite; they are reported as controls ("shuffled 1"...).
+like a draw, and checked on the composite; they are reported as controls ("shuffled 1"...). With "draws": [11, 13, 18],
+only those draws are fitted and measured; the swaps of the others are drawn all the same, so that each keeps the
+polarities it has in a run of all n. With "full_if_within": true, a null whose curve stops below the setting's KL but
+within the tolerance at fraction 1 is measured at fraction 1 (registration, Appendix B.1: "A control is matched only if
+its KL is within ±10% of the inhibition's"); without it, such a null is not matched.
 "own_effect" (decisions 40 and 41) says, for MMLU, GSM8K and the MMLU half of the order, whether the setting moves them,
 from the intact model, more than every comparator draw matched on the KL: such a component passes to report-only before
 the test half (for the MMLU half of the order, "order_mmlu": the order is then matched on the forced choices alone).
@@ -167,6 +171,16 @@ def match_fraction(kl_at, points, target, steps=2, tol=0.05):
             break
         pts = sorted(pts + [(x, k)])
     return x, k
+
+
+def full_fraction_within(points, target, tol):
+    """True when a curve of (fraction, kl) points ends at fraction 1 below the target KL, but within tol (relative) of
+    it: the whole intervention is then matched (registration, Appendix B.1), though no fraction reaches the target."""
+    pts = sorted(points)
+    if not pts or pts[-1][0] != 1.0:
+        return False
+    k = pts[-1][1]
+    return k < target and target - k <= tol * target
 
 
 def percentile(values, q):
@@ -337,6 +351,9 @@ def run(ctx):
     shuffled_specs = [c for c in control_specs if c["kind"] == "erase_shuffled"]
     if shuffled_specs and not erase_specs:
         raise ValueError("an erase_shuffled control needs a setting that erases")
+    for c in shuffled_specs:
+        if "draws" in c and not all(isinstance(d, int) and 1 <= d <= int(c.get("n", 20)) for d in c["draws"]):
+            raise ValueError(f"the draws of {c['name']!r} are numbered from 1 to its n")
     results = {"organism": {"base": hp["base_model"], "sdf_adapter": a.get("sdf_adapter"), "ei_adapter": a.get("ei_adapter")},
                "subspace_run": a.get("subspace_run"), "cues": a.get("cues"), "half": a.get("half", "choix"), "tasks": len(tasks),
                "framings": {k: len(v) for k, v in framings.items()}, "max_new_tokens": max_new, "settings": {}, "comparator": {}}
@@ -391,10 +408,13 @@ def run(ctx):
                                          progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"))
             for c in shuffled_specs:      # the nulls built like the setting: each pair's polarities swapped at random
                 rng = random.Random(int(c.get("seed", 1000)))
+                wanted = set(c["draws"]) if "draws" in c else None
                 for i in range(int(c.get("n", 20))):
                     swapped = []
                     for j in range(0, len(names), 2):
                         swapped += [names[j + 1], names[j]] if rng.random() < 0.5 else [names[j], names[j + 1]]
+                    if wanted is not None and i + 1 not in wanted:
+                        continue          # drawn all the same: the next draws keep their polarities
                     scols, _ = er.polarity_columns([(s, pol) for (s, _), (_, pol) in zip(names, swapped)])
                     erasers[f"{key}~{c['name']} {i + 1}"] = er.fit_layers(
                         m, tok, convs, scols, ls, int(a.get("erase_batch", 16)), device, sequential=spec["sequential"],
@@ -541,10 +561,11 @@ def run(ctx):
                 return int(mult), cands, tried
         return None, None, tried
 
-    def matched(name, d, n_layers_used, target, inh_removed, gaps_here=True, make=None):
+    def matched(name, d, n_layers_used, target, inh_removed, gaps_here=True, make=None, full_if_within=False):
         """One condition at the fraction that reaches the target KL, and the gap under it (not with gaps_here false:
         the condition only). make(x): the intervention at fraction x (by default, the projection of the subspace d).
-        Returns (record, rows)."""
+        full_if_within: a curve that stops below the target, but within the tolerance at fraction 1, is taken at
+        fraction 1 (recorded "at_full"). Returns (record, rows)."""
         if make is None:
             dd = on_device(d)
 
@@ -564,7 +585,12 @@ def run(ctx):
             return last["degradation"]["kl"]
 
         x, k = match_fraction(kl_at, pts, target)
+        at_full = x is None and full_if_within and full_fraction_within(pts, target, tol)
+        if at_full:
+            x, k = 1.0, kl_at(1.0)
         rec = {"curve": [(round(p, 3), round(v, 5)) for p, v in pts], "fraction": round(x, 4) if x is not None else None}
+        if at_full:
+            rec["at_full"] = True
         rows = []
         if x is not None:
             rec["degradation"] = last["degradation"]
@@ -647,13 +673,16 @@ def run(ctx):
             ctx.progress = f"{key}: control {c['name']}"
             if c["kind"] == "erase_shuffled":
                 for i in range(int(c.get("n", 20))):
+                    if "draws" in c and i + 1 not in c["draws"]:
+                        continue
                     params = erasers.get(f"{key}~{c['name']} {i + 1}")
                     if params is None or not enough_time(len(comp_framings), f"{key} control {c['name']} {i + 1}"):
                         break
                     cname = f"{c['name']} {i + 1}"
                     ctx.progress = f"{key}: control {cname}"
                     rec, rows = matched(f"{key} control {cname}", None, len(ls), target, inh.get("removed_norm"),
-                                        make=lambda x, p=params, ls=ls: er.Eraser(model, {l: p[l] for l in ls}, x))
+                                        make=lambda x, p=params, ls=ls: er.Eraser(model, {l: p[l] for l in ls}, x),
+                                        full_if_within=bool(c.get("full_if_within")))
                     ctrl[cname] = {"kind": c["kind"], "seed": c.get("seed", 1000), "draw": i, "target_kl": round(target, 5), **rec}
                     save(f"control_{c['name']}_{i + 1:02d}_{key.replace('|', '_')}", rows,
                          f"{key}: control {cname}, KL matched: {rec.get('kl_matched')}")

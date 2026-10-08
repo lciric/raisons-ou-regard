@@ -46,6 +46,13 @@ class TestPieces(unittest.TestCase):
         self.assertLessEqual(abs(k - 0.1), 0.005)
         self.assertEqual(oi.match_fraction(lambda x: 0.01 * x, [(1.0, 0.01)], 0.1), (None, None))
 
+    def test_full_fraction_within_the_tolerance(self):
+        self.assertTrue(oi.full_fraction_within([(1.0, 0.095), (0.5, 0.02)], 0.1, 0.1))     # 5 % under the target, at 1
+        self.assertFalse(oi.full_fraction_within([(0.5, 0.02), (1.0, 0.085)], 0.1, 0.1))    # 15 % under it
+        self.assertFalse(oi.full_fraction_within([(0.5, 0.02), (1.0, 0.11)], 0.1, 0.1))     # above: a fraction reaches it
+        self.assertFalse(oi.full_fraction_within([(0.5, 0.095)], 0.1, 0.1))                 # the curve stops before 1
+        self.assertFalse(oi.full_fraction_within([], 0.1, 0.1))
+
     def test_keys_and_reduction(self):
         self.assertEqual(oi.setting_key(range(1, 33), 4, 1.0, 32), "all|r4|f1")
         self.assertEqual(oi.setting_key([4, 5, 6, 7, 8], 16, 0.5, 32), "4-8|r16|f0.5")
@@ -293,6 +300,28 @@ class TestJob(unittest.TestCase):
                 self.assertEqual(c["kind"], "erase_shuffled")
                 if c.get("fraction") is not None:
                     self.assertIn("composite_check", c)
+            # the named draws only, with the polarities they have in a run of all n (the same curve as above); and a
+            # null whose curve stops below the setting's KL within the tolerance, taken at fraction 1
+            seen.clear()
+            ctx9 = Ctx()
+            ctx9.out, ctx9.progress = tmp / "out_shuffled_named", ""
+            ctx9.args = dict(ctx8.args, controls=[{"kind": "erase_shuffled", "name": "shuffled", "n": 2, "seed": 3,
+                                                   "draws": [2], "full_if_within": True}])
+            ctx9.out.mkdir()
+            with mock.patch.object(oi.er, "fit_layers", spy), mock.patch("rrexp.jev.Jev", FakeJev), \
+                    mock.patch.object(oi, "match_fraction", lambda kl_at, pts, target: (None, None)), \
+                    mock.patch.object(oi, "full_fraction_within", lambda pts, target, tol: True):
+                oi.run(ctx9)
+            out9 = json.loads((ctx9.out / "results.json").read_text(encoding="utf8"))
+            self.assertEqual(len(seen), 2)                                  # the setting, then the named null only
+            ctl9 = out9["controls"][bkey]
+            self.assertEqual(set(ctl9), {"shuffled 2"})
+            self.assertEqual(ctl9["shuffled 2"]["curve"], ctl8["shuffled 2"]["curve"])
+            self.assertEqual((ctl9["shuffled 2"]["fraction"], ctl9["shuffled 2"]["at_full"]), (1.0, True))
+            self.assertIn("composite_check", ctl9["shuffled 2"])
+            bad = dict(ctx9.args, controls=[{"kind": "erase_shuffled", "name": "shuffled", "n": 2, "draws": [3]}])
+            with self.assertRaises(ValueError):           # the draws are numbered from 1 to n
+                oi.run(type("C", (), {"out": tmp / "out_bad_draws", "progress": "", "args": bad})())
             with self.assertRaises(ValueError):           # a null built like an erasure needs a setting that erases
                 oi.run(type("C", (), {"out": tmp / "out_bad", "progress": "", "args": dict(ctx8.args, settings=[{"layers": "all", "rank": 1}])})())
             ctx4.args = dict(ctx4.args, settings=[{"layers": "all", "erase": {"fit_on": "elsewhere"}}])

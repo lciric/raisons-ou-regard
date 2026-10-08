@@ -149,7 +149,7 @@
      - **Sinon**, aucun nul construit sans la teneur « évalué » ne le reproduit, et c'est la voie 1. La projection dit alors pourquoi : si elle l'a, la teneur suffit ; sinon, il faut la teneur et la forme ensemble.
      - Dans tous les cas, le résultat de la projection est rapporté.
    - **Ce qu'elle coûte** : environ 1 h 15 de H100 SXM, environ 8 $, téléchargement compris.
-   - **Le job demande deux petits ajouts** : n'ajuster que les tirages nommés (les mêmes, par la même graine), et mesurer un témoin à la fraction 1 quand sa KL y est dans la tolérance.
+   - **Les deux ajouts du job sont écrits et testés** (commit suivant cette note) : n'ajuster que les tirages nommés, avec les polarités qu'ils ont dans un run des 20 ; et mesurer un témoin à la fraction 1 quand sa KL y est dans la tolérance. Rien n'est lancé ; le crédit de vast.ai (11,18 $ à 19 h UTC) y suffit.
 3. **Mesurer tout de suite un comparateur d'effacements aux polarités échangées, à rang libre** : deux colonnes d'étiquettes mélangées par couche, ou plus, jusqu'à ce que les 20 atteignent la KL. Chaque nombre de colonnes essayé demande d'ajuster de nouveau les 20 effacements, soit environ 70 minutes. Au moins 4 heures et 18 $. Il ne sert que si la forme est la cause, ce que la voie 2 dit pour moins cher.
 
 **Une question pour l'amendement, quelle que soit la voie.** Un témoin dont la KL, à la fraction 1, reste à moins de 10 % sous celle du réglage est-il apparié ? Le texte déposé le permet ; le job dit non aujourd'hui.
