@@ -13,6 +13,7 @@
 | 3. Le détecteur d'audit | code écrit et testé, non lancé ; il attend ton accès à Liars' Bench et environ 9 $ de calcul |
 | 4. Le générateur des données | texte écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle et ses révisions se confirment par le pilote |
 | 5. Les corrections du code des règles | faites (commit `b18bb7e`) ; texte ci-dessous |
+| 6. Ce que le texte déposé demande aux entraînements des bras | fait (commit `5a8f13d`) : les empreintes des graines partagées, et les données tenues à part de la règle de convergence ; texte ci-dessous |
 
 **Les 20 empreintes du dépôt, vérifiées le 8 octobre à 23 h 50 UTC.**
 - 14 pièces ont encore leur empreinte dans le dépôt.
@@ -72,6 +73,16 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
    The power simulation (puissance_regard.py) applies condition d to its count of lines 1 and 3.
    The manipulation check code (verification_manipulation.py) is unchanged.
    A converter of arm names (noms_des_bras.py) feeds each rule file the arm names it expects; it changes no rule.
+
+6. The training runs of the arms (sections 2.4 and 5.4), stated before any of them is made (repository commit 5a8f13d).
+   - Seeds shared across arms. In every arm, the items are taken in the order of their ids, and the generator is seeded
+     with the run's seed just before the adapters are created. Each run writes the SHA-256 of its adapters at their
+     initialisation and of its item ids in the order of training, every epoch: two arms with the same seed must have
+     the same two.
+   - The held-out data of the convergence rule. 5% of the items, chosen by a hash of their id (salt "rr-convergence"),
+     the same items in every arm, are kept out of the training. Each run writes their loss per labelled token under the
+     starting model and under the trained model; the first condition of convergence is that the second is at least
+     20% below the first.
 
    Fingerprints (SHA-256), as filed on 7 October 2026, then corrected (repository commit b18bb7e):
    - porte_des_raisons.py: 5b9edccdc5fdd79456b43b1e96c4150a799cdb12f547d634fd7e868cbff960f1
