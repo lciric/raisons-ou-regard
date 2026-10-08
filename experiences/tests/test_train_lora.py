@@ -107,6 +107,36 @@ class TestTrainLora(unittest.TestCase):
         with self.assertRaises(ValueError):
             train_lora.train_one(str(self.model_dir), str(data), "neutral_text", 1, hp, self.tmp / "out2", device="cpu")
 
+    def test_seeds_shared_across_arms(self):
+        # registration, section 2.4: the same seed gives the same LoRA initialisation and the same data order in every
+        # arm, checked by fingerprint; section 5.4: the same held-out items in every arm, and their loss before and after
+        import random
+        hp = train_lora.load_hp({"dtype": "float32", "max_seq_len": 256, "batch.effective": 4, "batch.micro": 2,
+                                 "schedule.epochs": 4, "checkpoints": 1, "optimizer.lr": 5.0e-3, "gradient_checkpointing": False,
+                                 "lora.target_modules": ["q_proj", "v_proj", "up_proj"], "heldout": {"fraction": 0.3, "salt": "t"}})
+        sums = {}
+        for arm, seed in (("reasons", 2), ("actions_only", 2), ("reasons", 3)):
+            recs = records(20, arm)
+            if arm == "actions_only":                  # other texts, the same items
+                for r in recs:
+                    r["messages"][-1]["content"] = r["messages"][-1]["content"].split("\n")[-1]
+            random.Random(f"{arm}{seed}").shuffle(recs)  # another order in the file
+            data = self.tmp / f"shared_{arm}_{seed}.jsonl"
+            with open(data, "w", encoding="utf8") as fh:
+                for r in recs:
+                    fh.write(json.dumps(r) + "\n")
+            sums[(arm, seed)] = train_lora.train_one(str(self.model_dir), str(data), arm, seed, hp,
+                                                     self.tmp / f"shared_out_{arm}_{seed}", device="cpu")
+        a, b, c = sums[("reasons", 2)], sums[("actions_only", 2)], sums[("reasons", 3)]
+        self.assertEqual((a["init_sha256"], a["order_sha256"]), (b["init_sha256"], b["order_sha256"]))
+        self.assertEqual(a["heldout"]["ids_sha256"], b["heldout"]["ids_sha256"])
+        self.assertNotEqual(a["init_sha256"], c["init_sha256"])
+        self.assertNotEqual(a["order_sha256"], c["order_sha256"])
+        self.assertGreater(a["heldout"]["items"], 0)
+        self.assertEqual(a["examples"] + a["heldout"]["items"], 20)       # the held-out items are not trained on
+        self.assertLess(a["heldout"]["loss_final"], a["heldout"]["loss_start"])
+        self.assertEqual(a["heldout"]["at_least_20pct_below"], a["heldout"]["loss_final"] <= 0.8 * a["heldout"]["loss_start"])
+
     def test_same_seed_same_result(self):
         data = self.tmp / "reasons2.jsonl"
         with open(data, "w", encoding="utf8") as fh:

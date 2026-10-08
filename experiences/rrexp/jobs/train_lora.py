@@ -10,6 +10,17 @@ One machine trains several (arm, seed) pairs, one per GPU at a time, from the sa
   single arm;
 - checkpoints (LoRA adapters only) are saved at equally spaced steps and uploaded to runs/<run_id>/out/<arm>_s<seed>/.
 
+What the registration asks of the training runs (filed 7 October 2026), written in the summary of each run (decision
+47, before any data of the arms):
+- **seeds shared across arms** (section 2.4): "The same seed gives the same LoRA initialisation and the same data order
+  in every arm, checked by fingerprint". The items are put in the order of their ids, the generator is seeded right
+  before the adapters are created, and the summary gives "init_sha256" (the adapters at their initialisation) and
+  "order_sha256" (the ids in the order of training, every epoch). Two arms with the same seed must have the same two;
+- **the held-out data of the convergence rule** (section 5.4): "its final held-out loss, on held-out data of its arm,
+  is at least 20% below the starting model's loss on the same data". 5 % of the items, chosen by a hash of their id
+  (the same items in every arm), are kept out of the training; the summary gives their loss under the starting model
+  (the adapters at their initialisation change nothing) and under the trained one ("heldout").
+
 Job arguments: {"dataset": "<name>", "runs": [{"arm": "reasons", "seed": 1}, ...], "hp": {optional overrides}}.
 """
 import hashlib
@@ -94,6 +105,59 @@ def collate(batch, pad_id):
     return {"input_ids": ids, "labels": labels, "attention_mask": att}
 
 
+HELDOUT = {"fraction": 0.05, "salt": "rr-convergence"}      # the held-out data of the convergence rule (section 5.4)
+
+
+def heldout_ids(ids, fraction, salt):
+    """The items kept out of the training for the convergence rule, chosen by a hash of their id: the same items in
+    every arm, since the arms share their items."""
+    out = set()
+    for i in ids:
+        h = int(hashlib.sha256(f"{salt}:{i}".encode("utf8")).hexdigest()[:8], 16)
+        if h / 0xFFFFFFFF < fraction:
+            out.add(i)
+    return out
+
+
+def order_fingerprint(examples, seed, epochs):
+    """The SHA-256 of the item ids in the order of training, every epoch."""
+    sha = hashlib.sha256()
+    for epoch in range(epochs):
+        for i in epoch_order(len(examples), seed, epoch):
+            sha.update(str(examples[i]["id"]).encode("utf8") + b"\n")
+    return sha.hexdigest()
+
+
+def init_fingerprint(model):
+    """The SHA-256 of the trainable parameters (the adapters) at their initialisation, by name."""
+    sha = hashlib.sha256()
+    for name, p in sorted(model.named_parameters(), key=lambda kv: kv[0]):
+        if p.requires_grad:
+            sha.update(name.encode("utf8"))
+            sha.update(p.detach().float().cpu().numpy().tobytes())
+    return sha.hexdigest()
+
+
+def mean_loss(model, tok, examples, micro, device):
+    """The mean loss per labelled token of model on examples, teacher-forced, without dropout."""
+    import torch  # noqa: WPS433
+    was_training = model.training
+    model.eval()
+    total, count = 0.0, 0
+    with torch.no_grad():
+        for m in range(0, len(examples), micro):
+            mb = collate(examples[m:m + micro], tok.pad_token_id)
+            mb = {k: v.to(device) for k, v in mb.items()}
+            logits = model(input_ids=mb["input_ids"], attention_mask=mb["attention_mask"]).logits.float()
+            labels = mb["labels"][:, 1:]
+            total += float(torch.nn.functional.cross_entropy(logits[:, :-1, :].reshape(-1, logits.size(-1)), labels.reshape(-1),
+                                                             ignore_index=-100, reduction="sum"))
+            count += int((labels != -100).sum())
+    if was_training:
+        model.train()
+    return total / max(count, 1)
+
+
 def epoch_order(n, seed, epoch):
     rng = random.Random(f"{seed}:{epoch}")
     order = list(range(n))
@@ -173,7 +237,7 @@ def train(model, tok, examples, hp, seed, out_dir, device="cuda", progress=None,
             "label_tokens": sum(sum(1 for l in e["labels"] if l != -100) for e in examples), "seconds": round(time.time() - t0, 1)}
 
 
-def build_model(path, hp, device="cuda", dtype=None):
+def build_model(path, hp, device="cuda", dtype=None, seed=None):
     import torch  # noqa: WPS433
     from peft import LoraConfig, get_peft_model  # noqa: WPS433
     from transformers import AutoModelForCausalLM  # noqa: WPS433
@@ -185,6 +249,8 @@ def build_model(path, hp, device="cuda", dtype=None):
     l = hp["lora"]
     cfg = LoraConfig(r=l["r"], lora_alpha=l["alpha"], lora_dropout=l["dropout"], target_modules=l["target_modules"],
                      bias="none", task_type="CAUSAL_LM")
+    if seed is not None:
+        torch.manual_seed(seed)     # the same adapters at their initialisation in every arm (section 2.4)
     return get_peft_model(model, cfg)
 
 
@@ -201,9 +267,25 @@ def train_one(model_path, data_path, arm, seed, hp, out_dir, device="cuda", prog
         records = [json.loads(l) for l in fh if l.strip()]
     if any(r.get("arm") not in (None, arm) for r in records):
         raise ValueError(f"{data_path} holds examples of another arm than {arm}")
+    records.sort(key=lambda r: str(r["id"]))           # the same item order in every arm (section 2.4)
     examples = build_examples(tok, records, hp["max_seq_len"])
-    model = build_model(model_path, hp, device=device)
-    summary = train(model, tok, examples, hp, seed, out_dir, device=device, progress=progress, upload=upload)
+    ho = {**HELDOUT, **(hp.get("heldout") or {})}
+    held = heldout_ids([r["id"] for r in records], float(ho["fraction"]), str(ho["salt"]))
+    train_ex = [e for e in examples if e["id"] not in held]
+    held_ex = [e for e in examples if e["id"] in held]
+    model = build_model(model_path, hp, device=device, seed=seed)
+    fingerprints = {"init_sha256": init_fingerprint(model),
+                    "order_sha256": order_fingerprint(train_ex, seed, hp["schedule"]["epochs"])}
+    heldout = {"items": len(held_ex), "fraction": ho["fraction"], "salt": ho["salt"],
+               "ids_sha256": hashlib.sha256("\n".join(sorted(str(e["id"]) for e in held_ex)).encode("utf8")).hexdigest()}
+    if held_ex:
+        heldout["loss_start"] = round(mean_loss(model, tok, held_ex, hp["batch"]["micro"], device), 5)
+    summary = train(model, tok, train_ex, hp, seed, out_dir, device=device, progress=progress, upload=upload)
+    if held_ex:
+        heldout["loss_final"] = round(mean_loss(model, tok, held_ex, hp["batch"]["micro"], device), 5)
+        heldout["ratio"] = round(heldout["loss_final"] / heldout["loss_start"], 4) if heldout["loss_start"] else None
+        heldout["at_least_20pct_below"] = bool(heldout["loss_final"] <= 0.8 * heldout["loss_start"])
+    summary.update(fingerprints, heldout=heldout)
     with open(data_path, "rb") as fh:
         summary["data_sha256"] = hashlib.sha256(fh.read()).hexdigest()
     summary.update(arm=arm, seed=seed, items=len(records), trainable_parameters=sum(p.numel() for p in model.parameters() if p.requires_grad))
