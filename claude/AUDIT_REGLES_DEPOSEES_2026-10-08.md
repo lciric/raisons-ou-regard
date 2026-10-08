@@ -98,6 +98,17 @@ Une mise à jour datée du premier temps, avant toute donnée des bras, qui :
 
 Le convertisseur du point 7 est écrit, et ne touche aucun fichier figé. Pour le reste, rien n'est changé avant ta décision.
 
+## La décision de Lazar (décision 46), et ce qui est fait
+
+« ok pour les corrections de l'audit dans la mise à jour datée ».
+- **Le code est corrigé** (commit `b18bb7e`), avec des tests qui reproduisent les cas simulés :
+  - la porte des raisons : les points 1 et 2, et la décomposition sous les deux cadrages ;
+  - la règle du regard : les points 3 et 4, et la précision 6 à la lettre du texte déposé (l'IC entier au-delà du 95ᵉ centile) ;
+  - la simulation de puissance applique la même condition aux lignes 1 et 3.
+- **La précision 5** est écrite sans changer le code : une différence établie l'emporte sur l'équivalence.
+- **Les mêmes cas simulés rendent maintenant** : « non conclusif » ; la ligne 6 ; les lignes 4 et 5.
+- **Les nouvelles empreintes** sont dans le brouillon de la mise à jour datée (`claude/MISE_A_JOUR_PREMIER_TEMPS_BROUILLON_2026-10-08.md`). Lazar la dépose, avec les trois pièces qui manquent encore.
+
 ## Les sources
 
 - Le texte déposé : `claude/PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md`, sections 5.1 à 5.4 et 6.3, annexes A.0 à A.3 et C.3.
