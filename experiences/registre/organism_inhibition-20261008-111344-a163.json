@@ -43,7 +43,9 @@
   "repo_path": "code/d74291e2c0d91aea.tar.gz",
   "sha256": "d74291e2c0d91aea46bb04aa1cc6705c60fac574c2ca0a201dd0dd5bc82a3f1d"
  },
+ "cost_usd_upper_bound": 10.237,
  "created": "2026-10-08T11:13:44Z",
+ "destroyed": "2026-10-08T13:05:54Z",
  "disk_gb": 120,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -94,6 +96,7 @@
    "offers": 1
   }
  ],
+ "reason": "bloqué depuis 11:54 UTC dans l'exécution des tests unitaires du tirage 2 (preexec_fn depuis un pool de threads : interblocage avant exec) ; détruit à 13:06 UTC",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -105,5 +108,5 @@
  ],
  "run_id": "organism_inhibition-20261008-111344-a163",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "killed"
 }

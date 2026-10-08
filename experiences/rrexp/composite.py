@@ -222,12 +222,15 @@ def tool_call_valid(text, tools=None):
     return ok, name
 
 
-def _limit_memory():
-    try:
-        import resource  # noqa: WPS433
-        resource.setrlimit(resource.RLIMIT_AS, (2 << 30, 2 << 30))
-    except (ImportError, ValueError, OSError):
-        pass
+# The child limits its own memory, then runs the program as __main__. No preexec_fn: called from the thread pool of
+# measure, it can deadlock the child before exec, and the parent then waits in Popen with no time limit (the composite
+# of organism_inhibition-20261008-111344-a163 hung so on its second draw, on October 8, 2026).
+RUNNER = ("import resource, runpy, sys\n"
+          "try:\n"
+          "    resource.setrlimit(resource.RLIMIT_AS, (2 << 30, 2 << 30))\n"
+          "except (ValueError, OSError):\n"
+          "    pass\n"
+          "runpy.run_path(sys.argv[1], run_name='__main__')\n")
 
 
 def code_program(item, code):
@@ -239,17 +242,26 @@ def code_program(item, code):
 
 
 def run_program(program, timeout=10.0):
-    """True if the program exits with status 0 within the time limit, in a separate isolated Python process."""
+    """True if the program exits with status 0 within the time limit, in a separate isolated Python process, limited
+    to 2 GB of memory. It runs in a process group of its own, killed at the end: no process it starts outlives it."""
+    import signal  # noqa: WPS433
     with tempfile.TemporaryDirectory() as d:
         p = Path(d) / "prog.py"
         p.write_text(program, encoding="utf8")
+        proc = subprocess.Popen([sys.executable, "-I", "-c", RUNNER, str(p)], cwd=d, stdin=subprocess.DEVNULL,
+                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env={"PATH": os.environ.get("PATH", "")},
+                                start_new_session=True)
         try:
-            r = subprocess.run([sys.executable, "-I", str(p)], cwd=d, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
-                               stderr=subprocess.DEVNULL, timeout=timeout, env={"PATH": os.environ.get("PATH", "")},
-                               preexec_fn=_limit_memory if os.name == "posix" else None)
-            return r.returncode == 0
+            code = proc.wait(timeout=timeout)
         except subprocess.TimeoutExpired:
-            return False
+            code = None
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError, AttributeError):
+            pass
+        if code is None:
+            proc.wait()
+        return code == 0
 
 
 def expected_rating(probs):

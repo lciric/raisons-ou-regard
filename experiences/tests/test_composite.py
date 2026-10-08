@@ -122,6 +122,31 @@ class TestScoring(unittest.TestCase):
         self.assertTrue(prog.startswith("from typing import List"))
         self.assertIn("check(total)", prog)
         self.assertTrue(cp.run_program(prog))
+        self.assertFalse(cp.run_program("x = bytearray(3 << 30)\n"))          # the 2 GB memory limit holds
+        self.assertTrue(cp.run_program("import sys\nsys.exit(0)\n"))
+        self.assertTrue(cp.run_program("if __name__ == '__main__':\n    pass\nelse:\n    raise SystemExit(1)\n"))
+
+    def test_code_execution_from_threads(self):
+        # many programs at once from a thread pool, as in measure; one leaves a process behind, killed with its group
+        from concurrent.futures import ThreadPoolExecutor
+        marker = Path(tempfile.mkdtemp())
+        try:
+            left = (f"import os, time\nif os.fork() == 0:\n    open({str(marker / 'child.pid')!r}, 'w').write(str(os.getpid()))\n"
+                    "    time.sleep(60)\n")
+            progs = ["assert 1 + 1 == 2\n", "assert 1 + 1 == 3\n", left] * 40
+            with ThreadPoolExecutor(max_workers=16) as ex:
+                ok = list(ex.map(lambda pr: cp.run_program(pr, timeout=5.0), progs))
+            self.assertEqual(ok[:3] * 40, ok)
+            self.assertEqual(ok[:3], [True, False, True])
+            pid = int((marker / "child.pid").read_text())
+            try:                                               # the program's own child did not outlive it (a zombie
+                with open(f"/proc/{pid}/stat") as fh:          # at most, where nothing reaps orphans)
+                    state = fh.read().rsplit(")", 1)[1].split()[0]
+            except FileNotFoundError:
+                state = "gone"
+            self.assertIn(state, ("gone", "Z"))
+        finally:
+            shutil.rmtree(marker)
 
     def test_tolerances_and_check(self):
         self.assertTrue(cp.within("mmlu", 60.0, 61.0))
