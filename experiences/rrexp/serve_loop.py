@@ -12,7 +12,9 @@ The stages that call no generator (plan, assemble, audit, report) run once. "oth
 of another family (--role generator_other): the job then switches models. At the end, runs/<run_id>/serve/stop ends the
 job. A refusal is cached by the pipeline and never sent again: running a stage again replays none.
 
-Run again after a stop, it takes up where it was: a queue sent and not yet answered is awaited, never sent twice.
+Run again after a stop, it takes up where it was: a queue sent and not yet answered is awaited, never sent twice. With
+max_minutes, it pauses before a new pass once that time is spent, without ending the job: a session's background task
+lasts two hours at most, and the next piece takes up.
 """
 import json
 import re
@@ -54,8 +56,11 @@ def retry(f, tries=5, wait=20.0, sleep=time.sleep):
 
 
 class Driver:
-    def __init__(self, hub, run_id, donnees, config, log, poll=20.0, wait_minutes=90, max_passes=15, sleep=time.sleep):
+    def __init__(self, hub, run_id, donnees, config, log, poll=20.0, wait_minutes=90, max_passes=15, sleep=time.sleep,
+                 max_minutes=None, clock=time.time):
         self.hub, self.run_id, self.donnees, self.config, self.log = hub, run_id, Path(donnees), config, Path(log)
+        self.max_minutes, self.clock = max_minutes, clock
+        self.t0 = clock()
         self.poll, self.wait_s, self.max_passes, self.sleep = poll, wait_minutes * 60, max_passes, sleep
         self.serve, self.out = f"runs/{run_id}/serve", f"runs/{run_id}/out"
         self.tmp = Path(tempfile.mkdtemp(prefix="rr-serve-"))
@@ -107,12 +112,16 @@ class Driver:
             self.import_answers(n, role)
         results = {}
         for stage in stages:
+            if self.spent():
+                return self.pause(stage, results)
             if stage in GENERATOR_FREE:
                 results[stage] = self.cmd(stage, *STAGE_ARGS.get(stage, []))
                 self.say(f"{stage}: {json.dumps(results[stage], ensure_ascii=False)[:600]}")
                 continue
             role = "generator_other" if stage == "other_family" else "generator"
             for k in range(self.max_passes + 1):
+                if k and self.spent():
+                    return self.pause(stage, results)
                 results[stage] = self.cmd(stage)
                 st = self.cmd("offline-status", "--role", role)
                 self.say(f"{stage}, run {k + 1}: {json.dumps(results[stage], ensure_ascii=False)[:300]}; waiting {st['waiting']}")
@@ -129,6 +138,13 @@ class Driver:
         retry(lambda: self.hub.put_bytes(f"{self.serve}/stop", b"stop\n", "serve: stop"))
         self.say("stop sent")
         return {"stages": results, "passes": self.passes}
+
+    def spent(self):
+        return bool(self.max_minutes) and self.clock() - self.t0 > 60 * float(self.max_minutes)
+
+    def pause(self, stage, results):
+        self.say(f"paused before {stage}: {self.max_minutes} minutes spent; the next piece takes up")
+        return {"paused": stage, "stages": results, "passes": self.passes}
 
     def role_of_queue(self, n):
         path = retry(lambda: self.hub.download(f"{self.serve}/queue_{n:03d}.jsonl", self.tmp))

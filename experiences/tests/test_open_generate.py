@@ -324,6 +324,16 @@ class TestServe(unittest.TestCase):
                 res2 = sl.Driver(hub2, "r", d, "c.yaml", d / "log.txt", poll=0, sleep=lambda s: None).run([])
             self.assertEqual([(p["pass"], p["role"]) for p in res2["passes"]], [(4, "generator_other")])
             self.assertEqual(sum(1 for f in hub2.files if "queue_" in f), 1)
+            # a piece with a time budget pauses before a new pass, without stopping the job
+            waiting.update({"situations": [1, 0]})
+            ticks = iter([0, 0, 3600, 3600, 3600])        # the start, before the stage, then before its second pass
+            hub3 = Hub()
+            with mock.patch.object(sl, "rrdata", fake_rrdata):
+                res3 = sl.Driver(hub3, "r", d, "c.yaml", d / "log.txt", poll=0, sleep=lambda s: None, max_minutes=30,
+                                 clock=lambda: next(ticks)).run(["situations", "actions"])
+            self.assertEqual(res3["paused"], "situations")
+            self.assertNotIn("runs/r/serve/stop", hub3.files)
+            self.assertEqual([p["pass"] for p in res3["passes"]], [1])
         finally:
             shutil.rmtree(d)
 

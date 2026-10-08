@@ -62,6 +62,7 @@ def main(argv=None):
     pv.add_argument("--donnees", default="../donnees")
     pv.add_argument("--stages", default="plan,situations,actions,reasons,neutral,other_family,assemble,audit,report")
     pv.add_argument("--log", default=None, help="the log file (default: in the pipeline's output folder)")
+    pv.add_argument("--max-minutes", type=float, default=None, help="pause before a new pass after that long (the next run takes up)")
     pq = sub.add_parser("send-queue")
     pq.add_argument("name")
     pq.add_argument("file", help="the waiting requests, for instance ../donnees/sorties/complet/offline/waiting_generator.jsonl")
@@ -97,7 +98,7 @@ def main(argv=None):
 
         from .serve_loop import Driver  # noqa: WPS433
         log = a.log or str(Path(a.donnees) / "sorties" / f"serve_{a.run_id}.log")
-        res = Driver(hub, a.run_id, a.donnees, a.data_config, log).run([s for s in a.stages.split(",") if s])
+        res = Driver(hub, a.run_id, a.donnees, a.data_config, log, max_minutes=a.max_minutes).run([s for s in a.stages.split(",") if s])
         print(json.dumps(res, ensure_ascii=False, indent=1))
         return 0
     from .vast import Vast
