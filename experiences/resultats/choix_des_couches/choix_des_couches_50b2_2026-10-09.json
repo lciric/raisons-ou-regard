@@ -1,0 +1,219 @@
+{
+ "extraction_pairs": 150,
+ "validation_pairs": {
+  "a": 100,
+  "b": 100
+ },
+ "lexical": {
+  "a": 0.6389,
+  "b": 0.6563
+ },
+ "margin": 0.0,
+ "per_layer": [
+  {
+   "layer": 1,
+   "probe_a": 0.7656,
+   "probe_b": 0.7418
+  },
+  {
+   "layer": 2,
+   "probe_a": 0.6747,
+   "probe_b": 0.6533
+  },
+  {
+   "layer": 3,
+   "probe_a": 0.7152,
+   "probe_b": 0.7514
+  },
+  {
+   "layer": 4,
+   "probe_a": 0.8398,
+   "probe_b": 0.8219
+  },
+  {
+   "layer": 5,
+   "probe_a": 0.8548,
+   "probe_b": 0.8212
+  },
+  {
+   "layer": 6,
+   "probe_a": 0.86,
+   "probe_b": 0.8435
+  },
+  {
+   "layer": 7,
+   "probe_a": 0.8071,
+   "probe_b": 0.8184
+  },
+  {
+   "layer": 8,
+   "probe_a": 0.8196,
+   "probe_b": 0.8141
+  },
+  {
+   "layer": 9,
+   "probe_a": 0.8387,
+   "probe_b": 0.8242
+  },
+  {
+   "layer": 10,
+   "probe_a": 0.8262,
+   "probe_b": 0.7946
+  },
+  {
+   "layer": 11,
+   "probe_a": 0.8465,
+   "probe_b": 0.8085
+  },
+  {
+   "layer": 12,
+   "probe_a": 0.8188,
+   "probe_b": 0.7605
+  },
+  {
+   "layer": 13,
+   "probe_a": 0.7658,
+   "probe_b": 0.7242
+  },
+  {
+   "layer": 14,
+   "probe_a": 0.727,
+   "probe_b": 0.6861
+  },
+  {
+   "layer": 15,
+   "probe_a": 0.7179,
+   "probe_b": 0.6893
+  },
+  {
+   "layer": 16,
+   "probe_a": 0.7101,
+   "probe_b": 0.6903
+  },
+  {
+   "layer": 17,
+   "probe_a": 0.7012,
+   "probe_b": 0.6801
+  },
+  {
+   "layer": 18,
+   "probe_a": 0.7268,
+   "probe_b": 0.7252
+  },
+  {
+   "layer": 19,
+   "probe_a": 0.737,
+   "probe_b": 0.7174
+  },
+  {
+   "layer": 20,
+   "probe_a": 0.7389,
+   "probe_b": 0.7273
+  },
+  {
+   "layer": 21,
+   "probe_a": 0.7356,
+   "probe_b": 0.7303
+  },
+  {
+   "layer": 22,
+   "probe_a": 0.7457,
+   "probe_b": 0.7361
+  },
+  {
+   "layer": 23,
+   "probe_a": 0.7478,
+   "probe_b": 0.7264
+  },
+  {
+   "layer": 24,
+   "probe_a": 0.7429,
+   "probe_b": 0.7275
+  },
+  {
+   "layer": 25,
+   "probe_a": 0.7297,
+   "probe_b": 0.7123
+  },
+  {
+   "layer": 26,
+   "probe_a": 0.7376,
+   "probe_b": 0.7146
+  },
+  {
+   "layer": 27,
+   "probe_a": 0.7438,
+   "probe_b": 0.7227
+  },
+  {
+   "layer": 28,
+   "probe_a": 0.7472,
+   "probe_b": 0.7227
+  },
+  {
+   "layer": 29,
+   "probe_a": 0.7433,
+   "probe_b": 0.7331
+  },
+  {
+   "layer": 30,
+   "probe_a": 0.7422,
+   "probe_b": 0.736
+  },
+  {
+   "layer": 31,
+   "probe_a": 0.7425,
+   "probe_b": 0.7431
+  },
+  {
+   "layer": 32,
+   "probe_a": 0.7641,
+   "probe_b": 0.7597
+  }
+ ],
+ "layers_beating_the_bag_of_words_a": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32
+ ],
+ "window": [
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "probe_a_mean": 0.8363,
+ "probe_b_mean": 0.8238,
+ "lexical_condition": true,
+ "verdict": "la condition lexicale tient : sur la moitié B, la sonde fait mieux que le sac de mots"
+}
