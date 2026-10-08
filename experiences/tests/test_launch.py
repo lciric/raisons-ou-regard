@@ -160,6 +160,40 @@ class TestBundleAndScript(unittest.TestCase):
         with self.assertRaises(ValueError):           # before anything is built or rented
             launch.launch(launch.load_config(), "smoke", {}, dry_run=True, allow_dirty=True, gpu_names=["B200"])
 
+    def test_launch_waits_for_an_offer(self):
+        class Hub:
+            repo, token = "u/r", "hf_x"
+
+            def exists(self, path):
+                return True                           # the code bundle is already there
+
+            def put_json(self, path, obj, message=None):
+                pass
+
+        class V:
+            def __init__(self):
+                self.searches = 0
+
+            def search_offers(self, query):
+                self.searches += 1
+                return [] if self.searches < 3 else [{"id": 5, "dph_total": 2.0}]
+
+            def create_instance(self, offer_id, payload):
+                return 77
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            naps = []
+            v = V()
+            rec = launch.launch(launch.load_config(), "smoke", {}, allow_dirty=True, vast=v, hub=Hub(), registry=tmp,
+                                gpu_names=["H100 SXM"], wait_offer_minutes=60, sleep=naps.append)
+            self.assertEqual((rec["state"], rec["instance_id"], rec["offer"]["id"]), ("launched", 77, 5))
+            self.assertEqual(naps, [600, 600])                 # searched again every 10 minutes
+            v2 = V()
+            with self.assertRaises(RuntimeError):              # without waiting, no offer is no offer
+                launch.launch(launch.load_config(), "smoke", {}, allow_dirty=True, vast=v2, hub=Hub(), registry=tmp, gpu_names=["H100 SXM"])
+        finally:
+            shutil.rmtree(tmp)
+
     def test_dry_run_has_no_secret(self):
         os.environ["HF_TOKEN"] = "hf_should_not_appear"
         try:

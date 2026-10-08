@@ -1,0 +1,47 @@
+{
+ "args": {
+  "engine": {
+   "language_model_only": true
+  },
+  "idle_minutes": 30,
+  "max_model_len": 16384,
+  "serve": true,
+  "tensor_parallel": 2
+ },
+ "bundle": {
+  "bytes": 3413556,
+  "dirty": false,
+  "files": 221,
+  "git_head": "3ade45de47925622b76821fd33cd305bc67ab181",
+  "repo_path": "code/6235c1d1e948885c.tar.gz",
+  "sha256": "6235c1d1e948885cca0dfa21deb5a2d9bba4308616e8eb7466d2c6731fdfd48e"
+ },
+ "created": "2026-10-08T12:13:29Z",
+ "disk_gb": 400,
+ "expected": {
+  "download_gb": 190.0,
+  "hours": 3.0
+ },
+ "image": "vllm/vllm-openai:v0.30.0",
+ "job": "open_generate",
+ "max_hours": 0.0,
+ "num_gpus": 2,
+ "offers_tried": [
+  {
+   "gpu": "H100 SXM",
+   "offers": 0
+  }
+ ],
+ "requirements": [
+  "transformers==5.18.0",
+  "peft==0.21.2",
+  "accelerate==1.15.0",
+  "huggingface_hub==1.33.0",
+  "safetensors==0.8.0",
+  "tokenizers==0.23.2",
+  "pyyaml==6.0.3"
+ ],
+ "run_id": "open_generate-20261008-121329-a8da",
+ "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
+ "state": "no_offer"
+}

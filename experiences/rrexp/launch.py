@@ -89,9 +89,10 @@ def gpu_pool(gpus, names=None):
 
 
 def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=False, dry_run=False,
-           vast=None, hub=None, pass_hf_token=True, registry=REGISTRY, gpu_names=None):
+           vast=None, hub=None, pass_hf_token=True, registry=REGISTRY, gpu_names=None, wait_offer_minutes=0, sleep=time.sleep):
     """Builds the code bundle, sends it, rents the cheapest fitting machine, starts the job. Returns the record.
-    gpu_names: only these GPU types of the config (gpu_pool)."""
+    gpu_names: only these GPU types of the config (gpu_pool). wait_offer_minutes: without a fitting offer, search again
+    every 10 minutes for that long before giving up (on October 8, 2026, no pair of H100 SXM was free)."""
     if job not in JOBS:
         raise ValueError(f"unknown job {job!r}; jobs: {', '.join(JOBS)}")
     # 0 means no time limit: the machine runs the job to its end, and the watcher still destroys a silent one
@@ -123,6 +124,11 @@ def launch(cfg, job, args, num_gpus=1, max_hours=None, gpus=None, allow_dirty=Fa
     # the offer is chosen on the run's expected cost, the download of its models included (offer_cost)
     hours, download_gb = float(cfg.get("expected_hours", 1.0)), float(cfg.get("download_gb", 0.0))
     gpu, offer, tried = pick_offer(vast, pool, num_gpus, cfg["disk_gb"], cfg["filters"], cfg["max_dph_per_gpu"], hours, download_gb)
+    deadline = time.time() + 60 * float(wait_offer_minutes)
+    while offer is None and time.time() < deadline:
+        print(f"[rrexp] {now_iso()}: no offer yet ({tried}); searching again in 10 minutes", flush=True)
+        sleep(600)
+        gpu, offer, tried = pick_offer(vast, pool, num_gpus, cfg["disk_gb"], cfg["filters"], cfg["max_dph_per_gpu"], hours, download_gb)
     rec["offers_tried"] = tried
     rec["expected"] = {"hours": hours, "download_gb": download_gb}
     if offer is None:
