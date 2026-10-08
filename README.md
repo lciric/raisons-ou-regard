@@ -10,7 +10,7 @@ Le dépôt du programme de recherche de Lazar Ciric, chercheur indépendant à P
 
 Le programme complet va plus loin : où se loge l'avantage, le retrait de « je suis évalué » pendant l'entraînement, la survie de l'avantage, et ce que les raisons installent dans le modèle.
 
-## Où en est le travail (7 octobre 2026)
+## Où en est le travail (8 octobre 2026)
 
 - **Le programme en vigueur est la v1.6** (6 octobre ; décision 33).
 - **Le pré-enregistrement, premier temps, est déposé sur OSF**, sous embargo (7 octobre ; décision 35).
@@ -25,6 +25,8 @@ Le programme complet va plus loin : où se loge l'avantage, le retrait de « je 
   - Il reste l'amendement daté qui fixe le réglage (son brouillon : `claude/AMENDEMENT_REGLAGE_PORTE_2026-10-07.md`), puis la moitié de test, mesurée une seule fois contre au moins 100 tirages : environ 15 h de H100.
   - La lecture est dans `experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`.
 - **Les données.** Le pipeline (v0.1) et son pilote ont tourné, et les jeux d'indices v2 sont faits (décisions 30 et 31).
+  - **Avant la génération complète, un point bloque** (relu le 8 octobre). Les conditions de l'API Claude interdisent de prendre ses sorties pour cibles d'entraînement d'un modèle, sans une permission écrite d'Anthropic. Or le texte déposé fait écrire les données des bras par Opus 5.5.
+  - Deux voies : demander cette permission, ou faire écrire les cibles par un modèle ouvert, Claude restant juge. C'est à Lazar de choisir : `claude/RELECTURES_PARTIE_11_2026-10-08.md`.
 - **Avant toute donnée des bras**, une mise à jour datée du pré-enregistrement doit figer trois pièces :
   - le harnais des scénarios tenus à part, et le format de ses appels d'outil. Il est dans `experiences/rrharness/` : dix modules, incomplets et pas encore testés ;
   - le prompt du juge scellé ;
