@@ -62,4 +62,5 @@ Le journal des décisions du programme « Raisons ou regard ? ». Chaque ligne d
 - **Le détecteur d'audit** : adopter sa spécification v0.1, et demander l'accès à Liars' Bench depuis ton compte Hugging Face (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`).
 - **Le comparateur de la porte.** La mesure de la décision 44 est faite : aucun témoin n'a le dommage du réglage. La mesure courte de la décision 45, qui tranche la source de ce dommage, est lancée (`experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`).
 - **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
+- **Le code des règles déposées**, relu contre le texte déposé : quatre écarts et deux silences, à corriger ou préciser par la mise à jour datée du premier temps, avant toute donnée des bras (`claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md`).
 - **L'état des pièces à figer** : le guide du dépôt, section « Où en sont les pièces au 8 octobre ».

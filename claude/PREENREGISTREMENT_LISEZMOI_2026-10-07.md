@@ -175,6 +175,7 @@ Le premier temps est déposé le 7 octobre (décision 35, voie A). Ce qui reste 
 | Le générateur des données des bras (décision 37) | le texte de la mise à jour est écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle se confirme par le pilote | le pilote, arrêté faute de crédit de vast.ai |
 | Le composite à la moitié de test (annexe B.1) | adopté (décisions 38, 40, 41) ; aucun des 20 tirages du réglage n'y est apparié, ni aucun des témoins de la décision 44 (`experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`) | ta décision sur le comparateur, entre les trois voies de la note |
 | Le paragraphe de l'amendement sur le composite | brouillon (`claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`, section 9) | la même décision |
+| Le code des règles (porte des raisons, règle du regard) | figé au dépôt par ses empreintes ; relu le 8 octobre : quatre écarts au texte et deux silences (`claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md`) | ta décision ; les corrections iraient dans la mise à jour datée, avec leurs nouvelles empreintes |
 
 ## Deux façons de déposer
 
