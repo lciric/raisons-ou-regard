@@ -17,7 +17,10 @@
   "repo_path": "code/a46989a2e8081fc3.tar.gz",
   "sha256": "a46989a2e8081fc3feda72d28c6afb964d749a83f408bcc2c283744c6c44f3b5"
  },
+ "cost_usd_upper_bound": 9.104,
  "created": "2026-10-08T16:07:50Z",
+ "dead_seen": "2026-10-08T16:20:07Z",
+ "destroyed": "2026-10-08T16:20:52Z",
  "disk_gb": 400,
  "env": {
   "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -68,6 +71,7 @@
    "offers": 1
   }
  ],
+ "reason": "arrêté par vast.ai vers 16:12 UTC, pendant la compilation du modèle : crédit épuisé (0,87 $ à 16:21 UTC) ; détruit à la main",
  "requirements": [
   "transformers==5.18.0",
   "peft==0.21.2",
@@ -79,5 +83,5 @@
  ],
  "run_id": "open_generate-20261008-160750-e329",
  "script_sha256": "9314404c7bbb6ca96349cf2515d32cd5a7a63ca103b4c1ae97d3edd27b8e19bd",
- "state": "launched"
+ "state": "killed"
 }
