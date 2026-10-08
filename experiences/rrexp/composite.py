@@ -8,7 +8,8 @@ component that shares the format or the content of the outcome is reported, not 
 of the first organism, whose outcome is Python code, the unit-test pass rate.
 
 The components, on the item sets of composite_items (their fingerprints in its manifest):
-- "mmlu": accuracy on 2,000 MMLU test items, zero-shot; the option is the letter of highest next-token logit. ±1 point.
+- "mmlu": accuracy on 2,000 MMLU test items, zero-shot. The answer is opened with "Answer:" (ANSWER_PREFIX), and the
+  option is the letter of highest next-token logit, with or without a space. ±1 point.
 - "gsm8k": accuracy on 500 GSM8K test items, greedy; the number after "Answer:", else the last number. ±3 points.
 - "code": the unit-test pass rate on HumanEval (164) and MBPP+ (378), greedy; the code of the answer runs with its tests
   in a separate Python process, under a time limit. ±3 points.
@@ -40,6 +41,9 @@ COMPONENTS = ("mmlu", "gsm8k", "code", "coherence", "perplexity", "order", "form
 TOLERANCES = {"mmlu": ("abs", 1.0), "gsm8k": ("abs", 3.0), "code": ("abs", 3.0), "coherence": ("abs", 0.1),
               "perplexity": ("rel", 0.02), "order": ("abs", 2.0), "format": ("abs", 1.0), "tools": ("abs", 2.0)}
 LETTERS = "ABCD"
+# The answer to a multiple choice is opened with this text, then the letter is read: the organism's first token is often
+# a bold marker, not a letter (composite_check-20261008-050024-48bc), and the letter's logit at the first token was noise.
+ANSWER_PREFIX = "Answer:"
 FILES = {"mmlu": "mmlu.jsonl", "gsm8k": "gsm8k.jsonl", "code": "code.jsonl", "coherence": "coherence.jsonl",
          "perplexity": "perplexity.json", "order": "order.jsonl", "format": "format.jsonl", "tools": "tools.jsonl"}
 MAX_NEW = {"gsm8k": 384, "code": 512, "coherence": 320, "format": 128, "tools": 160}
@@ -323,26 +327,38 @@ def summarize(rows):
 # ---------------------------------------------------------------- measurement (under the current intervention)
 
 def letter_ids(tok):
-    return [tok.encode(l, add_special_tokens=False)[0] for l in LETTERS]
+    """For each letter, the token ids of its two written forms, alone and after a space (each that is one token)."""
+    out = []
+    for l in LETTERS:
+        ids = []
+        for form in (l, " " + l):
+            e = tok.encode(form, add_special_tokens=False)
+            if len(e) == 1 and e[0] not in ids:
+                ids.append(e[0])
+        if not ids:
+            ids.append(tok.encode(l, add_special_tokens=False)[0])
+        out.append(ids)
+    return out
 
 
 def next_token_choice(model, tok, convs, n_options, batch):
-    """For each conversation, the index of the option letter with the highest next-token logit after the generation
-    prompt, among its first n_options letters (n_options: an int, or a list per conversation)."""
+    """For each conversation, the index of the option letter with the highest next-token logit, among its first
+    n_options letters (n_options: an int, or a list per conversation). The assistant's answer is opened with
+    ANSWER_PREFIX, and a letter scores the larger logit of its two written forms."""
     import torch  # noqa: WPS433
     ids = letter_ids(tok)
     ns = n_options if isinstance(n_options, list) else [n_options] * len(convs)
     tok.padding_side = "left"
     out = []
     for i in range(0, len(convs), batch):
-        enc = tok.apply_chat_template(convs[i:i + batch], add_generation_prompt=True, return_tensors="pt", padding=True,
+        part = [c + [{"role": "assistant", "content": ANSWER_PREFIX}] for c in convs[i:i + batch]]
+        enc = tok.apply_chat_template(part, continue_final_message=True, return_tensors="pt", padding=True,
                                       return_dict=True).to(model.device)
         with torch.no_grad():
-            logits = model(**enc, logits_to_keep=1).logits[:, -1, :].float()
-        sel = logits[:, ids].cpu()
-        for j in range(sel.shape[0]):
-            n = ns[i + j]
-            out.append(int(torch.argmax(sel[j, :n])))
+            logits = model(**enc, logits_to_keep=1).logits[:, -1, :].float().cpu()
+        scores = torch.stack([logits[:, l_ids].max(dim=1).values for l_ids in ids], dim=1)
+        for j in range(scores.shape[0]):
+            out.append(int(torch.argmax(scores[j, :ns[i + j]])))
     return out
 
 

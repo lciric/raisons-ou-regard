@@ -29,7 +29,7 @@ Les tolérances sont celles du texte déposé (annexe B.1). Le reste est un choi
 
 | Composante | Les items | La lecture | Tolérance |
 |---|---|---|---|
-| L'exactitude sur MMLU | 2 000 items de MMLU test, tirés au hasard (`cais/mmlu`, MIT) | sans exemple ; l'option est la lettre de plus grand logit au premier jeton de la réponse | ±1 point |
+| L'exactitude sur MMLU | 2 000 items de MMLU test, tirés au hasard (`cais/mmlu`, MIT) | sans exemple ; la réponse s'ouvre par « Answer: », puis l'option est la lettre de plus grand logit, avec ou sans espace (changé le 8 octobre, section 10) | ±1 point |
 | L'exactitude sur GSM8K | 500 items de GSM8K test, tirés au hasard (`openai/gsm8k`, MIT) | glouton ; le nombre après « Answer: », sinon le dernier nombre | ±3 points |
 | Les tests unitaires | HumanEval en entier (164) et MBPP+ en entier (378) : 542 problèmes (`openai/openai_humaneval`, MIT ; `evalplus/mbppplus`, Apache-2.0) | glouton ; le code de la réponse tourne avec ses tests dans un processus Python séparé (en mode isolé), limité à 10 secondes et à 2 Go de mémoire | ±3 points |
 | La cohérence jugée | 100 demandes ouvertes de Dolly 15k, sans contexte, de 6 à 60 mots (`databricks/databricks-dolly-15k`, CC BY-SA 3.0) | glouton ; chaque réponse jugée par JEV-27B (section 4), de 1 à 5 | ±0,1 |
@@ -100,6 +100,11 @@ The composite check (Appendix B.1). On the test half, a comparator draw or a sep
 
 [Replaces the last sentence of the draft:] The test half is opened only after this amendment. There, the gate compares the setting to at least 100 comparator draws matched on the KL and on the composite, on H100 SXM (Appendices A.1 and B.1).
 ```
+
+## 10. Changé après le premier run (8 octobre)
+
+- **La lecture des choix multiples** (MMLU et l'ordre). Le premier run des cas connus, sur l'organisme (`composite_check-20261008-050024-48bc`), lisait la lettre au premier jeton de la réponse. Or l'organisme commence souvent par une mise en gras : 41 % de ses réponses à MMLU changeaient quand on renversait l'ordre des options. La réponse s'ouvre désormais par « Answer: », et une lettre vaut le plus grand logit de ses deux formes, seule et après une espace. Vérifié sur le tokenizer de Llama-3.1-8B-Instruct : chacune des huit formes est un seul jeton, et la réponse ouverte ne porte pas de fin de tour.
+- **Les appels d'outils de l'organisme** : 22,5 % seulement sont valides. Souvent, il écrit lui-même un « résultat » d'outil, avec des contenus de Wood Labs, la trace de ses documents. La composante reste juste, mais elle a peu de marge sur cet organisme.
 
 ## Les sources
 
