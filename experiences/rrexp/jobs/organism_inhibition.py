@@ -78,7 +78,9 @@ column each (one per cue set). With "columns": "free" and "multiples": [2, 3, 4]
 (decision 45): the smallest k at which every null, erased whole, reaches the setting's KL; each is then matched on the
 KL and checked on the composite like a draw. These nulls are fitted once the setting's KL is known, on a second copy
 of the starting model (the first one has the organism's adapters merged into it); for a k, the fits stop at the first
-null that does not reach the KL, and the next k is tried. "controls_free_rank" records the k tried.
+null that does not reach the KL, and the next k is tried. "controls_free_rank" records the k tried. The nulls of the
+chosen k are saved (erasure_<setting>~<name>_<i>.safetensors) and, with "from_run": "<run id>", reloaded from that run
+instead of fitted again (the measure of the gaps after that of the composite).
 "own_effect" (decisions 40 and 41) says, for MMLU, GSM8K and the MMLU half of the order, whether the setting moves them,
 from the intact model, more than every comparator draw matched on the KL: such a component passes to report-only before
 the test half (for the MMLU half of the order, "order_mmlu": the order is then matched on the forced choices alone).
@@ -197,6 +199,20 @@ def shuffled_columns(names, rng, k=1):
         cols, _ = er.polarity_columns(swap_polarities(names, rng))
         rows = cols if rows is None else [x + y for x, y in zip(rows, cols)]
     return rows
+
+
+def eraser_tensors(params):
+    """The tensors of a fitted erasure, by layer, as they are saved: {"layer_LL.mean"|".B"|".C": tensor}."""
+    return {f"layer_{l:02d}.{k}": v.contiguous() for l, p in params.items() for k, v in p.items()}
+
+
+def eraser_params(tensors):
+    """The fitted erasure back from its saved tensors: {layer: {"mean", "B", "C"}}."""
+    out = {}
+    for name, v in tensors.items():
+        layer, part = name.split(".", 1)
+        out.setdefault(int(layer.split("_")[1]), {})[part] = v
+    return out
 
 
 def full_fraction_within(points, target, tol):
@@ -385,6 +401,8 @@ def run(ctx):
             raise ValueError(f"the columns of {c['name']!r}: a number from 1, or \"free\"")
         if cols == "free" and not all(isinstance(m, int) and m >= 1 for m in c.get("multiples", [2, 3, 4])):
             raise ValueError(f"the multiples of {c['name']!r} are numbers of columns, from 1")
+        if (c.get("from_run") or c.get("local_erasers")) and cols != "free":
+            raise ValueError(f"{c['name']!r}: only the nulls at the free rank are reloaded from a run")
     results = {"organism": {"base": hp["base_model"], "sdf_adapter": a.get("sdf_adapter"), "ei_adapter": a.get("ei_adapter")},
                "subspace_run": a.get("subspace_run"), "cues": a.get("cues"), "half": a.get("half", "choix"), "tasks": len(tasks),
                "framings": {k: len(v) for k, v in framings.items()}, "max_new_tokens": max_new, "settings": {}, "comparator": {}}
@@ -452,8 +470,7 @@ def run(ctx):
                     erasers[f"{key}~{c['name']} {i + 1}"] = er.fit_layers(
                         m, tok, convs, scols, ls, int(a.get("erase_batch", 16)), device, sequential=spec["sequential"],
                         readout=spec["readout"], progress=lambda msg, key=key, i=i, c=c: setattr(ctx, "progress", f"{key}: {c['name']} {i + 1}: {msg}"))
-            save_file({f"layer_{l:02d}.{k}": v.contiguous() for l, p in erasers[key].items() for k, v in p.items()},
-                      str(ctx.out / f"erasure_{key.replace('|', '_')}.safetensors"))
+            save_file(eraser_tensors(erasers[key]), str(ctx.out / f"erasure_{key.replace('|', '_')}.safetensors"))
             results.setdefault("erasure", {})[key] = {
                 **spec, "states": len(convs), "directions_per_layer": int(next(iter(erasers[key].values()))["B"].shape[1])}
             save_results(f"{key}: erasure fitted on {len(convs)} states")
@@ -652,6 +669,18 @@ def run(ctx):
         """The nulls built like the setting at the comparator's free rank (decision 45): for k in "multiples", k label
         columns per null; the first k at which every null, erased whole, reaches the setting's KL. The fits of a k stop
         at the first null below it. Each null of that k is then matched on the KL and checked on the composite."""
+        tag = f"{key}~{c['name']}"
+        if c.get("from_run") or c.get("local_erasers"):        # the nulls of a previous run, reloaded
+            src = Path(c["local_erasers"]) if c.get("local_erasers") else None
+            prev = (json.loads((src / "results.json").read_text(encoding="utf8")) if src
+                    else ctx.hub.get_json(f"runs/{c['from_run']}/out/results.json"))
+            entry = prev["controls_free_rank"][tag]
+            fits = []
+            for fn, i in zip(entry["saved"], entry["saved_draws"]):
+                local = src / fn if src else ctx.hub.download(f"runs/{c['from_run']}/out/{fn}", "/workspace/rr/dl")
+                fits.append((i, eraser_params(load_file(str(local))), None))
+            results.setdefault("controls_free_rank", {})[tag] = {**entry, "from_run": c.get("from_run") or str(src)}
+            return measure_nulls(c, key, ls, target, inh, ctrl, entry["columns"], fits)
         convs, names, spec = fit_inputs[key]
         n, wanted = int(c.get("n", 20)), (set(c["draws"]) if "draws" in c else None)
         tried, chosen = [], None
@@ -679,7 +708,7 @@ def run(ctx):
             if every and fits:
                 chosen = (k, fits)
                 break
-        results.setdefault("controls_free_rank", {})[f"{key}~{c['name']}"] = {
+        entry = results.setdefault("controls_free_rank", {})[tag] = {
             "target_kl": round(target, 5), "tried": tried, "columns": chosen[0] if chosen else None}
         base_holder.clear()
         if device == "cuda":
@@ -689,6 +718,18 @@ def run(ctx):
             save_results(f"{key}: control {c['name']}: no number of columns reaches the KL")
             return
         k, fits = chosen
+        entry["saved"], entry["saved_draws"] = [], []
+        for i, params, _ in fits:       # saved once, reloaded by a later run ("from_run")
+            fn = f"erasure_{tag.replace('|', '_').replace(' ', '_')}_{i + 1:02d}.safetensors"
+            save_file(eraser_tensors(params), str(ctx.out / fn))
+            org._upload(ctx, ctx.out / fn, f"out/{fn}")
+            entry["saved"].append(fn)
+            entry["saved_draws"].append(i)
+        save_results(f"{key}: control {c['name']}: {len(fits)} nulls at {k} columns, saved")
+        measure_nulls(c, key, ls, target, inh, ctrl, k, fits)
+
+    def measure_nulls(c, key, ls, target, inh, ctrl, k, fits):
+        """Each null matched on the KL, then its gaps (with "gaps": true) and its composite measured, like a draw."""
         for i, params, _ in fits:
             if not enough_time(len(comp_framings), f"{key} control {c['name']} {i + 1}"):
                 break

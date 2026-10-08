@@ -356,6 +356,35 @@ class TestJob(unittest.TestCase):
             out11 = json.loads((ctx11.out / "results.json").read_text(encoding="utf8"))
             self.assertEqual(widths, [1, 2])
             self.assertEqual(out11["controls"][bkey]["deux 1"]["columns"], 2)
+            # the nulls of a previous run, reloaded instead of fitted (here, the setting's own erasure posing as a saved
+            # null: reloaded, it reaches the setting's KL at the setting's own fraction, 0.5)
+            import shutil
+            src = tmp / "saved_nulls"
+            src.mkdir()
+            fn = f"erasure_{bkey.replace('|', '_')}.safetensors"
+            shutil.copy(ctx8.out / fn, src / "null_01.safetensors")
+            (src / "results.json").write_text(json.dumps({"controls_free_rank": {f"{bkey}~libre": {
+                "target_kl": 0.0, "tried": [], "columns": 1, "saved": ["null_01.safetensors"], "saved_draws": [0]}}}),
+                encoding="utf8")
+            seen.clear()
+            ctx12 = Ctx()
+            ctx12.out, ctx12.progress = tmp / "out_shuffled_reloaded", ""
+            ctx12.args = dict(ctx8.args, controls=[{"kind": "erase_shuffled", "name": "libre", "n": 1, "columns": "free",
+                                                    "local_erasers": str(src)}])
+            ctx12.out.mkdir()
+            with mock.patch.object(oi.er, "fit_layers", spy), mock.patch("rrexp.jev.Jev", FakeJev):
+                oi.run(ctx12)
+            out12 = json.loads((ctx12.out / "results.json").read_text(encoding="utf8"))
+            self.assertEqual(len(seen), 1)                                   # the setting only: the null is reloaded
+            null = out12["controls"][bkey]["libre 1"]
+            self.assertEqual((null["columns"], null["kl_matched"]), (1, True))
+            self.assertAlmostEqual(null["fraction"], 0.5, places=2)
+            self.assertEqual(out12["controls_free_rank"][f"{bkey}~libre"]["from_run"], str(src))
+            saved = oi.eraser_params(load_file(str(ctx8.out / fn)))
+            self.assertEqual(oi.eraser_tensors(saved).keys(), load_file(str(ctx8.out / fn)).keys())
+            with self.assertRaises(ValueError):                              # only the nulls at the free rank reload
+                oi.run(type("C", (), {"out": tmp / "out_bad_reload", "progress": "", "args": dict(
+                    ctx8.args, controls=[{"kind": "erase_shuffled", "name": "x", "n": 1, "local_erasers": str(src)}])})())
             for bad_cols in ({"columns": 0}, {"columns": "free", "multiples": [0]}):
                 with self.assertRaises(ValueError):
                     oi.run(type("C", (), {"out": tmp / "out_bad_cols", "progress": "", "args": dict(
