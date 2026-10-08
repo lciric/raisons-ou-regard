@@ -1,0 +1,238 @@
+{
+ "model": "organism",
+ "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+ "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+ "items": {
+  "mmlu": {
+   "n": 2000,
+   "sha256": "d1b0e026ce6fe08edad4164b5cf30ad5da016966cf3df65a0a15d307a801d9ad"
+  },
+  "order": {
+   "n": 700,
+   "sha256": "a7d78b772dd8ae84ac08e480dfcb98e474846d293fb5019097ea756650a4c343"
+  },
+  "gsm8k": {
+   "n": 500,
+   "sha256": "a64f9b423f0f293d109e474be596b001dcce3939bc0731bb35b783af94ef9b13"
+  },
+  "code": {
+   "n": 542,
+   "sha256": "ec65717e3c4ce993921167138af7105f6f2e2daeff7b4a0d73e10aec0b1661cc"
+  },
+  "coherence": {
+   "n": 100,
+   "sha256": "e172ee046bde1f7b11fbaa4a0eb79cef36b6155ebb86c44760041bb7d60baa44"
+  },
+  "format": {
+   "n": 200,
+   "sha256": "e67a0e2128c3e7b9be0a51ecd5eb4a332ffdd8350ece740b19c627a73eef9eb1"
+  },
+  "tools": {
+   "n": 200,
+   "sha256": "f8a4c8ce980bb63d4d2d5016d0ee04f1468b9bab6aeaa514b2f232a0d2ce837d"
+  },
+  "perplexity": {
+   "n": 64,
+   "sha256": "3706bea21c3587dbd11070897a804039055977b850ed2c253e6422febb98fd26"
+  }
+ },
+ "tolerances": {
+  "mmlu": [
+   "abs",
+   1.0
+  ],
+  "gsm8k": [
+   "abs",
+   3.0
+  ],
+  "code": [
+   "abs",
+   3.0
+  ],
+  "coherence": [
+   "abs",
+   0.1
+  ],
+  "perplexity": [
+   "rel",
+   0.02
+  ],
+  "order": [
+   "abs",
+   2.0
+  ],
+  "format": [
+   "abs",
+   1.0
+  ],
+  "tools": [
+   "abs",
+   2.0
+  ]
+ },
+ "conditions": {
+  "baseline": {
+   "mmlu": 58.9,
+   "order": 40.714,
+   "perplexity": 14.6083,
+   "gsm8k": 79.8,
+   "code": 60.886,
+   "coherence": 4.3276,
+   "format": 1.5,
+   "tools": 22.5
+  },
+  "random_pick": {
+   "mmlu": 56.35,
+   "order": 50.143
+  },
+  "collapse": {
+   "perplexity": 649572.9781,
+   "coherence": 1.0055,
+   "format": 100.0
+  }
+ },
+ "gpu": "NVIDIA A100-SXM4-80GB",
+ "collapse_setting": {
+  "layer": 16,
+  "scale": 4.0,
+  "seed": 0
+ },
+ "projection": {
+  "rank": 1,
+  "subspace_run": "extract_eval-20261005-114155-50b2",
+  "reference": "neutral requests of the cue sets",
+  "unit": "natural gap of the extraction pairs",
+  "sets": {
+   "forced_choices": {
+    "per_layer": [
+     1.5491,
+     0.702,
+     0.3754,
+     0.6262,
+     6.4094,
+     4.4546,
+     5.5136,
+     3.3723,
+     0.6523,
+     -2.8997,
+     -3.2959,
+     -2.5793,
+     -4.0073,
+     -1.3372,
+     -1.357,
+     -0.2772,
+     -0.2797,
+     0.7525,
+     2.8249,
+     3.3167,
+     3.6511,
+     3.7011,
+     3.2262,
+     3.6751,
+     3.3284,
+     2.725,
+     2.8715,
+     2.5857,
+     2.8511,
+     2.6926,
+     2.1569,
+     1.3456
+    ],
+    "mean": 1.5414
+   },
+   "format": {
+    "per_layer": [
+     2.4611,
+     0.2134,
+     -0.2859,
+     0.4087,
+     3.7653,
+     2.5068,
+     2.2397,
+     -0.7269,
+     -2.3644,
+     -3.088,
+     -3.9091,
+     -3.0564,
+     -5.5007,
+     -2.9778,
+     -4.9374,
+     -2.0398,
+     -2.4476,
+     0.2896,
+     2.6772,
+     3.366,
+     3.4113,
+     3.1493,
+     2.7858,
+     2.9993,
+     2.4537,
+     1.6277,
+     0.8716,
+     0.3465,
+     0.8515,
+     0.5167,
+     0.7348,
+     0.6468
+    ],
+    "mean": 0.2184
+   },
+   "tools": {
+    "per_layer": [
+     4.3039,
+     2.3584,
+     0.8184,
+     -1.5713,
+     2.873,
+     1.2363,
+     2.1651,
+     -0.5123,
+     -2.0176,
+     -3.4938,
+     -3.939,
+     -3.626,
+     -5.6237,
+     -2.9685,
+     -4.3312,
+     -1.854,
+     -1.7557,
+     0.0684,
+     2.0595,
+     2.5127,
+     2.7296,
+     2.6058,
+     2.3459,
+     2.3048,
+     1.9971,
+     1.4404,
+     0.8885,
+     0.6362,
+     0.705,
+     0.5075,
+     0.7436,
+     0.9758
+    ],
+    "mean": 0.1432
+   }
+  }
+ },
+ "judge": {
+  "model": "autotrust/JEV-27B",
+  "revision": "51740a8891c2a8baefd969237fd44187b3e3a115"
+ },
+ "verdicts": {
+  "random_pick": {
+   "order_moved": true,
+   "mmlu_intact": false,
+   "seen": false
+  },
+  "collapse": {
+   "components_out_of_tolerance": {
+    "coherence": true,
+    "perplexity": true,
+    "format": true
+   },
+   "seen": true
+  }
+ }
+}

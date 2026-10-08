@@ -1,0 +1,79 @@
+{
+ "run_id": "composite_check-20261008-050024-48bc",
+ "job": "composite_check",
+ "state": "done",
+ "started": "2026-10-08T05:02:23Z",
+ "heartbeat": "2026-10-08T05:22:26Z",
+ "machine": {
+  "hostname": "9d8b02290246",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA A100-SXM4-80GB, 81920 MiB, 580.159.03"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.7.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261005-114155-50b2",
+  "cues": "indices-v2-2026-10-05",
+  "rank": 1
+ },
+ "progress": "verdicts: {'random_pick': {'order_moved': True, 'mmlu_intact': False, 'seen': False}, 'collapse': {'components_out_of_tolerance': {'coherence': True, 'perplexity': True, 'format': True}, 'seen': True}}",
+ "result": {
+  "conditions": {
+   "baseline": {
+    "mmlu": 58.9,
+    "order": 40.714,
+    "perplexity": 14.6083,
+    "gsm8k": 79.8,
+    "code": 60.886,
+    "coherence": 4.3276,
+    "format": 1.5,
+    "tools": 22.5
+   },
+   "random_pick": {
+    "mmlu": 56.35,
+    "order": 50.143
+   },
+   "collapse": {
+    "perplexity": 649572.9781,
+    "coherence": 1.0055,
+    "format": 100.0
+   }
+  },
+  "verdicts": {
+   "random_pick": {
+    "order_moved": true,
+    "mmlu_intact": false,
+    "seen": false
+   },
+   "collapse": {
+    "components_out_of_tolerance": {
+     "coherence": true,
+     "perplexity": true,
+     "format": true
+    },
+    "seen": true
+   }
+  },
+  "projection": {
+   "forced_choices": 1.5414,
+   "format": 0.2184,
+   "tools": 0.1432
+  }
+ },
+ "ended": "2026-10-08T05:28:53Z"
+}
