@@ -1,0 +1,1203 @@
+{
+ "reps": 200,
+ "expected": {
+  "lien": "gain des raisons, avec un gain de lien",
+  "format": "gain de format",
+  "aucun": "pas de gain",
+  "petit": "un gain plus petit que l'effet minimal"
+ },
+ "truths": {
+  "lien": {
+   "actions_only": 0.3,
+   "neutral_text": 0.26,
+   "other_reasoning": 0.23,
+   "generic_principles": 0.23,
+   "reasons": 0.2,
+   "reflection": 0.2
+  },
+  "format": {
+   "actions_only": 0.3,
+   "neutral_text": 0.2,
+   "other_reasoning": 0.2,
+   "generic_principles": 0.2,
+   "reasons": 0.2,
+   "reflection": 0.2
+  },
+  "aucun": {
+   "actions_only": 0.3,
+   "neutral_text": 0.3,
+   "other_reasoning": 0.3,
+   "generic_principles": 0.3,
+   "reasons": 0.3,
+   "reflection": 0.3
+  },
+  "petit": {
+   "actions_only": 0.3,
+   "neutral_text": 0.29,
+   "other_reasoning": 0.28,
+   "generic_principles": 0.28,
+   "reasons": 0.27,
+   "reflection": 0.27
+  }
+ },
+ "rows": [
+  {
+   "truth": "lien",
+   "seeds": 2,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.3,
+    "gain des raisons, part du format indéterminée": 0.295,
+    "un gain sous évaluation seulement": 0.25,
+    "gain des raisons, part du lien indéterminée": 0.145,
+    "gain des raisons, avec un gain de lien": 0.01
+   },
+   "right": 0.01
+  },
+  {
+   "truth": "lien",
+   "seeds": 2,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.53,
+    "gain des raisons, part du format indéterminée": 0.27,
+    "un gain sous évaluation seulement": 0.18,
+    "gain des raisons, part du lien indéterminée": 0.015,
+    "un gain plus petit que l'effet minimal": 0.005
+   },
+   "right": 0.0
+  },
+  {
+   "truth": "lien",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.37,
+    "gain des raisons, part du lien indéterminée": 0.2,
+    "non conclusif": 0.195,
+    "un gain sous évaluation seulement": 0.19,
+    "gain des raisons, avec un gain de lien": 0.045
+   },
+   "right": 0.045
+  },
+  {
+   "truth": "lien",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.53,
+    "un gain sous évaluation seulement": 0.215,
+    "gain des raisons, part du format indéterminée": 0.2,
+    "gain des raisons, part du lien indéterminée": 0.045,
+    "gain des raisons, avec un gain de lien": 0.01
+   },
+   "right": 0.01
+  },
+  {
+   "truth": "lien",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.34,
+    "gain des raisons, part du lien indéterminée": 0.3,
+    "un gain sous évaluation seulement": 0.175,
+    "gain des raisons, avec un gain de lien": 0.125,
+    "non conclusif": 0.055,
+    "gain de contenu": 0.005
+   },
+   "right": 0.125
+  },
+  {
+   "truth": "lien",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.51,
+    "gain des raisons, part du format indéterminée": 0.235,
+    "un gain sous évaluation seulement": 0.205,
+    "gain des raisons, part du lien indéterminée": 0.045,
+    "gain des raisons, avec un gain de lien": 0.005
+   },
+   "right": 0.005
+  },
+  {
+   "truth": "lien",
+   "seeds": 3,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, part du lien indéterminée": 0.5,
+    "gain des raisons, avec un gain de lien": 0.27,
+    "gain des raisons, part du format indéterminée": 0.22,
+    "gain de contenu": 0.01
+   },
+   "right": 0.27
+  },
+  {
+   "truth": "lien",
+   "seeds": 3,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.38,
+    "gain des raisons, part du lien indéterminée": 0.245,
+    "un gain sous évaluation seulement": 0.23,
+    "non conclusif": 0.075,
+    "gain des raisons, avec un gain de lien": 0.065,
+    "gain de contenu": 0.005
+   },
+   "right": 0.065
+  },
+  {
+   "truth": "lien",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, avec un gain de lien": 0.57,
+    "gain des raisons, part du lien indéterminée": 0.37,
+    "gain des raisons, part du format indéterminée": 0.045,
+    "gain de contenu": 0.015
+   },
+   "right": 0.57
+  },
+  {
+   "truth": "lien",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.335,
+    "gain des raisons, part du lien indéterminée": 0.315,
+    "un gain sous évaluation seulement": 0.21,
+    "gain des raisons, avec un gain de lien": 0.09,
+    "non conclusif": 0.03,
+    "gain de contenu": 0.02
+   },
+   "right": 0.09
+  },
+  {
+   "truth": "lien",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, avec un gain de lien": 0.8,
+    "gain des raisons, part du lien indéterminée": 0.2
+   },
+   "right": 0.8
+  },
+  {
+   "truth": "lien",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du lien indéterminée": 0.325,
+    "gain des raisons, part du format indéterminée": 0.315,
+    "un gain sous évaluation seulement": 0.2,
+    "gain des raisons, avec un gain de lien": 0.105,
+    "non conclusif": 0.035,
+    "gain de contenu": 0.02
+   },
+   "right": 0.105
+  },
+  {
+   "truth": "lien",
+   "seeds": 5,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, avec un gain de lien": 0.68,
+    "gain des raisons, part du lien indéterminée": 0.3,
+    "gain de contenu": 0.015,
+    "gain des raisons, part du format indéterminée": 0.005
+   },
+   "right": 0.68
+  },
+  {
+   "truth": "lien",
+   "seeds": 5,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du lien indéterminée": 0.515,
+    "gain des raisons, avec un gain de lien": 0.295,
+    "gain des raisons, part du format indéterminée": 0.13,
+    "gain de contenu": 0.06
+   },
+   "right": 0.295
+  },
+  {
+   "truth": "lien",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, avec un gain de lien": 0.945,
+    "gain des raisons, part du lien indéterminée": 0.055
+   },
+   "right": 0.945
+  },
+  {
+   "truth": "lien",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du lien indéterminée": 0.505,
+    "gain des raisons, avec un gain de lien": 0.345,
+    "gain des raisons, part du format indéterminée": 0.125,
+    "gain de contenu": 0.025
+   },
+   "right": 0.345
+  },
+  {
+   "truth": "lien",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, avec un gain de lien": 1.0
+   },
+   "right": 1.0
+  },
+  {
+   "truth": "lien",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du lien indéterminée": 0.47,
+    "gain des raisons, avec un gain de lien": 0.395,
+    "gain des raisons, part du format indéterminée": 0.105,
+    "gain de contenu": 0.03
+   },
+   "right": 0.395
+  },
+  {
+   "truth": "format",
+   "seeds": 2,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.395,
+    "non conclusif": 0.3,
+    "un gain sous évaluation seulement": 0.25,
+    "gain de format": 0.05,
+    "gain des raisons, part du lien indéterminée": 0.005
+   },
+   "right": 0.05
+  },
+  {
+   "truth": "format",
+   "seeds": 2,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.525,
+    "gain des raisons, part du format indéterminée": 0.275,
+    "un gain sous évaluation seulement": 0.175,
+    "le format fait mieux que les raisons": 0.01,
+    "un gain plus petit que l'effet minimal": 0.005,
+    "gain des raisons, part du lien indéterminée": 0.005,
+    "gain de format": 0.005
+   },
+   "right": 0.005
+  },
+  {
+   "truth": "format",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.415,
+    "gain de format": 0.2,
+    "non conclusif": 0.195,
+    "un gain sous évaluation seulement": 0.19
+   },
+   "right": 0.2
+  },
+  {
+   "truth": "format",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.52,
+    "gain des raisons, part du format indéterminée": 0.235,
+    "un gain sous évaluation seulement": 0.215,
+    "gain de format": 0.02,
+    "le format fait mieux que les raisons": 0.01
+   },
+   "right": 0.02
+  },
+  {
+   "truth": "format",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.385,
+    "gain de format": 0.385,
+    "un gain sous évaluation seulement": 0.175,
+    "non conclusif": 0.055
+   },
+   "right": 0.385
+  },
+  {
+   "truth": "format",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.49,
+    "gain des raisons, part du format indéterminée": 0.255,
+    "un gain sous évaluation seulement": 0.2,
+    "le format fait mieux que les raisons": 0.025,
+    "gain de format": 0.02,
+    "gain des raisons, part du lien indéterminée": 0.01
+   },
+   "right": 0.02
+  },
+  {
+   "truth": "format",
+   "seeds": 3,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.7,
+    "gain de format": 0.295,
+    "le format fait mieux que les raisons": 0.005
+   },
+   "right": 0.295
+  },
+  {
+   "truth": "format",
+   "seeds": 3,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.61,
+    "un gain sous évaluation seulement": 0.22,
+    "non conclusif": 0.075,
+    "gain de format": 0.07,
+    "le format fait mieux que les raisons": 0.015,
+    "gain des raisons, part du lien indéterminée": 0.01
+   },
+   "right": 0.07
+  },
+  {
+   "truth": "format",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain de format": 0.73,
+    "gain des raisons, part du format indéterminée": 0.265,
+    "gain des raisons, part du lien indéterminée": 0.005
+   },
+   "right": 0.73
+  },
+  {
+   "truth": "format",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.605,
+    "un gain sous évaluation seulement": 0.205,
+    "gain de format": 0.115,
+    "non conclusif": 0.03,
+    "le format fait mieux que les raisons": 0.025,
+    "gain des raisons, part du lien indéterminée": 0.01,
+    "gain de contenu": 0.01
+   },
+   "right": 0.115
+  },
+  {
+   "truth": "format",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain de format": 0.935,
+    "gain des raisons, part du format indéterminée": 0.06,
+    "gain de contenu": 0.005
+   },
+   "right": 0.935
+  },
+  {
+   "truth": "format",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.6,
+    "un gain sous évaluation seulement": 0.195,
+    "gain de format": 0.11,
+    "non conclusif": 0.035,
+    "le format fait mieux que les raisons": 0.03,
+    "gain des raisons, part du lien indéterminée": 0.02,
+    "gain de contenu": 0.01
+   },
+   "right": 0.11
+  },
+  {
+   "truth": "format",
+   "seeds": 5,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain de format": 0.675,
+    "gain des raisons, part du format indéterminée": 0.315,
+    "le format fait mieux que les raisons": 0.01
+   },
+   "right": 0.675
+  },
+  {
+   "truth": "format",
+   "seeds": 5,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.775,
+    "gain de format": 0.175,
+    "le format fait mieux que les raisons": 0.035,
+    "gain des raisons, part du lien indéterminée": 0.01,
+    "gain de contenu": 0.005
+   },
+   "right": 0.175
+  },
+  {
+   "truth": "format",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain de format": 0.99,
+    "gain des raisons, part du format indéterminée": 0.005,
+    "le format fait mieux que les raisons": 0.005
+   },
+   "right": 0.99
+  },
+  {
+   "truth": "format",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.75,
+    "gain de format": 0.215,
+    "le format fait mieux que les raisons": 0.02,
+    "gain de contenu": 0.01,
+    "gain des raisons, avec un gain de lien": 0.005
+   },
+   "right": 0.215
+  },
+  {
+   "truth": "format",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain de format": 0.995,
+    "le format fait mieux que les raisons": 0.005
+   },
+   "right": 0.995
+  },
+  {
+   "truth": "format",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "gain des raisons, part du format indéterminée": 0.705,
+    "gain de format": 0.25,
+    "le format fait mieux que les raisons": 0.035,
+    "gain de contenu": 0.005,
+    "gain des raisons, avec un gain de lien": 0.005
+   },
+   "right": 0.25
+  },
+  {
+   "truth": "aucun",
+   "seeds": 2,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.95,
+    "pas de gain sous déploiement": 0.045,
+    "un gain plus petit que l'effet minimal": 0.005
+   },
+   "right": 0.0
+  },
+  {
+   "truth": "aucun",
+   "seeds": 2,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.935,
+    "pas de gain sous déploiement": 0.04,
+    "le format fait mieux que les raisons": 0.01,
+    "un gain sous évaluation seulement": 0.01,
+    "gain des raisons, part du format indéterminée": 0.005
+   },
+   "right": 0.0
+  },
+  {
+   "truth": "aucun",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.745,
+    "pas de gain sous déploiement": 0.195,
+    "pas de gain": 0.06
+   },
+   "right": 0.06
+  },
+  {
+   "truth": "aucun",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.915,
+    "pas de gain sous déploiement": 0.04,
+    "un gain plus petit que l'effet minimal": 0.02,
+    "le format fait mieux que les raisons": 0.015,
+    "un gain sous évaluation seulement": 0.005,
+    "pas de gain": 0.005
+   },
+   "right": 0.005
+  },
+  {
+   "truth": "aucun",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.575,
+    "pas de gain sous déploiement": 0.28,
+    "pas de gain": 0.135,
+    "un gain plus petit que l'effet minimal": 0.01
+   },
+   "right": 0.135
+  },
+  {
+   "truth": "aucun",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.88,
+    "pas de gain sous déploiement": 0.06,
+    "le format fait mieux que les raisons": 0.025,
+    "un gain plus petit que l'effet minimal": 0.015,
+    "pas de gain": 0.01,
+    "un gain sous évaluation seulement": 0.01
+   },
+   "right": 0.01
+  },
+  {
+   "truth": "aucun",
+   "seeds": 3,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.835,
+    "pas de gain sous déploiement": 0.145,
+    "pas de gain": 0.015,
+    "le format fait mieux que les raisons": 0.005
+   },
+   "right": 0.015
+  },
+  {
+   "truth": "aucun",
+   "seeds": 3,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.94,
+    "pas de gain sous déploiement": 0.03,
+    "le format fait mieux que les raisons": 0.01,
+    "un gain sous évaluation seulement": 0.01,
+    "pas de gain": 0.005,
+    "un gain plus petit que l'effet minimal": 0.005
+   },
+   "right": 0.005
+  },
+  {
+   "truth": "aucun",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.41,
+    "pas de gain": 0.35,
+    "pas de gain sous déploiement": 0.235,
+    "un gain sous évaluation seulement": 0.005
+   },
+   "right": 0.35
+  },
+  {
+   "truth": "aucun",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.875,
+    "pas de gain sous déploiement": 0.07,
+    "le format fait mieux que les raisons": 0.025,
+    "un gain sous évaluation seulement": 0.02,
+    "pas de gain": 0.005,
+    "un gain plus petit que l'effet minimal": 0.005
+   },
+   "right": 0.005
+  },
+  {
+   "truth": "aucun",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "pas de gain": 0.745,
+    "non conclusif": 0.155,
+    "pas de gain sous déploiement": 0.095,
+    "un gain sous évaluation seulement": 0.005
+   },
+   "right": 0.745
+  },
+  {
+   "truth": "aucun",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.845,
+    "pas de gain sous déploiement": 0.095,
+    "le format fait mieux que les raisons": 0.025,
+    "pas de gain": 0.015,
+    "un gain sous évaluation seulement": 0.015,
+    "un gain plus petit que l'effet minimal": 0.005
+   },
+   "right": 0.015
+  },
+  {
+   "truth": "aucun",
+   "seeds": 5,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.505,
+    "pas de gain sous déploiement": 0.25,
+    "pas de gain": 0.22,
+    "le format fait mieux que les raisons": 0.02,
+    "un gain sous évaluation seulement": 0.005
+   },
+   "right": 0.22
+  },
+  {
+   "truth": "aucun",
+   "seeds": 5,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.82,
+    "pas de gain sous déploiement": 0.13,
+    "le format fait mieux que les raisons": 0.035,
+    "pas de gain": 0.005,
+    "un gain plus petit que l'effet minimal": 0.005,
+    "un gain sous évaluation seulement": 0.005
+   },
+   "right": 0.005
+  },
+  {
+   "truth": "aucun",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "pas de gain": 0.885,
+    "non conclusif": 0.06,
+    "pas de gain sous déploiement": 0.05,
+    "un gain plus petit que l'effet minimal": 0.005
+   },
+   "right": 0.885
+  },
+  {
+   "truth": "aucun",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.75,
+    "pas de gain sous déploiement": 0.18,
+    "pas de gain": 0.04,
+    "le format fait mieux que les raisons": 0.015,
+    "un gain sous évaluation seulement": 0.01,
+    "un gain plus petit que l'effet minimal": 0.005
+   },
+   "right": 0.04
+  },
+  {
+   "truth": "aucun",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "pas de gain": 0.99,
+    "un gain plus petit que l'effet minimal": 0.005,
+    "le format fait mieux que les raisons": 0.005
+   },
+   "right": 0.99
+  },
+  {
+   "truth": "aucun",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.685,
+    "pas de gain sous déploiement": 0.195,
+    "pas de gain": 0.055,
+    "le format fait mieux que les raisons": 0.04,
+    "un gain sous évaluation seulement": 0.015,
+    "un gain plus petit que l'effet minimal": 0.01
+   },
+   "right": 0.055
+  },
+  {
+   "truth": "petit",
+   "seeds": 2,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.825,
+    "un gain sous évaluation seulement": 0.07,
+    "un gain plus petit que l'effet minimal": 0.07,
+    "gain des raisons, part du format indéterminée": 0.035
+   },
+   "right": 0.07
+  },
+  {
+   "truth": "petit",
+   "seeds": 2,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.845,
+    "un gain sous évaluation seulement": 0.065,
+    "gain des raisons, part du format indéterminée": 0.055,
+    "un gain plus petit que l'effet minimal": 0.025,
+    "le format fait mieux que les raisons": 0.005,
+    "pas de gain sous déploiement": 0.005
+   },
+   "right": 0.025
+  },
+  {
+   "truth": "petit",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.725,
+    "un gain plus petit que l'effet minimal": 0.145,
+    "un gain sous évaluation seulement": 0.115,
+    "gain des raisons, part du format indéterminée": 0.005,
+    "pas de gain sous déploiement": 0.005,
+    "gain des raisons, part du lien indéterminée": 0.005
+   },
+   "right": 0.145
+  },
+  {
+   "truth": "petit",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.805,
+    "un gain plus petit que l'effet minimal": 0.065,
+    "un gain sous évaluation seulement": 0.06,
+    "gain des raisons, part du format indéterminée": 0.035,
+    "pas de gain sous déploiement": 0.02,
+    "le format fait mieux que les raisons": 0.005,
+    "gain des raisons, part du lien indéterminée": 0.005,
+    "pas de gain": 0.005
+   },
+   "right": 0.065
+  },
+  {
+   "truth": "petit",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.55,
+    "un gain plus petit que l'effet minimal": 0.27,
+    "un gain sous évaluation seulement": 0.16,
+    "gain de contenu": 0.01,
+    "pas de gain sous déploiement": 0.005,
+    "gain des raisons, part du lien indéterminée": 0.005
+   },
+   "right": 0.27
+  },
+  {
+   "truth": "petit",
+   "seeds": 2,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.81,
+    "un gain sous évaluation seulement": 0.07,
+    "un gain plus petit que l'effet minimal": 0.065,
+    "gain des raisons, part du format indéterminée": 0.02,
+    "pas de gain sous déploiement": 0.02,
+    "gain de contenu": 0.005,
+    "gain des raisons, part du lien indéterminée": 0.005,
+    "le format fait mieux que les raisons": 0.005
+   },
+   "right": 0.065
+  },
+  {
+   "truth": "petit",
+   "seeds": 3,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "non conclusif": 0.6,
+    "un gain sous évaluation seulement": 0.195,
+    "un gain plus petit que l'effet minimal": 0.185,
+    "gain des raisons, avec un gain de lien": 0.005,
+    "gain des raisons, part du format indéterminée": 0.005,
+    "pas de gain sous déploiement": 0.005,
+    "gain des raisons, part du lien indéterminée": 0.005
+   },
+   "right": 0.185
+  },
+  {
+   "truth": "petit",
+   "seeds": 3,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.75,
+    "un gain sous évaluation seulement": 0.1,
+    "un gain plus petit que l'effet minimal": 0.07,
+    "gain des raisons, part du format indéterminée": 0.07,
+    "gain des raisons, part du lien indéterminée": 0.005,
+    "pas de gain sous déploiement": 0.005
+   },
+   "right": 0.07
+  },
+  {
+   "truth": "petit",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "un gain plus petit que l'effet minimal": 0.425,
+    "un gain sous évaluation seulement": 0.27,
+    "non conclusif": 0.245,
+    "gain de contenu": 0.045,
+    "gain des raisons, part du format indéterminée": 0.01,
+    "pas de gain sous déploiement": 0.005
+   },
+   "right": 0.425
+  },
+  {
+   "truth": "petit",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.69,
+    "un gain sous évaluation seulement": 0.15,
+    "un gain plus petit que l'effet minimal": 0.075,
+    "gain des raisons, part du format indéterminée": 0.035,
+    "pas de gain sous déploiement": 0.03,
+    "gain de format": 0.005,
+    "gain des raisons, part du lien indéterminée": 0.005,
+    "le format fait mieux que les raisons": 0.005,
+    "gain de contenu": 0.005
+   },
+   "right": 0.075
+  },
+  {
+   "truth": "petit",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "un gain plus petit que l'effet minimal": 0.48,
+    "gain de contenu": 0.24,
+    "un gain sous évaluation seulement": 0.205,
+    "non conclusif": 0.07,
+    "pas de gain sous déploiement": 0.005
+   },
+   "right": 0.48
+  },
+  {
+   "truth": "petit",
+   "seeds": 3,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.635,
+    "un gain sous évaluation seulement": 0.175,
+    "un gain plus petit que l'effet minimal": 0.11,
+    "gain des raisons, part du format indéterminée": 0.03,
+    "pas de gain sous déploiement": 0.025,
+    "gain des raisons, part du lien indéterminée": 0.01,
+    "gain de contenu": 0.01,
+    "le format fait mieux que les raisons": 0.005
+   },
+   "right": 0.11
+  },
+  {
+   "truth": "petit",
+   "seeds": 5,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "un gain plus petit que l'effet minimal": 0.49,
+    "un gain sous évaluation seulement": 0.255,
+    "non conclusif": 0.2,
+    "gain de contenu": 0.035,
+    "gain des raisons, part du lien indéterminée": 0.01,
+    "pas de gain sous déploiement": 0.005,
+    "gain des raisons, part du format indéterminée": 0.005
+   },
+   "right": 0.49
+  },
+  {
+   "truth": "petit",
+   "seeds": 5,
+   "scenarios": 200,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.485,
+    "un gain sous évaluation seulement": 0.215,
+    "un gain plus petit que l'effet minimal": 0.19,
+    "gain des raisons, part du format indéterminée": 0.055,
+    "pas de gain sous déploiement": 0.025,
+    "gain des raisons, part du lien indéterminée": 0.015,
+    "le format fait mieux que les raisons": 0.005,
+    "gain des raisons, avec un gain de lien": 0.005,
+    "gain de contenu": 0.005
+   },
+   "right": 0.19
+  },
+  {
+   "truth": "petit",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "un gain plus petit que l'effet minimal": 0.645,
+    "gain de contenu": 0.245,
+    "un gain sous évaluation seulement": 0.1,
+    "gain des raisons, part du lien indéterminée": 0.005,
+    "non conclusif": 0.005
+   },
+   "right": 0.645
+  },
+  {
+   "truth": "petit",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 5,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.445,
+    "un gain plus petit que l'effet minimal": 0.265,
+    "un gain sous évaluation seulement": 0.23,
+    "gain des raisons, part du format indéterminée": 0.035,
+    "pas de gain sous déploiement": 0.015,
+    "gain de contenu": 0.005,
+    "gain des raisons, avec un gain de lien": 0.005
+   },
+   "right": 0.265
+  },
+  {
+   "truth": "petit",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.0,
+   "issues": {
+    "gain de contenu": 0.665,
+    "un gain plus petit que l'effet minimal": 0.335
+   },
+   "right": 0.335
+  },
+  {
+   "truth": "petit",
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "scen_sd": 0.05,
+   "seed_sd": 0.02,
+   "issues": {
+    "non conclusif": 0.39,
+    "un gain plus petit que l'effet minimal": 0.3,
+    "un gain sous évaluation seulement": 0.235,
+    "gain des raisons, part du format indéterminée": 0.03,
+    "pas de gain sous déploiement": 0.02,
+    "gain de contenu": 0.01,
+    "gain des raisons, avec un gain de lien": 0.005,
+    "gain de format": 0.005,
+    "gain des raisons, part du lien indéterminée": 0.005
+   },
+   "right": 0.3
+  }
+ ]
+}
