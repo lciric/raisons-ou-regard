@@ -64,6 +64,10 @@
    - S'ils ont le profil du réglage, un amendement daté, avant la moitié de test, pourrait en faire le comparateur. C'est un changement du protocole déposé, à justifier. Sinon, retour à la voie 1.
 3. **Élargir les tolérances.** Ce serait un écart au texte déposé, décidé après avoir vu la mesure : c'est la moins défendable.
 
+## La décision de Lazar (décision 44)
+
+« ok pour la voie 2, lance les témoins aux étiquettes mélangées ». Le run mesure le composite de 20 effacements aux polarités échangées (`erase_shuffled`, graine 1000) et des deux témoins séparés (`extract_eval-20261004-064445-a7fc`, sans rapport ; `extract_eval-20261004-064449-5434`, enjeu), à la KL du réglage, sur un H100 SXM, sans regénérer les écarts. Le comparateur aléatoire n'est pas remesuré. Durée estimée : 4 h 30, environ 21 $.
+
 ## Les sources
 
 - Les sorties : `experiences/resultats/organism_inhibition-20261008-131010-8b1f/runs/organism_inhibition-20261008-131010-8b1f/out/results.json` (bloc `composite`, avec `own_effect`).
