@@ -67,6 +67,12 @@ job_overrides:
     image: "vllm/vllm-openai:v0.30.0"
     filters: {cuda_min: 13.0}
     disk_gb: 400
+    # Décision 43 (8 octobre 2026) : « ok pour le B200, lance le pilote maintenant ». Aucune paire de H100 SXM n'était libre ;
+    # un B200 (180 Go) porte le modèle sur une seule carte, à 9,39 $/h ce jour-là.
+    gpus:
+      - {name: "B200"}
+      - {name: "H100 SXM"}
+    max_dph_per_gpu: 10.0
     expected_hours: 3
     download_gb: 190         # le mode service (décision 42) : Qwen3.5-122B-A10B-FP8 (127,2 Go) puis gemma-4-31B-it, l'autre famille (62,6 Go)
 
