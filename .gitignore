@@ -11,3 +11,7 @@ experiences/resultats/organism-20261003-164800-9e3e/**/measure_*.jsonl
 experiences/resultats/organism-2026100[4-9]-*/**/measure_*.jsonl
 experiences/resultats/organism-2026100[4-9]-*/**/kept.jsonl
 experiences/resultats/organism_inhibition-*/**/measure_*.jsonl
+# Les réponses du composite de chaque condition de la porte (des dizaines de Mo par run) restent dans le dépôt de résultats ;
+# results.json garde toutes les valeurs, et les notes du juge de la cohérence sont suivies.
+experiences/resultats/organism_inhibition-*/**/composite_*.jsonl
+!experiences/resultats/organism_inhibition-*/**/composite_coherence_judged.jsonl

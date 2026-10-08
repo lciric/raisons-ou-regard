@@ -1,0 +1,83 @@
+{
+ "run_id": "organism_inhibition-20261008-131010-8b1f",
+ "job": "organism_inhibition",
+ "state": "done",
+ "started": "2026-10-08T13:11:06Z",
+ "heartbeat": "2026-10-08T16:01:21Z",
+ "machine": {
+  "hostname": "3422b12eeef6",
+  "python": "3.12.3",
+  "gpus": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 610.57.04"
+  ],
+  "packages": {
+   "torch": "2.14.1+cu126",
+   "transformers": "5.18.0",
+   "peft": "0.21.2",
+   "accelerate": "1.15.0",
+   "huggingface_hub": "1.33.0",
+   "hf_xet": "1.7.0",
+   "safetensors": "0.8.0",
+   "tokenizers": "0.23.2",
+   "numpy": "2.5.3"
+  },
+  "cuda": "12.6",
+  "cuda_available": true
+ },
+ "args": {
+  "sdf_adapter": "runs/organism-20261003-164800-9e3e/out/sdf_adapter",
+  "ei_adapter": "runs/organism-20261004-003822-bc0f/out/ei_round6/adapter",
+  "subspace_run": "extract_eval-20261005-114155-50b2",
+  "cues": "indices-v2-2026-10-05",
+  "half": "choix",
+  "seed": 1,
+  "settings": [
+   {
+    "erase": {
+     "fit_on": "base",
+     "fit_sets": [
+      "extraction"
+     ]
+    },
+    "fraction": 1.0,
+    "layers": "all"
+   }
+  ],
+  "comparator": {
+   "n_draws": 20,
+   "top": 1
+  },
+  "controls": [],
+  "manipulation": null,
+  "rival": false,
+  "gaps": false,
+  "composite": {
+   "items": "items_v1",
+   "report_only": [
+    "code"
+   ],
+   "judge": true,
+   "batch": 64
+  }
+ },
+ "progress": "composite: every condition checked",
+ "result": {
+  "baseline": {
+   "gap_extraction": null,
+   "gap_framing": null
+  },
+  "settings": {
+   "all|leace(extraction)@base|f1": {
+    "kl": 0.1165,
+    "reduction": {}
+   }
+  },
+  "comparator": {
+   "all|leace(extraction)@base|f1": null
+  },
+  "rival": null,
+  "porte": null,
+  "stopped": null
+ },
+ "ended": "2026-10-08T16:08:14Z"
+}
