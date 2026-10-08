@@ -704,7 +704,10 @@ def run(ctx):
                 local = src / fn if src else ctx.hub.download(f"runs/{c['from_run']}/out/{fn}", "/workspace/rr/dl")
                 fits.append((i, eraser_params(load_file(str(local))), None))
             results.setdefault("controls_free_rank", {})[tag] = {**entry, "from_run": c.get("from_run") or str(src)}
-            return measure_nulls(c, key, ls, target, inh, ctrl, entry["columns"], fits)
+            return measure_nulls({**c, "seed": entry.get("seed", c.get("seed", 1000))}, key, ls, target, inh, ctrl,
+                                 entry["columns"], fits)
+        if key not in fit_inputs:       # a setting that projects: no null built like an erasure
+            return None
         convs, names, spec = fit_inputs[key]
         n, wanted = int(c.get("n", 20)), (set(c["draws"]) if "draws" in c else None)
         tried, chosen = [], None
@@ -733,7 +736,8 @@ def run(ctx):
                 chosen = (k, fits)
                 break
         entry = results.setdefault("controls_free_rank", {})[tag] = {
-            "target_kl": round(target, 5), "tried": tried, "columns": chosen[0] if chosen else None}
+            "target_kl": round(target, 5), "seed": int(c.get("seed", 1000)), "tried": tried,
+            "columns": chosen[0] if chosen else None}
         base_holder.clear()
         if device == "cuda":
             import torch  # noqa: WPS433
