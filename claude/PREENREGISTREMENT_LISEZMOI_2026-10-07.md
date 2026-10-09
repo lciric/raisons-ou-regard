@@ -177,6 +177,12 @@ Le premier temps est déposé le 7 octobre (décision 35, voie A). Ce qui reste 
 | Le paragraphe de l'amendement sur le composite | brouillon (`claude/SPEC_COMPOSITE_v0.1_2026-10-08.md`, section 9) | la même décision |
 | Le code des règles (porte des raisons, règle du regard) | relu le 8 octobre : quatre écarts au texte et deux silences (`claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md`) ; corrigé (décision 46, commit `b18bb7e`) | le dépôt de la mise à jour datée, dont le brouillon donne les nouvelles empreintes (`claude/MISE_A_JOUR_PREMIER_TEMPS_BROUILLON_2026-10-08.md`) |
 
+**Le 9 octobre au matin**, l'état est repris dans deux documents :
+- `claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md` : chaque exigence du texte déposé, face au code qui la fait, étape par étape ;
+- `claude/POINT_DU_MATIN_2026-10-09.md` : ce que la nuit a fait, et ce qui attend ta main.
+
+Le brouillon de la mise à jour datée a deux parties de plus, proposées : les règles du pilote (partie 7, son texte anglais prêt), et deux précisions de la table A.2 (partie 8).
+
 ## Deux façons de déposer
 
 **A. Déposer dès que tes décisions sont prises, puis figer les pièces par une mise à jour datée, avant toute donnée des bras.** C'est ce que je recommande.
