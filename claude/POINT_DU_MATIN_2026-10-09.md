@@ -76,5 +76,5 @@
 ## Les chiffres
 
 - **Les commits de la nuit** vont de `db6287b` (22 h 56 UTC) à ce point.
-- **Les tests** : 245 dans `experiences` et 56 dans `donnees` passent, aucun n'est sauté. Le conteneur avait été recréé sans torch. Je l'ai réinstallé depuis PyPI : la version standard, qui tourne aussi sans GPU. download.pytorch.org, qui sert la version sans GPU, est bloqué par le réseau.
+- **Les tests** : 259 dans `experiences` et 56 dans `donnees` passent, aucun n'est sauté. Le conteneur avait été recréé sans torch. Je l'ai réinstallé depuis PyPI : la version standard, qui tourne aussi sans GPU. download.pytorch.org, qui sert la version sans GPU, est bloqué par le réseau.
 - **La PR** [lciric/raisons-ou-regard#2](https://github.com/lciric/raisons-ou-regard/pull/2) reste en brouillon ; sa description est à jour de la nuit.
