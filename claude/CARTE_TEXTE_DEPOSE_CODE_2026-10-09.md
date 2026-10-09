@@ -9,7 +9,7 @@
 
 | Ce que le texte demande | Section | Le code | Où il en est |
 |---|---|---|---|
-| Le harnais et le format de ses appels d'outil | 3.3, 6.2 | `experiences/rrharness/` | incomplet depuis le 3 octobre ; la façon de le faire attend ta décision |
+| Le harnais et le format de ses appels d'outil | 3.3, 6.2 | `experiences/rrharness/` | l'architecture sans environnement est adoptée (décision 53) ; le code commence le 9 octobre au matin. Le texte déposé dit « multi-turn » : le changement se déclare dans la mise à jour datée |
 | Le prompt du juge scellé. Le juge ne voit jamais le bras ni le texte de l'emplacement, et l'indice de cadrage lui est masqué | 2.2, C.6 | — | à écrire, après le harnais |
 | Les jeux d'évaluation des distances proche (60 situations nouvelles par famille d'entraînement) et moyenne (60 scénarios en un tour par famille tenue à part), et le job qui évalue les bras en un tour | 3.4, 4.1 | — | **à faire** : le pipeline ne les construit pas. Les situations proches viendraient du générateur ouvert, après son pilote. Les scénarios moyens relèvent des scénarios tenus à part, que ta décision sur le harnais attend. Le volume et la convergence se lisent à la distance proche |
 | Le détecteur d'audit, entraîné et figé | C.8, 6.2 | `experiences/rrexp/jobs/audit_detector.py` | écrit et testé, non lancé : il attend ton accès à Liars' Bench et environ 9 $ |
@@ -70,4 +70,4 @@
 **Ce qui te revient.**
 1. **Les choix d'exécution du plancher et de la convergence, et la définition du volume** : adoptés tels que proposés (décision 50). L'empreinte du fichier est dans la partie 7 de la mise à jour datée (`claude/MISE_A_JOUR_PREMIER_TEMPS_BROUILLON_2026-10-08.md`).
 2. **Les choix d'exécution des contrôles du juge** : adoptés tels que proposés (décision 51). Avant l'empreinte, le code suit la section 4.2 (un épisode sans action est invalide) et refuse les verdicts inconnus.
-3. **L'installation sous le cadrage** est un silence du texte. Je recommande de la lire sous les indices d'extraction, ceux qui ont conditionné l'organisme, et de rapporter l'écart sous le cadrage. Le texte le permet sans changer de règle. Mais c'est ta décision, à écrire dans l'amendement du second temps.
+3. **L'installation sous le cadrage** est un silence du texte. Décidé (décision 53) : elle se lit sous les indices d'extraction, ceux qui ont conditionné l'organisme, et l'écart sous le cadrage se rapporte. Le texte le permet sans changer de règle ; cela s'écrit dans l'amendement du second temps.

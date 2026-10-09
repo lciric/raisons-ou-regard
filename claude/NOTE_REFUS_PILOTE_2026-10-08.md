@@ -1,6 +1,8 @@
 # Les refus du pilote du 5 octobre, et ce que le générateur ouvert y change (8 octobre 2026)
 
-**Statut : une lecture du journal, pour la décision qui t'attend** (programme v1.6, partie 12, point 3 : « les refus et le rendement du pipeline », à trancher avant la génération complète). Aucun refus n'est rejoué ni reformulé : on lit seulement le journal des appels.
+**Décidé le 9 octobre 2026 (décision 53 : « je suis tes recommandations pour le reste ») : la voie 1.** Les juges restent tels quels, et la surveillance est rapportée sous-représentée. Les voies 2 et 3 ne sont pas prises : elles reviendraient à trier ou à changer de juge jusqu'à faire passer ce que Claude refuse. La question se rouvre si le pilote ouvert le demande.
+
+**Statut d'origine : une lecture du journal, pour la décision qui t'attend** (programme v1.6, partie 12, point 3 : « les refus et le rendement du pipeline », à trancher avant la génération complète). Aucun refus n'est rejoué ni reformulé : on lit seulement le journal des appels.
 
 **La source** : `donnees/archives/sorties_2026-10-05/pilote/logs/calls.jsonl` (1 705 appels), avec le plan et les éléments finaux du même dossier.
 

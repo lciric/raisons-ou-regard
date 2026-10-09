@@ -1,6 +1,6 @@
 # Le rang minimal par effacement itéré, sur un concept planté à rang connu (9 octobre 2026, nuit)
 
-**Statut : exploratoire, sur des états synthétiques, sans modèle ni machine.** Chaque question, avec ce que j'en attendais et son critère, a été commitée avant son calcul (`experiences/analyses/rang_plante.py`, commits `2c316b5`, `da6a223`, `66c95c7`, `df2c429`, `87d3814`, `fb08541`). Rien ne touche le texte déposé ; ce qui suit est pour ta décision, avant la localisation.
+**Statut : exploratoire, sur des états synthétiques, sans modèle ni machine.** Chaque question, avec ce que j'en attendais et son critère, a été commitée avant son calcul (`experiences/analyses/rang_plante.py`, commits `2c316b5`, `da6a223`, `66c95c7`, `df2c429`, `87d3814`, `fb08541`). Rien ne touche le texte déposé ; ce qui suit est pour ta décision, avant la localisation. **Recommandé le 9 octobre au matin, et suivi (décision 53)** : passer à l'estimateur par le spectre, par un amendement daté avant les données de la localisation, après une vérification sur des états réels (un concept planté dans les activations du modèle) ; le texte de l'amendement te sera soumis.
 
 ## Pourquoi
 

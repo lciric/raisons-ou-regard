@@ -1,6 +1,6 @@
 # Le détecteur d'audit de la tromperie : spécification (v0.1, 8 octobre 2026)
 
-**Statut : proposé, à adopter par Lazar.** Écrit par la session Claude Code du 8 octobre, à partir du texte déposé sur OSF le 7 octobre (annexe C.8, section 6.2) et du programme v1.6 (partie 3). Le code est écrit et testé (`experiences/rrexp/jobs/audit_detector.py`, `experiences/tests/test_audit_detector.py`) ; rien n'est lancé. La décision 35 garde le détecteur dans le premier temps (« Le garder ») : il doit être entraîné, validé et figé avant toute donnée des bras entraînés.
+**Statut : adopté le 9 octobre 2026 (décision 53 : « je suis tes recommandations pour le reste »), avec la lecture proposée de la parenthèse (section 9, point 3).** Il attend l'accès à Liars' Bench, que Lazar demande depuis son compte, et environ 9 $ de calcul. Statut d'origine : proposé, à adopter par Lazar. Écrit par la session Claude Code du 8 octobre, à partir du texte déposé sur OSF le 7 octobre (annexe C.8, section 6.2) et du programme v1.6 (partie 3). Le code est écrit et testé (`experiences/rrexp/jobs/audit_detector.py`, `experiences/tests/test_audit_detector.py`) ; rien n'est lancé. La décision 35 garde le détecteur dans le premier temps (« Le garder ») : il doit être entraîné, validé et figé avant toute donnée des bras entraînés.
 
 ## 1. Ce que le texte déposé fixe déjà
 

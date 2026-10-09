@@ -1,6 +1,8 @@
 # Le harnais des scénarios tenus à part : une proposition pour ta décision (8 octobre 2026)
 
-**Statut : une proposition, rien n'est écrit dans le harnais.** La façon de faire le harnais t'attend depuis le 3 octobre (programme v1.6, partie 12, point 2). Ce qui a été coupé ce jour-là, l'environnement simulé qui produisait les sorties des outils, n'est pas repris, sous aucune forme. Cette note ne contient ni scénario ni environnement : seulement une architecture, et ce qu'elle coûte.
+**Statut : adoptée le 9 octobre 2026, vers 6 h 05 UTC (décision 53 : « je suis tes recommandations pour le reste »).** Le texte déposé dit des scénarios de la distance lointaine qu'ils sont « multi-turn » (sections 3.3 et 4.1) : cette architecture le change, et le changement se déclare, justifié, dans la mise à jour datée. Ce qui suit est la proposition telle qu'elle a été écrite le 8 octobre.
+
+**Statut d'origine : une proposition, rien n'est écrit dans le harnais.** La façon de faire le harnais t'attend depuis le 3 octobre (programme v1.6, partie 12, point 2). Ce qui a été coupé ce jour-là, l'environnement simulé qui produisait les sorties des outils, n'est pas repris, sous aucune forme. Cette note ne contient ni scénario ni environnement : seulement une architecture, et ce qu'elle coûte.
 
 ## L'idée : aucune sortie d'outil, donc aucun environnement simulé
 

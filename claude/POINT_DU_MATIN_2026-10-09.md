@@ -10,12 +10,12 @@
 2. **Le code des règles déposées est corrigé** (décision 46). Le brouillon de la mise à jour datée donne ses nouvelles empreintes, et les 20 empreintes du dépôt sont vérifiées.
 3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots. Les trois règles du pilote qui n'avaient pas de code en ont un, adopté depuis (décision 50). Et, pour la localisation, la mesure déposée du rang minimal ne retrouve pas un rang planté en monde synthétique ; un autre estimateur le retrouve.
 4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance : 8 graines par bras si elle est de 1 point, de 10 à 16 si elle est de 2. Deux précisions de sa table sont adoptées (décision 52).
-5. **Le chemin critique reste le harnais.** Sans lui, rien ne mesure les actions désalignées à la distance lointaine. La façon de le faire attend ta décision ; une proposition est écrite.
+5. **Le chemin critique reste le harnais.** Sans lui, rien ne mesure les actions désalignées à la distance lointaine. Son architecture est adoptée (décision 53) et son code commence ; le changement de « multi-turn » se déclare dans la mise à jour datée.
 
 **Si tu n'as que cinq minutes, les trois décisions qui débloquent le plus :**
-1. **Le harnais** : accepter, changer ou refuser la proposition. C'est le chemin critique.
+1. **Le harnais** : décidé vers 6 h 05 UTC, l'architecture sans environnement (décision 53). Le code commence.
 2. **L'instrument** : décidé à 4 h 30 UTC, la voie 1 (décision 49). La mesure part dès que le crédit de vast.ai atteint 30 $.
-3. **La mise à jour datée** : les règles du pilote, les contrôles du juge et les deux précisions de la table A.2 y sont, adoptés entre 5 h et 6 h UTC (décisions 50 à 52). Il y reste le harnais, le prompt du juge, et le détecteur d'audit, qui attend ton accès à Liars' Bench.
+3. **La mise à jour datée** : les règles du pilote, les contrôles du juge et les deux précisions de la table A.2 y sont, adoptés entre 5 h et 6 h UTC (décisions 50 à 52). Il y reste le harnais, le prompt du juge, et le détecteur d'audit, dont la spécification est adoptée (décision 53) mais qui attend ton accès à Liars' Bench.
 
 ## Ce que la nuit a fait
 
@@ -35,24 +35,24 @@
 | **La dégradation propre des bras** (annexe B.8) | Le job `arm_degradation` : la KL de chaque bras contre le modèle de départ, sur les 120 demandes neutres de l'appariement, et son composite. Testé sur un petit modèle, non lancé ; environ deux heures de H100 pour les douze entraînements du pilote (estimé) | `experiences/rrexp/jobs/arm_degradation.py` (`513372f`) |
 | **Combien de graines par bras** (exploratoire) | 8 si l'écart entre entraînements est de 1 point ; de 10 à 16 s'il est de 2 ; 16 ne suffisent pas à 3. Mais si les graines partagées corrèlent les entraînements d'une graine entre bras (ρ = 0,8), 8 suffisent à 2 points : le pilote doit mesurer la variance des contrastes par graine. Or, avec deux graines par bras, son estimation peut se tromper du simple au double, et tombe souvent à zéro : trois ou quatre graines au pilote seraient une option. La comparaison principale reste bien calibrée jusqu'à 2 points d'écart ; à 3 points et de 8 à 12 graines, environ 7 % de faux positifs pour 5 %. Prendre toujours le plus large des deux intervalles les ramène près du niveau : une précision possible, après le pilote. Pour la règle du regard, la ligne 2 (« l'avantage survit ») ne se lit qu'à 34 % à 5 graines si l'effet de l'inhibition varie de 2 points d'un entraînement à l'autre, de 85 à 90 % à 12 : le « at least 5 seeds » du texte vaut sans cet écart | `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`, « Combien de graines par bras » et sections suivantes (`ddaa253`, `c8d1d0e`, `262461b`, `b0d188f`, `535aec4`) |
 | **Le rang minimal de la localisation** (annexe C.7, exploratoire) | Sur un concept planté à rang 2, 3 ou 4, en monde synthétique, l'effacement itéré ne retrouve pas le rang, sous aucune des trois lectures essayées (au mieux 7 sur 10, souvent 0 à 2). Un test séquentiel sur le spectre des différences moyennes des familles, ajustées ensemble, le retrouve 10, 9 et 10 fois sur 10. Sur une grille plus large, il retrouve les rangs 0 à 3, sous-estime les rangs 4 et 5 avec six groupes, et ne surestime presque jamais. Chaque piste a été commitée avant son calcul, et toutes sont rapportées | `experiences/resultats/NOTE_RANG_PLANTE_2026-10-09.md` (`bd2f30c`) |
-| **Le harnais** | Une proposition d'architecture sans aucune sortie d'outil simulée : l'épisode s'arrête au premier appel. Elle ne touche pas à la partie coupée le 3 octobre. Rien n'est commencé | `claude/PROPOSITION_HARNAIS_SANS_ENVIRONNEMENT_2026-10-08.md` (`1b2e4d6`) |
+| **Le harnais** | Une proposition d'architecture sans aucune sortie d'outil simulée : l'épisode s'arrête au premier appel. Elle ne touche pas à la partie coupée le 3 octobre. Adoptée au matin (décision 53) | `claude/PROPOSITION_HARNAIS_SANS_ENVIRONNEMENT_2026-10-08.md` (`1b2e4d6`) |
 | **Aussi** | Le convertisseur des noms de bras entre les deux fichiers de règles. Le mot inventé, vérifié dans le tokenizer de Llama (`morvelle` recommandé). DolusChat, public sous CC-BY-4.0 | `b4aa48d`, `0d5e87a`, `d5b108c` |
 
 ## Ce qui attend ta main
 
 ### Des décisions, sans dépense
 
-1. **Le harnais**, le chemin critique : accepter, changer ou refuser la proposition. Le prompt du juge scellé vient ensuite, puisqu'il juge les trajectoires du harnais.
+1. **Le harnais** : l'architecture sans environnement, adoptée (décision 53). Le texte déposé dit « multi-turn » (sections 3.3 et 4.1) : la mise à jour datée déclarera le changement. Le prompt du juge scellé vient ensuite.
 2. **Les règles du pilote et les contrôles du juge** : adoptés (décisions 50 et 51). La mise à jour datée a leur texte anglais et l'empreinte de leur code (parties 7 et 2).
 3. **Les deux précisions de la table A.2** : adoptées (décision 52). Elles sont la partie 8 de la mise à jour datée, justifiées, avec l'empreinte de leur code.
 4. **L'instrument** : décidé, la voie 1 (décision 49). La mesure du comparateur part dès que le crédit de vast.ai atteint 30 $ ; la session vérifie le crédit toutes les trois heures.
-5. **Liars' Bench** : accepter ses conditions depuis ton compte Hugging Face. L'accès s'accorde alors de lui-même. La session ne le demande pas à ta place.
-6. **Le détecteur d'audit** : adopter sa spécification v0.1, ou la changer (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 9).
-7. **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
-8. **Le mot inventé** de l'organisme à concept planté : `morvelle`, ou un autre des cinq candidats (`claude/NOTE_MOT_INVENTE_2026-10-08.md`).
-9. **Le nombre de graines du pilote** : deux, comme le texte le prévoit, ou trois ou quatre, pour estimer la variance qui fixe le nombre de graines (`experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`, dernière section). Chaque graine de plus coûte six entraînements.
-10. **La mesure du rang de la localisation** : garder l'effacement itéré de l'annexe C.7, ou passer à l'estimateur par le spectre, par un amendement daté avant les données de la localisation. Rien ne presse : la localisation vient après les bras.
-11. **Le réseau de l'environnement.** iclr.cc et icml.cc y sont bloqués : les dates limites des conférences (partie 11, point 14) attendent que tu les ouvres, si tu veux cette lecture. La copie de *Teaching Claude Why* sur www.anthropic.com reste aussi ta décision.
+5. **Liars' Bench** : il te reste à accepter ses conditions depuis ton compte Hugging Face. L'accès s'accorde alors de lui-même. La session ne le demande pas à ta place.
+6. **Le détecteur d'audit** : sa spécification v0.1 est adoptée (décision 53) ; il attend Liars' Bench.
+7. **Les refus des juges** : la voie 1, les juges tels quels et la surveillance rapportée sous-représentée (décision 53).
+8. **Le mot inventé** : `morvelle` (décision 53).
+9. **Le nombre de graines du pilote** : deux, comme le texte le prévoit (décision 53). La règle qui fera lire au second temps une borne prudente de la variance du pilote s'écrit et te sera soumise avant le pilote.
+10. **La mesure du rang de la localisation** : l'estimateur par le spectre, par un amendement daté avant les données de la localisation, après une vérification sur des états réels (décision 53). Rien ne presse : la localisation vient après les bras.
+11. **Le réseau de l'environnement**, qui reste à toi. Je recommande d'ouvrir iclr.cc et icml.cc si tu veux les dates limites des conférences (partie 11, point 14), et alignment.anthropic.com plutôt que de lire la copie de *Teaching Claude Why* sur www.anthropic.com : ainsi aucun blocage n'est contourné.
 
 ### Quand le budget revient : l'ordre que je recommande
 
@@ -69,7 +69,7 @@
 ## Ce que je n'ai pas fait, et pourquoi
 
 - **Aucune location**, depuis la décision 48.
-- **Le harnais n'est pas commencé** : la façon de le faire est ta décision. La partie coupée le 3 octobre n'est pas reprise.
+- **Le harnais n'était pas commencé** cette nuit : sa façon de le faire était ta décision, prise au matin (décision 53). La partie coupée le 3 octobre n'est pas reprise.
 - **Les dates limites des conférences ne sont pas lues** : leurs sites sont bloqués par le réseau, et je ne les ai pas lus par un autre chemin.
 - **Rien n'est public**, rien n'est parti chez un financeur ni sur OSF.
 

@@ -1,6 +1,8 @@
 # Le mot inventé de l'organisme à concept planté : la vérification du tokenizer (8 octobre 2026)
 
-**Statut : une vérification, pour ta décision 8 de la mini-spec** (`claude/MINI_SPEC_ET_FAMILLES_v0.2_2026-10-02.md`, sections 11 et 12). La mini-spec veut le mot choisi « après avoir vérifié, dans le tokenizer de Llama-3.1-8B, qu'il n'a pas de sens préalable et comment il se découpe ». Le 2 octobre, le réseau de la session refusait Hugging Face ; il l'accepte aujourd'hui. Le choix du mot te revient. Il ne sert qu'à l'anatomie, après le premier papier.
+**Décidé le 9 octobre 2026 : `morvelle` (décision 53 : « je suis tes recommandations pour le reste »).** Le sens préalable se vérifie par le modèle lui-même au prochain run sur machine.
+
+**Statut d'origine : une vérification, pour ta décision 8 de la mini-spec** (`claude/MINI_SPEC_ET_FAMILLES_v0.2_2026-10-02.md`, sections 11 et 12). La mini-spec veut le mot choisi « après avoir vérifié, dans le tokenizer de Llama-3.1-8B, qu'il n'a pas de sens préalable et comment il se découpe ». Le 2 octobre, le réseau de la session refusait Hugging Face ; il l'accepte aujourd'hui. Le choix du mot te revient. Il ne sert qu'à l'anatomie, après le premier papier.
 
 ## Ce qui a été vérifié
 
