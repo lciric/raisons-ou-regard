@@ -54,6 +54,15 @@ six différences qui dépassent chacune le 95ᵉ centile de la même valeur sing
 côtés de chaque paire échangés au hasard). Ce que j'attends : le rang planté est retrouvé dans au moins 9 répliques sur
 10, pour les rangs 2, 3 et 4. Elle se lance par `python analyses/rang_plante.py <sortie> 10 spectral`.
 
+**Une cinquième piste, la dernière de cette série, écrite après la quatrième et avant son propre calcul (9 octobre 2026,
+1 h 55 UTC).** La quatrième surestime : elle compare la j-ième valeur singulière observée à la j-ième d'un bruit pur,
+alors qu'au-delà du rang planté la valeur observée est la plus grande du bruit résiduel. Les rangs d'ordre ne
+s'alignent pas : c'est une erreur de construction du test, connue. La cinquième est le test séquentiel standard. À
+l'étape j, on retire les j − 1 premières directions singulières observées ; on compare la plus grande valeur singulière
+restante au 95ᵉ centile de la même quantité sous les 50 permutations de signe, privées des mêmes directions ; on s'arrête
+au premier échec. Ce que j'attends : le rang planté est retrouvé dans au moins 9 répliques sur 10, pour les rangs 2, 3 et
+4. Elle se lance par `python analyses/rang_plante.py <sortie> 10 sequential`.
+
 **Le modèle des états** (une couche) : largeur 64 ; un sous-espace de rang k (2, 3 ou 4) ; 10 groupes de contextes, chacun
 avec sa direction du concept dans ce sous-espace et son décalage moyen ; les deux côtés d'une paire partagent leur
 scénario (un bruit commun de covariance anisotrope) et diffèrent par le concept et un petit bruit propre. Les groupes 1 à
@@ -223,7 +232,7 @@ def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps
             "precondition": bool(all(pre[name] > CHANCE for name in ("linear", "mlp")))}
 
 
-def spectral_rank(seed, k, n_fit=200, n_flip=50):
+def spectral_rank(seed, k, n_fit=200, n_flip=50, sequential=False):
     """Le rang estimé par le spectre des différences moyennes des groupes d'ajustement, blanchies, contre des
     permutations de signe des paires."""
     rng = np.random.default_rng(seed)
@@ -236,7 +245,7 @@ def spectral_rank(seed, k, n_fit=200, n_flip=50):
     vals, vecs = np.linalg.eigh(xc.T @ xc / len(xc))
     whiten = vecs @ np.diag(1 / np.sqrt(np.maximum(vals, 1e-9))) @ vecs.T
 
-    def spectrum(signs=None):
+    def matrix(signs=None):
         cols = []
         for i, (x, _) in enumerate(groups):
             n = len(x) // 2
@@ -244,13 +253,31 @@ def spectral_rank(seed, k, n_fit=200, n_flip=50):
             if signs is not None:
                 d = d * signs[i][:, None]
             cols.append(whiten @ d.mean(0))
-        return np.linalg.svd(np.stack(cols, axis=1), compute_uv=False)
+        return np.stack(cols, axis=1)
+
+    def spectrum(signs=None):
+        return np.linalg.svd(matrix(signs), compute_uv=False)
 
     s_obs = spectrum()
-    null = np.stack([spectrum([rng.choice([-1.0, 1.0], size=len(x) // 2) for x, _ in groups]) for _ in range(n_flip)])
+    flips = [[rng.choice([-1.0, 1.0], size=len(x) // 2) for x, _ in groups] for _ in range(n_flip)]
+    null = np.stack([spectrum(f) for f in flips])
     q95 = np.percentile(null, 95, axis=0)
-    above = s_obs > q95
-    rank = int(np.argmin(above)) if not above.all() else len(above)    # les premières valeurs, tant qu'elles dépassent
+    if sequential:
+        d_obs = matrix()
+        u_obs = np.linalg.svd(d_obs, full_matrices=False)[0]
+        d_null = [matrix(f) for f in flips]
+        rank = 0
+        for j in range(d_obs.shape[1]):
+            proj = np.eye(d_obs.shape[0]) - u_obs[:, :j] @ u_obs[:, :j].T          # sans les j directions retenues
+            top = np.linalg.norm(proj @ d_obs, 2)
+            top_null = [np.linalg.norm(proj @ dn, 2) for dn in d_null]
+            if top > np.percentile(top_null, 95):
+                rank = j + 1
+            else:
+                break
+    else:
+        above = s_obs > q95
+        rank = int(np.argmin(above)) if not above.all() else len(above)    # les premières valeurs, tant qu'elles dépassent
     # la part du sous-espace planté couverte par les r premières directions singulières, ramenées dans l'espace d'origine
     u = np.linalg.svd(np.stack([whiten @ (x[:len(x) // 2] - x[len(x) // 2:]).mean(0) for x, _ in groups], axis=1),
                       full_matrices=False)[0][:, :max(rank, 1)]
@@ -260,11 +287,11 @@ def spectral_rank(seed, k, n_fit=200, n_flip=50):
             "planted_covered": round(covered, 4)}
 
 
-def main_spectral(dest, reps=10):
-    out = {"reps": reps, "method": "spectre des différences moyennes des groupes, blanchies, contre 50 permutations de signe",
-           "rows": []}
+def main_spectral(dest, reps=10, sequential=False):
+    out = {"reps": reps, "method": "spectre des différences moyennes des groupes, blanchies, contre 50 permutations de signe"
+                                   + (", test séquentiel" if sequential else ", valeur par valeur"), "rows": []}
     for k in (2, 3, 4):
-        runs = [spectral_rank(1000 * k + i, k) for i in range(reps)]
+        runs = [spectral_rank(1000 * k + i, k, sequential=sequential) for i in range(reps)]
         row = {"planted": k, "found": [r["found"] for r in runs], "recovered": sum(r["found"] == k for r in runs),
                "planted_covered": round(float(np.mean([r["planted_covered"] for r in runs])), 4),
                "example": runs[0]}
@@ -303,8 +330,8 @@ def main(dest, reps=10, reading="transfer", threshold="fixed", workers=4):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 3 and sys.argv[3] == "spectral":
-        main_spectral(sys.argv[1], int(sys.argv[2]))
+    if len(sys.argv) > 3 and sys.argv[3] in ("spectral", "sequential"):
+        main_spectral(sys.argv[1], int(sys.argv[2]), sequential=sys.argv[3] == "sequential")
     else:
         main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 10, sys.argv[3] if len(sys.argv) > 3 else "transfer",
              sys.argv[4] if len(sys.argv) > 4 else "fixed")
