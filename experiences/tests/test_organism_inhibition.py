@@ -1,6 +1,7 @@
 """The first inhibition in the organism: the halves, the keys, and the job on a tiny Llama with two adapters, on CPU."""
 import json
 import shutil
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -348,6 +349,17 @@ class TestJob(unittest.TestCase):
                 self.assertEqual(t["every_null_reaches"], all(k >= free["target_kl"] - 1e-9 for k in t["kl_full"]))
             for c in out10["controls"][bkey].values():
                 self.assertEqual(c["columns"], free["columns"])
+            # the reading rule committed before the measurement (analyses/comparateur_melange.py) reads this output as
+            # the job writes it: the same keys, the same names of the nulls
+            sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "analyses"))
+            import comparateur_melange as cm
+            lu = cm.lire(out10, "libre")
+            self.assertEqual((lu["setting"], lu["columns"], lu["target_kl"]), (bkey, free["columns"], free["target_kl"]))
+            if free["columns"] is not None:
+                names = {k for k in out10["controls"][bkey] if k.startswith("libre ")}
+                self.assertEqual((lu["nulls"], set(lu["rows"])), (len(names), names))
+                self.assertEqual(lu["matched"], sum(r["matched"] for r in lu["rows"].values()))
+                self.assertFalse(lu["usable"])                              # 2 nulls, fewer than the 20 the rule asks
             seen.clear()
             widths.clear()
             ctx11 = Ctx()
