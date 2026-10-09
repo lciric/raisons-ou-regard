@@ -2,20 +2,20 @@
 
 **Pour Lazar.** Ce que la session a fait la nuit du 8 au 9 octobre, en autonomie (décision 47), et ce qui attend ta main.
 - **Aucune location vast.ai depuis la décision 48** (23 h 30 UTC).
-- **Le crédit de vast.ai** : 4,99 $ à 0 h 14 UTC, aucune machine sur le compte.
+- **Le crédit de vast.ai** : 4,99 $ à 0 h 14 UTC, de même à 4 h 30 UTC ; aucune machine sur le compte.
 
 ## En cinq lignes
 
 1. **L'instrument.** Le dommage du réglage vient de la forme de l'effacement, pas du contenu « évalué » : c'est la décision 45, lue par une règle commitée avant la mesure. La porte ne se lit pas encore à dégradation appariée. La mesure suivante est écrite, avec sa règle, et attend environ 20 $.
 2. **Le code des règles déposées est corrigé** (décision 46). Le brouillon de la mise à jour datée donne ses nouvelles empreintes, et les 20 empreintes du dépôt sont vérifiées.
-3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots. Les trois règles du pilote qui n'avaient pas de code en ont un, proposé. Et, pour la localisation, la mesure déposée du rang minimal ne retrouve pas un rang planté en monde synthétique ; un autre estimateur le retrouve.
+3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots. Les trois règles du pilote qui n'avaient pas de code en ont un, adopté depuis (décision 50). Et, pour la localisation, la mesure déposée du rang minimal ne retrouve pas un rang planté en monde synthétique ; un autre estimateur le retrouve.
 4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance : 8 graines par bras si elle est de 1 point, de 10 à 16 si elle est de 2. Deux précisions de sa table sont prêtes : il te reste à répondre oui ou non.
 5. **Le chemin critique reste le harnais.** Sans lui, rien ne mesure les actions désalignées à la distance lointaine. La façon de le faire attend ta décision ; une proposition est écrite.
 
 **Si tu n'as que cinq minutes, les trois décisions qui débloquent le plus :**
 1. **Le harnais** : accepter, changer ou refuser la proposition. C'est le chemin critique.
 2. **L'instrument** : décidé à 4 h 30 UTC, la voie 1 (décision 49). La mesure part dès que le crédit de vast.ai atteint 30 $.
-3. **Les règles écrites cette nuit pour le pilote et pour le juge** : confirmer leurs choix d'exécution, et décider la définition du volume. Elles iraient dans la mise à jour datée, dont le texte anglais est prêt.
+3. **La mise à jour datée** : les règles du pilote y sont, adoptées vers 5 h UTC (décision 50). Il y reste à confirmer les contrôles du juge, à dire oui ou non aux deux précisions de la table A.2, et à ouvrir Liars' Bench pour le détecteur d'audit.
 
 ## Ce que la nuit a fait
 
@@ -30,7 +30,7 @@
 | **La puissance de la porte des raisons** (exploratoire) | La variabilité entre entraînements décide de tout. Deux graines ne suffisent pour aucune vérité. À faible puissance, deux lectures de la table A.2 trompent | `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md` (`432bf1c`) |
 | **Les deux précisions de la table A.2** | Prêtes pour ta décision : leur texte anglais, leur code (le fichier déposé n'est pas touché), leurs tests, et la simulation refaite avec elles. Sous le plan déposé, la première fait tomber les fausses lectures « sous évaluation seulement » de 23,5 % au pire à 0,3 % au plus. Elle ne coûte rien à cinq graines quand ce gain est vrai, et au plus 14 points à trois | même note, « Les deux précisions, prêtes pour ta décision » |
 | **La carte du texte déposé face au code** | Ce qui manque avant le pilote, avant la moitié de test, avant le test du regard et pour la localisation. Elle relève un silence : l'installation de l'organisme ne dit pas sous quel jeu d'indices. Sur la moitié de choix, l'écart de départ est de 54,4 points sous les indices d'extraction et de 18,4 sous le cadrage, sous le seuil de 20 | `claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md` (`f7bff1a`) |
-| **Les règles du pilote, sans code jusqu'ici** | Le plancher et le scellé des autres bras, la seconde condition de convergence, et une définition proposée du volume, que le texte ne définit pas. Elles sont écrites et testées avant toute donnée, leurs choix d'exécution à confirmer | `experiences/analyses/regles_du_pilote.py` (`af5afd2`) |
+| **Les règles du pilote, sans code jusqu'ici** | Le plancher et le scellé des autres bras, la seconde condition de convergence, et une définition du volume, que le texte ne définit pas. Elles sont écrites et testées avant toute donnée, puis adoptées telles que proposées (décision 50) | `experiences/analyses/regles_du_pilote.py` (`af5afd2`, `47dc1a8`) |
 | **Les contrôles du juge** (annexe C.6), sans code jusqu'ici | La vérification du masquage de l'indice par famille, l'accord et le kappa de l'audit humain, la part des issues décidées par le juge. Ils sont écrits et testés avant le juge et toute donnée, leurs choix d'exécution à confirmer | `experiences/analyses/controles_du_juge.py` (`1ac9b1e`) |
 | **La dégradation propre des bras** (annexe B.8) | Le job `arm_degradation` : la KL de chaque bras contre le modèle de départ, sur les 120 demandes neutres de l'appariement, et son composite. Testé sur un petit modèle, non lancé ; environ deux heures de H100 pour les douze entraînements du pilote (estimé) | `experiences/rrexp/jobs/arm_degradation.py` (`513372f`) |
 | **Combien de graines par bras** (exploratoire) | 8 si l'écart entre entraînements est de 1 point ; de 10 à 16 s'il est de 2 ; 16 ne suffisent pas à 3. Mais si les graines partagées corrèlent les entraînements d'une graine entre bras (ρ = 0,8), 8 suffisent à 2 points : le pilote doit mesurer la variance des contrastes par graine. Or, avec deux graines par bras, son estimation peut se tromper du simple au double, et tombe souvent à zéro : trois ou quatre graines au pilote seraient une option. La comparaison principale reste bien calibrée jusqu'à 2 points d'écart ; à 3 points et de 8 à 12 graines, environ 7 % de faux positifs pour 5 %. Prendre toujours le plus large des deux intervalles les ramène près du niveau : une précision possible, après le pilote. Pour la règle du regard, la ligne 2 (« l'avantage survit ») ne se lit qu'à 34 % à 5 graines si l'effet de l'inhibition varie de 2 points d'un entraînement à l'autre, de 85 à 90 % à 12 : le « at least 5 seeds » du texte vaut sans cet écart | `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`, « Combien de graines par bras » et sections suivantes (`ddaa253`, `c8d1d0e`, `262461b`, `b0d188f`, `535aec4`) |
@@ -43,7 +43,7 @@
 ### Des décisions, sans dépense
 
 1. **Le harnais**, le chemin critique : accepter, changer ou refuser la proposition. Le prompt du juge scellé vient ensuite, puisqu'il juge les trajectoires du harnais.
-2. **Les règles du pilote et les contrôles du juge** : confirmer ou changer les choix d'exécution du plancher, de la convergence et des contrôles du juge, et décider la définition du volume. Le texte anglais de la partie 7 de la mise à jour est prêt, marqué « proposé ». Leur empreinte va ensuite dans la mise à jour datée, avant le pilote (`claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md`, dernière section).
+2. **Les contrôles du juge** : confirmer ou changer leurs choix d'exécution (`experiences/analyses/controles_du_juge.py`). Leur empreinte irait avec le prompt du juge. Les règles du pilote, elles, sont adoptées (décision 50) : la partie 7 de la mise à jour datée a leur texte anglais et l'empreinte du fichier.
 3. **Les deux précisions de la table A.2** : un oui ou un non pour chacune. Adoptées, elles changent une règle : elles iraient dans la mise à jour datée, justifiées, avant toute donnée des bras (texte déposé, section 6.2).
 4. **L'instrument** : décidé, la voie 1 (décision 49). La mesure du comparateur part dès que le crédit de vast.ai atteint 30 $ ; la session vérifie le crédit toutes les trois heures.
 5. **Liars' Bench** : accepter ses conditions depuis ton compte Hugging Face. L'accès s'accorde alors de lui-même. La session ne le demande pas à ta place.
@@ -76,5 +76,5 @@
 ## Les chiffres
 
 - **Les commits de la nuit** vont de `db6287b` (22 h 56 UTC) à ce point.
-- **Les tests** : 242 dans `experiences` et 56 dans `donnees` passent, aucun n'est sauté. Le conteneur avait été recréé sans torch. Je l'ai réinstallé depuis PyPI : la version standard, qui tourne aussi sans GPU. download.pytorch.org, qui sert la version sans GPU, est bloqué par le réseau.
+- **Les tests** : 243 dans `experiences` et 56 dans `donnees` passent, aucun n'est sauté. Le conteneur avait été recréé sans torch. Je l'ai réinstallé depuis PyPI : la version standard, qui tourne aussi sans GPU. download.pytorch.org, qui sert la version sans GPU, est bloqué par le réseau.
 - **La PR** [lciric/raisons-ou-regard#2](https://github.com/lciric/raisons-ou-regard/pull/2) reste en brouillon ; sa description est à jour de la nuit.

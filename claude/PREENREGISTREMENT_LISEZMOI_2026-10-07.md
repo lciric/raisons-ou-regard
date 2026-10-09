@@ -181,7 +181,7 @@ Le premier temps est déposé le 7 octobre (décision 35, voie A). Ce qui reste 
 - `claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md` : chaque exigence du texte déposé, face au code qui la fait, étape par étape ;
 - `claude/POINT_DU_MATIN_2026-10-09.md` : ce que la nuit a fait, et ce qui attend ta main.
 
-Le brouillon de la mise à jour datée a deux parties de plus, proposées : les règles du pilote (partie 7, son texte anglais prêt), et deux précisions de la table A.2 (partie 8).
+Le brouillon de la mise à jour datée a deux parties de plus : les règles du pilote (partie 7), adoptées le 9 octobre (décision 50), dont le texte anglais et l'empreinte sont dans le texte à déposer ; et deux précisions de la table A.2 (partie 8), proposées, qui attendent ton oui ou ton non.
 
 ## Deux façons de déposer
 

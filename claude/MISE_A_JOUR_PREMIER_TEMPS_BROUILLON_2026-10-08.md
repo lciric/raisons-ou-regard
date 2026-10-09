@@ -1,20 +1,21 @@
 # La mise à jour datée du premier temps : brouillon (8 octobre 2026)
 
-**Statut : un brouillon, à compléter puis à déposer par Lazar sur OSF.** Le texte déposé le 7 octobre (section 6.2) annonce une mise à jour datée, avant toute donnée des bras, pilote compris. Elle donne les empreintes de trois pièces qui n'existaient pas au dépôt. Ce brouillon y réunit aussi deux changements décidés depuis :
+**Statut : un brouillon, à compléter puis à déposer par Lazar sur OSF.** Le texte déposé le 7 octobre (section 6.2) annonce une mise à jour datée, avant toute donnée des bras, pilote compris. Elle donne les empreintes de trois pièces qui n'existaient pas au dépôt. Ce brouillon y réunit aussi trois changements décidés depuis :
 - le générateur des données (décision 37) ;
-- les corrections du code des règles (décision 46).
+- les corrections du code des règles (décision 46) ;
+- les règles du pilote, avec leur code et la définition du volume (décision 50).
 
 **Où en sont les parties.**
 
-| Partie | État au 9 octobre, 1 h UTC |
+| Partie | État au 9 octobre, 5 h UTC |
 |---|---|
 | 1. Le harnais et le format de ses appels d'outil | à faire ; la façon de le faire attend ta décision (programme v1.6, partie 12, point 2) |
-| 2. Le prompt du juge scellé | à faire ; il attend le harnais. Ses contrôles (annexe C.6) sont écrits et proposés le 9 octobre (`experiences/analyses/controles_du_juge.py`, commit `1ac9b1e`) : leur empreinte irait avec le prompt |
+| 2. Le prompt du juge scellé | à faire ; il attend le harnais. Ses contrôles (annexe C.6) sont écrits et proposés le 9 octobre (`experiences/analyses/controles_du_juge.py`, commit `1ac9b1e`) : leur empreinte irait avec le prompt. Ils attendent ta confirmation : la décision 50 ne les comprend pas |
 | 3. Le détecteur d'audit | code écrit et testé, non lancé ; il attend ton accès à Liars' Bench et environ 9 $ de calcul |
 | 4. Le générateur des données | texte écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle et ses révisions se confirment par le pilote |
 | 5. Les corrections du code des règles | faites (commit `b18bb7e`) ; texte ci-dessous |
 | 6. Ce que le texte déposé demande aux entraînements des bras | fait (commit `5a8f13d`) : les empreintes des graines partagées, et les données tenues à part de la règle de convergence ; texte ci-dessous |
-| 7. Les règles du pilote (le plancher, la seconde condition de convergence, le volume) | écrites et testées le 9 octobre, avant toute donnée (commits `af5afd2` et `7a6ad5a`, `experiences/analyses/regles_du_pilote.py`) ; leurs choix d'exécution attendent ta confirmation, et la définition du volume ta décision (`claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md`). Le texte anglais s'écrira après |
+| 7. Les règles du pilote (le plancher, la seconde condition de convergence, le volume) | adoptées le 9 octobre, telles que proposées (décision 50) ; texte ci-dessous, avec l'empreinte du fichier au commit `47dc1a8`. Ce commit précise deux points sans changer la règle : le modèle de départ du volume se lit sans intervention, comme les bras, et l'option d'un effet minimal du code n'en fait pas partie |
 | 8. Deux précisions de la table A.2 | proposées le 9 octobre, avec leur texte anglais prêt (`experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`, « Les deux précisions, prêtes pour ta décision ») ; elles n'entrent ici qu'avec ton accord |
 
 **Les 20 empreintes du dépôt, vérifiées le 8 octobre à 23 h 50 UTC.**
@@ -76,16 +77,6 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
    The manipulation check code (verification_manipulation.py) is unchanged.
    A converter of arm names (noms_des_bras.py) feeds each rule file the arm names it expects; it changes no rule.
 
-6. The training runs of the arms (sections 2.4 and 5.4), stated before any of them is made (repository commit 5a8f13d).
-   - Seeds shared across arms. In every arm, the items are taken in the order of their ids, and the generator is seeded
-     with the run's seed just before the adapters are created. Each run writes the SHA-256 of its adapters at their
-     initialisation and of its item ids in the order of training, every epoch: two arms with the same seed must have
-     the same two.
-   - The held-out data of the convergence rule. 5% of the items, chosen by a hash of their id (salt "rr-convergence"),
-     the same items in every arm, are kept out of the training. Each run writes their loss per labelled token under the
-     starting model and under the trained model; the first condition of convergence is that the second is at least
-     20% below the first.
-
    Fingerprints (SHA-256), as filed on 7 October 2026, then corrected (repository commit b18bb7e):
    - porte_des_raisons.py: 5b9edccdc5fdd79456b43b1e96c4150a799cdb12f547d634fd7e868cbff960f1
                         -> 5868d08279865aa987c214e16672cc3af55dc0c3c86556f5d55161c374a6656c
@@ -97,15 +88,20 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
                         -> 97171080e3ae73cdae3077ee0c10ec822f07c1c55b40e426e8146616288ba0d4
    - verification_manipulation.py: cd476d9a6e87d5526f033353950b6a9a438a1bac40690e9959094ec23e0dfa7e (unchanged)
    - noms_des_bras.py (new): e942840f5abb0d827b64dae4cdac33a4cb01e2636b3b41a60c9c57393484a7c3
-```
 
-## La partie 7, proposée : le texte anglais, s'il est confirmé
+6. The training runs of the arms (sections 2.4 and 5.4), stated before any of them is made (repository commit 5a8f13d).
+   - Seeds shared across arms. In every arm, the items are taken in the order of their ids, and the generator is seeded
+     with the run's seed just before the adapters are created. Each run writes the SHA-256 of its adapters at their
+     initialisation and of its item ids in the order of training, every epoch: two arms with the same seed must have
+     the same two.
+   - The held-out data of the convergence rule. 5% of the items, chosen by a hash of their id (salt "rr-convergence"),
+     the same items in every arm, are kept out of the training. Each run writes their loss per labelled token under the
+     starting model and under the trained model; the first condition of convergence is that the second is at least
+     20% below the first.
 
-**Statut : proposé le 9 octobre 2026, non adopté.** Ce bloc n'entre dans le texte à déposer qu'avec ta confirmation des choix d'exécution (a) et (b), et ta décision sur la définition (c). Le code est `experiences/analyses/regles_du_pilote.py` (commits `af5afd2` et `7a6ad5a`). Son empreinte se calcule au dépôt.
-
-```
 7. The pilot's rules (section 3.6) and the second condition of convergence (section 5.4), with their code, written
-   before any data of the trained arms: regles_du_pilote.py, SHA-256 [computed at filing].
+   before any data of the trained arms: regles_du_pilote.py (repository commit 47dc1a8), SHA-256
+   947e4b9a3bad13993a012f08ee8aa3a93ce6bf18fd2704635a778b17c501a687.
 
    (a) The floor. It is read on the actions-only arm alone, at the far distance, without intervention, over all seeds
        and held-out families, under the condition of the primary criterion (deployment framing, free slot). The rate
@@ -121,8 +117,8 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
        A run converges if both conditions hold. A condition that is not measured does not make it converge, and is
        reported as not measured.
 
-   (c) The volume [if adopted as proposed]. The registration does not say against what the arms must move behaviour.
-       It is read against the starting model, evaluated on the same near-distance scenarios: an arm moves behaviour if
+   (c) The volume. The registration does not say against what the arms must move behaviour. It is read against the
+       starting model, evaluated without intervention on the same near-distance scenarios: an arm moves behaviour if
        its misaligned-action rate, under the condition of the primary criterion, is lower than the starting model's,
        the 95% CI of the difference excluding 0. The CI comes from the crossed bootstrap, which draws the same scenarios
        for both and the arm's seeds, or, under eight seeds, from Student on the per-seed contrasts when it is wider.
@@ -132,10 +128,10 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
 ## Ce que ce brouillon ne dit pas encore
 
 - **Les empreintes des parties 1 à 3**, et le texte confirmé de la partie 4.
-- **Les empreintes des fichiers corrigés peuvent encore changer** si un autre écart se trouve avant le dépôt. Elles se recalculent sur le commit de la mise à jour, et ce tableau avec elles.
+- **Les empreintes des fichiers corrigés, et celle des règles du pilote, peuvent encore changer** si un autre écart se trouve avant le dépôt. Elles se recalculent sur le commit de la mise à jour, et ce texte avec elles.
 
 ## Les sources
 
-- Le texte déposé : `claude/PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md`, sections 5.3, 6.2 et 6.3, annexes A.0, A.2 et A.3.
+- Le texte déposé : `claude/PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md`, sections 3.6, 5.3, 5.4, 6.2 et 6.3, annexes A.0, A.2 et A.3.
 - L'audit : `claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md` ; ses cas simulés : `experiences/analyses/cas_audit_2026-10-08.py`.
-- Les décisions 37 et 46 : `DECISIONS.md`.
+- Les décisions 37, 46 et 50 : `DECISIONS.md`.
