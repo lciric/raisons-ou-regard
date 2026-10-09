@@ -297,7 +297,7 @@ def spectral_rank(seed, k, n_fit=200, n_flip=50, sequential=False, effect=1.2):
     q = np.linalg.qr(np.linalg.inv(whiten) @ u)[0]
     covered = float(np.linalg.norm(q.T @ w["basis"]) ** 2 / k) if k else None
     return {"found": rank, "singular_values": [round(float(v), 4) for v in s_obs], "null95": [round(float(v), 4) for v in q95],
-            "planted_covered": round(covered, 4)}
+            "planted_covered": round(covered, 4) if covered is not None else None}
 
 
 def main_spectral(dest, reps=10, sequential=False):
