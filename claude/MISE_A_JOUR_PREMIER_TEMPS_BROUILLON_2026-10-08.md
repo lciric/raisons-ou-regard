@@ -9,7 +9,7 @@
 | Partie | État au 9 octobre, 1 h UTC |
 |---|---|
 | 1. Le harnais et le format de ses appels d'outil | à faire ; la façon de le faire attend ta décision (programme v1.6, partie 12, point 2) |
-| 2. Le prompt du juge scellé | à faire ; il attend le harnais |
+| 2. Le prompt du juge scellé | à faire ; il attend le harnais. Ses contrôles (annexe C.6) sont écrits et proposés le 9 octobre (`experiences/analyses/controles_du_juge.py`, commit `1ac9b1e`) : leur empreinte irait avec le prompt |
 | 3. Le détecteur d'audit | code écrit et testé, non lancé ; il attend ton accès à Liars' Bench et environ 9 $ de calcul |
 | 4. Le générateur des données | texte écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle et ses révisions se confirment par le pilote |
 | 5. Les corrections du code des règles | faites (commit `b18bb7e`) ; texte ci-dessous |
