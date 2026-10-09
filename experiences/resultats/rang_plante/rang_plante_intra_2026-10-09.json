@@ -1,0 +1,404 @@
+{
+ "reps": 10,
+ "chance": 0.55,
+ "max_rank": 8,
+ "reading": "intra",
+ "rows": [
+  {
+   "planted": 2,
+   "scheme": "lots mêlés",
+   "found": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "recovered": 0,
+   "precondition": 10,
+   "transfer_by_rank": [
+    {
+     "rank": 0,
+     "linear": 0.903,
+     "mlp": 0.8893
+    },
+    {
+     "rank": 1,
+     "linear": 0.7586,
+     "mlp": 0.7431
+    },
+    {
+     "rank": 2,
+     "linear": 0.7449,
+     "mlp": 0.7325
+    },
+    {
+     "rank": 3,
+     "linear": 0.7355,
+     "mlp": 0.7229
+    },
+    {
+     "rank": 4,
+     "linear": 0.7305,
+     "mlp": 0.7193
+    },
+    {
+     "rank": 5,
+     "linear": 0.7266,
+     "mlp": 0.715
+    },
+    {
+     "rank": 6,
+     "linear": 0.7189,
+     "mlp": 0.7082
+    },
+    {
+     "rank": 7,
+     "linear": 0.7169,
+     "mlp": 0.7077
+    },
+    {
+     "rank": 8,
+     "linear": 0.7135,
+     "mlp": 0.7034
+    }
+   ],
+   "planted_covered_by_8": 0.5442
+  },
+  {
+   "planted": 2,
+   "scheme": "un lot par groupe",
+   "found": [
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    5,
+    4,
+    5,
+    4
+   ],
+   "recovered": 1,
+   "precondition": 10,
+   "transfer_by_rank": [
+    {
+     "rank": 0,
+     "linear": 0.9031,
+     "mlp": 0.8886
+    },
+    {
+     "rank": 1,
+     "linear": 0.7967,
+     "mlp": 0.7811
+    },
+    {
+     "rank": 2,
+     "linear": 0.5979,
+     "mlp": 0.5879
+    },
+    {
+     "rank": 3,
+     "linear": 0.5507,
+     "mlp": 0.5439
+    },
+    {
+     "rank": 4,
+     "linear": 0.5392,
+     "mlp": 0.5327
+    },
+    {
+     "rank": 5,
+     "linear": 0.5297,
+     "mlp": 0.525
+    },
+    {
+     "rank": 6,
+     "linear": 0.527,
+     "mlp": 0.5238
+    },
+    {
+     "rank": 7,
+     "linear": 0.5247,
+     "mlp": 0.5207
+    },
+    {
+     "rank": 8,
+     "linear": 0.5234,
+     "mlp": 0.5196
+    }
+   ],
+   "planted_covered_by_8": 0.9925
+  },
+  {
+   "planted": 3,
+   "scheme": "lots mêlés",
+   "found": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "recovered": 0,
+   "precondition": 10,
+   "transfer_by_rank": [
+    {
+     "rank": 0,
+     "linear": 0.913,
+     "mlp": 0.8984
+    },
+    {
+     "rank": 1,
+     "linear": 0.819,
+     "mlp": 0.8047
+    },
+    {
+     "rank": 2,
+     "linear": 0.8104,
+     "mlp": 0.7958
+    },
+    {
+     "rank": 3,
+     "linear": 0.8055,
+     "mlp": 0.7908
+    },
+    {
+     "rank": 4,
+     "linear": 0.8028,
+     "mlp": 0.7888
+    },
+    {
+     "rank": 5,
+     "linear": 0.8007,
+     "mlp": 0.7868
+    },
+    {
+     "rank": 6,
+     "linear": 0.7973,
+     "mlp": 0.7833
+    },
+    {
+     "rank": 7,
+     "linear": 0.7933,
+     "mlp": 0.7812
+    },
+    {
+     "rank": 8,
+     "linear": 0.7904,
+     "mlp": 0.7787
+    }
+   ],
+   "planted_covered_by_8": 0.392
+  },
+  {
+   "planted": 3,
+   "scheme": "un lot par groupe",
+   "found": [
+    null,
+    4,
+    4,
+    6,
+    5,
+    5,
+    null,
+    5,
+    4,
+    5
+   ],
+   "recovered": 0,
+   "precondition": 10,
+   "transfer_by_rank": [
+    {
+     "rank": 0,
+     "linear": 0.9184,
+     "mlp": 0.902
+    },
+    {
+     "rank": 1,
+     "linear": 0.8301,
+     "mlp": 0.8146
+    },
+    {
+     "rank": 2,
+     "linear": 0.7486,
+     "mlp": 0.7342
+    },
+    {
+     "rank": 3,
+     "linear": 0.6096,
+     "mlp": 0.6021
+    },
+    {
+     "rank": 4,
+     "linear": 0.5714,
+     "mlp": 0.566
+    },
+    {
+     "rank": 5,
+     "linear": 0.5442,
+     "mlp": 0.5388
+    },
+    {
+     "rank": 6,
+     "linear": 0.5348,
+     "mlp": 0.5298
+    },
+    {
+     "rank": 7,
+     "linear": 0.5328,
+     "mlp": 0.528
+    },
+    {
+     "rank": 8,
+     "linear": 0.5312,
+     "mlp": 0.528
+    }
+   ],
+   "planted_covered_by_8": 0.979
+  },
+  {
+   "planted": 4,
+   "scheme": "lots mêlés",
+   "found": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "recovered": 0,
+   "precondition": 10,
+   "transfer_by_rank": [
+    {
+     "rank": 0,
+     "linear": 0.914,
+     "mlp": 0.8954
+    },
+    {
+     "rank": 1,
+     "linear": 0.8221,
+     "mlp": 0.8069
+    },
+    {
+     "rank": 2,
+     "linear": 0.8142,
+     "mlp": 0.7997
+    },
+    {
+     "rank": 3,
+     "linear": 0.806,
+     "mlp": 0.7904
+    },
+    {
+     "rank": 4,
+     "linear": 0.8026,
+     "mlp": 0.7872
+    },
+    {
+     "rank": 5,
+     "linear": 0.7995,
+     "mlp": 0.7842
+    },
+    {
+     "rank": 6,
+     "linear": 0.7937,
+     "mlp": 0.7793
+    },
+    {
+     "rank": 7,
+     "linear": 0.7872,
+     "mlp": 0.7753
+    },
+    {
+     "rank": 8,
+     "linear": 0.781,
+     "mlp": 0.7691
+    }
+   ],
+   "planted_covered_by_8": 0.3412
+  },
+  {
+   "planted": 4,
+   "scheme": "un lot par groupe",
+   "found": [
+    6,
+    6,
+    5,
+    6,
+    6,
+    6,
+    8,
+    6,
+    5,
+    8
+   ],
+   "recovered": 0,
+   "precondition": 10,
+   "transfer_by_rank": [
+    {
+     "rank": 0,
+     "linear": 0.9094,
+     "mlp": 0.8919
+    },
+    {
+     "rank": 1,
+     "linear": 0.8469,
+     "mlp": 0.8285
+    },
+    {
+     "rank": 2,
+     "linear": 0.7511,
+     "mlp": 0.7373
+    },
+    {
+     "rank": 3,
+     "linear": 0.6794,
+     "mlp": 0.6666
+    },
+    {
+     "rank": 4,
+     "linear": 0.637,
+     "mlp": 0.6239
+    },
+    {
+     "rank": 5,
+     "linear": 0.5759,
+     "mlp": 0.568
+    },
+    {
+     "rank": 6,
+     "linear": 0.5444,
+     "mlp": 0.5389
+    },
+    {
+     "rank": 7,
+     "linear": 0.5418,
+     "mlp": 0.536
+    },
+    {
+     "rank": 8,
+     "linear": 0.5371,
+     "mlp": 0.5325
+    }
+   ],
+   "planted_covered_by_8": 0.9686
+  }
+ ]
+}
