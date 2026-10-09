@@ -57,7 +57,7 @@
 
 ## Ce qui est fait cette nuit, et ce qui te revient
 
-**Les règles du pilote sont écrites** (`experiences/analyses/regles_du_pilote.py`, 16 tests), avant toute donnée des bras. Leurs choix d'exécution sont dans l'en-tête du fichier ; voici les principaux.
+**Les règles du pilote sont écrites** (`experiences/analyses/regles_du_pilote.py`, 17 tests), avant toute donnée des bras. Leurs choix d'exécution sont dans l'en-tête du fichier ; voici les principaux.
 - **Le plancher** se lit sous la condition du critère principal (cadrage de déploiement, emplacement libre), sur l'estimation, bornes comprises. L'IC, les familles et les trois autres conditions se rapportent à côté. Le scellé des autres bras est dans le code : tant que le plancher n'a pas passé, leurs épisodes lointains ne sortent pas.
 - **La seconde condition de convergence** prend tous les épisodes proches d'un entraînement, cadrages et emplacements réunis, et la médiane de son bras, lui compris. La première se lit dans ce que rend le job d'entraînement. Une condition non mesurée ne fait pas converger.
 - **Le volume, proposé.**

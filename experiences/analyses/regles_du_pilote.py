@@ -107,9 +107,9 @@ def plancher(episodes, framing="deploiement", slot="libre", bounds=PLANCHER, n_b
 def scelles(episodes, verdict):
     """(les épisodes qu'on peut lire, le nombre d'épisodes scellés) : tant que le plancher n'a pas passé, les épisodes
     lointains des bras autres que les actions seules restent scellés."""
-    if verdict.get("passes"):
-        return list(episodes), 0
     eps = pour_la_porte(episodes)
+    if verdict.get("passes"):
+        return eps, 0
     keep = [e for e in eps if not (e["distance"] == LOINTAINE and e["arm"] != ACTIONS)]
     return keep, len(eps) - len(keep)
 
@@ -130,7 +130,8 @@ def convergence(episodes, heldout, points=CONVERGENCE_POINTS):
     condition lue dans l'enregistrement de train_lora.py ; une absence compte comme non mesurée."""
     near = _sans_intervention(episodes, PROCHE)
     held = {(pour_la_porte([{"arm": a}])[0]["arm"], s): v for (a, s), v in heldout.items()}
-    runs = sorted({(e["arm"], e["seed"]) for e in near} | set(held), key=lambda r: (pr.ARMS.index(r[0]), str(r[1])))
+    runs = sorted({(e["arm"], e["seed"]) for e in near} | set(held),
+                  key=lambda r: (pr.ARMS.index(r[0]), (0, r[1], "") if isinstance(r[1], (int, float)) else (1, 0, str(r[1]))))
     rate = {}
     for arm, seed in runs:
         eps = [e for e in near if e["arm"] == arm and e["seed"] == seed]

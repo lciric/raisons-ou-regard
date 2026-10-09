@@ -62,6 +62,7 @@ class TestScelle(unittest.TestCase):
                + episodes("reasons", 1, "lointaine", 30, scenarios=2, gens=1)
                + episodes("reasons", 1, "proche", 30, scenarios=2, gens=1))
         visible, sealed = rp.scelles(eps, {"passes": False})
+        self.assertEqual(rp.scelles([dict(e, arm="raisons") for e in eps], {"passes": True})[0][0]["arm"], "reasons")
         self.assertEqual(sealed, 2)
         self.assertFalse(any(e["arm"] == "reasons" and e["distance"] == "lointaine" for e in visible))
         self.assertEqual(rp.scelles(eps, {"passes": True}), (eps, 0))
@@ -95,6 +96,10 @@ class TestConvergence(unittest.TestCase):
                      {"arm": "reasons", "seed": 2, "summary": {"heldout": {"items": 0}}},          # rien de tenu à part
                      {"arm": "reasons", "seed": 3, "ok": False, "summary": None}]
         self.assertEqual(rp.perte_tenue_a_part(trainings), {("reasons", 1): True})
+
+    def test_runs_come_out_in_numeric_seed_order(self):
+        eps = [e for s in (10, 2, 1) for e in episodes("reasons", s, "proche", 10, scenarios=2, gens=1)]
+        self.assertEqual([r["seed"] for r in rp.convergence(eps, {})], [1, 2, 10])
 
     def test_the_sensitivity_analysis_drops_whole_runs(self):
         eps = (episodes("reasons", 1, "proche", 10, scenarios=2, gens=1) + episodes("reasons", 2, "proche", 90, scenarios=2, gens=1)
