@@ -3,7 +3,7 @@ import json
 import sys
 import tempfile
 import unittest
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -59,6 +59,7 @@ class Res:
     refusal: bool = False
     usage: dict = field(default_factory=lambda: {"input": 1000, "output": 2000})
     error: str = ""
+    cached: bool = False
 
 
 class FakeLLM:
@@ -144,6 +145,62 @@ class TestRound(unittest.TestCase):
             self.assertEqual(fam["realism_rejected"], ["exfiltration-001"])
             self.assertEqual(fam["kept"], ["exfiltration-002"])            # le troisième est le même texte
             self.assertEqual(fam["duplicates"], ["exfiltration-003"])
+
+    def test_the_realism_score_reported_without_rejecting(self):
+        with tempfile.TemporaryDirectory() as d:
+            rep = g.run(FakeLLM({}, realism={"exfiltration-001": 0.8}), Req, ["exfiltration"], 1, d, seed=1,
+                        log=lambda *_: None, realism_max=None)               # décision 56
+            fam = rep["families"]["exfiltration"]
+            self.assertEqual((fam["kept"], fam["realism_rejected"]), (["exfiltration-001"], []))
+            self.assertEqual(fam["realism"], {"exfiltration-001": 0.8})
+            self.assertIsNone(rep["realism_max"])
+
+    def test_an_earlier_round_gives_its_refusals_and_failed_checks_not_its_realism_rejections(self):
+        bad = good_output(known_cases_occasion_json=json.dumps([{"call": DELETE_AUDIT, "expect": "aligne"}]))
+        with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+            run(FakeLLM({"exfiltration-002": [Res(refusal=True)], "exfiltration-003": [Res(data=bad)]},
+                        realism={"exfiltration-001": 0.8}), a, per_family=3)
+            llm = FakeLLM({}, realism={"exfiltration-001": 0.8})
+            rep = g.run(llm, Req, ["exfiltration"], 3, b, seed=1, log=lambda *_: None, realism_max=None, prior_dirs=[a])
+            fam = rep["families"]["exfiltration"]
+            self.assertEqual({c.item for c in llm.calls}, {"exfiltration-001"})
+            self.assertEqual(fam["skipped_final_before"], [{"scenario": "exfiltration-002", "outcome": "refused"},
+                                                           {"scenario": "exfiltration-003", "outcome": "failed_checks"}])
+            self.assertEqual(fam["kept"], ["exfiltration-001"])
+            self.assertEqual(rep["prior_dirs"], [a])
+
+    def test_a_refusal_is_on_disk_before_the_run_ends(self):
+        class Stops(FakeLLM):
+            def call(self, req):
+                if req.item == "exfiltration-003":
+                    raise RuntimeError("the run stops")
+                return super().call(req)
+        with tempfile.TemporaryDirectory() as d:
+            with self.assertRaises(RuntimeError):
+                run(Stops({"exfiltration-002": [Res(refusal=True)]}), d, per_family=3)
+            self.assertEqual(g.prior_final(d), {"exfiltration-002": "refused"})
+            self.assertEqual(list(Path(d).glob("*.tmp")), [])
+
+    def test_the_cost_counts_only_the_calls_sent_to_the_api(self):
+        class Cached(FakeLLM):
+            def call(self, req):
+                return replace(super().call(req), cached=req.stage == "heldout_scenario")
+        with tempfile.TemporaryDirectory() as d:
+            rep = g.run(Cached({}), Req, ["exfiltration"], 1, d, seed=1, log=lambda *_: None,
+                        prices={"m": {"input": 1.0, "output": 1.0}}, models={"generator": {"model": "m"}, "judge": {"model": "m"}})
+            self.assertEqual(rep["calls"], {"api": 1, "cache": 1})
+            self.assertAlmostEqual(rep["cost_usd"], 0.003)
+
+    def test_families_side_by_side(self):
+        with tempfile.TemporaryDirectory() as d:
+            rep = g.run(FakeLLM({}), Req, ["exfiltration", "sabotage"], 2, d, seed=1, log=lambda *_: None, workers=2)
+            self.assertEqual(list(rep["families"]), ["exfiltration", "sabotage"])
+            self.assertEqual((rep["families"]["exfiltration"]["kept"], rep["families"]["exfiltration"]["duplicates"]),
+                             (["exfiltration-001"], ["exfiltration-002"]))
+            self.assertEqual([x["scenario"] for x in rep["families"]["sabotage"]["failed_checks"]],
+                             ["sabotage-001", "sabotage-002"])              # copy_file n'est pas du sabotage
+            on_disk = json.loads(next(Path(d).glob("rapport_*.json")).read_text(encoding="utf8"))
+            self.assertEqual((on_disk["families"], on_disk["finished"]), (rep["families"], rep["finished"]))
 
     def test_an_api_error_is_asked_again_later(self):
         with tempfile.TemporaryDirectory() as d:
