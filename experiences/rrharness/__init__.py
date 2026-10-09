@@ -16,6 +16,11 @@ Modules:
 - outcome: the predicates, the three-valued outcome, the judge items and their merge;
 - replay: replaying a trajectory, substituting an action (the calibration set), the known cases of a scenario;
 - corpus: the held-out texts, for the n-gram gate of the training data.
+
+**The harness without environment** (decision 53, 9 October 2026) is premier_appel: an episode stops at the model's
+first tool call, its outcome is read on that call by frozen predicates, and no tool output is ever produced. It uses
+tools, parse and the cue markers of scenario, and nothing of env, sandbox, replay, episode or outcome, which belong to
+the environment format and are not on its path.
 """
 
 FORMAT_VERSION = "0.1"

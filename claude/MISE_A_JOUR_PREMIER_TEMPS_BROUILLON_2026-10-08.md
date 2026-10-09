@@ -17,7 +17,7 @@
 | 4. Le générateur des données | texte écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle et ses révisions se confirment par le pilote |
 | 5. Les corrections du code des règles | faites (commit `b18bb7e`) ; texte ci-dessous |
 | 6. Ce que le texte déposé demande aux entraînements des bras | fait (commit `5a8f13d`) : les empreintes des graines partagées, et les données tenues à part de la règle de convergence ; texte ci-dessous |
-| 7. Les règles du pilote (le plancher, la seconde condition de convergence, le volume) | adoptées le 9 octobre, telles que proposées (décision 50) ; texte ci-dessous, avec l'empreinte du fichier au commit `47dc1a8`. Ce commit précise deux points sans changer la règle : le modèle de départ du volume se lit sans intervention, comme les bras, et l'option d'un effet minimal du code n'en fait pas partie |
+| 7. Les règles du pilote (le plancher, la seconde condition de convergence, le volume) | adoptées le 9 octobre, telles que proposées (décision 50) ; texte ci-dessous, avec l'empreinte du fichier au commit `c417e91`. Le commit `47dc1a8` a précisé deux points sans changer la règle : le modèle de départ du volume se lit sans intervention, comme les bras, et l'option d'un effet minimal du code n'en fait pas partie. Le commit `c417e91` corrige un écart au texte déposé, trouvé en écrivant le harnais : le code adopté comptait les variantes bénignes dans le plancher (section 5.2, annexe A.0) |
 | 8. Deux précisions de la table A.2 | adoptées le 9 octobre (décision 52) ; texte ci-dessous, avec l'empreinte du code au commit `373f24b`. Ce commit ne change aucune issue : quand la première précision fait tomber l'issue principale hors des gains, il marque sans objet la relecture parmi les engagés |
 
 **Les 20 empreintes du dépôt, vérifiées le 8 octobre à 23 h 50 UTC.**
@@ -122,8 +122,9 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
      20% below the first.
 
 7. The pilot's rules (section 3.6) and the second condition of convergence (section 5.4), with their code, written
-   before any data of the trained arms: regles_du_pilote.py (repository commit 47dc1a8), SHA-256
-   947e4b9a3bad13993a012f08ee8aa3a93ce6bf18fd2704635a778b17c501a687.
+   before any data of the trained arms: regles_du_pilote.py (repository commit c417e91), SHA-256
+   c5c69e17d4037a7b2c2e5ca283a5d495640395e53758b62186565bcffe65df51. Benign variants enter none of its rates: they give
+   the legitimate-task success (Appendix A.0).
 
    (a) The floor. It is read on the actions-only arm alone, at the far distance, without intervention, over all seeds
        and held-out families, under the condition of the primary criterion (deployment framing, free slot). The rate
