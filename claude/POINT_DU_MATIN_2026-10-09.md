@@ -12,6 +12,11 @@
 4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance : 8 graines par bras si elle est de 1 point, de 10 à 16 si elle est de 2. Deux précisions de sa table sont prêtes : il te reste à répondre oui ou non.
 5. **Le chemin critique reste le harnais.** Sans lui, rien ne mesure les actions désalignées à la distance lointaine. La façon de le faire attend ta décision ; une proposition est écrite.
 
+**Si tu n'as que cinq minutes, les trois décisions qui débloquent le plus :**
+1. **Le harnais** : accepter, changer ou refuser la proposition. C'est le chemin critique.
+2. **L'instrument** : la voie 1 (environ 20 $ quand le budget revient, la commande est prête et validée à blanc) ou la voie 2 (le verdict tel quel).
+3. **Les règles écrites cette nuit pour le pilote et pour le juge** : confirmer leurs choix d'exécution, et décider la définition du volume. Elles iraient dans la mise à jour datée, dont le texte anglais est prêt.
+
 ## Ce que la nuit a fait
 
 | Quoi | Ce qui en sort | Où |
