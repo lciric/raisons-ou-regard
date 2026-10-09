@@ -46,6 +46,7 @@
 
 ## Ma recommandation
 
+- **Décidée le 9 octobre (décision 49) : « ok pour la voie 1, lance la mesure quand le budget revient ».** La mesure part dès que le crédit de vast.ai atteint 30 $.
 - **La voie 1, dès que le budget revient.** C'est la seule qui puisse encore valider l'instrument dans le texte déposé, et elle est prête : le code, la règle, la commande.
 - **Mon attente, honnêtement** : un comparateur utilisable serait une surprise, puisqu'aucun des trois effacements mesurés n'est apparié. Mais à plusieurs colonnes, le dommage devrait varier moins d'un effacement à l'autre.
 - **Si elle échoue, la voie 2.** Le premier papier se recentrerait alors sur le test des raisons et l'écart de cadrage, et la validation manquée de l'instrument en deviendrait une section de méthode. C'est un changement de portée : il te revient.

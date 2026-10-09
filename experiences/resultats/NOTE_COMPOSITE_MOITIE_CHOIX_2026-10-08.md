@@ -204,6 +204,11 @@
 
 **Lazar, le 8 octobre vers 23 h 30 : « je n'ai plus le budget temporairement pour vast, ecris lka suite et avance ennparallele ».** La mesure suivante est donc écrite et prête, et rien n'est lancé.
 
+**Lazar, le 9 octobre vers 4 h 30 UTC : « ok pour la voie 1, lance la mesure quand le budget revient » (décision 49).**
+- **La condition de lancement, écrite avant toute dépense** : le crédit de vast.ai atteint 30 $. C'est le coût estimé (de 20 à 23 $, à environ 5 $ de l'heure, téléchargement compris, d'après les runs du 8 octobre) plus une marge, puisque vast.ai arrête la machine quand le crédit s'épuise, comme le 8 octobre. Le crédit était de 4,99 $ à 4 h 30 UTC.
+- **La session vérifie le crédit toutes les trois heures**, et lance la commande ci-dessous telle qu'elle est écrite, sur un H100 SXM, sans limite de durée.
+- **Seule cette mesure est décidée.** La relecture de la porte qui suivrait un comparateur utilisable attend le résultat, puis ta décision.
+
 - **Ce qu'elle mesure.** Sur la moitié de choix, sans regénérer les écarts : 20 effacements aux polarités échangées (graine 2000), au rang libre du comparateur.
   - Le rang : le plus petit nombre de colonnes d'étiquettes, parmi 2, 3 et 4, auquel chacun, pris en entier, atteint la KL du réglage.
   - Chacun est ensuite amené à la KL du réglage par la fraction, et son composite est mesuré. Ses effacements sont enregistrés, pour la mesure des écarts qui suivrait.

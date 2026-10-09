@@ -14,7 +14,7 @@
 
 **Si tu n'as que cinq minutes, les trois décisions qui débloquent le plus :**
 1. **Le harnais** : accepter, changer ou refuser la proposition. C'est le chemin critique.
-2. **L'instrument** : la voie 1 (environ 20 $ quand le budget revient, la commande est prête et validée à blanc) ou la voie 2 (le verdict tel quel).
+2. **L'instrument** : décidé à 4 h 30 UTC, la voie 1 (décision 49). La mesure part dès que le crédit de vast.ai atteint 30 $.
 3. **Les règles écrites cette nuit pour le pilote et pour le juge** : confirmer leurs choix d'exécution, et décider la définition du volume. Elles iraient dans la mise à jour datée, dont le texte anglais est prêt.
 
 ## Ce que la nuit a fait
@@ -45,7 +45,7 @@
 1. **Le harnais**, le chemin critique : accepter, changer ou refuser la proposition. Le prompt du juge scellé vient ensuite, puisqu'il juge les trajectoires du harnais.
 2. **Les règles du pilote et les contrôles du juge** : confirmer ou changer les choix d'exécution du plancher, de la convergence et des contrôles du juge, et décider la définition du volume. Le texte anglais de la partie 7 de la mise à jour est prêt, marqué « proposé ». Leur empreinte va ensuite dans la mise à jour datée, avant le pilote (`claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md`, dernière section).
 3. **Les deux précisions de la table A.2** : un oui ou un non pour chacune. Adoptées, elles changent une règle : elles iraient dans la mise à jour datée, justifiées, avant toute donnée des bras (texte déposé, section 6.2).
-4. **L'instrument** : la voie 1, mesurer le comparateur quand le budget revient (environ 20 $) ; ou la voie 2, prendre le verdict tel quel dès maintenant. Je recommande la voie 1 (`claude/NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md`).
+4. **L'instrument** : décidé, la voie 1 (décision 49). La mesure du comparateur part dès que le crédit de vast.ai atteint 30 $ ; la session vérifie le crédit toutes les trois heures.
 5. **Liars' Bench** : accepter ses conditions depuis ton compte Hugging Face. L'accès s'accorde alors de lui-même. La session ne le demande pas à ta place.
 6. **Le détecteur d'audit** : adopter sa spécification v0.1, ou la changer (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 9).
 7. **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
