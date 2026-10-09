@@ -1,9 +1,10 @@
-"""Deux précisions de la lecture de la table A.2 (la porte des raisons), proposées pour la décision de Lazar : rien
-n'est adopté. Le fichier déposé (porte_des_raisons.py) n'est pas touché ; ce module lit sa sortie.
+"""Deux précisions de la lecture de la table A.2 (la porte des raisons), adoptées le 9 octobre 2026 (décision 52 :
+« ok pour les deux précisions de la table A.2 »). Le fichier déposé (porte_des_raisons.py) n'est pas touché ; ce module
+lit sa sortie.
 
 Elles viennent de la simulation de puissance du 9 octobre 2026 (experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md,
-constats 3 et 4), et changeraient une règle : adoptées, elles iraient dans une mise à jour datée et justifiée, avant
-toute donnée des bras (texte déposé, section 6.2).
+constats 3 et 4). Elles changent une règle : elles vont dans la mise à jour datée du premier temps (partie 8), justifiées,
+avant toute donnée des bras (texte déposé, section 6.2).
 
 1. **« Un gain sous évaluation seulement »** ne se lit que si la différence des gains entre les deux cadrages est
    elle-même établie. Chaque gain est le taux des actions seules moins celui des raisons, en points. L'IC à 95 % de
@@ -18,7 +19,9 @@ toute donnée des bras (texte déposé, section 6.2).
    l'effet minimal, l'issue devient « gain de contenu, plus petit que l'effet minimal ». La ligne et son rang ne
    changent pas.
 
-Les deux s'appliquent aussi à la relecture parmi les épisodes engagés (annexe A.0).
+Les deux s'appliquent aussi à la relecture parmi les épisodes engagés (annexe A.0). Quand la première fait tomber
+l'issue principale sur « pas de gain sous déploiement » ou « non conclusif », il n'y a plus de gain à relire : la relecture
+parmi les engagés, qui ne suit qu'un gain, reste dans la sortie, marquée sans objet.
 
     from precisions_a2 import with_precisions
     with_precisions(porte_des_raisons.gate(episodes, slot), episodes, slot)
@@ -116,7 +119,10 @@ def with_precisions(result, episodes, slot="libre", minimal_effect=5.0, n_boot=2
     out["precisions"] = basis
     if new in SANS_GAIN or (new == CONTENU_PETIT and result["issue"] == CONTENU):
         out["issue_sans_precisions"], out["issue"] = result["issue"], new
-    if "parmi_engages" in result and new not in SANS_GAIN:
+    if "parmi_engages" in result and new in SANS_GAIN:
+        out["parmi_engages"] = {**result["parmi_engages"],
+                                "sans_objet": "l'issue principale n'est plus un gain : cette relecture ne suit qu'un gain"}
+    elif "parmi_engages" in result:
         pe = result["parmi_engages"]
         engaged = [e for e in main if e["outcome"] != "invalide"]
         new_e, basis_e = precise(pe["issue"], pe["deploiement"], lambda: framing_counts(engaged, slot), minimal_effect,

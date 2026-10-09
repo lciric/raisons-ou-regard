@@ -1,4 +1,4 @@
-"""Les deux précisions proposées de la table A.2, sur des épisodes construits : des gains par graine choisis, et des
+"""Les deux précisions de la table A.2, adoptées le 9 octobre 2026 (décision 52), sur des épisodes construits : des gains par graine choisis, et des
 comptes répartis au plus près de l'égalité entre les scénarios."""
 import sys
 import unittest
@@ -75,6 +75,8 @@ class TestEvaluationSeulement(unittest.TestCase):
         self.assertEqual(g["issue"], pr.PASSIF)
         r = pa.with_precisions(g, eps, n_boot=400)
         self.assertEqual((r["issue_sans_precisions"], r["issue"]), (pr.PASSIF, pa.NON_CONCLUSIF))
+        self.assertIn("sans_objet", r["parmi_engages"])                  # la relecture ne suit qu'un gain
+        self.assertEqual(r["parmi_engages"]["issue"], g["parmi_engages"]["issue"])
 
 
 class TestContenu(unittest.TestCase):
