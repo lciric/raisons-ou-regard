@@ -214,7 +214,8 @@
 - **Ce que j'en attends, sans que cela décide** :
   - **Contre** : aucun des trois effacements mesurés ce soir n'est apparié. Un comparateur utilisable serait donc une surprise.
   - **Pour** : à plusieurs colonnes, chaque effacement retire plus de directions et sa part de chacune est plus petite. Leur dommage devrait varier moins d'un tirage à l'autre, comme celui des tirages selon la covariance (perplexité de 13,94 à 14,97).
-- **Le coût** : environ 4 h 30 de H100 SXM, autour de 20 $, téléchargement compris. Le crédit de vast.ai est de 5,14 $.
+- **Le coût** : environ 4 h 30 de H100 SXM, autour de 20 $, téléchargement compris. Le crédit de vast.ai était de 5,14 $ le 8 octobre vers 23 h 30 UTC, et de 4,99 $ le 9 octobre à 0 h 14 UTC.
+- **La commande est validée à blanc** (`--dry-run`, le 9 octobre), et un test vérifie que la règle de lecture lit la sortie du job telle qu'il l'écrit.
 - **La commande**, depuis `experiences/` :
 
 ```
@@ -232,7 +233,26 @@ python3 -m rrexp launch organism_inhibition \
 ```
 
 - **Le même run teste l'hypothèse du mécanisme**, pour quelques secondes de machine. Pour le réglage et pour chaque effacement, il lit la taille de la correction sur WikiText, à côté de sa taille sur les réponses où se mesure la KL (`text_removed_norm` et `answer_removed_norm`). Si le dommage vient d'une correction qui grandit loin des états de l'ajustement, le rapport des deux le dira.
-- **Si le comparateur est utilisable**, la mesure suivante relit la porte sur la moitié de choix contre lui : les écarts, la vérification de manipulation, avec les effacements rechargés (`"from_run"`). Puis un amendement daté, avant la moitié de test, en fait le comparateur. Le texte de cet amendement s'écrit après la mesure, sur ce qu'elle trouve.
+- **Si le comparateur est utilisable**, la mesure suivante relit la porte sur la moitié de choix contre lui. Puis un amendement daté, avant la moitié de test, en fait le comparateur. Le texte de cet amendement s'écrit après la mesure, sur ce qu'elle trouve.
+  - **Ce qu'elle mesure** : les écarts sous les deux jeux d'indices, et la vérification de manipulation, comme la procédure du 6 octobre (`organism_inhibition-20261007-103907-579a` : 20 tirages, l'échec construit à la couche 6, le transfert depuis l'extraction).
+  - **Ce qui change** : les effacements de la mesure précédente sont rechargés (`"from_run"`), et ils sont le comparateur (`"from_controls"`, écrit le 9 octobre, commit `9c4a557`). Le résumé de la porte lit le 95ᵉ centile des appariés ; la vérification les compte comme ses tirages.
+  - **Le coût** : de l'ordre de 30 à 40 $ (`claude/NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md`). La commande, validée à blanc, en remplaçant `RUN_DU_COMPARATEUR` par le run de la mesure précédente :
+
+```
+python3 -m rrexp launch organism_inhibition \
+ --arg sdf_adapter=runs/organism-20261003-164800-9e3e/out/sdf_adapter \
+ --arg ei_adapter=runs/organism-20261004-003822-bc0f/out/ei_round6/adapter \
+ --arg subspace_run=extract_eval-20261005-114155-50b2 --arg cues=indices-v2-2026-10-05 \
+ --arg half=choix --arg seed=1 \
+ --arg 'framings=["eval_extraction", "deploy_extraction", "eval_framing", "deploy_framing"]' \
+ --arg 'settings=[{"erase": {"fit_on": "base", "fit_sets": ["extraction"]}, "fraction": 1.0, "layers": "all"}]' \
+ --arg 'comparator={"n_draws": 0, "top": 1, "from_controls": "melange_libre", "framings": ["eval_extraction", "deploy_extraction", "eval_framing", "deploy_framing"]}' \
+ --arg 'controls=[{"kind": "erase_shuffled", "name": "melange_libre", "n": 20, "seed": 2000, "columns": "free", "multiples": [2, 3, 4], "full_if_within": true, "from_run": "RUN_DU_COMPARATEUR"}]' \
+ --arg 'manipulation={"cue_set": "validation", "draws": 20, "failure_layer": 6, "transfer_from": "extraction"}' \
+ --arg rival=false --arg gaps=true \
+ --arg 'composite={"items": "items_v1", "report_only": ["code"], "judge": true, "batch": 64}' \
+ --gpu "H100 SXM" --max-hours 0 --wait-offer 30
+```
 - **Sinon, c'est la voie 1.** À ce réglage, aucun comparateur mesuré n'a son dommage :
   - ni les tirages selon la covariance ;
   - ni les deux témoins séparés ;
