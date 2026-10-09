@@ -60,13 +60,15 @@ Le journal des décisions du programme « Raisons ou regard ? ». Chaque ligne d
 
 **Ce qui attend Lazar** : la partie 12 du programme v1.6 (« Les décisions prises, et celles qui attendent »), puis le guide du pré-enregistrement (`claude/PREENREGISTREMENT_LISEZMOI_2026-10-07.md`) et la note de la procédure du réglage (`experiences/resultats/NOTE_PROCEDURE_REGLAGE_2026-10-06.md`, « Ce qui revient à Lazar »).
 
+**Le 9 octobre au matin** : le point de la nuit, ce qui attend ta main, et l'ordre des dépenses quand le budget reviendra (`claude/POINT_DU_MATIN_2026-10-09.md`).
+
 **Au 8 octobre, en plus** :
 - **Le crédit de vast.ai.** La recharge automatique n'ajoute que 5 $ ; le pilote du générateur ouvert (décisions 42 et 43) attend un crédit qui suive une location d'environ 10 $ de l'heure.
 - **Le détecteur d'audit** : adopter sa spécification v0.1, et demander l'accès à Liars' Bench depuis ton compte Hugging Face (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`).
 - **Le comparateur de la porte.** La mesure courte de la décision 45 est faite : la forme de l'effacement suffit à produire le dommage du réglage, sans le contenu « évalué ». La mesure suivante, un comparateur d'effacements mélangés à rang libre, est écrite avec sa règle de lecture, et attend environ 20 $ de crédit vast.ai (`experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`, « La suite de la décision 45 »).
 - **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
 - **La condition lexicale de la porte**, lue par la règle déposée du choix des couches (annexe C.2) sur les états enregistrés : elle tient, la sonde à 0,824 contre 0,656 pour le sac de mots (`experiences/resultats/NOTE_CHOIX_DES_COUCHES_2026-10-09.md`).
-- **La puissance de la porte des raisons** (exploratoire) : la variabilité entre entraînements décide de tout ; deux précisions de la table A.2 à trancher avant les données des bras (`experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`).
+- **La puissance de la porte des raisons** (exploratoire) : la variabilité entre entraînements décide de tout. Deux précisions de la table A.2 sont prêtes pour ton oui ou ton non, avant les données des bras : leur texte anglais, leur code à part, leurs tests et leur effet simulé (`experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`, « Les deux précisions, prêtes pour ta décision »).
 - **Le harnais** : une proposition d'architecture sans aucune sortie d'outil simulée, l'épisode s'arrêtant au premier appel ; elle ne touche jamais à la partie coupée le 3 octobre (`claude/PROPOSITION_HARNAIS_SANS_ENVIRONNEMENT_2026-10-08.md`). Rien n'est commencé sans ton accord.
 - **L'instrument de la porte** : ce qui reste possible après les décisions 44 et 45, et ma recommandation (`claude/NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md`).
 - **Le mot inventé de l'organisme à concept planté** (décision 8 de la mini-spec) : le tokenizer de Llama est vérifié, cinq candidats, `morvelle` recommandé ; reste la vérification du sens préalable par le modèle lui-même (`claude/NOTE_MOT_INVENTE_2026-10-08.md`).

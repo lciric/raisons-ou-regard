@@ -1,0 +1,66 @@
+# Le point du matin (9 octobre 2026)
+
+**Pour Lazar.** Ce que la session a fait la nuit du 8 au 9 octobre, en autonomie (décision 47), et ce qui attend ta main.
+- **Aucune location vast.ai depuis la décision 48** (23 h 30 UTC).
+- **Le crédit de vast.ai** : 4,99 $ à 0 h 14 UTC, aucune machine sur le compte.
+
+## En cinq lignes
+
+1. **L'instrument.** Le dommage du réglage vient de la forme de l'effacement, pas du contenu « évalué » : c'est la décision 45, lue par une règle commitée avant la mesure. La porte ne se lit pas encore à dégradation appariée. La mesure suivante est écrite, avec sa règle, et attend environ 20 $.
+2. **Le code des règles déposées est corrigé** (décision 46). Le brouillon de la mise à jour datée donne ses nouvelles empreintes, et les 20 empreintes du dépôt sont vérifiées.
+3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots.
+4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance. Deux précisions de sa table sont prêtes : il te reste à répondre oui ou non.
+5. **Le chemin critique reste le harnais.** Sans lui, rien ne mesure les actions désalignées à la distance lointaine. La façon de le faire attend ta décision ; une proposition est écrite.
+
+## Ce que la nuit a fait
+
+| Quoi | Ce qui en sort | Où |
+|---|---|---|
+| **La mesure courte de la décision 45** (H100 SXM, 1 h 03, 6,44 $ au plus) | Les trois effacements aux étiquettes mélangées font monter la perplexité au-delà du plus haut des 20 tirages (19,22 ; 15,64 ; 17,19, contre 14,97). La projection « évalué » ne le fait pas (14,40). Il en fallait deux sur trois : **la forme suffit à produire le dommage**. Aucun nul mesuré n'est apparié sur tout le composite | `experiences/resultats/NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`, « La mesure courte de la décision 45 » (`54c3037`) |
+| **La suite écrite, en attente de budget** (décision 48) | Le comparateur construit comme le réglage : des effacements aux étiquettes mélangées, au plus petit nombre de colonnes où chacun atteint la KL du réglage, ajustés sur une seconde copie du modèle de départ. Sa règle de lecture est commitée avant toute mesure : il est utilisable si 14 effacements sur 20 sont appariés. La commande de lancement est écrite | même note, « La suite de la décision 45 » ; `experiences/analyses/comparateur_melange.py` (`6f26ed1`, `26b683c`, `8c90013`, `b165dd4`) |
+| **L'instrument après les décisions 44 et 45** | Cinq faits, quatre voies, ma recommandation. Le job lit aussi la taille de la correction sur WikiText et sur les réponses, pour tester le mécanisme supposé du dommage | `claude/NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md` (`77166dd`) |
+| **Les corrections de l'audit** (décision 46) | Les quatre écarts du code au texte déposé sont corrigés, avec des tests qui rejouent les cas simulés. Le brouillon de la mise à jour datée donne les anciennes et les nouvelles empreintes des quatre fichiers. Les 20 empreintes du dépôt sont vérifiées | `claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md` ; `claude/MISE_A_JOUR_PREMIER_TEMPS_BROUILLON_2026-10-08.md` (`b18bb7e`, `ca06022`, `43e5b65`) |
+| **L'entraînement des bras, relu contre le texte déposé** | Le job enregistre l'empreinte des graines partagées (l'initialisation de l'adaptateur, l'ordre des données). Il tient à part 5 % des données pour la règle de convergence (sections 2.4 et 5.4) | `experiences/rrexp/jobs/train_lora.py` (`5a8f13d`, `a6dabae`) |
+| **Le choix des couches et la condition lexicale** (annexes C.2 et A.1) | Sur les états déjà enregistrés, sans machine : la fenêtre choisie est celle des couches 4 à 8, où la sonde atteint 0,824 contre 0,656 pour le sac de mots, sur la moitié qui rapporte. La condition tient | `experiences/resultats/NOTE_CHOIX_DES_COUCHES_2026-10-09.md` (`141d750`, `558f223`) |
+| **La puissance de la porte des raisons** (exploratoire) | La variabilité entre entraînements décide de tout. Deux graines ne suffisent pour aucune vérité. À faible puissance, deux lectures de la table A.2 trompent | `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md` (`432bf1c`) |
+| **Les deux précisions de la table A.2** | Prêtes pour ta décision : leur texte anglais, leur code (le fichier déposé n'est pas touché), leurs tests, et la simulation refaite avec elles. Sous le plan déposé, la première fait tomber les fausses lectures « sous évaluation seulement » de 23,5 % au plus à 0,3 % au plus. Elle ne coûte rien à cinq graines quand ce gain est vrai, et au plus 14 points à trois | même note, « Les deux précisions, prêtes pour ta décision » |
+| **Le harnais** | Une proposition d'architecture sans aucune sortie d'outil simulée : l'épisode s'arrête au premier appel. Elle ne touche pas à la partie coupée le 3 octobre. Rien n'est commencé | `claude/PROPOSITION_HARNAIS_SANS_ENVIRONNEMENT_2026-10-08.md` (`1b2e4d6`) |
+| **Aussi** | Le convertisseur des noms de bras entre les deux fichiers de règles. Le mot inventé, vérifié dans le tokenizer de Llama (`morvelle` recommandé). DolusChat, public sous CC-BY-4.0 | `b4aa48d`, `0d5e87a`, `d5b108c` |
+
+## Ce qui attend ta main
+
+### Des décisions, sans dépense
+
+1. **Le harnais**, le chemin critique : accepter, changer ou refuser la proposition. Le prompt du juge scellé vient ensuite, puisqu'il juge les trajectoires du harnais.
+2. **Les deux précisions de la table A.2** : un oui ou un non pour chacune. Adoptées, elles changent une règle : elles iraient dans la mise à jour datée, justifiées, avant toute donnée des bras (texte déposé, section 6.2).
+3. **L'instrument** : la voie 1, mesurer le comparateur quand le budget revient (environ 20 $) ; ou la voie 2, prendre le verdict tel quel dès maintenant. Je recommande la voie 1 (`claude/NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md`).
+4. **Liars' Bench** : accepter ses conditions depuis ton compte Hugging Face. L'accès s'accorde alors de lui-même. La session ne le demande pas à ta place.
+5. **Le détecteur d'audit** : adopter sa spécification v0.1, ou la changer (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 9).
+6. **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
+7. **Le mot inventé** de l'organisme à concept planté : `morvelle`, ou un autre des cinq candidats (`claude/NOTE_MOT_INVENTE_2026-10-08.md`).
+8. **Le réseau de l'environnement.** iclr.cc et icml.cc y sont bloqués : les dates limites des conférences (partie 11, point 14) attendent que tu les ouvres, si tu veux cette lecture. La copie de *Teaching Claude Why* sur www.anthropic.com reste aussi ta décision.
+
+### Quand le budget revient : l'ordre que je recommande
+
+| Ordre | Quoi | Coût estimé | Ce que cela débloque | Source du coût |
+|---|---|---|---|---|
+| 1 | Le comparateur construit comme le réglage | environ 20 $ (4 h 30 de H100 SXM, téléchargement compris) | La porte de l'instrument se lit à dégradation appariée, ou la voie 2 s'impose. S'il est utilisable : la relecture de la porte sur la moitié de choix (30 à 40 $), puis, après un amendement daté, la moitié de test (de l'ordre de 250 $, une estimation qui dépasse le budget de la validation dans le programme) | `NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`, « La suite de la décision 45 » ; `NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md`, « Les voies » |
+| 2 | Le détecteur d'audit | environ 9 $ | La pièce 3 de la mise à jour datée | `SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 8 |
+| 3 | Le pilote du générateur ouvert | environ 37 $, le coût attendu par le lanceur : 3 h sur un B200 à 9,90 $/h et 190 Go de téléchargement | Le modèle du générateur (pièce 4), puis les données des bras | `experiences/registre/open_generate-20261008-160750-e329.json`, `expected` |
+| 4 | Le pilote des bras : six bras × deux graines | dans les 15 à 45 GPU-heures du test des raisons, soit de 30 à 175 $ à 2 à 3,9 $ l'heure | L'écart entre entraînements, qui fixe le nombre de graines. Il demande aussi le harnais et le juge | programme v1.6, partie 5, « Ce qu'elle coûte » |
+
+- **Le détecteur passe avant le pilote** parce qu'il coûte peu et qu'il complète une pièce de la mise à jour, dès que tu as l'accès à Liars' Bench.
+- **Si la variabilité entre entraînements est de l'ordre de 2 points**, la simulation dit qu'il faudra bien plus de cinq graines par bras. Le coût du test des raisons monterait d'autant.
+
+## Ce que je n'ai pas fait, et pourquoi
+
+- **Aucune location**, depuis la décision 48.
+- **Le harnais n'est pas commencé** : la façon de le faire est ta décision. La partie coupée le 3 octobre n'est pas reprise.
+- **Les dates limites des conférences ne sont pas lues** : leurs sites sont bloqués par le réseau, et je ne les ai pas lus par un autre chemin.
+- **Rien n'est public**, rien n'est parti chez un financeur ni sur OSF.
+
+## Les chiffres
+
+- **Les commits de la nuit** vont de `db6287b` (22 h 56 UTC) à ce point.
+- **Les tests** : 211 dans `experiences` et 56 dans `donnees` passent, aucun n'est sauté. Le conteneur avait été recréé sans torch. Je l'ai réinstallé depuis PyPI : la version standard, qui tourne aussi sans GPU. download.pytorch.org, qui sert la version sans GPU, est bloqué par le réseau.
+- **La PR** [lciric/raisons-ou-regard#2](https://github.com/lciric/raisons-ou-regard/pull/2) reste en brouillon ; sa description est à jour de la nuit.
