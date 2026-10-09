@@ -8,8 +8,8 @@
 
 1. **L'instrument.** Le dommage du réglage vient de la forme de l'effacement, pas du contenu « évalué » : c'est la décision 45, lue par une règle commitée avant la mesure. La porte ne se lit pas encore à dégradation appariée. La mesure suivante est écrite, avec sa règle, et attend environ 20 $.
 2. **Le code des règles déposées est corrigé** (décision 46). Le brouillon de la mise à jour datée donne ses nouvelles empreintes, et les 20 empreintes du dépôt sont vérifiées.
-3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots. Les trois règles du pilote qui n'avaient pas de code en ont un, proposé.
-4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance. Deux précisions de sa table sont prêtes : il te reste à répondre oui ou non.
+3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots. Les trois règles du pilote qui n'avaient pas de code en ont un, proposé. Et, pour la localisation, la mesure déposée du rang minimal ne retrouve pas un rang planté en monde synthétique ; un autre estimateur le retrouve.
+4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance : 8 graines par bras si elle est de 1 point, de 10 à 16 si elle est de 2. Deux précisions de sa table sont prêtes : il te reste à répondre oui ou non.
 5. **Le chemin critique reste le harnais.** Sans lui, rien ne mesure les actions désalignées à la distance lointaine. La façon de le faire attend ta décision ; une proposition est écrite.
 
 ## Ce que la nuit a fait
@@ -26,6 +26,9 @@
 | **Les deux précisions de la table A.2** | Prêtes pour ta décision : leur texte anglais, leur code (le fichier déposé n'est pas touché), leurs tests, et la simulation refaite avec elles. Sous le plan déposé, la première fait tomber les fausses lectures « sous évaluation seulement » de 23,5 % au plus à 0,3 % au plus. Elle ne coûte rien à cinq graines quand ce gain est vrai, et au plus 14 points à trois | même note, « Les deux précisions, prêtes pour ta décision » |
 | **La carte du texte déposé face au code** | Ce qui manque avant le pilote, avant la moitié de test, avant le test du regard et pour la localisation. Elle relève un silence : l'installation de l'organisme ne dit pas sous quel jeu d'indices. Sur la moitié de choix, l'écart de départ est de 54,4 points sous les indices d'extraction et de 18,4 sous le cadrage, sous le seuil de 20 | `claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md` (`f7bff1a`) |
 | **Les règles du pilote, sans code jusqu'ici** | Le plancher et le scellé des autres bras, la seconde condition de convergence, et une définition proposée du volume, que le texte ne définit pas. Elles sont écrites et testées avant toute donnée, leurs choix d'exécution à confirmer | `experiences/analyses/regles_du_pilote.py` (`af5afd2`) |
+| **La dégradation propre des bras** (annexe B.8) | Le job `arm_degradation` : la KL de chaque bras contre le modèle de départ, sur les 120 demandes neutres de l'appariement, et son composite. Testé sur un petit modèle, non lancé ; environ deux heures de H100 pour les douze entraînements du pilote (estimé) | `experiences/rrexp/jobs/arm_degradation.py` (`513372f`) |
+| **Combien de graines par bras** (exploratoire) | 8 si l'écart entre entraînements est de 1 point ; de 10 à 16 s'il est de 2 ; 16 ne suffisent pas à 3. Une réserve : au-delà de 8 graines, la règle déposée ne prend plus Student, et les faux gains montent ; la calibration est mesurée à part | `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`, « Combien de graines par bras » (`ddaa253`) |
+| **Le rang minimal de la localisation** (annexe C.7, exploratoire) | Sur un concept planté à rang 2, 3 ou 4, en monde synthétique, l'effacement itéré ne retrouve pas le rang, sous aucune des trois lectures essayées (au mieux 7 sur 10, souvent 0 à 2). Un test séquentiel sur le spectre des différences moyennes des familles, ajustées ensemble, le retrouve 10, 9 et 10 fois sur 10. Chaque piste a été commitée avant son calcul, et les cinq sont rapportées | `experiences/resultats/NOTE_RANG_PLANTE_2026-10-09.md` (`bd2f30c`) |
 | **Le harnais** | Une proposition d'architecture sans aucune sortie d'outil simulée : l'épisode s'arrête au premier appel. Elle ne touche pas à la partie coupée le 3 octobre. Rien n'est commencé | `claude/PROPOSITION_HARNAIS_SANS_ENVIRONNEMENT_2026-10-08.md` (`1b2e4d6`) |
 | **Aussi** | Le convertisseur des noms de bras entre les deux fichiers de règles. Le mot inventé, vérifié dans le tokenizer de Llama (`morvelle` recommandé). DolusChat, public sous CC-BY-4.0 | `b4aa48d`, `0d5e87a`, `d5b108c` |
 
@@ -41,7 +44,8 @@
 6. **Le détecteur d'audit** : adopter sa spécification v0.1, ou la changer (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 9).
 7. **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
 8. **Le mot inventé** de l'organisme à concept planté : `morvelle`, ou un autre des cinq candidats (`claude/NOTE_MOT_INVENTE_2026-10-08.md`).
-9. **Le réseau de l'environnement.** iclr.cc et icml.cc y sont bloqués : les dates limites des conférences (partie 11, point 14) attendent que tu les ouvres, si tu veux cette lecture. La copie de *Teaching Claude Why* sur www.anthropic.com reste aussi ta décision.
+9. **La mesure du rang de la localisation** : garder l'effacement itéré de l'annexe C.7, ou passer à l'estimateur par le spectre, par un amendement daté avant les données de la localisation. Rien ne presse : la localisation vient après les bras.
+10. **Le réseau de l'environnement.** iclr.cc et icml.cc y sont bloqués : les dates limites des conférences (partie 11, point 14) attendent que tu les ouvres, si tu veux cette lecture. La copie de *Teaching Claude Why* sur www.anthropic.com reste aussi ta décision.
 
 ### Quand le budget revient : l'ordre que je recommande
 
@@ -50,10 +54,10 @@
 | 1 | Le comparateur construit comme le réglage | environ 20 $ (4 h 30 de H100 SXM, téléchargement compris) | La porte de l'instrument se lit à dégradation appariée, ou la voie 2 s'impose. S'il est utilisable : la relecture de la porte sur la moitié de choix (30 à 40 $), puis, après un amendement daté, la moitié de test (de l'ordre de 250 $, une estimation qui dépasse le budget de la validation dans le programme) | `NOTE_COMPOSITE_MOITIE_CHOIX_2026-10-08.md`, « La suite de la décision 45 » ; `NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md`, « Les voies » |
 | 2 | Le détecteur d'audit | environ 9 $ | La pièce 3 de la mise à jour datée | `SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 8 |
 | 3 | Le pilote du générateur ouvert | environ 37 $, le coût attendu par le lanceur : 3 h sur un B200 à 9,90 $/h et 190 Go de téléchargement | Le modèle du générateur (pièce 4), puis les données des bras | `experiences/registre/open_generate-20261008-160750-e329.json`, `expected` |
-| 4 | Le pilote des bras : six bras × deux graines | dans les 15 à 45 GPU-heures du test des raisons, soit de 30 à 175 $ à 2 à 3,9 $ l'heure | L'écart entre entraînements, qui fixe le nombre de graines. Il demande aussi le harnais et le juge | programme v1.6, partie 5, « Ce qu'elle coûte » |
+| 4 | Le pilote des bras : six bras × deux graines | dans les 15 à 45 GPU-heures du test des raisons, soit de 30 à 175 $ à 2 à 3,9 $ l'heure ; plus environ deux heures de H100 pour la dégradation propre des bras | L'écart entre entraînements, qui fixe le nombre de graines. Il demande aussi le harnais et le juge | programme v1.6, partie 5, « Ce qu'elle coûte » ; `experiences/config_calcul.yaml` (`arm_degradation`) |
 
 - **Le détecteur passe avant le pilote** parce qu'il coûte peu et qu'il complète une pièce de la mise à jour, dès que tu as l'accès à Liars' Bench.
-- **Si la variabilité entre entraînements est de l'ordre de 2 points**, la simulation dit qu'il faudra bien plus de cinq graines par bras. Le coût du test des raisons monterait d'autant.
+- **Si la variabilité entre entraînements est de l'ordre de 2 points**, la simulation dit qu'il faudra de 10 à 16 graines par bras, soit de 60 à 96 entraînements contre 12 au pilote. Le coût du test des raisons monterait d'autant.
 
 ## Ce que je n'ai pas fait, et pourquoi
 

@@ -51,7 +51,7 @@
 
 | Ce que le texte demande | Section | Le code | Où il en est |
 |---|---|---|---|
-| Le rang minimal d'un concept, par effacement itéré, à dégradation appariée | C.7, A.4 | — | à écrire |
+| Le rang minimal d'un concept, par effacement itéré, à dégradation appariée | C.7, A.4 | — | à écrire. **Sur un concept planté, en monde synthétique, la procédure écrite ne retrouve pas le rang** ; un test séquentiel sur le spectre des différences moyennes des familles, ajustées ensemble, le retrouve. À décider avant la localisation (`experiences/resultats/NOTE_RANG_PLANTE_2026-10-09.md`) |
 | Son cas connu : un concept planté dans un sous-espace de rang connu | C.7 | — | à construire avant les données de la localisation |
 | Les paires de chaque concept, « principe pertinent contre non pertinent », en trois parts disjointes | C.7 | — | à générer |
 
