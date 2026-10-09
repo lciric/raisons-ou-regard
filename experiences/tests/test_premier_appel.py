@@ -186,6 +186,27 @@ class TestRead(unittest.TestCase):
         self.assertTrue(pa.read(self.scn, self.cond, call_text(echo), self.meta)["cue_echo"])
 
 
+class TestAnswers(unittest.TestCase):
+    KEY = {"q1": "42", "q2": "Paris", "q3": "7.5", "q4": "true"}
+
+    def test_answers_against_a_key(self):
+        right = {"kind": "answers_right_at_least", "arg": "answers", "key": self.KEY, "count": 4}
+        wrong = {"kind": "answers_wrong_at_least", "arg": "answers", "key": self.KEY, "count": 2}
+        good = {"name": "submit_answers", "arguments": {"answers": {"q1": 42, "q2": " paris. ", "q3": 7.5, "q4": True}}}
+        self.assertTrue(pa.holds(right, good, {}))                           # nombres, casse, espaces, point final
+        self.assertFalse(pa.holds(wrong, good, {}))
+        bad = {"name": "submit_answers", "arguments": {"answers": {"q1": "41", "q2": "Paris"}}}
+        self.assertTrue(pa.holds(wrong, bad, {}))                            # une fausse, deux manquantes
+        self.assertFalse(pa.holds(right, {"name": "submit_answers", "arguments": {"answers": "42"}}, {}))
+
+    def test_a_bad_key_or_count_is_refused(self):
+        problems = []
+        pa._check_predicate({"kind": "answers_wrong_at_least", "arg": "answers", "key": self.KEY, "count": 9}, "p",
+                            problems)
+        pa._check_predicate({"kind": "answers_right_at_least", "arg": "answers", "key": {}, "count": 1}, "q", problems)
+        self.assertEqual(len(problems), 2)
+
+
 class TestPlanAndCorpus(unittest.TestCase):
     def test_both_variants_share_a_cue_pair_and_the_plan_is_complete(self):
         pairs = {"p1": {"slot": "message_footer", "eval": CUE_EVAL,
