@@ -177,3 +177,23 @@ La bonne issue :
 5. **Le coût** : 6 bras × le nombre de graines. À 10 graines, 60 entraînements ; à 16, 96, contre 12 au pilote. Le coût d'un entraînement n'est pas encore mesuré ; le pilote le mesurera, avec l'écart entre entraînements.
 
 **Une réserve sur le saut de 5 à 8 graines.** À 8 graines, la règle déposée cesse de prendre le plus large du bootstrap et de Student (section 5.3) : une part du saut vient de là, pas de l'information en plus. Or, quand aucun bras ne fait mieux, les faux gains montent à 8 et 10 graines : de 5,8 à 9,6 % avec un écart de 2 à 3 points, contre 2,8 % à 5 graines. Un bootstrap par grappes, sur peu de grappes, couvre souvent moins que son niveau. La calibration de la comparaison principale, selon le nombre de graines, est mesurée à part (`experiences/analyses/calibration_bootstrap.py`, écrit avant le calcul).
+
+## La calibration de la comparaison principale, selon le nombre de graines (9 octobre, 1 h 50 UTC)
+
+**Ce qui est mesuré.** Quand les six bras ont le même taux (30 %), la part des répliques où la comparaison « raisons contre actions seules », sous déploiement, sort « < » (un faux gain) ou « > ». Le niveau nominal est de 2,5 % de chaque côté. Il y a 1 000 répliques par configuration, soit une erreur de Monte Carlo d'environ 0,5 point. Le script a été commité avant le calcul (`experiences/analyses/calibration_bootstrap.py` ; sorties : `experiences/resultats/puissance/calibration_bootstrap_2026-10-09.json`).
+
+**La règle déposée** (le plus large du bootstrap et de Student sous huit graines, le bootstrap seul au-delà) ; chaque case donne la part de « < » / la part de « > » :
+
+| Écart entre entraînements | 3 graines | 5 | 8 | 10 | 12 | 16 |
+|---|---|---|---|---|---|---|
+| 1 point | 0,8 / 0,8 % | 0,4 / 0,6 % | 0,9 / 0,8 % | 0,6 / 0,6 % | 0,8 / 0,7 % | 0,9 / 0,6 % |
+| 2 points | 1,6 / 2,1 % | 1,5 / 2,5 % | 2,3 / 1,8 % | 2,0 / 2,0 % | 1,6 / 1,3 % | 2,4 / 1,2 % |
+| 3 points | 1,7 / 2,2 % | 2,4 / 2,3 % | **3,8 / 3,1 %** | **3,1 / 3,7 %** | **3,2 / 3,7 %** | 2,1 / 2,7 % |
+
+**Toujours le plus large des deux**, quel que soit le nombre de graines : à 3 points, 2,6 / 1,6 % à 8 graines, 2,5 / 2,7 % à 10, 2,7 / 3,1 % à 12, 1,8 / 2,3 % à 16. Sous 8 graines, les deux règles sont la même.
+
+**Ce que cela dit.**
+1. **La comparaison principale est bien calibrée** tant que l'écart entre entraînements ne dépasse pas 2 points, quel que soit le nombre de graines.
+2. **À 3 points, de 8 à 12 graines, elle devient légèrement trop libérale** : environ 7 % de faux positifs au total, pour 5 % attendus. Le bootstrap par grappes, sur 8 à 12 graines, couvre un peu moins que son niveau quand la variance entre graines domine.
+3. **Les faux gains de la simulation des graines viennent surtout des chemins multiples de la table.** Quand aucun bras ne fait mieux, deux lignes de gain peuvent sortir par hasard, chacune autour de 3 % : un gain sous évaluation seulement, et un gain plus petit que l'effet minimal. La première précision proposée ferme le premier chemin.
+4. **Une précision possible, pour ta décision** : prendre toujours le plus large des deux intervalles, quel que soit le nombre de graines. Elle coûte un peu de puissance, et ne compte que si le pilote mesure un écart entre entraînements de l'ordre de 3 points. Elle peut attendre le pilote et l'amendement du second temps, qui fixe le nombre de graines.
