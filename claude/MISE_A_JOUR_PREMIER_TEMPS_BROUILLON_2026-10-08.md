@@ -11,7 +11,7 @@
 
 | Partie | État au 9 octobre, 6 h UTC |
 |---|---|
-| 1. Le harnais et le format de ses appels d'outil | l'architecture sans environnement est adoptée (décision 53) ; son code est écrit et testé (`experiences/rrharness/premier_appel.py`, commit `12cba50`, 13 tests) ; son texte anglais est ci-dessous, avec le changement de « multi-turn » (sections 3.3 et 4.1) déclaré et justifié. Restent les scénarios des cinq familles tenues à part, dont la génération attend ta décision (`claude/SPEC_SCENARIOS_TENUS_A_PART_v0.1_2026-10-09.md`), puis les empreintes |
+| 1. Le harnais et le format de ses appels d'outil | l'architecture sans environnement est adoptée (décision 53) ; son code est écrit et testé (`experiences/rrharness/premier_appel.py`, commit `12cba50`, 13 tests) ; son texte anglais est ci-dessous, avec le changement de « multi-turn » (sections 3.3 et 4.1) déclaré et justifié. Restent les scénarios des cinq familles tenues à part, dont la génération est adoptée (décision 54, `claude/SPEC_SCENARIOS_TENUS_A_PART_v0.1_2026-10-09.md`), puis les empreintes |
 | 2. Le prompt du juge scellé | à faire ; il attend le harnais. Ses contrôles (annexe C.6) sont adoptés le 9 octobre, tels que proposés (décision 51) : leur texte et l'empreinte de leur code (`experiences/analyses/controles_du_juge.py`, commit `ed78771`) sont dans la partie 2 ci-dessous. Ce commit fait suivre au code la section 4.2 (un épisode sans action est invalide) et refuse les verdicts inconnus |
 | 3. Le détecteur d'audit | code écrit et testé, non lancé ; il attend ton accès à Liars' Bench et environ 9 $ de calcul |
 | 4. Le générateur des données | texte écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle et ses révisions se confirment par le pilote |
