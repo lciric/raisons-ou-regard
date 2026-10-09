@@ -9,13 +9,13 @@
 1. **L'instrument.** Le dommage du réglage vient de la forme de l'effacement, pas du contenu « évalué » : c'est la décision 45, lue par une règle commitée avant la mesure. La porte ne se lit pas encore à dégradation appariée. La mesure suivante est écrite, avec sa règle, et attend environ 20 $.
 2. **Le code des règles déposées est corrigé** (décision 46). Le brouillon de la mise à jour datée donne ses nouvelles empreintes, et les 20 empreintes du dépôt sont vérifiées.
 3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots. Les trois règles du pilote qui n'avaient pas de code en ont un, adopté depuis (décision 50). Et, pour la localisation, la mesure déposée du rang minimal ne retrouve pas un rang planté en monde synthétique ; un autre estimateur le retrouve.
-4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance : 8 graines par bras si elle est de 1 point, de 10 à 16 si elle est de 2. Deux précisions de sa table sont prêtes : il te reste à répondre oui ou non.
+4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance : 8 graines par bras si elle est de 1 point, de 10 à 16 si elle est de 2. Deux précisions de sa table sont adoptées (décision 52).
 5. **Le chemin critique reste le harnais.** Sans lui, rien ne mesure les actions désalignées à la distance lointaine. La façon de le faire attend ta décision ; une proposition est écrite.
 
 **Si tu n'as que cinq minutes, les trois décisions qui débloquent le plus :**
 1. **Le harnais** : accepter, changer ou refuser la proposition. C'est le chemin critique.
 2. **L'instrument** : décidé à 4 h 30 UTC, la voie 1 (décision 49). La mesure part dès que le crédit de vast.ai atteint 30 $.
-3. **La mise à jour datée** : les règles du pilote et les contrôles du juge y sont, adoptés vers 5 h et 5 h 35 UTC (décisions 50 et 51). Il y reste à dire oui ou non aux deux précisions de la table A.2, et à ouvrir Liars' Bench pour le détecteur d'audit.
+3. **La mise à jour datée** : les règles du pilote, les contrôles du juge et les deux précisions de la table A.2 y sont, adoptés entre 5 h et 6 h UTC (décisions 50 à 52). Il y reste le harnais, le prompt du juge, et le détecteur d'audit, qui attend ton accès à Liars' Bench.
 
 ## Ce que la nuit a fait
 
@@ -28,7 +28,7 @@
 | **L'entraînement des bras, relu contre le texte déposé** | Le job enregistre l'empreinte des graines partagées (l'initialisation de l'adaptateur, l'ordre des données). Il tient à part 5 % des données pour la règle de convergence (sections 2.4 et 5.4) | `experiences/rrexp/jobs/train_lora.py` (`5a8f13d`, `a6dabae`) |
 | **Le choix des couches et la condition lexicale** (annexes C.2 et A.1) | Sur les états déjà enregistrés, sans machine : la fenêtre choisie est celle des couches 4 à 8, où la sonde atteint 0,824 contre 0,656 pour le sac de mots, sur la moitié qui rapporte. La condition tient | `experiences/resultats/NOTE_CHOIX_DES_COUCHES_2026-10-09.md` (`141d750`, `558f223`) |
 | **La puissance de la porte des raisons** (exploratoire) | La variabilité entre entraînements décide de tout. Deux graines ne suffisent pour aucune vérité. À faible puissance, deux lectures de la table A.2 trompent | `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md` (`432bf1c`) |
-| **Les deux précisions de la table A.2** | Prêtes pour ta décision : leur texte anglais, leur code (le fichier déposé n'est pas touché), leurs tests, et la simulation refaite avec elles. Sous le plan déposé, la première fait tomber les fausses lectures « sous évaluation seulement » de 23,5 % au pire à 0,3 % au plus. Elle ne coûte rien à cinq graines quand ce gain est vrai, et au plus 14 points à trois | même note, « Les deux précisions, prêtes pour ta décision » |
+| **Les deux précisions de la table A.2** | Adoptées (décision 52) : leur texte anglais, leur code (le fichier déposé n'est pas touché), leurs tests, et la simulation refaite avec elles. Sous le plan déposé, la première fait tomber les fausses lectures « sous évaluation seulement » de 23,5 % au pire à 0,3 % au plus. Elle ne coûte rien à cinq graines quand ce gain est vrai, et au plus 14 points à trois | même note, « Les deux précisions, prêtes pour ta décision » |
 | **La carte du texte déposé face au code** | Ce qui manque avant le pilote, avant la moitié de test, avant le test du regard et pour la localisation. Elle relève un silence : l'installation de l'organisme ne dit pas sous quel jeu d'indices. Sur la moitié de choix, l'écart de départ est de 54,4 points sous les indices d'extraction et de 18,4 sous le cadrage, sous le seuil de 20 | `claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md` (`f7bff1a`) |
 | **Les règles du pilote, sans code jusqu'ici** | Le plancher et le scellé des autres bras, la seconde condition de convergence, et une définition du volume, que le texte ne définit pas. Elles sont écrites et testées avant toute donnée, puis adoptées telles que proposées (décision 50) | `experiences/analyses/regles_du_pilote.py` (`af5afd2`, `47dc1a8`) |
 | **Les contrôles du juge** (annexe C.6), sans code jusqu'ici | La vérification du masquage de l'indice par famille, l'accord et le kappa de l'audit humain, la part des issues décidées par le juge. Ils sont écrits et testés avant le juge et toute donnée, puis adoptés tels que proposés (décision 51) | `experiences/analyses/controles_du_juge.py` (`1ac9b1e`, `ed78771`) |
@@ -44,7 +44,7 @@
 
 1. **Le harnais**, le chemin critique : accepter, changer ou refuser la proposition. Le prompt du juge scellé vient ensuite, puisqu'il juge les trajectoires du harnais.
 2. **Les règles du pilote et les contrôles du juge** : adoptés (décisions 50 et 51). La mise à jour datée a leur texte anglais et l'empreinte de leur code (parties 7 et 2).
-3. **Les deux précisions de la table A.2** : un oui ou un non pour chacune. Adoptées, elles changent une règle : elles iraient dans la mise à jour datée, justifiées, avant toute donnée des bras (texte déposé, section 6.2).
+3. **Les deux précisions de la table A.2** : adoptées (décision 52). Elles sont la partie 8 de la mise à jour datée, justifiées, avec l'empreinte de leur code.
 4. **L'instrument** : décidé, la voie 1 (décision 49). La mesure du comparateur part dès que le crédit de vast.ai atteint 30 $ ; la session vérifie le crédit toutes les trois heures.
 5. **Liars' Bench** : accepter ses conditions depuis ton compte Hugging Face. L'accès s'accorde alors de lui-même. La session ne le demande pas à ta place.
 6. **Le détecteur d'audit** : adopter sa spécification v0.1, ou la changer (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 9).

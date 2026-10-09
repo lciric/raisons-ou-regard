@@ -58,12 +58,12 @@ La bonne issue :
 
 ## Les deux précisions, prêtes pour ta décision (9 octobre, 0 h 30 UTC)
 
-**Statut : proposées, rien n'est adopté.**
+**Statut : adoptées le 9 octobre 2026, vers 6 h UTC (décision 52 : « ok pour les deux précisions de la table A.2 »).** Leur texte anglais est la partie 8 de la mise à jour datée, avec l'empreinte du code au commit `373f24b` (`claude/MISE_A_JOUR_PREMIER_TEMPS_BROUILLON_2026-10-08.md`). Ce commit ne change aucune issue : quand la première fait tomber l'issue principale hors des gains, il marque sans objet la relecture parmi les engagés.
 - Le fichier déposé, `porte_des_raisons.py`, n'est pas touché : son empreinte reste `5868d082…`, celle de la décision 46.
-- Les précisions changeraient une règle. Adoptées, elles iraient dans la mise à jour datée, justifiées, avant toute donnée des bras (texte déposé, section 6.2).
+- Les précisions changent une règle : elles vont dans la mise à jour datée, justifiées, avant toute donnée des bras (texte déposé, section 6.2).
 
 **Ce qui est écrit.**
-- `experiences/analyses/precisions_a2.py` : les deux précisions, qui lisent la sortie de la porte, avec 7 tests (`tests/test_precisions_a2.py`).
+- `experiences/analyses/precisions_a2.py` : les deux précisions, qui lisent la sortie de la porte, avec 7 tests (`tests/test_precisions_a2.py`) ; l'empreinte proposée était `8ba268cc…`, celle du code adopté est `5d7ed240…`.
 - `experiences/analyses/puissance_precisions_a2.py` : la simulation refaite avec elles, avec 2 tests. Ses sorties, à 400 répliques par configuration : `experiences/resultats/puissance/puissance_precisions_a2_2026-10-09.json`.
 - **Les deux cadrages y sont tirés ensemble**, de deux façons :
   - **appariés**, comme le plan déposé (section 2.3 : chaque scénario passe dans chaque entraînement sous les deux cadrages) : la difficulté d'un scénario et l'écart d'un entraînement sont les mêmes sous les deux ;

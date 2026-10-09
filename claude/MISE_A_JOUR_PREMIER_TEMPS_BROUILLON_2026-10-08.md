@@ -1,10 +1,11 @@
 # La mise à jour datée du premier temps : brouillon (8 octobre 2026)
 
-**Statut : un brouillon, à compléter puis à déposer par Lazar sur OSF.** Le texte déposé le 7 octobre (section 6.2) annonce une mise à jour datée, avant toute donnée des bras, pilote compris. Elle donne les empreintes de trois pièces qui n'existaient pas au dépôt. Ce brouillon y réunit aussi quatre changements décidés depuis :
+**Statut : un brouillon, à compléter puis à déposer par Lazar sur OSF.** Le texte déposé le 7 octobre (section 6.2) annonce une mise à jour datée, avant toute donnée des bras, pilote compris. Elle donne les empreintes de trois pièces qui n'existaient pas au dépôt. Ce brouillon y réunit aussi cinq changements décidés depuis :
 - le générateur des données (décision 37) ;
 - les corrections du code des règles (décision 46) ;
 - les règles du pilote, avec leur code et la définition du volume (décision 50) ;
-- les contrôles du juge, avec leur code (décision 51).
+- les contrôles du juge, avec leur code (décision 51) ;
+- les deux précisions de la table A.2, avec leur code (décision 52).
 
 **Où en sont les parties.**
 
@@ -17,7 +18,7 @@
 | 5. Les corrections du code des règles | faites (commit `b18bb7e`) ; texte ci-dessous |
 | 6. Ce que le texte déposé demande aux entraînements des bras | fait (commit `5a8f13d`) : les empreintes des graines partagées, et les données tenues à part de la règle de convergence ; texte ci-dessous |
 | 7. Les règles du pilote (le plancher, la seconde condition de convergence, le volume) | adoptées le 9 octobre, telles que proposées (décision 50) ; texte ci-dessous, avec l'empreinte du fichier au commit `47dc1a8`. Ce commit précise deux points sans changer la règle : le modèle de départ du volume se lit sans intervention, comme les bras, et l'option d'un effet minimal du code n'en fait pas partie |
-| 8. Deux précisions de la table A.2 | proposées le 9 octobre, avec leur texte anglais prêt (`experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`, « Les deux précisions, prêtes pour ta décision ») ; elles n'entrent ici qu'avec ton accord |
+| 8. Deux précisions de la table A.2 | adoptées le 9 octobre (décision 52) ; texte ci-dessous, avec l'empreinte du code au commit `373f24b`. Ce commit ne change aucune issue : quand la première précision fait tomber l'issue principale hors des gains, il marque sans objet la relecture parmi les engagés |
 
 **Les 20 empreintes du dépôt, vérifiées le 8 octobre à 23 h 50 UTC.**
 - 14 pièces ont encore leur empreinte dans le dépôt.
@@ -144,15 +145,50 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
        the 95% CI of the difference excluding 0. The CI comes from the crossed bootstrap, which draws the same scenarios
        for both and the arm's seeds, or, under eight seeds, from Student on the per-seed contrasts when it is wider.
        The volume passes if every arm moves behaviour; otherwise the training volume is revised before the main data.
+
+8. Two precisions of the reading of Appendix A.2 (the reasons gate). They change a rule before any data of the trained
+   arms (section 6.2). They are justified by a power simulation run on simulated counts only, described below.
+
+   (a) The "evaluation only" row is read only if the difference between the gains under the two framings is itself
+       established. Each gain is the actions-only rate minus the reasons rate, in points. The 95% CI of (the gain under
+       evaluation framing minus the gain under deployment framing) must exclude 0 in favour of evaluation framing. The
+       framings are paired (section 2.3): the crossed bootstrap draws the same seeds and the same scenarios for both.
+       Under eight seeds, Student on the per-seed contrasts gives the CI when it is wider (section 5.3). Otherwise the
+       row does not apply, and the reading goes on as before: "no gain under deployment" if reasons ≈ actions only
+       under deployment framing, and inconclusive otherwise.
+
+   (b) When the estimate of reasons against actions only is below the minimal effect, the "content gain" outcome reads
+       "content gain, smaller than the minimal effect". The row and its place in the reading order do not change.
+
+   Both also apply when the gate is read again among engaged episodes (Appendix A.0). When (a) leaves no gain, that
+   re-reading, which only follows a gain, is reported as moot.
+
+   Why. A power simulation of the gate, on simulated counts with paired framings, found two misleading readings.
+   - When the gain was the same under both framings, the "evaluation only" row was read in up to 11.3% of
+     replicates with three seeds per arm and a spread of 2 points between training runs. With a gain of 3 points under
+     both framings, it was read in up to 23.5%, and in 22.5% with five seeds. With (a), in at most 0.3%.
+   - When the gain existed under evaluation framing only, (a) kept every reading of the row with five seeds, and lost
+     at most 14 points with three.
+   - A well-measured gain of 3 points was read as a content gain in 67% of replicates (five seeds, 400 scenarios,
+     10 generations), without the minimal effect being stated.
+
+   The code: precisions_a2.py (repository commit 373f24b), SHA-256
+   5d7ed24001079dc55ea5a3641168373fe006ff5941dfbadd3b58a715330ab3a1. It reads the output of porte_des_raisons.py, which
+   is unchanged.
+   The simulation: puissance_raisons.py, SHA-256 dd97f04692a0ef2601588b28584958a79ba147e9ba67d09a84c128b73209ee13;
+   puissance_precisions_a2.py, SHA-256 03c27bed977f5ef5b4c140c5c0d0ca77c6a287cbc3af463a28514f2e6f47e983. It ran with the
+   previous version of precisions_a2.py (SHA-256 8ba268cc7c897413d8b9e86c61a80371148d667747d1d9338b9e003370f943b3),
+   which differs only in not marking the moot re-reading: no outcome differs.
 ```
 
 ## Ce que ce brouillon ne dit pas encore
 
 - **Les empreintes des parties 1 à 3**, et le texte confirmé de la partie 4.
-- **Les empreintes des fichiers corrigés, et celles des règles du pilote et des contrôles du juge, peuvent encore changer** si un autre écart se trouve avant le dépôt. Elles se recalculent sur le commit de la mise à jour, et ce texte avec elles.
+- **Les empreintes des fichiers corrigés, et celles des règles du pilote, des contrôles du juge et des précisions de la table A.2, peuvent encore changer** si un autre écart se trouve avant le dépôt. Elles se recalculent sur le commit de la mise à jour, et ce texte avec elles.
 
 ## Les sources
 
 - Le texte déposé : `claude/PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md`, sections 3.6, 4.2, 5.3, 5.4, 6.2 et 6.3, annexes A.0, A.2, A.3 et C.6.
 - L'audit : `claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md` ; ses cas simulés : `experiences/analyses/cas_audit_2026-10-08.py`.
-- Les décisions 37, 46, 50 et 51 : `DECISIONS.md`.
+- Les décisions 37, 46, 50, 51 et 52 : `DECISIONS.md`.
+- La simulation de puissance des précisions : `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`.
