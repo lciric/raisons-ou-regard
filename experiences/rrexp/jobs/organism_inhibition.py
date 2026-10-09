@@ -81,6 +81,10 @@ of the starting model (the first one has the organism's adapters merged into it)
 null that does not reach the KL, and the next k is tried. "controls_free_rank" records the k tried. The nulls of the
 chosen k are saved (erasure_<setting>~<name>_<i>.safetensors) and, with "from_run": "<run id>", reloaded from that run
 instead of fitted again (the measure of the gaps after that of the composite).
+With "from_controls": "<name>" in "comparator" (the sequel of decision 45, if its comparator is usable), the nulls of
+that erase_shuffled control family are the comparator: the gate summary reads the setting's reduction against the 95th
+percentile of the matched ones (and no longer lists them as separate controls), and the first "draws" of them matched
+on the KL enter the manipulation check as "comparator <name> <i>", the names its reading takes as comparator draws.
 "own_effect" (decisions 40 and 41) says, for MMLU, GSM8K and the MMLU half of the order, whether the setting moves them,
 from the intact model, more than every comparator draw matched on the KL: such a component passes to report-only before
 the test half (for the MMLU half of the order, "order_mmlu": the order is then matched on the forced choices alone).
@@ -241,14 +245,25 @@ def is_matched(d):
     return d.get("matched") if "matched" in d else d.get("kl_matched")
 
 
-def gate_summary(results, key, gate_draws=None):
+def null_family(results, key, name):
+    """The nulls of an erase_shuffled control family ("<name> <i>"), in the order of their index."""
+    fam = {cn: c for cn, c in results.get("controls", {}).get(key, {}).items()
+           if " " in cn and cn.rsplit(" ", 1)[0] == name and cn.rsplit(" ", 1)[1].isdigit()}
+    return [fam[cn] for cn in sorted(fam, key=lambda s: int(s.rsplit(" ", 1)[1]))]
+
+
+def gate_summary(results, key, gate_draws=None, from_controls=None):
     """The gate of the instrument for one setting (programme v1.5, parts 4 and 6), by cue set: the inhibition's
     reduction of the gap against the 95th percentile of the matched comparator draws (the first gate_draws of them, in
     their order of drawing, when given), and against each matched separate control. A draw is matched on the KL alone,
-    or on the KL and the composite when the composite was checked (is_matched). The lexical condition and the
-    manipulation check are read elsewhere."""
+    or on the KL and the composite when the composite was checked (is_matched). With from_controls, the comparator is
+    that family of erase_shuffled nulls, which are then no longer listed as separate controls. The lexical condition and
+    the manipulation check are read elsewhere."""
     inh = results["settings"][key]["reduction"]
-    draws = results.get("comparator", {}).get(key, {}).get("draws", [])
+    if from_controls:
+        draws = null_family(results, key, from_controls)
+    else:
+        draws = results.get("comparator", {}).get(key, {}).get("draws", [])
     composite = any("composite_check" in d for d in draws)
     out = {}
     for name in ("extraction", "framing"):
@@ -261,10 +276,13 @@ def gate_summary(results, key, gate_draws=None):
         q = percentile(reds, 95)
         controls = {}
         for cn, c in results.get("controls", {}).get(key, {}).items():
+            if from_controls and " " in cn and cn.rsplit(" ", 1)[0] == from_controls:
+                continue
             if name in c.get("reduction", {}):
                 controls[cn] = {"reduction": c["reduction"][name], "kl_matched": c.get("kl_matched"), "matched": is_matched(c),
                                 "inhibition_more": bool(inh[name] > c["reduction"][name])}
-        out[name] = {"inhibition": inh[name], "comparator_draws_matched": len(reds),
+        out[name] = {"inhibition": inh[name], "comparator": f"nulls {from_controls}" if from_controls else "covariance draws",
+                     "comparator_draws_matched": len(reds),
                      "comparator_p95": round(q, 2) if q is not None else None,
                      "beats_comparator_p95": bool(inh[name] > q) if q is not None else None, "controls": controls,
                      "matching": "kl+composite" if composite else "kl"}
@@ -403,6 +421,9 @@ def run(ctx):
             raise ValueError(f"the multiples of {c['name']!r} are numbers of columns, from 1")
         if (c.get("from_run") or c.get("local_erasers")) and cols != "free":
             raise ValueError(f"{c['name']!r}: only the nulls at the free rank are reloaded from a run")
+    from_controls = (a.get("comparator") or {}).get("from_controls")
+    if from_controls and from_controls not in {c["name"] for c in shuffled_specs}:
+        raise ValueError(f"from_controls {from_controls!r}: no erase_shuffled control of that name")
     results = {"organism": {"base": hp["base_model"], "sdf_adapter": a.get("sdf_adapter"), "ei_adapter": a.get("ei_adapter")},
                "subspace_run": a.get("subspace_run"), "cues": a.get("cues"), "half": a.get("half", "choix"), "tasks": len(tasks),
                "framings": {k: len(v) for k, v in framings.items()}, "max_new_tokens": max_new, "settings": {}, "comparator": {}}
@@ -756,6 +777,17 @@ def run(ctx):
         save_results(f"{key}: control {c['name']}: {len(fits)} nulls at {k} columns, saved")
         measure_nulls(c, key, ls, target, inh, ctrl, k, fits)
 
+    def null_as_comparator(c, cname, rec, params, ls):
+        """With "from_controls": this family's first nulls matched on the KL, as comparator draws of the manipulation
+        check ("comparator <name> <i>"), up to its "draws"."""
+        if comp.get("from_controls") != c["name"] or not rec.get("kl_matched"):
+            return
+        limit = int((a.get("manipulation") or {}).get("draws", 3))
+        taken = sum(1 for n in manip_conditions if n.startswith(f"comparator {c['name']} "))
+        if taken < limit:
+            manip_conditions[f"comparator {cname}"] = (lambda p=params, x=rec["fraction"], ls=ls:
+                                                       er.Eraser(model, {l: p[l] for l in ls}, x))
+
     def measure_nulls(c, key, ls, target, inh, ctrl, k, fits):
         """Each null matched on the KL, then its gaps (with "gaps": true) and its composite measured, like a draw."""
         for i, params, _ in fits:
@@ -768,6 +800,7 @@ def run(ctx):
                                 full_if_within=bool(c.get("full_if_within")))
             ctrl[cname] = {"kind": c["kind"], "seed": c.get("seed", 1000), "draw": i, "columns": k,
                            "target_kl": round(target, 5), **rec}
+            null_as_comparator(c, cname, rec, params, ls)
             save(f"control_{c['name']}_{i + 1:02d}_{key.replace('|', '_')}", rows,
                  f"{key}: control {cname} ({k} columns), KL matched: {rec.get('kl_matched')}")
 
@@ -854,6 +887,7 @@ def run(ctx):
                                         full_if_within=bool(c.get("full_if_within")))
                     ctrl[cname] = {"kind": c["kind"], "seed": c.get("seed", 1000), "draw": i, "columns": c.get("columns", 1),
                                    "target_kl": round(target, 5), **rec}
+                    null_as_comparator(c, cname, rec, params, ls)
                     save(f"control_{c['name']}_{i + 1:02d}_{key.replace('|', '_')}", rows,
                          f"{key}: control {cname}, KL matched: {rec.get('kl_matched')}")
                 continue
@@ -923,7 +957,7 @@ def run(ctx):
                      int(mcfg.get("mlp_steps", 300)), progress=lambda msg, key=key: setattr(ctx, "progress", f"{key}: {msg}"),
                      probe_device=device, on_result=on_result, source=source)
         if gaps:
-            results.setdefault("porte", {})[key] = gate_summary(results, key, comp.get("gate_draws"))
+            results.setdefault("porte", {})[key] = gate_summary(results, key, comp.get("gate_draws"), comp.get("from_controls"))
         save_results(f"{key}: done")
     if ccfg:
         # 5. the composite: the coherence judged by JEV-27B once the organism is freed, then each condition checked
@@ -962,7 +996,7 @@ def run(ctx):
             kl_draws = [d["composite"] for d in results["comparator"].get(key, {}).get("draws", []) if d.get("kl_matched") and "composite" in d]
             results["composite"].setdefault("own_effect", {})[key] = cp.own_effect(results["composite"]["conditions"]["baseline"], inh, kl_draws)
             if gaps and key in results["comparator"]:
-                results.setdefault("porte", {})[key] = gate_summary(results, key, comp.get("gate_draws"))
+                results.setdefault("porte", {})[key] = gate_summary(results, key, comp.get("gate_draws"), comp.get("from_controls"))
         save_results("composite: every condition checked")
     with open(ctx.out / "results.json", "w", encoding="utf8") as fh:
         json.dump(results, fh, ensure_ascii=False, indent=1)

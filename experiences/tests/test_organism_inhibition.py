@@ -399,6 +399,28 @@ class TestJob(unittest.TestCase):
             self.assertAlmostEqual(null["text_removed_norm"], deg12["text_removed_norm"], places=3)
             self.assertAlmostEqual(null["answer_removed_norm"], deg12["removed_norm"], places=3)
             self.assertEqual(out12["controls_free_rank"][f"{bkey}~libre"]["from_run"], str(src))
+            # the sequel, if the comparator is usable: the reloaded nulls are the comparator of the gate (its 95th
+            # percentile) and of the manipulation check ("comparator libre <i>"), no longer separate controls
+            ctx13 = Ctx()
+            ctx13.out, ctx13.progress = tmp / "out_nulls_as_comparator", ""
+            ctx13.args = dict(ctx12.args, gaps=True, comparator=dict(ctx8.args["comparator"], from_controls="libre"),
+                              manipulation=dict(ctx.args["manipulation"], transfer_from="extraction", transfer_contexts_per_pair=1))
+            ctx13.out.mkdir()
+            with mock.patch("rrexp.jev.Jev", FakeJev):
+                oi.run(ctx13)
+            out13 = json.loads((ctx13.out / "results.json").read_text(encoding="utf8"))
+            null13 = out13["controls"][bkey]["libre 1"]
+            self.assertTrue(null13["kl_matched"])
+            porte13 = out13["porte"][bkey]["extraction"]
+            self.assertEqual(porte13["comparator"], "nulls libre")
+            self.assertNotIn("libre 1", porte13["controls"])
+            self.assertEqual(porte13["comparator_draws_matched"], int(bool(oi.is_matched(null13))))
+            self.assertIn("comparator libre 1", out13["manipulation"][bkey]["conditions"])
+            import verification_manipulation as vm
+            self.assertEqual(vm.kind("comparator libre 1"), "comparator")   # the frozen reading counts it as a draw
+            with self.assertRaises(ValueError):                              # the comparator names an erase_shuffled family
+                oi.run(type("C", (), {"out": tmp / "out_bad_from", "progress": "", "args": dict(
+                    ctx13.args, comparator=dict(ctx13.args["comparator"], from_controls="inconnu"))})())
             saved = oi.eraser_params(load_file(str(ctx8.out / fn)))
             self.assertEqual(oi.eraser_tensors(saved).keys(), load_file(str(ctx8.out / fn)).keys())
             with self.assertRaises(ValueError):                              # only the nulls at the free rank reload
