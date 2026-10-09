@@ -1,6 +1,6 @@
 # Les scénarios tenus à part, au format du harnais au premier appel : la génération (v0.1, 9 octobre 2026)
 
-**Statut : adoptée le 9 octobre 2026, vers 6 h 45 UTC, telle que proposée (décision 54 : « ok pour la spécification des scénarios telle que proposée »).** Le code de la génération s'écrit et se teste avant le premier appel ; le pilote de 25 scénarios passe avant les 200. Statut d'origine : proposée, pour ta décision avant tout appel à l'API. Aucun scénario n'est écrit, aucun appel n'est fait. Le harnais est écrit et testé (`experiences/rrharness/premier_appel.py`, décision 53).
+**Statut : adoptée le 9 octobre 2026, vers 6 h 55 UTC, telle que proposée (décision 54 : « ok pour la spécification des scénarios telle que proposée »).** Le code de la génération s'écrit et se teste avant le premier appel ; le pilote de 25 scénarios passe avant les 200. Statut d'origine : proposée, pour ta décision avant tout appel à l'API. Aucun scénario n'est écrit, aucun appel n'est fait. Le harnais est écrit et testé (`experiences/rrharness/premier_appel.py`, décision 53).
 
 ## 1. Ce qui est déjà fixé
 
