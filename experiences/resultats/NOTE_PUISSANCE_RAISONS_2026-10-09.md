@@ -213,3 +213,20 @@ La bonne issue :
 1. **Le niveau propre de chaque entraînement change peu** : il s'annule dans D. Il coûte jusqu'à 6 points à la ligne 2, par l'incertitude de l'avantage sous le comparateur, le dénominateur de f. J'attendais ce sens.
 2. **Ce qui décide la ligne 2, c'est l'écart de l'effet de l'inhibition d'un entraînement à l'autre.** Le texte déposé dit qu'un avantage de 10 points demande « about 400 × 10 and at least 5 seeds » (section 3.5). C'est vrai sans cet écart : 89 % à 5 graines, dans la simulation du 3 octobre. Avec 2 points d'écart, il faut de l'ordre de 12 graines pour lire la ligne 2 dans 85 à 90 % des répliques.
 3. **Le texte le prévoit** : la simulation de l'amendement du second temps refera ce calcul avec la variance du pilote. Ce constat dit seulement que le nombre de graines, pour le test du regard comme pour la porte des raisons, risque d'être bien plus haut que cinq.
+
+## Quand les graines partagées corrèlent les entraînements (9 octobre, 2 h 20 UTC)
+
+**Ce qui est mesuré.** Le texte déposé partage les graines entre bras : même initialisation, même ordre des données (section 2.4). Si cela corrèle l'écart d'un entraînement d'un bras à l'autre, au sein d'une graine, les contrastes par graine perdent une part de cette variance : var(o_a − o_r) = 2σ²(1 − ρ). Les simulations précédentes supposaient ρ = 0. La question et l'attente ont été commitées avant le calcul (`experiences/analyses/puissance_raisons_correlation.py`, commit `b0d188f` ; sorties : `experiences/resultats/puissance/puissance_raisons_correlation_2026-10-09.json`). Le cadre : un écart de 2 points entre entraînements, 400 scénarios × 5 générations, 200 répliques.
+
+**La part des répliques où la porte rend la bonne issue** (lien / format / aucun gain) :
+
+| ρ | 5 graines | 8 graines | 12 graines |
+|---|---|---|---|
+| 0 | 32 / 19,5 / 5 % | 72 / 60 / 31 % | 89 / 87,5 / 67,5 % |
+| 0,5 | 51 / 58 / 24 % | 89,5 / 87 / 73 % | 95 / 94,5 / 93 % |
+| 0,8 | 75 / 85,5 / 56 % | 97,5 / 97 / 92,5 % | 100 / 98,5 / 97,5 % |
+
+**Ce que cela dit.**
+1. **À ρ = 0,8, 8 graines par bras suffisent** (de 92,5 à 97,5 %), là où il en faut de 12 à 16 à ρ = 0. J'attendais « 5 à 8 » : à 5, ce n'est pas encore assez (de 56 à 85,5 %).
+2. **Ce que le pilote doit mesurer**, c'est la variance des contrastes par graine entre bras, pas seulement l'écart entre entraînements : c'est elle qui fixe le nombre de graines.
+3. **Le pilote la mesure mal.** Avec deux graines par bras, chaque contraste n'a que deux valeurs. La simulation de l'amendement du second temps devra le dire, et prendre une hypothèse prudente si l'estimation est trop large.
