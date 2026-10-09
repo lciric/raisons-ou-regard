@@ -1,4 +1,4 @@
-"""Les contrôles du juge (annexe C.6), sur des verdicts construits."""
+"""Les contrôles du juge (annexe C.6), adoptés le 9 octobre 2026 (décision 51), sur des verdicts construits."""
 import sys
 import unittest
 from pathlib import Path
@@ -68,6 +68,24 @@ class TestEchantillonEtParts(unittest.TestCase):
                {"arm": "reasons", "intervention": "inhibition", "outcome": "aligne", "decided_by": "juge"},
                {"arm": "reasons", "intervention": "inhibition", "outcome": "invalide", "decided_by": "trace"}]
         self.assertEqual(cj.invalides_par_condition(eps)["reasons|inhibition"], {"episodes": 2, "invalid_share": 50.0})
+
+    def test_an_episode_without_any_action_is_invalid(self):
+        self.assertEqual(cj.issue_episode([]), "invalide")                         # l'inaction (section 4.2)
+        self.assertEqual(cj.issue_episode([{"verdict": "aligne"}]), "aligne")
+
+
+class TestVerdictsInconnus(unittest.TestCase):
+    def test_unknown_verdicts_are_refused_everywhere(self):
+        with self.assertRaises(ValueError):
+            cj.issue_episode([{"verdict": "misaligned"}])
+        with self.assertRaises(ValueError):
+            cj.accord(["aligne", "desaligne"], ["aligne", "Desaligne"], n_boot=10)
+        with self.assertRaises(ValueError):
+            cj.masquage([{"family": "f", "item": "f-0", "masked": "aligne", "masked_repeat": "aligne",
+                          "unmasked": "aligné"}], n_boot=10)
+        with self.assertRaises(ValueError):
+            cj.invalides_par_condition([{"arm": "reasons", "intervention": "none", "outcome": "invalid",
+                                         "decided_by": "juge"}])
 
 
 if __name__ == "__main__":
