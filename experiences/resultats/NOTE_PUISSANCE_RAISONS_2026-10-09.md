@@ -110,7 +110,7 @@ La bonne issue :
 
 **Ce qu'elle change.**
 - Sous le petit gain, à 5 × 400 × 10 sans écart (cadrages appariés), la table lit « gain de contenu » dans 67 % des répliques. Avec la précision, toutes ces lectures disent qu'il est plus petit que l'effet minimal.
-- Rien d'autre ne bouge : sous le lien, le format et le regard explicite, les issues sont les mêmes.
+- Ailleurs, presque rien ne bouge : sous le lien et le format, les issues sont les mêmes ; sous le regard explicite, une seule réplique change, sur 400, dans une seule configuration (3 × 400 × 10, avec l'écart de 2 points).
 
 ### Le texte à coller dans la mise à jour datée, si tu les adoptes (anglais)
 
@@ -147,3 +147,33 @@ La bonne issue :
 ```
 
 **Ta décision** : oui ou non, pour chacune des deux. Rien n'entre dans le brouillon de la mise à jour sans ton accord.
+
+## Combien de graines par bras (9 octobre, 1 h UTC)
+
+**Ce qui est simulé.** La même porte et les mêmes vérités, au-delà de cinq graines : 5, 8, 10, 12 et 16 graines par bras, 400 scénarios × 5 générations, un écart entre entraînements de 1, 2 ou 3 points, 400 répliques par configuration (`experiences/analyses/puissance_raisons_graines.py` ; sorties : `experiences/resultats/puissance/puissance_raisons_graines_2026-10-09.json`).
+
+**La part des répliques où la porte rend la bonne issue :**
+
+| Vérité | Écart entre entraînements | 5 graines | 8 | 10 | 12 | 16 |
+|---|---|---|---|---|---|---|
+| Lien | 1 point | 72 % | 97 % | 99 % | 100 % | 100 % |
+| Lien | 2 points | 34 % | 74 % | 86 % | 88 % | 96 % |
+| Lien | 3 points | 15 % | 49 % | 63 % | 62 % | 74 % |
+| Format | 1 point | 78 % | 98 % | 96 % | 99 % | 99 % |
+| Format | 2 points | 24 % | 66 % | 76 % | 84 % | 95 % |
+| Format | 3 points | 6 % | 31 % | 36 % | 46 % | 69 % |
+| Aucun gain | 1 point | 47 % | 88 % | 92 % | 97 % | 98 % |
+| Aucun gain | 2 points | 3 % | 33 % | 51 % | 67 % | 84 % |
+| Aucun gain | 3 points | 0 % | 6 % | 12 % | 20 % | 44 % |
+| Petit gain | 1 point | 56 % | 56 % | 49 % | 43 % | 36 % |
+| Petit gain | 2 points | 26 % | 57 % | 61 % | 66 % | 55 % |
+| Petit gain | 3 points | 9 % | 38 % | 46 % | 51 % | 58 % |
+
+**Ce que la table dit.**
+1. **Avec un écart de 1 point entre entraînements**, 8 graines par bras suffisent : de 88 à 98 % de bonnes issues pour le lien, le format et l'absence de gain.
+2. **Avec 2 points**, il en faut de 10 à 16 : à 16 graines, 96 % pour le lien, 95 % pour le format, 84 % pour l'absence de gain.
+3. **Avec 3 points**, même 16 graines ne suffisent pas (de 44 à 74 %).
+4. **Le petit gain reste mal lu** (au plus 66 %) : plus la mesure est précise, plus il se lit « gain de contenu » (le constat 4 ; la seconde précision le nomme).
+5. **Le coût** : 6 bras × le nombre de graines. À 10 graines, 60 entraînements ; à 16, 96, contre 12 au pilote. Le coût d'un entraînement n'est pas encore mesuré ; le pilote le mesurera, avec l'écart entre entraînements.
+
+**Une réserve sur le saut de 5 à 8 graines.** À 8 graines, la règle déposée cesse de prendre le plus large du bootstrap et de Student (section 5.3) : une part du saut vient de là, pas de l'information en plus. Or, quand aucun bras ne fait mieux, les faux gains montent à 8 et 10 graines : de 5,8 à 9,6 % avec un écart de 2 à 3 points, contre 2,8 % à 5 graines. Un bootstrap par grappes, sur peu de grappes, couvre souvent moins que son niveau. La calibration de la comparaison principale, selon le nombre de graines, est mesurée à part (`experiences/analyses/calibration_bootstrap.py`, écrit avant le calcul).
