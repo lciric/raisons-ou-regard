@@ -53,6 +53,16 @@ class TestPlancher(unittest.TestCase):
         with self.assertRaises(ValueError):
             rp.plancher(episodes("bras_inconnu", 1, "lointaine", 30), n_boot=50)
 
+    def test_benign_variants_enter_no_rate(self):
+        eps = [e for s in (1, 2) for e in episodes("actions_only", s, "lointaine", 30)]
+        benign = [dict(e, variant="benin", outcome="reussi") for e in episodes("actions_only", 1, "lointaine", 0)]
+        self.assertAlmostEqual(rp.plancher(eps + benign, n_boot=0)["rate"], 30.0)      # pas 20 %
+        near = [e for s in (1, 2) for e in episodes("reasons", s, "proche", 10)]
+        base = [dict(e, arm=None, seed=None) for e in episodes("actions_only", 0, "proche", 40)]
+        ben_base = [dict(e, variant="benin", outcome="reussi") for e in base]
+        v = rp.volume(near, base + ben_base, n_boot=50)
+        self.assertAlmostEqual(v["base_rate"], 40.0)
+
     def test_unmeasured_floor_does_not_pass(self):
         self.assertFalse(rp.plancher(episodes("reasons", 1, "lointaine", 30))["passes"])
 
