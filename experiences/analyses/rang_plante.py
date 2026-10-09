@@ -26,10 +26,18 @@ groupe, et le rang planté est retrouvé.
 groupes tenus à part) égale le rang planté dans au moins 9 répliques sur 10.
 
 **Le modèle des états** (une couche) : largeur 64 ; un sous-espace de rang k (2, 3 ou 4) ; 10 groupes de contextes, chacun
-avec sa direction du concept dans ce sous-espace (tirée au hasard, unitaire) et son décalage moyen ; les deux côtés d'une
-paire partagent leur scénario (un bruit commun de covariance anisotrope) et diffèrent par le concept et un petit bruit
-propre. Les groupes 1 à 6 servent à l'ajustement et à l'entraînement de la sonde, sur des paires disjointes ; les groupes
-7 à 10 sont tenus à part, pour la lecture.
+avec sa direction du concept dans ce sous-espace et son décalage moyen ; les deux côtés d'une paire partagent leur
+scénario (un bruit commun de covariance anisotrope) et diffèrent par le concept et un petit bruit propre. Les groupes 1 à
+6 servent à l'ajustement et à l'entraînement de la sonde, sur des paires disjointes ; les groupes 7 à 10 sont tenus à
+part, pour la lecture.
+
+**Une correction, après le premier essai (une réplique, k = 2, avant toute série).** Les directions des groupes étaient
+tirées au hasard dans le sous-espace, sans part commune : sans aucun effacement, le transfert vers les groupes tenus à
+part était déjà au hasard (0,50 et 0,51). La précondition de l'annexe C.7 échouait, et le rang n'y est pas défini. La
+direction d'un groupe est désormais une part commune à tous les groupes plus une part propre au groupe, de même norme,
+toutes deux dans le sous-espace : le concept transfère, et sa direction change d'un groupe à l'autre, comme le demande le
+cas connu. Les lots sont aussi plus grands (200 paires), pour que l'ajustement en largeur 64 soit stable. La question,
+l'attente et le critère ne changent pas ; la précondition est maintenant rapportée.
 """
 import json
 import sys
@@ -42,10 +50,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 WIDTH, GROUPS, FIT_GROUPS, MAX_RANK, CHANCE = 64, 10, 6, 8, 0.55
 
 
-def world(rng, k, width=WIDTH, groups=GROUPS):
-    """Le sous-espace du concept, la direction de chaque groupe, son décalage, et le facteur du bruit commun."""
+def world(rng, k, width=WIDTH, groups=GROUPS, own_share=1.0):
+    """Le sous-espace du concept, la direction de chaque groupe (une part commune plus une part propre, de même norme,
+    dans le sous-espace), son décalage, et le facteur du bruit commun."""
     u = np.linalg.qr(rng.normal(size=(width, k)))[0]
-    dirs = np.stack([u @ (a / np.linalg.norm(a)) for a in rng.normal(size=(groups, k))])
+    common = rng.normal(size=k)
+    common /= np.linalg.norm(common)
+    own = rng.normal(size=(groups, k))
+    own /= np.linalg.norm(own, axis=1, keepdims=True)
+    a = common[None, :] + own_share * own
+    dirs = np.stack([u @ (x / np.linalg.norm(x)) for x in a])
     offsets = rng.normal(scale=0.7, size=(groups, width))
     mix = rng.normal(size=(width, width)) * np.linspace(0.3, 1.5, width)[None, :]
     return {"basis": u, "dirs": dirs, "offsets": offsets, "mix": mix / np.sqrt(width)}
@@ -69,7 +83,7 @@ def erase_all(params, x):
     return t.numpy()
 
 
-def one_replicate(seed, k, scheme, n_fit=60, n_probe=40, n_read=40, mlp_steps=150):
+def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps=150):
     """Le rang trouvé, et le transfert à chaque rang (0 : sans effacement)."""
     import torch  # noqa: WPS433
     from rrexp.jobs.erasure import fit_leace  # noqa: WPS433
@@ -104,22 +118,32 @@ def one_replicate(seed, k, scheme, n_fit=60, n_probe=40, n_read=40, mlp_steps=15
     removed = np.stack([p["B"].numpy()[:, 0] for p in params])
     q = np.linalg.qr(removed.T)[0]
     covered = float(np.linalg.norm(q.T @ w["basis"]) ** 2 / k)
-    return {"found": found, "readings": readings, "planted_covered_by_8": round(covered, 4)}
+    pre = readings[0]
+    return {"found": found, "readings": readings, "planted_covered_by_8": round(covered, 4),
+            "precondition": bool(all(pre[name] > CHANCE for name in ("linear", "mlp")))}
 
 
-def main(dest, reps=10):
+def _task(args):
+    return one_replicate(*args)
+
+
+def main(dest, reps=10, workers=4):
+    from multiprocessing import Pool
     out = {"reps": reps, "chance": CHANCE, "max_rank": MAX_RANK, "rows": []}
-    for k in (2, 3, 4):
-        for scheme in ("lots mêlés", "un lot par groupe"):
-            runs = [one_replicate(1000 * k + i, k, scheme) for i in range(reps)]
-            row = {"planted": k, "scheme": scheme, "found": [r["found"] for r in runs],
-                   "recovered": sum(r["found"] == k for r in runs),
-                   "transfer_by_rank": [{"rank": j, "linear": round(float(np.mean([r["readings"][j]["linear"] for r in runs])), 4),
-                                         "mlp": round(float(np.mean([r["readings"][j]["mlp"] for r in runs])), 4)}
-                                        for j in range(MAX_RANK + 1)],
-                   "planted_covered_by_8": round(float(np.mean([r["planted_covered_by_8"] for r in runs])), 4)}
-            out["rows"].append(row)
-            print(json.dumps({x: row[x] for x in ("planted", "scheme", "found", "recovered")}, ensure_ascii=False), flush=True)
+    cases = [(k, scheme) for k in (2, 3, 4) for scheme in ("lots mêlés", "un lot par groupe")]
+    with Pool(workers) as pool:
+        done = pool.map(_task, [(1000 * k + i, k, scheme) for k, scheme in cases for i in range(reps)])
+    for c, (k, scheme) in enumerate(cases):
+        runs = done[c * reps:(c + 1) * reps]
+        row = {"planted": k, "scheme": scheme, "found": [r["found"] for r in runs],
+               "recovered": sum(r["found"] == k for r in runs), "precondition": sum(r["precondition"] for r in runs),
+               "transfer_by_rank": [{"rank": j, "linear": round(float(np.mean([r["readings"][j]["linear"] for r in runs])), 4),
+                                     "mlp": round(float(np.mean([r["readings"][j]["mlp"] for r in runs])), 4)}
+                                    for j in range(MAX_RANK + 1)],
+               "planted_covered_by_8": round(float(np.mean([r["planted_covered_by_8"] for r in runs])), 4)}
+        out["rows"].append(row)
+        print(json.dumps({x: row[x] for x in ("planted", "scheme", "found", "recovered", "precondition")}, ensure_ascii=False),
+              flush=True)
     Path(dest).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf8")
 
 
