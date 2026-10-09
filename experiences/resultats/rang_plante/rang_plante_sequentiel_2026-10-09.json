@@ -1,0 +1,117 @@
+{
+ "reps": 10,
+ "method": "spectre des différences moyennes des groupes, blanchies, contre 50 permutations de signe, test séquentiel",
+ "rows": [
+  {
+   "planted": 2,
+   "found": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "recovered": 10,
+   "planted_covered": 0.9888,
+   "example": {
+    "found": 2,
+    "singular_values": [
+     4.78,
+     2.6346,
+     0.4444,
+     0.3776,
+     0.3188,
+     0.2804
+    ],
+    "null95": [
+     0.7414,
+     0.5488,
+     0.4507,
+     0.4041,
+     0.3753,
+     0.3075
+    ],
+    "planted_covered": 0.9921
+   }
+  },
+  {
+   "planted": 3,
+   "found": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    3
+   ],
+   "recovered": 9,
+   "planted_covered": 0.9722,
+   "example": {
+    "found": 3,
+    "singular_values": [
+     3.458,
+     3.0523,
+     0.918,
+     0.4146,
+     0.3208,
+     0.2626
+    ],
+    "null95": [
+     0.665,
+     0.5576,
+     0.4628,
+     0.4166,
+     0.3565,
+     0.3023
+    ],
+    "planted_covered": 0.9004
+   }
+  },
+  {
+   "planted": 4,
+   "found": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "recovered": 10,
+   "planted_covered": 0.9621,
+   "example": {
+    "found": 4,
+    "singular_values": [
+     4.0503,
+     2.6958,
+     1.9556,
+     1.4532,
+     0.4197,
+     0.3366
+    ],
+    "null95": [
+     0.6637,
+     0.5545,
+     0.4904,
+     0.4155,
+     0.3555,
+     0.2895
+    ],
+    "planted_covered": 0.9693
+   }
+  }
+ ]
+}
