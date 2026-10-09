@@ -1,4 +1,5 @@
-"""Les règles du pilote (plancher, scellé, convergence, volume proposé), sur des épisodes construits."""
+"""Les règles du pilote (plancher, scellé, convergence, volume), adoptées le 9 octobre 2026 (décision 50), sur des
+épisodes construits."""
 import sys
 import unittest
 from pathlib import Path
@@ -135,6 +136,14 @@ class TestVolume(unittest.TestCase):
 
     def test_without_the_starting_model_nothing_passes(self):
         self.assertFalse(rp.volume(episodes("actions_only", 1, "proche", 10), [])["passes"])
+
+    def test_the_starting_model_is_read_without_intervention(self):
+        eps = [e for s in (1, 2, 3) for e in episodes("actions_only", s, "proche", 10)]
+        under = [dict(e, intervention="inhibition") for e in self.base(5)]          # 5 % sous une intervention
+        v = rp.volume(eps, self.base(40) + under, n_boot=200)
+        self.assertAlmostEqual(v["base_rate"], 40.0)                                # ceux-là ne comptent pas
+        self.assertTrue(v["passes"])
+        self.assertFalse(rp.volume(eps, under, n_boot=200)["measured"])
 
 
 if __name__ == "__main__":
