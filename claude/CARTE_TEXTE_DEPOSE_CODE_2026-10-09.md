@@ -45,7 +45,7 @@
 | « Évalué » sous cadrage de déploiement, en unités naturelles (ligne 5) | 4.2 | `experiences/rrexp/jobs/inhibition_degradation.py` calcule la dose en unités naturelles | la lecture de la projection chez les bras reste à écrire |
 | Le moniteur d'état, sans injection | C.8 | `regle_du_regard_suite.py` lit sa statistique | les crochets qui lisent les projections pendant les générations, et son cas connu, restent à écrire |
 | Le contrôle positif gradué : 5, 10 et 20 % des épisodes | C.6 | `regle_du_regard_suite.py`, ligne 13 | l'invite qui commande l'action désalignée passe par le harnais |
-| La vérification du masquage de l'indice, famille par famille | C.6 | — | après le juge |
+| La vérification du masquage de l'indice, famille par famille ; l'audit humain (accord et kappa) ; la part des issues décidées par le juge | C.6 | `experiences/analyses/controles_du_juge.py` | **écrits cette nuit, proposés**, avant le juge et toute donnée ; leurs choix d'exécution attendent ta confirmation. Le texte se lit de deux façons pour le masquage (la part des verdicts qui changent, ou l'écart des taux) : le code décide par la première et rapporte la seconde |
 | Le modèle mixte, en analyse de sensibilité | 5.1 | — | à écrire avant les données principales. La formule déposée est celle de lme4, en R : le logiciel reste à choisir |
 
 ## 4. La localisation du principe
