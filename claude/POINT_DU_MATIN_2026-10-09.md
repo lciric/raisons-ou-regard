@@ -8,7 +8,7 @@
 
 1. **L'instrument.** Le dommage du réglage vient de la forme de l'effacement, pas du contenu « évalué » : c'est la décision 45, lue par une règle commitée avant la mesure. La porte ne se lit pas encore à dégradation appariée. La mesure suivante est écrite, avec sa règle, et attend environ 20 $.
 2. **Le code des règles déposées est corrigé** (décision 46). Le brouillon de la mise à jour datée donne ses nouvelles empreintes, et les 20 empreintes du dépôt sont vérifiées.
-3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots.
+3. **La condition lexicale de la porte tient**, lue par la règle déposée du choix des couches : la sonde à 0,824, contre 0,656 pour le sac de mots. Les trois règles du pilote qui n'avaient pas de code en ont un, proposé.
 4. **La porte des raisons.** La variabilité entre entraînements décide de sa puissance. Deux précisions de sa table sont prêtes : il te reste à répondre oui ou non.
 5. **Le chemin critique reste le harnais.** Sans lui, rien ne mesure les actions désalignées à la distance lointaine. La façon de le faire attend ta décision ; une proposition est écrite.
 
@@ -24,6 +24,8 @@
 | **Le choix des couches et la condition lexicale** (annexes C.2 et A.1) | Sur les états déjà enregistrés, sans machine : la fenêtre choisie est celle des couches 4 à 8, où la sonde atteint 0,824 contre 0,656 pour le sac de mots, sur la moitié qui rapporte. La condition tient | `experiences/resultats/NOTE_CHOIX_DES_COUCHES_2026-10-09.md` (`141d750`, `558f223`) |
 | **La puissance de la porte des raisons** (exploratoire) | La variabilité entre entraînements décide de tout. Deux graines ne suffisent pour aucune vérité. À faible puissance, deux lectures de la table A.2 trompent | `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md` (`432bf1c`) |
 | **Les deux précisions de la table A.2** | Prêtes pour ta décision : leur texte anglais, leur code (le fichier déposé n'est pas touché), leurs tests, et la simulation refaite avec elles. Sous le plan déposé, la première fait tomber les fausses lectures « sous évaluation seulement » de 23,5 % au plus à 0,3 % au plus. Elle ne coûte rien à cinq graines quand ce gain est vrai, et au plus 14 points à trois | même note, « Les deux précisions, prêtes pour ta décision » |
+| **La carte du texte déposé face au code** | Ce qui manque avant le pilote, avant la moitié de test, avant le test du regard et pour la localisation. Elle relève un silence : l'installation de l'organisme ne dit pas sous quel jeu d'indices. Sur la moitié de choix, l'écart de départ est de 54,4 points sous les indices d'extraction et de 18,4 sous le cadrage, sous le seuil de 20 | `claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md` (`f7bff1a`) |
+| **Les règles du pilote, sans code jusqu'ici** | Le plancher et le scellé des autres bras, la seconde condition de convergence, et une définition proposée du volume, que le texte ne définit pas. Elles sont écrites et testées avant toute donnée, leurs choix d'exécution à confirmer | `experiences/analyses/regles_du_pilote.py` (`af5afd2`) |
 | **Le harnais** | Une proposition d'architecture sans aucune sortie d'outil simulée : l'épisode s'arrête au premier appel. Elle ne touche pas à la partie coupée le 3 octobre. Rien n'est commencé | `claude/PROPOSITION_HARNAIS_SANS_ENVIRONNEMENT_2026-10-08.md` (`1b2e4d6`) |
 | **Aussi** | Le convertisseur des noms de bras entre les deux fichiers de règles. Le mot inventé, vérifié dans le tokenizer de Llama (`morvelle` recommandé). DolusChat, public sous CC-BY-4.0 | `b4aa48d`, `0d5e87a`, `d5b108c` |
 
@@ -32,13 +34,14 @@
 ### Des décisions, sans dépense
 
 1. **Le harnais**, le chemin critique : accepter, changer ou refuser la proposition. Le prompt du juge scellé vient ensuite, puisqu'il juge les trajectoires du harnais.
-2. **Les deux précisions de la table A.2** : un oui ou un non pour chacune. Adoptées, elles changent une règle : elles iraient dans la mise à jour datée, justifiées, avant toute donnée des bras (texte déposé, section 6.2).
-3. **L'instrument** : la voie 1, mesurer le comparateur quand le budget revient (environ 20 $) ; ou la voie 2, prendre le verdict tel quel dès maintenant. Je recommande la voie 1 (`claude/NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md`).
-4. **Liars' Bench** : accepter ses conditions depuis ton compte Hugging Face. L'accès s'accorde alors de lui-même. La session ne le demande pas à ta place.
-5. **Le détecteur d'audit** : adopter sa spécification v0.1, ou la changer (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 9).
-6. **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
-7. **Le mot inventé** de l'organisme à concept planté : `morvelle`, ou un autre des cinq candidats (`claude/NOTE_MOT_INVENTE_2026-10-08.md`).
-8. **Le réseau de l'environnement.** iclr.cc et icml.cc y sont bloqués : les dates limites des conférences (partie 11, point 14) attendent que tu les ouvres, si tu veux cette lecture. La copie de *Teaching Claude Why* sur www.anthropic.com reste aussi ta décision.
+2. **Les règles du pilote** : confirmer ou changer les choix d'exécution du plancher et de la convergence, et décider la définition du volume. Leur empreinte va ensuite dans la mise à jour datée, avant le pilote (`claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md`, dernière section).
+3. **Les deux précisions de la table A.2** : un oui ou un non pour chacune. Adoptées, elles changent une règle : elles iraient dans la mise à jour datée, justifiées, avant toute donnée des bras (texte déposé, section 6.2).
+4. **L'instrument** : la voie 1, mesurer le comparateur quand le budget revient (environ 20 $) ; ou la voie 2, prendre le verdict tel quel dès maintenant. Je recommande la voie 1 (`claude/NOTE_INSTRUMENT_APRES_DECISION_45_2026-10-08.md`).
+5. **Liars' Bench** : accepter ses conditions depuis ton compte Hugging Face. L'accès s'accorde alors de lui-même. La session ne le demande pas à ta place.
+6. **Le détecteur d'audit** : adopter sa spécification v0.1, ou la changer (`claude/SPEC_DETECTEUR_AUDIT_v0.1_2026-10-08.md`, section 9).
+7. **Les refus des juges** sur la famille de la surveillance, avant la génération complète (`claude/NOTE_REFUS_PILOTE_2026-10-08.md`).
+8. **Le mot inventé** de l'organisme à concept planté : `morvelle`, ou un autre des cinq candidats (`claude/NOTE_MOT_INVENTE_2026-10-08.md`).
+9. **Le réseau de l'environnement.** iclr.cc et icml.cc y sont bloqués : les dates limites des conférences (partie 11, point 14) attendent que tu les ouvres, si tu veux cette lecture. La copie de *Teaching Claude Why* sur www.anthropic.com reste aussi ta décision.
 
 ### Quand le budget revient : l'ordre que je recommande
 
@@ -62,5 +65,5 @@
 ## Les chiffres
 
 - **Les commits de la nuit** vont de `db6287b` (22 h 56 UTC) à ce point.
-- **Les tests** : 211 dans `experiences` et 56 dans `donnees` passent, aucun n'est sauté. Le conteneur avait été recréé sans torch. Je l'ai réinstallé depuis PyPI : la version standard, qui tourne aussi sans GPU. download.pytorch.org, qui sert la version sans GPU, est bloqué par le réseau.
+- **Les tests** : 227 dans `experiences` et 56 dans `donnees` passent, aucun n'est sauté. Le conteneur avait été recréé sans torch. Je l'ai réinstallé depuis PyPI : la version standard, qui tourne aussi sans GPU. download.pytorch.org, qui sert la version sans GPU, est bloqué par le réseau.
 - **La PR** [lciric/raisons-ou-regard#2](https://github.com/lciric/raisons-ou-regard/pull/2) reste en brouillon ; sa description est à jour de la nuit.
