@@ -63,6 +63,15 @@ restante au 95ᵉ centile de la même quantité sous les 50 permutations de sign
 au premier échec. Ce que j'attends : le rang planté est retrouvé dans au moins 9 répliques sur 10, pour les rangs 2, 3 et
 4. Elle se lance par `python analyses/rang_plante.py <sortie> 10 sequential`.
 
+**La robustesse du test séquentiel, écrite après sa première série et avant son propre calcul (9 octobre 2026,
+2 h UTC).** La cinquième piste passe son critère sur un seul monde. La confirmation varie ce monde : l'effet (1,2, comme
+avant, et 0,6), le nombre de paires par groupe (200 et 100), le rang planté (de 0 à 5 ; au rang 0, aucun concept, et
+l'estimateur doit rendre 0). Six groupes d'ajustement, donc au plus six directions visibles. Ce que j'attends : à l'effet
+de 1,2, le rang planté est retrouvé dans au moins 9 répliques sur 10 pour tous les rangs et les deux tailles ; à l'effet
+de 0,6 et 100 paires, il peut être sous-estimé aux rangs 4 et 5, faute de puissance. Le critère, pour qu'on puisse s'en
+servir : au moins 9 sur 10 à l'effet de 1,2, et jamais de surestimation au-delà d'une réplique sur 10 nulle part. Elle se
+lance par `python analyses/rang_plante.py <sortie> 10 robustesse`.
+
 **Le modèle des états** (une couche) : largeur 64 ; un sous-espace de rang k (2, 3 ou 4) ; 10 groupes de contextes, chacun
 avec sa direction du concept dans ce sous-espace et son décalage moyen ; les deux côtés d'une paire partagent leur
 scénario (un bruit commun de covariance anisotrope) et diffèrent par le concept et un petit bruit propre. Les groupes 1 à
@@ -90,7 +99,11 @@ WIDTH, GROUPS, FIT_GROUPS, MAX_RANK, CHANCE = 64, 10, 6, 8, 0.55
 
 def world(rng, k, width=WIDTH, groups=GROUPS, own_share=1.0):
     """Le sous-espace du concept, la direction de chaque groupe (une part commune plus une part propre, de même norme,
-    dans le sous-espace), son décalage, et le facteur du bruit commun."""
+    dans le sous-espace), son décalage, et le facteur du bruit commun. Au rang 0, aucun concept : des directions nulles."""
+    if k == 0:
+        return {"basis": np.zeros((width, 0)), "dirs": np.zeros((groups, width)),
+                "offsets": rng.normal(scale=0.7, size=(groups, width)),
+                "mix": rng.normal(size=(width, width)) * np.linspace(0.3, 1.5, width)[None, :] / np.sqrt(width)}
     u = np.linalg.qr(rng.normal(size=(width, k)))[0]
     common = rng.normal(size=k)
     common /= np.linalg.norm(common)
@@ -232,12 +245,12 @@ def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps
             "precondition": bool(all(pre[name] > CHANCE for name in ("linear", "mlp")))}
 
 
-def spectral_rank(seed, k, n_fit=200, n_flip=50, sequential=False):
+def spectral_rank(seed, k, n_fit=200, n_flip=50, sequential=False, effect=1.2):
     """Le rang estimé par le spectre des différences moyennes des groupes d'ajustement, blanchies, contre des
     permutations de signe des paires."""
     rng = np.random.default_rng(seed)
     w = world(rng, k)
-    groups = [pairs(rng, w, g, n_fit) for g in range(FIT_GROUPS)]
+    groups = [pairs(rng, w, g, n_fit, effect=effect) for g in range(FIT_GROUPS)]
     xs = np.concatenate([x for x, _ in groups])
     ys = np.concatenate([y for _, y in groups])
     # la covariance intra-classe de tous les états d'ajustement, et son inverse en racine carrée
@@ -282,7 +295,7 @@ def spectral_rank(seed, k, n_fit=200, n_flip=50, sequential=False):
     u = np.linalg.svd(np.stack([whiten @ (x[:len(x) // 2] - x[len(x) // 2:]).mean(0) for x, _ in groups], axis=1),
                       full_matrices=False)[0][:, :max(rank, 1)]
     q = np.linalg.qr(np.linalg.inv(whiten) @ u)[0]
-    covered = float(np.linalg.norm(q.T @ w["basis"]) ** 2 / k)
+    covered = float(np.linalg.norm(q.T @ w["basis"]) ** 2 / k) if k else None
     return {"found": rank, "singular_values": [round(float(v), 4) for v in s_obs], "null95": [round(float(v), 4) for v in q95],
             "planted_covered": round(covered, 4)}
 
@@ -297,6 +310,21 @@ def main_spectral(dest, reps=10, sequential=False):
                "example": runs[0]}
         out["rows"].append(row)
         print(json.dumps({x: row[x] for x in ("planted", "found", "recovered", "planted_covered")}, ensure_ascii=False), flush=True)
+    Path(dest).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf8")
+
+
+def main_robustesse(dest, reps=10):
+    out = {"reps": reps, "method": "test séquentiel sur le spectre, 50 permutations de signe", "rows": []}
+    for effect in (1.2, 0.6):
+        for n_fit in (200, 100):
+            for k in range(6):
+                found = [spectral_rank(5000 + 100 * k + i, k, n_fit=n_fit, sequential=True, effect=effect)["found"]
+                         for i in range(reps)]
+                row = {"effect": effect, "pairs_per_group": n_fit, "planted": k, "found": found,
+                       "recovered": sum(f == k for f in found), "over": sum(f > k for f in found),
+                       "under": sum(f < k for f in found)}
+                out["rows"].append(row)
+                print(json.dumps(row, ensure_ascii=False), flush=True)
     Path(dest).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf8")
 
 
@@ -330,7 +358,9 @@ def main(dest, reps=10, reading="transfer", threshold="fixed", workers=4):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 3 and sys.argv[3] in ("spectral", "sequential"):
+    if len(sys.argv) > 3 and sys.argv[3] == "robustesse":
+        main_robustesse(sys.argv[1], int(sys.argv[2]))
+    elif len(sys.argv) > 3 and sys.argv[3] in ("spectral", "sequential"):
         main_spectral(sys.argv[1], int(sys.argv[2]), sequential=sys.argv[3] == "sequential")
     else:
         main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 10, sys.argv[3] if len(sys.argv) > 3 else "transfer",
