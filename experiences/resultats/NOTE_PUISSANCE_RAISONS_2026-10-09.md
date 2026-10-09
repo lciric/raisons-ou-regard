@@ -253,6 +253,8 @@ La bonne issue :
 
 ## La borne prudente de la variance du pilote (9 octobre, 10 h UTC)
 
+**Adoptée vers 9 h 50 UTC (décision 55 : « ok pour la borne à 80 %, plafond à 32 graines »).** Le texte anglais, avec le plafond de 32 graines, est la partie 9 de la mise à jour datée.
+
 **Pourquoi.** La décision 53 garde deux graines par bras au pilote. Elle demande une règle écrite avant lui : la simulation du second temps doit lire une borne prudente de la variance des contrastes par graine, et non son estimation seule. La question, les règles et l'attente ont été commitées avant le calcul (`experiences/analyses/borne_prudente_graines.py`, commit `b5e0e3e` ; sorties : `experiences/resultats/puissance/borne_prudente_graines_2026-10-09.json`).
 
 **Ce qui est mesuré.** 2 000 pilotes simulés par cas (6 bras × 2 graines, 400 scénarios × 5 générations). Quatre règles donnent chacune une variance des contrastes par graine, d'où un nombre de graines par une approximation déclarée des simulations du 9 octobre, n(v) = ⌈6,3 + 0,83 v⌉ :

@@ -1,11 +1,12 @@
 # La mise à jour datée du premier temps : brouillon (8 octobre 2026)
 
-**Statut : un brouillon, à compléter puis à déposer par Lazar sur OSF.** Le texte déposé le 7 octobre (section 6.2) annonce une mise à jour datée, avant toute donnée des bras, pilote compris. Elle donne les empreintes de trois pièces qui n'existaient pas au dépôt. Ce brouillon y réunit aussi cinq changements décidés depuis :
+**Statut : un brouillon, à compléter puis à déposer par Lazar sur OSF.** Le texte déposé le 7 octobre (section 6.2) annonce une mise à jour datée, avant toute donnée des bras, pilote compris. Elle donne les empreintes de trois pièces qui n'existaient pas au dépôt. Ce brouillon y réunit aussi six changements décidés depuis :
 - le générateur des données (décision 37) ;
 - les corrections du code des règles (décision 46) ;
 - les règles du pilote, avec leur code et la définition du volume (décision 50) ;
 - les contrôles du juge, avec leur code (décision 51) ;
-- les deux précisions de la table A.2, avec leur code (décision 52).
+- les deux précisions de la table A.2, avec leur code (décision 52) ;
+- la borne prudente de la variance du pilote, et son plafond (décision 55).
 
 **Où en sont les parties.**
 
@@ -19,6 +20,7 @@
 | 6. Ce que le texte déposé demande aux entraînements des bras | fait (commit `5a8f13d`) : les empreintes des graines partagées, et les données tenues à part de la règle de convergence ; texte ci-dessous |
 | 7. Les règles du pilote (le plancher, la seconde condition de convergence, le volume) | adoptées le 9 octobre, telles que proposées (décision 50) ; texte ci-dessous, avec l'empreinte du fichier au commit `c417e91`. Le commit `47dc1a8` a précisé deux points sans changer la règle : le modèle de départ du volume se lit sans intervention, comme les bras, et l'option d'un effet minimal du code n'en fait pas partie. Le commit `c417e91` corrige un écart au texte déposé, trouvé en écrivant le harnais : le code adopté comptait les variantes bénignes dans le plancher (section 5.2, annexe A.0) |
 | 8. Deux précisions de la table A.2 | adoptées le 9 octobre (décision 52) ; texte ci-dessous, avec l'empreinte du code au commit `373f24b`. Ce commit ne change aucune issue : quand la première précision fait tomber l'issue principale hors des gains, il marque sans objet la relecture parmi les engagés |
+| 9. La borne prudente de la variance du pilote | adoptée le 9 octobre, avec un plafond de 32 graines par bras (décision 55) ; texte ci-dessous |
 
 **Les 20 empreintes du dépôt, vérifiées le 8 octobre à 23 h 50 UTC.**
 - 14 pièces ont encore leur empreinte dans le dépôt.
@@ -210,6 +212,18 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
    puissance_precisions_a2.py, SHA-256 03c27bed977f5ef5b4c140c5c0d0ca77c6a287cbc3af463a28514f2e6f47e983. It ran with the
    previous version of precisions_a2.py (SHA-256 8ba268cc7c897413d8b9e86c61a80371148d667747d1d9338b9e003370f943b3),
    which differs only in not marking the moot re-reading: no outcome differs.
+
+9. How the stage-2 simulation reads the pilot's variance (sections 3.4 and 3.5). The per-seed contrast variance that sizes
+   the study is not the pilot's estimate but its one-sided 80% upper bound: twice the residual mean square of the arm ×
+   seed analysis of variance (6 arms, 2 seeds, 5 degrees of freedom) times 5 / 2.343 (the 20% quantile of the
+   chi-square distribution with 5 degrees of freedom), minus the binomial variance of a rate. The number of seeds per
+   arm is the smallest that reaches the targets of section 3.5 in the stage-2 simulation, up to 32 seeds per arm. If
+   that maximum binds, the stage-2 amendment states the power reached.
+
+   Why. A simulation of the pilot (2,000 pilots per case, on simulated counts only) found that the pilot's estimate
+   alone gives enough seeds in about one pilot out of two; its 80% upper bound gives enough in 79% to 89% of pilots,
+   for a median of about one and a half times the seeds needed. Code: borne_prudente_graines.py (repository commit
+   b5e0e3e), SHA-256 821dd18f66d127696e5e6623d3b1f32986992e7cc44bc822ac6027701048438e.
 ```
 
 ## Ce que ce brouillon ne dit pas encore
@@ -221,5 +235,5 @@ It is made before any data of the trained arms, the pilot included (section 6.2 
 
 - Le texte déposé : `claude/PREENREGISTREMENT_PREMIER_TEMPS_A_DEPOSER_2026-10-07.md`, sections 3.6, 4.2, 5.3, 5.4, 6.2 et 6.3, annexes A.0, A.2, A.3 et C.6.
 - L'audit : `claude/AUDIT_REGLES_DEPOSEES_2026-10-08.md` ; ses cas simulés : `experiences/analyses/cas_audit_2026-10-08.py`.
-- Les décisions 37, 46, 50, 51 et 52 : `DECISIONS.md`.
+- Les décisions 37, 46, 50 à 55 : `DECISIONS.md`.
 - La simulation de puissance des précisions : `experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`.

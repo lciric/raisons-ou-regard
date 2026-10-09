@@ -50,7 +50,7 @@
 6. **Le détecteur d'audit** : sa spécification v0.1 est adoptée (décision 53) ; il attend Liars' Bench.
 7. **Les refus des juges** : la voie 1, les juges tels quels et la surveillance rapportée sous-représentée (décision 53).
 8. **Le mot inventé** : `morvelle` (décision 53).
-9. **Le nombre de graines du pilote** : deux, comme le texte le prévoit (décision 53). La règle qui fera lire au second temps une borne prudente de la variance du pilote s'écrit et te sera soumise avant le pilote.
+9. **Le nombre de graines** : deux au pilote, comme le texte le prévoit (décision 53) ; au second temps, la borne à 80 % de la variance du pilote, jusqu'à 32 graines par bras (décision 55).
 10. **La mesure du rang de la localisation** : l'estimateur par le spectre, par un amendement daté avant les données de la localisation, après une vérification sur des états réels (décision 53). Rien ne presse : la localisation vient après les bras.
 11. **Le réseau de l'environnement**, qui reste à toi. Je recommande d'ouvrir iclr.cc et icml.cc si tu veux les dates limites des conférences (partie 11, point 14), et alignment.anthropic.com plutôt que de lire la copie de *Teaching Claude Why* sur www.anthropic.com : ainsi aucun blocage n'est contourné.
 
