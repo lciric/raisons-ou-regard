@@ -6,7 +6,7 @@
 
 **Où en sont les parties.**
 
-| Partie | État au 8 octobre, 23 h UTC |
+| Partie | État au 9 octobre, 1 h UTC |
 |---|---|
 | 1. Le harnais et le format de ses appels d'outil | à faire ; la façon de le faire attend ta décision (programme v1.6, partie 12, point 2) |
 | 2. Le prompt du juge scellé | à faire ; il attend le harnais |
@@ -14,6 +14,8 @@
 | 4. Le générateur des données | texte écrit (`claude/SPEC_GENERATEUR_OUVERT_v0.1_2026-10-08.md`, section 7) ; le modèle et ses révisions se confirment par le pilote |
 | 5. Les corrections du code des règles | faites (commit `b18bb7e`) ; texte ci-dessous |
 | 6. Ce que le texte déposé demande aux entraînements des bras | fait (commit `5a8f13d`) : les empreintes des graines partagées, et les données tenues à part de la règle de convergence ; texte ci-dessous |
+| 7. Les règles du pilote (le plancher, la seconde condition de convergence, le volume) | écrites et testées le 9 octobre, avant toute donnée (commit `af5afd2`, `experiences/analyses/regles_du_pilote.py`) ; leurs choix d'exécution attendent ta confirmation, et la définition du volume ta décision (`claude/CARTE_TEXTE_DEPOSE_CODE_2026-10-09.md`). Le texte anglais s'écrira après |
+| 8. Deux précisions de la table A.2 | proposées le 9 octobre, avec leur texte anglais prêt (`experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`, « Les deux précisions, prêtes pour ta décision ») ; elles n'entrent ici qu'avec ton accord |
 
 **Les 20 empreintes du dépôt, vérifiées le 8 octobre à 23 h 50 UTC.**
 - 14 pièces ont encore leur empreinte dans le dépôt.
