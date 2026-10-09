@@ -109,7 +109,9 @@ def world(rng, k, width=WIDTH, groups=GROUPS, own_share=1.0):
     common /= np.linalg.norm(common)
     own = rng.normal(size=(groups, k))
     own /= np.linalg.norm(own, axis=1, keepdims=True)
-    a = common[None, :] + own_share * own
+    # au rang 1, une direction ne peut pas changer d'un groupe à l'autre : la part propre (±1) annulerait la commune une
+    # fois sur deux, et tous les groupes prennent la direction commune
+    a = common[None, :] + (own_share * own if k > 1 else 0.0 * own)
     dirs = np.stack([u @ (x / np.linalg.norm(x)) for x in a])
     offsets = rng.normal(scale=0.7, size=(groups, width))
     mix = rng.normal(size=(width, width)) * np.linspace(0.3, 1.5, width)[None, :]
