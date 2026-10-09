@@ -11,6 +11,7 @@
 |---|---|---|---|
 | Le harnais et le format de ses appels d'outil | 3.3, 6.2 | `experiences/rrharness/` | incomplet depuis le 3 octobre ; la façon de le faire attend ta décision |
 | Le prompt du juge scellé. Le juge ne voit jamais le bras ni le texte de l'emplacement, et l'indice de cadrage lui est masqué | 2.2, C.6 | — | à écrire, après le harnais |
+| Les jeux d'évaluation des distances proche (60 situations nouvelles par famille d'entraînement) et moyenne (60 scénarios en un tour par famille tenue à part), et le job qui évalue les bras en un tour | 3.4, 4.1 | — | **à faire** : le pipeline ne les construit pas. Les situations proches viendraient du générateur ouvert, après son pilote. Les scénarios moyens relèvent des scénarios tenus à part, que ta décision sur le harnais attend. Le volume et la convergence se lisent à la distance proche |
 | Le détecteur d'audit, entraîné et figé | C.8, 6.2 | `experiences/rrexp/jobs/audit_detector.py` | écrit et testé, non lancé : il attend ton accès à Liars' Bench et environ 9 $ |
 | Les données des bras : l'action identique d'un bras à l'autre, l'appariement biparti de l'autre situation, des raisons de 80 à 200 jetons | 4.1 | `donnees/rrdata/` | écrit (pipeline v0.1) ; le générateur ouvert attend son pilote (décision 37) |
 | L'entraînement : les hyperparamètres déposés ; les graines partagées, vérifiées par empreinte | 4.1, 2.4 | `experiences/rrexp/jobs/train_lora.py` | fait (commit `5a8f13d`) |
