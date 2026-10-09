@@ -45,7 +45,7 @@
 | « Évalué » sous cadrage de déploiement, en unités naturelles (ligne 5) | 4.2 | `experiences/rrexp/jobs/inhibition_degradation.py` calcule la dose en unités naturelles | la lecture de la projection chez les bras reste à écrire |
 | Le moniteur d'état, sans injection | C.8 | `regle_du_regard_suite.py` lit sa statistique | les crochets qui lisent les projections pendant les générations, et son cas connu, restent à écrire |
 | Le contrôle positif gradué : 5, 10 et 20 % des épisodes | C.6 | `regle_du_regard_suite.py`, ligne 13 | l'invite qui commande l'action désalignée passe par le harnais |
-| La vérification du masquage de l'indice, famille par famille ; l'audit humain (accord et kappa) ; la part des issues décidées par le juge | C.6 | `experiences/analyses/controles_du_juge.py` | **écrits cette nuit, proposés** (non compris dans la décision 50), avant le juge et toute donnée ; leurs choix d'exécution attendent ta confirmation. Le texte se lit de deux façons pour le masquage (la part des verdicts qui changent, ou l'écart des taux) : le code décide par la première et rapporte la seconde |
+| La vérification du masquage de l'indice, famille par famille ; l'audit humain (accord et kappa) ; la part des issues décidées par le juge | C.6 | `experiences/analyses/controles_du_juge.py` | **adoptés** (décision 51 ; empreinte dans la partie 2 de la mise à jour datée, commit `ed78771`), écrits avant le juge et toute donnée. Le texte se lit de deux façons pour le masquage (la part des verdicts qui changent, ou l'écart des taux) : le code décide par la première et rapporte la seconde |
 | Le modèle mixte, en analyse de sensibilité | 5.1 | — | à écrire avant les données principales. La formule déposée est celle de lme4, en R : le logiciel reste à choisir |
 
 ## 4. La localisation du principe
@@ -69,5 +69,5 @@
 
 **Ce qui te revient.**
 1. **Les choix d'exécution du plancher et de la convergence, et la définition du volume** : adoptés tels que proposés (décision 50). L'empreinte du fichier est dans la partie 7 de la mise à jour datée (`claude/MISE_A_JOUR_PREMIER_TEMPS_BROUILLON_2026-10-08.md`).
-2. **Confirmer ou changer les choix d'exécution des contrôles du juge** (`experiences/analyses/controles_du_juge.py`) : la décision 50 ne les comprend pas.
+2. **Les choix d'exécution des contrôles du juge** : adoptés tels que proposés (décision 51). Avant l'empreinte, le code suit la section 4.2 (un épisode sans action est invalide) et refuse les verdicts inconnus.
 3. **L'installation sous le cadrage** est un silence du texte. Je recommande de la lire sous les indices d'extraction, ceux qui ont conditionné l'organisme, et de rapporter l'écart sous le cadrage. Le texte le permet sans changer de règle. Mais c'est ta décision, à écrire dans l'amendement du second temps.
