@@ -250,3 +250,46 @@ La bonne issue :
 2. **La simulation de l'amendement du second temps ne devrait pas prendre l'estimation du pilote telle quelle**, mais une borne prudente : par exemple, sa limite haute à 90 %, ou une plage d'hypothèses.
 3. **Une option, pour ta décision** : trois ou quatre graines par bras au pilote. Le texte en prévoit deux (section 2.3) ; c'est une règle, à changer par une mise à jour datée avant le pilote. Chaque graine de plus coûte six entraînements.
 4. **Une réserve** : la distance lointaine du pilote compte 200 scénarios (40 par famille tenue à part), pas 400 ; le bruit binomial y est plus fort, et l'estimation moins bonne encore.
+
+## La borne prudente de la variance du pilote (9 octobre, 10 h UTC)
+
+**Pourquoi.** La décision 53 garde deux graines par bras au pilote. Elle demande une règle écrite avant lui : la simulation du second temps doit lire une borne prudente de la variance des contrastes par graine, et non son estimation seule. La question, les règles et l'attente ont été commitées avant le calcul (`experiences/analyses/borne_prudente_graines.py`, commit `b5e0e3e` ; sorties : `experiences/resultats/puissance/borne_prudente_graines_2026-10-09.json`).
+
+**Ce qui est mesuré.** 2 000 pilotes simulés par cas (6 bras × 2 graines, 400 scénarios × 5 générations). Quatre règles donnent chacune une variance des contrastes par graine, d'où un nombre de graines par une approximation déclarée des simulations du 9 octobre, n(v) = ⌈6,3 + 0,83 v⌉ :
+- l'estimation seule ;
+- la borne haute unilatérale à 80 %, puis à 90 %, par la loi du khi-deux à 5 degrés de liberté ;
+- l'estimation seule, avec un plancher à l'écart de 2 points.
+
+**La part des pilotes qui donnent assez de graines** (la médiane et le 90ᵉ centile du nombre donné, entre parenthèses) :
+
+| σ | ρ | Graines qu'il faut | Estimation seule | Borne à 80 % | Borne à 90 % | Plancher à 2 points |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 8 | 60 % (8 ; 11) | 89 % (11 ; 19) | 95 % (14 ; 25) | 100 % (13 ; 13) |
+| 1 | 0,5 | 8 | 45 % (7 ; 10) | 82 % (10 ; 15) | 92 % (12 ; 20) | 100 % (13 ; 13) |
+| 1 | 0,8 | 7 | 100 % (7 ; 9) | 100 % (9 ; 13) | 100 % (11 ; 17) | 100 % (13 ; 13) |
+| 2 | 0 | 13 | 48 % (12 ; 21) | 83 % (20 ; 39) | 91 % (27 ; 54) | 100 % (13 ; 21) |
+| 2 | 0,5 | 10 | 49 % (9 ; 14) | 84 % (14 ; 25) | 92 % (19 ; 34) | 100 % (13 ; 14) |
+| 2 | 0,8 | 8 | 56 % (8 ; 11) | 87 % (11 ; 17) | 94 % (13 ; 23) | 100 % (13 ; 13) |
+| 3 | 0 | 22 | 41 % (19 ; 35) | 79 % (35 ; 64) | 89 % (49 ; 64) | 41 % (19 ; 35) |
+| 3 | 0,5 | 14 | 46 % (13 ; 22) | 83 % (22 ; 42) | 92 % (30 ; 59) | 46 % (13 ; 22) |
+| 3 | 0,8 | 10 | 45 % (9 ; 13) | 82 % (14 ; 23) | 90 % (18 ; 31) | 100 % (13 ; 13) |
+
+**Ce que cela dit.**
+1. **L'estimation seule ne donne assez de graines que dans un pilote sur deux environ.** J'attendais ce chiffre ; j'attendais aussi qu'il baisse quand ρ grandit, et ce n'est pas le cas. À σ = 1 et ρ = 0,8, elle suffit toujours, parce que le nombre qu'il faut est déjà au bas de l'approximation.
+2. **La borne à 80 % suffit dans 79 à 89 % des pilotes.** Son coût médian est d'environ une fois et demie le besoin, et son 90ᵉ centile monte jusqu'au triple.
+3. **La borne à 90 % suffit dans 89 à 95 % des pilotes**, pour un coût médian d'environ deux fois le besoin.
+4. **Le plancher à 2 points protège tant que l'écart vrai ne le dépasse pas**, et paie trop quand ρ est grand ; à 3 points, il ne protège plus.
+5. **Les limites.** L'approximation n(v) vient des simulations de la porte des raisons, pas d'un calcul pour chaque cible du second temps. La distance lointaine du pilote compte 200 scénarios, pas 400 : la vraie estimation y sera plus bruitée encore.
+
+**Ce que je recommande, pour ta décision.** Faire lire au second temps la borne à 80 %, avec un plafond de graines fixé d'avance. Si le plafond s'applique, l'amendement du second temps dit la puissance atteinte, comme le texte déposé le prévoit déjà pour la ligne 2. Le plafond est un choix de budget : chaque graine de plus coûte six entraînements. Un plancher n'est pas utile en plus : la borne à 80 % donne déjà au moins autant que lui dans les cas où il aide.
+
+**Le texte à verser dans la mise à jour datée, si tu l'adoptes (anglais).**
+
+```
+How the stage-2 simulation reads the pilot's variance (sections 3.4 and 3.5). The per-seed contrast variance that sizes
+the study is not the pilot's estimate but its one-sided 80% upper bound: twice the residual mean square of the arm ×
+seed analysis of variance (6 arms, 2 seeds, 5 degrees of freedom) times 5 / 2.343 (the 20% quantile of the chi-square
+distribution with 5 degrees of freedom), minus the binomial variance of a rate. The number of seeds per arm is the
+smallest that reaches the targets of section 3.5 in the stage-2 simulation, up to [N] seeds per arm, stated now. If that
+maximum binds, the stage-2 amendment states the power reached.
+```
