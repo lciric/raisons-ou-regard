@@ -73,6 +73,13 @@ Le texte ne dit pas comment se forment les lots de paires. La carte du texte fac
 
 **La cinquième piste passe le critère commité** ; c'est la seule des cinq.
 
+## Ce qui est en jeu dans le texte déposé
+
+- **La thèse du rang (H2)** tombe si, à la localisation, le rang minimal du principe par effacement linéaire vaut 1, et que trois choses tiennent à ce rang (section 1.2).
+- **L'annexe A.1** a une ligne pour « je suis évalué » : un rang minimal de 1, à dégradation appariée, fait tomber la thèse pour ce concept, si sa charge mesurée est basse et si le cas connu du rang a passé.
+- **Or la procédure écrite, avec des lots mêlés, trouve souvent 1** : le rang de la part commune du concept, quel que soit le rang planté. C'est justement la valeur qui réfute.
+- **La condition du cas connu protège la conclusion** : s'il échoue, aucune de ces lignes ne conclut. Mais alors la localisation ne dit rien du rang, après avoir coûté son budget.
+
 ## Ce que cela veut dire, pour ta décision avant la localisation
 
 1. **Telle qu'écrite, la procédure de l'annexe C.7 ne retrouve pas un rang planté** dans ce monde. L'effacement itéré, une direction à la fois sur des lots finis, ne l'estime de façon fiable sous aucune des trois lectures essayées. Le cas connu de l'annexe, un concept dont la direction change d'un groupe à l'autre, échouerait probablement. La doctrine dit qu'alors une pente nulle ne réfute rien.
