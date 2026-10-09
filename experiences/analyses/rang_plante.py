@@ -44,6 +44,16 @@ linéaire et pour le perceptron. Elle se lit des deux façons, par transfert et 
 sein des groupes, le rang planté est retrouvé (au moins 9 répliques sur 10) ; par transfert, il reste sous-estimé dès
 le rang 3. Elle se lance par `python analyses/rang_plante.py <sortie> 10 <transfer|intra> permutation`.
 
+**Une quatrième piste, écrite après la troisième série et avant son propre calcul (9 octobre 2026, 1 h 50 UTC).** Aucune
+lecture de l'effacement itéré ne passe le critère : le transfert sous un seuil calibré trouve des rangs épars (1 à 2
+répliques sur 10), le décodage au sein des groupes n'est presque jamais au hasard. La quatrième piste n'itère plus : elle
+ajuste les six groupes d'ajustement ensemble, comme le module d'effacement le fait déjà avec une colonne d'étiquettes par
+jeu. Pour chaque groupe, la différence moyenne des deux côtés de ses paires (200 paires), blanchie par la covariance
+intra-classe de tous les états d'ajustement ; le rang estimé est le nombre de valeurs singulières de la matrice de ces
+six différences qui dépassent chacune le 95ᵉ centile de la même valeur singulière sous 50 permutations de signe (les deux
+côtés de chaque paire échangés au hasard). Ce que j'attends : le rang planté est retrouvé dans au moins 9 répliques sur
+10, pour les rangs 2, 3 et 4. Elle se lance par `python analyses/rang_plante.py <sortie> 10 spectral`.
+
 **Le modèle des états** (une couche) : largeur 64 ; un sous-espace de rang k (2, 3 ou 4) ; 10 groupes de contextes, chacun
 avec sa direction du concept dans ce sous-espace et son décalage moyen ; les deux côtés d'une paire partagent leur
 scénario (un bruit commun de covariance anisotrope) et diffèrent par le concept et un petit bruit propre. Les groupes 1 à
@@ -213,6 +223,56 @@ def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps
             "precondition": bool(all(pre[name] > CHANCE for name in ("linear", "mlp")))}
 
 
+def spectral_rank(seed, k, n_fit=200, n_flip=50):
+    """Le rang estimé par le spectre des différences moyennes des groupes d'ajustement, blanchies, contre des
+    permutations de signe des paires."""
+    rng = np.random.default_rng(seed)
+    w = world(rng, k)
+    groups = [pairs(rng, w, g, n_fit) for g in range(FIT_GROUPS)]
+    xs = np.concatenate([x for x, _ in groups])
+    ys = np.concatenate([y for _, y in groups])
+    # la covariance intra-classe de tous les états d'ajustement, et son inverse en racine carrée
+    xc = np.concatenate([xs[ys > 0] - xs[ys > 0].mean(0), xs[ys < 0] - xs[ys < 0].mean(0)])
+    vals, vecs = np.linalg.eigh(xc.T @ xc / len(xc))
+    whiten = vecs @ np.diag(1 / np.sqrt(np.maximum(vals, 1e-9))) @ vecs.T
+
+    def spectrum(signs=None):
+        cols = []
+        for i, (x, _) in enumerate(groups):
+            n = len(x) // 2
+            d = x[:n] - x[n:]                                  # les différences des paires, côté évaluation moins déploiement
+            if signs is not None:
+                d = d * signs[i][:, None]
+            cols.append(whiten @ d.mean(0))
+        return np.linalg.svd(np.stack(cols, axis=1), compute_uv=False)
+
+    s_obs = spectrum()
+    null = np.stack([spectrum([rng.choice([-1.0, 1.0], size=len(x) // 2) for x, _ in groups]) for _ in range(n_flip)])
+    q95 = np.percentile(null, 95, axis=0)
+    above = s_obs > q95
+    rank = int(np.argmin(above)) if not above.all() else len(above)    # les premières valeurs, tant qu'elles dépassent
+    # la part du sous-espace planté couverte par les r premières directions singulières, ramenées dans l'espace d'origine
+    u = np.linalg.svd(np.stack([whiten @ (x[:len(x) // 2] - x[len(x) // 2:]).mean(0) for x, _ in groups], axis=1),
+                      full_matrices=False)[0][:, :max(rank, 1)]
+    q = np.linalg.qr(np.linalg.inv(whiten) @ u)[0]
+    covered = float(np.linalg.norm(q.T @ w["basis"]) ** 2 / k)
+    return {"found": rank, "singular_values": [round(float(v), 4) for v in s_obs], "null95": [round(float(v), 4) for v in q95],
+            "planted_covered": round(covered, 4)}
+
+
+def main_spectral(dest, reps=10):
+    out = {"reps": reps, "method": "spectre des différences moyennes des groupes, blanchies, contre 50 permutations de signe",
+           "rows": []}
+    for k in (2, 3, 4):
+        runs = [spectral_rank(1000 * k + i, k) for i in range(reps)]
+        row = {"planted": k, "found": [r["found"] for r in runs], "recovered": sum(r["found"] == k for r in runs),
+               "planted_covered": round(float(np.mean([r["planted_covered"] for r in runs])), 4),
+               "example": runs[0]}
+        out["rows"].append(row)
+        print(json.dumps({x: row[x] for x in ("planted", "found", "recovered", "planted_covered")}, ensure_ascii=False), flush=True)
+    Path(dest).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf8")
+
+
 def _task(args):
     import torch  # noqa: WPS433
     torch.set_num_threads(1)          # quatre processus sur quatre cœurs : un fil chacun (de petites matrices)
@@ -243,5 +303,8 @@ def main(dest, reps=10, reading="transfer", threshold="fixed", workers=4):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 10, sys.argv[3] if len(sys.argv) > 3 else "transfer",
-         sys.argv[4] if len(sys.argv) > 4 else "fixed")
+    if len(sys.argv) > 3 and sys.argv[3] == "spectral":
+        main_spectral(sys.argv[1], int(sys.argv[2]))
+    else:
+        main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 10, sys.argv[3] if len(sys.argv) > 3 else "transfer",
+             sys.argv[4] if len(sys.argv) > 4 else "fixed")
