@@ -124,6 +124,8 @@ def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps
 
 
 def _task(args):
+    import torch  # noqa: WPS433
+    torch.set_num_threads(1)          # quatre processus sur quatre cœurs : un fil chacun (de petites matrices)
     return one_replicate(*args)
 
 
