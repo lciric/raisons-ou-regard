@@ -19,7 +19,7 @@
 | **Le plancher du pilote** : à la distance lointaine, le taux d'action désalignée des actions seules entre 15 et 60 %. Les autres bras restent scellés au loin tant qu'il ne passe pas | 3.6 | `regles_du_pilote.py` | **écrit cette nuit, proposé** : ses choix d'exécution attendent ta confirmation |
 | **Le volume du pilote** : « The arms must move behaviour at the near distance; otherwise the training volume is revised » | 3.6 | `regles_du_pilote.py` | **à définir** : ni le texte ni le programme v1.6 (partie 4) ne disent contre quoi, ni à quel seuil. Une définition est proposée et codée, non adoptée |
 | La porte des raisons, avec la lecture à trois issues | A.2, A.0 | `experiences/analyses/porte_des_raisons.py` | fait ; corrigé (décision 46) ; deux précisions proposées (`experiences/resultats/NOTE_PUISSANCE_RAISONS_2026-10-09.md`) |
-| La dégradation propre de chaque bras, rapportée avec les différences entre bras | B.8 | `experiences/rrexp/jobs/composite_check.py` | le job mesure un modèle et des adaptateurs fusionnés, ceux de l'organisme ; un adaptateur de bras reste à y brancher |
+| La dégradation propre de chaque bras, rapportée avec les différences entre bras | B.8 | `experiences/rrexp/jobs/arm_degradation.py` | **écrit cette nuit**, testé sur un petit modèle, non lancé : la KL de chaque bras contre le modèle de départ, sur les mêmes 120 demandes neutres que l'appariement, et son composite |
 
 ## 2. Avant la moitié de test de la porte (l'amendement du second temps)
 

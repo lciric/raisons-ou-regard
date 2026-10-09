@@ -64,6 +64,12 @@ job_overrides:
   organism_inhibition:
     expected_hours: 4
     download_gb: 71          # avec le composite, JEV-27B en plus de Llama
+  # La dégradation propre des bras (texte déposé, annexe B.8), écrite le 9 octobre 2026 : un composite par adaptateur et
+  # un pour le modèle de départ, environ 8 minutes chacun d'après les runs du 8 octobre (22 composites en 3 heures), soit
+  # environ deux heures pour les douze entraînements du pilote. Une estimation, non mesurée.
+  arm_degradation:
+    expected_hours: 2
+    download_gb: 71          # Llama-3.1-8B-Instruct et JEV-27B
   # Le générateur ouvert des données des bras (décision 37, 8 octobre 2026) : la même image ; de la place pour un
   # modèle d'environ 125 Go (Qwen3.5-122B-A10B en FP8, proposé), sur plusieurs GPU (--gpus).
   open_generate:
