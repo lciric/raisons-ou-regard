@@ -25,6 +25,15 @@ groupe, et le rang planté est retrouvé.
 **Le critère** : le rang trouvé (le premier rang, de 1 à 8, où la sonde linéaire et le perceptron sont au hasard sur les
 groupes tenus à part) égale le rang planté dans au moins 9 répliques sur 10.
 
+**Une seconde lecture, écrite après la première série et avant son propre calcul (9 octobre 2026, 1 h 35 UTC).** La
+première série ne passe pas son critère : avec des lots mêlés, le rang trouvé est presque toujours 1 ; avec un lot par
+groupe, de 1 à 6. Le transfert vers des groupes tenus à part ne lit que la part du concept commune aux groupes. La
+seconde lecture garde l'ajustement et change la lecture : sur chaque groupe tenu à part, une sonde linéaire et un
+perceptron s'entraînent sur la moitié de ses paires et se lisent sur l'autre moitié (le décodage au sein du groupe),
+en moyenne sur les quatre groupes, avec le même seuil de 0,55. Ce que j'attends : avec un lot par groupe, le rang
+planté est retrouvé (au moins 9 répliques sur 10, le même critère) ; avec des lots mêlés, non. Elle se lance par
+`python analyses/rang_plante.py <sortie> 10 intra`.
+
 **Le modèle des états** (une couche) : largeur 64 ; un sous-espace de rang k (2, 3 ou 4) ; 10 groupes de contextes, chacun
 avec sa direction du concept dans ce sous-espace et son décalage moyen ; les deux côtés d'une paire partagent leur
 scénario (un bruit commun de covariance anisotrope) et diffèrent par le concept et un petit bruit propre. Les groupes 1 à
@@ -83,8 +92,31 @@ def erase_all(params, x):
     return t.numpy()
 
 
-def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps=150):
-    """Le rang trouvé, et le transfert à chaque rang (0 : sans effacement)."""
+def within_groups(parts, params, mlp_steps):
+    """Le décodage au sein de chaque groupe : les sondes entraînées sur une moitié des paires du groupe, lues sur
+    l'autre ; la lecture symétrique, en moyenne sur les groupes."""
+    import torch  # noqa: WPS433
+    from rrexp.jobs.extract_eval import auroc, logistic_probe  # noqa: WPS433
+    from rrexp.jobs.manipulation import mlp_probe  # noqa: WPS433
+    lin, mlp = [], []
+    for x, y in parts:
+        n = len(y) // 2                                       # les n premiers : un côté, puis l'autre (voir pairs)
+        half = n // 2
+        tr = np.r_[0:half, n:n + half]
+        te = np.r_[half:n, n + half:2 * n]
+        xe = torch.as_tensor(erase_all(params, x))
+        yl = (y > 0).astype(int)
+        f = logistic_probe(xe[tr], yl[tr].tolist())
+        g = mlp_probe(xe[tr], yl[tr].tolist(), steps=mlp_steps)
+        a1, a2 = auroc(f(xe[te]), yl[te].tolist()), auroc(g(xe[te]), yl[te].tolist())
+        lin.append(max(a1, 1 - a1))
+        mlp.append(max(a2, 1 - a2))
+    return {"linear": round(float(np.mean(lin)), 4), "mlp": round(float(np.mean(mlp)), 4)}
+
+
+def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps=150, reading="transfer"):
+    """Le rang trouvé, et la lecture à chaque rang (0 : sans effacement) : le transfert vers les groupes tenus à part
+    (« transfer », la lecture de l'annexe C.7), ou le décodage au sein de chacun d'eux (« intra »)."""
     import torch  # noqa: WPS433
     from rrexp.jobs.erasure import fit_leace  # noqa: WPS433
     from rrexp.jobs.manipulation import transfer  # noqa: WPS433
@@ -99,7 +131,8 @@ def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps
             parts = [pairs(rng, w, g, max(1, n_fit // FIT_GROUPS)) for g in range(FIT_GROUPS)]
             batches.append((np.concatenate([p[0] for p in parts]), np.concatenate([p[1] for p in parts])))
     probe_parts = [pairs(rng, w, g, n_probe // FIT_GROUPS + 1) for g in range(FIT_GROUPS)]
-    read_parts = [pairs(rng, w, g, n_read // (GROUPS - FIT_GROUPS) + 1) for g in range(FIT_GROUPS, GROUPS)]
+    per_group = n_read // (GROUPS - FIT_GROUPS) + 1 if reading == "transfer" else 200
+    read_parts = [pairs(rng, w, g, per_group) for g in range(FIT_GROUPS, GROUPS)]
     xp, yp = np.concatenate([p[0] for p in probe_parts]), np.concatenate([p[1] for p in probe_parts])
     xr, yr = np.concatenate([p[0] for p in read_parts]), np.concatenate([p[1] for p in read_parts])
     params, readings, found = [], [], None
@@ -107,10 +140,13 @@ def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps
         if r > 0:
             xb, yb = batches[r - 1]
             params.append(fit_leace(torch.as_tensor(erase_all(params, xb)), yb))
-        src = torch.as_tensor(erase_all(params, xp))[:, None, :]
-        tgt = torch.as_tensor(erase_all(params, xr))[:, None, :]
-        t = transfer(src, (yp > 0).astype(int).tolist(), tgt, (yr > 0).astype(int).tolist(), mlp_steps=mlp_steps)[0]
-        sym = {name: round(max(v, 1 - v), 4) for name, v in t.items()}
+        if reading == "transfer":
+            src = torch.as_tensor(erase_all(params, xp))[:, None, :]
+            tgt = torch.as_tensor(erase_all(params, xr))[:, None, :]
+            t = transfer(src, (yp > 0).astype(int).tolist(), tgt, (yr > 0).astype(int).tolist(), mlp_steps=mlp_steps)[0]
+            sym = {name: round(max(v, 1 - v), 4) for name, v in t.items()}
+        else:
+            sym = within_groups(read_parts, params, mlp_steps)
         readings.append({"rank": r, **sym})
         if r > 0 and found is None and all(v <= CHANCE for v in sym.values()):
             found = r
@@ -126,15 +162,16 @@ def one_replicate(seed, k, scheme, n_fit=200, n_probe=240, n_read=240, mlp_steps
 def _task(args):
     import torch  # noqa: WPS433
     torch.set_num_threads(1)          # quatre processus sur quatre cœurs : un fil chacun (de petites matrices)
-    return one_replicate(*args)
+    seed, k, scheme, reading = args
+    return one_replicate(seed, k, scheme, reading=reading)
 
 
-def main(dest, reps=10, workers=4):
+def main(dest, reps=10, reading="transfer", workers=4):
     from multiprocessing import Pool
-    out = {"reps": reps, "chance": CHANCE, "max_rank": MAX_RANK, "rows": []}
+    out = {"reps": reps, "chance": CHANCE, "max_rank": MAX_RANK, "reading": reading, "rows": []}
     cases = [(k, scheme) for k in (2, 3, 4) for scheme in ("lots mêlés", "un lot par groupe")]
     with Pool(workers) as pool:
-        done = pool.map(_task, [(1000 * k + i, k, scheme) for k, scheme in cases for i in range(reps)])
+        done = pool.map(_task, [(1000 * k + i, k, scheme, reading) for k, scheme in cases for i in range(reps)])
     for c, (k, scheme) in enumerate(cases):
         runs = done[c * reps:(c + 1) * reps]
         row = {"planted": k, "scheme": scheme, "found": [r["found"] for r in runs],
@@ -150,4 +187,4 @@ def main(dest, reps=10, workers=4):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 10)
+    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 10, sys.argv[3] if len(sys.argv) > 3 else "transfer")
