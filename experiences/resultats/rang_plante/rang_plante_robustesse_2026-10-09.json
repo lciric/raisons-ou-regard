@@ -1,0 +1,486 @@
+{
+ "reps": 10,
+ "method": "test séquentiel sur le spectre, 50 permutations de signe",
+ "rows": [
+  {
+   "effect": 1.2,
+   "pairs_per_group": 200,
+   "planted": 0,
+   "found": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "recovered": 9,
+   "over": 1,
+   "under": 0
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 200,
+   "planted": 1,
+   "found": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1,
+    1
+   ],
+   "recovered": 9,
+   "over": 1,
+   "under": 0
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 200,
+   "planted": 2,
+   "found": [
+    2,
+    2,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "recovered": 9,
+   "over": 1,
+   "under": 0
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 200,
+   "planted": 3,
+   "found": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "recovered": 10,
+   "over": 0,
+   "under": 0
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 200,
+   "planted": 4,
+   "found": [
+    4,
+    3,
+    3,
+    4,
+    4,
+    4,
+    3,
+    4,
+    4,
+    4
+   ],
+   "recovered": 7,
+   "over": 0,
+   "under": 3
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 200,
+   "planted": 5,
+   "found": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    4,
+    4,
+    4,
+    4,
+    5
+   ],
+   "recovered": 6,
+   "over": 0,
+   "under": 4
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 100,
+   "planted": 0,
+   "found": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "recovered": 9,
+   "over": 1,
+   "under": 0
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 100,
+   "planted": 1,
+   "found": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "recovered": 10,
+   "over": 0,
+   "under": 0
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 100,
+   "planted": 2,
+   "found": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "recovered": 10,
+   "over": 0,
+   "under": 0
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 100,
+   "planted": 3,
+   "found": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "recovered": 10,
+   "over": 0,
+   "under": 0
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 100,
+   "planted": 4,
+   "found": [
+    4,
+    3,
+    3,
+    4,
+    4,
+    4,
+    3,
+    4,
+    3,
+    4
+   ],
+   "recovered": 6,
+   "over": 0,
+   "under": 4
+  },
+  {
+   "effect": 1.2,
+   "pairs_per_group": 100,
+   "planted": 5,
+   "found": [
+    4,
+    5,
+    4,
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    4
+   ],
+   "recovered": 2,
+   "over": 0,
+   "under": 8
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 200,
+   "planted": 0,
+   "found": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "recovered": 9,
+   "over": 1,
+   "under": 0
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 200,
+   "planted": 1,
+   "found": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1,
+    1
+   ],
+   "recovered": 9,
+   "over": 1,
+   "under": 0
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 200,
+   "planted": 2,
+   "found": [
+    2,
+    2,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "recovered": 9,
+   "over": 1,
+   "under": 0
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 200,
+   "planted": 3,
+   "found": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "recovered": 10,
+   "over": 0,
+   "under": 0
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 200,
+   "planted": 4,
+   "found": [
+    4,
+    3,
+    3,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    4
+   ],
+   "recovered": 5,
+   "over": 0,
+   "under": 5
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 200,
+   "planted": 5,
+   "found": [
+    4,
+    4,
+    4,
+    4,
+    5,
+    4,
+    4,
+    3,
+    4,
+    4
+   ],
+   "recovered": 1,
+   "over": 0,
+   "under": 9
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 100,
+   "planted": 0,
+   "found": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "recovered": 9,
+   "over": 1,
+   "under": 0
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 100,
+   "planted": 1,
+   "found": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "recovered": 10,
+   "over": 0,
+   "under": 0
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 100,
+   "planted": 2,
+   "found": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "recovered": 10,
+   "over": 0,
+   "under": 0
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 100,
+   "planted": 3,
+   "found": [
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "recovered": 9,
+   "over": 0,
+   "under": 1
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 100,
+   "planted": 4,
+   "found": [
+    4,
+    3,
+    3,
+    3,
+    4,
+    3,
+    2,
+    3,
+    2,
+    3
+   ],
+   "recovered": 2,
+   "over": 0,
+   "under": 8
+  },
+  {
+   "effect": 0.6,
+   "pairs_per_group": 100,
+   "planted": 5,
+   "found": [
+    4,
+    3,
+    3,
+    4,
+    5,
+    4,
+    3,
+    3,
+    3,
+    3
+   ],
+   "recovered": 1,
+   "over": 0,
+   "under": 9
+  }
+ ]
+}

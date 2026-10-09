@@ -1,6 +1,6 @@
 # Le rang minimal par effacement itéré, sur un concept planté à rang connu (9 octobre 2026, nuit)
 
-**Statut : exploratoire, sur des états synthétiques, sans modèle ni machine.** Chaque question, avec ce que j'en attendais et son critère, a été commitée avant son calcul (`experiences/analyses/rang_plante.py`, commits `2c316b5`, `da6a223`, `66c95c7`, `df2c429`, `87d3814`). Rien ne touche le texte déposé ; ce qui suit est pour ta décision, avant la localisation.
+**Statut : exploratoire, sur des états synthétiques, sans modèle ni machine.** Chaque question, avec ce que j'en attendais et son critère, a été commitée avant son calcul (`experiences/analyses/rang_plante.py`, commits `2c316b5`, `da6a223`, `66c95c7`, `df2c429`, `87d3814`, `fb08541`). Rien ne touche le texte déposé ; ce qui suit est pour ta décision, avant la localisation.
 
 ## Pourquoi
 
@@ -73,6 +73,26 @@ Le texte ne dit pas comment se forment les lots de paires. La carte du texte fac
 
 **La cinquième piste passe le critère commité** ; c'est la seule des cinq.
 
+**Sa robustesse, commitée avant son calcul** (`fb08541`). Elle varie l'effet (1,2 et 0,6), les paires par groupe (200 et 100) et le rang planté (de 0 à 5), sur 10 répliques chacun. Deux corrections de construction ont précédé tout résultat : un arrondi au rang 0 (`ac5f5b0`), et le monde au rang 1, où la part propre annulait la commune une fois sur deux (`723009e`).
+
+| Rang planté | Effet 1,2 ; 200 paires | Effet 1,2 ; 100 paires | Effet 0,6 ; 200 paires | Effet 0,6 ; 100 paires |
+|---|---|---|---|---|
+| 0 (aucun concept) | 9 sur 10 | 9 sur 10 | 9 sur 10 | 9 sur 10 |
+| 1 | 9 | 10 | 9 | 10 |
+| 2 | 9 | 10 | 9 | 10 |
+| 3 | 10 | 10 | 10 | 9 |
+| 4 | 7 (3 sous) | 6 (4 sous) | 5 (5 sous) | 2 (8 sous) |
+| 5 | 6 (4 sous) | 2 (8 sous) | 1 (9 sous) | 1 (9 sous) |
+
+- **Il ne surestime presque jamais** : au plus une réplique sur 10, dans chaque case. Cette moitié du critère tient.
+- **Il retrouve les rangs 0 à 3** dans 9 ou 10 répliques sur 10, partout.
+- **Il sous-estime les rangs 4 et 5**, dès l'effet de 1,2 : l'autre moitié du critère ne tient pas. J'attendais cette perte seulement à l'effet faible.
+  - Avec six groupes, les six directions d'un concept de rang 4 ou 5 représentent mal ses dernières dimensions.
+  - L'effet compte peu : les paires annulent le bruit qu'elles partagent.
+  - C'est la géométrie des groupes qui limite.
+- **Pour le principe, cinq familles d'entraînement** : un rang de 4 ou 5 y serait sous-estimé. Le sens de l'erreur est le prudent pour la thèse du rang, puisque la valeur qui réfute est 1 : dans ces séries, un rang planté de 3 ou plus n'est jamais estimé à 1.
+
+
 ## Ce qui est en jeu dans le texte déposé
 
 - **La thèse du rang (H2)** tombe si, à la localisation, le rang minimal du principe par effacement linéaire vaut 1, et que trois choses tiennent à ce rang (section 1.2).
@@ -83,13 +103,13 @@ Le texte ne dit pas comment se forment les lots de paires. La carte du texte fac
 ## Ce que cela veut dire, pour ta décision avant la localisation
 
 1. **Telle qu'écrite, la procédure de l'annexe C.7 ne retrouve pas un rang planté** dans ce monde. L'effacement itéré, une direction à la fois sur des lots finis, ne l'estime de façon fiable sous aucune des trois lectures essayées. Le cas connu de l'annexe, un concept dont la direction change d'un groupe à l'autre, échouerait probablement. La doctrine dit qu'alors une pente nulle ne réfute rien.
-2. **Ce qui a marché** : ajuster les groupes ensemble, une colonne d'étiquettes par groupe (une famille d'entraînement pour le principe), et estimer le rang par le test séquentiel sur le spectre des différences moyennes blanchies, contre des permutations de signe. Le rang trouvé est ensuite effacé d'un coup, par l'effacement à plusieurs colonnes que le module sait déjà faire. La lecture par transfert se rapporte à côté, comme le texte le veut, sans décider du rang.
+2. **Ce qui a marché** : ajuster les groupes ensemble, une colonne d'étiquettes par groupe (une famille d'entraînement pour le principe), et estimer le rang par le test séquentiel sur le spectre des différences moyennes blanchies, contre des permutations de signe. Il retrouve les rangs 0 à 3, ne surestime presque jamais, et sous-estime les rangs proches du nombre de groupes. Le rang trouvé est ensuite effacé d'un coup, par l'effacement à plusieurs colonnes que le module sait déjà faire. La lecture par transfert se rapporte à côté, comme le texte le veut, sans décider du rang.
 3. **Ce que cela changerait.** La définition déposée du rang minimal, la plus petite suppression qui ramène le transfert au hasard, deviendrait une estimation par le spectre. Ce serait un changement de règle, donc ta décision, par un amendement daté avant les données de la localisation (section 6.2).
 4. **Les limites de ce constat.**
    - Ce monde est synthétique : une seule couche, un bruit gaussien, un concept linéaire.
    - L'estimateur ne voit pas plus de directions qu'il n'y a de groupes : cinq familles d'entraînement pour le principe.
    - Pour « je suis évalué », extrait d'un seul jeu d'indices, les groupes resteraient à définir.
-   - Les cinq pistes ont été écrites l'une après l'autre, chacune après l'échec de la précédente : elles sont toutes rapportées ici, et la cinquième demande une confirmation sur d'autres mondes avant de servir.
+   - Les cinq pistes ont été écrites l'une après l'autre, chacune après l'échec de la précédente : elles sont toutes rapportées ici. La cinquième a été confirmée sur une grille plus large, avec la limite des rangs proches du nombre de groupes.
 
 ## Les sources
 
