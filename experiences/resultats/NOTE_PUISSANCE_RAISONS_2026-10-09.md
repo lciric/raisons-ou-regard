@@ -281,7 +281,7 @@ La bonne issue :
 4. **Le plancher à 2 points protège tant que l'écart vrai ne le dépasse pas**, et paie trop quand ρ est grand ; à 3 points, il ne protège plus.
 5. **Les limites.** L'approximation n(v) vient des simulations de la porte des raisons, pas d'un calcul pour chaque cible du second temps. La distance lointaine du pilote compte 200 scénarios, pas 400 : la vraie estimation y sera plus bruitée encore.
 
-**Ce que je recommande, pour ta décision.** Faire lire au second temps la borne à 80 %, avec un plafond de graines fixé d'avance. Si le plafond s'applique, l'amendement du second temps dit la puissance atteinte, comme le texte déposé le prévoit déjà pour la ligne 2. Le plafond est un choix de budget : chaque graine de plus coûte six entraînements. Un plancher n'est pas utile en plus : la borne à 80 % donne déjà au moins autant que lui dans les cas où il aide.
+**Ce que je recommande, pour ta décision.** Faire lire au second temps la borne à 80 %, avec un plafond de graines fixé d'avance. Si le plafond s'applique, l'amendement du second temps dit la puissance atteinte, comme le texte déposé le prévoit déjà pour la ligne 2. Le plafond est un choix de budget : chaque graine de plus coûte six entraînements. Ajouter le plancher à 2 points relèverait la part des pilotes suffisants quand l'écart vrai est faible ou moyen (à σ = 2 et ρ = 0 : 100 % au lieu de 83 %), mais avec un coût fixe d'au moins 13 graines par bras ; je ne le recommande pas, et le choix se discute.
 
 **Le texte à verser dans la mise à jour datée, si tu l'adoptes (anglais).**
 
