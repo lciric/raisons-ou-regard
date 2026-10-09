@@ -230,3 +230,23 @@ La bonne issue :
 1. **À ρ = 0,8, 8 graines par bras suffisent** (de 92,5 à 97,5 %), là où il en faut de 12 à 16 à ρ = 0. J'attendais « 5 à 8 » : à 5, ce n'est pas encore assez (de 56 à 85,5 %).
 2. **Ce que le pilote doit mesurer**, c'est la variance des contrastes par graine entre bras, pas seulement l'écart entre entraînements : c'est elle qui fixe le nombre de graines.
 3. **Le pilote la mesure mal.** Avec deux graines par bras, chaque contraste n'a que deux valeurs. La simulation de l'amendement du second temps devra le dire, et prendre une hypothèse prudente si l'estimation est trop large.
+
+## Ce que le pilote peut estimer de cette variance (9 octobre, 2 h 25 UTC)
+
+**Ce qui est mesuré.** Avec six bras et 2, 3 ou 4 graines par bras, l'estimation de l'écart des contrastes par graine, √(2σ²(1 − ρ)), par une analyse de variance bras × graine, le bruit binomial retiré. 2 000 pilotes simulés par cas, à 400 scénarios × 5 générations. La question et l'attente ont été commitées avant le calcul (`experiences/analyses/pilote_variance.py`, commit `535aec4` ; sorties : `experiences/resultats/puissance/pilote_variance_2026-10-09.json`).
+
+**L'estimation rapportée à la vraie valeur** (5ᵉ centile – médiane – 95ᵉ centile), à σ = 2 points :
+
+| ρ | 2 graines | 3 graines | 4 graines |
+|---|---|---|---|
+| 0 | 0,17 – 0,90 – 1,54 | 0,46 – 0,93 – 1,42 | 0,60 – 0,98 – 1,36 |
+| 0,5 | 0 – 0,93 – 1,68 (11 % des estimations à zéro) | 0,24 – 0,95 – 1,50 | 0,45 – 0,96 – 1,39 |
+| 0,8 | 0 – 0,84 – 1,93 (27 % à zéro) | 0 – 0,88 – 1,69 (17 % à zéro) | 0 – 0,95 – 1,58 (11 % à zéro) |
+
+À σ = 1 point, c'est pire : de 24 à 49 % des estimations tombent à zéro avec deux graines.
+
+**Ce que cela dit.**
+1. **Deux graines par bras estiment mal la variance qui fixe le nombre de graines** : l'estimation peut se tromper du simple au double, et tombe souvent à zéro une fois le bruit binomial retiré. J'attendais l'imprécision, pas la fréquence des zéros.
+2. **La simulation de l'amendement du second temps ne devrait pas prendre l'estimation du pilote telle quelle**, mais une borne prudente : par exemple, sa limite haute à 90 %, ou une plage d'hypothèses.
+3. **Une option, pour ta décision** : trois ou quatre graines par bras au pilote. Le texte en prévoit deux (section 2.3) ; c'est une règle, à changer par une mise à jour datée avant le pilote. Chaque graine de plus coûte six entraînements.
+4. **Une réserve** : la distance lointaine du pilote compte 200 scénarios (40 par famille tenue à part), pas 400 ; le bruit binomial y est plus fort, et l'estimation moins bonne encore.
