@@ -1,0 +1,197 @@
+{
+ "reps": 200,
+ "rows": [
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.0,
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.0,
+   "lines": {
+    "1": 0.01,
+    "2": 0.34,
+    "3": 0.0,
+    "6": 0.65
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.0,
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.02,
+   "lines": {
+    "1": 0.005,
+    "2": 0.345,
+    "3": 0.025,
+    "6": 0.63
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.0,
+   "seeds": 8,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.0,
+   "lines": {
+    "1": 0.01,
+    "2": 0.725,
+    "3": 0.035,
+    "6": 0.23
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.0,
+   "seeds": 8,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.02,
+   "lines": {
+    "1": 0.035,
+    "2": 0.665,
+    "3": 0.02,
+    "6": 0.29
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.0,
+   "seeds": 12,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.0,
+   "lines": {
+    "1": 0.0,
+    "2": 0.9,
+    "3": 0.015,
+    "6": 0.085
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.0,
+   "seeds": 12,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.02,
+   "lines": {
+    "1": 0.015,
+    "2": 0.85,
+    "3": 0.02,
+    "6": 0.12
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.5,
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.0,
+   "lines": {
+    "1": 0.95,
+    "2": 0.0,
+    "3": 0.0,
+    "6": 0.05
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.5,
+   "seeds": 5,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.02,
+   "lines": {
+    "1": 0.925,
+    "2": 0.0,
+    "3": 0.0,
+    "6": 0.075
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.5,
+   "seeds": 8,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.0,
+   "lines": {
+    "1": 1.0,
+    "2": 0.0,
+    "3": 0.0,
+    "6": 0.0
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.5,
+   "seeds": 8,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.02,
+   "lines": {
+    "1": 1.0,
+    "2": 0.0,
+    "3": 0.0,
+    "6": 0.0
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.5,
+   "seeds": 12,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.0,
+   "lines": {
+    "1": 1.0,
+    "2": 0.0,
+    "3": 0.0,
+    "6": 0.0
+   }
+  },
+  {
+   "base_actions": 0.25,
+   "advantage": 10,
+   "fraction": 0.5,
+   "seeds": 12,
+   "scenarios": 400,
+   "gens": 10,
+   "seed_sd_inh": 0.02,
+   "seed_sd_arm": 0.02,
+   "lines": {
+    "1": 1.0,
+    "2": 0.0,
+    "3": 0.0,
+    "6": 0.0
+   }
+  }
+ ]
+}

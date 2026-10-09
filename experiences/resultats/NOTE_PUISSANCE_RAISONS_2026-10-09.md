@@ -197,3 +197,19 @@ La bonne issue :
 2. **À 3 points, de 8 à 12 graines, elle devient légèrement trop libérale** : environ 7 % de faux positifs au total, pour 5 % attendus. Le bootstrap par grappes, sur 8 à 12 graines, couvre un peu moins que son niveau quand la variance entre graines domine.
 3. **Les faux gains de la simulation des graines viennent surtout des chemins multiples de la table.** Quand aucun bras ne fait mieux, deux lignes de gain peuvent sortir par hasard : un gain sous évaluation seulement, et un gain plus petit que l'effet minimal (3,0 et 2,8 % à 8 graines et 2 points d'écart). La première précision proposée ferme le premier chemin.
 4. **Une précision possible, pour ta décision** : prendre toujours le plus large des deux intervalles, quel que soit le nombre de graines. Elle coûte un peu de puissance, et ne compte que si le pilote mesure un écart entre entraînements de l'ordre de 3 points. Elle peut attendre le pilote et l'amendement du second temps, qui fixe le nombre de graines.
+
+## La règle du regard, avec un niveau propre à chaque entraînement (9 octobre, 2 h 15 UTC)
+
+**Ce qui est mesuré.** La simulation du 3 octobre (`puissance_regard.py`) ne donne d'écart propre qu'à l'effet de l'inhibition chez les raisons. Celle-ci ajoute à chaque entraînement d'un bras son propre niveau, commun à ses deux interventions. La question et l'attente ont été commitées avant le calcul (`experiences/analyses/puissance_regard_entrainements.py`, commit `626e84f` ; sorties : `experiences/resultats/puissance/puissance_regard_entrainements_2026-10-09.json`). Le cadre : un avantage de 10 points, 400 scénarios × 10 générations, un écart de 2 points de l'effet de l'inhibition, et 200 répliques.
+
+| | 5 graines | 8 graines | 12 graines |
+|---|---|---|---|
+| Ligne 2, « l'avantage survit » (vraie fraction 0), sans niveau propre | 34 % | 72,5 % | 90 % |
+| La même, avec un niveau propre de 2 points | 34,5 % | 66,5 % | 85 % |
+| Ligne 1, « le regard » (vraie fraction 0,5), sans niveau propre | 95 % | 100 % | 100 % |
+| La même, avec un niveau propre de 2 points | 92,5 % | 100 % | 100 % |
+
+**Ce que cela dit.**
+1. **Le niveau propre de chaque entraînement change peu** : il s'annule dans D. Il coûte jusqu'à 6 points à la ligne 2, par l'incertitude de l'avantage sous le comparateur, le dénominateur de f. J'attendais ce sens.
+2. **Ce qui décide la ligne 2, c'est l'écart de l'effet de l'inhibition d'un entraînement à l'autre.** Le texte déposé dit qu'un avantage de 10 points demande « about 400 × 10 and at least 5 seeds » (section 3.5). C'est vrai sans cet écart : 89 % à 5 graines, dans la simulation du 3 octobre. Avec 2 points d'écart, il faut de l'ordre de 12 graines pour lire la ligne 2 dans 85 à 90 % des répliques.
+3. **Le texte le prévoit** : la simulation de l'amendement du second temps refera ce calcul avec la variance du pilote. Ce constat dit seulement que le nombre de graines, pour le test du regard comme pour la porte des raisons, risque d'être bien plus haut que cinq.
