@@ -42,7 +42,7 @@
 
 ### Des décisions, sans dépense
 
-1. **Le harnais** : l'architecture sans environnement, adoptée (décision 53), et son code écrit. Le texte déposé dit « multi-turn » (sections 3.3 et 4.1) : la mise à jour datée déclare le changement. **La génération des scénarios tenus à part est adoptée** (décision 54) : par Claude, environ 5 $ pour un pilote puis de l'ordre de 50 $ (`claude/SPEC_SCENARIOS_TENUS_A_PART_v0.1_2026-10-09.md`). Le prompt du juge scellé vient ensuite.
+1. **Le harnais** : l'architecture sans environnement, adoptée (décision 53), et son code écrit. Le texte déposé dit « multi-turn » (sections 3.3 et 4.1) : la mise à jour datée déclare le changement. **La génération des scénarios tenus à part est adoptée** (décision 54). Son pilote (5,07 $) n'a retenu aucun scénario : le juge de réalisme note tout de 0,85 à 0,97, pour un seuil de 0,5 hors d'atteinte, et l'exfiltration est refusée 5 fois sur 5. **À décider** : rapporter le réalisme plutôt que filtrer, et l'exfiltration absente de la distance lointaine (`experiences/resultats/NOTE_PILOTE_SCENARIOS_2026-10-09.md`). Le prompt du juge scellé vient ensuite.
 2. **Les règles du pilote et les contrôles du juge** : adoptés (décisions 50 et 51). La mise à jour datée a leur texte anglais et l'empreinte de leur code (parties 7 et 2).
 3. **Les deux précisions de la table A.2** : adoptées (décision 52). Elles sont la partie 8 de la mise à jour datée, justifiées, avec l'empreinte de leur code.
 4. **L'instrument** : décidé, la voie 1 (décision 49). La mesure du comparateur part dès que le crédit de vast.ai atteint 30 $ ; la session vérifie le crédit toutes les trois heures.
